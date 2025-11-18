@@ -1,19 +1,31 @@
 import { useTranslation } from 'react-i18next'
 import Section from '../components/Section'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { fetchDraw } from '../api'
 
 type Card = { id: number; label: string }
 const mockCards: Card[] = Array.from({ length: 12 }, (_, i) => ({ id: i + 1, label: `Card ${i + 1}` }))
 
 export default function Draw() {
   const { t } = useTranslation()
+  const { i18n } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
   const presetAnswers = (location.state as any)?.answers
   const [selected, setSelected] = useState<Card[]>([])
   const [loading, setLoading] = useState(false)
+  const [serverCards, setServerCards] = useState<any | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    fetchDraw(presetAnswers?.q1, i18n.language.startsWith('zh') ? 'zh' : 'en')
+      .then((data) => {
+        setServerCards(data)
+      })
+      .catch(() => setError('Draw failed'))
+  }, [presetAnswers, i18n.language])
 
   const addCard = (card: Card) => {
     if (selected.find((c) => c.id === card.id) || selected.length >= 3) return
@@ -22,7 +34,7 @@ export default function Draw() {
     if (next.length === 3) {
       setLoading(true)
       setTimeout(() => {
-        navigate('/result', { state: { answers: presetAnswers, cards: next } })
+        navigate('/result', { state: { answers: presetAnswers, cards: next, serverCards } })
       }, 700)
     }
   }
@@ -65,6 +77,7 @@ export default function Draw() {
           </div>
         </div>
       </div>
+      {error && <div className="text-red-500 text-sm">{error}</div>}
       {loading && <div className="text-primary">{t('draw.loading')}</div>}
     </div>
   )
