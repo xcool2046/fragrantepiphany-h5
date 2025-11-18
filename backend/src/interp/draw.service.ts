@@ -16,14 +16,18 @@ export class DrawService {
   async draw(category?: string, language = 'en'): Promise<DrawResult> {
     const qb = this.repo.createQueryBuilder('i').where('i.language = :language', { language })
     if (category) qb.andWhere('i.category = :category', { category })
-    const all = await qb.getMany()
-    if (all.length < 3) return { past: null, now: null, future: null }
-    const shuffled = all.sort(() => Math.random() - 0.5)
-    const pick = (pos: string) => shuffled.find((c) => c.position.toLowerCase() === pos.toLowerCase())
+
+    const past = await qb.clone().andWhere('LOWER(i.position) = LOWER(:p)', { p: 'Past' }).getMany()
+    const now = await qb.clone().andWhere('LOWER(i.position) = LOWER(:p)', { p: 'Now' }).getMany()
+    const future = await qb.clone().andWhere('LOWER(i.position) = LOWER(:p)', { p: 'Future' }).getMany()
+    if (past.length === 0 || now.length === 0 || future.length === 0) {
+      return { past: null, now: null, future: null }
+    }
+    const pickOne = (arr: Interpretation[]) => arr[Math.floor(Math.random() * arr.length)]
     return {
-      past: pick('Past') || pick('past') || shuffled[0],
-      now: pick('Now') || pick('now') || shuffled[1],
-      future: pick('Future') || pick('future') || shuffled[2],
+      past: pickOne(past),
+      now: pickOne(now),
+      future: pickOne(future),
     }
   }
 }
