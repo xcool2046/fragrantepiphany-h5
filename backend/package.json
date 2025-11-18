@@ -18,7 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "seed": "ts-node scripts/seed.ts"
+    "seed": "ts-node scripts/seed.ts",
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "dependencies": {
     "@fast-csv/format": "^5.0.5",
@@ -47,6 +48,7 @@
     "stripe": "^19.3.1",
     "swagger-ui-express": "^5.0.1",
     "typeorm": "^0.3.27",
+    "typeorm-ts-node-commonjs": "^0.3.20",
     "zod": "^4.1.12"
   },
   "devDependencies": {
