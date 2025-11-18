@@ -1,0 +1,34 @@
+# Node/JS
+node_modules/
+dist/
+build/
+.next/
+.vite/
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+
+# Archive/backup
+*.zip
+*.tar
+*.tar.gz
+
+# Python cache
+__pycache__/
+*.pyc

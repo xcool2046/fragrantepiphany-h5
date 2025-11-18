@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoE3H1k6hZJz6+JmxhZ8Z1z5e5O7+jr3jXJQmQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      /* 暖杏主色系，辅以浅米背景 */
+      --bg: #f7f0e5;
+      --panel: #ffffff;
+      --card: #f3e6d7;
+      --accent: #d4a373;
+      --muted: #c49ba3;
+      --text: #2b1f16;
+      --text-sub: #6b5542;
+    }
+    body { margin:0; background:var(--bg); font-family:'Inter','Noto Sans SC',system-ui,sans-serif; color:var(--text); }
+    .status-bar { height:48px; background:rgba(212,163,115,0.18); backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:12px; color:var(--text); }
+    .tab-bar { height:72px; background:rgba(243,230,215,0.95); backdrop-filter:blur(16px); border-top:1px solid rgba(43,31,22,0.08); display:flex; justify-content:space-around; align-items:center; color:var(--text-sub); }
+    .tab-active { color:var(--accent); }
+    .hero-img { border-radius:22px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.18); }
+  </style>
+</head>
+<body>
+  <div class="status-bar">
+    <span class="font-semibold">9:41</span>
+    <div class="flex items-center gap-2 opacity-80">
+      <i class="fa-solid fa-signal"></i>
+      <i class="fa-solid fa-wifi"></i>
+      <i class="fa-solid fa-battery-three-quarters"></i>
+    </div>
+  </div>
+
+  <main class="px-5 pb-20 space-y-6">
+    <div class="flex items-center justify-between pt-2">
+      <div>
+        <p class="text-xs" style="color:var(--text-sub);">Fragrant Epiphany</p>
+        <h1 class="text-xl font-bold">你的塔罗 · 香气旅程</h1>
+      </div>
+      <button class="px-3 py-2 rounded-full text-sm" style="border:1px solid rgba(43,31,22,0.12); background:rgba(212,163,115,0.16); color:var(--text);">EN / CN</button>
+    </div>
+
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80" alt="hero" class="w-full h-52 object-cover" />
+    </div>
+
+    <div class="rounded-2xl p-4 border" style="background:var(--panel); border-color:rgba(43,31,22,0.08); box-shadow:0 12px 30px rgba(0,0,0,0.08);">
+      <div class="flex items-center gap-2 mb-3 text-sm" style="color:var(--accent);"><i class="fa-solid fa-bolt"></i><span>最小闭环</span></div>
+      <div class="grid grid-cols-2 gap-3 text-sm" style="color:var(--text);">
+        <div class="rounded-xl p-3 border" style="background:var(--card); border-color:rgba(43,31,22,0.08);">
+          <p class="font-semibold">抽牌 → Past 免费</p>
+          <p class="text-xs" style="color:var(--text-sub);">固定 3 张，禁止重复</p>
+        </div>
+        <div class="rounded-xl p-3 border" style="background:var(--card); border-color:rgba(43,31,22,0.08);">
+          <p class="font-semibold">支付解锁</p>
+          <p class="text-xs" style="color:var(--text-sub);">Now / 行动 / Future / 推荐</p>
+        </div>
+        <div class="rounded-xl p-3 border" style="background:var(--card); border-color:rgba(43,31,22,0.08);">
+          <p class="font-semibold">Price</p>
+          <p class="text-xs" style="color:var(--text-sub);">RMB 15 / USD 5</p>
+        </div>
+        <div class="rounded-xl p-3 border" style="background:var(--card); border-color:rgba(43,31,22,0.08);">
+          <p class="font-semibold">多语言</p>
+          <p class="text-xs" style="color:var(--text-sub);">默认 EN，可切中文</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-2xl p-4 border" style="background:var(--panel); border-color:rgba(43,31,22,0.08); box-shadow:0 12px 30px rgba(0,0,0,0.08);">
+      <div class="flex items-center justify-between mb-3">
+        <div>
+          <p class="text-xs" style="color:var(--text-sub);">流程</p>
+          <p class="font-semibold">只需 3 步</p>
+        </div>
+        <a href="draw.html" class="text-sm" style="color:var(--accent);">立即抽牌</a>
+      </div>
+      <ol class="text-sm list-decimal list-inside space-y-2" style="color:var(--text);">
+        <li>回答 3 个问题，明确意图</li>
+        <li>抽 3 张牌（Past / Now / Future，禁止重复）</li>
+        <li>查看 Past 免费，支付解锁完整解读</li>
+      </ol>
+    </div>
+  </main>
+
+  <nav class="tab-bar fixed inset-x-0 bottom-0">
+    <div class="tab-active flex flex-col items-center text-xs"><i class="fa-solid fa-house text-lg"></i><span>Home</span></div>
+    <div class="flex flex-col items-center text-xs"><i class="fa-regular fa-circle-question text-lg"></i><span>问卷</span></div>
+    <div class="flex flex-col items-center text-xs"><i class="fa-solid fa-wand-sparkles text-lg"></i><span>抽牌</span></div>
+    <div class="flex flex-col items-center text-xs"><i class="fa-regular fa-square-check text-lg"></i><span>结果</span></div>
+    <div class="flex flex-col items-center text-xs"><i class="fa-solid fa-cart-shopping text-lg"></i><span>支付</span></div>
+  </nav>
+</body>
+</html>

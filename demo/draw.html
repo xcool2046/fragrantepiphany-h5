@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Draw</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoE3H1k6hZJz6+JmxhZ8Z1z5e5O7+jr3jXJQmQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg: #1a1f2b;
+      --card: #111827;
+      --accent: #d4a373;
+      --text: #e2e8f0;
+      --text-sub: #94a3b8;
+    }
+    body { margin:0; background:var(--bg); font-family:'Inter','Noto Sans SC',system-ui,sans-serif; color:var(--text); }
+    .status-bar { height:48px; background:rgba(0,0,0,0.35); backdrop-filter:blur(12px); display:flex; align-items:center; justify_content:space-between; padding:0 16px; font-size:12px; color:#fff; }
+    .tab-bar { height:72px; background:rgba(15,17,26,0.9); backdrop-filter:blur(16px); border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-around; align-items:center; color:var(--text-sub); position:fixed; inset-x:0; bottom:0; }
+    .tab-active { color:var(--accent); }
+    .slot { border:2px dashed rgba(255,255,255,0.12); border-radius:18px; min-height:120px; display:flex; align-items:center; justify-content:center; background:#121829; }
+    .slot.filled { border-style:solid; border-color:var(--accent); background:rgba(212,163,115,0.12); color:#fef3c7; }
+    .card-item { background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:14px; display:flex; justify-content:space-between; align-items:center; transition:all .2s ease; }
+    .card-item:hover { border-color:var(--accent); transform:translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="status-bar">
+    <span class="font-semibold">9:41</span>
+    <div class="flex items-center gap-2 opacity-80"><i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-three-quarters"></i></div>
+  </div>
+
+  <main class="px-5 pb-24 space-y-5">
+    <div class="pt-3 flex items-center justify-between">
+      <div>
+        <p class="text-xs text-slate-400">Step 2 / 3</p>
+        <h1 class="text-xl font-bold">抽牌（固定 3 张，不重复）</h1>
+      </div>
+      <span class="text-xs text-amber-200">可滑动选择</span>
+    </div>
+
+    <section class="grid grid-cols-1 gap-3">
+      <div class="slot filled">Past · 圣杯四</div>
+      <div class="slot filled">Now · 宝剑四</div>
+      <div class="slot">Future · 待放置</div>
+      <p class="text-xs text-slate-400">第三张放入后自动跳转结果页（可加轻量波纹/渐变转场，保持 60fps）。</p>
+    </section>
+
+    <section class="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-3">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-xs text-slate-400">可选牌面</p>
+          <p class="font-semibold">滑动 / 滚动选择</p>
+        </div>
+        <span class="text-xs text-slate-400">已隐藏已选卡</span>
+      </div>
+      <div class="space-y-3 max-h-72 overflow-auto pr-1">
+        <div class="card-item"><span>圣杯九</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-500/20 text-emerald-200">可选</span></div>
+        <div class="card-item"><span>权杖 Ace</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-500/20 text-emerald-200">可选</span></div>
+        <div class="card-item"><span>女祭司</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-500/20 text-emerald-200">可选</span></div>
+        <div class="card-item"><span>命运之轮</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-500/20 text-emerald-200">可选</span></div>
+        <div class="card-item"><span>恋人</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-500/20 text-emerald-200">可选</span></div>
+      </div>
+    </section>
+
+    <button class="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-300 text-slate-900 font-bold">放置并跳转结果</button>
+  </main>
+
+  <nav class="tab-bar">
+    <div class="flex flex-col items-center text-xs"><i class="fa-solid fa-house text-lg"></i><span>Home</span></div>
+    <div class="flex flex-col items-center text-xs"><i class="fa-regular fa-circle-question text-lg"></i><span>问卷</span></div>
+    <div class="tab-active flex flex-col items-center text-xs"><i class="fa-solid fa-wand-sparkles text-lg"></i><span>抽牌</span></div>
+    <div class="flex flex-col items-center text-xs"><i class="fa-regular fa-square-check text-lg"></i><span>结果</span></div>
+    <div class="flex flex-col items-center text-xs"><i class="fa-solid fa-cart-shopping text-lg"></i><span>支付</span></div>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Questionnaire</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoE3H1k6hZJz6+JmxhZ8Z1z5e5O7+jr3jXJQmQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg: #1a1f2b;
+      --card: #121829;
+      --accent: #d4a373;
+      --text: #e5e7eb;
+      --text-sub: #94a3b8;
+    }
+    body { margin:0; background:var(--bg); font-family:'Inter','Noto Sans SC',system-ui,sans-serif; color:var(--text); }
+    .status-bar { height:48px; background:rgba(0,0,0,0.35); backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:12px; color:#fff; }
+    .tab-bar { height:72px; background:rgba(15,17,26,0.9); backdrop-filter:blur(16px); border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-around; align-items:center; color:var(--text-sub); position:fixed; inset-x:0; bottom:0; }
+    .tab-active { color:var(--accent); }
+    .choice { border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:12px; background:var(--card); display:flex; justify-content:space-between; align-items:center; transition:all .2s ease; }
+    .choice:hover { border-color:var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="status-bar">
+    <span class="font-semibold">9:41</span>
+    <div class="flex items-center gap-2 opacity-80"><i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-three-quarters"></i></div>
+  </div>
+
+  <main class="px-5 pb-24 space-y-5">
+    <div class="pt-3">
+      <p class="text-xs text-slate-400">3/3 问卷</p>
+      <h1 class="text-xl font-bold">请静下心回答</h1>
+      <p class="text-sm text-slate-400">答案无对错，帮助生成更贴切的解读。</p>
+    </div>
+
+    <section class="space-y-4">
+      <div class="text-sm text-slate-300">1. 当前最困扰你的人/事？</div>
+      <div class="space-y-3">
+        <div class="choice"><span>关系与情感</span><span class="text-amber-300 text-xs flex items-center gap-1"><i class="fa-solid fa-check"></i>已选</span></div>
+        <div class="choice"><span>事业与财富</span><i class="fa-regular fa-circle"></i></div>
+        <div class="choice"><span>机遇与未知</span><i class="fa-regular fa-circle"></i></div>
+        <div class="choice"><span>自我与成长</span><i class="fa-regular fa-circle"></i></div>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <div class="text-sm text-slate-300">2. 你最渴望获得？</div>
+      <div class="space-y-3">
+        <div class="choice"><span>清晰与答案</span><i class="fa-regular fa-circle"></i></div>
+        <div class="choice"><span>勇气与力量</span><i class="fa-regular fa-circle"></i></div>
+        <div class="choice"><span>释放与疗愈</span><i class="fa-regular fa-circle"></i></div>
+        <div class="choice"><span>确认与验证</span><i class="fa-regular fa-circle"></i></div>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <div class="text-sm text-slate-300">3. 目前状态最接近？</div>
+      <div class="space-y-3">
+        <div class="choice"><span>主动出击</span><i class="fa-regular fa-circle"></i></div>
+        <div class="choice"><span>徘徊观望</span><i class="fa-regular fa-circle"></i></div>
+        <div class="choice"><span>感到耗竭</span><i class="fa-regular fa-circle"></i></div>
+        <div class="choice"><span>冷静分析</span><i class="fa-regular fa-circle"></i></div>
+      </div>
+    </section>
+
+    <button class="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-300 text-slate-900 font-bold">提交并开始抽牌</button>
+  </main>
+
+  <nav class="tab-bar">
+    <div class="flex flex-col items-center text-xs"><i class="fa-solid fa-house text-lg"></i><span>Home</span></div>
+    <div class="tab-active flex flex-col items-center text-xs"><i class="fa-regular fa-circle-question text-lg"></i><span>问卷</span></div>
+    <div class="flex flex-col items-center text-xs"><i class="fa-solid fa-wand-sparkles text-lg"></i><span>抽牌</span></div>
+    <div class="flex flex-col items-center text-xs"><i class="fa-regular fa-square-check text-lg"></i><span>结果</span></div>
+    <div class="flex flex-col items-center text-xs"><i class="fa-solid fa-cart-shopping text-lg"></i><span>支付</span></div>
+  </nav>
+</body>
+</html>

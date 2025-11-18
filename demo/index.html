@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fragrant Epiphany - Demo Board</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background:#0f1117; color:#e5e7eb; font-family:'Inter','Noto Sans SC',system-ui,sans-serif; }
+    .device-frame { width:430px; height:932px; border-radius:38px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.45); border:12px solid #0b0c12; background:#000; }
+    iframe { width:100%; height:100%; border:0; }
+  </style>
+</head>
+<body class="p-6">
+  <h1 class="text-2xl font-bold mb-4">Fragrant Epiphany 高保真原型（iPhone 15 Pro 视觉尺寸）</h1>
+  <p class="text-sm text-slate-400 mb-6">下方平铺展示各界面（iframe 方式），便于联调与审阅。</p>
+  <div class="grid xl:grid-cols-3 md:grid-cols-2 gap-6">
+    <div>
+      <div class="text-sm text-slate-300 mb-2">Home</div>
+      <div class="device-frame"><iframe src="home.html"></iframe></div>
+    </div>
+    <div>
+      <div class="text-sm text-slate-300 mb-2">Questionnaire</div>
+      <div class="device-frame"><iframe src="questionnaire.html"></iframe></div>
+    </div>
+    <div>
+      <div class="text-sm text-slate-300 mb-2">Draw</div>
+      <div class="device-frame"><iframe src="draw.html"></iframe></div>
+    </div>
+    <div>
+      <div class="text-sm text-slate-300 mb-2">Result</div>
+      <div class="device-frame"><iframe src="result.html"></iframe></div>
+    </div>
+    <div>
+      <div class="text-sm text-slate-300 mb-2">Pay</div>
+      <div class="device-frame"><iframe src="pay.html"></iframe></div>
+    </div>
+  </div>
+</body>
+</html>

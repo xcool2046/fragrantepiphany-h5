@@ -1,0 +1,56 @@
+[
+  {
+    "card_name": "The Fool",
+    "category": "爱情",
+    "position": "Past",
+    "language": "en",
+    "summary": "You embraced spontaneity and open-hearted trust.",
+    "interpretation": "Your past was marked by innocence and willingness to leap. This set the stage for unexpected connections.",
+    "recommendation": "Acknowledge the courage of your earlier risks; keep a light heart."
+  },
+  {
+    "card_name": "The Fool",
+    "category": "爱情",
+    "position": "Past",
+    "language": "zh",
+    "summary": "你曾以真诚与勇气投入情感。",
+    "interpretation": "你的过去充满敢爱敢闯的能量，为后续的关系奠定了信任与惊喜的基调。",
+    "recommendation": "记住这份勇气，但让行动更有节奏。"
+  },
+  {
+    "card_name": "The Magician",
+    "category": "友情",
+    "position": "Now",
+    "language": "en",
+    "summary": "You have the tools to clarify a friendship.",
+    "interpretation": "Your abilities and intent are aligned—use precise words to set healthy expectations.",
+    "recommendation": "Name your boundaries; propose one concrete action together."
+  },
+  {
+    "card_name": "The Magician",
+    "category": "友情",
+    "position": "Now",
+    "language": "zh",
+    "summary": "你有足够的资源与智慧来澄清一段友情。",
+    "interpretation": "行动与心意已对齐，关键是用清晰的表达设定良好预期。",
+    "recommendation": "说出你的边界，也提出一次具体的相处计划。"
+  },
+  {
+    "card_name": "The High Priestess",
+    "category": "亲情",
+    "position": "Future",
+    "language": "en",
+    "summary": "Upcoming calm invites deeper listening.",
+    "interpretation": "A quieter phase allows you to sense unspoken needs in family dynamics.",
+    "recommendation": "Hold space; respond after observing, not before."
+  },
+  {
+    "card_name": "The High Priestess",
+    "category": "亲情",
+    "position": "Future",
+    "language": "zh",
+    "summary": "即将进入更安静的阶段，适合倾听与体察。",
+    "interpretation": "放慢脚步，你更能意识到家人未言明的需求与情绪。",
+    "recommendation": "先倾听后回应，用耐心创造安全感。"
+  }
+]
