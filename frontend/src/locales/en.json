@@ -1,0 +1,107 @@
+{
+  "common": {
+    "appName": "Fragrant Epiphany",
+    "start": "Start explore",
+    "learnMore": "Learn more",
+    "language": "Language",
+    "back": "Back",
+    "continue": "Continue",
+    "retry": "Retry",
+    "home": "Home",
+    "quiz": "Quiz",
+    "draw": "Draw",
+    "result": "Result",
+    "pay": "Pay",
+    "share": "Share",
+    "readAgain": "Read again"
+  },
+  "home": {
+    "title": "A Journey Through Scent, Spirit and Stars",
+    "subtitle": "The Art of Tarot, Fragrance, Dreams",
+    "value": "Tarot × fragrance, a gentle turning point you can wear.",
+    "highlights": [
+      "Tarot reading to see your subconscious state",
+      "Perfume picks from a curated library",
+      "Not just text, but an answer you can wear"
+    ]
+  },
+  "about": {
+    "title": "About Fragrant Epiphany",
+    "mission": "Before a big change, light a gentle and truthful turning point for you.",
+    "what": [
+      "Tarot reading: reveal your subconscious questions",
+      "Perfume picks: choose scents that truly answer you",
+      "Unique experience: not just words, but an answer you can wear"
+    ],
+    "promise": "No generic tests or scent lists—it's Tarot × fragrance × you, with scents chosen just for you.",
+    "youGet": [
+      "A Tarot reading that understands your mood",
+      "Perfume picks that fit your state",
+      "A gentle reminder: you deserve to be treated with care"
+    ],
+    "founder": "From consulting/management, keen on psychology, music, and fragrance; trained in Tarot, built a 100+ scent library; cares about people and emotions.",
+    "cta": "Begin"
+  },
+  "how": {
+    "title": "How it works",
+    "steps": [
+      "Answer 3 short questions (no right or wrong)",
+      "Pick 3 cards (no repeats): Past / Now / Future",
+      "See a free Past summary",
+      "Pay to unlock full reading + recommendations"
+    ],
+    "note": "Light ripple/gradient transitions, keep it smooth; third card auto-jumps after a short loading."
+  },
+  "quiz": {
+    "title": "Please answer three questions",
+    "subtitle": "Follow your first instinct. No right or wrong.",
+    "hint": "Answer all three to continue.",
+    "q1": "What troubles or occupies you most now?",
+    "q1Options": ["Relationships & emotions", "Career & wealth", "Self & growth", "Opportunities & unknown"],
+    "q2": "What do you most wish to gain?",
+    "q2Options": ["Clarity & answers", "Courage & strength", "Release & healing", "Confirmation & validation"],
+    "q3": "Which state are you closer to right now?",
+    "q3Options": ["Taking action", "Hesitant / observing", "Feeling drained", "Calm analysis"],
+    "next": "Continue to explore"
+  },
+  "draw": {
+    "title": "Pick 3 cards",
+    "tipTop": "Pinch to zoom the wheel, swipe to rotate, tap to pick.",
+    "tipBottom": "Fixed 3 cards, no repeats. After the third, it jumps to result automatically.",
+    "slots": {"past": "Past", "now": "Now", "future": "Future"},
+    "place": "Place into slot",
+    "loading": "Reading your cards..."
+  },
+  "result": {
+    "tagsTitle": "Your focus",
+    "freeTitle": "Past (free)",
+    "paywall": "Unlock full reading",
+    "price": {"cny": "RMB 15", "usd": "USD 5"},
+    "cta": "Unlock full reading",
+    "paidSections": {"now": "Now", "action": "Action", "future": "Future", "recommendation": "Recommendation"}
+  },
+  "pay": {
+    "title": "Payment",
+    "summary": "Order summary",
+    "button": "Proceed to payment",
+    "note": "You will be redirected to Stripe Checkout.",
+    "success": "Payment succeeded",
+    "fail": "Payment not completed",
+    "viewResult": "View full result",
+    "retry": "Retry payment",
+    "backHome": "Back to home"
+  },
+  "admin": {
+    "login": "Admin login",
+    "username": "Username",
+    "password": "Password",
+    "config": "Settings",
+    "price": "Price",
+    "languageToggle": "Language toggle",
+    "webhook": "Webhook URL",
+    "keys": "Stripe keys (masked)",
+    "import": "Import",
+    "export": "Export",
+    "orders": "Orders"
+  }
+}
