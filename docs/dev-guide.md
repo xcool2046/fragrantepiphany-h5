@@ -71,6 +71,32 @@
 - 拓扑：Nginx → 前端静态 → 后端（Node）→ Postgres；HTTPS 用现有证书。
 - 环境切换：通过 env 区分 test/prod Stripe key、price_id、webhook secret（Compose/.env 注入）。
 
+### Compose 运行（开发/测试）
+1) 准备 `.env`（根目录，不提交）：
+```
+DATABASE_URL=postgresql://tarot:tarot@db:5432/tarot
+STRIPE_PUBLISHABLE_KEY=...
+STRIPE_SECRET_KEY=...
+STRIPE_PUBLISHABLE_KEY_TEST=...
+STRIPE_SECRET_KEY_TEST=...
+STRIPE_WEBHOOK_SECRET=...
+STRIPE_PRICE_ID_CNY=price_...
+STRIPE_PRICE_ID_USD=price_...
+PUBLIC_BASE_URL=http://localhost:4173
+ADMIN_USER=monicacjx
+ADMIN_PASS=kittycjx88358985
+SESSION_SECRET=devsecret
+```
+2) `docker-compose up --build` （默认端口：nginx 80，frontend 4173，backend 3000，db 5432）。
+3) 运行迁移/种子（容器内或本机）：
+- 迁移：`cd backend && npm run build && npm run typeorm -- migration:run`（或在容器内执行）。
+- 种子：`cd backend && npm run seed`（用 sample-data/cards-example.json）。
+
+### 手动运行（本机）
+1) Postgres 本地：创建数据库，对应 DATABASE_URL。
+2) 后端：`cd backend && npm install && npm run build && npm run typeorm -- migration:run && npm run seed && npm run start:dev`。
+3) 前端：`cd frontend && npm install && npm run dev -- --host --port 4173`，设置 `VITE_API_BASE_URL=http://localhost:3000`。
+
 ## 监控与埋点（推荐）
 - 前端：基础错误上报（Sentry 或 window.onerror）、支付关键链路事件（create-session、redirect、success、fail）。
 - 后端：访问日志、应用错误日志；关键支付事件写入订单表。
