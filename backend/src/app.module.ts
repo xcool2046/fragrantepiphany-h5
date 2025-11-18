@@ -8,6 +8,10 @@ import { Interpretation } from './entities/interpretation.entity';
 import { Order } from './entities/order.entity';
 import { User } from './entities/user.entity';
 import { PayModule } from './pay/pay.module';
+import { AuthModule } from './auth/auth.module';
+import { AuthController } from './auth/auth.controller';
+import { InterpModule } from './interp/interp.module';
+import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 
 @Module({
   imports: [
@@ -19,8 +23,11 @@ import { PayModule } from './pay/pay.module';
       }),
     }),
     PayModule,
+    AuthModule,
+    InterpModule,
+    QuestionnaireModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, AuthController],
   providers: [AppService],
 })
 export class AppModule {}
