@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import Section from '../components/Section'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { submitQuestionnaire } from '../api'
 
 const questionsKeys = [
   { key: 'q1', optionsKey: 'q1Options' },
@@ -21,7 +22,11 @@ export default function Quiz() {
   const allAnswered = questionsKeys.every((q) => answers[q.key])
 
   const submit = () => {
-    // TODO: persist to backend or global store
+    submitQuestionnaire({
+      q1: answers.q1,
+      q2: answers.q2,
+      q3: answers.q3,
+    }).catch(() => {})
     navigate('/draw', { state: { answers } })
   }
 
