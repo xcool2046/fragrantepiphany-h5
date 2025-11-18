@@ -12,5 +12,6 @@ COPY --from=build /app/package*.json ./
 RUN npm ci --omit=dev
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/ormconfig.ts ./ormconfig.ts
+COPY --from=build /app/ormconfig.cjs ./ormconfig.cjs
 EXPOSE 3000
-CMD ["node", "dist/main.js"]
+CMD ["node", "dist/src/main.js"]
