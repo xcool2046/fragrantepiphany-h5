@@ -1,10 +1,11 @@
 import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common'
 import { InterpretationService } from './interp.service'
 import { AuthGuard } from '@nestjs/passport'
+import { DrawService } from './draw.service'
 
 @Controller('api/interp')
 export class InterpretationController {
-  constructor(private readonly service: InterpretationService) {}
+  constructor(private readonly service: InterpretationService, private readonly drawService: DrawService) {}
 
   @Get()
   async getOne(
@@ -17,8 +18,8 @@ export class InterpretationController {
   }
 
   @Get('draw')
-  async draw() {
-    return this.service.drawThree()
+  async draw(@Query('category') category?: string, @Query('language') language = 'en') {
+    return this.drawService.draw(category, language)
   }
 
   @UseGuards(AuthGuard('jwt'))
