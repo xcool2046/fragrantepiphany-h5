@@ -1,13 +1,14 @@
-import Section from '../components/Section'
+
 import { useTranslation } from 'react-i18next'
-import { useLocation, Link, useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getOrder } from '../api'
 
 export default function Result() {
   const { t } = useTranslation()
-  const location = useLocation()
   const [searchParams] = useSearchParams()
+  const navigate = useNavigate()
+  const location = useLocation()
   
   // Data from Draw page
   const stateAnswers = (location.state as any)?.answers
@@ -31,30 +32,24 @@ export default function Result() {
 
   // Check payment status if returning from Stripe
   useEffect(() => {
+    const mockPay = searchParams.get('mock_pay') === 'true'
+    
+    if (mockPay) {
+      setIsPaid(true)
+      return
+    }
+
     if (paymentStatus === 'success' && orderId) {
       setLoading(true)
       getOrder(orderId)
         .then((order) => {
           if (order.status === 'succeeded') {
             setIsPaid(true)
-            // In a real app, we would fetch the full result associated with the order
-            // For now, we might need to re-fetch or use stored data. 
-            // Since we don't have a backend "get result by order" yet, 
-            // we'll assume the user came back and we need to show the "Paid" view.
-            // Ideally, the backend should return the result in the order or a separate endpoint.
-            // Let's assume we can get it or just unlock the view if we have the data.
-            
-            // If we lost state (page refresh), we might be in trouble without a backend persistence for results.
-            // For this demo, let's assume we still have state or we re-fetch.
-            // But wait, if we redirect from Stripe, we lose `location.state`.
-            // So we MUST fetch the result from backend using orderId or session.
-            // The current `api.ts` doesn't have `getResultByOrder`.
-            // We'll mock it or just show a success message for now.
           }
         })
         .finally(() => setLoading(false))
     }
-  }, [paymentStatus, orderId])
+  }, [paymentStatus, orderId, searchParams])
 
   // If we have stateCards but no serverCards (e.g. direct navigation?), fetch them
   useEffect(() => {
@@ -69,30 +64,56 @@ export default function Result() {
 
   // Helper to render card section
   const renderCardSection = (title: string, card: any, content: any) => (
-    <Section title={title}>
-      <div className="flex items-center gap-4 mb-4">
-        <div className="w-16 h-24 bg-[#2B1F16] rounded border border-[#D4A373] flex items-center justify-center text-xs text-[#F3E6D7] text-center p-1">
-          {card?.label}
+    <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-white/50 shadow-card relative overflow-hidden group">
+      <div className="absolute -top-10 -right-10 w-32 h-32 bg-gold/10 rounded-full blur-3xl group-hover:bg-gold/20 transition-all duration-500"></div>
+      
+      <h3 className="text-sm text-gold uppercase tracking-[0.2em] mb-6 font-medium border-b border-gold/20 pb-2 inline-block">{title}</h3>
+      
+      <div className="flex flex-col sm:flex-row gap-6">
+        <div className="flex-shrink-0 mx-auto sm:mx-0">
+          <div className="w-32 h-48 bg-gradient-to-br from-[#2B1F16] to-[#1a120d] rounded-xl border border-gold/30 flex items-center justify-center relative shadow-lg group-hover:scale-[1.02] transition-transform duration-500">
+             <div className="absolute inset-0 opacity-30 bg-[url('/assets/pattern.png')] bg-cover mix-blend-overlay"></div>
+             <div className="absolute inset-0 border border-white/10 rounded-xl"></div>
+             <span className="absolute bottom-4 text-gold/90 text-xs font-serif tracking-widest uppercase text-center px-2">{card?.label}</span>
+          </div>
         </div>
-        <div className="flex-1">
-          <h3 className="font-serif text-lg text-[#2B1F16]">{card?.label}</h3>
-          {/* <p className="text-xs text-[#6B5542]">Keywords...</p> */}
+        
+        <div className="flex-1 space-y-3">
+          <h4 className="font-serif text-2xl text-text">{card?.label}</h4>
+          <div className="w-12 h-0.5 bg-gold/50"></div>
+          <p className="text-text text-base leading-relaxed font-light whitespace-pre-wrap opacity-90">
+            {content?.summary || '...'}
+          </p>
         </div>
       </div>
-      <p className="text-[#2B1F16] text-sm leading-relaxed whitespace-pre-wrap">{content?.summary || '...'}</p>
-    </Section>
+    </div>
   )
 
-  if (loading) return <div className="p-8 text-center">{t('draw.loading')}</div>
+  const handlePay = () => {
+    navigate('/pay', { 
+      state: { 
+        answers: stateAnswers, 
+        cards: stateCards, 
+        serverCards: stateServerCards 
+      } 
+    })
+  }
+
+  if (loading) return (
+    <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4">
+      <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-gold/30 border-t-gold"></div>
+      <p className="text-gold font-serif tracking-widest uppercase text-sm">{t('draw.loading')}</p>
+    </div>
+  )
 
   return (
-    <div className="space-y-6 pb-20">
+    <div className="space-y-8 pb-[calc(env(safe-area-inset-bottom)+100px)] pt-4">
       {/* Header */}
-      <div className="text-center space-y-2">
-        <h2 className="text-2xl font-serif text-[#2B1F16]">{t('result.tagsTitle')}</h2>
+      <div className="text-center space-y-4">
+        <h2 className="text-3xl font-serif text-text">{t('result.tagsTitle')}</h2>
         <div className="flex flex-wrap justify-center gap-2">
           {stateAnswers && Object.values(stateAnswers).map((ans: any, i) => (
-            <span key={i} className="px-3 py-1 bg-white rounded-full text-xs text-[#6B5542] shadow-sm border border-[#E5E5E5]">
+            <span key={i} className="px-4 py-1.5 bg-white/60 backdrop-blur-sm rounded-full text-xs font-medium text-subtext shadow-sm border border-white/50 tracking-wide">
               {ans}
             </span>
           ))}
@@ -106,12 +127,11 @@ export default function Result() {
                   url: window.location.href,
                 }).catch(console.error)
               } else {
-                // Fallback: Copy to clipboard
                 navigator.clipboard.writeText(window.location.href)
-                alert(t('common.copied')) // Ensure this key exists or use hardcoded for now
+                alert(t('common.copied'))
               }
             }}
-            className="px-3 py-1 bg-[#D4A373] rounded-full text-xs text-[#2B1F16] shadow-sm hover:bg-[#C49BA3] transition flex items-center gap-1"
+            className="px-4 py-1.5 bg-gold/10 backdrop-blur-sm rounded-full text-xs font-medium text-gold shadow-sm border border-gold/20 hover:bg-gold/20 transition flex items-center gap-2"
           >
             <i className="fas fa-share-alt"></i> Share
           </button>
@@ -123,30 +143,36 @@ export default function Result() {
 
       {/* Paywall / Paid Content */}
       {!isPaid ? (
-        <div className="relative">
+        <div className="relative mt-8">
           {/* Blurred Preview */}
-          <div className="blur-sm select-none opacity-50 pointer-events-none">
-             {renderCardSection(t('result.paidSections.now'), nowCard, { summary: 'LOCKED CONTENT LOCKED CONTENT' })}
+          <div className="blur-md select-none opacity-40 pointer-events-none grayscale">
+             {renderCardSection(t('result.paidSections.now'), nowCard, { summary: 'LOCKED CONTENT LOCKED CONTENT LOCKED CONTENT LOCKED CONTENT' })}
           </div>
           
-          {/* Paywall Overlay - Sticky Bottom */}
-          <div className="fixed bottom-0 left-0 right-0 z-20 p-4 bg-gradient-to-t from-[#F7F0E5] via-[#F7F0E5]/90 to-transparent pb-8">
-            <div className="bg-white/95 backdrop-blur p-4 rounded-xl shadow-[0_-4px_20px_rgba(0,0,0,0.1)] border border-[#D4A373]/30 max-w-md mx-auto flex flex-col items-center gap-3">
-              <div className="text-center">
-                 <h3 className="text-base font-serif text-[#2B1F16]">{t('result.paywall')}</h3>
-                 <p className="text-xs text-[#6B5542]">{t('about.youGet.0')}</p>
+          {/* Paywall Overlay */}
+          {!isPaid && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center p-6 -mt-12">
+              <div className="bg-white/80 backdrop-blur-xl rounded-[32px] p-8 shadow-2xl border border-white/60 max-w-sm w-full relative overflow-hidden">
+                <div className="absolute -top-20 -left-20 w-40 h-40 bg-gold/20 rounded-full blur-3xl"></div>
+                
+                <div className="relative z-10 flex flex-col items-center">
+                  <div className="w-16 h-16 bg-gradient-gold rounded-full flex items-center justify-center shadow-glow mb-6 cursor-pointer hover:scale-110 transition-transform duration-300" onClick={handlePay}>
+                    <span className="text-2xl text-white">🔒</span>
+                  </div>
+                  
+                  <h3 className="text-2xl font-serif text-text mb-3">{t('result.paywallTitle')}</h3>
+                  <p className="text-subtext text-sm mb-8 leading-relaxed">{t('result.paywallDesc')}</p>
+                  
+                  <button
+                    onClick={handlePay}
+                    className="w-full py-4 bg-gradient-gold text-white rounded-full font-medium shadow-glow hover:shadow-lg hover:scale-[1.02] transition-all duration-300 tracking-wide text-lg"
+                  >
+                    {t('result.unlockButton')}
+                  </button>
+                </div>
               </div>
-              
-              <Link 
-                to="/pay" 
-                state={{ answers: stateAnswers, cards: stateCards, serverCards: stateServerCards }} 
-                className="w-full flex items-center justify-between px-6 py-3 bg-[#D4A373] text-[#2B1F16] rounded-full font-bold shadow-lg hover:bg-[#C49BA3] transition"
-              >
-                <span>{t('result.cta')}</span>
-                <span>{t('result.price.cny')} / {t('result.price.usd')}</span>
-              </Link>
             </div>
-          </div>
+          )}
         </div>
       ) : (
         <>
@@ -155,11 +181,19 @@ export default function Result() {
           {renderCardSection(t('result.paidSections.future'), futureCard, fullResult?.future)}
           
           {/* Recommendations */}
-          <Section title={t('result.paidSections.recommendation')}>
-             <p className="text-[#2B1F16] text-sm">
-               {fullResult?.recommendation ? JSON.stringify(fullResult.recommendation) : 'Perfume recommendations will appear here.'}
-             </p>
-          </Section>
+          <div className="bg-gradient-to-br from-[#2B1F16] to-[#1a120d] rounded-2xl p-8 text-white relative overflow-hidden shadow-card">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 rounded-full blur-3xl"></div>
+             <div className="absolute inset-0 opacity-10 bg-[url('/assets/pattern.png')] bg-cover"></div>
+             
+             <div className="relative z-10">
+               <h3 className="text-sm text-gold uppercase tracking-[0.2em] mb-6 font-medium border-b border-gold/20 pb-2 inline-block">
+                 {t('result.paidSections.recommendation')}
+               </h3>
+               <p className="text-white/90 text-base leading-relaxed font-light">
+                 {fullResult?.recommendation ? JSON.stringify(fullResult.recommendation) : 'Perfume recommendations will appear here.'}
+               </p>
+             </div>
+          </div>
         </>
       )}
     </div>

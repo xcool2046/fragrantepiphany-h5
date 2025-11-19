@@ -1,52 +1,24 @@
-# 塔罗抽牌占卜 H5/Web 方案（基于 Notion 文档整理）
+# Fragrant Epiphany H5
 
-> 读取自 Notion 页面《塔罗抽牌占卜 H5/Web 方案》（pageId: 2adc9ea8-419e-80b1-bdf1-ee0e21802751）。以下为已公开信息汇总，开发未启动。
+> A Tarot reading experience with perfume recommendations.
 
-## 目录
-- 项目概览
-- 功能范围
-- 技术栈
-- 时间/费用/交付
-- 所需资料
-- 依赖与前置条件（详见 `docs/requirements.md`）
-- 架构与技术选型（详见 `docs/architecture.md`）
-- 待确认问题清单（详见 `docs/open-questions.md`）
+## 📚 Documentation
 
-## 项目概览
-- 目标：跑通「抽牌 → 免费解析 → 支付 → 完整解析 → 推荐」的最小闭环（MVP），快速上线验证。
-- 体验链路：抽牌动画、免费解析、付费闭环、完整解析与推荐。
+All project documentation is located in the `docs/` directory.
 
-## 功能范围（摘录）
-- 页面流程：引导页 → 问题选择 → 玩法介绍 → 抽牌动画页 → 免费解析 → Stripe 付费页 → 完整解析页。
-- 后台管理：牌面、问题、解析与推荐规则的 CRUD。
-- 支付闭环：Stripe 收银台；支付完成后回跳显示结果。
+*   **[Requirements](docs/requirements.md)**: Functional scope, user flow, and business rules.
+*   **[Architecture](docs/architecture.md)**: Technical stack, database schema, and API design.
+*   **[Development Guide](docs/dev-guide.md)**: Setup, running locally, **testing**, and debugging.
+*   **[Deployment Guide](docs/deploy-guide.md)**: Docker deployment, Nginx configuration, and environment variables.
+*   **[UI/UX](docs/ui.md)**: Design system, color palette, and mobile adaptation notes.
+*   **[Brand](docs/brand.md)**: Brand voice and mission.
+*   **[Page Content](docs/page-content.md)**: Copywriting drafts.
 
-## 技术栈（Notion 给出）
-- 前端：React + TypeScript。
-- 后端：Node.js；数据库：PostgreSQL。
-- 状态管理候选：React Query / Zustand / Redux（三选一）。
-- 样式候选：CSS / Tailwind / styled-components。
-- 部署参考：Nginx + Node.js + PostgreSQL（同机）。
+## 🚀 Quick Start
 
-## 时间 / 费用 / 交付
-- 工期：确认方案 + 支付定金 + 提供基础素材后约 10 天。
-- 总金额：¥9,000，分三次各 ¥3,000。
-- 交付物：源码、部署说明、设计文件；版权：款项结清后商业使用权归对方，开发方保留去品牌化的通用框架复用权。
+1.  **Clone**: `git clone ...`
+2.  **Setup**: Copy `.env.example` to `.env`.
+3.  **Run (Docker)**: `docker-compose up --build`
+4.  **Visit**: `http://localhost:8080`
 
-## 所需资料（Notion 明确）
-- 品牌基础：项目名称、Logo 源文件、主/辅色（如有品牌字体附授权）。
-- 素材入口：https://drive.google.com/drive/folders/1G-gUPM6_4SVmsGdf1oAWjZNbFYqe4dOY?usp=sharing
-- 文案与页面结构：玩法介绍文案、问题列表/分类、结果页文案方向、弹窗/提示语；About 页面品牌/mission 文案。
-- 抽牌与素材：牌面图、背景/图标、抽牌动画参考。
-- 支付与通知：Stripe 测试 Publishable/Secret Key；通知方式（如 Resend/SendGrid）及域名/模板。
-- 域名与部署：域名信息，部署偏好（代部署或自有服务器）。
-- 业务规则：抽牌规则（默认 3 张，是否允许重复、位置命名 Past/Now/Future 等），免费 vs 付费边界，定价币种。
-- 多语言：前台支持中/英切换，后台本期仅英文；需提供中英文文案表。
-
-## 数据量提示（Notion 说明）
-- 释义库升级版：78 张 * 3 主题（爱情/友情/亲情） * 3 位置（过去/现在/未来） * 约 200 字 ≈ 14 万字；查询需按 card_name、position、category 三维检索。
-
-## 下一步
-1. 补齐所需资料与业务规则，确认多语言范围与定价策略。
-2. 评审并锁定功能优先级、技术选型（状态管理/样式库）与部署方案。
-3. 确认后启动开发。
+For detailed instructions, please refer to the **[Development Guide](docs/dev-guide.md)**.

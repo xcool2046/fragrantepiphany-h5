@@ -114,3 +114,23 @@ services:
 ## 文件与素材
 - 素材路径：`assets/`（cards/web/background）；遵循命名规范，优先 WebP/JPEG。
 - PPT 摘要与品牌语气：见 `docs/brand.md`；UI 规范见 `docs/ui.md`；需求全量见 `docs/requirements.md`；未决项见 `docs/open-questions.md`。
+
+## 测试指南 (Testing Guide)
+
+### 1. 测试环境
+- **前台**: `http://localhost:8080/` (建议使用移动端模拟器，如 iPhone 12/14 Pro，390x844)
+- **后台**: `http://localhost:8080/admin` (桌面端)
+- **Mock 支付**: 在开发/测试环境下，可使用 URL 参数 `?mock_pay=true` 模拟支付成功状态（例如访问 `/result?mock_pay=true` 或在支付跳转前使用），以便验证付费后的 UI 逻辑。
+
+### 2. 核心测试场景
+| 场景 | 关键步骤 | 预期结果 |
+| :--- | :--- | :--- |
+| **全链路闭环** | Home -> Quiz (3题) -> Draw (3张) -> Result (Free) -> Pay -> Result (Paid) | 流程顺畅，付费后内容解锁。 |
+| **H5 适配** | 检查 Quiz 底部按钮、Draw 轮盘交互、Result 支付栏 | 无遮挡，交互灵敏；Draw 页提供兜底按钮。 |
+| **后台管理** | Login -> Interpretations/Orders/Settings | 登录鉴权正常，数据加载无误。 |
+
+### 3. 自动化测试建议
+- 工具：推荐使用 `playwright` 或 `puppeteer`。
+- 配置：Viewport 设置为 `390x844` (iPhone 12 Pro)。
+- 技巧：针对 Canvas 轮盘，若无法精确定位，可使用坐标点击或直接点击右下角的兜底按钮 (Fallback Button)。
+

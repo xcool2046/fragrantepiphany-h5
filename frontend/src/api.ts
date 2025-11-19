@@ -4,6 +4,61 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || '',
 })
 
+// 请求拦截器
+api.interceptors.request.use(
+  (config) => {
+    // 可以在这里添加 token 等
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
+
+// 响应拦截器
+api.interceptors.response.use(
+  (response) => {
+    return response
+  },
+  (error) => {
+    // 统一错误处理
+    let errorMessage = '网络请求失败，请稍后重试'
+    
+    if (error.response) {
+      // 服务器返回错误
+      const status = error.response.status
+      switch (status) {
+        case 400:
+          errorMessage = '请求参数错误'
+          break
+        case 401:
+          errorMessage = '未授权，请重新登录'
+          break
+        case 403:
+          errorMessage = '拒绝访问'
+          break
+        case 404:
+          errorMessage = '请求的资源不存在'
+          break
+        case 500:
+          errorMessage = '服务器错误'
+          break
+        default:
+          errorMessage = error.response.data?.message || errorMessage
+      }
+    } else if (error.request) {
+      // 请求已发出但没有收到响应
+      errorMessage = '网络连接失败，请检查网络'
+    }
+    
+    // 可以在这里集成 Toast 通知
+    // 但为了避免循环依赖，我们将在组件中处理
+    console.error('API Error:', errorMessage, error)
+    
+    return Promise.reject({ ...error, friendlyMessage: errorMessage })
+  }
+)
+
 export type DrawResult = {
   past: any
   now: any

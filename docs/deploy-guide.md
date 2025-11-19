@@ -36,6 +36,10 @@ ADMIN_PASS=kittycjx88358985
 SESSION_SECRET=your_session_secret
 ```
 
+> 📌 **注意**：`PUBLIC_BASE_URL` 必须是 Stripe 能访问的完整域名（本地调试可用 `http://localhost:8080`），否则 Stripe 创建 Checkout Session 会报 `url_invalid`，前端便会看到 “Failed to create payment session”。上线前务必填入正式 HTTPS 域名。
+
+> 🛠️ **服务器登录**：已在云主机上配置免密登录，可直接使用 `ssh root@47.243.157.75` 进入部署机，然后按照本指南运行 `docker compose build && docker compose up -d` 即可。若需切换分支或更新代码，登录后 `cd /home/code/h5-web` 操作。
+
 ## 3. Nginx 反代配置（宿主机）
 此仓库的 `docker-compose.yml` 中，容器内 `nginx` 端口映射为 `8080:80`，留出宿主机 80/443 给反向代理。服务器上请在 `/etc/nginx/sites-enabled/my-website`（或自定义）设置反代，并在宿主机完成 SSL 终止，例如：
 ```

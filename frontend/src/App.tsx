@@ -1,37 +1,57 @@
 import './App.css'
 
 import { Routes, Route } from 'react-router-dom'
+import { Suspense, lazy } from 'react'
+import { ToastProvider, ToastContainer } from './components/Toast'
+import { ErrorBoundary } from './components/ErrorBoundary'
+import { LoadingOverlay } from './components/Loading'
+
+// 主要页面 - 立即加载
 import Layout from './pages/Layout'
 import Home from './pages/Home'
-import Quiz from './pages/Quiz'
-import Draw from './pages/Draw'
-import Result from './pages/Result'
-import Pay from './pages/Pay'
-import AdminLogin from './pages/admin/AdminLogin'
-import AdminLayout from './pages/admin/AdminLayout'
-import Interpretations from './pages/admin/Interpretations'
-import Orders from './pages/admin/Orders'
-import Settings from './pages/admin/Settings'
+
+// 次要页面 - 懒加载
+const Quiz = lazy(() => import('./pages/Quiz'))
+const Draw = lazy(() => import('./pages/Draw'))
+const Result = lazy(() => import('./pages/Result'))
+const Pay = lazy(() => import('./pages/Pay'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+
+// 管理后台 - 懒加载
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'))
+const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'))
+const Interpretations = lazy(() => import('./pages/admin/Interpretations'))
+const Orders = lazy(() => import('./pages/admin/Orders'))
+const Settings = lazy(() => import('./pages/admin/Settings'))
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="quiz" element={<Quiz />} />
-        <Route path="draw" element={<Draw />} />
-        <Route path="result" element={<Result />} />
-        <Route path="pay" element={<Pay />} />
-      </Route>
-      <Route path="/admin/login" element={<AdminLogin />} />
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<Interpretations />} />
-        <Route path="interpretations" element={<Interpretations />} />
-        <Route path="orders" element={<Orders />} />
-        <Route path="settings" element={<Settings />} />
-      </Route>
-    </Routes>
+    <ErrorBoundary>
+      <ToastProvider>
+        <Suspense fallback={<LoadingOverlay message="加载中..." />}>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="quiz" element={<Quiz />} />
+              <Route path="draw" element={<Draw />} />
+              <Route path="result" element={<Result />} />
+              <Route path="pay" element={<Pay />} />
+            </Route>
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Interpretations />} />
+              <Route path="interpretations" element={<Interpretations />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="settings" element={<Settings />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+        <ToastContainer />
+      </ToastProvider>
+    </ErrorBoundary>
   )
 }
 
 export default App
+

@@ -1,87 +1,85 @@
 import { useTranslation } from 'react-i18next'
-import Section from '../components/Section'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { createCheckout } from '../api'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Pay() {
   const { t, i18n } = useTranslation()
   const location = useLocation()
+  const navigate = useNavigate()
   const payload = location.state || {}
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [currency, setCurrency] = useState<'cny' | 'usd'>(
-    i18n.language.startsWith('zh') ? 'cny' : 'usd'
-  )
 
-  const handlePay = () => {
-    setLoading(true)
-    setError(null)
-    createCheckout({ currency, metadata: payload })
-      .then((res) => {
+  useEffect(() => {
+    // User requested to always use USD and let Stripe/Alipay handle conversion
+    const currency = 'usd';
+    
+    const createSession = async () => {
+      try {
+        // Create checkout session
+        const res = await createCheckout({ currency, metadata: payload })
+        
+        // Redirect to Stripe
         if (res.sessionUrl) {
           window.location.href = res.sessionUrl
         } else {
-          setError('Missing session URL')
-          setLoading(false)
+          setError('Failed to create payment session')
         }
-      })
-      .catch(() => {
-        setError('Failed to create session')
-        setLoading(false)
-      })
+      } catch (err) {
+        console.error('Payment error:', err)
+        setError('Failed to initialize payment. Please try again.')
+      }
+    }
+
+    createSession()
+  }, [i18n.language, payload, t])
+
+  // If error occurred, show retry button
+  if (error) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-[#F7F0E5]">
+        <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center space-y-6 shadow-xl">
+          <div className="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center">
+            <span className="text-3xl">⚠️</span>
+          </div>
+          <h2 className="text-xl font-serif text-[#2B1F16]">{error}</h2>
+          <div className="space-y-3">
+            <button
+              onClick={() => window.location.reload()}
+              className="w-full px-6 py-3 bg-[#D4A373] text-[#2B1F16] rounded-full font-bold shadow-lg hover:bg-[#C49BA3] transition active:scale-95"
+            >
+              {t('pay.retry')}
+            </button>
+            <button
+              onClick={() => navigate(-1)}
+              className="w-full px-6 py-3 bg-white text-[#6B5542] rounded-full font-medium border border-[#D4A373]/30 hover:bg-[#F3E6D7] transition"
+            >
+              {t('common.back')}
+            </button>
+          </div>
+        </div>
+      </div>
+    )
   }
 
-  const priceDisplay = currency === 'cny' ? t('result.price.cny') : t('result.price.usd')
-
+  // Loading state
   return (
-    <Section title={t('pay.title')}>
-      <div className="space-y-4">
-        <div className="flex justify-between items-center bg-white p-4 rounded-lg border border-black/5">
-          <span className="text-[#2B1F16] font-medium">{t('common.appName')}</span>
-          <span className="text-[#D4A373] font-bold text-lg">{priceDisplay}</span>
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-[#F7F0E5]">
+      <div className="text-center space-y-6">
+        {/* Animated Loading Spinner */}
+        <div className="relative w-20 h-20 mx-auto">
+          <div className="absolute inset-0 border-4 border-[#D4A373]/20 rounded-full"></div>
+          <div className="absolute inset-0 border-4 border-[#D4A373] rounded-full border-t-transparent animate-spin"></div>
+          <div className="absolute inset-3 bg-gradient-to-br from-[#D4A373]/20 to-[#C49BA3]/20 rounded-full flex items-center justify-center">
+            <span className="text-2xl">✨</span>
+          </div>
         </div>
-
-        {/* Currency Toggle */}
-        <div className="flex gap-2 justify-center">
-          <button
-            onClick={() => setCurrency('usd')}
-            className={`px-4 py-1 rounded-full text-sm border transition ${
-              currency === 'usd' 
-                ? 'bg-[#2B1F16] text-[#F3E6D7] border-[#2B1F16]' 
-                : 'bg-transparent text-[#6B5542] border-[#D4A373]/50'
-            }`}
-          >
-            USD ($5)
-          </button>
-          <button
-            onClick={() => setCurrency('cny')}
-            className={`px-4 py-1 rounded-full text-sm border transition ${
-              currency === 'cny' 
-                ? 'bg-[#2B1F16] text-[#F3E6D7] border-[#2B1F16]' 
-                : 'bg-transparent text-[#6B5542] border-[#D4A373]/50'
-            }`}
-          >
-            CNY (¥15)
-          </button>
+        
+        <div className="space-y-2">
+          <h3 className="text-xl font-serif text-[#2B1F16]">{t('pay.redirecting', 'Preparing your checkout...')}</h3>
+          <p className="text-sm text-[#6B5542]">{t('pay.pleaseWait', 'Please wait a moment')}</p>
         </div>
-
-        <p className="text-subtext text-sm text-center">{t('pay.note')}</p>
-        
-        <button
-          onClick={handlePay}
-          disabled={loading}
-          className={`w-full px-4 py-3 rounded-full font-bold shadow-lg transition ${
-            loading 
-              ? 'bg-black/20 text-subtext cursor-not-allowed' 
-              : 'bg-[#D4A373] text-[#2B1F16] hover:bg-[#C49BA3]'
-          }`}
-        >
-          {loading ? 'Processing...' : t('pay.button')}
-        </button>
-        
-        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
       </div>
-    </Section>
+    </div>
   )
 }

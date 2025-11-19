@@ -30,44 +30,54 @@ export class PayService {
     metadata?: Record<string, unknown>;
   }) {
     const config = getConfig();
-    const isCny = input.currency === 'cny';
-    const amount = isCny ? config.price_cny : config.price_usd;
-    // Price ID logic might need adjustment if we want dynamic pricing without creating new Price objects in Stripe.
-    // For simplicity, we'll use ad-hoc price_data which supports custom amounts.
-    // The original code used price_id if available. We should prioritize dynamic amount if we want admin control.
-    // But Stripe Price ID is better for reporting.
-    // Requirement says "RMB / USD 单档价格可在后台调整".
-    // If we use price_data (inline pricing), we can change amount freely.
-    const priceId = isCny
-      ? process.env.STRIPE_PRICE_ID_CNY
-      : process.env.STRIPE_PRICE_ID_USD;
+    // Always use USD as requested by user ("Backstage should only modify USD")
+    // Stripe/Alipay will handle the currency conversion for the user.
+    const amount = config.price_usd; 
+
     const order = this.orders.create({
       amount,
-      currency: input.currency,
+      currency: 'usd', // Force USD
       status: 'pending',
-      // price_id: priceId || undefined, // We drop price_id to support dynamic pricing
       metadata: input.metadata,
     });
     await this.orders.save(order);
-    const session = await this.stripe.checkout.sessions.create({
-      mode: 'payment',
-      line_items: [
-        {
-          price_data: {
-            currency: input.currency,
-            product_data: { name: 'Tarot Reading' },
-            unit_amount: amount,
+
+    // Explicitly list supported payment methods to avoid unsupported params and keep wallets enabled via card
+    const paymentMethodTypes: Stripe.Checkout.SessionCreateParams.PaymentMethodType[] = [
+      'card',
+      'alipay',
+    ];
+
+    try {
+      const session = await this.stripe.checkout.sessions.create({
+        mode: 'payment',
+        payment_method_types: paymentMethodTypes,
+        line_items: [
+          {
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: 'Tarot Reading - Past, Now, Future',
+              },
+              unit_amount: config.price_usd,
+            },
+            quantity: 1,
           },
-          quantity: 1,
-        },
-      ],
-      success_url: `${process.env.PUBLIC_BASE_URL || ''}/pay/callback?status=success&order_id=${order.id}&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.PUBLIC_BASE_URL || ''}/pay/callback?status=cancel&order_id=${order.id}`,
-      metadata: { order_id: order.id, ...(input.metadata || {}) },
-    });
-    order.stripe_session_id = session.id;
-    await this.orders.save(order);
-    return { orderId: order.id, sessionUrl: session.url };
+        ],
+        success_url: `${process.env.PUBLIC_BASE_URL || ''}/pay/callback?status=success&order_id=${order.id}&session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${process.env.PUBLIC_BASE_URL || ''}/pay/callback?status=cancel&order_id=${order.id}`,
+        metadata: { order_id: order.id, ...(input.metadata || {}) },
+      } as Stripe.Checkout.SessionCreateParams);
+      console.log('Stripe Session Created:', JSON.stringify(session, null, 2)); // Debug log
+      order.stripe_session_id = session.id;
+      await this.orders.save(order);
+      return { orderId: order.id, sessionUrl: session.url };
+    } catch (error) {
+      console.error('Stripe Session Creation Failed:', error);
+      // Fallback to card only if specific methods fail?
+      // For now, just rethrow so we can see the error in logs
+      throw error;
+    }
   }
 
   async handleWebhook(event: Stripe.Event) {
