@@ -13,6 +13,7 @@ import { AuthController } from './auth/auth.controller';
 import { InterpModule } from './interp/interp.module';
 import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 import { ImportModule } from './imports/import.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -27,7 +28,9 @@ import { ImportModule } from './imports/import.module';
     AuthModule,
     InterpModule,
     QuestionnaireModule,
+    QuestionnaireModule,
     ImportModule,
+    AdminModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService],

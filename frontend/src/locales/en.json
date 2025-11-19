@@ -13,7 +13,8 @@
     "result": "Result",
     "pay": "Pay",
     "share": "Share",
-    "readAgain": "Read again"
+    "readAgain": "Read again",
+    "cancel": "Cancel"
   },
   "home": {
     "title": "A Journey Through Scent, Spirit and Stars",
@@ -70,7 +71,8 @@
     "tipBottom": "Fixed 3 cards, no repeats. After the third, it jumps to result automatically.",
     "slots": {"past": "Past", "now": "Now", "future": "Future"},
     "place": "Place into slot",
-    "loading": "Reading your cards..."
+    "loading": "Reading your cards...",
+    "confirm": "Confirm"
   },
   "result": {
     "tagsTitle": "Your focus",

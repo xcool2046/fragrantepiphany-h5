@@ -87,8 +87,15 @@ ADMIN_USER=monicacjx
 ADMIN_PASS=kittycjx88358985
 SESSION_SECRET=devsecret
 ```
-2) `docker-compose up --build` （默认端口：nginx 80，frontend 4173，backend 3000，db 5432）。
-3) 运行迁移/种子（容器内或本机）：
+2) 端口说明：仓库默认 `nginx` 服务映射为 `8080:80`（配合服务器的宿主机 Nginx 反代 80/443）。如果本地希望继续使用 `http://localhost`，在根目录创建 `docker-compose.override.yml`（已在 `.gitignore`）覆盖端口：
+```
+services:
+  nginx:
+    ports:
+      - "80:80"
+```
+3) `docker compose up --build`（或 `docker compose up -d`），Compose 会自动读取 override；默认端口：nginx 8080（若未覆盖）、frontend 4173，backend 3000，db 5432。
+4) 运行迁移/种子（容器内或本机）：
 - 迁移：`cd backend && npm run build && npm run typeorm -- migration:run`（或在容器内执行）。
 - 种子：`cd backend && npm run seed`（用 sample-data/cards-example.json）。
 

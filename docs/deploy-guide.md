@@ -2,6 +2,7 @@
 
 ## 前置条件
 - 服务器已安装 Docker 与 Docker Compose
+- 宿主机已安装 Nginx，并有权限在 `/etc/nginx/sites-enabled/` 写入配置
 - 域名解析：
   - fragrantepiphany.com -> 服务器 IP
   - backend.fragrantepiphany.com -> 服务器 IP
@@ -35,24 +36,36 @@ ADMIN_PASS=kittycjx88358985
 SESSION_SECRET=your_session_secret
 ```
 
-## 3. Nginx 反代配置（容器内 nginx）
-`nginx.conf` 内容示例（仓库根已有，可替换为如下）：
+## 3. Nginx 反代配置（宿主机）
+此仓库的 `docker-compose.yml` 中，容器内 `nginx` 端口映射为 `8080:80`，留出宿主机 80/443 给反向代理。服务器上请在 `/etc/nginx/sites-enabled/my-website`（或自定义）设置反代，并在宿主机完成 SSL 终止，例如：
 ```
-events {}
-http {
-  server {
+server {
     listen 80;
+    listen 443 ssl;
     server_name fragrantepiphany.com;
-    location / { proxy_pass http://frontend:4173; }
-  }
-  server {
+
+    ssl_certificate /etc/letsencrypt/live/fragrantepiphany.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/fragrantepiphany.com/privkey.pem;
+
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+server {
     listen 80;
     server_name backend.fragrantepiphany.com;
-    location / { proxy_pass http://backend:3000; }
-  }
+    return 301 https://fragrantepiphany.com$request_uri;
 }
 ```
-如需 HTTPS，增加 443 server 块并加载证书/私钥（可用 certbot 配置）。
+说明：
+- 宿主机 Nginx 处理 80/443 和证书，流量转发到本地 `127.0.0.1:8080`（容器内 Nginx）。
+- **不要**把 Compose 端口改回 `80:80`，以免与宿主机 Nginx 冲突。
+- HTTPS 证书示例使用 Let’s Encrypt 路径，按实际证书调整。
 
 ## 4. 构建并启动
 ```bash
@@ -73,8 +86,11 @@ DATABASE_URL=postgresql://tarot:tarot@localhost:5432/tarot node scripts/run-init
 - 导入 sample-data/cards-example.json
 
 ## 6. 验证
-- 前端： http://fragrantepiphany.com （若配 HTTPS 则用 https）
-- 后端： http://backend.fragrantepiphany.com/api/interp/draw
+- 前端： https://fragrantepiphany.com （HTTP 会经宿主机/Cloudflare 跳转或透传到 8080）
+- 后端： https://fragrantepiphany.com/api/interp/draw（已由宿主机 Nginx 反向到容器）
+- 后台： https://fragrantepiphany.com/admin
+  - 默认账号：`admin`
+  - 默认密码：`admin` (请在 .env 中修改)
 - 支付：使用 Stripe 测试密钥走一遍 Checkout，回调应命中 `/api/pay/webhook`。
 
 ## 7. 常用命令

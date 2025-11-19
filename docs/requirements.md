@@ -100,3 +100,20 @@
 - 网页/背景：使用 `assets/web/` 或可商用免费图库（Unsplash/Pexels 等），记录来源，后续可替换。
 - 字体/图标：优先开源或已授权资源，避免未授权商用素材。
 - 图片优化：优先 WebP/JPEG，控制体积；保持目录结构（cards/web），命名清晰。
+
+## 实施进度
+
+### Phase 1: 核心流程 (Completed)
+- [x] 抽牌 UI (半圆轮盘)
+- [x] 结果页 (免费/付费逻辑)
+- [x] 支付流程 (Stripe CNY/USD)
+
+### Phase 2: 管理后台 (Completed)
+- [x] 登录/鉴权
+- [x] 解读库管理 (CRUD + Import/Export)
+- [x] 订单查看
+- [x] 价格配置
+
+### Phase 3: UI 调整与新功能 (Pending)
+- [ ] 待定 UI 调整
+- [ ] 待定新功能

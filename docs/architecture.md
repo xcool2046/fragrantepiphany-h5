@@ -16,17 +16,20 @@
 - 缓存：可用 Redis 预热 702 条组合，降低查询延迟。
 
 ## 部署与运维（当前预算 ¥9,000 可交付程度）
-- 交付：推荐容器化（Docker），单机 Nginx + Node + PostgreSQL（同机或托管 DB 均可）；提供启动脚本/Compose 与基础运维说明。若客户不接受 Docker，可给裸机启动脚本。
+- 交付：推荐容器化（Docker），宿主机 Nginx 负责 80/443 与 SSL 终止，容器内 Nginx 仅在后端监听 80，经宿主机反代到 `127.0.0.1:8080`；Node + PostgreSQL（同机或托管 DB 均可）。若客户不接受 Docker，可给裸机启动脚本。
 - 环境：dev/stage/prod 可共用一台机器的多实例（端口或容器隔离）；HTTPS 依赖客户域名与证书。
 - 监控/日志：基础访问日志与应用日志，简易健康检查；如需 APM/埋点需额外确认。
 - 邮件：占位模板（可根据后续文案调整）；如启用 Resend/SendGrid 需提供域名与 API Key。
 
-## 体验与规则
-- 抽牌：固定 3 张，不重复；位置 Past/Now/Future。
-- 领域：爱情/友情/亲情；问题分类仅用于筛选，不额外乘以文案数量。
-- 免费/付费：免费展示 Past 简版；付费解锁 Now + Action + Future 及推荐。
-- 多语言：前台英文为主，可切换中文；后台英文。
-- 动画建议：无声效/震动要求；抽牌卡片放大确认 + 放入槽位的平滑过渡；转场可选“波纹/墨滴”或更轻的渐变+粒子，保证 H5 性能。
+## 新增模块 (Phase 2)
+- **Auth Module**：
+  - 基于 JWT 的管理员鉴权。
+  - 简单的环境变量 (`ADMIN_USER`, `ADMIN_PASS`) 验证。
+- **Admin Module**：
+  - 提供 `/api/admin/orders` 和 `/api/admin/config` 接口。
+  - 支持动态价格配置（存储于 `config.json` 或 DB）。
+- **Interpretation Management**：
+  - CRUD 接口 + CSV 导入/JSON 导出。
 
 ## 待评审/可调整项
 - 是否需要后台管理 UI 的具体范围（当前以前台闭环为主，可留轻管理页）。

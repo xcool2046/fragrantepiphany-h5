@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, Post, Query, UseGuards, Param } from '@nestjs/common'
 import { InterpretationService } from './interp.service'
 import { AuthGuard } from '@nestjs/passport'
 import { DrawService } from './draw.service'
@@ -32,5 +32,36 @@ export class InterpretationController {
   @Get('export')
   async exportData() {
     return this.service.exportAll()
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('list')
+  async list(
+    @Query('page') page = 1,
+    @Query('limit') limit = 10,
+    @Query('card_name') card_name?: string,
+    @Query('category') category?: string,
+    @Query('position') position?: string,
+    @Query('language') language?: string,
+  ) {
+    return this.service.findAll(Number(page), Number(limit), { card_name, category, position, language })
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post()
+  async create(@Body() body: any) {
+    return this.service.create(body)
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('update/:id')
+  async update(@Param('id') id: string, @Body() body: any) {
+    return this.service.update(Number(id), body)
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('delete/:id')
+  async remove(@Param('id') id: string) {
+    return this.service.remove(Number(id))
   }
 }

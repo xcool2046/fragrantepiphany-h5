@@ -13,6 +13,7 @@ async function bootstrap() {
     }),
   )
   app.use(urlencoded({ extended: true }))
+  app.enableCors()
   await app.listen(process.env.PORT ?? 3000)
 }
 void bootstrap()
