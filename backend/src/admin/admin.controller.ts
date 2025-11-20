@@ -1,12 +1,11 @@
-import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Order } from '../entities/order.entity';
 import { AuthGuard } from '@nestjs/passport';
-import * as fs from 'fs';
-import * as path from 'path';
-
-const CONFIG_PATH = path.join(process.cwd(), 'config.json');
+// Feature flags default to off; enable via env when customer付费后再开放
+const ORDERS_ENABLED = process.env.FEATURE_ADMIN_ORDERS === 'true';
+const PRICING_ENABLED = process.env.FEATURE_ADMIN_PRICING === 'true';
 
 @Controller('api/admin')
 @UseGuards(AuthGuard('jwt'))
@@ -18,6 +17,9 @@ export class AdminController {
 
   @Get('orders')
   async getOrders() {
+    if (!ORDERS_ENABLED) {
+      throw new NotFoundException('Orders management is disabled');
+    }
     return this.orderRepo.find({
       order: { created_at: 'DESC' },
       take: 100, // Limit to last 100 for now
@@ -26,19 +28,20 @@ export class AdminController {
 
   @Get('config')
   getConfig() {
-    if (fs.existsSync(CONFIG_PATH)) {
-      return JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+    if (!PRICING_ENABLED) {
+      throw new NotFoundException('Pricing management is disabled');
     }
     return { price_cny: 1500, price_usd: 500 };
   }
 
   @Post('config')
   saveConfig(@Body() body: any) {
-    const config = {
+    if (!PRICING_ENABLED) {
+      throw new NotFoundException('Pricing management is disabled');
+    }
+    return {
       price_cny: Number(body.price_cny),
       price_usd: Number(body.price_usd),
     };
-    fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2));
-    return config;
   }
 }

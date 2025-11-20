@@ -60,9 +60,9 @@ api.interceptors.response.use(
 )
 
 export type DrawResult = {
-  past: any
-  now: any
-  future: any
+  past: unknown
+  now: unknown
+  future: unknown
 }
 
 export async function fetchDraw(category?: string, language?: string) {
@@ -80,7 +80,7 @@ export async function submitQuestionnaire(body: { q1: string; q2: string; q3: st
   return res.data
 }
 
-export async function createCheckout(body: { currency: 'cny' | 'usd'; metadata?: any }) {
+export async function createCheckout(body: { currency: 'cny' | 'usd'; metadata?: Record<string, unknown> }) {
   const res = await api.post('/api/pay/create-session', body)
   return res.data as { orderId: string; sessionUrl: string | null }
 }

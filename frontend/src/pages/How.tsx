@@ -1,55 +1,64 @@
-import { useTranslation } from 'react-i18next'
+import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import './how.css'
 
 export default function How() {
-  const { t } = useTranslation()
   const navigate = useNavigate()
-  const steps = t('how.steps', { returnObjects: true }) as string[]
-  
-  const stepIcons = ['📝', '🎴', '👁️', '🔓']
-  
+
+  const steps = [
+    { title: 'Focus', desc: 'Take a deep breath and focus on your question.' },
+    { title: 'Draw', desc: 'Select 3 cards from the deck using your intuition.' },
+    { title: 'Reveal', desc: 'Uncover the hidden meanings of your Past, Present, and Future.' },
+  ]
+
   return (
-    <div className="how-page">
-      <div className="how-container">
-        {/* Header */}
-        <div className="how-header fade-in">
-          <div className="how-icon">💡</div>
-          <h1 className="how-title">{t('how.title')}</h1>
+    <div className="min-h-screen bg-[#F9F5F1] text-text font-sans pt-20 px-6 pb-10">
+      <button 
+        onClick={() => navigate('/')} 
+        className="fixed top-6 left-6 z-50 w-10 h-10 rounded-full bg-white/50 backdrop-blur-md border border-black/5 flex items-center justify-center shadow-sm hover:scale-105 transition"
+      >
+        <i className="fas fa-arrow-left text-text/60"></i>
+      </button>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-2xl mx-auto space-y-12"
+      >
+        <div className="text-center space-y-4">
+          <h1 className="text-3xl font-serif text-text">How It Works</h1>
+          <p className="text-subtext font-light">A simple guide to your spiritual journey</p>
         </div>
 
-        {/* Steps */}
-        <div className="steps-container">
-          {steps.map((step, idx) => (
-            <div key={idx} className="step-wrapper">
-              <div className="step-card slide-in" style={{ animationDelay: `${idx * 0.15}s` }}>
-                <div className="step-number">{idx + 1}</div>
-                <div className="step-icon">{stepIcons[idx]}</div>
-                <p className="step-text">{step}</p>
+        <div className="space-y-8">
+          {steps.map((step, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.2 }}
+              className="flex items-start gap-6 bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/50 shadow-sm"
+            >
+              <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold font-serif font-bold text-lg shrink-0">
+                {i + 1}
               </div>
-              {idx < steps.length - 1 && (
-                <div className="step-connector" style={{ animationDelay: `${idx * 0.15 + 0.1}s` }}></div>
-              )}
-            </div>
+              <div>
+                <h3 className="text-xl font-serif text-text mb-2">{step.title}</h3>
+                <p className="text-subtext font-light leading-relaxed">{step.desc}</p>
+              </div>
+            </motion.div>
           ))}
         </div>
-
-        {/* Note */}
-        <div className="how-note fade-in" style={{ animationDelay: '0.7s' }}>
-          <div className="note-icon">💫</div>
-          <p className="note-text">{t('how.note')}</p>
-        </div>
-
-        {/* CTA */}
-        <div className="how-actions fade-in" style={{ animationDelay: '0.8s' }}>
-          <button className="btn-primary" onClick={() => navigate('/quiz')}>
-            {t('common.start')}
-          </button>
-          <button className="btn-secondary" onClick={() => navigate('/')}>
-            {t('common.back')}
+        
+        <div className="text-center pt-8">
+          <button 
+            onClick={() => navigate('/quiz')}
+            className="px-8 py-3 bg-gradient-gold text-white rounded-full font-medium shadow-glow hover:scale-105 transition-transform"
+          >
+            Start Your Journey
           </button>
         </div>
-      </div>
+
+      </motion.div>
     </div>
   )
 }

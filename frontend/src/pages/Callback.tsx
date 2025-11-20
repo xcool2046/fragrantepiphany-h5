@@ -12,7 +12,7 @@ export default function Callback() {
   const location = useLocation()
   const payload = location.state || {}
   const orderId = params.get('order_id') || ''
-  const [order, setOrder] = useState<any | null>(null)
+  const [order, setOrder] = useState<{ status?: string } | null>(null)
 
   useEffect(() => {
     if (!orderId) return

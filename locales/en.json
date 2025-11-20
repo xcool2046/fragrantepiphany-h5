@@ -62,15 +62,23 @@
     "q2Options": ["Clarity & answers", "Courage & strength", "Release & healing", "Confirmation & validation"],
     "q3": "Which state are you closer to right now?",
     "q3Options": ["Taking action", "Hesitant / observing", "Feeling drained", "Calm analysis"],
-    "next": "Continue to explore"
+    "next": "Continue"
   },
   "draw": {
     "title": "Pick 3 cards",
+    "title_start": "Draw Your Card",
+    "title_present": "The Present",
+    "title_future": "The Future",
+    "title_complete": "Completing...",
+    "selected": "Selected",
+    "instruction": "Swipe to explore · Tap to select",
     "tipTop": "Pinch to zoom the wheel, swipe to rotate, tap to pick.",
     "tipBottom": "Fixed 3 cards, no repeats. After the third, it jumps to result automatically.",
     "slots": {"past": "Past", "now": "Now", "future": "Future"},
     "place": "Place into slot",
-    "loading": "Reading your cards..."
+    "loading": "Reading your cards...",
+    "cta": "Draw Card",
+    "ctaHint": "Tap a card around the wheel"
   },
   "result": {
     "tagsTitle": "Your focus",

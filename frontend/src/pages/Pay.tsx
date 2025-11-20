@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { createCheckout } from '../api'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 export default function Pay() {
   const { t, i18n } = useTranslation()
   const location = useLocation()
   const navigate = useNavigate()
-  const payload = location.state || {}
+  const payload = useMemo<Record<string, unknown>>(() => (location.state as Record<string, unknown> | null) || {}, [location.state])
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -56,6 +56,15 @@ export default function Pay() {
             >
               {t('common.back')}
             </button>
+            {/* Mock Pay Button (Dev Only) */}
+            {import.meta.env.DEV && (
+              <button 
+                onClick={() => window.location.href = '/result?mock_pay=true'}
+                className="w-full mt-4 py-2 text-sm text-gray-400 hover:text-gray-600 underline"
+              >
+                [DEV] Mock Pay (Test Only)
+              </button>
+            )}
           </div>
         </div>
       </div>

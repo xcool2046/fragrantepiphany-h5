@@ -20,9 +20,8 @@ export class PayService {
   private stripe: Stripe;
 
   constructor(@InjectRepository(Order) private orders: Repository<Order>) {
-    this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-      apiVersion: '2022-11-15' as any,
-    });
+    this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
+    console.log('Stripe initialized with API version:', (this.stripe as any)._apiVersion);
   }
 
   async createSession(input: {
@@ -42,16 +41,12 @@ export class PayService {
     });
     await this.orders.save(order);
 
-    // Explicitly list supported payment methods to avoid unsupported params and keep wallets enabled via card
-    const paymentMethodTypes: Stripe.Checkout.SessionCreateParams.PaymentMethodType[] = [
-      'card',
-      'alipay',
-    ];
+    // Use automatic_payment_methods to let Stripe Dashboard control available methods (Apple Pay, Alipay, etc.)
 
     try {
       const session = await this.stripe.checkout.sessions.create({
         mode: 'payment',
-        payment_method_types: paymentMethodTypes,
+        payment_method_types: ['card'],
         line_items: [
           {
             price_data: {

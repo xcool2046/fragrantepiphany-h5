@@ -1,54 +1,81 @@
 import { useTranslation } from 'react-i18next'
-
+import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
   const { t } = useTranslation()
-  const highlights = t('home.highlights', { returnObjects: true }) as string[]
+  const navigate = useNavigate()
 
   return (
-    <div className="space-y-6 pt-8">
-      {/* Hero Card */}
-      <div className="relative overflow-hidden bg-white/40 backdrop-blur-md rounded-[32px] p-8 border border-white/50 shadow-card">
-        <div className="absolute -top-10 -right-10 w-32 h-32 bg-gold/20 rounded-full blur-3xl"></div>
-        
-        <p className="text-xs text-gold uppercase tracking-[0.2em] mb-4 font-medium">{t('common.appName')}</p>
-        
-        <h1 className="text-4xl font-serif text-text mb-3 leading-tight">
-          {t('home.title')}
-        </h1>
-        
-        <p className="text-subtext mb-8 font-light italic opacity-80">
-          {t('home.subtitle')}
-        </p>
-
-        <p className="text-text mb-8 text-lg font-light leading-relaxed">
-          {t('home.value')}
-        </p>
-
-        <div className="flex flex-col gap-4 sm:flex-row">
-          <a 
-            className="px-8 py-3 bg-gradient-gold text-white rounded-full shadow-glow hover:shadow-lg hover:scale-[1.02] transition-all duration-300 text-center font-medium tracking-wide" 
-            href="/quiz"
-          >
-            {t('common.start')}
-          </a>
-          <a 
-            className="px-8 py-3 border border-gold/30 text-gold rounded-full hover:bg-gold/5 transition-all duration-300 text-center tracking-wide" 
-            href="/about"
-          >
-            {t('common.learnMore')}
-          </a>
-        </div>
+    <div className="relative h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center bg-[#1a1a1a]">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/assets/bg-home.png" 
+          alt="Background" 
+          className="w-full h-full object-cover opacity-80"
+        />
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px]" />
       </div>
 
-      {/* Highlights */}
-      <div className="grid grid-cols-1 gap-3">
-        {highlights.map((item, idx) => (
-          <div key={idx} className="bg-white/30 backdrop-blur-sm p-4 rounded-2xl border border-white/40 flex items-center gap-3 text-subtext">
-            <span className="w-1.5 h-1.5 rounded-full bg-gold/60"></span>
-            <span className="font-light tracking-wide">{item}</span>
-          </div>
-        ))}
+      {/* Content */}
+      <div className="relative z-10 px-6 max-w-md mx-auto flex flex-col items-center">
+        
+        {/* App Name */}
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-xs text-gold/90 uppercase tracking-[0.3em] mb-6 font-medium"
+        >
+          {t('common.appName')}
+        </motion.p>
+        
+        {/* Title */}
+        <motion.h1 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          className="text-5xl font-serif text-white mb-4 leading-tight drop-shadow-lg"
+        >
+          {t('home.title')}
+        </motion.h1>
+        
+        {/* Subtitle */}
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.9 }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="text-white/80 mb-12 font-light italic text-lg tracking-wide"
+        >
+          {t('home.subtitle')}
+        </motion.p>
+
+        {/* Start Button */}
+        <motion.button
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20, delay: 1.2 }}
+          onClick={() => navigate('/quiz')}
+          className="px-10 py-4 bg-gradient-gold text-white rounded-full shadow-glow text-lg font-medium tracking-widest uppercase relative overflow-hidden group"
+        >
+          <span className="relative z-10">{t('common.start')}</span>
+          <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+        </motion.button>
+
+        {/* Learn More (Minimal) */}
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          whileHover={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.5 }}
+          onClick={() => navigate('/about')}
+          className="mt-8 text-white/60 text-sm tracking-widest uppercase border-b border-transparent hover:border-gold/50 transition-all pb-1"
+        >
+          {t('common.learnMore')}
+        </motion.button>
       </div>
     </div>
   )

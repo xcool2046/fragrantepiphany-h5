@@ -20,6 +20,10 @@ const ToastContext = createContext<ToastContextType | undefined>(undefined)
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<Toast[]>([])
 
+  const removeToast = useCallback((id: string) => {
+    setToasts(prev => prev.filter(t => t.id !== id))
+  }, [])
+
   const addToast = useCallback((type: ToastType, message: string, duration = 3000) => {
     const id = `toast-${Date.now()}-${Math.random()}`
     const toast: Toast = { id, type, message, duration }
@@ -27,15 +31,15 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setToasts(prev => [...prev, toast])
     
     if (duration > 0) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         removeToast(id)
       }, duration)
-    }
-  }, [])
 
-  const removeToast = useCallback((id: string) => {
-    setToasts(prev => prev.filter(t => t.id !== id))
-  }, [])
+      return () => clearTimeout(timer)
+    }
+
+    return undefined
+  }, [removeToast])
 
   return (
     <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
@@ -44,6 +48,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useToastContext = () => {
   const context = useContext(ToastContext)
   if (!context) {

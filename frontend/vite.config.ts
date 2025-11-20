@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type PluginOption } from 'vite'
 import react from '@vitejs/plugin-react'
 import viteCompression from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -21,7 +21,7 @@ export default defineConfig({
       gzipSize: true,
       brotliSize: true,
       filename: 'dist/stats.html',
-    }) as any,
+    }) as PluginOption,
   ],
   build: {
     // 代码分割策略
@@ -54,7 +54,7 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
-      } as any,
+      },
     },
     // chunk 大小警告阈值
     chunkSizeWarningLimit: 500,

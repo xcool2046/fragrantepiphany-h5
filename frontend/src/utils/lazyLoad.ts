@@ -4,7 +4,7 @@ import type { LazyExoticComponent, ComponentType } from 'react'
 /**
  * 懒加载工具函数，带有自定义 loading 状态
  */
-export function lazyLoad<T extends ComponentType<any>>(
+export function lazyLoad<T extends ComponentType<unknown>>( 
   factory: () => Promise<{ default: T }>
 ): LazyExoticComponent<T> {
   return lazy(factory)
@@ -17,7 +17,8 @@ export function useLazyImage(src: string, placeholder?: string) {
   const imgRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
-    if (!imgRef.current) return
+    const target = imgRef.current
+    if (!target) return
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -42,12 +43,10 @@ export function useLazyImage(src: string, placeholder?: string) {
       { rootMargin: '50px' }
     )
 
-    observer.observe(imgRef.current)
+    observer.observe(target)
 
     return () => {
-      if (imgRef.current) {
-        observer.unobserve(imgRef.current)
-      }
+      observer.unobserve(target)
     }
   }, [src])
 

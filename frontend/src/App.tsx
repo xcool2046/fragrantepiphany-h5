@@ -15,6 +15,10 @@ const Quiz = lazy(() => import('./pages/Quiz'))
 const Draw = lazy(() => import('./pages/Draw'))
 const Result = lazy(() => import('./pages/Result'))
 const Pay = lazy(() => import('./pages/Pay'))
+const About = lazy(() => import('./pages/About'))
+const How = lazy(() => import('./pages/How'))
+const Privacy = lazy(() => import('./pages/Privacy'))
+const Terms = lazy(() => import('./pages/Terms'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 // 管理后台 - 懒加载
@@ -22,7 +26,6 @@ const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'))
 const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'))
 const Interpretations = lazy(() => import('./pages/admin/Interpretations'))
 const Orders = lazy(() => import('./pages/admin/Orders'))
-const Settings = lazy(() => import('./pages/admin/Settings'))
 
 function App() {
   return (
@@ -36,13 +39,16 @@ function App() {
               <Route path="draw" element={<Draw />} />
               <Route path="result" element={<Result />} />
               <Route path="pay" element={<Pay />} />
+              <Route path="about" element={<About />} />
+              <Route path="how" element={<How />} />
+              <Route path="privacy" element={<Privacy />} />
+              <Route path="terms" element={<Terms />} />
             </Route>
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<Interpretations />} />
               <Route path="interpretations" element={<Interpretations />} />
               <Route path="orders" element={<Orders />} />
-              <Route path="settings" element={<Settings />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -54,4 +60,3 @@ function App() {
 }
 
 export default App
-

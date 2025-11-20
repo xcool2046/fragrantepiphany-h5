@@ -36,7 +36,7 @@ export default function Settings() {
         headers: { Authorization: `Bearer ${token}` },
       })
       alert('Settings saved')
-    } catch (err) {
+    } catch {
       alert('Failed to save settings')
     } finally {
       setSaving(false)

@@ -62,15 +62,23 @@
     "q2Options": ["清晰与答案", "勇气与力量", "释放与疗愈", "确认与验证"],
     "q3": "面对此事，你目前的状态更接近？",
     "q3Options": ["主动出击", "徘徊观望", "感到耗竭", "冷静分析"],
-    "next": "继续探索"
+    "next": "继续"
   },
   "draw": {
     "title": "选择 3 张牌",
+    "title_start": "开始抽牌",
+    "title_present": "当下",
+    "title_future": "未来",
+    "title_complete": "马上揭晓...",
+    "selected": "已选",
+    "instruction": "滑动转动轮盘，点击抽牌",
     "tipTop": "可放大牌轮，滑动，点击选牌。",
     "tipBottom": "固定 3 张，不重复。第三张后自动跳转结果。",
     "slots": {"past": "过去", "now": "现在", "future": "未来"},
     "place": "放入槽位",
-    "loading": "正在解析你的牌面..."
+    "loading": "正在解析你的牌面...",
+    "cta": "抽牌",
+    "ctaHint": "点击周围的卡牌"
   },
   "result": {
     "tagsTitle": "你的关注",

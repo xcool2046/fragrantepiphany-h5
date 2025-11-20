@@ -1,0 +1,92 @@
+[
+  {
+    "card_name": "The Fool",
+    "category": "major",
+    "position": "past",
+    "language": "en",
+    "summary": "New beginnings, innocence, spontaneity.",
+    "interpretation": "In the past, you may have taken a leap of faith or started a new journey with a sense of innocence and freedom. This period was marked by spontaneity and a lack of fear regarding the unknown.",
+    "action": "Embrace the lessons of your past adventures but remain grounded.",
+    "future": "A new cycle is beginning; stay open to unexpected opportunities."
+  },
+  {
+    "card_name": "The Fool",
+    "category": "major",
+    "position": "present",
+    "language": "en",
+    "summary": "Taking a risk, new potential, fresh start.",
+    "interpretation": "You are currently standing at the precipice of a new adventure. The Fool invites you to trust the universe and take a risk, even if the path isn't entirely clear.",
+    "action": "Take that leap of faith. Trust your instincts.",
+    "future": "Unexpected journeys await if you are willing to step forward."
+  },
+  {
+    "card_name": "The Fool",
+    "category": "major",
+    "position": "future",
+    "language": "en",
+    "summary": "Unlimited potential, a new chapter.",
+    "interpretation": "The future holds a brand new chapter for you, filled with unlimited potential. You will soon be free from current constraints and ready to explore the world with fresh eyes.",
+    "action": "Prepare for a fresh start. Let go of old baggage.",
+    "future": "A completely new path will reveal itself."
+  },
+  {
+    "card_name": "The Magician",
+    "category": "major",
+    "position": "past",
+    "language": "en",
+    "summary": "Manifestation, resourcefulness, power.",
+    "interpretation": "You have previously utilized your skills and resources to manifest your desires. It was a time of action and realizing your own power to influence your reality.",
+    "action": "Recall the skills you mastered; they are still within you.",
+    "future": "Your past mastery lays the foundation for future success."
+  },
+  {
+    "card_name": "The Magician",
+    "category": "major",
+    "position": "present",
+    "language": "en",
+    "summary": "Action, creativity, concentration.",
+    "interpretation": "Now is the time to act. You have all the tools you need at your disposal. The Magician encourages you to focus your will and create the reality you seek.",
+    "action": "Use your talents and resources. Make it happen.",
+    "future": "Success is within reach if you apply your will."
+  },
+  {
+    "card_name": "The Magician",
+    "category": "major",
+    "position": "future",
+    "language": "en",
+    "summary": "Realizing potential, turning dreams into reality.",
+    "interpretation": "You are moving towards a period where you will have full control over your destiny. Your ability to manifest your goals will be at its peak.",
+    "action": "Start planning how to use your resources effectively.",
+    "future": "You will become the master of your own fate."
+  },
+  {
+    "card_name": "The High Priestess",
+    "category": "major",
+    "position": "past",
+    "language": "en",
+    "summary": "Intuition, mystery, subconscious.",
+    "interpretation": "In the past, you may have relied heavily on your intuition or explored hidden knowledge. It was a time of introspection and listening to your inner voice.",
+    "action": "Trust the wisdom you gained from your inner silence.",
+    "future": "Hidden truths from the past may surface."
+  },
+  {
+    "card_name": "The High Priestess",
+    "category": "major",
+    "position": "present",
+    "language": "en",
+    "summary": "Trusting intuition, hidden knowledge.",
+    "interpretation": "The High Priestess calls on you to look inward. The answers you seek are not in the external world but within your own subconscious. Trust your gut feelings.",
+    "action": "Meditate and listen to your inner voice.",
+    "future": "Secrets will be revealed in due time."
+  },
+  {
+    "card_name": "The High Priestess",
+    "category": "major",
+    "position": "future",
+    "language": "en",
+    "summary": "Unfolding mystery, spiritual growth.",
+    "interpretation": "Your future path involves a deeper connection with the spiritual and the unknown. You will gain profound insights if you remain open to the mysteries of life.",
+    "action": "Develop your intuition; it will be your guide.",
+    "future": "A time of spiritual awakening approaches."
+  }
+]
