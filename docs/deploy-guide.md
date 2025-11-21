@@ -177,7 +177,30 @@ docker compose exec backend npm run migration:run
 
 ---
 
-## 5. 验证部署
+## 5. 一键部署 (推荐)
+
+为了简化部署流程，项目根目录提供了一个 `deploy.sh` 脚本，自动处理代码提交、推送和服务器更新。
+
+### 使用方法
+
+在本地终端运行：
+
+```bash
+# ./deploy.sh "您的提交信息"
+./deploy.sh "fix: update UI layout"
+```
+
+该脚本会自动执行以下操作：
+1.  `git add .` & `git commit`
+2.  `git push`
+3.  SSH 连接服务器
+4.  `git pull`
+5.  `docker compose up -d --build`
+6.  `docker compose restart nginx`
+
+---
+
+## 6. 验证部署
 
 | 访问地址 | 预期结果 |
 | :--- | :--- |

@@ -99,7 +99,8 @@ export default function Result() {
   useEffect(() => {
     const checkPayment = async () => {
       // Mock Pay for Dev/Test (Dev only)
-      if (import.meta.env.DEV && searchParams.get('mock_pay') === 'true') {
+      // Mock Pay for Dev/Test (Enabled for Prod testing temporarily)
+      if (searchParams.get('mock_pay') === 'true') {
         setIsPaid(true)
         return
       }
