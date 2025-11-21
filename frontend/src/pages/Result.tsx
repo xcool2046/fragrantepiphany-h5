@@ -11,6 +11,7 @@ import { useToast } from '../components/Toast'
 
 type TarotCard = {
   id: number
+  code?: string
   name_en: string
   name_cn?: string
   image?: string
@@ -25,38 +26,14 @@ type Interpretation = {
   recommendation?: string
 }
 
-// Helper to get card object by ID
-const getCardById = (id: number) => (tarotData as TarotCard[]).find(c => c.id === id)
-
 export default function Result() {
   const { t, i18n } = useTranslation()
   const location = useLocation()
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const toast = useToast()
-  
-  // 1. Synchronous Data Recovery & Persistence
-  // Initialize state directly to avoid "white flash"
-  const [cards] = useState<TarotCard[]>(() => {
-    let cardIds = location.state?.cards
-    
-    // Fallback to localStorage
-    if (!cardIds) {
-      const saved = localStorage.getItem('last_draw_ids')
-      if (saved) {
-        try {
-          cardIds = JSON.parse(saved)
-        } catch (e) {
-          console.error('Failed to parse saved cards', e)
-        }
-      }
-    }
 
-    if (cardIds && cardIds.length > 0) {
-      return cardIds.map((id: number) => getCardById(id)).filter(Boolean) as TarotCard[]
-    }
-    return []
-  })
+  const [cards, setCards] = useState<TarotCard[]>([])
 
   const [interpretations, setInterpretations] = useState<Record<string, Interpretation>>({})
   const [isPaid, setIsPaid] = useState(false)
@@ -87,13 +64,83 @@ export default function Result() {
   }
 
   useEffect(() => {
-    // Redirect if no cards found
-    if (cards.length === 0) {
-      navigate('/draw', { replace: true })
-    } else {
+    const loadCards = async () => {
+      let cardCodes: string[] | null = location.state?.cardCodes || null
+      if (!cardCodes) {
+        const savedCodes = localStorage.getItem('last_draw_codes')
+        if (savedCodes) {
+          try {
+            cardCodes = JSON.parse(savedCodes)
+          } catch (e) {
+            console.error('parse codes failed', e)
+          }
+        }
+      }
+      if (!cardCodes || cardCodes.length === 0) {
+        navigate('/draw', { replace: true })
+        return
+      }
+
+      const cacheRaw = localStorage.getItem('card_cache')
+      let cache: TarotCard[] = []
+      if (cacheRaw) {
+        try {
+          cache = JSON.parse(cacheRaw)
+        } catch (e) {
+          console.warn('parse card_cache failed', e)
+        }
+      }
+
+      if (cache.length === 0) {
+        try {
+          const res = await axios.get('/api/content/cards')
+          if (Array.isArray(res.data) && res.data.length > 0) {
+            cache = res.data.map((c: any, idx: number) => ({
+              id: idx,
+              code: c.code,
+              name_en: c.name_en,
+              name_cn: c.name_zh || c.name_en,
+              image: c.image_url || `/assets/cards/${c.code}.png`,
+              meaning: { past: c.default_meaning_en || '', present: c.default_meaning_en || '', future: c.default_meaning_en || '' },
+            }))
+            localStorage.setItem('card_cache', JSON.stringify(cache))
+          }
+        } catch (e) {
+          console.warn('fallback to tarot data', e)
+        }
+      }
+
+      if (cache.length === 0) {
+        cache = (tarotData as any[]).map((d: any, idx) => ({
+          id: idx,
+          code: d.image ? d.image.replace(/\.[^.]+$/, '') : `card_${idx}`,
+          name_en: d.name_en || `Card ${idx}`,
+          name_cn: d.name_cn || d.name_en,
+          image: d.image ? `/assets/cards/${d.image}` : '/assets/card-back.png',
+          meaning: d.meaning_en || d.meaning || {},
+        }))
+      }
+
+      const map = new Map<string, TarotCard>()
+      cache.forEach((c) => map.set(c.code || String(c.id), c))
+      const resolved = cardCodes.map((code, idx) => {
+        const found = map.get(code)
+        if (found) return found
+        const fallback = (tarotData as any[])[idx] as any
+        return {
+          id: idx,
+          code,
+          name_en: fallback?.name_en || `Card ${idx}`,
+          name_cn: fallback?.name_cn,
+          image: fallback?.image ? `/assets/cards/${fallback.image}` : '/assets/card-back.png',
+          meaning: fallback?.meaning_en || fallback?.meaning || {},
+        } as TarotCard
+      })
+      setCards(resolved)
       setLoading(false)
     }
-  }, [cards, navigate])
+    loadCards()
+  }, [location.state, navigate])
 
   // 2. Check Payment Status
   useEffect(() => {
@@ -206,7 +253,7 @@ export default function Result() {
               {/* Card Visual */}
               <div className="relative aspect-[2/3] rounded-xl overflow-hidden shadow-lg mb-8 group bg-[#2B1F16]">
                 <img 
-                  src={`/cards/${card.image}`} 
+                  src={card.image?.startsWith('/assets/cards/') ? card.image : `/assets/cards/${card.image}`} 
                   alt={card.name_en} 
                   onError={(e) => {
                     e.currentTarget.style.display = 'none'

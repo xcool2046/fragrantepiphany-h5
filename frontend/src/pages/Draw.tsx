@@ -7,9 +7,12 @@ import tarotData from '../assets/tarot_data.json'
 import { tapSpring } from '../utils/interactionPresets'
 import BackgroundBubbles from '../components/BackgroundBubbles'
 import ClickBubbles from '../components/ClickBubbles'
+import { PageTransitionOverlay } from '../components/PageTransitionOverlay'
+import axios from 'axios'
 
 type TarotCard = {
   id: number
+  code?: string
   name_en?: string
   name_cn?: string
   image?: string
@@ -21,14 +24,12 @@ const BASE_WHEEL_RADIUS = 850
 const BASE_CENTER_X_OFFSET = 700
 const BASE_ANGLE_PER_CARD = 2.8
 const VISIBLE_ANGLE_THRESHOLD = 35
-const MAX_ROTATION = 180  // First card (id=0) at center
-const MIN_ROTATION = 180 - (77 * BASE_ANGLE_PER_CARD)  // Last card (id=77) at center
-const INITIAL_ROTATION = 180 - (39 * BASE_ANGLE_PER_CARD)  // V10: Start from middle (card 39)
 
 export default function Draw() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  
+
+  const [cards, setCards] = useState<any[]>([])
   const [selected, setSelected] = useState<TarotCard[]>([])
   const isDragging = useRef(false)
   const [focusedCardId, setFocusedCardId] = useState<number | null>(null)
@@ -38,15 +39,61 @@ export default function Draw() {
   const [clickPosition, setClickPosition] = useState<{x: number, y: number} | null>(null)  // For ripple
   const [isExiting, setIsExiting] = useState(false) // Transition state
   
-  const rotation = useMotionValue(INITIAL_ROTATION)  // V10: Start from card 39
+  const rotation = useMotionValue(0)
   const smoothRotation = useSpring(rotation, { damping: 18, stiffness: 140 })  // V10: Smoother + snappier
   
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const mockCards: TarotCard[] = Array.from({ length: 78 }, (_, i) => {
-    const fallback: TarotCard = { id: i, name_en: `Card ${i}`, image: '/assets/card-back.png' }
-    return (tarotData as TarotCard[])[i] || fallback
-  })
+  // 卡牌数据：优先后端 /api/content/cards，失败则回退本地 tarot_data
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const res = await axios.get('/api/content/cards')
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          const mapped = res.data.map((c: any, idx: number) => ({
+            id: idx,
+            code: c.code,
+            name_en: c.name_en,
+            name_cn: c.name_zh || c.name_en,
+            image: c.image_url || `/assets/cards/${c.code}.png`,
+            meaning: {
+              past: c.default_meaning_en || '',
+              present: c.default_meaning_en || '',
+              future: c.default_meaning_en || '',
+            },
+          })) as TarotCard[]
+          setCards(mapped)
+          localStorage.setItem('card_cache', JSON.stringify(mapped))
+          return
+        }
+      } catch (e) {
+        console.warn('fetch cards failed, fallback to local tarot data', e)
+      }
+      const fallbackCards: TarotCard[] = Array.from({ length: (tarotData as any[]).length }, (_, i) => {
+        const data = (tarotData as any[])[i] as any
+        return {
+          id: i,
+          code: data.image ? data.image.replace(/\.[^.]+$/, '') : `card_${i}`,
+          name_en: data.name_en || `Card ${i}`,
+          name_cn: data.name_cn || data.name_en,
+          image: data.image ? `/assets/cards/${data.image}` : '/assets/card-back.png',
+          meaning: data.meaning_en || data.meaning || {},
+        }
+      })
+      setCards(fallbackCards)
+      localStorage.setItem('card_cache', JSON.stringify(fallbackCards))
+    }
+    fetchCards()
+  }, [])
+
+  const totalCards = cards.length || 78
+  const MIN_ROTATION = 180 - ((totalCards - 1) * BASE_ANGLE_PER_CARD)
+  const MAX_ROTATION = 180
+  const INITIAL_ROTATION = 180 - (Math.floor(totalCards / 2) * BASE_ANGLE_PER_CARD)
+
+  useEffect(() => {
+    rotation.set(INITIAL_ROTATION)
+  }, [INITIAL_ROTATION, rotation])
 
   const bubbles = [
     { size: 220, x: '10%', y: '15%', color: 'rgba(155, 126, 189, 0.1)', blur: 60, opacity: 0.4, duration: 20, xOffset: 20, yOffset: 15 },
@@ -57,17 +104,14 @@ export default function Draw() {
     const currentRotation = rotation.get()
     const rawIndex = (180 - currentRotation) / BASE_ANGLE_PER_CARD
     let targetIndex = Math.round(rawIndex)
-    
-    // V10: Clamp to boundaries (0-77)
-    targetIndex = Math.max(0, Math.min(77, targetIndex))
-    
+    targetIndex = Math.max(0, Math.min(totalCards - 1, targetIndex))
+
     const targetRotation = 180 - (targetIndex * BASE_ANGLE_PER_CARD)
     const finalRotation = Math.max(MIN_ROTATION, Math.min(MAX_ROTATION, targetRotation))
-    
-    // V10: Progressive damping based on distance to boundary
+
     const distanceToBoundary = Math.min(
       targetIndex,  // Distance to start
-      77 - targetIndex  // Distance to end
+      (totalCards - 1) - targetIndex  // Distance to end
     )
     let dampingValue = 18  // Default smooth
     if (distanceToBoundary <= 5) dampingValue = 27  // Getting heavier
@@ -84,16 +128,15 @@ export default function Draw() {
       velocity: velocity,
       onUpdate: (v) => {
         const currentIndex = Math.round((180 - v) / BASE_ANGLE_PER_CARD)
-        const validIndex = Math.max(0, Math.min(77, currentIndex))
-        setFocusedCardId(mockCards[validIndex]?.id || null)
+        const validIndex = Math.max(0, Math.min(totalCards - 1, currentIndex))
+        setFocusedCardId(cards[validIndex]?.id || null)
       },
       onComplete: () => {
         // V10: Removed snap haptic (too frequent)
       }
     })
     
-    // V10: Soft boundary haptic (50ms instead of 100ms)
-    if (targetIndex === 0 || targetIndex === 77) {
+    if (targetIndex === 0 || targetIndex === totalCards - 1) {
       if (navigator.vibrate) navigator.vibrate(50)
     }
   }
@@ -127,15 +170,16 @@ export default function Draw() {
   )
 
   useEffect(() => {
-    // V10: Initialize to card 39 (already set in useMotionValue)
-    snapToGrid()
-  }, [])
+    if (cards.length > 0) {
+      snapToGrid()
+    }
+  }, [cards])
 
   const handleCardClick = (card: TarotCard, event?: any) => {
     if (isDragging.current) return
 
     if (focusedCardId !== card.id) {
-      const index = mockCards.findIndex(c => c.id === card.id)
+      const index = cards.findIndex(c => c.id === card.id)
       const targetRotation = 180 - (index * BASE_ANGLE_PER_CARD)
       animate(rotation, targetRotation, { type: "spring", stiffness: 60, damping: 20 })
       return
@@ -176,8 +220,9 @@ export default function Draw() {
 
       if (newSelected.length === 3) {
         if (navigator.vibrate) navigator.vibrate(150)
-        const cardIds = newSelected.map(c => c.id)
-        localStorage.setItem('last_draw_ids', JSON.stringify(cardIds))
+        const cardCodes = newSelected.map(c => c.code || c.id)
+        localStorage.setItem('last_draw_codes', JSON.stringify(cardCodes))
+        localStorage.setItem('card_cache', JSON.stringify(cards))
         
         // Optimizing Transition:
         // 1. Wait only 300ms (was 800ms)
@@ -186,11 +231,15 @@ export default function Draw() {
         setTimeout(() => {
           setIsExiting(true)
           setTimeout(() => {
-            navigate('/result', { state: { cards: cardIds } })
+            navigate('/result', { state: { cardCodes } })
           }, 500) // Wait for fade out
         }, 300)
       }
     }, 2200)  // 0.5 + 0.8 + 0.6 + 0.3
+  }
+
+  if (cards.length === 0) {
+    return <div className="min-h-screen bg-background" />
   }
 
   return (
@@ -200,6 +249,8 @@ export default function Draw() {
       animate={{ opacity: isExiting ? 0 : 1 }}
       transition={{ duration: 0.5 }}
     >
+      <PageTransitionOverlay show={isExiting} variant="maskUp" />
+
       {/* Blurred Asset Background - Enhanced Detail */}
       <div className="absolute inset-0 z-0 bg-[url('/assets/bg-mystic.png')] bg-cover bg-center blur-[12px] opacity-25 pointer-events-none" />
       
@@ -282,7 +333,7 @@ export default function Draw() {
         className="absolute inset-0 z-30 cursor-grab active:cursor-grabbing touch-none"
       >
         <AnimatePresence>
-          {mockCards.map((card, i) => {
+          {cards.map((card, i) => {
             const isSelected = selected.find(c => c.id === card.id)
             const isFlipping = flippingCardId === card.id
             const isDisplaying = displayingCardId === card.id
@@ -404,6 +455,7 @@ function CardItem({ index, card, rotation, isFocused, isFlipping, isDisplaying, 
 
   // Apple: Display Stage - Center and enlarge
   if (isDisplaying) {
+    const imageSrc = card.image?.startsWith('/assets/cards/') ? card.image : `/assets/cards/${card.image}`
     return (
       <motion.div
         className="fixed top-1/2 left-1/2 z-[200] w-[280px] h-[480px] -ml-[140px] -mt-[240px]"
@@ -414,7 +466,7 @@ function CardItem({ index, card, rotation, isFocused, isFlipping, isDisplaying, 
         <div className="absolute inset-0 bg-[#D4A373]/20 blur-[40px] rounded-full" />
         <div className="relative w-full h-full rounded-2xl overflow-hidden border-[4px] border-[#D4A373] shadow-2xl">
            <img 
-              src={`/assets/cards/${card.image}`} 
+              src={imageSrc} 
               alt={card.name_en}
               className="w-full h-full object-cover"
             />
@@ -435,6 +487,7 @@ function CardItem({ index, card, rotation, isFocused, isFlipping, isDisplaying, 
 
   // Apple: Flying Stage - Fly to progress dot
   if (isFlying) {
+    const imageSrc = card.image?.startsWith('/assets/cards/') ? card.image : `/assets/cards/${card.image}`
     const targetX = 27
     const targetY = 110 + (selectedCount * 26)
     return (
@@ -445,11 +498,13 @@ function CardItem({ index, card, rotation, isFocused, isFlipping, isDisplaying, 
         transition={{ type: 'spring', damping: 25, stiffness: 180, mass: 0.8 }}
       >
          <div className="w-full h-full rounded-xl overflow-hidden border-[2px] border-[#D4A373]">
-            <img src={`/assets/cards/${card.image}`} alt={card.name_en} className="w-full h-full object-cover" />
+            <img src={imageSrc} alt={card.name_en} className="w-full h-full object-cover" />
          </div>
       </motion.div>
     )
   }
+
+  const imageSrc = card.image?.startsWith('/assets/cards/') ? card.image : `/assets/cards/${card.image}`
 
   return (
     <motion.div
@@ -533,7 +588,7 @@ function CardItem({ index, card, rotation, isFocused, isFlipping, isDisplaying, 
             style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
           >
             <img 
-              src={`/assets/cards/${card.image}`} 
+              src={imageSrc} 
               alt={card.name_en}
               className="w-full h-full object-cover"
             />

@@ -2,23 +2,21 @@
 
 > A Tarot reading experience with perfume recommendations.
 
-## 📚 Documentation
+## 📚 文档索引
+- **需求与范围**：`docs/requirements.md`
+- **开发指南**：`docs/dev-guide.md`
+- **部署指南**：`docs/deploy-guide.md`
+- **页面内容要点**：`docs/page-content.md`
+- **UI 规范**：`docs/ui.md`
+- **品牌基调**：`docs/brand.md`
+- **后台方案**：`docs/admin-plan.md`
+- **开发笔记 / 预发布检查**：`docs/development_notes.md`
+- **历史方案归档**：`docs/archive/`
 
-All project documentation is located in the `docs/` directory.
+## 🚀 快速开始（Docker Compose）
+1. 安装 Docker / Docker Compose（v2 以上）。
+2. `cp .env.example .env` 并填好 Stripe/数据库/管理员账号等变量。
+3. `docker compose up --build`（默认端口：前端 4173，后端 3000，Nginx 8080）。
+4. 访问前端 `http://localhost:8080`，后台 `http://localhost:8080/admin`。
 
-*   **[Requirements](docs/requirements.md)**: Functional scope, user flow, and business rules.
-*   **[Architecture](docs/architecture.md)**: Technical stack, database schema, and API design.
-*   **[Development Guide](docs/dev-guide.md)**: Setup, running locally, **testing**, and debugging.
-*   **[Deployment Guide](docs/deploy-guide.md)**: Docker deployment, Nginx configuration, and environment variables.
-*   **[UI/UX](docs/ui.md)**: Design system, color palette, and mobile adaptation notes.
-*   **[Brand](docs/brand.md)**: Brand voice and mission.
-*   **[Page Content](docs/page-content.md)**: Copywriting drafts.
-
-## 🚀 Quick Start
-
-1.  **Clone**: `git clone ...`
-2.  **Setup**: Copy `.env.example` to `.env`.
-3.  **Run (Docker)**: `docker-compose up --build`
-4.  **Visit**: `http://localhost:8080`
-
-For detailed instructions, please refer to the **[Development Guide](docs/dev-guide.md)**.
+更详细的环境变量、迁移、种子数据与 Nginx 反代示例见 `docs/dev-guide.md` 与 `docs/deploy-guide.md`。

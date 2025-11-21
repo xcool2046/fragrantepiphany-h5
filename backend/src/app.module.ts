@@ -7,6 +7,9 @@ import ormconfig from '../ormconfig';
 import { Interpretation } from './entities/interpretation.entity';
 import { Order } from './entities/order.entity';
 import { User } from './entities/user.entity';
+import { Question } from './entities/question.entity';
+import { Card } from './entities/card.entity';
+import { Rule } from './entities/rule.entity';
 import { PayModule } from './pay/pay.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthController } from './auth/auth.controller';
@@ -14,6 +17,7 @@ import { InterpModule } from './interp/interp.module';
 import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 import { ImportModule } from './imports/import.module';
 import { AdminModule } from './admin/admin.module';
+import { ContentModule } from './content/content.module';
 
 @Module({
   imports: [
@@ -21,7 +25,7 @@ import { AdminModule } from './admin/admin.module';
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         ...ormconfig.options,
-        entities: [Interpretation, Order, User],
+        entities: [Interpretation, Order, User, Question, Card, Rule],
       }),
     }),
     PayModule,
@@ -31,6 +35,7 @@ import { AdminModule } from './admin/admin.module';
     QuestionnaireModule,
     ImportModule,
     AdminModule,
+    ContentModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService],

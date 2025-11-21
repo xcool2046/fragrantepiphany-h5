@@ -14,8 +14,9 @@ export default function AdminLayout() {
 
   const navItems = [
     { label: 'Interpretations', path: '/admin/interpretations', icon: '🔮' },
-    // Orders 隐藏，等待客户追加预算再开启
-    // { label: 'Orders', path: '/admin/orders', icon: '💰' },
+    { label: 'Questions', path: '/admin/questions', icon: '❓' },
+    { label: 'Cards', path: '/admin/cards', icon: '🃏' },
+    { label: 'Rules', path: '/admin/rules', icon: '✨' },
   ]
 
   const [isSidebarOpen, setSidebarOpen] = useState(false)

@@ -9,8 +9,23 @@ export class InterpretationService {
     @InjectRepository(Interpretation) private repo: Repository<Interpretation>,
   ) {}
 
-  findOne(query: { card_name: string; category: string; position: string; language: string }) {
-    return this.repo.findOne({ where: query })
+  async findOne(query: { card_name: string; category?: string; position: string; language?: string }) {
+    const lang = (query.language || 'en').toLowerCase()
+    const alt = lang === 'en' ? 'zh' : 'en'
+    const record = await this.repo.findOne({ where: { card_name: query.card_name, category: query.category, position: query.position } })
+    if (!record) return null
+    const pick = (field: string) => (record as any)[`${field}_${lang}`] ?? (record as any)[`${field}_${alt}`] ?? null
+    return {
+      card_name: record.card_name,
+      category: record.category,
+      position: record.position,
+      language: lang,
+      summary: pick('summary'),
+      interpretation: pick('interpretation'),
+      action: pick('action'),
+      future: pick('future'),
+      recommendation: pick('recommendation'),
+    }
   }
 
   async drawThree(): Promise<Interpretation[]> {
@@ -21,23 +36,49 @@ export class InterpretationService {
   }
 
   async importMany(items: Partial<Interpretation>[]) {
-    const entities = this.repo.create(items)
+    const mapped = items.map((item) => {
+      const lang = (item as any).language || 'en'
+      const base = {
+        card_name: item.card_name,
+        category: item.category,
+        position: item.position,
+        summary_en: null,
+        summary_zh: null,
+        interpretation_en: null,
+        interpretation_zh: null,
+        action_en: null,
+        action_zh: null,
+        future_en: null,
+        future_zh: null,
+        recommendation_en: null,
+        recommendation_zh: null,
+      } as any
+      const prefix = lang.toLowerCase() === 'zh' ? '_zh' : '_en'
+      base[`summary${prefix}`] = (item as any).summary ?? null
+      base[`interpretation${prefix}`] = (item as any).interpretation ?? null
+      base[`action${prefix}`] = (item as any).action ?? null
+      base[`future${prefix}`] = (item as any).future ?? null
+      base[`recommendation${prefix}`] = (item as any).recommendation ?? null
+      return base
+    })
+    const entities = this.repo.create(mapped)
     return this.repo.save(entities)
   }
 
   async findAll(page = 1, limit = 10, filters: any = {}) {
-    const where: any = {}
-    if (filters.card_name) where.card_name = filters.card_name
-    if (filters.category) where.category = filters.category
-    if (filters.position) where.position = filters.position
-    if (filters.language) where.language = filters.language
-
-    const [items, total] = await this.repo.findAndCount({
-      where,
-      skip: (page - 1) * limit,
-      take: limit,
-      order: { id: 'DESC' },
-    })
+    const qb = this.repo.createQueryBuilder('i')
+    if (filters.card_name) qb.andWhere('i.card_name = :card', { card: filters.card_name })
+    if (filters.category) qb.andWhere('i.category = :cat', { cat: filters.category })
+    if (filters.position) qb.andWhere('i.position = :pos', { pos: filters.position })
+    if (filters.language) {
+      const lang = filters.language.toLowerCase()
+      qb.andWhere(`(i.summary_${lang} IS NOT NULL OR i.interpretation_${lang} IS NOT NULL)`)
+    }
+    const [items, total] = await qb
+      .skip((page - 1) * limit)
+      .take(limit)
+      .orderBy('i.id', 'DESC')
+      .getManyAndCount()
     return { items, total, page, limit }
   }
 

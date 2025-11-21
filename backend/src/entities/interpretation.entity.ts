@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'tarot_interpretations' })
-@Index(['card_name', 'category', 'position', 'language'], { unique: true })
+@Index(['card_name', 'category', 'position'], { unique: true })
 export class Interpretation {
   @PrimaryGeneratedColumn()
   id: number;
@@ -15,21 +15,33 @@ export class Interpretation {
   @Column()
   position: string;
 
-  @Column()
-  language: string;
-
-  @Column({ type: 'text' })
-  summary: string;
+  @Column({ type: 'text', nullable: true })
+  summary_en: string | null;
 
   @Column({ type: 'text', nullable: true })
-  interpretation: string;
+  summary_zh: string | null;
 
   @Column({ type: 'text', nullable: true })
-  action: string;
+  interpretation_en: string | null;
 
   @Column({ type: 'text', nullable: true })
-  future: string;
+  interpretation_zh: string | null;
 
-  @Column({ type: 'jsonb', nullable: true })
-  recommendation: any;
+  @Column({ type: 'text', nullable: true })
+  action_en: string | null;
+
+  @Column({ type: 'text', nullable: true })
+  action_zh: string | null;
+
+  @Column({ type: 'text', nullable: true })
+  future_en: string | null;
+
+  @Column({ type: 'text', nullable: true })
+  future_zh: string | null;
+
+  @Column({ type: 'text', nullable: true })
+  recommendation_en: string | null;
+
+  @Column({ type: 'text', nullable: true })
+  recommendation_zh: string | null;
 }

@@ -26,17 +26,21 @@ export class ImportController {
         .on('end', () => resolve())
         .write(file.buffer)
     })
-    const entities = rows.map((r) => ({
-      card_name: r.card_name,
-      category: r.category,
-      position: r.position,
-      language: r.language,
-      summary: r.summary,
-      interpretation: r.interpretation,
-      action: r.action,
-      future: r.future,
-      recommendation: r.recommendation ? JSON.parse(r.recommendation) : null,
-    }))
+    const entities = rows.map((r) => {
+      const lang = (r.language || 'en').toLowerCase()
+      const obj: any = {
+        card_name: r.card_name,
+        category: r.category,
+        position: r.position,
+      }
+      const suffix = lang === 'zh' ? '_zh' : '_en'
+      obj[`summary${suffix}`] = r.summary
+      obj[`interpretation${suffix}`] = r.interpretation
+      obj[`action${suffix}`] = r.action
+      obj[`future${suffix}`] = r.future
+      obj[`recommendation${suffix}`] = r.recommendation ? JSON.parse(r.recommendation) : null
+      return obj
+    })
     const saved = await this.repo.save(this.repo.create(entities))
     return { count: saved.length }
   }
@@ -53,12 +57,16 @@ export class ImportController {
         card_name: item.card_name,
         category: item.category,
         position: item.position,
-        language: item.language,
-        summary: item.summary,
-        interpretation: item.interpretation,
-        action: item.action,
-        future: item.future,
-        recommendation: item.recommendation ? JSON.stringify(item.recommendation) : '',
+        summary_en: item.summary_en || '',
+        summary_zh: item.summary_zh || '',
+        interpretation_en: item.interpretation_en || '',
+        interpretation_zh: item.interpretation_zh || '',
+        action_en: item.action_en || '',
+        action_zh: item.action_zh || '',
+        future_en: item.future_en || '',
+        future_zh: item.future_zh || '',
+        recommendation_en: item.recommendation_en ? JSON.stringify(item.recommendation_en) : '',
+        recommendation_zh: item.recommendation_zh ? JSON.stringify(item.recommendation_zh) : '',
       })
     })
     csvStream.end()

@@ -25,7 +25,9 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'))
 const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'))
 const Interpretations = lazy(() => import('./pages/admin/Interpretations'))
-const Orders = lazy(() => import('./pages/admin/Orders'))
+const Questions = lazy(() => import('./pages/admin/Questions'))
+const Cards = lazy(() => import('./pages/admin/Cards'))
+const Rules = lazy(() => import('./pages/admin/Rules'))
 
 function App() {
   return (
@@ -48,7 +50,9 @@ function App() {
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<Interpretations />} />
               <Route path="interpretations" element={<Interpretations />} />
-              <Route path="orders" element={<Orders />} />
+              <Route path="questions" element={<Questions />} />
+              <Route path="cards" element={<Cards />} />
+              <Route path="rules" element={<Rules />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

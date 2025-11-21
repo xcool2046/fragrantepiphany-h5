@@ -1,202 +1,89 @@
 # 部署指南 - fragrantepiphany-h5
 
-本文档详细说明了如何在本地开发环境和生产服务器上部署本项目。
+本文档说明本地与生产的部署方式，保留现有服务器信息供内部使用。  
 ssh root@47.243.157.75 你可以直接帮我部署，已做好无密码
+
 ## 1. 环境准备
+### 本地
+- Node.js 18+
+- Docker / Docker Compose
+- Git
 
-### 本地开发环境
-- **Node.js**: v18+
-- **Docker & Docker Compose**: 用于启动数据库和完整环境模拟
-- **Git**: 代码版本控制
+### 生产（示例：Ubuntu 22.04）
+- Docker / Docker Compose
+- Nginx（宿主机反代 80/443，SSL 证书用 Certbot）
+- Git
 
-### 生产服务器 (Ubuntu 22.04 推荐)
-- **Docker & Docker Compose**: 核心运行环境
-- **Nginx (宿主机)**: 作为反向代理，处理 SSL 和域名路由
-- **Certbot**: 用于申请 SSL 证书
-- **Git**: 拉取代码
-
----
-
-## 2. 配置文件准备 (.env)
-
-在项目根目录创建 `.env` 文件。**注意：本地和服务器的配置略有不同。**
-
-### 通用配置 (本地 & 服务器)
+## 2. 环境变量 (.env)
+根目录创建 `.env`（不要提交），字段与 `.env.example` 一致：
 ```env
-# 数据库配置 (Docker 内部连接)
+STRIPE_PUBLISHABLE_KEY=
+STRIPE_SECRET_KEY=
+STRIPE_PUBLISHABLE_KEY_TEST=
+STRIPE_SECRET_KEY_TEST=
+STRIPE_WEBHOOK_SECRET=
 DATABASE_URL=postgresql://tarot:tarot@db:5432/tarot
-
-# Stripe 支付配置 (请替换为实际密钥)
-STRIPE_PUBLISHABLE_KEY=pk_live_xxx
-STRIPE_SECRET_KEY=sk_live_xxx
-STRIPE_PUBLISHABLE_KEY_TEST=pk_test_xxx
-STRIPE_SECRET_KEY_TEST=sk_test_xxx
-STRIPE_PRICE_ID_CNY=price_xxx
-STRIPE_PRICE_ID_USD=price_xxx
-STRIPE_WEBHOOK_SECRET=whsec_xxx
-
-# 后台管理员账号
+PORT=3000
+HOST=0.0.0.0
+SESSION_SECRET=
 ADMIN_USER=admin
 ADMIN_PASS=admin
-SESSION_SECRET=your_complex_session_secret
+PUBLIC_BASE_URL=http://localhost:4173
+VITE_API_BASE_URL=http://localhost:3000
 ```
+- 当前支付逻辑使用 `config.json`（可选）里的 `price_usd`，默认为 500（即 $5）。`STRIPE_PRICE_ID_*` 已不再使用。
+- `PUBLIC_BASE_URL` 会拼接 `/pay/callback` 作为 Stripe 回跳地址，请与实际域名一致。
+- Feature flags（后端）：`FEATURE_ADMIN_ORDERS` / `FEATURE_ADMIN_PRICING`，默认关闭。
 
-### 差异配置
-
-| 变量名 | 本地开发 (Local) | 生产服务器 (Server) | 说明 |
-| :--- | :--- | :--- | :--- |
-| `PUBLIC_BASE_URL` | `http://localhost:8080` | `https://fragrantepiphany.com` | 前端访问地址，用于 Stripe 回调跳转 |
-| `VITE_API_BASE_URL` | `http://localhost:3000` | `https://backend.fragrantepiphany.com` | 前端调用后端的 API 基准地址 |
-
----
-
-## 3. 本地开发部署 (Local Development)
-
-### 步骤 1: 启动服务
-在项目根目录下运行：
+## 3. 本地运行（Docker Compose）
 ```bash
-# 构建并启动所有服务 (前端、后端、数据库、内部 Nginx)
-docker-compose up -d --build
+docker compose up --build
+docker compose exec backend npm run typeorm -- migration:run
+docker compose exec backend npm run seed
 ```
+- 端口：nginx 8080（转发 frontend 4173 / backend 3000），db 5432。
+- 访问：前端/后台 `http://localhost:8080`。
+- Stripe Webhook（本地）可用 `stripe listen` 转发到 `http://localhost:3000/api/pay/webhook`，将 whsec 写入 `.env`。
 
-### 步骤 2: 访问验证
-- **前端首页**: [http://localhost:8080](http://localhost:8080)
-- **管理后台**: [http://localhost:8080/admin](http://localhost:8080/admin)
-- **后端 API**: [http://localhost:3000](http://localhost:3000)
-
-### 步骤 3: 常用命令
+## 4. 生产部署（示例流程）
+1) SSH 登录（已开免密）：`ssh root@47.243.157.75`  
+2) 代码：`cd /root/fragrantepiphany-h5`（首次需 `git clone https://github.com/xcool2046/fragrantepiphany-h5.git`）。  
+3) `.env`：参考第 2 节填写生产值（尤其是 Stripe live key 与 webhook secret，`PUBLIC_BASE_URL=https://fragrantepiphany.com`，`VITE_API_BASE_URL=https://backend.fragrantepiphany.com`）。  
+4) 构建/启动：
 ```bash
-# 查看日志
-docker-compose logs -f backend
-docker-compose logs -f frontend
-
-# 重启后端 (代码修改后)
-docker-compose restart backend
-```
-
----
-
-## 4. 生产服务器部署 (Server Deployment)
-
-服务器部署采用 **宿主机 Nginx + Docker 容器** 的架构。
-- **宿主机 Nginx**: 监听 80/443，处理 SSL，根据域名转发流量。
-- **Docker 容器**: 运行应用服务，映射端口到宿主机 (Frontend: 8080, Backend: 3000)。
-
-### 步骤 1: 克隆代码
-```bash
-cd /root
-git clone https://github.com/xcool2046/fragrantepiphany-h5.git
-cd fragrantepiphany-h5
-```
-
-### 步骤 2: 配置环境变量
-创建并编辑 `.env` 文件，填入生产环境配置 (参考第 2 节)。
-
-### 步骤 3: 启动 Docker 服务
-```bash
-# 确保端口未被占用 (8080, 3000, 5432)
 docker compose up -d --build
+docker compose exec backend npm run typeorm -- migration:run
 ```
-
-### 步骤 4: 配置宿主机 Nginx
-
-你需要配置两个域名：
-1.  `fragrantepiphany.com`: 主站 (前端)
-2.  `backend.fragrantepiphany.com`: 后台管理 & API
-
-#### A. 主站配置 (`/etc/nginx/sites-available/my-website`)
+5) 宿主机 Nginx 反代示例（80/443 → 容器 8080/3000）：
 ```nginx
 server {
-    listen 80;
-    listen 443 ssl;
-    server_name fragrantepiphany.com www.fragrantepiphany.com;
-
-    # SSL 配置 (Certbot 生成)
-    ssl_certificate /etc/letsencrypt/live/fragrantepiphany.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/fragrantepiphany.com/privkey.pem;
-
-    # 转发到 Docker 内部 Nginx (8080)
-    location / {
-        proxy_pass http://127.0.0.1:8080;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
+  listen 80;
+  listen 443 ssl;
+  server_name fragrantepiphany.com www.fragrantepiphany.com;
+  ssl_certificate /etc/letsencrypt/live/fragrantepiphany.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/fragrantepiphany.com/privkey.pem;
+  location / { proxy_pass http://127.0.0.1:8080; }
 }
-```
 
-#### B. 后台 & API 配置 (`/etc/nginx/sites-available/backend`)
-```nginx
 server {
-    listen 80;
-    listen 443 ssl;
-    server_name backend.fragrantepiphany.com;
-
-    ssl_certificate /etc/letsencrypt/live/fragrantepiphany.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/fragrantepiphany.com/privkey.pem;
-
-    # 1. 访问根路径 -> 跳转到 /admin (管理后台)
-    location = / {
-        return 301 /admin;
-    }
-
-    # 2. API 请求 -> 转发到后端容器 (3000)
-    location /api/ {
-        proxy_pass http://127.0.0.1:3000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # 3. 其他请求 (管理后台页面资源) -> 转发到前端容器 (8080)
-    location / {
-        proxy_pass http://127.0.0.1:8080;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
+  listen 80;
+  listen 443 ssl;
+  server_name backend.fragrantepiphany.com;
+  ssl_certificate /etc/letsencrypt/live/fragrantepiphany.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/fragrantepiphany.com/privkey.pem;
+  location = / { return 301 /admin; }
+  location /api/ { proxy_pass http://127.0.0.1:3000; }
+  location / { proxy_pass http://127.0.0.1:8080; }
 }
 ```
+6) 重载 Nginx：`nginx -t && systemctl reload nginx`
 
-### 步骤 5: 启用配置并重启 Nginx
+## 5. 一键部署脚本（deploy.sh）
 ```bash
-ln -s /etc/nginx/sites-available/my-website /etc/nginx/sites-enabled/
-ln -s /etc/nginx/sites-available/backend /etc/nginx/sites-enabled/
-nginx -t
-systemctl reload nginx
+./deploy.sh "commit message"
 ```
-
-### 步骤 6: 初始化数据库
-```bash
-# 进入后端容器执行迁移
-docker compose exec backend npm run migration:run
-```
-
----
-
-## 5. 一键部署 (推荐)
-
-为了简化部署流程，项目根目录提供了一个 `deploy.sh` 脚本，自动处理代码提交、推送和服务器更新。
-
-### 使用方法
-
-在本地终端运行：
-
-```bash
-# ./deploy.sh "您的提交信息"
-./deploy.sh "fix: update UI layout"
-```
-
-该脚本会自动执行以下操作：
-1.  `git add .` & `git commit`
-2.  `git push`
-3.  SSH 连接服务器
-4.  `git pull`
-5.  `docker compose up -d --build`
-6.  `docker compose restart nginx`
+- 动作：git add/commit/push → SSH 服务器拉代码 → `docker compose up -d --build` → `docker compose restart nginx`。  
+- 服务器地址/IP 与免密登录已保留在脚本中，必要时请先确认机器状态再执行。
 
 ---
 

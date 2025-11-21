@@ -44,3 +44,6 @@
     *   确保所有可点击区域 (Touch Targets) 高度不小于 **44px**。
 
 ---
+**参考截图**:
+![Quiz Page Before](/brain/9c57090b-1394-4d56-8ce3-04fa0be11b3f/uploaded_image_1763550226200.png)
+*图示: 待优化的 Quiz 底部布局 (移除 Language，悬浮 Continue)*

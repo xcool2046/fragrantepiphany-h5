@@ -14,7 +14,7 @@ export default function AdminLogin() {
     try {
       const res = await axios.post('/api/auth/login', { username, password })
       localStorage.setItem('admin_token', res.data.access_token)
-      navigate('/admin')
+      navigate('/admin/questions')
     } catch {
       setError('Invalid credentials')
     }
