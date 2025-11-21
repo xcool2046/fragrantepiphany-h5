@@ -1,7 +1,7 @@
 # 部署指南 - fragrantepiphany-h5
 
 本文档详细说明了如何在本地开发环境和生产服务器上部署本项目。
-
+ssh root@47.243.157.75 你可以直接帮我部署，已做好无密码
 ## 1. 环境准备
 
 ### 本地开发环境
@@ -37,7 +37,7 @@ STRIPE_WEBHOOK_SECRET=whsec_xxx
 
 # 后台管理员账号
 ADMIN_USER=admin
-ADMIN_PASS=admin123
+ADMIN_PASS=admin
 SESSION_SECRET=your_complex_session_secret
 ```
 
