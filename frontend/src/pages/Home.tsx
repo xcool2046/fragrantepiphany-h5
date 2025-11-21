@@ -6,8 +6,9 @@ import BackgroundBubbles from '../components/BackgroundBubbles'
 import ClickBubbles from '../components/ClickBubbles'
 
 export default function Home() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const navigate = useNavigate()
+  const isZh = i18n.language?.toLowerCase().startsWith('zh')
 
   const bubbles = [
     { size: 280, x: '10%', y: '20%', color: 'rgba(212, 163, 115, 0.15)', blur: 80, opacity: 0.6, duration: 15, xOffset: 30, yOffset: -20 },
@@ -17,16 +18,15 @@ export default function Home() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center bg-background bg-noise">
-      {/* Ambient Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.8),transparent_70%)] z-0 pointer-events-none" />
-      <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-[#D4A373]/20 rounded-full blur-[120px] pointer-events-none mix-blend-overlay" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#C49BA3]/20 rounded-full blur-[100px] pointer-events-none mix-blend-overlay" />
-      
-      {/* Background Pattern (Enhanced) */}
-      <div className="absolute inset-0 opacity-[0.08] bg-[url('/assets/bg-home.png')] bg-cover bg-center pointer-events-none mix-blend-soft-light" />
+      {/* Single Background Image with soft overlay */}
+      <div
+        className="absolute inset-0 bg-center bg-cover opacity-45 pointer-events-none"
+        style={{ backgroundImage: "url('/assets/IMG_4864.JPG')" }}
+      />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(255,255,255,0.75),rgba(255,255,255,0.4))] pointer-events-none" />
 
       {/* Background Bubbles */}
-      <div className="opacity-40">
+      <div className="opacity-30">
         <BackgroundBubbles bubbles={bubbles} />
       </div>
       <ClickBubbles />
@@ -57,9 +57,18 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="text-5xl md:text-6xl font-serif text-[#1A120B] mb-6 leading-tight drop-shadow-sm"
+          className={`font-serif text-[#1A120B] mb-6 drop-shadow-sm text-center ${isZh ? 'text-[38px] leading-[1.2]' : 'text-[44px] leading-[1.15] md:text-5xl'} `}
+          style={{ textWrap: 'balance', minHeight: isZh ? '150px' : '140px', maxWidth: '18ch' }}
         >
-          {t('home.title')}
+          {isZh ? (
+            <>
+              <span className="block">一场</span>
+              <span className="block">带着香气</span>
+              <span className="block">的顿悟</span>
+            </>
+          ) : (
+            t('home.title')
+          )}
         </motion.h1>
         
         {/* Subtitle */}
@@ -67,7 +76,8 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.9 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="text-[#6B5542] mb-16 font-light italic text-lg tracking-wide"
+          className={`text-[#6B5542] mb-16 font-light italic text-center ${isZh ? 'text-base leading-relaxed' : 'text-lg leading-relaxed'}`}
+          style={{ textWrap: 'balance', minHeight: '60px' }}
         >
           {t('home.subtitle')}
         </motion.p>

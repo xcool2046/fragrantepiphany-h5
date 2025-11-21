@@ -12,11 +12,21 @@ export default function AdminLayout() {
     }
   }, [navigate])
 
-  const navItems = [
-    { label: 'Interpretations', path: '/admin/interpretations', icon: '🔮' },
-    { label: 'Questions', path: '/admin/questions', icon: '❓' },
-    { label: 'Cards', path: '/admin/cards', icon: '🃏' },
-    { label: 'Rules', path: '/admin/rules', icon: '✨' },
+  const navGroups = [
+    {
+      title: '内容',
+      items: [
+        { label: 'Interpretations', path: '/admin/interpretations', icon: '🔮' },
+        { label: 'Rules', path: '/admin/rules', icon: '✨' },
+        { label: 'Questions', path: '/admin/questions', icon: '❓' },
+      ]
+    },
+    {
+      title: '资源',
+      items: [
+        { label: 'Cards', path: '/admin/cards', icon: '🃏' },
+      ]
+    }
   ]
 
   const [isSidebarOpen, setSidebarOpen] = useState(false)
@@ -37,25 +47,30 @@ export default function AdminLayout() {
           <span className="font-serif font-bold text-xl tracking-wide text-[#D4A373]">Fragrant Epiphany</span>
         </div>
         
-        <nav className="flex-1 p-4 space-y-2 mt-4">
-          {navItems.map((item) => {
-            const isActive = location.pathname.startsWith(item.path)
-            return (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => setSidebarOpen(false)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
-                  isActive
-                    ? 'bg-[#D4A373] text-[#2B1F16] font-medium shadow-md'
-                    : 'hover:bg-[#D4A373]/10 text-[#F3E6D7]/80 hover:text-[#F3E6D7]'
-                }`}
-              >
-                <span>{item.icon}</span>
-                <span>{item.label}</span>
-              </Link>
-            )
-          })}
+        <nav className="flex-1 p-4 space-y-4 mt-4">
+          {navGroups.map((group) => (
+            <div key={group.title} className="space-y-2">
+              <div className="px-2 text-xs uppercase tracking-[0.2em] text-[#F3E6D7]/50">{group.title}</div>
+              {group.items.map((item) => {
+                const isActive = location.pathname.startsWith(item.path)
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setSidebarOpen(false)}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                      isActive
+                        ? 'bg-[#D4A373] text-[#2B1F16] font-medium shadow-md'
+                        : 'hover:bg-[#D4A373]/10 text-[#F3E6D7]/80 hover:text-[#F3E6D7]'
+                    }`}
+                  >
+                    <span>{item.icon}</span>
+                    <span>{item.label}</span>
+                  </Link>
+                )
+              })}
+            </div>
+          ))}
         </nav>
 
         <div className="p-4 border-t border-[#D4A373]/10">

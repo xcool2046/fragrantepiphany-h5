@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { tapSpring } from '../utils/interactionPresets'
 import BackgroundBubbles from '../components/BackgroundBubbles'
 import ClickBubbles from '../components/ClickBubbles'
-import { PageTransitionOverlay } from '../components/PageTransitionOverlay'
 import axios from 'axios'
 
 type QuestionDTO = {
@@ -24,9 +23,9 @@ export default function Quiz() {
   const navigate = useNavigate()
   const [answers, setAnswers] = useState<Answers>({})
   const [currentQIndex, setCurrentQIndex] = useState(0)
-  const [isExiting, setIsExiting] = useState(false)
   const [questions, setQuestions] = useState<QuestionDTO[]>([])
   const [loading, setLoading] = useState(true)
+  const isTouch = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches
 
   const currentQ = questions[currentQIndex]
   const opts = useMemo(() => {
@@ -42,9 +41,8 @@ export default function Quiz() {
   const supportsHover = typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches
 
   const bubbles = [
-    { size: 250, x: '15%', y: '15%', color: 'rgba(155, 126, 189, 0.12)', blur: 70, opacity: 0.5, duration: 16, xOffset: 20, yOffset: -20 },
-    { size: 200, x: '85%', y: '75%', color: 'rgba(139, 157, 195, 0.12)', blur: 60, opacity: 0.4, duration: 19, xOffset: -20, yOffset: 20 },
-    { size: 220, x: '40%', y: '50%', color: 'rgba(212, 163, 115, 0.08)', blur: 60, opacity: 0.3, duration: 22, xOffset: 15, yOffset: 15 },
+    { size: 220, x: '15%', y: '15%', color: 'rgba(155, 126, 189, 0.10)', blur: 50, opacity: 0.4, duration: 18, xOffset: 16, yOffset: -16 },
+    { size: 180, x: '85%', y: '75%', color: 'rgba(139, 157, 195, 0.10)', blur: 45, opacity: 0.35, duration: 19, xOffset: -16, yOffset: 16 },
   ]
 
   useEffect(() => {
@@ -86,11 +84,7 @@ export default function Quiz() {
       const payload = finalAnswers as any
       submitQuestionnaire(payload).catch(() => {})
       
-      // Trigger exit animation
-      setIsExiting(true)
-      setTimeout(() => {
-        navigate('/draw', { state: { answers: finalAnswers } })
-      }, 500) // Wait for animation
+      navigate('/draw', { state: { answers: finalAnswers } })
     } else {
       setCurrentQIndex((prev) => prev + 1)
     }
@@ -110,11 +104,9 @@ export default function Quiz() {
   return (
     <motion.div 
       className="relative min-h-screen w-full overflow-hidden bg-background text-text flex flex-col pb-20 bg-noise"
-      animate={{ opacity: isExiting ? 0 : 1 }}
-      transition={{ duration: 0.5 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
     >
-      <PageTransitionOverlay show={isExiting} variant="goldenGlow" />
-
       {/* Ambient Background - Purple/Blue Theme */}
       <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-[#9B7EBD]/12 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#8B9DC3]/12 rounded-full blur-[100px] pointer-events-none" />
@@ -134,7 +126,7 @@ export default function Quiz() {
       </header>
 
       {/* Main Content */}
-      <main className="relative z-10 flex-1 flex flex-col px-8 mt-4">
+      <main className="relative z-10 flex-1 flex flex-col px-8 mt-4 will-change-transform" style={{ transform: 'translateZ(0)' }}>
         {/* Progress */}
         <div className="flex items-center justify-center space-x-2 mb-8">
            <div className="h-[1px] w-12 bg-[#D4A373]/30"></div>
@@ -147,10 +139,10 @@ export default function Quiz() {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentQIndex}
-            initial={{ opacity: 0, x: 20, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, x: -20, filter: 'blur(4px)' }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            initial={{ opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -12 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
             className="flex-1 flex flex-col"
           >
             {/* Question */}
@@ -171,19 +163,19 @@ export default function Quiz() {
                     key={index}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 + 0.2 }}
+                    transition={{ delay: index * 0.05 + 0.1 }}
                     onClick={() => setAnswer(opt)}
                     className={`
                       relative w-full p-5 rounded-xl text-left transition-all duration-300 group overflow-hidden
                       ${isSelected 
                         ? 'bg-[#F7F2ED]/90 border-[#D4A373] shadow-[0_4px_20px_rgba(212,163,115,0.3)] scale-[1.02]' 
-                        : `bg-white/40 border-white/40 ${supportsHover ? 'hover:bg-white/60 hover:border-[#D4A373]/40 hover:shadow-lg' : ''}`
+                        : `bg-white/40 border-white/40 ${supportsHover && !isTouch ? 'hover:bg-white/60 hover:border-[#D4A373]/40 hover:shadow-lg' : ''}`
                       }
                       border backdrop-blur-xl
                     `}
                   >
                     {/* Shimmer Effect on Hover */}
-                    <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                    <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent will-change-transform" />
 
                     <div className="flex items-center justify-between relative z-10">
                       <div className="flex items-center gap-4">

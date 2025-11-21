@@ -43,6 +43,8 @@ export default function Draw() {
   const smoothRotation = useSpring(rotation, { damping: 18, stiffness: 140 })  // V10: Smoother + snappier
   
   const containerRef = useRef<HTMLDivElement>(null)
+  const dragRaf = useRef<number | null>(null)
+  const lastDragValue = useRef<number | null>(null)
 
   // 卡牌数据：优先后端 /api/content/cards，失败则回退本地 tarot_data
   useEffect(() => {
@@ -149,8 +151,15 @@ export default function Draw() {
         const newRotation = rotation.get() + rotateDelta
         
         // V9: Soft boundary constraint
-        const constrainedRotation = Math.max(MIN_ROTATION - 20, Math.min(MAX_ROTATION + 20, newRotation))
-        rotation.set(constrainedRotation)
+        lastDragValue.current = Math.max(MIN_ROTATION - 20, Math.min(MAX_ROTATION + 20, newRotation))
+
+        // 节流到 rAF，减少高频更新
+        if (dragRaf.current === null) {
+          dragRaf.current = requestAnimationFrame(() => {
+            if (lastDragValue.current !== null) rotation.set(lastDragValue.current)
+            dragRaf.current = null
+          })
+        }
       },
       onDragStart: () => {
         // V10: Removed drag start haptic (interferes with slide feel)
@@ -172,6 +181,9 @@ export default function Draw() {
   useEffect(() => {
     if (cards.length > 0) {
       snapToGrid()
+    }
+    return () => {
+      if (dragRaf.current) cancelAnimationFrame(dragRaf.current)
     }
   }, [cards])
 
@@ -331,6 +343,7 @@ export default function Draw() {
       <div 
         ref={containerRef}
         className="absolute inset-0 z-30 cursor-grab active:cursor-grabbing touch-none"
+        style={{ willChange: 'transform', transform: 'translateZ(0)' }}
       >
         <AnimatePresence>
           {cards.map((card, i) => {
@@ -590,6 +603,7 @@ function CardItem({ index, card, rotation, isFocused, isFlipping, isDisplaying, 
             <img 
               src={imageSrc} 
               alt={card.name_en}
+              loading="lazy"
               className="w-full h-full object-cover"
             />
           </div>

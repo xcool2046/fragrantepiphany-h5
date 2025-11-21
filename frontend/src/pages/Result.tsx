@@ -255,6 +255,7 @@ export default function Result() {
                 <img 
                   src={card.image?.startsWith('/assets/cards/') ? card.image : `/assets/cards/${card.image}`} 
                   alt={card.name_en} 
+                  loading="lazy"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none'
                   }}

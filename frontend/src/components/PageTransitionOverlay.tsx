@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 type Variant = 'goldenGlow' | 'maskUp'
 
-export function PageTransitionOverlay({ show, variant = 'goldenGlow' }: { show: boolean; variant?: Variant }) {
+export function PageTransitionOverlay({ show, variant = 'goldenGlow', duration = 0.5 }: { show: boolean; variant?: Variant; duration?: number }) {
   return (
     <AnimatePresence>
       {show && variant === 'goldenGlow' && (
@@ -11,21 +11,21 @@ export function PageTransitionOverlay({ show, variant = 'goldenGlow' }: { show: 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.div
             className="absolute inset-0 bg-gradient-to-b from-[#F7F2ED]/0 via-[#D4A373]/12 to-[#F7F2ED]/0"
             initial={{ scaleY: 0.9, opacity: 0 }}
             animate={{ scaleY: 1, opacity: 1 }}
             exit={{ scaleY: 1.05, opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration, ease: [0.22, 1, 0.36, 1] }}
           />
           <motion.div
             className="absolute inset-0 bg-gradient-radial from-[#D4A373]/16 via-transparent to-transparent blur-[60px]"
             initial={{ scale: 0.85, opacity: 0.4 }}
             animate={{ scale: 1.05, opacity: 0.7 }}
             exit={{ scale: 1.1, opacity: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: duration + 0.05, ease: [0.22, 1, 0.36, 1] }}
           />
         </motion.div>
       )}
