@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.10",
+    "@use-gesture/react": "^10.3.1",
     "axios": "^1.13.2",
     "classnames": "^2.5.1",
     "framer-motion": "^12.23.24",

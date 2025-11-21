@@ -5,25 +5,14 @@
 @tailwind utilities;
 
 :root {
-  color: var(--color-text-main);
-  background-color: var(--color-bg-light);
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-bg-light: #F7F2ED;
+  --color-text-main: #2B1F16;
+  --color-text-sub: #6B5542;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  position: relative;
-  background-color: var(--color-bg-light);
-  overflow-x: hidden;
-}
-
-/* Noise Texture Overlay */
-body::before {
+.bg-noise::before {
   content: "";
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -46,4 +35,21 @@ a {
 /* Utility for safe area */
 .safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

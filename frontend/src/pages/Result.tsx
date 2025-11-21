@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { motion } from 'framer-motion'
 import axios from 'axios'
 import tarotData from '../assets/tarot_data.json'
+import { tapSpring } from '../utils/interactionPresets'
+import BackgroundBubbles from '../components/BackgroundBubbles'
+import ClickBubbles from '../components/ClickBubbles'
+import { useToast } from '../components/Toast'
 
 type TarotCard = {
   id: number
@@ -28,44 +33,67 @@ export default function Result() {
   const location = useLocation()
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
+  const toast = useToast()
   
-  // State
-  const [cards, setCards] = useState<TarotCard[]>([])
-  const [interpretations, setInterpretations] = useState<Record<string, Interpretation>>({})
-  const [isPaid, setIsPaid] = useState(false)
-  const [loading, setLoading] = useState(true)
-
-  // 1. Data Recovery & Persistence
-  useEffect(() => {
-    const initData = async () => {
-      let cardIds = location.state?.cards
-
-      // Fallback to localStorage
-      if (!cardIds) {
-        const saved = localStorage.getItem('last_draw_ids')
-        if (saved) {
-          try {
-            cardIds = JSON.parse(saved)
-          } catch (e) {
-            console.error('Failed to parse saved cards', e)
-          }
+  // 1. Synchronous Data Recovery & Persistence
+  // Initialize state directly to avoid "white flash"
+  const [cards] = useState<TarotCard[]>(() => {
+    let cardIds = location.state?.cards
+    
+    // Fallback to localStorage
+    if (!cardIds) {
+      const saved = localStorage.getItem('last_draw_ids')
+      if (saved) {
+        try {
+          cardIds = JSON.parse(saved)
+        } catch (e) {
+          console.error('Failed to parse saved cards', e)
         }
       }
-
-      if (!cardIds || cardIds.length === 0) {
-        // No data found, redirect to draw
-        navigate('/draw')
-        return
-      }
-
-      // Reconstruct card objects
-      const cardObjects = cardIds.map((id: number) => getCardById(id)).filter(Boolean) as TarotCard[]
-      setCards(cardObjects)
-      setLoading(false)
     }
 
-    initData()
-  }, [location.state, navigate])
+    if (cardIds && cardIds.length > 0) {
+      return cardIds.map((id: number) => getCardById(id)).filter(Boolean) as TarotCard[]
+    }
+    return []
+  })
+
+  const [interpretations, setInterpretations] = useState<Record<string, Interpretation>>({})
+  const [isPaid, setIsPaid] = useState(false)
+  const [loading, setLoading] = useState(() => cards.length === 0)
+
+  const bubbles = [
+    { size: 220, x: '20%', y: '30%', color: 'rgba(212, 163, 115, 0.15)', blur: 60, opacity: 0.5, duration: 14, xOffset: 20, yOffset: -15 },
+    { size: 180, x: '70%', y: '70%', color: 'rgba(196, 155, 163, 0.15)', blur: 50, opacity: 0.4, duration: 17, xOffset: -15, yOffset: 20 },
+  ]
+
+  const handleShare = async () => {
+    const shareData = {
+      title: 'Tarot Reading Result',
+      text: 'Check out my tarot reading result!',
+      url: window.location.href
+    }
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData)
+      } else {
+        await navigator.clipboard.writeText(window.location.href)
+        toast.success(t('result.shareSuccess', 'Link copied to clipboard!'))
+      }
+    } catch (err) {
+      console.error('Share failed:', err)
+    }
+  }
+
+  useEffect(() => {
+    // Redirect if no cards found
+    if (cards.length === 0) {
+      navigate('/draw', { replace: true })
+    } else {
+      setLoading(false)
+    }
+  }, [cards, navigate])
 
   // 2. Check Payment Status
   useEffect(() => {
@@ -138,9 +166,20 @@ export default function Result() {
   if (loading) return <div className="min-h-screen bg-[#F9F5F1]" />
 
   return (
-    <div className="min-h-screen bg-[#F9F5F1] pb-[calc(env(safe-area-inset-bottom)+80px)] relative overflow-hidden">
-      {/* Background Texture */}
-      <div className="absolute inset-0 bg-[url('/assets/bg-home.png')] bg-cover bg-center opacity-5 pointer-events-none" />
+    <motion.div 
+      className="min-h-screen bg-[#F9F5F1] pb-[calc(env(safe-area-inset-bottom)+80px)] relative overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      {/* Background Texture - Enhanced */}
+      <div className="absolute inset-0 bg-[url('/assets/bg-home.png')] bg-cover bg-center opacity-[0.08] pointer-events-none" />
+
+      {/* Background Bubbles */}
+      <div className="opacity-40">
+        <BackgroundBubbles bubbles={bubbles} />
+      </div>
+      <ClickBubbles />
 
       {/* Header */}
       <div className="pt-8 pb-4 px-6 text-center relative z-10">
@@ -175,7 +214,8 @@ export default function Result() {
                 />
                 {isLocked && (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <button
+                    <motion.button
+                      {...tapSpring}
                       onClick={() => navigate('/pay')}
                       className="group relative px-6 py-5 rounded-2xl bg-white/25 text-[#2B1F16] border border-white/60 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.45)] flex flex-col items-center gap-2 hover:scale-[1.02] transition-transform"
                     >
@@ -188,7 +228,7 @@ export default function Result() {
                       <span className="text-xs text-[#6B5542] opacity-90">
                         {t('result.unlockMessage', 'Tap to unlock the full insight')}
                       </span>
-                    </button>
+                    </motion.button>
                   </div>
                 )}
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
@@ -209,13 +249,14 @@ export default function Result() {
                       <p className="text-[#6B5542] mb-4 font-serif italic">
                         {t('result.unlockMessage', 'Unlock to reveal the deeper meaning of your path.')}
                       </p>
-                      <button 
+                      <motion.button 
+                        {...tapSpring}
                         onClick={() => navigate('/pay')}
                         className="hidden md:inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#2B1F16] to-[#392a1e] text-[#D4A373] rounded-full font-medium text-sm shadow-lg hover:scale-[1.02] transition-transform"
                       >
                         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                         {t('result.unlockButton', 'Unlock Full Reading')}
-                      </button>
+                      </motion.button>
                     </div>
                   </div>
                 ) : null}
@@ -258,17 +299,18 @@ export default function Result() {
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
         </button>
         {!isPaid && (
-           <button 
+           <motion.button 
+             {...tapSpring}
              onClick={() => navigate('/pay')}
              className="flex-1 mx-4 py-3 bg-[#2B1F16] text-[#D4A373] rounded-full font-medium text-sm shadow-lg"
            >
              {t('result.unlockButton', 'Unlock Full Reading')}
-           </button>
+           </motion.button>
         )}
-        <button className="p-2 text-[#2B1F16]">
+        <button onClick={handleShare} className="p-2 text-[#2B1F16]">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
         </button>
       </div>
-    </div>
+    </motion.div>
   )
 }

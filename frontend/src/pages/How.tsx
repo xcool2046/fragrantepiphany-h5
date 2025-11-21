@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { tapSpring } from '../utils/interactionPresets'
 
 export default function How() {
   const navigate = useNavigate()
@@ -50,12 +51,13 @@ export default function How() {
         </div>
         
         <div className="text-center pt-8">
-          <button 
+          <motion.button 
+            {...tapSpring}
             onClick={() => navigate('/quiz')}
             className="px-8 py-3 bg-gradient-gold text-white rounded-full font-medium shadow-glow hover:scale-105 transition-transform"
           >
             Start Your Journey
-          </button>
+          </motion.button>
         </div>
 
       </motion.div>

@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { submitQuestionnaire } from '../api'
 import { motion, AnimatePresence } from 'framer-motion'
+import { tapSpring } from '../utils/interactionPresets'
+import BackgroundBubbles from '../components/BackgroundBubbles'
+import ClickBubbles from '../components/ClickBubbles'
 
 const questionsKeys = [
   { key: 'q1', optionsKey: 'q1Options' },
@@ -18,6 +21,7 @@ export default function Quiz() {
   const navigate = useNavigate()
   const [answers, setAnswers] = useState<Answers>({})
   const [currentQIndex, setCurrentQIndex] = useState(0)
+  const [isExiting, setIsExiting] = useState(false)
 
   const currentQ = questionsKeys[currentQIndex]
   const opts = currentQ
@@ -25,6 +29,12 @@ export default function Quiz() {
     : []
   const isLastQuestion = currentQIndex === questionsKeys.length - 1
   const currentAnswer = currentQ ? answers[currentQ.key] : ''
+
+  const bubbles = [
+    { size: 250, x: '15%', y: '15%', color: 'rgba(155, 126, 189, 0.12)', blur: 70, opacity: 0.5, duration: 16, xOffset: 20, yOffset: -20 },
+    { size: 200, x: '85%', y: '75%', color: 'rgba(139, 157, 195, 0.12)', blur: 60, opacity: 0.4, duration: 19, xOffset: -20, yOffset: 20 },
+    { size: 220, x: '40%', y: '50%', color: 'rgba(212, 163, 115, 0.08)', blur: 60, opacity: 0.3, duration: 22, xOffset: 15, yOffset: 15 },
+  ]
 
   // 防御：数据异常直接返回首页，避免 optionsKey 报错
   useEffect(() => {
@@ -43,7 +53,12 @@ export default function Quiz() {
     if (isLastQuestion) {
       const payload = finalAnswers as QuestionnairePayload
       submitQuestionnaire(payload).catch(() => {})
-      navigate('/draw', { state: { answers: finalAnswers } })
+      
+      // Trigger exit animation
+      setIsExiting(true)
+      setTimeout(() => {
+        navigate('/draw', { state: { answers: finalAnswers } })
+      }, 500) // Wait for animation
     } else {
       setCurrentQIndex((prev) => prev + 1)
     }
@@ -57,63 +72,99 @@ export default function Quiz() {
   }
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-[#1a1a1a] text-white flex flex-col pb-20">
-      {/* Background Overlay */}
-      <div className="absolute inset-0 bg-[url('/assets/bg-home.png')] bg-cover bg-center opacity-20 pointer-events-none" />
+    <motion.div 
+      className="relative min-h-screen w-full overflow-hidden bg-background text-text flex flex-col pb-20 bg-noise"
+      animate={{ opacity: isExiting ? 0 : 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      {/* Ambient Background - Purple/Blue Theme */}
+      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-[#9B7EBD]/12 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#8B9DC3]/12 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-gradient-to-br from-[#D4A373]/8 via-transparent to-[#9B7EBD]/8 rounded-full blur-[150px] pointer-events-none animate-pulse" style={{animationDuration: '15s'}} />
 
-      {/* Content Area */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 pt-8 relative z-10">
+      {/* Background Bubbles */}
+      <div className="opacity-40">
+        <BackgroundBubbles bubbles={bubbles} />
+      </div>
+      <ClickBubbles />
+
+      {/* Header */}
+      <header className="relative z-10 flex items-center justify-end px-6 py-6">
+        <div className="px-3 py-1 rounded-full bg-white/30 border border-[#D4A373]/20 backdrop-blur-sm text-xs font-medium tracking-widest text-[#6B5542]">
+          EN
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="relative z-10 flex-1 flex flex-col px-8 mt-4">
+        {/* Progress */}
+        <div className="flex items-center justify-center space-x-2 mb-8">
+           <div className="h-[1px] w-12 bg-[#D4A373]/30"></div>
+           <span className="text-[10px] tracking-[0.2em] text-[#D4A373] uppercase font-semibold">
+             Question {currentQIndex + 1} / {questionsKeys.length}
+           </span>
+           <div className="h-[1px] w-12 bg-[#D4A373]/30"></div>
+        </div>
+
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentQ.key}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
+            key={currentQIndex}
+            initial={{ opacity: 0, x: 20, filter: 'blur(4px)' }}
+            animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, x: -20, filter: 'blur(4px)' }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="w-full max-w-md space-y-8"
+            className="flex-1 flex flex-col"
           >
-            {/* Question Title */}
-            <div className="space-y-2 text-center">
-              <h2 className="text-2xl font-serif text-gold/90 tracking-wide">
+            {/* Question */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-serif text-[#2B1F16] leading-tight drop-shadow-sm">
                 {t(`quiz.${currentQ.key}`)}
               </h2>
+              <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#D4A373] to-transparent mx-auto mt-6" />
             </div>
 
             {/* Options */}
-            <div className="space-y-3">
-              {opts.map((opt, idx) => {
-                const selected = currentAnswer === opt
+            <div className="flex-1 flex flex-col justify-center space-y-5">
+              {opts.map((opt, index) => {
+                const isSelected = currentAnswer === opt
                 return (
                   <motion.button
-                    key={idx}
+                    {...tapSpring}
+                    key={index}
                     initial={{ opacity: 0, y: 10 }}
-                    animate={{ 
-                      opacity: 1, 
-                      y: 0,
-                      scale: selected ? 1.02 : 1,
-                      borderColor: selected ? '#D4AF37' : 'rgba(255,255,255,0.1)',
-                      backgroundColor: selected ? 'rgba(212,175,55,0.15)' : 'rgba(255,255,255,0.05)'
-                    }}
-                    transition={{ duration: 0.3 }}
-                    whileTap={{ scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 + 0.2 }}
                     onClick={() => setAnswer(opt)}
-                    className={`w-full text-left px-6 py-5 rounded-xl border transition-all duration-300 relative overflow-hidden group ${
-                      selected 
-                        ? 'border-gold bg-gold/20 shadow-[0_0_15px_rgba(212,175,55,0.3)]' 
-                        : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/30'
-                    }`}
-                    aria-pressed={selected}
+                    className={`
+                      relative w-full p-5 rounded-xl text-left transition-all duration-300 group overflow-hidden
+                      ${isSelected 
+                        ? 'bg-[#F7F2ED]/90 border-[#D4A373] shadow-[0_4px_20px_rgba(212,163,115,0.3)] scale-[1.02]' 
+                        : 'bg-white/40 border-white/40 hover:bg-white/60 hover:border-[#D4A373]/40 hover:shadow-lg'
+                      }
+                      border backdrop-blur-xl
+                    `}
                   >
-                    <div className="flex items-center justify-between">
-                      <span className={`text-base font-light tracking-wide ${selected ? 'text-white' : 'text-white/70'}`}>
-                        {opt}
-                      </span>
-                      {selected && (
-                        <motion.span 
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="w-2 h-2 rounded-full bg-gold shadow-glow"
-                        />
+                    {/* Shimmer Effect on Hover */}
+                    <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+                    <div className="flex items-center justify-between relative z-10">
+                      <div className="flex items-center gap-4">
+                        <div className={`w-2 h-2 rounded-full ${isSelected ? 'bg-[#D4A373]' : 'bg-[#D4A373]/30 group-hover:bg-[#D4A373]/60'} transition-colors`} />
+                        <span className={`text-lg font-serif tracking-wide transition-colors ${isSelected ? 'text-[#2B1F16] font-medium' : 'text-[#6B5542] group-hover:text-[#2B1F16]'}`}>
+                          {opt}
+                        </span>
+                      </div>
+                      
+                      {isSelected && (
+                        <motion.div
+                          initial={{ scale: 0, rotate: -45 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          className="text-[#D4A373]"
+                        >
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </motion.div>
                       )}
                     </div>
                   </motion.button>
@@ -122,10 +173,7 @@ export default function Quiz() {
             </div>
           </motion.div>
         </AnimatePresence>
-      </div>
-
-      {/* Bottom Gradient for depth */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/80 to-transparent" />
-    </div>
+      </main>
+    </motion.div>
   )
 }

@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export default function About() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   return (
     <div className="min-h-screen bg-[#F9F5F1] text-text font-sans pt-20 px-6 pb-10">
@@ -22,21 +24,17 @@ export default function About() {
         {/* Header */}
         <div className="text-center space-y-4">
           <div className="w-16 h-16 mx-auto bg-gradient-gold rounded-full opacity-80 blur-xl"></div>
-          <h1 className="text-4xl font-serif text-text relative z-10 -mt-12">Fragrant Epiphany</h1>
-          <p className="text-gold uppercase tracking-[0.2em] text-sm font-medium">About Us</p>
+          <h1 className="text-4xl font-serif text-text relative z-10 -mt-12">{t('common.appName')}</h1>
+          <p className="text-gold uppercase tracking-[0.2em] text-sm font-medium">{t('about.tagline')}</p>
         </div>
 
         {/* Content */}
         <div className="prose prose-stone mx-auto text-center">
           <p className="text-lg font-light leading-relaxed text-text/80">
-            Fragrant Epiphany is not just a tarot reading; it is a journey into the soul. 
-            We combine ancient wisdom with modern aesthetics to provide you with clarity, 
-            guidance, and a touch of magic in your daily life.
+            {t('about.intro1')}
           </p>
           <p className="text-lg font-light leading-relaxed text-text/80 mt-6">
-            Our readings are designed to be intuitive, empowering, and deeply personal. 
-            Whether you seek answers about love, career, or self-discovery, 
-            our cards hold the mirror to your inner truth.
+            {t('about.intro2')}
           </p>
         </div>
 

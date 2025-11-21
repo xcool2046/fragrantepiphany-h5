@@ -11,13 +11,13 @@ export default {
         serif: ['"Playfair Display"', 'serif'],
       },
       colors: {
-        background: '#F9F5F1',
-        card: '#F4EBE2', // Slightly warmer/lighter than before
-        primary: '#D4A373',
-        secondary: '#C49BA3',
-        text: '#2B1F16',
-        subtext: '#6B5542',
-        gold: '#C08B5C', // Darker gold for text/borders
+        background: '#F7F2ED', // Warm Apricot Light
+        card: '#FFFFFF',       // Pure White for contrast
+        primary: '#D4A373',    // Gold Apricot
+        secondary: '#C49BA3',  // Rose Grey
+        text: '#2B1F16',       // Deep Brown
+        subtext: '#6B5542',    // Medium Brown
+        gold: '#D4A373',       // Unified Gold
       },
       backgroundImage: {
         'gradient-gold': 'linear-gradient(135deg, #D4A373 0%, #C08B5C 100%)',
