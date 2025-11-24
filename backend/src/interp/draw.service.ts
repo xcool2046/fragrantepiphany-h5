@@ -14,8 +14,8 @@ export class DrawService {
   constructor(@InjectRepository(Interpretation) private repo: Repository<Interpretation>) {}
 
   async draw(category?: string, language = 'en'): Promise<DrawResult> {
-    const qb = this.repo.createQueryBuilder('i').where('i.language = :language', { language })
-    if (category) qb.andWhere('i.category = :category', { category })
+    const qb = this.repo.createQueryBuilder('i')
+    if (category) qb.where('i.category = :category', { category })
 
     const past = await qb.clone().andWhere('LOWER(i.position) = LOWER(:p)', { p: 'Past' }).getMany()
     const now = await qb.clone().andWhere('LOWER(i.position) = LOWER(:p)', { p: 'Now' }).getMany()

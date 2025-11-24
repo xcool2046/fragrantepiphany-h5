@@ -1,3 +1,4 @@
+// import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 export default function LanguageToggle() {
@@ -8,7 +9,7 @@ export default function LanguageToggle() {
   return (
     <button
       onClick={toggle}
-      className="flex items-center justify-center gap-1.5 px-3 py-1.5 w-[70px] rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all text-[#2B1F16] dark:text-white text-xs font-medium tracking-wide shadow-sm"
+      className="fixed top-6 right-6 z-50 flex items-center justify-center gap-1.5 px-3 py-1.5 w-[70px] rounded-full bg-white/40 backdrop-blur-md border border-white/60 hover:bg-white/60 transition-all text-text text-xs font-medium tracking-wide shadow-sm"
       aria-label="Switch Language"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

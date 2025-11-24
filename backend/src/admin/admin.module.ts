@@ -6,10 +6,14 @@ import { Question } from '../entities/question.entity';
 import { Card } from '../entities/card.entity';
 import { Rule } from '../entities/rule.entity';
 import { MulterModule } from '@nestjs/platform-express';
+import { memoryStorage } from 'multer';
 
 @Module({
   imports: [
-    MulterModule.register({ dest: './uploads', limits: { fileSize: 10 * 1024 * 1024 } }),
+    MulterModule.register({
+      storage: memoryStorage(),
+      limits: { fileSize: 10 * 1024 * 1024 },
+    }),
     TypeOrmModule.forFeature([Order, Question, Card, Rule]),
   ],
   controllers: [AdminController],

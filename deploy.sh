@@ -1,39 +1,27 @@
 #!/bin/bash
 
-# 部署脚本
-# 用法: ./deploy.sh "提交信息"
+# 部署脚本：本地校验 -> 上传前端 dist -> 远程重建 backend + 重启 nginx
+# 用法: ./deploy.sh "备注信息"（备注仅用于日志提示，可选）
 
-if [ -z "$1" ]; then
-  echo "错误: 请提供提交信息"
-  echo "用法: ./deploy.sh \"您的提交信息\""
-  exit 1
-fi
+set -e
 
-COMMIT_MSG="$1"
+NOTE=${1:-"manual deploy"}
 
-echo "🚀 开始部署流程..."
+echo "🚀 开始部署流程: $NOTE"
 
-# 1. 本地提交并推送
-echo "📦 正在提交代码..."
-git add .
-git commit -m "$COMMIT_MSG"
+echo "🏗️  前端 lint & build..."
+pushd frontend >/dev/null
+npm run lint
+npm run build
+popd >/dev/null
 
-echo "⬆️  正在推送到 GitHub..."
-git push
+echo "📤 上传前端静态资源..."
+scp -r frontend/dist/* root@47.243.157.75:/root/fragrantepiphany-h5/frontend/dist/
 
-if [ $? -ne 0 ]; then
-  echo "❌ 推送失败，请检查网络或冲突"
-  exit 1
-fi
-
-# 2. 服务器更新
-echo "☁️  正在连接服务器进行更新..."
+echo "☁️  远程更新 backend & nginx..."
 ssh root@47.243.157.75 "cd /root/fragrantepiphany-h5 && \
-  echo '⬇️  拉取最新代码...' && \
-  git pull && \
-  echo '🔄 重建并重启服务...' && \
-  docker compose up -d --build && \
-  echo '♻️  重启 Nginx 以确保连接...' && \
-  docker compose restart nginx"
+  echo '⬇️  拉取最新代码...' && git pull && \
+  echo '🔄 重建 backend...' && docker compose up -d --build backend && \
+  echo '♻️  重启 nginx...' && docker compose restart nginx"
 
-echo "✅ 部署完成！"
+echo "✅ 部署完成"

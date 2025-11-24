@@ -41,8 +41,8 @@ export class ImportController {
       obj[`recommendation${suffix}`] = r.recommendation ? JSON.parse(r.recommendation) : null
       return obj
     })
-    const saved = await this.repo.save(this.repo.create(entities))
-    return { count: saved.length }
+    await this.repo.upsert(this.repo.create(entities), ['card_name', 'category', 'position'])
+    return { count: entities.length }
   }
 
   @Get('csv')

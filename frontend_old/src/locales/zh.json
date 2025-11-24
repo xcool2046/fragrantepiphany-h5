@@ -1,0 +1,116 @@
+{
+  "common": {
+    "appName": "Fragrant Epiphany",
+    "start": "开始探索",
+    "learnMore": "了解更多",
+    "language": "语言",
+    "back": "返回",
+    "continue": "继续",
+    "retry": "重试",
+    "home": "首页",
+    "quiz": "问卷",
+    "draw": "抽牌",
+    "result": "结果",
+    "pay": "支付",
+    "share": "分享",
+    "readAgain": "再次占卜"
+  },
+  "home": {
+    "title": "一场带着香气的顿悟",
+    "subtitle": "塔罗 · 香水 · 梦境",
+    "value": "一份能喷在身上的答案。",
+    "highlights": [
+      "潜意识洞察",
+      "专属香气",
+      "身心疗愈"
+    ]
+  },
+  "about": {
+    "title": "关于 Fragrant Epiphany",
+    "tagline": "关于我们",
+    "mission": "在你翻天覆地改变前，先点亮一个温柔而真实的转折点。",
+    "intro1": "Fragrant Epiphany 不只是一次占卜，它是一场通往灵魂的旅途。我们将古老智慧与现代美学结合，为你带来清晰、指引，以及一丝日常中的魔力。",
+    "intro2": "我们的解读强调直觉、赋能且高度个人化。无论你寻找的答案是关于爱、事业还是自我探索，牌面都能照见你内心的真相。",
+    "what": [
+      "塔罗占卜：照见潜意识里的问题",
+      "香水推荐：挑出真正回应你的香",
+      "独特体验：不是清单，而是一份能喷在身上的答案"
+    ],
+    "promise": "不做泛化测试或香调清单，而是塔罗 × 香水 × 你，专属的指引。",
+    "youGet": [
+      "理解你心境的塔罗解析",
+      "贴合你状态的香水推荐",
+      "温柔提醒：你值得被认真而温柔地对待"
+    ],
+    "founder": "管理/顾问背景，热爱心理、音乐、香气；学习塔罗并建立 100+ 香水库，关注人本与情绪。",
+    "cta": "开始"
+  },
+  "how": {
+    "title": "玩法介绍",
+    "steps": [
+      "回答 3 个简短问题",
+      "抽取 3 张牌：过去 / 现在 / 未来",
+      "查看 Past 免费摘要",
+      "解锁完整解读 + 推荐"
+    ],
+    "note": "转场可用轻量波纹/渐变，第三张后短暂加载再跳转结果。"
+  },
+  "quiz": {
+    "title": "你的内在状态",
+    "subtitle": "请凭直觉选择。",
+    "hint": "",
+    "q1": "当前，最困扰你或最让你思考的人/事是什么？",
+    "q1Options": ["关系与情感", "事业与财富", "自我与成长", "机遇与未知"],
+    "q2": "你内心最渴望获得的是什么？",
+    "q2Options": ["清晰与答案", "勇气与力量", "释放与疗愈", "确认与验证"],
+    "q3": "面对此事，你目前的状态更接近？",
+    "q3Options": ["主动出击", "徘徊观望", "感到耗竭", "冷静分析"],
+    "next": "继续"
+  },
+  "draw": {
+    "title": "抽取 3 张牌",
+    "tipTop": "滑动转轮，点击选牌。",
+    "tipBottom": "过去 · 现在 · 未来",
+    "slots": {"past": "过去", "now": "现在", "future": "未来"},
+    "place": "放入此处",
+    "loading": "正在解析...",
+    "confirm": "确认"
+  },
+  "result": {
+    "tagsTitle": "你的关注",
+    "freeTitle": "Past（免费）",
+    "paywall": "完整解读",
+    "paywallTitle": "完整解读",
+    "paywallDesc": "解锁现在、未来，以及你的专属香气。",
+    "unlockButton": "解锁 (RMB 15)",
+    "price": {"cny": "RMB 15", "usd": "USD 5"},
+    "cta": "解锁完整解读",
+    "paidSections": {"now": "现在", "action": "行动", "future": "未来", "recommendation": "推荐"}
+  },
+  "pay": {
+    "title": "支付",
+    "summary": "订单摘要",
+    "button": "前往支付",
+    "note": "将跳转到 Stripe 收银台。",
+    "redirecting": "正在准备支付...",
+    "pleaseWait": "请稍候",
+    "success": "支付成功",
+    "fail": "支付未完成",
+    "viewResult": "查看完整解读",
+    "retry": "重试支付",
+    "backHome": "返回首页"
+  },
+  "admin": {
+    "login": "后台登录",
+    "username": "用户名",
+    "password": "密码",
+    "config": "基础配置",
+    "price": "价格",
+    "languageToggle": "语言开关",
+    "webhook": "Webhook 地址",
+    "keys": "Stripe 密钥（脱敏展示）",
+    "import": "导入",
+    "export": "导出",
+    "orders": "订单"
+  }
+}

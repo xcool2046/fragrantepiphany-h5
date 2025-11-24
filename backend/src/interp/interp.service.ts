@@ -62,7 +62,8 @@ export class InterpretationService {
       return base
     })
     const entities = this.repo.create(mapped)
-    return this.repo.save(entities)
+    await this.repo.upsert(entities, ['card_name', 'category', 'position'])
+    return entities
   }
 
   async findAll(page = 1, limit = 10, filters: any = {}) {

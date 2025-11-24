@@ -28,6 +28,95 @@ import { format } from '@fast-csv/format';
 import type { Response } from 'express';
 import { Res } from '@nestjs/common';
 import type { Express } from 'express';
+import { IsBoolean, IsInt, IsNotEmpty, IsOptional, IsString, Min, ValidateIf, ArrayNotEmpty, ArrayMinSize, ArrayMaxSize } from 'class-validator';
+
+class CreateQuestionDto {
+  @IsString()
+  @IsNotEmpty()
+  title_en!: string;
+
+  @IsOptional()
+  @IsString()
+  title_zh?: string | null;
+
+  @IsOptional()
+  options_en?: string[] | null;
+
+  @IsOptional()
+  options_zh?: string[] | null;
+
+  @IsOptional()
+  @IsBoolean()
+  active?: boolean;
+
+  @IsOptional()
+  @IsInt()
+  weight?: number;
+}
+
+class UpdateQuestionDto extends CreateQuestionDto {}
+
+class CreateCardDto {
+  @IsString()
+  @IsNotEmpty()
+  code!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  name_en!: string;
+
+  @IsOptional()
+  @IsString()
+  name_zh?: string | null;
+
+  @IsOptional()
+  @IsString()
+  image_url?: string | null;
+
+  @IsOptional()
+  @IsString()
+  default_meaning_en?: string | null;
+
+  @IsOptional()
+  @IsString()
+  default_meaning_zh?: string | null;
+
+  @IsOptional()
+  @IsBoolean()
+  enabled?: boolean;
+}
+
+class UpdateCardDto extends CreateCardDto {}
+
+class CreateRuleDto {
+  @IsInt()
+  @Min(1)
+  question_id!: number;
+
+  @ArrayNotEmpty()
+  @ArrayMinSize(3)
+  @ArrayMaxSize(3)
+  card_codes!: string[];
+
+  @IsOptional()
+  @IsInt()
+  priority?: number;
+
+  @IsOptional()
+  summary_free?: { en?: string; zh?: string } | null;
+
+  @IsOptional()
+  interpretation_full?: { en?: string; zh?: string } | null;
+
+  @IsOptional()
+  recommendations?: Array<{ title_en?: string; title_zh?: string; desc_en?: string; desc_zh?: string }> | null;
+
+  @IsOptional()
+  @IsBoolean()
+  enabled?: boolean;
+}
+
+class UpdateRuleDto extends CreateRuleDto {}
 // Feature flags default to off; enable via env when customer付费后再开放
 const ORDERS_ENABLED = process.env.FEATURE_ADMIN_ORDERS === 'true';
 const PRICING_ENABLED = process.env.FEATURE_ADMIN_PRICING === 'true';
@@ -84,7 +173,7 @@ export class AdminController {
   }
 
   @Post('questions')
-  async createQuestion(@Body() body: Partial<Question>) {
+  async createQuestion(@Body() body: CreateQuestionDto) {
     if (!body.title_en) throw new BadRequestException('title_en is required');
     const entity = this.questionRepo.create({
       title_en: body.title_en,
@@ -98,7 +187,7 @@ export class AdminController {
   }
 
   @Patch('questions/:id')
-  async updateQuestion(@Param('id') id: string, @Body() body: Partial<Question>) {
+  async updateQuestion(@Param('id') id: string, @Body() body: UpdateQuestionDto) {
     const q = await this.questionRepo.findOne({ where: { id: Number(id) } });
     if (!q) throw new NotFoundException('Question not found');
     Object.assign(q, {
@@ -128,7 +217,7 @@ export class AdminController {
   }
 
   @Post('cards')
-  async createCard(@Body() body: Partial<Card>) {
+  async createCard(@Body() body: CreateCardDto) {
     if (!body.code || !body.name_en) throw new BadRequestException('code and name_en are required');
     const existing = await this.cardRepo.findOne({ where: { code: body.code } });
     if (existing) throw new BadRequestException('code already exists');
@@ -145,7 +234,7 @@ export class AdminController {
   }
 
   @Patch('cards/:id')
-  async updateCard(@Param('id') id: string, @Body() body: Partial<Card>) {
+  async updateCard(@Param('id') id: string, @Body() body: UpdateCardDto) {
     const card = await this.cardRepo.findOne({ where: { id: Number(id) } });
     if (!card) throw new NotFoundException('Card not found');
     Object.assign(card, {
@@ -169,6 +258,13 @@ export class AdminController {
   @UseInterceptors(FileInterceptor('file'))
   async uploadCardImage(@UploadedFile() file?: Express.Multer.File) {
     if (!file) throw new BadRequestException('No file');
+    const allowed = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!allowed.includes(file.mimetype)) {
+      throw new BadRequestException('Unsupported file type');
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      throw new BadRequestException('File too large');
+    }
     const uploadsDir = path.join(process.cwd(), 'uploads');
     if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
     const ext = path.extname(file.originalname) || '.bin';
@@ -185,11 +281,12 @@ export class AdminController {
     if (!file) throw new BadRequestException('No file');
     const rows: any[] = []
     await new Promise<void>((resolve, reject) => {
-      parse({ headers: true })
+      const stream = parse({ headers: true })
         .on('error', reject)
         .on('data', (row) => rows.push(row))
         .on('end', () => resolve())
-        .write(file.buffer)
+      stream.write(file.buffer)
+      stream.end()
     })
     let created = 0
     let updated = 0
@@ -274,9 +371,9 @@ export class AdminController {
   }
 
   @Post('rules')
-  async createRule(@Body() body: any) {
+  async createRule(@Body() body: CreateRuleDto) {
     if (!body.question_id) throw new BadRequestException('question_id is required');
-    const codes = this.normalizeCodes(body.card_codes || body.cards || []);
+    const codes = this.normalizeCodes(body.card_codes || []);
     const payload = this.ruleRepo.create({
       question_id: Number(body.question_id),
       card_codes: codes,
@@ -295,7 +392,7 @@ export class AdminController {
   }
 
   @Patch('rules/:id')
-  async updateRule(@Param('id') id: string, @Body() body: any) {
+  async updateRule(@Param('id') id: string, @Body() body: UpdateRuleDto) {
     const rule = await this.ruleRepo.findOne({ where: { id: Number(id) } });
     if (!rule) throw new NotFoundException('Rule not found');
     const codes = body.card_codes ? this.normalizeCodes(body.card_codes) : rule.card_codes;

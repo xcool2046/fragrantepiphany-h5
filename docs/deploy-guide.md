@@ -45,16 +45,38 @@ docker compose exec backend npm run seed
 - 访问：前端/后台 `http://localhost:8080`。
 - Stripe Webhook（本地）可用 `stripe listen` 转发到 `http://localhost:3000/api/pay/webhook`，将 whsec 写入 `.env`。
 
-## 4. 生产部署（示例流程）
-1) 推送最新代码到 main（本地完成后再执行以下步骤）。  
-2) SSH 登录（已开免密）：`ssh root@47.243.157.75`  
-3) 代码目录：`cd /root/fragrantepiphany-h5`（首次需 `git clone https://github.com/xcool2046/fragrantepiphany-h5.git`），然后 `git pull` 获取最新提交。  
-4) `.env`：参考第 2 节填写生产值（尤其是 Stripe live key 与 webhook secret，`PUBLIC_BASE_URL=https://fragrantepiphany.com`，`VITE_API_BASE_URL=https://backend.fragrantepiphany.com`）。  
-5) 构建/启动：
+## 4. 生产部署（新流程：本地构建 + 静态上传）
+由于前端不再在服务器上构建，部署流程如下：
+
+### 方法 A：使用 deploy.sh (推荐)
 ```bash
-docker compose up -d --build
-docker compose exec backend npm run typeorm -- migration:run
+./deploy.sh "提交信息"
 ```
+脚本会自动：
+1. `git push` 代码。
+2. 本地执行 `npm run build`。
+3. 通过 `scp` 将 `dist/` 上传到服务器。
+4. SSH 登录服务器重启 Nginx 和 Backend。
+
+### 方法 B：手动部署
+1) **本地构建**:
+   ```bash
+   cd frontend
+   npm run build
+   ```
+2) **上传资源**:
+   ```bash
+   # 将 dist 目录内容上传到服务器对应目录
+   scp -r frontend/dist/* root@47.243.157.75:/root/fragrantepiphany-h5/frontend/dist/
+   ```
+3) **服务器更新**:
+   ```bash
+   ssh root@47.243.157.75
+   cd /root/fragrantepiphany-h5
+   git pull
+   docker compose up -d --build backend  # 仅重建后端
+   docker compose restart nginx          # 重启 Nginx 加载新静态文件
+   ```
 6) 宿主机 Nginx 反代示例（80/443 → 容器 8080/3000）：
 ```nginx
 server {

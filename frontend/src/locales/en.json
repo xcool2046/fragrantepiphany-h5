@@ -1,8 +1,8 @@
 {
   "common": {
     "appName": "Fragrant Epiphany",
-    "start": "Start explore",
-    "learnMore": "Learn more",
+    "start": "Start Explore",
+    "learnMore": "Learn More",
     "language": "Language",
     "back": "Back",
     "continue": "Continue",
@@ -13,11 +13,14 @@
     "result": "Result",
     "pay": "Pay",
     "share": "Share",
-    "readAgain": "Read again",
-    "cancel": "Cancel"
+    "readAgain": "Read Again",
+    "cancel": "Cancel",
+    "begin": "Begin",
+    "tapToContinue": "Tap to continue",
+    "restart": "Restart"
   },
   "home": {
-    "title": "A Journey Through Scent, Spirit and Stars",
+    "title": "A Journey\nThrough Scent,\nSpirit and Stars",
     "subtitle": "Tarot · Fragrance · You",
     "value": "A gentle turning point you can wear.",
     "highlights": [
@@ -26,92 +29,120 @@
       "Wearable Answers"
     ]
   },
-  "about": {
-    "title": "About Fragrant Epiphany",
-    "tagline": "About Us",
-    "mission": "Before a big change, light a gentle and truthful turning point for you.",
-    "intro1": "Fragrant Epiphany is not just a tarot reading; it is a journey into the soul. We combine ancient wisdom with modern aesthetics to provide you with clarity, guidance, and a touch of magic in your daily life.",
-    "intro2": "Our readings are designed to be intuitive, empowering, and deeply personal. Whether you seek answers about love, career, or self-discovery, our cards hold the mirror to your inner truth.",
-    "what": [
-      "Tarot reading: reveal your subconscious questions",
-      "Perfume picks: choose scents that truly answer you",
-      "Unique experience: not just words, but an answer you can wear"
-    ],
-    "promise": "No generic tests or scent lists—it's Tarot × fragrance × you, with scents chosen just for you.",
-    "youGet": [
-      "A Tarot reading that understands your mood",
-      "Perfume picks that fit your state",
-      "A gentle reminder: you deserve to be treated with care"
-    ],
-    "founder": "From consulting/management, keen on psychology, music, and fragrance; trained in Tarot, built a 100+ scent library; cares about people and emotions.",
-    "cta": "Begin"
+  "onboarding": {
+    "slide1": {
+      "title": "About Fragrant Epiphany",
+      "p1": "Who is Fragrant Epiphany?",
+      "p2": "Literally, I am a 'fragrant epiphany'.",
+      "p3": "You might be here because of Tarot, or perhaps perfume, or maybe just because life lately has made you want a small change, but you don't know where to start.",
+      "p4": "A deck of cards, a scent. Start here, and catch the scent of the self you haven't quite met yet.",
+      "quote": "\"What is happening to me right now?\"\n\"What can I become next?\""
+    },
+    "slide2": {
+      "title": "About Fragrant Epiphany",
+      "p1": "What I want to do is:",
+      "list1": "• First, use Tarot to illuminate that state in your subconscious",
+      "list2": "• Then, from the world of scent, pick a few perfumes to accompany you",
+      "list3": "• So what you get isn't just words, but an answer you can wear",
+      "p2": "If you are ready, let Fragrant Epiphany accompany you starting from a deck of cards and a scent, slowly approaching the self that even you will fall in love with. 🌙✨"
+    }
   },
-  "how": {
-    "title": "How it works",
-    "steps": [
-      "Answer 3 short questions",
-      "Pick 3 cards: Past / Now / Future",
-      "See a free Past summary",
-      "Unlock full reading + recommendations"
-    ],
-    "note": "Light ripple/gradient transitions, keep it smooth; third card auto-jumps after a short loading."
-  },
-  "quiz": {
-    "title": "Your Inner State",
-    "subtitle": "Follow your instinct.",
-    "hint": "",
-    "q1": "What troubles or occupies you most now?",
-    "q1Options": ["Relationships & emotions", "Career & wealth", "Self & growth", "Opportunities & unknown"],
-    "q2": "What do you most wish to gain?",
-    "q2Options": ["Clarity & answers", "Courage & strength", "Release & healing", "Confirmation & validation"],
-    "q3": "Which state are you closer to right now?",
-    "q3Options": ["Taking action", "Hesitant / observing", "Feeling drained", "Calm analysis"],
-    "next": "Continue"
+  "question": {
+    "page1Title": "Focus Inward",
+    "page2Title": "Deepen the Connection",
+    "step": "Step {{current}} / {{total}}",
+    "reveal": "Reveal Cards",
+    "q1": { "text": "What is your current state of mind?", "options": ["Anxious", "Calm", "Confused", "Excited"] },
+    "q2": { "text": "What are you seeking most right now?", "options": ["Clarity", "Love", "Success", "Peace"] },
+    "q3": { "text": "Which element calls to you?", "options": ["Fire", "Water", "Air", "Earth"] },
+    "q4": { "text": "What is your biggest fear?", "options": ["Failure", "Loneliness", "Unknown", "Stagnation"] },
+    "q5": { "text": "What brings you joy?", "options": ["Creation", "Connection", "Solitude", "Achievement"] },
+    "q6": { "text": "Trust your intuition, pick a number.", "options": ["3", "7", "9", "11"] }
   },
   "draw": {
-    "title": "Pick 3 cards",
-    "tipTop": "Swipe to rotate, tap to pick.",
-    "tipBottom": "Past · Now · Future",
-    "slots": {"past": "Past", "now": "Now", "future": "Future"},
-    "place": "Place here",
+    "yourSpread": "Your Spread",
+    "instruction": "Select 3 cards from the deck",
     "loading": "Reading your cards...",
-    "confirm": "Confirm"
+    "slots": {
+      "past": "Past",
+      "present": "Present",
+      "future": "Future"
+    }
   },
   "result": {
-    "tagsTitle": "Your Focus",
-    "freeTitle": "Past (free)",
-    "paywall": "The Full Picture",
-    "paywallTitle": "The Full Picture",
-    "paywallDesc": "Unlock the Present, Future, and your Scent.",
-    "unlockButton": "Unlock ($5.00)",
-    "price": {"cny": "RMB 15", "usd": "USD 5"},
-    "cta": "Unlock full reading",
-    "paidSections": {"now": "Now", "action": "Action", "future": "Future", "recommendation": "Recommendation"}
+    "title": "The Revelation",
+    "cardLabel": "The Card",
+    "timeframes": ["The Past", "The Present", "The Future"],
+    "unlock": "Unlock Full Reading",
+    "locked": {
+      "title": "THE REVELATION",
+      "summary": "A deep story from pause to rebirth.",
+      "desc": "You may have enjoyed a phase of fulfillment (9 of Cups) but also needed solitude to reset (4 of Swords). Now a clear new opportunity is calling (Ace of Wands) — rest time is over; step forward.",
+      "price": {
+        "cny": "Unlock for ¥15.00",
+        "usd": "Unlock for $5.00"
+      }
+    },
+    "payFailed": "Payment not completed, please retry.",
+    "missingState": "Please draw cards again to view the result.",
+    "noAnswers": "No answers captured",
+    "priceLabel": "Select currency",
+    "interpretations": [
+      { "title": "The Past", "content": "You have been carrying a heavy burden, but it has made you stronger." },
+      { "title": "The Present", "content": "A moment of clarity is approaching. Trust your instincts." },
+      { "title": "The Future", "content": "New opportunities will bloom if you are willing to let go of the old." }
+    ],
+    "unlocked": {
+      "title": "Your Fragrance Journey",
+      "cover": {
+        "title": "Index",
+        "chapter1": "Chapter 1 · Perfume",
+        "chapter2": "Chapter 2 · Home Fragrance",
+        "chapter3": "Chapter 3 · Signature"
+      },
+      "chapter1": {
+        "title": "Chapter 1 · Perfume",
+        "name": "TAM DAO",
+        "quote": "\"In the quiet temple, find the inner light\"",
+        "notes": {
+          "top": "Top - 4 of Swords: Cypress, Myrtle",
+          "topIcon": "🌲 or Pine Needle",
+          "middle": "Middle - 9 of Cups: Sandalwood, Cedar",
+          "middleIcon": "🪵 or Minimalist Rose",
+          "base": "Base - Ace of Wands: Amber, Musk, Rosewood",
+          "baseIcon": "✨ or Soft Light"
+        },
+        "tarotInsight": {
+          "title": "\"Tarot Insight\"",
+          "content": "The silence of '4 of Swords' returns to woody coolness.\nThe abundance of '9 of Cups' hides in sandalwood milkiness.\nThe call of 'Ace of Wands' melts into skin warmth.\n—— A spiritual journey from seclusion to engagement."
+        },
+        "atmosphere": "It is not the burning incense, that smoky piety; nor is it new woodenware, with the sharpness of the craftsman. It is more like an ancient temple touched by sunlight and breeze for hundreds of years.\nStepping into the temple: The top note is dry cypress and cedar with a hint of green. Not the vibrant trees in the forest, but wood that has been felled, planed, and weathered, losing its fire. It carries a hint of ascetic coldness, as if you push open a heavy wooden door, the interior is dim, dust dancing in the light columns, the air filled with a secluded tranquility. This is the embodiment of '4 of Swords' —— a chosen solitude with restorative meaning."
+      },
+      "chapter2": {
+        "title": "Chapter 2 · Home Fragrance",
+        "name": "FIGUIER",
+        "quote": "\"Under the fig tree, daydreaming\"",
+        "notes": {
+          "top": "Top: Fig Leaves, Galbanum",
+          "middle": "Middle: Fig Fruit, Almond Milk",
+          "base": "Base: Cedar, Coconut Milk"
+        },
+        "tarotInsight": {
+          "title": "\"Healing of Space\"",
+          "content": "Make home your sanctuary.\nThe green and milky scent of fig,\nBalances the noise outside and the desire inside."
+        },
+        "atmosphere": "Close your eyes, as if you are in a Mediterranean summer afternoon. Sunlight spills through the broad fig leaves, casting dappled shadows. The air is filled with the fresh scent of sun-warmed leaves and the sweet milky aroma of ripe fruit. This is not just a fragrance, but a switch to instantly relax the soul, taking you back to that carefree afternoon."
+      },
+      "chapter3": {
+        "title": "Chapter 3 · Signature",
+        "content": "You suit a woody scent with a warm milky feel.\nIt has the 'keep away' coolness (4 of Swords),\nThe 'comfortable to be with' warmth (9 of Cups),\nAnd finally leaves a lingering aftertaste (Ace of Wands).\n\nSuggested:\n1. Diptyque Tam Dao\n2. Le Labo Santal 33\n3. Aesop Hwyl"
+      },
+      "footer": "Congratulations on completing a journey of self-dialogue and subconscious discovery. We look forward to your next exploration."
+    }
   },
-  "pay": {
-    "title": "Payment",
-    "summary": "Order summary",
-    "button": "Proceed to payment",
-    "note": "You will be redirected to Stripe Checkout.",
-    "redirecting": "Preparing your checkout...",
-    "pleaseWait": "Please wait a moment",
-    "success": "Payment succeeded",
-    "fail": "Payment not completed",
-    "viewResult": "View full result",
-    "retry": "Retry payment",
-    "backHome": "Back to home"
-  },
-  "admin": {
-    "login": "Admin login",
-    "username": "Username",
-    "password": "Password",
-    "config": "Settings",
-    "price": "Price",
-    "languageToggle": "Language toggle",
-    "webhook": "Webhook URL",
-    "keys": "Stripe keys (masked)",
-    "import": "Import",
-    "export": "Export",
-    "orders": "Orders"
+  "about": {
+    "tagline": "About Us",
+    "intro1": "Fragrant Epiphany is not just a tarot reading; it is a journey into the soul. We combine ancient wisdom with modern aesthetics to provide you with clarity, guidance, and a touch of magic in your daily life.",
+    "intro2": "Our readings are designed to be intuitive, empowering, and deeply personal. Whether you seek answers about love, career, or self-discovery, our cards hold the mirror to your inner truth."
   }
 }

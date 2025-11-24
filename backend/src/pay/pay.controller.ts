@@ -21,29 +21,24 @@ export class PayController {
   @Post('webhook')
   async webhook(@Req() req: Request, @Res() res: Response) {
     const sig = req.headers['stripe-signature'] as string;
-    const secret = process.env.STRIPE_WEBHOOK_SECRET;
-    if (!secret || !sig) {
+    if (!sig) {
       return res.status(400).send('Missing signature');
     }
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-      apiVersion: '2025-06-20' as Stripe.LatestApiVersion,
-    });
     let event: Stripe.Event;
     try {
       // rawBody is attached by express json verify hook
-
       const rawBodyContainer = req as Request & { rawBody?: Buffer };
       const rawBodyCandidate: unknown = rawBodyContainer.rawBody;
       if (!rawBodyCandidate || !Buffer.isBuffer(rawBodyCandidate)) {
         return res.status(400).send('Invalid raw body');
       }
-      event = stripe.webhooks.constructEvent(rawBodyCandidate, sig, secret);
+      event = this.payService.constructEventFromWebhook(rawBodyCandidate, sig);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'unknown error';
       return res.status(400).send(`Webhook Error: ${message}`);
     }
-    await this.payService.handleWebhook(event);
-    return res.json({ received: true });
+    const result = await this.payService.handleWebhook(event);
+    return res.json(result ?? { received: true });
   }
 
   @Get('order/:id')

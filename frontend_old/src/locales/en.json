@@ -1,0 +1,117 @@
+{
+  "common": {
+    "appName": "Fragrant Epiphany",
+    "start": "Start explore",
+    "learnMore": "Learn more",
+    "language": "Language",
+    "back": "Back",
+    "continue": "Continue",
+    "retry": "Retry",
+    "home": "Home",
+    "quiz": "Quiz",
+    "draw": "Draw",
+    "result": "Result",
+    "pay": "Pay",
+    "share": "Share",
+    "readAgain": "Read again",
+    "cancel": "Cancel"
+  },
+  "home": {
+    "title": "A Journey Through Scent, Spirit and Stars",
+    "subtitle": "Tarot · Fragrance · You",
+    "value": "A gentle turning point you can wear.",
+    "highlights": [
+      "Subconscious Insight",
+      "Curated Scents",
+      "Wearable Answers"
+    ]
+  },
+  "about": {
+    "title": "About Fragrant Epiphany",
+    "tagline": "About Us",
+    "mission": "Before a big change, light a gentle and truthful turning point for you.",
+    "intro1": "Fragrant Epiphany is not just a tarot reading; it is a journey into the soul. We combine ancient wisdom with modern aesthetics to provide you with clarity, guidance, and a touch of magic in your daily life.",
+    "intro2": "Our readings are designed to be intuitive, empowering, and deeply personal. Whether you seek answers about love, career, or self-discovery, our cards hold the mirror to your inner truth.",
+    "what": [
+      "Tarot reading: reveal your subconscious questions",
+      "Perfume picks: choose scents that truly answer you",
+      "Unique experience: not just words, but an answer you can wear"
+    ],
+    "promise": "No generic tests or scent lists—it's Tarot × fragrance × you, with scents chosen just for you.",
+    "youGet": [
+      "A Tarot reading that understands your mood",
+      "Perfume picks that fit your state",
+      "A gentle reminder: you deserve to be treated with care"
+    ],
+    "founder": "From consulting/management, keen on psychology, music, and fragrance; trained in Tarot, built a 100+ scent library; cares about people and emotions.",
+    "cta": "Begin"
+  },
+  "how": {
+    "title": "How it works",
+    "steps": [
+      "Answer 3 short questions",
+      "Pick 3 cards: Past / Now / Future",
+      "See a free Past summary",
+      "Unlock full reading + recommendations"
+    ],
+    "note": "Light ripple/gradient transitions, keep it smooth; third card auto-jumps after a short loading."
+  },
+  "quiz": {
+    "title": "Your Inner State",
+    "subtitle": "Follow your instinct.",
+    "hint": "",
+    "q1": "What troubles or occupies you most now?",
+    "q1Options": ["Relationships & emotions", "Career & wealth", "Self & growth", "Opportunities & unknown"],
+    "q2": "What do you most wish to gain?",
+    "q2Options": ["Clarity & answers", "Courage & strength", "Release & healing", "Confirmation & validation"],
+    "q3": "Which state are you closer to right now?",
+    "q3Options": ["Taking action", "Hesitant / observing", "Feeling drained", "Calm analysis"],
+    "next": "Continue"
+  },
+  "draw": {
+    "title": "Pick 3 cards",
+    "tipTop": "Swipe to rotate, tap to pick.",
+    "tipBottom": "Past · Now · Future",
+    "slots": {"past": "Past", "now": "Now", "future": "Future"},
+    "place": "Place here",
+    "loading": "Reading your cards...",
+    "confirm": "Confirm"
+  },
+  "result": {
+    "tagsTitle": "Your Focus",
+    "freeTitle": "Past (free)",
+    "paywall": "The Full Picture",
+    "paywallTitle": "The Full Picture",
+    "paywallDesc": "Unlock the Present, Future, and your Scent.",
+    "unlockButton": "Unlock ($5.00)",
+    "price": {"cny": "RMB 15", "usd": "USD 5"},
+    "cta": "Unlock full reading",
+    "paidSections": {"now": "Now", "action": "Action", "future": "Future", "recommendation": "Recommendation"}
+  },
+  "pay": {
+    "title": "Payment",
+    "summary": "Order summary",
+    "button": "Proceed to payment",
+    "note": "You will be redirected to Stripe Checkout.",
+    "redirecting": "Preparing your checkout...",
+    "pleaseWait": "Please wait a moment",
+    "success": "Payment succeeded",
+    "fail": "Payment not completed",
+    "viewResult": "View full result",
+    "retry": "Retry payment",
+    "backHome": "Back to home"
+  },
+  "admin": {
+    "login": "Admin login",
+    "username": "Username",
+    "password": "Password",
+    "config": "Settings",
+    "price": "Price",
+    "languageToggle": "Language toggle",
+    "webhook": "Webhook URL",
+    "keys": "Stripe keys (masked)",
+    "import": "Import",
+    "export": "Export",
+    "orders": "Orders"
+  }
+}

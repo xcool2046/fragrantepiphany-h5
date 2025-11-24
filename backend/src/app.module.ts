@@ -32,7 +32,6 @@ import { ContentModule } from './content/content.module';
     AuthModule,
     InterpModule,
     QuestionnaireModule,
-    QuestionnaireModule,
     ImportModule,
     AdminModule,
     ContentModule,

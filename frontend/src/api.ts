@@ -75,7 +75,7 @@ export async function fetchInterpretation(params: { card_name: string; category:
   return res.data
 }
 
-export async function submitQuestionnaire(body: { q1: string; q2: string; q3: string }) {
+export async function submitQuestionnaire(body: { q1: string; q2: string; q3: string; q4: string; q5: string; q6: string }) {
   const res = await api.post('/api/questionnaire', body)
   return res.data
 }

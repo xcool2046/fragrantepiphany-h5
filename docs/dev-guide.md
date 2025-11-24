@@ -15,6 +15,7 @@ STRIPE_SECRET_KEY=
 STRIPE_PUBLISHABLE_KEY_TEST=
 STRIPE_SECRET_KEY_TEST=
 STRIPE_WEBHOOK_SECRET=
+STRIPE_PRICE_IDS_JSON={"usd":"price_xxx","cny":"price_yyy"}
 DATABASE_URL=postgresql://tarot:tarot@db:5432/tarot
 PORT=3000
 HOST=0.0.0.0
@@ -25,7 +26,7 @@ PUBLIC_BASE_URL=http://localhost:4173
 VITE_API_BASE_URL=http://localhost:3000
 ```
 - 前端只需要 `VITE_API_BASE_URL`（可在构建 args 传入），其余由后端使用。
-- 后端支付：必须设置 `STRIPE_SECRET_KEY`（对应环境的秘钥）和 `STRIPE_WEBHOOK_SECRET`（Dashboard/Webhook 配置生成）。
+- 后端支付：必须设置 `STRIPE_SECRET_KEY`（对应环境的秘钥）和 `STRIPE_WEBHOOK_SECRET`（Dashboard/Webhook 配置生成）。价格由 Stripe Dashboard 的 price 决定，需要配置 `STRIPE_PRICE_IDS_JSON`（如 `{ "usd": "price_xxx", "cny": "price_yyy" }`；测试可用 `_TEST` 变量），按请求币种匹配对应 price_id，未配置对应币种会报错。
 - 管理员账号默认 `admin/admin`，生产请修改。
 - Feature flag：`FEATURE_ADMIN_ORDERS`、`FEATURE_ADMIN_PRICING`（默认关闭，见后端 AdminController）。
 
@@ -62,7 +63,7 @@ docker compose exec backend npm run seed
 - 访问：前端/后台 `http://localhost:8080`。
 
 ## 价格与支付说明
-- `config.json`（根目录，可选）字段示例：`{ "price_usd": 500, "price_cny": 1500 }`，当前代码在 `PayService` 中强制使用 USD 金额与币种，line_items 走 `price_data` 而非 price_id。
+- 价格由 Stripe Dashboard 的 price 决定；后端按币种在 `STRIPE_PRICE_IDS_JSON`（或 `STRIPE_PRICE_IDS_JSON_TEST`）里查 price_id 创建 Session。未配置的币种会报错，建议为支持的币种（至少 USD/CNY）分别创建 price_id。
 - 回调地址：`success_url/cancel_url` 使用 `PUBLIC_BASE_URL` 拼接 `/pay/callback`，记得与实际域名对应。
 - Webhook：`STRIPE_WEBHOOK_SECRET` 用于校验签名；`orders` 表记录 `status`（pending/succeeded/failed）。
 
