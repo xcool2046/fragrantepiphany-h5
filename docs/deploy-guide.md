@@ -85,10 +85,21 @@ server {
 ```
 - 动作：git add/commit/push → SSH 服务器拉代码 → `docker compose up -d --build` → `docker compose restart nginx`。  
 - 服务器地址/IP 与免密登录已保留在脚本中，必要时请先确认机器状态再执行。
+- 如果脚本失败，请按下方“快速自查/手动部署”依次执行。
 
 ---
 
-## 6. 验证部署
+## 6. 快速自查 / 手动部署步骤
+若一键脚本异常，可按以下顺序在服务器执行：
+1) `cd /root/fragrantepiphany-h5 && git pull`
+2) 确认 `.env` 存在且含 `PORT=3000`、`HOST=0.0.0.0`、正确域名 / Stripe key
+3) `docker compose up -d --build`
+4) 迁移：`docker compose exec backend npm run typeorm -- migration:run`
+5) 健康检查：`docker compose ps`（backend/front/nginx == Up），`curl 127.0.0.1:3000/api/health`
+6) Nginx：`nginx -t && systemctl reload nginx`
+常见 502 处理：看后端日志 `docker compose logs backend --tail=100`，检查端口监听 `ss -lntp | grep 3000`，以及 Nginx 反代是否仍指向 127.0.0.1:3000。
+
+## 7. 验证部署
 
 | 访问地址 | 预期结果 |
 | :--- | :--- |
@@ -96,7 +107,7 @@ server {
 | `https://backend.fragrantepiphany.com` | 跳转至 `/admin` 显示后台登录页 |
 | `https://backend.fragrantepiphany.com/api/pay/create-session` | 返回 API 响应 (如 400/500 JSON) |
 
-## 6. 常见问题排查
+## 8. 常见问题排查
 
 - **支付报错 "Unknown parameter"**: 检查 `backend/src/pay/pay.service.ts`，确保使用的是 `payment_method_types: ['card']` 且 Docker 镜像已重新构建。
 - **后台 404**: 检查 `backend` 域名的 Nginx 配置是否正确转发了非 `/api` 请求到 8080 端口。
