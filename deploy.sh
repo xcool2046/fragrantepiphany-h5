@@ -22,6 +22,7 @@ echo "☁️  远程更新 backend & nginx..."
 ssh root@47.243.157.75 "cd /root/fragrantepiphany-h5 && \
   echo '⬇️  拉取最新代码...' && git pull && \
   echo '🔄 重建 backend...' && docker compose up -d --build backend && \
+  echo '🗂️  迁移数据库...' && docker compose exec backend npm run typeorm -- migration:run && \
   echo '♻️  重启 nginx...' && docker compose restart nginx"
 
 echo "✅ 部署完成"

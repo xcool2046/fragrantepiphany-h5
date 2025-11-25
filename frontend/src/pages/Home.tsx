@@ -1,25 +1,30 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import LanguageToggle from '../components/LanguageToggle'
-import Sparkles from '../components/Sparkles'
+import StarrySky from '../components/StarrySky'
 import homeBgDecorationWebp from '../assets/home-bg-decoration.webp'
 import homeBgDecorationJpg from '../assets/home-bg-decoration.jpg'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
+  const { t, i18n } = useTranslation()
+  const heroTitleLines = t('home.title').split('\n')
+  const isZh = i18n.language === 'zh'
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#F7F2ED] text-[#2B1F16] selection:bg-[#D4A373]/30">
+    <div className="relative min-h-screen overflow-hidden text-[#2B1F16] selection:bg-[#D4A373]/30">
       <div className="absolute top-6 right-6 z-30">
         <LanguageToggle />
       </div>
 
-      {/* --- 背景层：改为轻量 CSS 动效，减 JS 负担 --- */}
+      {/* --- Background Layer: Starry Sky Gradient --- */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F7F2ED] via-[#F5F0EB] to-[#EBE4DC]" />
+        <StarrySky />
 
-        <div className="hero-bg-floating absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] md:w-[100vh] aspect-[3/4] mix-blend-multiply pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_closest-side,transparent_28%,#F7F2ED_100%)] z-10" />
+        {/* Goddess Image: Faded into top area (moved up) */}
+        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[140vw] h-[60vh] md:w-[100vh] md:h-[60vh] mix-blend-multiply opacity-30 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_closest-side,transparent_25%,#F7F2ED_85%)] z-10" />
           <picture>
             <source srcSet={homeBgDecorationWebp} type="image/webp" />
             <img
@@ -27,73 +32,81 @@ const Home: React.FC = () => {
               alt=""
               loading="eager"
               decoding="async"
-              className="w-full h-full object-cover object-[58%_18%] grayscale contrast-125 opacity-100 hero-bg-fade"
+              className="w-full h-full object-cover object-top grayscale contrast-110"
             />
           </picture>
         </div>
 
-        <div className="absolute top-[10%] left-[10%] w-[60vw] h-[60vw] rounded-full bg-[#D4A373] blur-[160px] opacity-20 mix-blend-multiply hero-bloom" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-[#FFF8F0] blur-[100px] opacity-70 mix-blend-soft-light" />
-        <div className="absolute inset-0 pointer-events-none mix-blend-multiply opacity-20 bg-[radial-gradient(circle_at_center,rgba(43,31,22,0.12),transparent_55%)]" />
-
-        <div
-          className="absolute inset-0 opacity-[0.35] mix-blend-overlay pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          }}
-        />
-
-        <Sparkles />
+        {/* Subtle Ambient Glow */}
+        <div className="absolute top-[15%] left-[15%] w-[50vw] h-[50vw] rounded-full bg-[#D4A373] blur-[140px] opacity-10 mix-blend-soft-light" />
       </div>
 
-      {/* --- 主内容层：CSS 渐显，避免运行时 JS 动画 --- */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 min-h-screen flex flex-col items-center justify-center text-center">
-        <div className="w-full flex flex-col items-center justify-center -mt-12 md:-mt-14">
-          <div className="mb-12 md:mb-12 hero-fade">
-            <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[#A87B51] font-sans font-medium">
-              Fragrant Epiphany
+      {/* --- Content Layer: Centered Layout --- */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-center text-center">
+
+        {/* Title Group with Fixed Height Container */}
+        <div className="mb-8 md:mb-10 hero-fade flex flex-col items-center relative">
+          {/* Brand Name Above Title */}
+          <div className="mb-6 md:mb-8">
+            <span className="text-xs md:text-sm uppercase tracking-[0.25em] text-[#2B1F16] font-sans font-light opacity-50 block">
+              {t('common.appName')}
             </span>
           </div>
 
-          <div className="mb-8 md:mb-12 space-y-4 md:space-y-5 hero-fade hero-fade-delay-1">
-            <h1 className="text-[#2B1F16] font-serif leading-[1.1]">
-              <span className="block text-[clamp(2rem,5vw,3.5rem)] italic font-light tracking-wide opacity-90">
-                A Journey Through
-              </span>
-              <span className="block text-[clamp(2.5rem,7vw,5rem)] font-medium tracking-tight mt-2">
-                Scent, Spirit <span className="italic font-light">&</span> Stars
-              </span>
+          {/* Fixed height container to prevent layout shift */}
+          <div
+            className="flex flex-col items-center justify-center relative z-10"
+            style={{
+              minHeight: isZh ? '160px' : '180px',
+            }}
+          >
+            <h1 className="text-[#2B1F16] font-serif text-shadow-sm relative">
+              {heroTitleLines.map((line, idx) => (
+                <span
+                  key={idx}
+                  className="block"
+                  style={{
+                    fontSize: isZh
+                      ? 'clamp(2.8rem, 7.5vw, 5rem)'
+                      : 'clamp(2.5rem, 6.5vw, 4.8rem)',
+                    fontWeight: 500,
+                    letterSpacing: isZh ? '0.05em' : '-0.02em',
+                    lineHeight: isZh ? 1.25 : 1.1,
+                    marginTop: idx > 0 ? (isZh ? '0.2rem' : '0.15rem') : 0,
+                  }}
+                >
+                  {line}
+                </span>
+              ))}
             </h1>
           </div>
 
-          <p className="mb-12 md:mb-14 text-sm md:text-lg text-[#2B1F16]/60 font-serif italic tracking-[0.1em] hero-fade hero-fade-delay-2">
-            Tarot · Fragrance · You
+          <p className="mt-4 text-sm md:text-base text-[#2B1F16]/70 font-serif italic tracking-[0.15em] relative z-10">
+            {t('home.subtitle')}
           </p>
+        </div>
 
-          <div className="mb-18 hero-fade hero-fade-delay-3">
-            <button
-              onClick={() => navigate('/onboarding')}
-              className="group relative overflow-hidden px-10 py-4 md:px-14 md:py-5 rounded-full bg-[#2B1F16] text-[#F7F2ED] shadow-[0_20px_40px_-15px_rgba(43,31,22,0.3)] transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_-12px_rgba(43,31,22,0.35)]"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#2B1F16] via-[#3E2D20] to-[#2B1F16] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-[radial-gradient(circle_at_center,white,transparent)] blur-xl transition-opacity duration-500" />
+        {/* Interaction Group */}
+        <div className="flex flex-col items-center gap-4 hero-fade hero-fade-delay-2">
+          <button
+            onClick={() => navigate('/onboarding')}
+            className="group relative overflow-hidden px-12 py-4 md:px-16 md:py-5 rounded-full bg-[#2B1F16] text-[#F7F2ED] shadow-[0_20px_40px_-15px_rgba(43,31,22,0.3)] transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_-12px_rgba(43,31,22,0.35)] inner-glow-gold"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-[#2B1F16] via-[#3E2D20] to-[#2B1F16] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-[radial-gradient(circle_at_center,white,transparent)] blur-xl transition-opacity duration-500" />
 
-              <span className="relative z-10 flex items-center gap-3 text-xs md:text-sm uppercase tracking-[0.25em] font-medium">
-                Start Explore
-                <span className="hero-arrow inline-flex">→</span>
-              </span>
-            </button>
-          </div>
+            <span className="relative z-10 flex items-center gap-3 text-xs md:text-sm uppercase tracking-[0.25em] font-medium">
+              {t('common.start')}
+              <span className="hero-arrow inline-flex">→</span>
+            </span>
+          </button>
 
-          <div className="absolute bottom-10 left-0 right-0 hero-fade hero-fade-delay-4">
-            <button
-              onClick={() => navigate('/about')}
-              className="text-[10px] uppercase tracking-[0.2em] text-[#2B1F16]/40 hover:text-[#2B1F16]/80 transition-colors duration-300"
-            >
-              Learn More
-            </button>
-          </div>
-
+          <button
+            onClick={() => navigate('/about')}
+            className="text-[10px] uppercase tracking-[0.2em] text-[#2B1F16]/40 hover:text-[#2B1F16] transition-colors duration-300 py-2"
+          >
+            {t('common.learnMore')}
+          </button>
         </div>
       </div>
     </div>

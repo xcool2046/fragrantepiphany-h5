@@ -31,7 +31,7 @@ ADMIN_PASS=admin
 PUBLIC_BASE_URL=http://localhost:4173
 VITE_API_BASE_URL=http://localhost:3000
 ```
-- 当前支付逻辑使用 `config.json`（可选）里的 `price_usd`，默认为 500（即 $5）。`STRIPE_PRICE_ID_*` 已不再使用。
+- 支付价格取自 Stripe Dashboard 的 price，建议在 `STRIPE_PRICE_IDS_JSON`（或 `_TEST`）中为各币种配置对应的 price_id；未填则后端会调用 Stripe API 按币种抓取首个启用的价格并缓存，仍推荐显式配置以避免抓到错误 price。
 - `PUBLIC_BASE_URL` 会拼接 `/pay/callback` 作为 Stripe 回跳地址，请与实际域名一致。
 - Feature flags（后端）：`FEATURE_ADMIN_ORDERS` / `FEATURE_ADMIN_PRICING`，默认关闭。
 
@@ -41,11 +41,12 @@ docker compose up --build
 docker compose exec backend npm run typeorm -- migration:run
 docker compose exec backend npm run seed
 ```
-- 端口：nginx 8080（转发 frontend 4173 / backend 3000），db 5432。
+- 端口：nginx 8080（挂载前端 dist，/api 反代 backend:3000），db 5432。
 - 访问：前端/后台 `http://localhost:8080`。
 - Stripe Webhook（本地）可用 `stripe listen` 转发到 `http://localhost:3000/api/pay/webhook`，将 whsec 写入 `.env`。
 
 ## 4. 生产部署（新流程：本地构建 + 静态上传）
+后台入口 `/admin`（登录后默认落到 `/admin/interpretations`），请确认 `.env` 的 `ADMIN_USER/ADMIN_PASS` 已按需设置。
 由于前端不再在服务器上构建，部署流程如下：
 
 ### 方法 A：使用 deploy.sh (推荐)
@@ -56,7 +57,7 @@ docker compose exec backend npm run seed
 1. `git push` 代码。
 2. 本地执行 `npm run build`。
 3. 通过 `scp` 将 `dist/` 上传到服务器。
-4. SSH 登录服务器重启 Nginx 和 Backend。
+4. SSH 登录服务器：拉代码 → 重建 backend → 执行迁移 → 重启 Nginx。
 
 ### 方法 B：手动部署
 1) **本地构建**:
@@ -105,7 +106,8 @@ server {
 ```bash
 ./deploy.sh "commit message"
 ```
-- 动作：git add/commit/push → SSH 服务器拉代码 → `docker compose up -d --build` → `docker compose restart nginx`。  
+- 动作：git add/commit/push → SSH 服务器拉代码 → `docker compose up -d --build` → `docker compose restart nginx`。
+- 动作：git add/commit/push → SSH 服务器拉代码 → `docker compose up -d --build` → `docker compose exec backend npm run typeorm -- migration:run` → `docker compose restart nginx`。
 - 服务器地址/IP 与免密登录已保留在脚本中，必要时请先确认机器状态再执行。
 - 如果脚本失败，请按下方“快速自查/手动部署”依次执行。
 
@@ -120,6 +122,11 @@ server {
 5) 健康检查：`docker compose ps`（backend/front/nginx == Up），`curl 127.0.0.1:3000/api/health`
 6) Nginx：`nginx -t && systemctl reload nginx`
 常见 502 处理：看后端日志 `docker compose logs backend --tail=100`，检查端口监听 `ss -lntp | grep 3000`，以及 Nginx 反代是否仍指向 127.0.0.1:3000。
+
+## 9. 资源路径说明
+- 卡牌素材：`frontend/src/assets/cards/01.jpg`~`78.jpg`，构建后访问路径 `/assets/cards/XX.jpg`；数据库 `cards.image_url` 已批量映射到该规范。
+- 上传文件：后端通过 `/uploads` 提供，Nginx 与 Vite dev 已配置代理。
+- 旧版前端与资料已归档在 `docs/archive/`，生产不需部署。
 
 ## 7. 验证部署
 

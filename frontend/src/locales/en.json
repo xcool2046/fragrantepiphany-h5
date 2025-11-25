@@ -85,6 +85,9 @@
     },
     "payFailed": "Payment not completed, please retry.",
     "missingState": "Please draw cards again to view the result.",
+    "matchedRule": "Matched Rule",
+    "fullReading": "Full Reading Access",
+    "yourScent": "YOUR SCENT",
     "noAnswers": "No answers captured",
     "priceLabel": "Select currency",
     "interpretations": [
@@ -138,6 +141,70 @@
         "content": "You suit a woody scent with a warm milky feel.\nIt has the 'keep away' coolness (4 of Swords),\nThe 'comfortable to be with' warmth (9 of Cups),\nAnd finally leaves a lingering aftertaste (Ace of Wands).\n\nSuggested:\n1. Diptyque Tam Dao\n2. Le Labo Santal 33\n3. Aesop Hwyl"
       },
       "footer": "Congratulations on completing a journey of self-dialogue and subconscious discovery. We look forward to your next exploration."
+    }
+  },
+  "journey": {
+    "cta": "Continue Exploring",
+    "hubTitle": "Your Fragrance Journey",
+    "hubDesc": "Choose a chapter to continue your scent story.",
+    "chapterLabel": "Chapter {{order}}",
+    "detail": {
+      "subtitle": "In quiet temples, find inner light"
+    },
+    "notesLabel": {
+      "top": "Top Notes",
+      "heart": "Heart Notes",
+      "base": "Base Notes"
+    },
+    "nav": {
+      "next": "Next",
+      "prev": "Previous",
+      "back": "Back",
+      "complete": "Finish"
+    },
+    "complete": {
+      "desc": "Thank you for journeying inward and uncovering your subconscious. We look forward to your next exploration.",
+      "toHome": "Back Home",
+      "revisit": "Chapters"
+    },
+    "perfume": {
+      "title": "Chapter 1 · Perfume",
+      "subtitle": "Timber, sunbeam, and calm",
+      "notes": {
+        "top": "Cypress, Cedar",
+        "heart": "Sandalwood, Myrtle, Rose",
+        "base": "Amber, Musk, Rosewood"
+      },
+      "story": [
+        "A temple hallway, wood worn smooth by centuries of light. The silence of the Four of Swords cools the air; the abundance of the Nine of Cups softens into sandalwood milk; the Ace of Wands calls like a warm spark against skin.",
+        "This perfume is not smoke or raw timber. It is the patient, sacred air between pillars. Let go, and the door opens quietly. The scent rests close to the body, elegant and composed, carrying a hint of private radiance."
+      ]
+    },
+    "home": {
+      "title": "Chapter 2 · Home Fragrance",
+      "subtitle": "Fig leaves, soft sun, quiet room",
+      "notes": {
+        "top": "Fig Leaf, Galbanum",
+        "heart": "Fig Fruit, Almond Milk",
+        "base": "Cedar, Coconut Milk"
+      },
+      "story": [
+        "Under a fig tree at noon, light flickers through wide leaves. Green milkiness floats in the room; the air is slow and generous. It is a sanctuary tuned to your breath.",
+        "Strike a match, exhale gently. The room answers with shade and sweet warmth, wrapping the day in a calm, sun-warmed hush."
+      ]
+    },
+    "signature": {
+      "title": "Chapter 3 · Signature",
+      "subtitle": "A scent you can wear",
+      "notes": {
+        "top": "Cypress, Cedar",
+        "heart": "Sandalwood, Myrtle, Rose",
+        "base": "Amber, Musk, Rosewood"
+      },
+      "story": [
+        "Your signature lies between distance and closeness: a cool first impression, then a soft, lingering warmth. It echoes the journey from retreat to invitation.",
+        "Spray once on the pulse; let the note settle. It becomes an intimate glow—quiet, confident, unmistakably yours."
+      ]
     }
   },
   "about": {

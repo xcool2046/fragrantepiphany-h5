@@ -1,12 +1,15 @@
-import { Module } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { Interpretation } from '../entities/interpretation.entity'
-import { InterpretationService } from './interp.service'
-import { InterpretationController } from './interp.controller'
-import { DrawService } from './draw.service'
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Interpretation } from '../entities/interpretation.entity';
+import { Rule } from '../entities/rule.entity';
+import { Card } from '../entities/card.entity';
+import { Question } from '../entities/question.entity';
+import { InterpretationService } from './interp.service';
+import { InterpretationController } from './interp.controller';
+import { DrawService } from './draw.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Interpretation])],
+  imports: [TypeOrmModule.forFeature([Interpretation, Rule, Card, Question])],
   providers: [InterpretationService, DrawService],
   controllers: [InterpretationController],
 })

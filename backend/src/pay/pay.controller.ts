@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Param, Post, Req, Res } from '@nestjs/common'
-import { PayService } from './pay.service'
-import type { Request, Response } from 'express'
-import Stripe from 'stripe'
+import { Body, Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
+import { PayService } from './pay.service';
+import type { Request, Response } from 'express';
+import Stripe from 'stripe';
 
 @Controller('api/pay')
 export class PayController {

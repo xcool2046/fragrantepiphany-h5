@@ -12,6 +12,7 @@ const INITIAL_INDEX = 39
 // --- Types ---
 interface WheelProps {
   onCardSelect: (cardId: number) => void;
+  selectedCards: number[];
 }
 
 interface WheelCardProps {
@@ -19,13 +20,14 @@ interface WheelCardProps {
   scrollIndex: MotionValue<number>;
   cardId: number;
   onClick: () => void;
+  isSelected: boolean;
 }
 
 // --- Components ---
 
 import { CardFace } from '../components/CardFace'
 
-const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick }: WheelCardProps) => {
+const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isSelected }: WheelCardProps) => {
     // Calculate distance from center (0 means centered)
     const distance = useTransform(scrollIndex, (current: number) => {
         return absoluteIndex - current
@@ -64,10 +66,10 @@ const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick }: WheelCa
     // 7. Brightness/Darkness: Darken distant cards
     const darkOverlayOpacity = useTransform(distance, [-8, 0, 8], [0.6, 0, 0.6])
 
-    // 8. Glow: Only center card glows
+    // 8. Glow: Only center card glows (Enhanced)
     const glowOpacity = useTransform(distance, (d) => {
         const absD = Math.abs(d)
-        return Math.max(0, 1 - absD * 0.5) 
+        return Math.max(0, 1 - absD * 0.3) // Slower decay for wider glow
     })
 
     return (
@@ -84,24 +86,36 @@ const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick }: WheelCa
             className="absolute top-[46%] left-[15%] -translate-y-1/2 w-[120px] h-[76px] origin-center cursor-pointer will-change-transform"
             onClick={onClick}
         >
-            {/* Hero Glow (Behind card) */}
-            <motion.div 
+            {/* Hero Glow (Behind card) - Optimized for performance */}
+            <motion.div
                 style={{ opacity: glowOpacity }}
-                className="absolute inset-0 -z-10 bg-[#F5D0A9]/60 blur-[30px] scale-125 rounded-full"
+                className="absolute inset-0 -z-10 bg-[#D4A373]/70 blur-[35px] scale-125 rounded-full pointer-events-none"
             />
             
             <CardFace id={cardId} variant="wheel" />
 
             {/* Brightness/Darkness Overlay */}
-            <motion.div 
+            <motion.div
                 style={{ opacity: darkOverlayOpacity }}
                 className="absolute inset-0 bg-black pointer-events-none rounded-lg transition-opacity duration-300"
             />
+
+            {/* Selected State Overlay */}
+            {isSelected && (
+                <div className="absolute inset-0 bg-[#2B1F16]/50 pointer-events-none rounded-lg backdrop-blur-[2px] border-2 border-[#D4A373] transition-all duration-300">
+                    {/* Selected checkmark indicator */}
+                    <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-[#D4A373] flex items-center justify-center">
+                        <svg viewBox="0 0 12 12" className="w-3 h-3 text-[#2B1F16]" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M2 6 L5 9 L10 3" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+            )}
         </motion.div>
     )
 })
 
-const Wheel: React.FC<WheelProps> = ({ onCardSelect }) => {
+const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards }) => {
   // --- Infinite Scroll State ---
   const scrollIndex = useMotionValue(INITIAL_INDEX)
   
@@ -225,21 +239,18 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect }) => {
                 {indices.map((index) => {
                    const cardId = ((index % TOTAL_CARDS) + TOTAL_CARDS) % TOTAL_CARDS
                    return (
-                     <WheelCard 
+                     <WheelCard
                        key={index}
                        absoluteIndex={index}
                        scrollIndex={smoothIndex}
                        cardId={cardId}
                        onClick={() => handleCardClick(index)}
+                       isSelected={selectedCards.includes(cardId)}
                      />
                    )
                 })}
              </AnimatePresence>
-          
-          {/* Center Highlight / Selection Zone (Visual Guide) */}
-          <div className="absolute top-1/2 left-[15%] -translate-x-1/2 -translate-y-1/2 w-[140px] h-[90px] pointer-events-none z-0">
-             {/* Optional: Add a subtle bracket or indicator if needed, currently kept minimal */}
-          </div>
+
         </div>
       </div>
   )
@@ -273,28 +284,41 @@ const Draw: React.FC = () => {
     <div className="min-h-screen w-full bg-[#F7F2ED] text-[#4A4A4A] overflow-hidden flex flex-row font-serif">
       
       {/* LEFT PANEL: Info & Slots (35% width) */}
-      <div className="w-[34%] min-w-[130px] max-w-[320px] h-screen flex flex-col items-center justify-center p-4 z-20 relative bg-white/40 border-r border-[#8B5A2B]/10 shadow-xl backdrop-blur-md">
-        
+      <div className="w-[34%] min-w-[130px] max-w-[320px] h-screen flex flex-col items-center justify-center p-6 z-20 relative bg-white/40 border-r border-[#8B5A2B]/10 shadow-xl backdrop-blur-md">
+
         {/* Header */}
-        <div className="text-center mb-10">
-           <h2 className="text-[#8B5A2B] text-sm tracking-[0.3em] uppercase mb-3 drop-shadow-sm">{t('draw.yourSpread')}</h2>
-           <p className="text-xs text-[#8B5A2B]/60 font-sans tracking-wide">{t('draw.instruction')}</p>
+        <div className="text-center mb-12">
+           <h2 className="text-[#2B1F16] text-lg md:text-xl font-serif tracking-[0.2em] uppercase mb-8 font-medium">{t('draw.yourSpread')}</h2>
+
+           {/* Progress Indicator - Three Dots Only */}
+           <div className="flex items-center justify-center gap-3">
+             {[0, 1, 2].map((index) => (
+               <div
+                 key={index}
+                 className={`w-2 h-2 rounded-full transition-all duration-500 ${
+                   index < selectedCards.length
+                     ? 'bg-[#D4A373] shadow-[0_0_8px_rgba(212,163,115,0.6)]'
+                     : 'bg-[#D4A373]/20'
+                 }`}
+               />
+             ))}
+           </div>
         </div>
         
         {/* Vertical Slots */}
-        <div className="flex flex-col gap-5 mb-10 w-full max-w-[180px]">
+        <div className="flex flex-col gap-6 mb-12 w-full max-w-[180px]">
           {[0, 1, 2].map((index) => {
             const cardId = selectedCards[index]
             const slotNames = ['past', 'present', 'future']
             return (
-              <div 
+              <div
                 key={index}
-                className="relative w-full aspect-[2/3] rounded-lg border border-dashed border-[#8B5A2B]/30 flex items-center justify-center bg-white/10 shadow-inner overflow-hidden group"
+                className="relative w-full aspect-[2/3] rounded-xl border-2 border-[#D4A373]/40 flex items-center justify-center bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm shadow-[0_8px_24px_rgba(212,163,115,0.15)] overflow-hidden group transition-all duration-300 hover:border-[#D4A373]/60 hover:shadow-[0_12px_32px_rgba(212,163,115,0.25)]"
               >
                 {/* Empty State */}
                 {cardId === undefined && (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-[#8B5A2B]/30 font-serif text-sm tracking-widest uppercase group-hover:text-[#8B5A2B]/50 transition-colors">
+                    <span className="text-[#D4A373]/50 font-serif text-sm tracking-[0.2em] uppercase group-hover:text-[#D4A373] transition-colors font-light">
                       {t(`draw.slots.${slotNames[index]}`)}
                     </span>
                   </div>
@@ -327,23 +351,29 @@ const Draw: React.FC = () => {
 
         {/* Continue Button */}
         <button
-          disabled={selectedCards.length !== 3}
+          disabled={selectedCards.length !== 3 || submitting}
           onClick={handleContinue}
           className={clsx(
-            "w-full max-w-[160px] h-12 mt-8 rounded-full font-serif border transition-all duration-500 tracking-[0.2em] text-[10px] uppercase relative overflow-hidden shadow-lg",
+            "group relative overflow-hidden w-full max-w-[180px] px-10 py-4 rounded-full transition-all duration-500 text-[11px] uppercase tracking-[0.2em] font-medium whitespace-nowrap",
             selectedCards.length === 3 && !submitting
-              ? "bg-text text-white border-transparent shadow-xl"
-              : "bg-text/10 text-text/30 border-transparent cursor-not-allowed"
+              ? "bg-[#2B1F16] text-[#F7F2ED] shadow-[0_16px_32px_rgba(43,31,22,0.3)] hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(43,31,22,0.35)]"
+              : "bg-[#2B1F16]/30 text-[#2B1F16]/40 cursor-not-allowed shadow-[0_8px_16px_rgba(43,31,22,0.1)]"
           )}
         >
-          <span className="relative z-10">
+          {selectedCards.length === 3 && !submitting && (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#2B1F16] via-[#3E2D20] to-[#2B1F16] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-[radial-gradient(circle_at_center,white,transparent)] blur-xl transition-opacity duration-500" />
+            </>
+          )}
+          <span className="relative z-10 flex items-center justify-center">
             {submitting ? t('draw.loading') : t('common.continue')}
           </span>
         </button>
       </div>
 
       {/* RIGHT PANEL: Wheel */}
-      <Wheel onCardSelect={handleCardSelect} />
+      <Wheel onCardSelect={handleCardSelect} selectedCards={selectedCards} />
     </div>
   )
 }

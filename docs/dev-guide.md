@@ -4,8 +4,8 @@
 
 ## 技术栈速览
 - 前端：Vite + React + TypeScript，React Router v7，Zustand + TanStack Query，Tailwind，Framer Motion，react-i18next（en/zh）。
-- 后端：NestJS + TypeORM，PostgreSQL，Stripe Checkout；默认强制 USD 价格，金额读自根目录 `config.json`（若不存在则默认 `price_usd: 500` 分）。
-- 部署：Docker Compose（services: db/postgres, backend, frontend, nginx），宿主机可再配 Nginx 反代 80/443。
+- 后端：NestJS + TypeORM，PostgreSQL，Stripe Checkout；价格取自 Stripe price，优先按 `STRIPE_PRICE_IDS_JSON`（或 `_TEST`）映射币种到 price_id，未配置时会从 Stripe API 拉取该币种的启用价格并缓存。
+- 部署：Docker Compose（services: db/postgres, backend, nginx；frontend 静态由 `frontend/dist` 挂载），宿主机可再配 Nginx 反代 80/443。
 
 ## 环境变量（根目录 `.env`，不要提交）
 与 `.env.example` 对齐：
@@ -52,9 +52,11 @@ npm run dev -- --host --port 4173  # http://localhost:4173
 ## Docker Compose 运行
 ```bash
 cp .env.example .env   # 根据需要填写
+# 若本地改过前端，请先构建 dist（容器直接挂载静态资源）
+cd frontend && npm install && npm run build && cd ..
 docker compose up --build
 ```
-- 端口：db 5432，backend 3000，frontend 4173，nginx 8080（将 80 反代到 frontend 4173 / backend 3000）。如需本地直接 80/443，可在 `docker-compose.override.yml` 覆盖。
+- 端口：db 5432，backend 3000，nginx 8080（统一提供前端/后台，反代 /api 到 backend:3000）。如需本地直接 80/443，可在 `docker-compose.override.yml` 覆盖。
 - 迁移/种子（容器内执行）：
 ```bash
 docker compose exec backend npm run typeorm -- migration:run
@@ -68,14 +70,14 @@ docker compose exec backend npm run seed
 - Webhook：`STRIPE_WEBHOOK_SECRET` 用于校验签名；`orders` 表记录 `status`（pending/succeeded/failed）。
 
 ## 构建/检查命令
-- 前端：`npm run build`（tsc + vite），`npm run lint`。
+- 前端：`npm run build`（tsc + vite），`npm run lint`。后台默认页 `/admin/interpretations`，登录凭据由 `.env` 的 `ADMIN_USER/ADMIN_PASS` 控制。
 - 后端：`npm run build`，`npm run test`（如需），`npm run lint`（带 --fix）。
-- 常见问题：若 TypeORM 找不到实体，确认 `DATABASE_URL` 正确、迁移已运行、`config.json` 可读。
+- 常见问题：若 TypeORM 找不到实体，确认 `DATABASE_URL` 正确、迁移已运行；若支付报错检查是否配置了正确的 `STRIPE_PRICE_IDS_JSON` 或 Stripe 账户下是否存在对应币种的启用价格。
 
 ## Mock 支付提示
 - 前端 Result 页支持 `?mock_pay=true` 解锁，用于开发联调；请在上线前移除或仅在 `import.meta.env.DEV` 下启用（详见 `docs/development_notes.md`）。
 
 ## 目录速览
-- `frontend/src`：路由、页面、store、API 封装（Axios 基于 `VITE_API_BASE_URL`）。
+- `frontend/src`：路由、页面、store、API 封装（Axios 基于 `VITE_API_BASE_URL`）；后台卡面素材路径规范 `/assets/cards/01.jpg`~`78.jpg`（已在 DB 批量映射）。
 - `backend/src`：`pay`、`admin`、`interp`、`questionnaire` 等模块；`entities` 下为 TypeORM 实体；`migrations` 为数据迁移。
 - `sample-data/cards-example.json`：种子数据示例。

@@ -90,4 +90,21 @@ export async function getOrder(id: string) {
   return res.data
 }
 
+export type RuleMatchResult = {
+  rule: null | {
+    id: number
+    question_id: number
+    card_codes: string[]
+    priority: number
+    summary_free?: { en?: string; zh?: string } | null
+    interpretation_full?: { en?: string; zh?: string } | null
+    recommendations?: Array<{ title_en?: string; title_zh?: string; desc_en?: string; desc_zh?: string }> | null
+  }
+}
+
+export async function matchRule(payload: { card_indices: number[]; answers?: Record<string, string> }) {
+  const res = await api.post<RuleMatchResult>('/api/interp/rule-match', payload)
+  return res.data
+}
+
 export default api

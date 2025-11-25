@@ -1,34 +1,36 @@
-import { NestFactory } from '@nestjs/core'
-import { AppModule } from './app.module'
-import { json, urlencoded } from 'express'
-import { IncomingMessage } from 'http'
-import { join } from 'path'
-import express from 'express'
-import { ValidationPipe } from '@nestjs/common'
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { json, urlencoded } from 'express';
+import { IncomingMessage } from 'http';
+import { join } from 'path';
+import express from 'express';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       transform: true,
       forbidUnknownValues: false,
     }),
-  )
+  );
   app.use(
     json({
       verify: (req: IncomingMessage & { rawBody?: Buffer }, _res, buf) => {
-        req.rawBody = buf
+        req.rawBody = buf;
       },
     }),
-  )
-  app.use(urlencoded({ extended: true }))
-  const allowedOrigins = process.env.CORS_ORIGINS?.split(',').map((o) => o.trim()).filter(Boolean)
+  );
+  app.use(urlencoded({ extended: true }));
+  const allowedOrigins = process.env.CORS_ORIGINS?.split(',')
+    .map((o) => o.trim())
+    .filter(Boolean);
   app.enableCors({
     origin: allowedOrigins && allowedOrigins.length > 0 ? allowedOrigins : true,
     credentials: true,
-  })
-  app.use('/uploads', express.static(join(process.cwd(), 'uploads')))
-  await app.listen(process.env.PORT ?? 3000)
+  });
+  app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
+  await app.listen(process.env.PORT ?? 3000);
 }
-void bootstrap()
+void bootstrap();

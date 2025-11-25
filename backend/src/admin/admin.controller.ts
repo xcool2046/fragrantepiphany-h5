@@ -28,7 +28,18 @@ import { format } from '@fast-csv/format';
 import type { Response } from 'express';
 import { Res } from '@nestjs/common';
 import type { Express } from 'express';
-import { IsBoolean, IsInt, IsNotEmpty, IsOptional, IsString, Min, ValidateIf, ArrayNotEmpty, ArrayMinSize, ArrayMaxSize } from 'class-validator';
+import {
+  IsBoolean,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Min,
+  ValidateIf,
+  ArrayNotEmpty,
+  ArrayMinSize,
+  ArrayMaxSize,
+} from 'class-validator';
 
 class CreateQuestionDto {
   @IsString()
@@ -109,7 +120,12 @@ class CreateRuleDto {
   interpretation_full?: { en?: string; zh?: string } | null;
 
   @IsOptional()
-  recommendations?: Array<{ title_en?: string; title_zh?: string; desc_en?: string; desc_zh?: string }> | null;
+  recommendations?: Array<{
+    title_en?: string;
+    title_zh?: string;
+    desc_en?: string;
+    desc_zh?: string;
+  }> | null;
 
   @IsOptional()
   @IsBoolean()
@@ -168,7 +184,9 @@ export class AdminController {
   // ========== Questions ==========
   @Get('questions')
   async listQuestions() {
-    const items = await this.questionRepo.find({ order: { weight: 'ASC', id: 'ASC' } });
+    const items = await this.questionRepo.find({
+      order: { weight: 'ASC', id: 'ASC' },
+    });
     return { items };
   }
 
@@ -187,7 +205,10 @@ export class AdminController {
   }
 
   @Patch('questions/:id')
-  async updateQuestion(@Param('id') id: string, @Body() body: UpdateQuestionDto) {
+  async updateQuestion(
+    @Param('id') id: string,
+    @Body() body: UpdateQuestionDto,
+  ) {
     const q = await this.questionRepo.findOne({ where: { id: Number(id) } });
     if (!q) throw new NotFoundException('Question not found');
     Object.assign(q, {
@@ -209,17 +230,39 @@ export class AdminController {
 
   // ========== Cards ==========
   @Get('cards')
-  async listCards(@Query('page') page = '1', @Query('pageSize') pageSize = '20') {
-    const take = Math.min(100, Math.max(1, Number(pageSize) || 20));
+  async listCards(
+    @Query('page') page = '1',
+    @Query('pageSize') pageSize = '20',
+    @Query('keyword') keyword?: string,
+    @Query('onlyEnabled') onlyEnabled?: string,
+  ) {
+    // 允许前端用较大 pageSize 一次取全量，但限制为 500 以防过载
+    const take = Math.min(500, Math.max(1, Number(pageSize) || 20));
     const skip = (Math.max(1, Number(page) || 1) - 1) * take;
-    const [items, total] = await this.cardRepo.findAndCount({ order: { code: 'ASC' }, skip, take });
+    const qb = this.cardRepo
+      .createQueryBuilder('card')
+      .orderBy('card.code', 'ASC');
+    if (keyword) {
+      const kw = `%${keyword.trim()}%`;
+      qb.andWhere(
+        '(card.code ILIKE :kw OR card.name_en ILIKE :kw OR card.name_zh ILIKE :kw)',
+        { kw },
+      );
+    }
+    if (onlyEnabled === 'true') {
+      qb.andWhere('card.enabled = true');
+    }
+    const [items, total] = await qb.skip(skip).take(take).getManyAndCount();
     return { items, total, page: Number(page), pageSize: take };
   }
 
   @Post('cards')
   async createCard(@Body() body: CreateCardDto) {
-    if (!body.code || !body.name_en) throw new BadRequestException('code and name_en are required');
-    const existing = await this.cardRepo.findOne({ where: { code: body.code } });
+    if (!body.code || !body.name_en)
+      throw new BadRequestException('code and name_en are required');
+    const existing = await this.cardRepo.findOne({
+      where: { code: body.code },
+    });
     if (existing) throw new BadRequestException('code already exists');
     const entity = this.cardRepo.create({
       code: body.code,
@@ -266,7 +309,8 @@ export class AdminController {
       throw new BadRequestException('File too large');
     }
     const uploadsDir = path.join(process.cwd(), 'uploads');
-    if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
+    if (!fs.existsSync(uploadsDir))
+      fs.mkdirSync(uploadsDir, { recursive: true });
     const ext = path.extname(file.originalname) || '.bin';
     const filename = `${Date.now()}-${Math.random().toString(16).slice(2)}${ext}`;
     const filepath = path.join(uploadsDir, filename);
@@ -279,25 +323,28 @@ export class AdminController {
   @UseInterceptors(FileInterceptor('file'))
   async importCards(@UploadedFile() file?: Express.Multer.File) {
     if (!file) throw new BadRequestException('No file');
-    const rows: any[] = []
+    const rows: any[] = [];
     await new Promise<void>((resolve, reject) => {
       const stream = parse({ headers: true })
         .on('error', reject)
         .on('data', (row) => rows.push(row))
-        .on('end', () => resolve())
-      stream.write(file.buffer)
-      stream.end()
-    })
-    let created = 0
-    let updated = 0
+        .on('end', () => resolve());
+      stream.write(file.buffer);
+      stream.end();
+    });
+    let created = 0;
+    let updated = 0;
     for (const [idx, r] of rows.entries()) {
-      const code = (r.code || '').trim()
-      const name_en = (r.name_en || '').trim()
-      const name_zh = r.name_zh?.trim?.() || null
+      const code = (r.code || '').trim();
+      const name_en = (r.name_en || '').trim();
+      const name_zh = r.name_zh?.trim?.() || null;
       if (!code || !name_en) {
-        throw new BadRequestException(`Row ${idx + 2}: code and name_en are required`)
+        throw new BadRequestException(
+          `Row ${idx + 2}: code and name_en are required`,
+        );
       }
-      if (!/^[a-zA-Z0-9_-]+$/.test(code)) throw new BadRequestException(`Row ${idx + 2}: invalid code`)
+      if (!/^[a-zA-Z0-9_-]+$/.test(code))
+        throw new BadRequestException(`Row ${idx + 2}: invalid code`);
       const payload: Partial<Card> = {
         code,
         name_en,
@@ -305,28 +352,31 @@ export class AdminController {
         image_url: r.image_url?.trim?.() || null,
         default_meaning_en: r.default_meaning_en?.trim?.() || null,
         default_meaning_zh: r.default_meaning_zh?.trim?.() || null,
-      }
-      const existing = await this.cardRepo.findOne({ where: { code } })
+      };
+      const existing = await this.cardRepo.findOne({ where: { code } });
       if (existing) {
-        Object.assign(existing, Object.fromEntries(Object.entries(payload).filter(([, v]) => v)))
-        await this.cardRepo.save(existing)
-        updated++
+        Object.assign(
+          existing,
+          Object.fromEntries(Object.entries(payload).filter(([, v]) => v)),
+        );
+        await this.cardRepo.save(existing);
+        updated++;
       } else {
-        const entity = this.cardRepo.create({ ...payload, enabled: true })
-        await this.cardRepo.save(entity)
-        created++
+        const entity = this.cardRepo.create({ ...payload, enabled: true });
+        await this.cardRepo.save(entity);
+        created++;
       }
     }
-    return { created, updated }
+    return { created, updated };
   }
 
   @Get('cards/export')
   async exportCards(@Res() res: Response) {
-    const data = await this.cardRepo.find({ order: { code: 'ASC' } })
-    res.setHeader('Content-Type', 'text/csv')
-    res.setHeader('Content-Disposition', 'attachment; filename="cards.csv"')
-    const csvStream = format({ headers: true })
-    csvStream.pipe(res)
+    const data = await this.cardRepo.find({ order: { code: 'ASC' } });
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename="cards.csv"');
+    const csvStream = format({ headers: true });
+    csvStream.pipe(res);
     data.forEach((item) => {
       csvStream.write({
         code: item.code,
@@ -335,9 +385,9 @@ export class AdminController {
         image_url: item.image_url ?? '',
         default_meaning_en: item.default_meaning_en ?? '',
         default_meaning_zh: item.default_meaning_zh ?? '',
-      })
-    })
-    csvStream.end()
+      });
+    });
+    csvStream.end();
   }
 
   // ========== Rules ==========
@@ -347,8 +397,10 @@ export class AdminController {
     @Query('card_code') cardCode?: string,
     @Query('page') page = '1',
     @Query('pageSize') pageSize = '20',
+    @Query('keyword') keyword?: string,
+    @Query('onlyEnabled') onlyEnabled?: string,
   ) {
-    const take = Math.min(100, Math.max(1, Number(pageSize) || 20));
+    const take = Math.min(200, Math.max(1, Number(pageSize) || 20));
     const skip = (Math.max(1, Number(page) || 1) - 1) * take;
     const qb = this.ruleRepo
       .createQueryBuilder('rule')
@@ -357,22 +409,39 @@ export class AdminController {
       .addOrderBy('rule.id', 'ASC')
       .skip(skip)
       .take(take);
-    if (questionId) qb.andWhere('rule.question_id = :qid', { qid: Number(questionId) });
-    if (cardCode) qb.andWhere(':code = ANY(rule.card_codes)', { code: cardCode });
+    if (questionId)
+      qb.andWhere('rule.question_id = :qid', { qid: Number(questionId) });
+    if (cardCode)
+      qb.andWhere(':code = ANY(rule.card_codes)', { code: cardCode });
+    if (keyword) {
+      const kw = `%${keyword.trim()}%`;
+      qb.andWhere(
+        '(array_to_string(rule.card_codes, ",") ILIKE :kw OR rule.summary_free::text ILIKE :kw OR rule.interpretation_full::text ILIKE :kw)',
+        { kw },
+      );
+    }
+    if (onlyEnabled === 'true') {
+      qb.andWhere('rule.enabled = true');
+    }
     const [items, total] = await qb.getManyAndCount();
     return { items, total, page: Number(page), pageSize: take };
   }
 
   private normalizeCodes(codes: string[]) {
-    if (!Array.isArray(codes) || codes.length !== 3) throw new BadRequestException('card_codes must be an array of 3 codes');
+    if (!Array.isArray(codes) || codes.length !== 3)
+      throw new BadRequestException('card_codes must be an array of 3 codes');
     const cleaned = codes.map((c) => (c || '').trim()).filter(Boolean);
-    if (cleaned.length !== 3) throw new BadRequestException('card_codes must contain 3 non-empty codes');
+    if (cleaned.length !== 3)
+      throw new BadRequestException(
+        'card_codes must contain 3 non-empty codes',
+      );
     return [...cleaned].sort();
   }
 
   @Post('rules')
   async createRule(@Body() body: CreateRuleDto) {
-    if (!body.question_id) throw new BadRequestException('question_id is required');
+    if (!body.question_id)
+      throw new BadRequestException('question_id is required');
     const codes = this.normalizeCodes(body.card_codes || []);
     const payload = this.ruleRepo.create({
       question_id: Number(body.question_id),
@@ -386,7 +455,10 @@ export class AdminController {
     try {
       return await this.ruleRepo.save(payload);
     } catch (e) {
-      if ((e as any).code === '23505') throw new BadRequestException('Rule already exists for this question + card combo');
+      if (e.code === '23505')
+        throw new BadRequestException(
+          'Rule already exists for this question + card combo',
+        );
       throw e;
     }
   }
@@ -395,7 +467,9 @@ export class AdminController {
   async updateRule(@Param('id') id: string, @Body() body: UpdateRuleDto) {
     const rule = await this.ruleRepo.findOne({ where: { id: Number(id) } });
     if (!rule) throw new NotFoundException('Rule not found');
-    const codes = body.card_codes ? this.normalizeCodes(body.card_codes) : rule.card_codes;
+    const codes = body.card_codes
+      ? this.normalizeCodes(body.card_codes)
+      : rule.card_codes;
     Object.assign(rule, {
       card_codes: codes,
       priority: body.priority ?? rule.priority,
@@ -407,7 +481,10 @@ export class AdminController {
     try {
       return await this.ruleRepo.save(rule);
     } catch (e) {
-      if ((e as any).code === '23505') throw new BadRequestException('Rule already exists for this question + card combo');
+      if (e.code === '23505')
+        throw new BadRequestException(
+          'Rule already exists for this question + card combo',
+        );
       throw e;
     }
   }

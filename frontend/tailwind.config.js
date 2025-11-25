@@ -9,6 +9,8 @@ export default {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         serif: ['"Playfair Display"', 'serif'],
+        lora: ['"Lora"', 'serif'],
+        cinzel: ['"Cinzel"', 'serif'],
       },
       colors: {
         background: '#F7F2ED', // Warm Apricot Light
@@ -29,6 +31,8 @@ export default {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         serif: ['"Playfair Display"', 'serif'],
+        lora: ['"Lora"', 'serif'],
+        cinzel: ['"Cinzel"', 'serif'],
         songti: ['"Songti SC"', '"Noto Serif SC"', 'serif'],
         kaiti: ['"Kaiti SC"', '"KaiTi"', 'serif'],
       },
