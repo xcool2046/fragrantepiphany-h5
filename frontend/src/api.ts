@@ -107,4 +107,38 @@ export async function matchRule(payload: { card_indices: number[]; answers?: Rec
   return res.data
 }
 
+export type PerfumeNotes = {
+  top: string
+  heart: string
+  base: string
+}
+
+export type PerfumeChapter = {
+  id: number
+  order: number
+  cardName: string
+  sceneChoice: string
+  brandName: string
+  productName: string
+  tags: string[]
+  notes: PerfumeNotes
+  description: string
+  quote: string
+  imageUrl: string
+}
+
+export async function getPerfumeChapters(cardIndices: number[]) {
+  try {
+    const res = await api.get<{ chapters: PerfumeChapter[] }>('/api/perfume/chapters', {
+      params: { cardIds: cardIndices.join(',') }
+    })
+    return res.data.chapters
+  } catch (err) {
+    // Fallback to mock data during development
+    console.warn('Using mock perfume data:', err)
+    const { mockPerfumeChapters } = await import('./data/perfumeData')
+    return mockPerfumeChapters
+  }
+}
+
 export default api

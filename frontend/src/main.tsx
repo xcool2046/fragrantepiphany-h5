@@ -1,6 +1,6 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import './index.css'
 import './i18n'
 import RippleEffect from './components/RippleEffect'
@@ -15,12 +15,27 @@ const About = React.lazy(() => import('./pages/About'))
 const JourneyHub = React.lazy(() => import('./pages/JourneyHub'))
 const JourneyDetail = React.lazy(() => import('./pages/JourneyDetail'))
 const JourneyComplete = React.lazy(() => import('./pages/JourneyComplete'))
+const PerfumeView = React.lazy(() => import('./pages/PerfumeView'))
 const AdminLogin = React.lazy(() => import('./pages/admin/AdminLogin'))
 const AdminLayout = React.lazy(() => import('./pages/admin/AdminLayout'))
 const Interpretations = React.lazy(() => import('./pages/admin/Interpretations'))
 const Questions = React.lazy(() => import('./pages/admin/Questions'))
 const Cards = React.lazy(() => import('./pages/admin/Cards'))
 const Rules = React.lazy(() => import('./pages/admin/Rules'))
+
+// Global scroll manager to avoid returning to a page at the previous offset (e.g., back from Perfume to Result)
+const ScrollManager: React.FC = () => {
+  const { pathname, search } = useLocation()
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [pathname, search])
+
+  return null
+}
 
 const Loading = () => (
   <div className="flex-center" style={{ height: '100vh', color: 'var(--color-primary-gold)' }}>
@@ -32,6 +47,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
+        <ScrollManager />
         <RippleEffect />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -40,6 +56,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/draw" element={<Draw />} />
           <Route path="/result" element={<Result />} />
           <Route path="/about" element={<About />} />
+          <Route path="/perfume" element={<PerfumeView />} />
           <Route path="/journey" element={<JourneyHub />} />
           <Route path="/journey/complete" element={<JourneyComplete />} />
           <Route path="/journey/:chapterId" element={<JourneyDetail />} />

@@ -1,126 +1,216 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 
-interface Star {
-  id: number
+type StarVariant = 'flare' | 'dot'
+
+interface StarSpec {
   x: number
   y: number
   size: number
-  delay: number
-  duration: number
-  isGold: boolean
+  variant: StarVariant
+  rotate?: number
+  opacity?: number
+}
+
+// Coordinates approximated from the reference image "arch" of stars
+const STARS: StarSpec[] = [
+  // Center top flare
+  { x: 200, y: 140, size: 14, variant: 'flare', opacity: 0.9 },
+  
+  // Left side arch
+  { x: 160, y: 145, size: 8, variant: 'flare', rotate: -10, opacity: 0.85 },
+  { x: 125, y: 155, size: 7, variant: 'flare', rotate: -20, opacity: 0.8 },
+  { x: 95, y: 175, size: 6, variant: 'flare', rotate: -30, opacity: 0.75 },
+  { x: 70, y: 200, size: 5, variant: 'flare', rotate: -40, opacity: 0.7 },
+  
+  // Right side arch
+  { x: 240, y: 145, size: 8, variant: 'flare', rotate: 10, opacity: 0.85 },
+  { x: 275, y: 155, size: 7, variant: 'flare', rotate: 20, opacity: 0.8 },
+  { x: 305, y: 175, size: 6, variant: 'flare', rotate: 30, opacity: 0.75 },
+  { x: 330, y: 200, size: 5, variant: 'flare', rotate: 40, opacity: 0.7 },
+
+  // Scattered dots/smaller stars to fill the sky
+  { x: 180, y: 130, size: 2, variant: 'dot', opacity: 0.6 },
+  { x: 220, y: 130, size: 2, variant: 'dot', opacity: 0.6 },
+  { x: 140, y: 140, size: 2, variant: 'dot', opacity: 0.5 },
+  { x: 260, y: 140, size: 2, variant: 'dot', opacity: 0.5 },
+  
+  { x: 50, y: 180, size: 3, variant: 'dot', opacity: 0.4 },
+  { x: 350, y: 180, size: 3, variant: 'dot', opacity: 0.4 },
+  
+  { x: 100, y: 120, size: 4, variant: 'flare', opacity: 0.3 }, // Faint background flare
+  { x: 300, y: 120, size: 4, variant: 'flare', opacity: 0.3 }, // Faint background flare
+]
+
+const PlanetScene: React.FC = () => {
+  return (
+    <svg
+      viewBox="0 0 400 340"
+      className="absolute bottom-[-5%] left-1/2 -translate-x-1/2 pointer-events-none w-[300vw] md:w-[min(150vw,1400px)] h-[140vw] md:h-[min(110vw,800px)]"
+      preserveAspectRatio="xMidYMax meet"
+      aria-hidden
+      role="presentation"
+    >
+      <defs>
+        {/*
+          Engraving Filter:
+          1. Generate high-frequency noise (turbulence)
+          2. Use color matrix to threshold it into black/white dots (stipple effect)
+          3. Composite with the base shape
+        */}
+        <filter id="engraving" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="1.2"
+            numOctaves="3"
+            stitchTiles="stitch"
+            result="noise"
+          />
+          <feColorMatrix
+            in="noise"
+            type="matrix"
+            values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 18 -9"
+            result="contrastNoise"
+          />
+          <feComposite in="SourceGraphic" in2="contrastNoise" operator="in" />
+        </filter>
+
+        {/* Paper texture for the planet body */}
+        <filter id="paperTexture" x="0%" y="0%" width="100%" height="100%">
+           <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise" />
+           <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.4 0" in="noise" result="coloredNoise" />
+           <feComposite operator="in" in="coloredNoise" in2="SourceGraphic" result="composite" />
+           <feBlend mode="multiply" in="composite" in2="SourceGraphic" />
+        </filter>
+
+        {/* Gradient for the planet sphere (Sepia tones) */}
+        <radialGradient id="planetGradient" cx="50%" cy="30%" r="80%">
+          <stop offset="0%" stopColor="#E8DCC8" /> {/* Highlight */}
+          <stop offset="40%" stopColor="#C8B090" /> {/* Midtone */}
+          <stop offset="100%" stopColor="#8A6A4B" /> {/* Shadow */}
+        </radialGradient>
+        
+        {/* Shadow overlay to give volume */}
+        <radialGradient id="planetShadow" cx="50%" cy="0%" r="90%">
+             <stop offset="50%" stopColor="transparent" stopOpacity="0" />
+             <stop offset="100%" stopColor="#4A3B2A" stopOpacity="0.6" />
+        </radialGradient>
+
+        {/* Edge fade gradient for transparency effect */}
+        <radialGradient id="planetEdgeFade" cx="50%" cy="50%" r="70%">
+          <stop offset="0%" stopColor="white" stopOpacity="1" />
+          <stop offset="60%" stopColor="white" stopOpacity="0.8" />
+          <stop offset="85%" stopColor="white" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="white" stopOpacity="0" />
+        </radialGradient>
+
+        {/* Mask to apply the fade effect */}
+        <mask id="planetFadeMask">
+          <path
+            d="M 60 280 A 160 140 0 0 1 340 280 L 340 340 L 60 340 Z"
+            fill="url(#planetEdgeFade)"
+          />
+        </mask>
+
+      </defs>
+
+      {/* --- Planet Group --- */}
+      <g transform="translate(0, 0)">
+        {/* Main Planet Body */}
+        <path
+          d="M 60 280 A 160 140 0 0 1 340 280 L 340 340 L 60 340 Z"
+          fill="url(#planetGradient)"
+          mask="url(#planetFadeMask)"
+          opacity="0.75"
+        />
+        
+        {/* Texture Overlay (Stippling/Engraving) */}
+        <path
+          d="M 60 280 A 160 140 0 0 1 340 280 L 340 340 L 60 340 Z"
+          fill="#5C4033"
+          filter="url(#engraving)"
+          opacity="0.3"
+          mask="url(#planetFadeMask)"
+        />
+
+        {/* Inner Shadow for Volume */}
+         <path
+          d="M 60 280 A 160 140 0 0 1 340 280 L 340 340 L 60 340 Z"
+          fill="url(#planetShadow)"
+          style={{ mixBlendMode: 'multiply' }}
+          mask="url(#planetFadeMask)"
+        />
+        
+        {/* Outline/Stroke */}
+        <path
+          d="M 60 280 A 160 140 0 0 1 340 280"
+          fill="none"
+          stroke="#5C4033"
+          strokeWidth="1"
+          strokeLinecap="round"
+          strokeDasharray="6 3"
+          opacity="0.3"
+          mask="url(#planetFadeMask)"
+        />
+      </g>
+
+      {/* --- Stars Layer --- */}
+      <g id="stars-layer" fill="none" stroke="#7A5A3E" strokeLinecap="round">
+        {STARS.map((star, idx) => {
+          const opacity = star.opacity ?? 0.8
+          if (star.variant === 'dot') {
+            return (
+              <circle
+                key={idx}
+                cx={star.x}
+                cy={star.y}
+                r={star.size / 2}
+                fill="#7A5A3E"
+                fillOpacity={opacity}
+                className="star-dot-animate"
+                style={{ animationDelay: `${idx * 0.1}s` }}
+              />
+            )
+          }
+
+          const scale = star.size / 8
+          const rotate = star.rotate ?? 0
+          return (
+            <g
+              key={idx}
+              transform={`translate(${star.x} ${star.y}) rotate(${rotate}) scale(${scale})`}
+              strokeOpacity={opacity}
+              strokeWidth={1.5}
+              className="star-flare-animate"
+              style={{ animationDelay: `${idx * 0.15}s` }}
+            >
+              {/* 4-point star shape */}
+              <path d="M0 -10 Q 0 0 10 0 Q 0 0 0 10 Q 0 0 -10 0 Q 0 0 0 -10" fill="#7A5A3E" fillOpacity={opacity} stroke="none" />
+            </g>
+          )
+        })}
+      </g>
+    </svg>
+  )
 }
 
 const StarrySky: React.FC = () => {
-  const stars = useMemo(() => {
-    const starCount = 28
-    const generated: Star[] = []
-
-    for (let i = 0; i < starCount; i++) {
-      generated.push({
-        id: i,
-        x: Math.random() * 100, // percentage
-        y: 65 + Math.random() * 35, // only in bottom 35% (65-100%)
-        size: 1 + Math.random() * 2, // 1-3px
-        delay: Math.random() * 6, // 0-6s
-        duration: 3 + Math.random() * 3, // 3-6s
-        isGold: Math.random() > 0.2, // 80% gold, 20% white
-      })
-    }
-
-    return generated
-  }, [])
-
   return (
     <>
-      {/* Gradient Background - Warm Golden Depth */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `linear-gradient(
             to bottom,
             #F7F2ED 0%,
-            #F7F2ED 45%,
-            #EFE4D8 58%,
-            #E8D5C9 68%,
-            #D4B591 76%,
-            #C4A583 82%,
-            #8B6F47 88%,
-            #5A4A35 93%,
-            #3A2F23 97%,
-            #1F1812 100%
+            #F5EFE9 40%,
+            #EADBC8 100%
           )`,
         }}
       />
-
-      {/* Stars */}
-      {stars.map((star) => (
-        <div
-          key={star.id}
-          className={`star-point ${star.isGold ? 'star-gold' : 'star-white'}`}
-          style={{
-            left: `${star.x}%`,
-            top: `${star.y}%`,
-            width: `${star.size}px`,
-            height: `${star.size}px`,
-            animation: `starTwinkle ${star.duration}s ease-in-out ${star.delay}s infinite, starFloat ${star.duration + 2}s ease-in-out ${star.delay}s infinite`,
-          }}
-        />
-      ))}
-
-      {/* Bottom Planet */}
-      <div
-        className="absolute bottom-0 left-1/2 pointer-events-none"
-        style={{
-          width: 'min(70vw, 450px)',
-          height: 'min(35vw, 225px)',
-          transform: 'translate(-50%, 0)',
-          animation: 'planetBreathe 12s ease-in-out infinite',
-        }}
-      >
-        {/* Planet Circle - Amber/Bronze Tone */}
-        <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2"
-          style={{
-            width: '100%',
-            height: '200%',
-            borderRadius: '50%',
-            background: `radial-gradient(
-              circle at center top,
-              rgba(139, 111, 71, 0.85) 0%,
-              rgba(90, 74, 53, 0.7) 30%,
-              rgba(58, 47, 35, 0.5) 60%,
-              transparent 100%
-            )`,
-          }}
-        />
-
-        {/* Warm Gold Glow */}
-        <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2"
-          style={{
-            width: '110%',
-            height: '220%',
-            borderRadius: '50%',
-            background: `radial-gradient(
-              circle at center top,
-              rgba(212, 163, 115, 0.35) 0%,
-              rgba(212, 163, 115, 0.15) 40%,
-              transparent 70%
-            )`,
-            filter: 'blur(20px)',
-          }}
-        />
-
-        {/* Noise Texture */}
-        <div
-          className="absolute inset-0"
-          style={{
-            opacity: 0.15,
-            mixBlendMode: 'overlay',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          }}
-        />
-      </div>
+      <PlanetScene />
     </>
   )
 }

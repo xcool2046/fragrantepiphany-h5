@@ -51,6 +51,11 @@ const Result: React.FC = () => {
   // Hardcoded price for simplified UI
   const priceLabel = "$5.00"
 
+  // Ensure returning to this page always starts at the top (e.g., back from Perfume)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [])
+
   useEffect(() => {
     // Robust Sequential Reveal Animation
     // We use a mounted flag to prevent state updates on unmounted component
@@ -67,15 +72,15 @@ const Result: React.FC = () => {
         // 1. Past Card (Index 0)
         setRevealed(() => [true, false, false]);
         
-        // Wait 1.2s
-        await new Promise(r => setTimeout(r, 1200));
+        // Wait 0.6s
+        await new Promise(r => setTimeout(r, 600));
         if (!isMounted) return;
-        
+
         // 2. Present Card (Index 1)
         setRevealed(() => [true, true, false]);
-        
-        // Wait 1.2s
-        await new Promise(r => setTimeout(r, 1200));
+
+        // Wait 0.6s
+        await new Promise(r => setTimeout(r, 600));
         if (!isMounted) return;
         
         // 3. Future Card (Index 2)
@@ -241,7 +246,7 @@ const Result: React.FC = () => {
                         animate={{
                             rotateY: revealed[index] ? 180 : 0,
                         }}
-                        transition={{ duration: 1.5, ease: "easeInOut", delay: index * 0.8 }}
+                        transition={{ duration: 0.8, ease: "easeInOut", delay: index * 0.8 }}
                         style={{ transformStyle: 'preserve-3d' }}
                     >
                         {/* Back of Card */}
@@ -313,80 +318,62 @@ const Result: React.FC = () => {
                   </div>
               </div>
 
-              {/* Paywall Section */}
+          {/* Premium Container: CTA + Paid Content (统一样式，避免割裂) */}
+          <div className="relative mt-6">
+            <div className="relative overflow-hidden rounded-2xl border border-[#D4A373]/25 bg-[#F7F2ED]/75 shadow-[0_22px_60px_-34px_rgba(43,31,22,0.5)] px-5 py-9 md:px-7 md:py-11 transition-all duration-700">
               {!isUnlocked && (
-                  <div className="py-8 flex flex-col items-center gap-6 z-30">
-                      <button
-                         onClick={handleUnlock}
-                         disabled={unlocking}
-                         className="group relative px-10 py-4 rounded-full bg-[#2B1F16] text-[#E8DCC5] font-serif tracking-widest text-[11px] uppercase shadow-lg transition-all duration-500 hover:shadow-xl whitespace-nowrap"
-                     >
-                         <span className="relative z-10">
-                            {unlocking ? t('draw.loading') + '...' : t('result.unlock', 'Unlock Full Reading')}
-                         </span>
-                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-120%] group-hover:translate-x-[120%] transition-transform duration-1000 ease-in-out rounded-full" />
-                     </button>
-
-                      <div className="flex flex-col items-center gap-2">
-                          <span className="font-serif text-[10px] tracking-widest text-[#4A3B32]/60 uppercase">
-                              {t('result.fullReading', 'Full Reading Access')}
-                          </span>
-                          <span className="font-serif text-sm text-[#D4A373]">{priceLabel}</span>
-                         {orderError && <span className="text-xs text-red-800/80 animate-pulse font-serif">{orderError}</span>}
-                     </div>
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-[#F1E6D4]/88 via-[#E8DCC5]/78 to-[#E8DCC5]/86 backdrop-blur-md z-20 pointer-events-none" />
               )}
 
-              {/* Paid Content Section (PRESENT & FUTURE) */}
-              <div className={`transition-all duration-1000 relative ${isUnlocked ? 'opacity-100' : 'opacity-100'}`}>
-                  {/* Blur Overlay for Locked State */}
-                  {!isUnlocked && (
-                      <div className="absolute inset-0 backdrop-blur-md bg-[#E8DCC5]/30 z-20 rounded-xl" style={{ pointerEvents: 'none' }} />
-                  )}
-
-                  <div className="text-[#3E3025] font-serif text-sm leading-8 text-left px-2">
-                      <div className="flex justify-center mb-6">
-                          <div className="w-16 h-[1px] bg-[#4A3B32]/20" />
-                      </div>
-                      <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-wider">PRESENT</h3>
-                      <p className="mb-8">
-                          The present moment holds infinite possibilities. What you seek is already within reach. Open your heart to receive the blessings that surround you now.
-                      </p>
+              <div className={`relative z-10 space-y-10 text-[#3E3025] font-serif text-sm leading-8 ${!isUnlocked ? 'filter blur-[3px]' : ''}`}>
+                <div className="flex justify-center mb-2 mt-2">
+                  <div className="w-16 h-[1px] bg-[#4A3B32]/15" />
+                </div>
+                <div className="space-y-8">
+                  <div>
+                    <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">PRESENT</h3>
+                    <p className="mb-0 text-[#3E3025]/90">
+                      The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.
+                    </p>
                   </div>
-
-                  <div className="text-[#3E3025] font-serif text-sm leading-8 text-left px-2">
-                      <div className="flex justify-center mb-6">
-                          <div className="w-16 h-[1px] bg-[#4A3B32]/20" />
-                      </div>
-                      <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-wider">FUTURE</h3>
-                      <p className="mb-8">
-                          The path ahead is illuminated by your inner light. Trust your intuition and take the next step with confidence. Your destiny awaits.
-                      </p>
+                  <div>
+                    <div className="flex justify-center mb-6">
+                      <div className="w-16 h-[1px] bg-[#4A3B32]/15" />
+                    </div>
+                    <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">FUTURE</h3>
+                    <p className="mb-0 text-[#3E3025]/90">
+                      Trust your intuition and take the next step with confidence. Your destiny awaits.
+                    </p>
                   </div>
-
-                  {/* Navigation to Perfume/Journey Page */}
-                  <motion.div
-                      className="mt-12 flex justify-center pb-12"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: isUnlocked ? 1 : 0 }}
-                      transition={{ delay: 0.5 }}
-                  >
-                     <button
-                       onClick={() => navigate('/journey/perfume')}
-                       className="px-8 py-3 rounded-full bg-[#D4A373] text-[#2B1F16] text-[11px] uppercase tracking-widest font-serif shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
-                     >
-                       {t('journey.cta', 'Discover Your Fragrance')}
-                     </button>
-                  </motion.div>
-                  
-                  {/* Clickable area for bottom screen navigation */}
-                  {isUnlocked && (
-                      <div 
-                        className="absolute bottom-0 left-0 right-0 h-32 z-10 cursor-pointer"
-                        onClick={() => navigate('/journey/perfume')}
-                      />
-                  )}
+                </div>
               </div>
+
+              <div className="relative z-30 mt-10 flex flex-col items-center gap-3">
+                <button
+                  onClick={isUnlocked ? () => navigate('/perfume', { state: { cardIds: normalizedCardIds } }) : handleUnlock}
+                  disabled={unlocking}
+                  className={`group relative px-10 py-4 rounded-full font-serif tracking-widest text-[11px] uppercase transition-all duration-500 whitespace-nowrap ${isUnlocked ? 'bg-transparent text-[#2B1F16] border border-[#D4A373]/70 shadow-[0_10px_24px_-14px_rgba(43,31,22,0.35)] hover:-translate-y-0.5' : 'bg-[#2B1F16] text-[#E8DCC5] shadow-lg hover:shadow-xl hover:-translate-y-0.5'}`}
+                >
+                  <span className="relative z-10">
+                    {isUnlocked ? t('journey.cta', 'Discover Your Fragrance') : unlocking ? t('draw.loading') + '...' : t('result.unlock', 'Unlock Full Reading')}
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent translate-x-[-120%] group-hover:translate-x-[120%] transition-transform duration-1000 ease-in-out rounded-full" />
+                </button>
+
+                <div className="flex flex-col items-center gap-1 text-center">
+                  {!isUnlocked && <span className="font-serif text-sm text-[#D4A373]">{priceLabel}</span>}
+                  {orderError && <span className="text-xs text-red-800/80 animate-pulse font-serif">{orderError}</span>}
+                </div>
+              </div>
+
+              {isUnlocked && (
+                <div
+                  className="absolute inset-0 z-40"
+                  style={{ pointerEvents: 'none' }}
+                />
+              )}
+            </div>
+          </div>
 
           </motion.div>
       </div>

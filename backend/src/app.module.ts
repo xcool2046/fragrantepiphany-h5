@@ -10,6 +10,7 @@ import { User } from './entities/user.entity';
 import { Question } from './entities/question.entity';
 import { Card } from './entities/card.entity';
 import { Rule } from './entities/rule.entity';
+import { Perfume } from './entities/perfume.entity';
 import { PayModule } from './pay/pay.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthController } from './auth/auth.controller';
@@ -18,6 +19,7 @@ import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 import { ImportModule } from './imports/import.module';
 import { AdminModule } from './admin/admin.module';
 import { ContentModule } from './content/content.module';
+import { PerfumeModule } from './perfume/perfume.module';
 
 @Module({
   imports: [
@@ -25,7 +27,7 @@ import { ContentModule } from './content/content.module';
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         ...ormconfig.options,
-        entities: [Interpretation, Order, User, Question, Card, Rule],
+        entities: [Interpretation, Order, User, Question, Card, Rule, Perfume],
       }),
     }),
     PayModule,
@@ -35,6 +37,7 @@ import { ContentModule } from './content/content.module';
     ImportModule,
     AdminModule,
     ContentModule,
+    PerfumeModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService],
