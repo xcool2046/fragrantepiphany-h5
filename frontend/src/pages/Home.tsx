@@ -3,12 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import LanguageToggle from '../components/LanguageToggle'
-import StarrySky from '../components/StarrySky'
 import homeBgDecorationWebp from '../assets/home-bg-decoration.webp'
 import homeBgDecorationJpg from '../assets/home-bg-decoration.jpg'
 import NoiseOverlay from '../components/NoiseOverlay'
-import MysticalOrb from '../components/MysticalOrb'
-import Sparkles from '../components/Sparkles'
+import ZodiacWheel from '../components/ZodiacWheel'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -26,18 +24,16 @@ const Home: React.FC = () => {
 
       {/* --- Background Layer: Starry Sky & Atmosphere --- */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <StarrySky />
-        <Sparkles />
-        
+
         {/* Subtle Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(43,31,22,0.15)_100%)] pointer-events-none" />
 
-        {/* Goddess Image: Faded into top area */}
+        {/* Goddess Image: Faded into upper-middle area */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.2 }}
           transition={{ duration: 2, ease: "easeOut" }}
-          className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[140vw] h-[60vh] md:w-[100vh] md:h-[60vh] mix-blend-multiply pointer-events-none"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[140vw] h-[60vh] md:w-[100vh] md:h-[60vh] mix-blend-multiply pointer-events-none"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_closest-side,transparent_25%,#F7F2ED_85%)] z-10" />
           <picture>
@@ -51,16 +47,10 @@ const Home: React.FC = () => {
             />
           </picture>
         </motion.div>
-        
-        {/* Bottom Mystical Orb / Horizon */}
-        {/* Adjusted to be purely atmospheric overlay on top of the existing planet graphic */}
-        <div className="absolute bottom-[5%] left-1/2 -translate-x-1/2 scale-110 opacity-80 z-10 pointer-events-none mix-blend-screen">
-          <MysticalOrb />
-        </div>
       </div>
 
       {/* --- Content Layer: Centered Layout --- */}
-      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-center text-center pt-8 md:pt-16">
+      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-start text-center pt-16 md:pt-20">
 
         {/* Title Group with Fixed Height Container */}
         <div className="mb-12 md:mb-16 flex flex-col items-center relative">
@@ -122,7 +112,7 @@ const Home: React.FC = () => {
         </div>
 
         {/* Interaction Group */}
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-4">
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -155,6 +145,9 @@ const Home: React.FC = () => {
           </motion.button>
         </div>
       </div>
+
+      {/* --- Zodiac Wheel: Bottom Decoration --- */}
+      <ZodiacWheel />
     </div>
   )
 }
