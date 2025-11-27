@@ -111,11 +111,11 @@ export default function Questions() {
         </div>
         <div className="mt-4 grid gap-3">
           {loading && <div className="text-sm text-gray-500">加载中...</div>}
-          {!loading && items.map((q) => (
+          {!loading && items.map((q, index) => (
             <div key={q.id} className="rounded-2xl border border-[#D4A373]/30 bg-white/70 backdrop-blur shadow-sm p-4 md:p-5 flex flex-col md:flex-row md:items-center md:justify-between transition hover:shadow-lg">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 text-lg font-serif text-[#2B1F16]">
-                  <span className="text-sm text-[#D4A373]">Q{q.id}</span>
+                  <span className="text-sm text-[#D4A373]">Q{index + 1}</span>
                   <span>{q.title_en}</span>
                   {q.title_zh && <span className="text-sm text-[#6B5542]">/ {q.title_zh}</span>}
                   {!q.active && <span className="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-600">禁用</span>}

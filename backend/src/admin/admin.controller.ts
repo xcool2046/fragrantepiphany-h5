@@ -19,7 +19,6 @@ import { Order } from '../entities/order.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { Question } from '../entities/question.entity';
 import { Card } from '../entities/card.entity';
-import { Rule } from '../entities/rule.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -34,11 +33,6 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
-  Min,
-  ValidateIf,
-  ArrayNotEmpty,
-  ArrayMinSize,
-  ArrayMaxSize,
 } from 'class-validator';
 
 class CreateQuestionDto {
@@ -98,41 +92,6 @@ class CreateCardDto {
 }
 
 class UpdateCardDto extends CreateCardDto {}
-
-class CreateRuleDto {
-  @IsInt()
-  @Min(1)
-  question_id!: number;
-
-  @ArrayNotEmpty()
-  @ArrayMinSize(3)
-  @ArrayMaxSize(3)
-  card_codes!: string[];
-
-  @IsOptional()
-  @IsInt()
-  priority?: number;
-
-  @IsOptional()
-  summary_free?: { en?: string; zh?: string } | null;
-
-  @IsOptional()
-  interpretation_full?: { en?: string; zh?: string } | null;
-
-  @IsOptional()
-  recommendations?: Array<{
-    title_en?: string;
-    title_zh?: string;
-    desc_en?: string;
-    desc_zh?: string;
-  }> | null;
-
-  @IsOptional()
-  @IsBoolean()
-  enabled?: boolean;
-}
-
-class UpdateRuleDto extends CreateRuleDto {}
 // Feature flags default to off; enable via env when customer付费后再开放
 const ORDERS_ENABLED = process.env.FEATURE_ADMIN_ORDERS === 'true';
 const PRICING_ENABLED = process.env.FEATURE_ADMIN_PRICING === 'true';
@@ -147,8 +106,6 @@ export class AdminController {
     private questionRepo: Repository<Question>,
     @InjectRepository(Card)
     private cardRepo: Repository<Card>,
-    @InjectRepository(Rule)
-    private ruleRepo: Repository<Rule>,
   ) {}
 
   @Get('orders')
@@ -388,110 +345,5 @@ export class AdminController {
       });
     });
     csvStream.end();
-  }
-
-  // ========== Rules ==========
-  @Get('rules')
-  async listRules(
-    @Query('question_id') questionId?: string,
-    @Query('card_code') cardCode?: string,
-    @Query('page') page = '1',
-    @Query('pageSize') pageSize = '20',
-    @Query('keyword') keyword?: string,
-    @Query('onlyEnabled') onlyEnabled?: string,
-  ) {
-    const take = Math.min(200, Math.max(1, Number(pageSize) || 20));
-    const skip = (Math.max(1, Number(page) || 1) - 1) * take;
-    const qb = this.ruleRepo
-      .createQueryBuilder('rule')
-      .leftJoinAndSelect('rule.question', 'question')
-      .orderBy('rule.priority', 'ASC')
-      .addOrderBy('rule.id', 'ASC')
-      .skip(skip)
-      .take(take);
-    if (questionId)
-      qb.andWhere('rule.question_id = :qid', { qid: Number(questionId) });
-    if (cardCode)
-      qb.andWhere(':code = ANY(rule.card_codes)', { code: cardCode });
-    if (keyword) {
-      const kw = `%${keyword.trim()}%`;
-      qb.andWhere(
-        '(array_to_string(rule.card_codes, ",") ILIKE :kw OR rule.summary_free::text ILIKE :kw OR rule.interpretation_full::text ILIKE :kw)',
-        { kw },
-      );
-    }
-    if (onlyEnabled === 'true') {
-      qb.andWhere('rule.enabled = true');
-    }
-    const [items, total] = await qb.getManyAndCount();
-    return { items, total, page: Number(page), pageSize: take };
-  }
-
-  private normalizeCodes(codes: string[]) {
-    if (!Array.isArray(codes) || codes.length !== 3)
-      throw new BadRequestException('card_codes must be an array of 3 codes');
-    const cleaned = codes.map((c) => (c || '').trim()).filter(Boolean);
-    if (cleaned.length !== 3)
-      throw new BadRequestException(
-        'card_codes must contain 3 non-empty codes',
-      );
-    return [...cleaned].sort();
-  }
-
-  @Post('rules')
-  async createRule(@Body() body: CreateRuleDto) {
-    if (!body.question_id)
-      throw new BadRequestException('question_id is required');
-    const codes = this.normalizeCodes(body.card_codes || []);
-    const payload = this.ruleRepo.create({
-      question_id: Number(body.question_id),
-      card_codes: codes,
-      priority: body.priority ?? 100,
-      summary_free: body.summary_free ?? null,
-      interpretation_full: body.interpretation_full ?? null,
-      recommendations: body.recommendations ?? null,
-      enabled: body.enabled ?? true,
-    });
-    try {
-      return await this.ruleRepo.save(payload);
-    } catch (e) {
-      if (e.code === '23505')
-        throw new BadRequestException(
-          'Rule already exists for this question + card combo',
-        );
-      throw e;
-    }
-  }
-
-  @Patch('rules/:id')
-  async updateRule(@Param('id') id: string, @Body() body: UpdateRuleDto) {
-    const rule = await this.ruleRepo.findOne({ where: { id: Number(id) } });
-    if (!rule) throw new NotFoundException('Rule not found');
-    const codes = body.card_codes
-      ? this.normalizeCodes(body.card_codes)
-      : rule.card_codes;
-    Object.assign(rule, {
-      card_codes: codes,
-      priority: body.priority ?? rule.priority,
-      summary_free: body.summary_free ?? rule.summary_free,
-      interpretation_full: body.interpretation_full ?? rule.interpretation_full,
-      recommendations: body.recommendations ?? rule.recommendations,
-      enabled: body.enabled ?? rule.enabled,
-    });
-    try {
-      return await this.ruleRepo.save(rule);
-    } catch (e) {
-      if (e.code === '23505')
-        throw new BadRequestException(
-          'Rule already exists for this question + card combo',
-        );
-      throw e;
-    }
-  }
-
-  @Delete('rules/:id')
-  async deleteRule(@Param('id') id: string) {
-    await this.ruleRepo.delete({ id: Number(id) });
-    return { ok: true };
   }
 }

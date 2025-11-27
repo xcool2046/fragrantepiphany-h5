@@ -3,15 +3,20 @@
 > A Tarot reading experience with perfume recommendations.
 
 ## 📚 文档索引
-- **需求与范围**：`docs/requirements.md`
-- **开发指南**：`docs/dev-guide.md`
-- **部署指南**：`docs/deploy-guide.md`
-- **页面内容要点**：`docs/page-content.md`
-- **UI 规范**：`docs/ui.md`
-- **品牌基调**：`docs/brand.md`
-- **后台方案**：`docs/admin-plan.md`
-- **开发笔记 / 预发布检查**：`docs/development_notes.md`
-- **历史方案归档**：`docs/archive/`
+- **快速入门**：
+  - [开发指南](docs/00-guide/development.md)
+  - [部署指南](docs/00-guide/deployment.md)
+  - [项目路线图](docs/00-guide/roadmap.md)
+- **设计规范**：
+  - [数据库 Schema](docs/01-design/database-schema.md)
+  - [UI 规范](docs/01-design/ui-spec.md)
+  - [品牌指南](docs/01-design/brand-guidelines.md)
+  - [文案内容](docs/01-design/content-copy.md)
+- **功能文档**：
+  - [产品需求 (PRD)](docs/02-features/product-requirements.md)
+  - [香水旅程](docs/02-features/perfume-journey.md)
+  - [后台管理](docs/02-features/admin-panel.md)
+- **归档**：[历史文档](docs/99-archive/)
 
 ## 🚀 快速开始（Docker Compose）
 1. 安装 Docker / Docker Compose（v2 以上）。

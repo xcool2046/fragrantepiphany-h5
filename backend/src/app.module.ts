@@ -9,7 +9,6 @@ import { Order } from './entities/order.entity';
 import { User } from './entities/user.entity';
 import { Question } from './entities/question.entity';
 import { Card } from './entities/card.entity';
-import { Rule } from './entities/rule.entity';
 import { Perfume } from './entities/perfume.entity';
 import { PayModule } from './pay/pay.module';
 import { AuthModule } from './auth/auth.module';
@@ -27,7 +26,7 @@ import { PerfumeModule } from './perfume/perfume.module';
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         ...ormconfig.options,
-        entities: [Interpretation, Order, User, Question, Card, Rule, Perfume],
+        entities: [Interpretation, Order, User, Question, Card, Perfume],
       }),
     }),
     PayModule,

@@ -75,8 +75,23 @@ export async function fetchInterpretation(params: { card_name: string; category:
   return res.data
 }
 
-export async function submitQuestionnaire(body: { q1: string; q2: string; q3: string; q4: string; q5: string; q6: string }) {
+export async function submitQuestionnaire(body: Record<string, string>) {
   const res = await api.post('/api/questionnaire', body)
+  return res.data
+}
+
+export interface Question {
+  id: number
+  title_en: string
+  title_zh: string
+  options_en: string[]
+  options_zh: string[]
+  active: boolean
+  weight: number
+}
+
+export async function fetchQuestions() {
+  const res = await api.get<Question[]>('/api/questionnaire/questions')
   return res.data
 }
 
@@ -128,17 +143,10 @@ export type PerfumeChapter = {
 }
 
 export async function getPerfumeChapters(cardIndices: number[]) {
-  try {
-    const res = await api.get<{ chapters: PerfumeChapter[] }>('/api/perfume/chapters', {
-      params: { cardIds: cardIndices.join(',') }
-    })
-    return res.data.chapters
-  } catch (err) {
-    // Fallback to mock data during development
-    console.warn('Using mock perfume data:', err)
-    const { mockPerfumeChapters } = await import('./data/perfumeData')
-    return mockPerfumeChapters
-  }
+  const res = await api.get<{ chapters: PerfumeChapter[] }>('/api/perfume/chapters', {
+    params: { cardIds: cardIndices.join(',') }
+  })
+  return res.data.chapters
 }
 
 export default api

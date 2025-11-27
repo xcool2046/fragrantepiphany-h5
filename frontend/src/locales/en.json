@@ -72,7 +72,20 @@
   "result": {
     "title": "The Revelation",
     "cardLabel": "The Card",
-    "timeframes": ["The Past", "The Present", "The Future"],
+    "timeframes": {
+      "past": {
+        "label": "The Past",
+        "description": "You have been carrying a heavy burden, but it has made you stronger. Your journey has led you here. Embrace the wisdom of the cards as they reveal the path ahead. Trust in their guidance, for they speak the language of your soul's deepest knowing."
+      },
+      "present": {
+        "label": "The Present",
+        "description": "A moment of clarity is approaching. The present moment holds infinite possibilities. Open your heart to receive the blessings around you now."
+      },
+      "future": {
+        "label": "The Future",
+        "description": "New opportunities will bloom if you are willing to let go of the old. Trust your intuition and take the next step with confidence. Your destiny awaits."
+      }
+    },
     "unlock": "Unlock Full Reading",
     "locked": {
       "title": "THE REVELATION",

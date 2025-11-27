@@ -12,18 +12,14 @@ import { AuthGuard } from '@nestjs/passport';
 import { DrawService } from './draw.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, In } from 'typeorm';
-import { Rule } from '../entities/rule.entity';
 import { Card } from '../entities/card.entity';
-import { Question } from '../entities/question.entity';
 
 @Controller('api/interp')
 export class InterpretationController {
   constructor(
     private readonly service: InterpretationService,
     private readonly drawService: DrawService,
-    @InjectRepository(Rule) private ruleRepo: Repository<Rule>,
     @InjectRepository(Card) private cardRepo: Repository<Card>,
-    @InjectRepository(Question) private questionRepo: Repository<Question>,
   ) {}
 
   @Get()
@@ -109,24 +105,63 @@ export class InterpretationController {
       .map((idx) => String((idx % 78) + 1).padStart(2, '0'))
       .sort();
 
-    // 2) 取当前 question 列表（按 weight 升序、id 升序），将 answers 顺序映射到 question_id
-    const questions = await this.questionRepo.find({
-      order: { weight: 'ASC', id: 'ASC' },
+    // 2) 用卡牌默认解读拼接合成结果
+    const cards = await this.cardRepo.find({
+      where: { code: In(cardCodes) },
     });
-    const answerKeys = body.answers ? Object.keys(body.answers).sort() : [];
-    const questionId = questions[0]?.id || null;
-    if (!questionId) return { rule: null };
+    const sortedCards = cardCodes.map((code) =>
+      cards.find((c) => c.code === code),
+    );
+    const positions = ['Past', 'Present', 'Future'];
+    const interpretations = await Promise.all(
+      sortedCards.map((card, i) =>
+        card
+          ? this.service.findOne({
+              card_name: card.name_en,
+              position: positions[i],
+              language: 'en',
+            })
+          : null,
+      ),
+    );
 
-    // 3) 先匹配指定 question_id + card_codes 完全匹配，按 priority/id 排序
-    const rule = await this.ruleRepo
-      .createQueryBuilder('r')
-      .where('r.question_id = :qid', { qid: questionId })
-      .andWhere('r.card_codes = :codes', { codes: cardCodes })
-      .andWhere('r.enabled = true')
-      .orderBy('r.priority', 'ASC')
-      .addOrderBy('r.id', 'ASC')
-      .getOne();
+    if (!interpretations.some((i) => i !== null)) {
+      return { rule: null };
+    }
 
-    return { rule };
+    const summary =
+      interpretations[1]?.summary ||
+      interpretations[0]?.summary ||
+      interpretations[2]?.summary ||
+      '';
+    const interpretationText = interpretations
+      .map((i, idx) => {
+        if (!i?.interpretation) return '';
+        const label = positions[idx];
+        return `${label}: ${i.interpretation}`;
+      })
+      .filter(Boolean)
+      .join('\n\n');
+
+    const syntheticRule = {
+      id: 0,
+      question_id: 0,
+      card_codes: cardCodes,
+      priority: 999,
+      enabled: true,
+      summary_free: {
+        en: summary,
+        zh: summary,
+      },
+      interpretation_full: {
+        en: interpretationText,
+        zh: interpretationText,
+      },
+      recommendations: null,
+      created_at: new Date(),
+      updated_at: new Date(),
+    };
+
+    return { rule: syntheticRule };
   }
 }

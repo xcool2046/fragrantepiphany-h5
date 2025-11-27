@@ -22,7 +22,7 @@ const ZodiacWheel: React.FC = () => {
             delay: 4.5
           }
         }}
-        className="w-[85vw] h-[85vw] md:w-[700px] md:h-[700px] mix-blend-multiply"
+        className="w-[120vw] h-[120vw] md:w-[900px] md:h-[900px] mix-blend-multiply"
         style={{
           willChange: 'transform'
         }}

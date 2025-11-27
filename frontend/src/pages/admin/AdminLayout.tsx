@@ -17,7 +17,6 @@ export default function AdminLayout() {
       title: '内容管理',
       items: [
         { label: 'Interpretations', path: '/admin/interpretations', icon: '🔮' },
-        { label: 'Rules', path: '/admin/rules', icon: '✨' },
         { label: 'Questions', path: '/admin/questions', icon: '❓' },
       ]
     },

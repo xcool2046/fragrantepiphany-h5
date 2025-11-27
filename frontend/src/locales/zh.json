@@ -72,7 +72,20 @@
   "result": {
     "title": "启示",
     "cardLabel": "牌面",
-    "timeframes": ["过去", "现在", "未来"],
+    "timeframes": {
+      "past": {
+        "label": "过去",
+        "description": "你一直背负着沉重的负担，但这让你变得更加坚强。拥抱卡牌揭示的智慧，相信它们的指引，因为它们诉说着你灵魂深处的语言。"
+      },
+      "present": {
+        "label": "现在",
+        "description": "清晰的时刻即将到来。当下蕴含着无限的可能性，敞开心扉去接收周围的祝福。"
+      },
+      "future": {
+        "label": "未来",
+        "description": "如果你愿意放下过去，新的机会将会绽放。相信你的直觉，带着自信迈出下一步，你的命运在等待。"
+      }
+    },
     "unlock": "解锁完整解读 (¥15.00)",
     "locked": {
       "title": "THE REVELATION",

@@ -21,7 +21,6 @@ const AdminLayout = React.lazy(() => import('./pages/admin/AdminLayout'))
 const Interpretations = React.lazy(() => import('./pages/admin/Interpretations'))
 const Questions = React.lazy(() => import('./pages/admin/Questions'))
 const Cards = React.lazy(() => import('./pages/admin/Cards'))
-const Rules = React.lazy(() => import('./pages/admin/Rules'))
 
 // Global scroll manager to avoid returning to a page at the previous offset (e.g., back from Perfume to Result)
 const ScrollManager: React.FC = () => {
@@ -66,7 +65,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <Route path="interpretations" element={<Interpretations />} />
             <Route path="questions" element={<Questions />} />
             <Route path="cards" element={<Cards />} />
-            <Route path="rules" element={<Rules />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

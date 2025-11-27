@@ -1,0 +1,2018 @@
+[
+  {
+    "card_name": "愚者",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Jo",
+    "product_name": "Jo Malone Red Roses Cologne",
+    "tags": [
+      "新鮮紅玫瑰、檸檬、薄荷"
+    ],
+    "description": "愚者的純真開啟新感情旅程，清新玫瑰為初識或重修舊好帶來純粹感動",
+    "notes_top": "新鮮紅玫瑰、檸檬、薄荷",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "愚者",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Capitale",
+    "tags": [
+      "胡椒玫瑰、廣藿香、木質調"
+    ],
+    "description": "愚者的自由靈魂在溫暖木質中找到歸屬，適合建立安穩的感情基礎",
+    "notes_top": "胡椒玫瑰、廣藿香、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "愚者",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose Noir",
+    "tags": [
+      "黑玫瑰、咖啡、琥珀"
+    ],
+    "description": "愚者的冒險精神加入咖啡暖意，為感情注入深度對話的親密時刻",
+    "notes_top": "黑玫瑰、咖啡、琥珀",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "愚者",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、潔淨麝香"
+    ],
+    "description": "愚者的真誠透過皂感淨化，讓感情回歸簡單純粹的本質",
+    "notes_top": "柑橘玫瑰、潔淨麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "魔術師",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Penhaligon's",
+    "product_name": "Penhaligon's The Coveted Duchess Rose",
+    "tags": [
+      "微酸柑橘玫瑰、木質基底"
+    ],
+    "description": "魔術師的創造力點燃感情火花，新鮮玫瑰園見證愛的魔術時刻",
+    "notes_top": "微酸柑橘玫瑰、木質基底",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "魔術師",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "魔術師的溝通天賦在木質溫暖中流暢，促進感情中的真誠對話",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "魔術師",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Cafe Rose",
+    "tags": [
+      "黑暗玫瑰、咖啡、廣藿香"
+    ],
+    "description": "魔術師的魅力在咖啡醇厚中發酵，創造難忘的浪漫約會氛圍",
+    "notes_top": "黑暗玫瑰、咖啡、廣藿香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "魔術師",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Hermès",
+    "product_name": "Hermès Hermessence Rose Ikebana",
+    "tags": [
+      "柑橘玫瑰、茶香、潔淨感"
+    ],
+    "description": "魔術師的清晰思維透過皂感淨化，幫助感情中的誤會澄清",
+    "notes_top": "柑橘玫瑰、茶香、潔淨感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "女祭司",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Rose EDT",
+    "tags": [
+      "荔枝玫瑰、清冷綠意"
+    ],
+    "description": "女祭司的直覺在清新玫瑰中甦醒，引領你感知感情中的真實心意",
+    "notes_top": "荔枝玫瑰、清冷綠意",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "女祭司",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Aesop",
+    "product_name": "Aesop Rozu",
+    "tags": [
+      "玫瑰、苔蘚、木質調"
+    ],
+    "description": "女祭司的內省智慧在木質懷抱中沉澱，適合需要深度理解的感情關係",
+    "notes_top": "玫瑰、苔蘚、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "女祭司",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Serge",
+    "product_name": "Serge Lutens Rose de Nuit",
+    "tags": [
+      "黑暗玫瑰、麝香、深沉感"
+    ],
+    "description": "女祭司的神秘感遇見咖啡深度，探索感情中未說出口的情感",
+    "notes_top": "黑暗玫瑰、麝香、深沉感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "女祭司",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Guerlain",
+    "product_name": "Guerlain Aqua Allegoria Rosa Rossa",
+    "tags": [
+      "清新玫瑰、荔枝、雪松"
+    ],
+    "description": "女祭司的清澈透過皂感明亮，照亮感情中的模糊地帶",
+    "notes_top": "清新玫瑰、荔枝、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "皇后",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose of No Man's Land",
+    "tags": [
+      "土耳其玫瑰、覆盆子、紙莎草"
+    ],
+    "description": "皇后的滋養之愛在豐盛玫瑰中綻放，溫暖每段需要呵護的感情",
+    "notes_top": "土耳其玫瑰、覆盆子、紙莎草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "皇后",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian Oud Satin Mood",
+    "tags": [
+      "玫瑰、沉香、香草"
+    ],
+    "description": "皇后的包容胸懷在木質溫暖中擴展，接納感情中的不完美",
+    "notes_top": "玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "皇后",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Noir de Noir",
+    "tags": [
+      "黑松露玫瑰、沉香、香草"
+    ],
+    "description": "皇后的性感魅力在咖啡醇厚中流淌，重燃感情中的激情與渴望",
+    "notes_top": "黑松露玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "皇后",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Chloé",
+    "product_name": "Chloé Rose Tangerine",
+    "tags": [
+      "柑橘玫瑰、白麝香"
+    ],
+    "description": "皇后的溫柔透過皂感輕盈化，讓付出與接受在感情中自然流動",
+    "notes_top": "柑橘玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "皇帝",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "皇帝的保護力量在玫瑰園中柔和化，為感情建立安全穩定的避風港",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "皇帝",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Bvlgari",
+    "product_name": "Bvlgari Le Gemme Imperiali",
+    "tags": [
+      "玫瑰、檀香、珍稀木材"
+    ],
+    "description": "皇帝的責任感在溫暖木質中深化，承諾成為感情中可靠的支柱",
+    "notes_top": "玫瑰、檀香、珍稀木材",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "皇帝",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Cartier",
+    "product_name": "Cartier L'Heure Défendue",
+    "tags": [
+      "玫瑰、胡椒、皮革"
+    ],
+    "description": "皇帝的領導力在咖啡館中親民化，引領感情走向共同目標",
+    "notes_top": "玫瑰、胡椒、皮革",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "皇帝",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "By",
+    "product_name": "By Kilian Roses on Ice",
+    "tags": [
+      "黃瓜玫瑰、杜松子"
+    ],
+    "description": "皇帝的威嚴透過皂感柔和化，讓保護不變成控制，權威中帶溫柔",
+    "notes_top": "黃瓜玫瑰、杜松子",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "教皇",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Serge",
+    "product_name": "Serge Lutens Sa Majeste La Rose",
+    "tags": [
+      "蜂蜜玫瑰、丁香、沒藥"
+    ],
+    "description": "教皇的祝福能量在神聖玫瑰中流動，為感情關係注入靈性連結",
+    "notes_top": "蜂蜜玫瑰、丁香、沒藥",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "教皇",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Maison",
+    "product_name": "Maison Christian Dior La Colle Noire",
+    "tags": [
+      "格拉斯玫瑰、鈴蘭、琥珀木質"
+    ],
+    "description": "教皇的傳統智慧在木質底蘊中傳承，守護感情中的承諾與誓言",
+    "notes_top": "格拉斯玫瑰、鈴蘭、琥珀木質",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "教皇",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Comme",
+    "product_name": "Comme des Garçons Incense Zagorsk",
+    "tags": [
+      "松樹玫瑰、焚香、冷冽感"
+    ],
+    "description": "教皇的儀式感在咖啡沉思中深化，讓日常感情也充滿神圣時刻",
+    "notes_top": "松樹玫瑰、焚香、冷冽感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "教皇",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Jo",
+    "product_name": "Jo Malone Wild Bluebell Cologne",
+    "tags": [
+      "藍風鈴、玫瑰、白麝香"
+    ],
+    "description": "教皇的教導透過皂感清新化，讓感情指導變成溫柔陪伴",
+    "notes_top": "藍風鈴、玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "戀人",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Frederic",
+    "product_name": "Frederic Malle Une Rose",
+    "tags": [
+      "波本酒香玫瑰、天鵝絨質感"
+    ],
+    "description": "戀人牌的真愛選擇在純粹玫瑰中見證，紀念每一個心動的瞬間",
+    "notes_top": "波本酒香玫瑰、天鵝絨質感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "戀人",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Capitale",
+    "tags": [
+      "胡椒玫瑰、廣藿香、木質調"
+    ],
+    "description": "戀人牌的和諧關係在木質懷抱中成長，平衡感情中的付出與接受",
+    "notes_top": "胡椒玫瑰、廣藿香、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "戀人",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose Noir",
+    "tags": [
+      "黑玫瑰、杜松子、琥珀"
+    ],
+    "description": "戀人牌的深度連結在咖啡暖意中醞釀，從喜歡到深愛的過渡時刻",
+    "notes_top": "黑玫瑰、杜松子、琥珀",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "戀人",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、潔淨麝香"
+    ],
+    "description": "戀人牌的純粹愛意透過皂感淨化，回歸愛情最初的模样",
+    "notes_top": "柑橘玫瑰、潔淨麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "戰車",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、紫羅蘭、雪松"
+    ],
+    "description": "戰車的前進動力在清新玫瑰中指引，為感情關係突破難關",
+    "notes_top": "柑橘玫瑰、紫羅蘭、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "戰車",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "戰車的目標導向在木質力量中堅定，帶領感情走向共同夢想",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "戰車",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Cafe Rose",
+    "tags": [
+      "黑暗玫瑰、咖啡、廣藿香"
+    ],
+    "description": "戰車的衝勁在咖啡熱情中加速，克服感情中的距離與挑戰",
+    "notes_top": "黑暗玫瑰、咖啡、廣藿香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "戰車",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "By",
+    "product_name": "By Kilian Roses on Ice",
+    "tags": [
+      "黃瓜玫瑰、杜松子"
+    ],
+    "description": "戰車的戰鬥力透過皂感淨化，將競爭轉為合作，衝突化為理解",
+    "notes_top": "黃瓜玫瑰、杜松子",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "力量",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose of No Man's Land",
+    "tags": [
+      "土耳其玫瑰、覆盆子、紙莎草"
+    ],
+    "description": "力量的溫柔勇氣在玫瑰園中滋長，以柔克剛地修復感情創傷",
+    "notes_top": "土耳其玫瑰、覆盆子、紙莎草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "力量",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian Oud Satin Mood",
+    "tags": [
+      "玫瑰、沉香、香草"
+    ],
+    "description": "力量的內在堅強在木質底蘊中扎根，耐心等待感情花開",
+    "notes_top": "玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "力量",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Noir de Noir",
+    "tags": [
+      "黑松露玫瑰、沉香、香草"
+    ],
+    "description": "力量的勇氣在咖啡深度中發酵，面對感情中的恐懼與不安",
+    "notes_top": "黑松露玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "力量",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Chloé",
+    "product_name": "Chloé Rose Tangerine",
+    "tags": [
+      "柑橘玫瑰、白麝香"
+    ],
+    "description": "力量的堅韌透過皂感輕盈化，溫柔堅持不變成強勢控制",
+    "notes_top": "柑橘玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "隱者",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Aesop",
+    "product_name": "Aesop Rozu",
+    "tags": [
+      "綠意玫瑰、苔蘚、煙燻感"
+    ],
+    "description": "隱者的內省智慧在寧靜玫瑰中沉澱，獨處是為了更好地相愛",
+    "notes_top": "綠意玫瑰、苔蘚、煙燻感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "隱者",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "隱者的孤獨探索在木質陪伴中溫暖，距離讓感情更清晰",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "隱者",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Serge",
+    "product_name": "Serge Lutens Rose de Nuit",
+    "tags": [
+      "黑暗玫瑰、麝香、動物感"
+    ],
+    "description": "隱者的深度思考在咖啡沉思中進行，理解感情的真實本質",
+    "notes_top": "黑暗玫瑰、麝香、動物感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "隱者",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Rose EDT",
+    "tags": [
+      "荔枝玫瑰、清冷綠意"
+    ],
+    "description": "隱者的獨處透過皂感明亮化，自我空間成為感情的充電時刻",
+    "notes_top": "荔枝玫瑰、清冷綠意",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "命運之輪",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Maison",
+    "product_name": "Maison Christian Dior La Colle Noire",
+    "tags": [
+      "格拉斯玫瑰、鈴蘭、木質調"
+    ],
+    "description": "命運之輪的緣分流轉在玫瑰園中見證，珍惜每個相遇的奇蹟",
+    "notes_top": "格拉斯玫瑰、鈴蘭、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "命運之輪",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Capitale",
+    "tags": [
+      "胡椒玫瑰、廣藿香、木質調"
+    ],
+    "description": "命運之輪的變化在木質穩定中從容，感情起伏都是成長禮物",
+    "notes_top": "胡椒玫瑰、廣藿香、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "命運之輪",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose Noir",
+    "tags": [
+      "黑玫瑰、咖啡、琥珀"
+    ],
+    "description": "命運之輪的轉折在咖啡醇厚中接受，每個離別都是為了更好重逢",
+    "notes_top": "黑玫瑰、咖啡、琥珀",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "命運之輪",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Guerlain",
+    "product_name": "Guerlain Aqua Allegoria Rosa Rossa",
+    "tags": [
+      "清新玫瑰、荔枝、雪松"
+    ],
+    "description": "命運之輪的循環透過皂感清晰化，看清感情中的因果與學習",
+    "notes_top": "清新玫瑰、荔枝、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "正義",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "By",
+    "product_name": "By Kilian Roses on Ice",
+    "tags": [
+      "黃瓜玫瑰、杜松子、檀香"
+    ],
+    "description": "正義的公平平衡在清澈玫瑰中實現，感情需要真誠與對等",
+    "notes_top": "黃瓜玫瑰、杜松子、檀香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "正義",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "正義的理性判斷在木質穩定中公正，為感情設立健康界線",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "正義",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Cafe Rose",
+    "tags": [
+      "黑暗玫瑰、咖啡、廣藿香"
+    ],
+    "description": "正義的真理追求在咖啡深度中進行，勇敢面對感情中的現實",
+    "notes_top": "黑暗玫瑰、咖啡、廣藿香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "正義",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Hermès",
+    "product_name": "Hermès Hermessence Rose Ikebana",
+    "tags": [
+      "柑橘玫瑰、茶香、潔淨感"
+    ],
+    "description": "正義的清晰界線透過皂感明確化，愛需要尊重與空間",
+    "notes_top": "柑橘玫瑰、茶香、潔淨感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "倒吊人",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "L'Artisan",
+    "product_name": "L'Artisan Parfumeur Venenum",
+    "tags": [
+      "綠意玫瑰、沒藥、煙燻木質"
+    ],
+    "description": "倒吊人的換位思考在獨特玫瑰中實踐，理解是愛的開始",
+    "notes_top": "綠意玫瑰、沒藥、煙燻木質",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "倒吊人",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Aesop",
+    "product_name": "Aesop Rozu",
+    "tags": [
+      "玫瑰、苔蘚、木質調"
+    ],
+    "description": "倒吊人的犧牲奉獻在木質懷抱中值得，真愛願意等待與付出",
+    "notes_top": "玫瑰、苔蘚、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "倒吊人",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Serge",
+    "product_name": "Serge Lutens Rose de Nuit",
+    "tags": [
+      "黑暗玫瑰、麝香、深沉感"
+    ],
+    "description": "倒吊人的不同視角在咖啡沉思中獲得，突破感情盲點",
+    "notes_top": "黑暗玫瑰、麝香、深沉感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "倒吊人",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Rose EDT",
+    "tags": [
+      "荔枝玫瑰、清冷綠意"
+    ],
+    "description": "倒吊人的等待透過皂感淨化，耐心成為感情的智慧",
+    "notes_top": "荔枝玫瑰、清冷綠意",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "死神",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Serge",
+    "product_name": "Serge Lutens Rose de Nuit",
+    "tags": [
+      "黑暗玫瑰、麝香、廣藿香"
+    ],
+    "description": "死神的結束重生在深沉玫瑰中完成，放手是為了更好的開始",
+    "notes_top": "黑暗玫瑰、麝香、廣藿香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "死神",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Noir de Noir",
+    "tags": [
+      "黑松露玫瑰、沉香、香草"
+    ],
+    "description": "死神的轉化力量在木質底蘊中醞釀，傷痛終將開出智慧之花",
+    "notes_top": "黑松露玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "死神",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose Noir",
+    "tags": [
+      "黑玫瑰、咖啡、琥珀"
+    ],
+    "description": "死神的告別在咖啡苦甜中體會，感謝每段感情帶來的成長",
+    "notes_top": "黑玫瑰、咖啡、琥珀",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "死神",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "By",
+    "product_name": "By Kilian Roses on Ice",
+    "tags": [
+      "黃瓜玫瑰、杜松子"
+    ],
+    "description": "死神的結束透過皂感淨化，清理過往才能迎接新生",
+    "notes_top": "黃瓜玫瑰、杜松子",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "節制",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Hermès",
+    "product_name": "Hermès Hermessence Rose Ikebana",
+    "tags": [
+      "柑橘玫瑰、茶香、胡椒"
+    ],
+    "description": "節制的調和藝術在平衡玫瑰中展現，感情需要耐心磨合",
+    "notes_top": "柑橘玫瑰、茶香、胡椒",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "節制",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Capitale",
+    "tags": [
+      "胡椒玫瑰、廣藿香、木質調"
+    ],
+    "description": "節制的適度原則在木質穩定中實踐，愛需要剛剛好的距離",
+    "notes_top": "胡椒玫瑰、廣藿香、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "節制",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Cafe Rose",
+    "tags": [
+      "黑暗玫瑰、咖啡、廣藿香"
+    ],
+    "description": "節制的融合智慧在咖啡醇厚中學習，接納感情中的不同面向",
+    "notes_top": "黑暗玫瑰、咖啡、廣藿香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "節制",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、潔淨麝香"
+    ],
+    "description": "節制的平衡透過皂感完美化，在付出與保留間找到平衡",
+    "notes_top": "柑橘玫瑰、潔淨麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "惡魔",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Noir de Noir",
+    "tags": [
+      "黑松露玫瑰、沉香、香草"
+    ],
+    "description": "惡魔的慾望誘惑在魅惑玫瑰中面對，承認感情中的陰暗面",
+    "notes_top": "黑松露玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "惡魔",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian Oud Satin Mood",
+    "tags": [
+      "玫瑰、沉香、香草"
+    ],
+    "description": "惡魔的執著沉迷在木質深沉中覺察，從依戀走向真愛",
+    "notes_top": "玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "惡魔",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose Noir",
+    "tags": [
+      "黑玫瑰、咖啡、琥珀"
+    ],
+    "description": "惡魔的成癮模式在咖啡沉醉中清醒，打破感情中的惡性循環",
+    "notes_top": "黑玫瑰、咖啡、琥珀",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "惡魔",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Chloé",
+    "product_name": "Chloé Rose Tangerine",
+    "tags": [
+      "柑橘玫瑰、白麝香"
+    ],
+    "description": "惡魔的束縛透過皂感解放，從佔有慾中找回自由",
+    "notes_top": "柑橘玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "高塔",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Comme",
+    "product_name": "Comme des Garçons Incense Zagorsk",
+    "tags": [
+      "松樹玫瑰、焚香、冷冽感"
+    ],
+    "description": "高塔的突變覺醒在衝擊玫瑰中震撼，打破感情假象",
+    "notes_top": "松樹玫瑰、焚香、冷冽感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "高塔",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "高塔的崩塌重建在木質基礎中進行，危機成為轉機",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "高塔",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Cafe Rose",
+    "tags": [
+      "黑暗玫瑰、咖啡、廣藿香"
+    ],
+    "description": "高塔的真相揭露在咖啡清醒中面對，謊言終將破碎",
+    "notes_top": "黑暗玫瑰、咖啡、廣藿香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "高塔",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "By",
+    "product_name": "By Kilian Roses on Ice",
+    "tags": [
+      "黃瓜玫瑰、杜松子"
+    ],
+    "description": "高塔的混亂透過皂感清晰化，從廢墟中看見新生",
+    "notes_top": "黃瓜玫瑰、杜松子",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星星",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Guerlain",
+    "product_name": "Guerlain Aqua Allegoria Rosa Rossa",
+    "tags": [
+      "清新玫瑰、荔枝、雪松"
+    ],
+    "description": "星星的希望指引在星光玫瑰中閃耀，相信真愛的存在",
+    "notes_top": "清新玫瑰、荔枝、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星星",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Aesop",
+    "product_name": "Aesop Rozu",
+    "tags": [
+      "玫瑰、苔蘚、木質調"
+    ],
+    "description": "星星的靈感啟發在木質懷抱中孕育，對感情保持開放與信任",
+    "notes_top": "玫瑰、苔蘚、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星星",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、紫羅蘭、雪松"
+    ],
+    "description": "星星的願景實現在咖啡溫暖中靠近，夢想中的愛情不再遙遠",
+    "notes_top": "柑橘玫瑰、紫羅蘭、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星星",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Jo",
+    "product_name": "Jo Malone Wild Bluebell Cologne",
+    "tags": [
+      "藍風鈴、玫瑰、白麝香"
+    ],
+    "description": "星星的希望透過皂感純淨化，保持心靈的清澈與相信",
+    "notes_top": "藍風鈴、玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "月亮",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Maison",
+    "product_name": "Maison Margiela REPLICA Soul of the Soul",
+    "tags": [
+      "玫瑰、藏紅花、苔蘚"
+    ],
+    "description": "月亮的潛意識探索在朦朧玫瑰中進行，直面感情中的恐懼",
+    "notes_top": "玫瑰、藏紅花、苔蘚",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "月亮",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Serge",
+    "product_name": "Serge Lutens Rose de Nuit",
+    "tags": [
+      "黑暗玫瑰、麝香、動物感"
+    ],
+    "description": "月亮的直覺指引在木質神秘中流動，信任內在的聲音",
+    "notes_top": "黑暗玫瑰、麝香、動物感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "月亮",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose Noir",
+    "tags": [
+      "黑玫瑰、咖啡、琥珀"
+    ],
+    "description": "月亮的夢境真相在咖啡深沉中浮現，看清感情中的隱藏訊息",
+    "notes_top": "黑玫瑰、咖啡、琥珀",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "月亮",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Rose EDT",
+    "tags": [
+      "荔枝玫瑰、清冷綠意"
+    ],
+    "description": "月亮的迷霧透過皂感驅散，從困惑走向清晰",
+    "notes_top": "荔枝玫瑰、清冷綠意",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "太陽",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Chloé",
+    "product_name": "Chloé Rose Tangerine",
+    "tags": [
+      "陽光柑橘玫瑰、白麝香"
+    ],
+    "description": "太陽的歡樂成功在陽光玫瑰中綻放，分享愛的喜悅與溫暖",
+    "notes_top": "陽光柑橘玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "太陽",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Penhaligon's",
+    "product_name": "Penhaligon's The Coveted Duchess Rose",
+    "tags": [
+      "微酸柑橘玫瑰、木質基底"
+    ],
+    "description": "太陽的活力自信在木質溫暖中輻射，感染身邊每個人",
+    "notes_top": "微酸柑橘玫瑰、木質基底",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "太陽",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、紫羅蘭、雪松"
+    ],
+    "description": "太陽的成功慶祝在咖啡歡聚中進行，感情果實甜美豐碩",
+    "notes_top": "柑橘玫瑰、紫羅蘭、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "太陽",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Guerlain",
+    "product_name": "Guerlain Aqua Allegoria Rosa Rossa",
+    "tags": [
+      "清新玫瑰、荔枝、雪松"
+    ],
+    "description": "太陽的光芒透過皂感純粹化，愛的本質如此簡單明亮",
+    "notes_top": "清新玫瑰、荔枝、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "審判",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Cartier",
+    "product_name": "Cartier L'Heure Défendue",
+    "tags": [
+      "玫瑰、胡椒、香草"
+    ],
+    "description": "審判的覺醒召喚在重生玫瑰中響起，為感情做出重要決定",
+    "notes_top": "玫瑰、胡椒、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "審判",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Bvlgari",
+    "product_name": "Bvlgari Le Gemme Imperiali",
+    "tags": [
+      "玫瑰、檀香、珍稀木材"
+    ],
+    "description": "審判的自我評估在木質智慧中進行，看清感情中的責任與選擇",
+    "notes_top": "玫瑰、檀香、珍稀木材",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "審判",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Noir de Noir",
+    "tags": [
+      "黑松露玫瑰、沉香、香草"
+    ],
+    "description": "審判的真相面對在咖啡清醒中完成，不再逃避感情現實",
+    "notes_top": "黑松露玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "審判",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Hermès",
+    "product_name": "Hermès Hermessence Rose Ikebana",
+    "tags": [
+      "柑橘玫瑰、茶香、潔淨感"
+    ],
+    "description": "審判的重生透過皂感淨化，原諒過去才能擁抱未來",
+    "notes_top": "柑橘玫瑰、茶香、潔淨感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "世界",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Bvlgari",
+    "product_name": "Bvlgari Le Gemme Imperiali",
+    "tags": [
+      "綜合玫瑰、檀香、麝香"
+    ],
+    "description": "世界的圓滿成就在和諧玫瑰中慶祝，感情旅程的美好終點",
+    "notes_top": "綜合玫瑰、檀香、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "世界",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Maison",
+    "product_name": "Maison Christian Dior La Colle Noire",
+    "tags": [
+      "格拉斯玫瑰、鈴蘭、琥珀木質"
+    ],
+    "description": "世界的完整歸屬在木質懷抱中實現，找到心靈的家",
+    "notes_top": "格拉斯玫瑰、鈴蘭、琥珀木質",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "世界",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian Oud Satin Mood",
+    "tags": [
+      "玫瑰、沉香、香草"
+    ],
+    "description": "世界的成功分享在咖啡醇厚中品味，愛情的豐碩成果",
+    "notes_top": "玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "世界",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Frederic",
+    "product_name": "Frederic Malle Une Rose",
+    "tags": [
+      "波本酒香玫瑰、天鵝絨質感"
+    ],
+    "description": "世界的和諧透過皂感完美化，感情中的每個面向都完整融合",
+    "notes_top": "波本酒香玫瑰、天鵝絨質感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖1-10",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose Noir",
+    "tags": [
+      "黑玫瑰、杜松子、琥珀"
+    ],
+    "description": "權杖的熱情行動在活力玫瑰中燃燒，主動創造想要的感情關係",
+    "notes_top": "黑玫瑰、杜松子、琥珀",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖1-10",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "權杖的創造能量在木質動力中實現，為感情注入新鮮感",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖1-10",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Cafe Rose",
+    "tags": [
+      "黑暗玫瑰、咖啡、廣藿香"
+    ],
+    "description": "權杖的冒險精神在咖啡熱情中奔放，勇敢追求心中所愛",
+    "notes_top": "黑暗玫瑰、咖啡、廣藿香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖1-10",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "By",
+    "product_name": "By Kilian Roses on Ice",
+    "tags": [
+      "黃瓜玫瑰、杜松子"
+    ],
+    "description": "權杖的衝勁透過皂感專注化，熱情不變盲目，行動帶著智慧",
+    "notes_top": "黃瓜玫瑰、杜松子",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖侍者",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Jo",
+    "product_name": "Jo Malone Red Roses Cologne",
+    "tags": [
+      "新鮮紅玫瑰、檸檬、薄荷"
+    ],
+    "description": "權杖侍者的好奇探索在清新玫瑰中開始，感情的新可能等待發現",
+    "notes_top": "新鮮紅玫瑰、檸檬、薄荷",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖侍者",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Capitale",
+    "tags": [
+      "胡椒玫瑰、廣藿香、木質調"
+    ],
+    "description": "權杖侍者的學習熱情在木質基礎中扎根，認真對待每段感情",
+    "notes_top": "胡椒玫瑰、廣藿香、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖侍者",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、紫羅蘭、雪松"
+    ],
+    "description": "權杖侍者的好消息在咖啡溫暖中傳遞，感情發展令人期待",
+    "notes_top": "柑橘玫瑰、紫羅蘭、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖侍者",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Guerlain",
+    "product_name": "Guerlain Aqua Allegoria Rosa Rossa",
+    "tags": [
+      "清新玫瑰、荔枝、雪松"
+    ],
+    "description": "權杖侍者的純真透過皂感保護，在感情中保持開放初心",
+    "notes_top": "清新玫瑰、荔枝、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖騎士",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose Noir",
+    "tags": [
+      "黑玫瑰、杜松子、琥珀"
+    ],
+    "description": "權杖騎士的快速行動在強烈玫瑰中衝刺，為愛勇敢冒險",
+    "notes_top": "黑玫瑰、杜松子、琥珀",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖騎士",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "權杖騎士的追求熱情在木質堅定中持續，不放棄心中所愛",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖騎士",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Cafe Rose",
+    "tags": [
+      "黑暗玫瑰、咖啡、廣藿香"
+    ],
+    "description": "權杖騎士的遠征精神在咖啡醇厚中充電，為愛走天涯",
+    "notes_top": "黑暗玫瑰、咖啡、廣藿香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖騎士",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "By",
+    "product_name": "By Kilian Roses on Ice",
+    "tags": [
+      "黃瓜玫瑰、杜松子"
+    ],
+    "description": "權杖騎士的急迫透過皂感冷靜化，衝動化為明智行動",
+    "notes_top": "黃瓜玫瑰、杜松子",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖皇后",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian Oud Satin Mood",
+    "tags": [
+      "玫瑰、沉香、香草"
+    ],
+    "description": "權杖皇后的溫暖魅力在豐饒玫瑰中綻放，吸引美好感情",
+    "notes_top": "玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖皇后",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose of No Man's Land",
+    "tags": [
+      "土耳其玫瑰、覆盆子、紙莎草"
+    ],
+    "description": "權杖皇后的自信光彩在木質溫暖中輻射，做自己的女王",
+    "notes_top": "土耳其玫瑰、覆盆子、紙莎草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖皇后",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Tom",
+    "product_name": "Tom Ford Noir de Noir",
+    "tags": [
+      "黑松露玫瑰、沉香、香草"
+    ],
+    "description": "權杖皇后的性感活力在咖啡醇厚中流動，享受愛的滋潤",
+    "notes_top": "黑松露玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖皇后",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Chloé",
+    "product_name": "Chloé Rose Tangerine",
+    "tags": [
+      "柑橘玫瑰、白麝香"
+    ],
+    "description": "權杖皇后的熱情透過皂感優雅化，強勢中帶著溫柔",
+    "notes_top": "柑橘玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖國王",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "權杖國王的領導魅力在穩重玫瑰中展現，保護所愛之人",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖國王",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Bvlgari",
+    "product_name": "Bvlgari Le Gemme Imperiali",
+    "tags": [
+      "玫瑰、檀香、珍稀木材"
+    ],
+    "description": "權杖國王的權威保護在木質力量中堅實，成為感情的支柱",
+    "notes_top": "玫瑰、檀香、珍稀木材",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖國王",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Cartier",
+    "product_name": "Cartier L'Heure Défendue",
+    "tags": [
+      "玫瑰、胡椒、皮革"
+    ],
+    "description": "權杖國王的遠見領導在咖啡智慧中清晰，規劃感情的未來",
+    "notes_top": "玫瑰、胡椒、皮革",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "權杖國王",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Hermès",
+    "product_name": "Hermès Hermessence Rose Ikebana",
+    "tags": [
+      "柑橘玫瑰、茶香、潔淨感"
+    ],
+    "description": "權杖國王的威嚴透過皂感親和化，領導中帶著體貼",
+    "notes_top": "柑橘玫瑰、茶香、潔淨感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍1-10",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "By",
+    "product_name": "By Kilian Roses on Ice",
+    "tags": [
+      "黃瓜玫瑰、杜松子、檀香"
+    ],
+    "description": "寶劍的清晰溝通在冷冽玫瑰中進行，感情需要真誠對話",
+    "notes_top": "黃瓜玫瑰、杜松子、檀香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍1-10",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Aesop",
+    "product_name": "Aesop Rozu",
+    "tags": [
+      "玫瑰、苔蘚、木質調"
+    ],
+    "description": "寶劍的理性思考在木質穩定中運作，為感情做出明智決定",
+    "notes_top": "玫瑰、苔蘚、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍1-10",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Comme",
+    "product_name": "Comme des Garçons Incense Zagorsk",
+    "tags": [
+      "松樹玫瑰、焚香、冷冽感"
+    ],
+    "description": "寶劍的真相面對在咖啡清醒中完成，不再自欺欺人",
+    "notes_top": "松樹玫瑰、焚香、冷冽感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍1-10",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Jo",
+    "product_name": "Jo Malone Wild Bluebell Cologne",
+    "tags": [
+      "藍風鈴、玫瑰、白麝香"
+    ],
+    "description": "寶劍的銳利透過皂感柔和化，真話可以溫柔說",
+    "notes_top": "藍風鈴、玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍侍者",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Rose EDT",
+    "tags": [
+      "荔枝玫瑰、清冷綠意"
+    ],
+    "description": "寶劍侍者的機智觀察在清新玫瑰中敏銳，察覺感情中的細微變化",
+    "notes_top": "荔枝玫瑰、清冷綠意",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍侍者",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Hermès",
+    "product_name": "Hermès Hermessence Rose Ikebana",
+    "tags": [
+      "柑橘玫瑰、茶香、潔淨感"
+    ],
+    "description": "寶劍侍者的學習態度在木質清晰中進步，理解感情複雜性",
+    "notes_top": "柑橘玫瑰、茶香、潔淨感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍侍者",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Guerlain",
+    "product_name": "Guerlain Aqua Allegoria Rosa Rossa",
+    "tags": [
+      "清新玫瑰、荔枝、雪松"
+    ],
+    "description": "寶劍侍者的消息傳達在咖啡輕盈中進行，溝通帶來理解",
+    "notes_top": "清新玫瑰、荔枝、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍侍者",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、潔淨麝香"
+    ],
+    "description": "寶劍侍者的靈活思維透過皂感清晰化，找到感情解決方案",
+    "notes_top": "柑橘玫瑰、潔淨麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍騎士",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "By",
+    "product_name": "By Kilian Roses on Ice",
+    "tags": [
+      "黃瓜玫瑰、杜松子、檀香"
+    ],
+    "description": "寶劍騎士的快速決斷在銳利玫瑰中執行，為感情困境找到出路",
+    "notes_top": "黃瓜玫瑰、杜松子、檀香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍騎士",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "寶劍騎士的行動決心在木質堅定中展現，勇敢面對感情挑戰",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍騎士",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Comme",
+    "product_name": "Comme des Garçons Incense Zagorsk",
+    "tags": [
+      "松樹玫瑰、焚香、冷冽感"
+    ],
+    "description": "寶劍騎士的真理追求在咖啡清醒中堅持，不說違心之言",
+    "notes_top": "松樹玫瑰、焚香、冷冽感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍騎士",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "By",
+    "product_name": "By Kilian Roses on Ice",
+    "tags": [
+      "黃瓜玫瑰、杜松子"
+    ],
+    "description": "寶劍騎士的急切透過皂感冷靜化，果斷不變衝動",
+    "notes_top": "黃瓜玫瑰、杜松子",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍皇后",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Hermès",
+    "product_name": "Hermès Hermessence Rose Ikebana",
+    "tags": [
+      "柑橘玫瑰、茶香、潔淨感"
+    ],
+    "description": "寶劍皇后的理性智慧在清晰玫瑰中運作，感情需要明智判斷",
+    "notes_top": "柑橘玫瑰、茶香、潔淨感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍皇后",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Aesop",
+    "product_name": "Aesop Rozu",
+    "tags": [
+      "玫瑰、苔蘚、木質調"
+    ],
+    "description": "寶劍皇后的冷靜分析在木質穩定中進行，看清感情本質",
+    "notes_top": "玫瑰、苔蘚、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍皇后",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Capitale",
+    "tags": [
+      "胡椒玫瑰、廣藿香、木質調"
+    ],
+    "description": "寶劍皇后的獨立思考在咖啡深度中成熟，不依賴他人定義幸福",
+    "notes_top": "胡椒玫瑰、廣藿香、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍皇后",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Jo",
+    "product_name": "Jo Malone Wild Bluebell Cologne",
+    "tags": [
+      "藍風鈴、玫瑰、白麝香"
+    ],
+    "description": "寶劍皇后的理性透過皂感溫和化，智慧中帶著同理心",
+    "notes_top": "藍風鈴、玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍國王",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "寶劍國王的公正判斷在冷靜玫瑰中下達，為感情設立公平原則",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍國王",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Bvlgari",
+    "product_name": "Bvlgari Le Gemme Imperiali",
+    "tags": [
+      "玫瑰、檀香、珍稀木材"
+    ],
+    "description": "寶劍國王的權威智慧在木質穩定中建立，感情需要原則與界線",
+    "notes_top": "玫瑰、檀香、珍稀木材",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍國王",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Cartier",
+    "product_name": "Cartier L'Heure Défendue",
+    "tags": [
+      "玫瑰、胡椒、皮革"
+    ],
+    "description": "寶劍國王的真理堅持在咖啡嚴肅中展現，誠實是愛的基礎",
+    "notes_top": "玫瑰、胡椒、皮革",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "寶劍國王",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Hermès",
+    "product_name": "Hermès Hermessence Rose Ikebana",
+    "tags": [
+      "柑橘玫瑰、茶香、潔淨感"
+    ],
+    "description": "寶劍國王的嚴厲透過皂感公正化，原則中帶著理解",
+    "notes_top": "柑橘玫瑰、茶香、潔淨感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯1-10",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、紫羅蘭、雪松"
+    ],
+    "description": "聖杯的情感流動在感性玫瑰中滋潤，讓愛自然流露",
+    "notes_top": "柑橘玫瑰、紫羅蘭、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯1-10",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Penhaligon's",
+    "product_name": "Penhaligon's The Coveted Duchess Rose",
+    "tags": [
+      "微酸柑橘玫瑰、木質基底"
+    ],
+    "description": "聖杯的感性滋養在木質懷抱中溫暖，療�感情創傷",
+    "notes_top": "微酸柑橘玫瑰、木質基底",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯1-10",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Chloé",
+    "product_name": "Chloé Rose Tangerine",
+    "tags": [
+      "柑橘玫瑰、白麝香"
+    ],
+    "description": "聖杯的浪漫情懷在咖啡溫情中醞釀，日常中創造浪漫",
+    "notes_top": "柑橘玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯1-10",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Guerlain",
+    "product_name": "Guerlain Aqua Allegoria Rosa Rossa",
+    "tags": [
+      "清新玫瑰、荔枝、雪松"
+    ],
+    "description": "聖杯的情感透過皂感純淨化，愛要真實不濫情",
+    "notes_top": "清新玫瑰、荔枝、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯侍者",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Jo",
+    "product_name": "Jo Malone Red Roses Cologne",
+    "tags": [
+      "新鮮紅玫瑰、檸檬、薄荷"
+    ],
+    "description": "聖杯侍者的敏感心靈在純真玫瑰中開放，感受每份真情",
+    "notes_top": "新鮮紅玫瑰、檸檬、薄荷",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯侍者",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Rose EDT",
+    "tags": [
+      "荔枝玫瑰、清冷綠意"
+    ],
+    "description": "聖杯侍者的直覺天賦在木質敏感中增強，預感感情發展",
+    "notes_top": "荔枝玫瑰、清冷綠意",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯侍者",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、紫羅蘭、雪松"
+    ],
+    "description": "聖杯侍者的情感消息在咖啡輕柔中接收，心靈感應增強",
+    "notes_top": "柑橘玫瑰、紫羅蘭、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯侍者",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Jo",
+    "product_name": "Jo Malone Wild Bluebell Cologne",
+    "tags": [
+      "藍風鈴、玫瑰、白麝香"
+    ],
+    "description": "聖杯侍者的敏感透過皂感穩定化，同理不變情緒化",
+    "notes_top": "藍風鈴、玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯騎士",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、紫羅蘭、雪松"
+    ],
+    "description": "聖杯騎士的浪漫追求在感性玫瑰中實現，編織愛情美夢",
+    "notes_top": "柑橘玫瑰、紫羅蘭、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯騎士",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Penhaligon's",
+    "product_name": "Penhaligon's The Coveted Duchess Rose",
+    "tags": [
+      "微酸柑橘玫瑰、木質基底"
+    ],
+    "description": "聖杯騎士的深情告白在木質真誠中訴說，打動人心",
+    "notes_top": "微酸柑橘玫瑰、木質基底",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯騎士",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Chloé",
+    "product_name": "Chloé Rose Tangerine",
+    "tags": [
+      "柑橘玫瑰、白麝香"
+    ],
+    "description": "聖杯騎士的求愛行動在咖啡浪漫中進行，創造難忘約會",
+    "notes_top": "柑橘玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯騎士",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Guerlain",
+    "product_name": "Guerlain Aqua Allegoria Rosa Rossa",
+    "tags": [
+      "清新玫瑰、荔枝、雪松"
+    ],
+    "description": "聖杯騎士的激情透過皂感純粹化，浪漫不變輕浮",
+    "notes_top": "清新玫瑰、荔枝、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯皇后",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Frederic",
+    "product_name": "Frederic Malle Une Rose",
+    "tags": [
+      "波本酒香玫瑰、天鵝絨質感"
+    ],
+    "description": "聖杯皇后的無條件愛心在豐沛玫瑰中流淌，滋養每顆心靈",
+    "notes_top": "波本酒香玫瑰、天鵝絨質感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯皇后",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose of No Man's Land",
+    "tags": [
+      "土耳其玫瑰、覆盆子、紙莎草"
+    ],
+    "description": "聖杯皇后的同理包容在木質溫暖中擴展，接納所有情感",
+    "notes_top": "土耳其玫瑰、覆盆子、紙莎草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯皇后",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian Oud Satin Mood",
+    "tags": [
+      "玫瑰、沉香、香草"
+    ],
+    "description": "聖杯皇后的情感智慧在咖啡深度中成熟，理解愛的複雜",
+    "notes_top": "玫瑰、沉香、香草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯皇后",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Chloé",
+    "product_name": "Chloé Rose Tangerine",
+    "tags": [
+      "柑橘玫瑰、白麝香"
+    ],
+    "description": "聖杯皇后的深情透過皂感清澈化，愛人同時愛自己",
+    "notes_top": "柑橘玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯國王",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Penhaligon's",
+    "product_name": "Penhaligon's The Coveted Duchess Rose",
+    "tags": [
+      "微酸柑橘玫瑰、木質基底"
+    ],
+    "description": "聖杯國王的情感智慧在穩重玫瑰中流露，引導感情成長",
+    "notes_top": "微酸柑橘玫瑰、木質基底",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯國王",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Maison",
+    "product_name": "Maison Christian Dior La Colle Noire",
+    "tags": [
+      "格拉斯玫瑰、鈴蘭、琥珀木質"
+    ],
+    "description": "聖杯國王的慈悲支持在木質懷抱中堅實，成為感情導師",
+    "notes_top": "格拉斯玫瑰、鈴蘭、琥珀木質",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯國王",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose of No Man's Land",
+    "tags": [
+      "土耳其玫瑰、覆盆子、紙莎草"
+    ],
+    "description": "聖杯國王的靈性指引在咖啡智慧中給予，解惑感情難題",
+    "notes_top": "土耳其玫瑰、覆盆子、紙莎草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "聖杯國王",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Maison",
+    "product_name": "Maison Francis Kurkdjian A La Rose",
+    "tags": [
+      "柑橘玫瑰、潔淨麝香"
+    ],
+    "description": "聖杯國王的慈愛透過皂感純淨化，指導不變控制",
+    "notes_top": "柑橘玫瑰、潔淨麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣1-10",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Capitale",
+    "tags": [
+      "胡椒玫瑰、廣藿香、木質調"
+    ],
+    "description": "星幣的務實承諾在豐收玫瑰中實現，為愛建立物質基礎",
+    "notes_top": "胡椒玫瑰、廣藿香、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣1-10",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Aesop",
+    "product_name": "Aesop Rozu",
+    "tags": [
+      "玫瑰、苔蘚、木質調"
+    ],
+    "description": "星幣的穩定安全感在木質踏實中建立，感情需要實際行動",
+    "notes_top": "玫瑰、苔蘚、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣1-10",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "星幣的辛勤耕耘在咖啡踏實中進行，為共同未來努力",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣1-10",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Rose EDT",
+    "tags": [
+      "荔枝玫瑰、清冷綠意"
+    ],
+    "description": "星幣的務實透過皂感精緻化，現實不變功利",
+    "notes_top": "荔枝玫瑰、清冷綠意",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣侍者",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Jo",
+    "product_name": "Jo Malone Red Roses Cologne",
+    "tags": [
+      "新鮮紅玫瑰、檸檬、薄荷"
+    ],
+    "description": "星幣侍者的認真學習在務實玫瑰中進步，為感情關係打下基礎",
+    "notes_top": "新鮮紅玫瑰、檸檬、薄荷",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣侍者",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Hermès",
+    "product_name": "Hermès Hermessence Rose Ikebana",
+    "tags": [
+      "柑橘玫瑰、茶香、潔淨感"
+    ],
+    "description": "星幣侍者的勤奮態度在木質踏實中展現，用心經營感情",
+    "notes_top": "柑橘玫瑰、茶香、潔淨感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣侍者",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Guerlain",
+    "product_name": "Guerlain Aqua Allegoria Rosa Rossa",
+    "tags": [
+      "清新玫瑰、荔枝、雪松"
+    ],
+    "description": "星幣侍者的成長消息在咖啡認真中傳遞，感情穩定進步",
+    "notes_top": "清新玫瑰、荔枝、雪松",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣侍者",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Jo",
+    "product_name": "Jo Malone Wild Bluebell Cologne",
+    "tags": [
+      "藍風鈴、玫瑰、白麝香"
+    ],
+    "description": "星幣侍者的努力透過皂感輕盈化，認真不變沉重",
+    "notes_top": "藍風鈴、玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣騎士",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Capitale",
+    "tags": [
+      "胡椒玫瑰、廣藿香、木質調"
+    ],
+    "description": "星幣騎士的穩健前行在務實玫瑰中實踐，為愛負起責任",
+    "notes_top": "胡椒玫瑰、廣藿香、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣騎士",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "星幣騎士的耐心耕耘在木質穩定中持續，慢慢建造愛情",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣騎士",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Aesop",
+    "product_name": "Aesop Rozu",
+    "tags": [
+      "玫瑰、苔蘚、木質調"
+    ],
+    "description": "星幣騎士的可靠承諾在咖啡踏實中實現，說到做到的感情",
+    "notes_top": "玫瑰、苔蘚、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣騎士",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Diptyque",
+    "product_name": "Diptyque Eau Rose EDT",
+    "tags": [
+      "荔枝玫瑰、清冷綠意"
+    ],
+    "description": "星幣騎士的穩重透過皂感靈活化，責任中帶著輕鬆",
+    "notes_top": "荔枝玫瑰、清冷綠意",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣皇后",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Aesop",
+    "product_name": "Aesop Rozu",
+    "tags": [
+      "玫瑰、苔蘚、木質調"
+    ],
+    "description": "星幣皇后的豐饒滋養在務實玫瑰中體現，為愛創造舒適環境",
+    "notes_top": "玫瑰、苔蘚、木質調",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣皇后",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Byredo",
+    "product_name": "Byredo Rose of No Man's Land",
+    "tags": [
+      "土耳其玫瑰、覆盆子、紙莎草"
+    ],
+    "description": "星幣皇后的慷慨分享在木質豐盛中流動，無私付出愛",
+    "notes_top": "土耳其玫瑰、覆盆子、紙莎草",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣皇后",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Penhaligon's",
+    "product_name": "Penhaligon's The Coveted Duchess Rose",
+    "tags": [
+      "微酸柑橘玫瑰、木質基底"
+    ],
+    "description": "星幣皇后的家庭溫暖在咖啡醇厚中洋溢，打造幸福空間",
+    "notes_top": "微酸柑橘玫瑰、木質基底",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣皇后",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Chloé",
+    "product_name": "Chloé Rose Tangerine",
+    "tags": [
+      "柑橘玫瑰、白麝香"
+    ],
+    "description": "星幣皇后的豐饒透過皂感精緻化，付出同時接受回饋",
+    "notes_top": "柑橘玫瑰、白麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣國王",
+    "scene_choice": "A. 玫瑰园",
+    "brand_name": "Le",
+    "product_name": "Le Labo Rose 31",
+    "tags": [
+      "格拉斯玫瑰、雪松、麝香"
+    ],
+    "description": "星幣國王的財富守護在成功玫瑰中展現，為愛提供安全保障",
+    "notes_top": "格拉斯玫瑰、雪松、麝香",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣國王",
+    "scene_choice": "午后被阳光烘暖的木质家具",
+    "brand_name": "Bvlgari",
+    "product_name": "Bvlgari Le Gemme Imperiali",
+    "tags": [
+      "玫瑰、檀香、珍稀木材"
+    ],
+    "description": "星幣國王的成功成就在木質權威中穩固，建立感情帝國",
+    "notes_top": "玫瑰、檀香、珍稀木材",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣國王",
+    "scene_choice": "夜晚咖啡馆飘出的烘焙香气",
+    "brand_name": "Cartier",
+    "product_name": "Cartier L'Heure Défendue",
+    "tags": [
+      "玫瑰、胡椒、皮革"
+    ],
+    "description": "星幣國王的商業頭腦在咖啡智慧中運作，為感情規劃藍圖",
+    "notes_top": "玫瑰、胡椒、皮革",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  },
+  {
+    "card_name": "星幣國王",
+    "scene_choice": "海边度假时的白色香皂",
+    "brand_name": "Hermès",
+    "product_name": "Hermès Hermessence Rose Ikebana",
+    "tags": [
+      "柑橘玫瑰、茶香、潔淨感"
+    ],
+    "description": "星幣國王的財富透過皂感優雅化，成功中帶著品味",
+    "notes_top": "柑橘玫瑰、茶香、潔淨感",
+    "image_url": "/assets/perfume/perfume_sample.png"
+  }
+]

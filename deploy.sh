@@ -1,28 +1,37 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# 部署脚本：本地校验 -> 上传前端 dist -> 远程重建 backend + 重启 nginx
-# 用法: ./deploy.sh "备注信息"（备注仅用于日志提示，可选）
+# 手动部署辅助脚本（本地执行）
+# 作用：本地构建前端 -> 同步必要文件到服务器 -> 服务器重建 backend + 迁移 + 重启 nginx
+# 前置：已配置免密 ssh 到 root@47.243.157.75，服务器已有 .env
 
-set -e
+set -euo pipefail
 
+SERVER=${SERVER:-root@47.243.157.75}
+REMOTE_DIR=${REMOTE_DIR:-/root/fragrantepiphany-h5}
 NOTE=${1:-"manual deploy"}
 
-echo "🚀 开始部署流程: $NOTE"
+echo "🚀 部署开始: $NOTE"
 
-echo "🏗️  前端 lint & build..."
+echo "🏗️  构建前端 (VITE_API_BASE_URL=/api)..."
 pushd frontend >/dev/null
-npm run lint
-npm run build
+VITE_API_BASE_URL=${VITE_API_BASE_URL:-/api} npm run build
 popd >/dev/null
 
-echo "📤 上传前端静态资源..."
-scp -r frontend/dist/* root@47.243.157.75:/root/fragrantepiphany-h5/frontend/dist/
+echo "📤 上传前端 dist..."
+rsync -av --delete frontend/dist/ "${SERVER}:${REMOTE_DIR}/frontend/dist/"
 
-echo "☁️  远程更新 backend & nginx..."
-ssh root@47.243.157.75 "cd /root/fragrantepiphany-h5 && \
-  echo '⬇️  拉取最新代码...' && git pull && \
-  echo '🔄 重建 backend...' && docker compose up -d --build backend && \
-  echo '🗂️  迁移数据库...' && docker compose exec backend npm run typeorm -- migration:run && \
-  echo '♻️  重启 nginx...' && docker compose restart nginx"
+echo "📤 同步后端与配置（不含 node_modules/.git/.env/uploads）..."
+rsync -av --delete \
+  --exclude 'node_modules' \
+  --exclude '.git' \
+  --exclude '.env' \
+  --exclude 'uploads' \
+  backend nginx.conf docker-compose*.yml "${SERVER}:${REMOTE_DIR}/"
+
+echo "☁️  远程构建/迁移/重启..."
+ssh "${SERVER}" "cd ${REMOTE_DIR} && \
+  docker compose up -d --build backend nginx && \
+  docker compose exec backend npm run typeorm -- -d dist/ormconfig.js migration:run && \
+  docker compose restart nginx"
 
 echo "✅ 部署完成"

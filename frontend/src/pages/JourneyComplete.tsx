@@ -24,13 +24,23 @@ const TypewriterText: React.FC<{ text: string; speed?: number }> = ({ text, spee
   return <span>{displayedText}</span>
 }
 
+import bgEnd from '../assets/perfume/bg_end.jpg'
+
 const JourneyComplete: React.FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-[#F7F2ED] text-[#2B1F16] flex items-center justify-center px-6 py-12">
-      <div className="max-w-3xl mx-auto text-center space-y-8">
+    <div 
+      className="min-h-screen bg-[#F7F2ED] text-[#2B1F16] flex items-center justify-center px-6 py-12 relative overflow-hidden"
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img src={bgEnd} alt="Journey End" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/20" /> {/* Slight overlay for text readability */}
+      </div>
+
+      <div className="max-w-3xl mx-auto text-center space-y-8 relative z-10">
         {/* Text with fade-in animation */}
         <motion.p
           className="text-xl md:text-2xl font-serif leading-relaxed text-[#2B1F16]/85"

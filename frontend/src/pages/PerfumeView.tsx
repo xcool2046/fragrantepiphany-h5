@@ -7,6 +7,7 @@ import PerfumePage from '../components/PerfumePage'
 
 interface LocationState {
   cardIds?: number[]
+  answers?: Record<string, string> // 问卷答案
 }
 
 const PerfumeView: React.FC = () => {
@@ -17,6 +18,11 @@ const PerfumeView: React.FC = () => {
   const cardIds = useMemo(() => {
     const state = (location.state as LocationState) || {}
     return state.cardIds || []
+  }, [location.state])
+
+  const answers = useMemo(() => {
+    const state = (location.state as LocationState) || {}
+    return state.answers || {}
   }, [location.state])
 
   const [chapters, setChapters] = useState<PerfumeChapter[]>([])
@@ -48,7 +54,31 @@ const PerfumeView: React.FC = () => {
     fetchChapters()
   }, [cardIds])
 
-  const chapter = chapters[0]
+  // Filter chapters based on Q4 answer (scent preference)
+  const chapter = useMemo(() => {
+    if (chapters.length === 0) return undefined
+    
+    // Q4 answer (scent preference)
+    const scentAnswer = answers['4']
+    if (!scentAnswer) return chapters[0]
+
+    // Fuzzy match logic
+    // DB has "A. 玫瑰园", "午后被阳光烘暖的木质家具"
+    // Question has "初夏清晨的玫瑰园", "午后被阳光烘暖的木质家具"
+    const match = chapters.find(c => {
+      const dbChoice = c.sceneChoice || ''
+      
+      // Exact match
+      if (dbChoice === scentAnswer) return true
+      
+      // Partial match (e.g. "玫瑰园" in "初夏清晨的玫瑰园")
+      // We check if key keywords from DB choice exist in user answer
+      const keywords = dbChoice.replace(/^[A-Z]\.\s*/, '').split(/[\s,]+/)
+      return keywords.some(k => scentAnswer.includes(k) || k.includes(scentAnswer))
+    })
+
+    return match || chapters[0]
+  }, [chapters, answers])
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' })
@@ -79,8 +109,9 @@ const PerfumeView: React.FC = () => {
         <PerfumePage
           chapter={chapter}
           expanded={expanded}
-          onExpand={() => setExpanded(true)}
+          onToggle={() => setExpanded(!expanded)}
           onComplete={() => navigate('/journey/complete')}
+          answers={answers}
         />
       </div>
     </div>

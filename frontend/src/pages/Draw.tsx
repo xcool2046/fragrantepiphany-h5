@@ -282,7 +282,7 @@ const Draw: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#F7F2ED] text-[#4A4A4A] overflow-hidden flex flex-row font-serif">
-      
+
       {/* LEFT PANEL: Info & Slots (35% width) */}
       <div className="w-[34%] min-w-[130px] max-w-[320px] h-screen flex flex-col items-center justify-center p-6 z-20 relative bg-white/40 border-r border-[#8B5A2B]/10 shadow-xl backdrop-blur-md">
 
@@ -304,7 +304,7 @@ const Draw: React.FC = () => {
              ))}
            </div>
         </div>
-        
+
         {/* Vertical Slots */}
         <div className="flex flex-col gap-6 mb-12 w-full max-w-[180px]">
           {[0, 1, 2].map((index) => {
@@ -330,16 +330,16 @@ const Draw: React.FC = () => {
                     <motion.div
                       layoutId={`card-slot-${cardId}`} 
                       className="absolute inset-0 w-full h-full z-10 flex items-center justify-center"
-                      initial={{ opacity: 0, scale: 1.2, y: 50, rotate: 90 }}
-                      animate={{ opacity: 1, scale: 1.7, y: 0, rotate: 90 }} // Scale up to fill the slot (76px width -> ~130px slot width)
-                      exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)", rotate: 90 }}
+                      initial={{ opacity: 0, scale: 1.2, y: 50, rotate: 0 }}
+                      animate={{ opacity: 1, scale: 1.1, y: 0, rotate: 0 }} // Portrait layout无需旋转
+                      exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)", rotate: 0 }}
                       transition={{ type: "spring", stiffness: 120, damping: 20 }}
                       onClick={() => {
                         setSelectedCards(prev => prev.filter(id => id !== cardId))
                       }}
                     >
-                       <div className="w-[120px] h-[76px]"> {/* Wrapper to maintain aspect ratio while rotated */}
-                           <CardFace id={cardId} variant="slot" />
+                       <div className="w-[80px] h-[120px]"> {/* 竖版卡片：直接使用纵向比例，无需旋转 */}
+                           <CardFace id={cardId} variant="slot" vertical />
                        </div>
                     </motion.div>
                   )}

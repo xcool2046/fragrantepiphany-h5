@@ -216,7 +216,11 @@ const Result: React.FC = () => {
           {/* 1. Cards Section */}
           <div className="flex flex-row justify-center items-end gap-3 md:gap-6 mb-8 perspective-1000">
             {normalizedCardIds.map((_, index) => {
-              const labels = ['Past', 'Present', 'Future']
+              const labels = [
+                t('result.timeframes.past.label', 'Past'),
+                t('result.timeframes.present.label', 'Present'),
+                t('result.timeframes.future.label', 'Future')
+              ]
               const isBlurLocked = index > 0 && !isUnlocked
               return (
               <div key={index} className="flex flex-col items-center gap-3">
@@ -311,9 +315,9 @@ const Result: React.FC = () => {
                       <div className="flex justify-center mb-6">
                           <div className="w-16 h-[1px] bg-[#4A3B32]/20" />
                       </div>
-                      <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-wider">PAST</h3>
+                      <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-wider">{t('result.timeframes.past.label', 'PAST')}</h3>
                       <p className="mb-8">
-                          Your journey has led you here. Embrace the wisdom of the cards as they reveal the path ahead. Trust in their guidance, for they speak the language of your soul's deepest knowing.
+                          {t('result.timeframes.past.description', "Your journey has led you here. Embrace the wisdom of the cards as they reveal the path ahead. Trust in their guidance, for they speak the language of your soul's deepest knowing.")}
                       </p>
                   </div>
               </div>
@@ -331,18 +335,18 @@ const Result: React.FC = () => {
                 </div>
                 <div className="space-y-8">
                   <div>
-                    <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">PRESENT</h3>
+                    <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.present.label', 'PRESENT')}</h3>
                     <p className="mb-0 text-[#3E3025]/90">
-                      The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.
+                      {t('result.timeframes.present.description', 'The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.')}
                     </p>
                   </div>
                   <div>
                     <div className="flex justify-center mb-6">
                       <div className="w-16 h-[1px] bg-[#4A3B32]/15" />
                     </div>
-                    <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">FUTURE</h3>
+                    <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.future.label', 'FUTURE')}</h3>
                     <p className="mb-0 text-[#3E3025]/90">
-                      Trust your intuition and take the next step with confidence. Your destiny awaits.
+                      {t('result.timeframes.future.description', 'Trust your intuition and take the next step with confidence. Your destiny awaits.')}
                     </p>
                   </div>
                 </div>
@@ -350,7 +354,7 @@ const Result: React.FC = () => {
 
               <div className="relative z-30 mt-10 flex flex-col items-center gap-3">
                 <button
-                  onClick={isUnlocked ? () => navigate('/perfume', { state: { cardIds: normalizedCardIds } }) : handleUnlock}
+                  onClick={isUnlocked ? () => navigate('/perfume', { state: { cardIds: normalizedCardIds, answers } }) : handleUnlock}
                   disabled={unlocking}
                   className={`group relative px-10 py-4 rounded-full font-serif tracking-widest text-[11px] uppercase transition-all duration-500 whitespace-nowrap ${isUnlocked ? 'bg-transparent text-[#2B1F16] border border-[#D4A373]/70 shadow-[0_10px_24px_-14px_rgba(43,31,22,0.35)] hover:-translate-y-0.5' : 'bg-[#2B1F16] text-[#E8DCC5] shadow-lg hover:shadow-xl hover:-translate-y-0.5'}`}
                 >

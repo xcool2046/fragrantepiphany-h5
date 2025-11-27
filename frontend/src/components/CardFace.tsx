@@ -12,16 +12,16 @@ interface CardFaceProps {
 }
 
 export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical = false }: CardFaceProps) => {
-    // Position logic:
-    // Wheel (Landscape): Top-Right -> x=125, y=18
-    // Slot (Rotated 90deg): Top-Left (local) -> Top-Right (global) -> x=15, y=18
-    const textPos = variant === 'wheel' ? { x: 125, y: 18 } : { x: 15, y: 18 }
-
     // Get real image path
     // ID is 0-77 (from array index), but files are 01.jpg - 78.jpg
     // So file index = id + 1
     const fileIndex = String(id + 1).padStart(2, '0')
     const imagePath = cardImages[`../assets/cards/${fileIndex}.jpg`]
+    const numberLabel = `NO.${fileIndex}`
+    const isWheel = variant === 'wheel'
+    // 仅在明确 vertical 时旋转徽标，普通竖卡（slot）保持水平避免跑出角落
+    const isVerticalLayout = vertical
+    const showBadge = side === 'back'
 
     return (
         <div className={clsx(
@@ -86,29 +86,6 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
                                 <line x1="135" y1="5" x2="110" y2="30" opacity="0.3" />
                                 <line x1="135" y1="85" x2="110" y2="60" opacity="0.3" />
                             </g>
-        
-                            {/* Number Display */}
-                            <g transform={vertical ? `translate(${textPos.y}, ${140 - textPos.x}) rotate(90)` : `translate(${textPos.x}, ${textPos.y})`}>
-                                 {/* Corner Accent - Subtle */}
-                                 <path d="M -8 -8 L 8 -8 L 8 8" fill="none" stroke="url(#decoGold)" strokeWidth="0.5" opacity="0.6" transform={variant === 'wheel' ? "" : "rotate(-90)"} />
-
-                                 <text
-                                    x="0"
-                                    y="5"
-                                    textAnchor="middle"
-                                    fill="#F5D0A9"
-                                    fontSize="8"
-                                    fontFamily="serif"
-                                    fontWeight="400"
-                                    letterSpacing="0.5"
-                                    opacity="0.85"
-                                    style={{
-                                        filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))'
-                                    }}
-                                >
-                                    NO.{String(id + 1).padStart(2, '0')}
-                                </text>
-                            </g>
                         </svg>
                     </div>
                 </>
@@ -116,6 +93,40 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
 
             {/* 3. Subtle Ambient Glow (Overlay on top of image too for atmosphere) */}
             <div className="absolute inset-0 z-20 pointer-events-none mix-blend-overlay opacity-30 bg-[radial-gradient(circle_at_50%_0%,rgba(245,208,169,0.4)_0%,transparent_60%)]" />
+
+            {showBadge && (
+                <div
+                    className={clsx(
+                        "absolute z-30 pointer-events-none select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]",
+                        isWheel ? "top-1 right-1" : "top-1.5 right-1.5"
+                    )}
+                    style={{
+                        transform: isVerticalLayout ? 'rotate(90deg)' : 'none',
+                        transformOrigin: 'top right'
+                    }}
+                >
+                    <div
+                        className={clsx(
+                            "relative rounded-full border border-[#F5D0A9]/70 bg-[#0F0B0A]/80 shadow-[0_8px_20px_rgba(0,0,0,0.45)] backdrop-blur-[2px]",
+                            isWheel ? "px-2 py-[2px] min-w-[40px]" : "px-2.5 py-[2.5px] min-w-[44px]"
+                        )}
+                        style={{
+                            width: isWheel ? 'clamp(38px, 9vw, 52px)' : 'clamp(42px, 10vw, 58px)'
+                        }}
+                    >
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-80" />
+                        <span
+                            className={clsx(
+                                "relative block text-center text-[#F7E6CE] uppercase leading-none font-semibold",
+                                isWheel ? "text-[8.5px] tracking-[0.16em]" : "text-[9.5px] tracking-[0.18em]"
+                            )}
+                            style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.6))' }}
+                        >
+                            {numberLabel}
+                        </span>
+                    </div>
+                </div>
+            )}
         </div>
     )
 })

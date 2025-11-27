@@ -8,6 +8,8 @@ import homeBgDecorationJpg from '../assets/home-bg-decoration.jpg'
 import NoiseOverlay from '../components/NoiseOverlay'
 import ZodiacWheel from '../components/ZodiacWheel'
 
+import StarryBackground from '../components/StarryBackground'
+
 const Home: React.FC = () => {
   const navigate = useNavigate()
   const { t, i18n } = useTranslation()
@@ -24,6 +26,9 @@ const Home: React.FC = () => {
 
       {/* --- Background Layer: Starry Sky & Atmosphere --- */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        
+        {/* Premium Starry Sky Effect */}
+        <StarryBackground />
 
         {/* Subtle Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(43,31,22,0.15)_100%)] pointer-events-none" />
@@ -33,7 +38,7 @@ const Home: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.2 }}
           transition={{ duration: 2, ease: "easeOut" }}
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[140vw] h-[60vh] md:w-[100vh] md:h-[60vh] mix-blend-multiply pointer-events-none"
+          className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[150vw] h-[65vh] md:w-[110vh] md:h-[65vh] mix-blend-multiply pointer-events-none"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_closest-side,transparent_25%,#F7F2ED_85%)] z-10" />
           <picture>
@@ -50,16 +55,16 @@ const Home: React.FC = () => {
       </div>
 
       {/* --- Content Layer: Centered Layout --- */}
-      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-start text-center pt-16 md:pt-20">
+      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-end text-center pb-52 md:pb-60">
 
         {/* Title Group with Fixed Height Container */}
-        <div className="mb-12 md:mb-16 flex flex-col items-center relative">
+        <div className="mb-3 md:mb-4 flex flex-col items-center relative">
           {/* Brand Name Above Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-            className="mb-8 md:mb-10"
+            className="mb-3 md:mb-4"
           >
             <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#2B1F16] font-sans font-medium opacity-50 block">
               {t('common.appName')}
@@ -105,14 +110,14 @@ const Home: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 1.5 }}
-            className="mt-6 text-sm md:text-base text-[#2B1F16]/60 font-serif italic tracking-[0.15em] relative z-10 mix-blend-multiply"
+            className="mt-2 text-sm md:text-base text-[#2B1F16]/60 font-serif italic tracking-[0.15em] relative z-10 mix-blend-multiply"
           >
             {t('home.subtitle')}
           </motion.p>
         </div>
 
         {/* Interaction Group */}
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-3 mb-0">
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -120,13 +125,19 @@ const Home: React.FC = () => {
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => navigate('/onboarding')}
-            className="group relative overflow-hidden px-14 py-5 md:px-20 md:py-6 rounded-full bg-[#2B1F16] text-[#F7F2ED] shadow-[0_20px_50px_-15px_rgba(43,31,22,0.4)] transition-all duration-500 inner-glow-gold"
+            className="group relative overflow-hidden px-14 py-5 md:px-20 md:py-6 rounded-full bg-[#2B1F16] text-[#F7F2ED] shadow-[0_20px_50px_-15px_rgba(43,31,22,0.4)] transition-all duration-700 inner-glow-gold hover:shadow-[0_30px_80px_-15px_rgba(212,163,115,0.3)]"
           >
-            {/* Shimmer effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
-            
-            <div className="absolute inset-0 bg-gradient-to-r from-[#2B1F16] via-[#3E2D20] to-[#2B1F16] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-30 bg-[radial-gradient(circle_at_center,#D4A373,transparent_70%)] blur-xl transition-opacity duration-500" />
+            {/* Shimmer effect - slower */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_ease-in-out_infinite]" />
+
+            {/* Subtle background glow on hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#2B1F16] via-[#3E2D20] to-[#2B1F16] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+
+            {/* Enhanced outer glow */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-[radial-gradient(circle_at_center,#D4A373,transparent_70%)] blur-2xl transition-all duration-700" />
+
+            {/* Subtle border glow */}
+            <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{ boxShadow: 'inset 0 0 0 1px rgba(212,163,115,0.15)' }} />
 
             <span className="relative z-10 flex items-center gap-4 text-xs md:text-sm uppercase tracking-[0.3em] font-medium pl-1">
               {t('common.start')}
@@ -139,9 +150,11 @@ const Home: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 2.2 }}
             onClick={() => navigate('/about')}
-            className="text-[10px] uppercase tracking-[0.25em] text-[#2B1F16]/40 hover:text-[#2B1F16] transition-colors duration-500 py-2 hover:tracking-[0.3em]"
+            className="group/learn relative text-[10px] uppercase tracking-[0.25em] text-[#2B1F16]/40 hover:text-[#2B1F16] transition-all duration-500 py-3 px-8 hover:-translate-y-[3px] border border-[#2B1F16]/[0.15] hover:border-[#2B1F16]/40 rounded-full"
           >
-            {t('common.learnMore')}
+            <span className="relative z-10">{t('common.learnMore')}</span>
+            {/* 极淡的悬浮阴影 */}
+            <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-[80%] h-[2px] bg-[#2B1F16] opacity-0 group-hover/learn:opacity-[0.08] blur-[3px] transition-opacity duration-500" />
           </motion.button>
         </div>
       </div>

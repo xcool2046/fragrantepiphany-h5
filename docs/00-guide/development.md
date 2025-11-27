@@ -4,7 +4,13 @@
 
 ## 技术栈速览
 - 前端：Vite + React + TypeScript，React Router v7，Zustand + TanStack Query，Tailwind，Framer Motion，react-i18next（en/zh）。
-- 后端：NestJS + TypeORM，PostgreSQL，Stripe Checkout；价格取自 Stripe price，优先按 `STRIPE_PRICE_IDS_JSON`（或 `_TEST`）映射币种到 price_id，未配置时会从 Stripe API 拉取该币种的启用价格并缓存。
+- 后端：NestJS + TypeORM，PostgreSQL，Stripe Checkout。
+- **核心数据表**：
+  - `questions`: 问卷题目（ID 1-6）。
+  - `perfumes`: 香水数据（品牌、名称、香调、图片），由 Excel 导入。
+  - `rules`: 塔罗牌与香水的映射规则（决定 Result 页展示内容）。
+  - `orders`: 支付订单记录。
+- 价格机制：优先按 `STRIPE_PRICE_IDS_JSON`（或 `_TEST`）映射币种到 price_id。
 - 部署：Docker Compose（services: db/postgres, backend, nginx；frontend 静态由 `frontend/dist` 挂载），宿主机可再配 Nginx 反代 80/443。
 
 ## 环境变量（根目录 `.env`，不要提交）
@@ -81,3 +87,13 @@ docker compose exec backend npm run seed
 - `frontend/src`：路由、页面、store、API 封装（Axios 基于 `VITE_API_BASE_URL`）；后台卡面素材路径规范 `/assets/cards/01.jpg`~`78.jpg`（已在 DB 批量映射）。
 - `backend/src`：`pay`、`admin`、`interp`、`questionnaire` 等模块；`entities` 下为 TypeORM 实体；`migrations` 为数据迁移。
 - `sample-data/cards-example.json`：种子数据示例。
+
+## 开发小贴士 (Tips / FAQ)
+
+### Mock 支付 (解锁测试)
+为了方便测试 Result 页的解锁逻辑（无需真实支付），可使用后门参数：
+- **用法**: URL 后追加 `?mock_pay=true`
+  - 例: `http://localhost:8080/result?mock_pay=true`
+- **效果**: 强制页面显示为“已支付”状态（解锁所有卡牌和解读）。
+- **注意**: 上线前请确保在 `Result.tsx` 中禁用或移除此逻辑，或改为仅在 `import.meta.env.DEV` 下生效。
+
