@@ -1,37 +1,65 @@
 #!/usr/bin/env bash
 
-# 手动部署辅助脚本（本地执行）
-# 作用：本地构建前端 -> 同步必要文件到服务器 -> 服务器重建 backend + 迁移 + 重启 nginx
-# 前置：已配置免密 ssh 到 root@47.243.157.75，服务器已有 .env
+# Fast Deployment Script (Local Build -> Upload -> Fast Restart)
+# Usage: ./deploy.sh [optional note]
 
 set -euo pipefail
 
 SERVER=${SERVER:-root@47.243.157.75}
 REMOTE_DIR=${REMOTE_DIR:-/root/fragrantepiphany-h5}
-NOTE=${1:-"manual deploy"}
+NOTE=${1:-"fast deploy"}
 
-echo "🚀 部署开始: $NOTE"
+echo "🚀 Fast Deployment Started: $NOTE"
 
-echo "🏗️  构建前端 (VITE_API_BASE_URL=/api)..."
+# 1. Build Frontend Locally
+echo "🏗️  Building Frontend (VITE_API_BASE_URL=/api)..."
 pushd frontend >/dev/null
-VITE_API_BASE_URL=${VITE_API_BASE_URL:-/api} npm run build
+VITE_API_BASE_URL= npm run build
 popd >/dev/null
 
-echo "📤 上传前端 dist..."
+# 2. Build Backend Locally
+echo "🏗️  Building Backend..."
+pushd backend >/dev/null
+npm run build
+popd >/dev/null
+
+# 3. Create Deployment Dockerfile
+echo "📝 Creating Deployment Dockerfile..."
+cat > backend/Dockerfile.deploy <<EOF
+FROM node:20-alpine
+WORKDIR /app
+ENV NODE_ENV=production
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY dist ./dist
+COPY ormconfig.ts ./ormconfig.ts
+COPY ormconfig.cjs ./ormconfig.cjs
+EXPOSE 3000
+CMD ["node", "dist/src/main.js"]
+EOF
+
+# 4. Upload Files
+echo "📤 Uploading Frontend Assets..."
 rsync -av --delete frontend/dist/ "${SERVER}:${REMOTE_DIR}/frontend/dist/"
 
-echo "📤 同步后端与配置（不含 node_modules/.git/.env/uploads）..."
+echo "📤 Uploading Backend Artifacts..."
 rsync -av --delete \
   --exclude 'node_modules' \
   --exclude '.git' \
   --exclude '.env' \
   --exclude 'uploads' \
-  backend nginx.conf docker-compose*.yml "${SERVER}:${REMOTE_DIR}/"
+  backend/dist backend/package*.json backend/ormconfig.* backend/Dockerfile.deploy \
+  nginx.conf docker-compose*.yml \
+  "${SERVER}:${REMOTE_DIR}/backend/"
 
-echo "☁️  远程构建/迁移/重启..."
-ssh "${SERVER}" "cd ${REMOTE_DIR} && \
+# Also upload the Dockerfile.deploy to the correct location on server
+rsync -av backend/Dockerfile.deploy "${SERVER}:${REMOTE_DIR}/backend/Dockerfile"
+
+# 5. Remote Restart
+echo "🔄 Executing Remote Restart..."
+ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   docker compose up -d --build backend nginx && \
   docker compose exec backend npm run typeorm -- -d dist/ormconfig.js migration:run && \
   docker compose restart nginx"
 
-echo "✅ 部署完成"
+echo "✅ Deployment Complete!"

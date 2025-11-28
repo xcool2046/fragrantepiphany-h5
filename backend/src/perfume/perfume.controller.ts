@@ -10,7 +10,7 @@ export class PerfumeController {
    * 返回按 cardIds 顺序排列的香水章节（scene_choice 作为区分）
    */
   @Get('chapters')
-  async getChapters(@Query('cardIds') cardIds?: string) {
+  async getChapters(@Query('cardIds') cardIds?: string, @Query('language') language = 'zh') {
     if (!cardIds) {
       throw new BadRequestException('cardIds is required');
     }
@@ -23,7 +23,10 @@ export class PerfumeController {
       throw new BadRequestException('cardIds is empty');
     }
 
-    const chapters = await this.perfumeService.getChapters(ids);
+    // Normalize language
+    const lang = language.toLowerCase().startsWith('zh') ? 'zh' : 'en';
+
+    const chapters = await this.perfumeService.getChapters(ids, lang);
     return { chapters };
   }
 }

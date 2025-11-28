@@ -153,7 +153,7 @@ const QuestionPage: React.FC = () => {
                 className="glass-panel p-8 border-white/60 shadow-card"
               >
                 <h3 className="text-xl font-serif mb-6 text-text">
-                  <span className="text-[#D4A373] mr-2 text-lg font-sans tracking-wider">
+                  <span className="text-[#D4A373] mr-2 text-lg font-sans tracking-wider inline-block">
                     {String(page * QUESTIONS_PER_PAGE + idx + 1).padStart(2, '0')}.
                   </span>
                   {title}

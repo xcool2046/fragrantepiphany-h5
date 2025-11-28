@@ -11,7 +11,7 @@ export class PerfumeService {
     @InjectRepository(Card) private cardRepo: Repository<Card>,
   ) {}
 
-  async getChapters(cardIds: number[]) {
+  async getChapters(cardIds: number[], language = 'zh') {
     if (!cardIds.length) return [];
 
     const items = await this.perfumeRepo.find({
@@ -30,21 +30,23 @@ export class PerfumeService {
       return a.id - b.id;
     });
 
+    const isEn = language === 'en';
+
     return sorted.map((item, idx) => ({
       id: item.id,
       order: idx + 1,
-      cardName: item.card_name,
+      cardName: item.card_name, // Card name might need separate localization if stored in Perfume, but it seems to come from Card entity usually? No, it's stored here.
       sceneChoice: item.scene_choice,
-      brandName: item.brand_name,
-      productName: item.product_name,
+      brandName: (isEn ? item.brand_name_en : item.brand_name) || item.brand_name,
+      productName: (isEn ? item.product_name_en : item.product_name) || item.product_name,
       tags: item.tags ?? [],
       notes: {
-        top: item.notes_top ?? '',
-        heart: item.notes_heart ?? '',
-        base: item.notes_base ?? '',
+        top: (isEn ? item.notes_top_en : item.notes_top) || item.notes_top || '',
+        heart: (isEn ? item.notes_heart_en : item.notes_heart) || item.notes_heart || '',
+        base: (isEn ? item.notes_base_en : item.notes_base) || item.notes_base || '',
       },
-      description: item.description ?? '',
-      quote: item.quote ?? '',
+      description: (isEn ? item.description_en : item.description) || item.description || '',
+      quote: (isEn ? item.quote_en : item.quote) || item.quote || '',
       imageUrl: item.image_url ?? '',
     }));
   }

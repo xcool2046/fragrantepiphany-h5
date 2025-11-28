@@ -28,7 +28,7 @@ type MatchStatus = 'idle' | 'loading' | 'success' | 'error'
 const Result: React.FC = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search])
   const state = useMemo(() => (location.state as LocationState) || {}, [location.state])
@@ -106,7 +106,7 @@ const Result: React.FC = () => {
   useEffect(() => {
     if (normalizedCardIds.length !== 3) return
     setMatchStatus('loading')
-    matchRule({ card_indices: normalizedCardIds, answers })
+    matchRule({ card_indices: normalizedCardIds, answers, language: i18n.language })
       .then((res) => {
         setRuleMatch(res.rule || null)
         setMatchStatus('success')

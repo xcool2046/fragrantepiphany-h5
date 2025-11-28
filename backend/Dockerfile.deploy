@@ -1,0 +1,10 @@
+FROM node:20-alpine
+WORKDIR /app
+ENV NODE_ENV=production
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY dist ./dist
+COPY ormconfig.ts ./ormconfig.ts
+COPY ormconfig.cjs ./ormconfig.cjs
+EXPOSE 3000
+CMD ["node", "dist/src/main.js"]

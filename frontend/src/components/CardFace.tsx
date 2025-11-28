@@ -16,8 +16,14 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
     // ID is 0-77 (from array index), but files are 01.jpg - 78.jpg
     // So file index = id + 1
     const fileIndex = String(id + 1).padStart(2, '0')
-    const imagePath = cardImages[`../assets/cards/${fileIndex}.jpg`]
-    const numberLabel = `NO.${fileIndex}`
+    // Vite's import.meta.glob returns keys relative to the current file
+    // Ensure the key matches exactly what's on disk
+    const imageKey = `../assets/cards/${fileIndex}.jpg`
+    const imagePath = cardImages[imageKey]
+    
+    // Use a simple '#' prefix or just the number for cleaner look, or localize if needed
+    // For now, using '#' as it's universal and fits the design
+    const numberLabel = `#${fileIndex}`
     const isWheel = variant === 'wheel'
     // 仅在明确 vertical 时旋转徽标，普通竖卡（slot）保持水平避免跑出角落
     const isVerticalLayout = vertical

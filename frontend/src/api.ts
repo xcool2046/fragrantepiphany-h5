@@ -117,7 +117,7 @@ export type RuleMatchResult = {
   }
 }
 
-export async function matchRule(payload: { card_indices: number[]; answers?: Record<string, string> }) {
+export async function matchRule(payload: { card_indices: number[]; answers?: Record<string, string>; language?: string }) {
   const res = await api.post<RuleMatchResult>('/api/interp/rule-match', payload)
   return res.data
 }
@@ -142,11 +142,10 @@ export type PerfumeChapter = {
   imageUrl: string
 }
 
-export async function getPerfumeChapters(cardIndices: number[]) {
-  const res = await api.get<{ chapters: PerfumeChapter[] }>('/api/perfume/chapters', {
-    params: { cardIds: cardIndices.join(',') }
+export const getPerfumeChapters = (cardIds: number[], language = 'zh') => {
+  return api.get<{ chapters: PerfumeChapter[] }>('/api/perfume/chapters', {
+    params: { cardIds: cardIds.join(','), language },
   })
-  return res.data.chapters
 }
 
 export default api

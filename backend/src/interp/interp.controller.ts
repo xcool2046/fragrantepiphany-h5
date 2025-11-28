@@ -93,7 +93,7 @@ export class InterpretationController {
   // 根据三张牌 + 问卷答案匹配规则（按 priority ASC, id ASC）
   @Post('rule-match')
   async matchRule(
-    @Body() body: { card_indices: number[]; answers?: Record<string, string> },
+    @Body() body: { card_indices: number[]; answers?: Record<string, string>; language?: string },
   ) {
     const cardIndices = Array.isArray(body.card_indices)
       ? body.card_indices.slice(0, 3)
@@ -119,7 +119,7 @@ export class InterpretationController {
           ? this.service.findOne({
               card_name: card.name_en,
               position: positions[i],
-              language: 'en',
+              language: body.language || 'en',
             })
           : null,
       ),

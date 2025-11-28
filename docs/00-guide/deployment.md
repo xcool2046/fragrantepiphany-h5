@@ -45,35 +45,33 @@ docker compose exec backend npm run seed
 - 访问：前端/后台 `http://localhost:8080`。
 - Stripe Webhook（本地）可用 `stripe listen` 转发到 `http://localhost:3000/api/pay/webhook`，将 whsec 写入 `.env`。
 
-## 4. 生产部署（仅手动流程，已移除 deploy.sh）
-后台入口 `/admin`（登录后默认落到 `/admin/interpretations`），请确认 `.env` 的 `ADMIN_USER/ADMIN_PASS` 已按需设置。  
-**不再使用脚本，严格按下列手动步骤执行，避免脚本失败耽误：**
+## 4. 生产部署 (Multi-stage Build)
 
-1) **推代码**：确保本地改动已 `git commit` 并 `git push`。
-2) **本地前端构建**：
-   ```bash
-   cd frontend
-   VITE_API_BASE_URL=/api npm run build
-   ```
-3) **上传前端静态**（仅 dist，避免 node_modules/.env）：
-   ```bash
-   rsync -av --delete frontend/dist/ root@47.243.157.75:/root/fragrantepiphany-h5/frontend/dist/
-   ```
-4) **同步后端与配置（可选）**：
-   ```bash
-   rsync -av --delete --exclude 'node_modules' --exclude '.git' --exclude '.env' backend nginx.conf docker-compose*.yml root@47.243.157.75:/root/fragrantepiphany-h5
-   ```
-   （若已推代码，也可直接在服务器 `git pull`）
-5) **服务器执行**：
-   ```bash
-   ssh root@47.243.157.75
-   cd /root/fragrantepiphany-h5
-   git pull  # 若第4步已 rsync 覆盖可跳过
-   docker compose up -d --build backend nginx  # 重建后端并加载最新 nginx.conf
-   docker compose exec backend npm run typeorm -- -d dist/ormconfig.js migration:run
-   docker compose restart nginx
-   ```
-6) **验证**：硬刷新 https://fragrantepiphany.com（Console 无 MIME 报错）；https://backend.fragrantepiphany.com 自动跳转 `/admin`；`curl 127.0.0.1:3000/api/health` 返回 200/JSON。
+我们采用 **Docker Multi-stage Build** 策略：
+1.  **构建**：Docker 容器内部负责 `npm install` 和 `npm run build`。
+2.  **运行**：构建产物自动复制到 Nginx 容器中运行。
+3.  **优势**：无需在服务器安装 Node环境，彻底解决文件挂载路径 (`no such file`) 问题。
+
+### 部署步骤
+在服务器根目录下直接运行：
+```bash
+# 拉取最新代码
+git pull
+
+# 构建并启动 (Docker 会自动处理前端构建)
+docker compose up -d --build
+```
+
+### 验证
+```bash
+# 检查容器状态
+docker compose ps
+
+# 应该看到：
+# h5-web-nginx-1   Up      0.0.0.0:8080->80/tcp
+# h5-web-backend-1 Up      0.0.0.0:3000->3000/tcp
+# h5-web-db-1      Up      0.0.0.0:5432->5432/tcp
+```
 6) 宿主机 Nginx 反代示例（80/443 → 容器 8080/3000）：
 ```nginx
 server {

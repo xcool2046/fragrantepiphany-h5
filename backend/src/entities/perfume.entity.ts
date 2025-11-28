@@ -28,6 +28,12 @@ export class Perfume {
   @Column({ type: 'varchar', length: 255 })
   product_name!: string;
 
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  product_name_en!: string | null;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  brand_name_en!: string | null;
+
   @Column({ type: 'jsonb', nullable: true })
   tags!: string[] | null;
 
@@ -35,7 +41,13 @@ export class Perfume {
   description!: string | null;
 
   @Column({ type: 'text', nullable: true })
+  description_en!: string | null;
+
+  @Column({ type: 'text', nullable: true })
   quote!: string | null;
+
+  @Column({ type: 'text', nullable: true })
+  quote_en!: string | null;
 
   @Column({ type: 'text', nullable: true })
   image_url!: string | null;
@@ -44,10 +56,19 @@ export class Perfume {
   notes_top!: string | null;
 
   @Column({ type: 'text', nullable: true })
+  notes_top_en!: string | null;
+
+  @Column({ type: 'text', nullable: true })
   notes_heart!: string | null;
 
   @Column({ type: 'text', nullable: true })
+  notes_heart_en!: string | null;
+
+  @Column({ type: 'text', nullable: true })
   notes_base!: string | null;
+
+  @Column({ type: 'text', nullable: true })
+  notes_base_en!: string | null;
 
   @Column({ type: 'int', default: 0 })
   sort_order!: number;

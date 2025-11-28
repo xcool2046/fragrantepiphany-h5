@@ -13,7 +13,7 @@ interface LocationState {
 const PerfumeView: React.FC = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const cardIds = useMemo(() => {
     const state = (location.state as LocationState) || {}
@@ -40,8 +40,9 @@ const PerfumeView: React.FC = () => {
     const fetchChapters = async () => {
       try {
         setLoading(true)
-        const data = await getPerfumeChapters(cardIds)
-        setChapters(data)
+        // Modified line: Pass i18n.language and handle response structure
+        const res = await getPerfumeChapters(cardIds, i18n.language)
+        setChapters(res.data.chapters)
         setError(null)
       } catch (err) {
         console.error('Failed to fetch perfume chapters:', err)

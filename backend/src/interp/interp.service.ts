@@ -15,7 +15,8 @@ export class InterpretationService {
     position: string;
     language?: string;
   }) {
-    const lang = (query.language || 'en').toLowerCase();
+    let lang = (query.language || 'en').toLowerCase();
+    if (lang.startsWith('zh')) lang = 'zh';
     const alt = lang === 'en' ? 'zh' : 'en';
     const record = await this.repo.findOne({
       where: {
