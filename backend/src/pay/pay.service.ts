@@ -235,4 +235,29 @@ export class PayService {
   async getOrder(id: string) {
     return this.orders.findOne({ where: { id } });
   }
+
+  async checkAndUpdateStatus(orderId: string): Promise<Order | null> {
+    const order = await this.getOrder(orderId);
+    if (!order) return null;
+    if (order.status === 'succeeded') return order;
+    if (!order.stripe_session_id) return order;
+
+    try {
+        const session = await this.stripe.checkout.sessions.retrieve(order.stripe_session_id);
+        if (session.payment_status === 'paid') {
+            await this.orders.update(
+                { id: orderId },
+                {
+                    status: 'succeeded',
+                    payment_intent_id: session.payment_intent as string,
+                }
+            );
+            // Refetch updated order
+            return this.getOrder(orderId);
+        }
+    } catch (err) {
+        console.error(`Failed to check stripe status for order ${orderId}:`, err);
+    }
+    return order;
+  }
 }

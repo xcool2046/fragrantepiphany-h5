@@ -79,7 +79,8 @@ export class InterpretationController {
       if (orderId === 'debug-unlocked') {
         isUnlocked = true;
       } else {
-        const order = await this.payService.getOrder(orderId);
+        // Use checkAndUpdateStatus to handle webhook delays
+        const order = await this.payService.checkAndUpdateStatus(orderId);
         if (order && order.status === 'succeeded') {
           isUnlocked = true;
         }
