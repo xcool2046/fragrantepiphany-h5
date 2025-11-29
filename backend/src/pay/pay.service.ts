@@ -119,66 +119,57 @@ export class PayService {
     }
 
     try {
+      // 1. Create Order first to get the ID
+      const order = this.orders.create({
+        amount: 0, // Will update after session creation
+        currency: input.currency,
+        status: 'pending',
+        metadata: input.metadata,
+      });
+      await this.orders.save(order);
+
+      // 2. Prepare URLs with Order ID
+      const successUrl = `${publicBaseUrl}/pay/callback?status=success&order_id=${order.id}&session_id={CHECKOUT_SESSION_ID}`;
+      const cancelUrl = `${publicBaseUrl}/pay/callback?status=cancel&order_id=${order.id}`;
+
+      // 3. Create Stripe Session
+      stripeMetadata.order_id = order.id;
+      
       session = await this.stripe.checkout.sessions.create({
         mode: 'payment',
+        client_reference_id: order.id,
         line_items: [
           {
             price: priceId,
             quantity: 1,
           },
         ],
-        success_url: `${publicBaseUrl}/pay/callback?status=success&order_id={ORDER_ID}&session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${publicBaseUrl}/pay/callback?status=cancel&order_id={ORDER_ID}`,
+        success_url: successUrl,
+        cancel_url: cancelUrl,
         metadata: stripeMetadata,
       } as Stripe.Checkout.SessionCreateParams);
+
+      console.log(`Stripe session created: ${session.id}, URL: ${session.url}`);
+
+      // 4. Update Order with Session details
+      const amount = session.amount_total ?? session.amount_subtotal ?? 0;
+      const currency = session.currency ?? input.currency;
+      
+      await this.orders.update(
+        { id: order.id }, 
+        {
+          amount,
+          currency,
+          stripe_session_id: session.id,
+        }
+      );
+
+      return { orderId: order.id, sessionUrl: session.url };
+
     } catch (error) {
       console.error('Stripe Session Creation Failed:', error);
       throw error;
     }
-    console.log(`Stripe session created: ${session.id}, URL: ${session.url}`);
-
-    const amount = session.amount_total ?? session.amount_subtotal ?? 0;
-    const currency = session.currency ?? input.currency;
-    const order = this.orders.create({
-      amount,
-      currency,
-      status: 'pending',
-      metadata: input.metadata, // Store original structured metadata in DB
-      stripe_session_id: session.id,
-    });
-    await this.orders.save(order);
-
-    // 把订单 ID 写回 session metadata（需更新后再保存）
-    stripeMetadata.order_id = order.id;
-    if (!session.metadata) session.metadata = {};
-    
-    try {
-      await this.stripe.checkout.sessions.update(session.id, {
-        metadata: stripeMetadata,
-      });
-    } catch (err) {
-      console.error('Failed to update session metadata with order id', err);
-      // 不阻断流程，order_id 已存本地
-    }
-
-    // 替换回调 URL 里的占位符
-    const successUrl =
-      session.success_url?.replace('{ORDER_ID}', order.id) ??
-      `${publicBaseUrl}/pay/callback?status=success&order_id=${order.id}&session_id=${session.id}`;
-    const cancelUrl =
-      session.cancel_url?.replace('{ORDER_ID}', order.id) ??
-      `${publicBaseUrl}/pay/callback?status=cancel&order_id=${order.id}`;
-
-    try {
-      await this.stripe.checkout.sessions.update(session.id, {
-        success_url: successUrl,
-        cancel_url: cancelUrl,
-      } as any);
-    } catch (err) {
-      console.error('Failed to update session URLs', err);
-    }
-
-    return { orderId: order.id, sessionUrl: session.url };
   }
 
   constructEventFromWebhook(rawBody: Buffer, sig: string) {
