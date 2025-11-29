@@ -18,6 +18,7 @@ const SharePage: React.FC = () => {
   
   const [userName, setUserName] = useState('')
   const [generating, setGenerating] = useState(false)
+  const [isLocked, setIsLocked] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
 
   const perfumeName = state.perfumeName || 'Unknown Perfume'
@@ -26,6 +27,13 @@ const SharePage: React.FC = () => {
 
   const handleGenerate = async () => {
     if (!cardRef.current) return
+
+    if (!isLocked) {
+      const confirmed = window.confirm(t('share.confirmLock', 'After saving, the name cannot be modified. Confirm to save?'))
+      if (!confirmed) return
+      setIsLocked(true)
+    }
+
     setGenerating(true)
     try {
       const canvas = await html2canvas(cardRef.current, {
@@ -96,7 +104,10 @@ const SharePage: React.FC = () => {
           placeholder={t('share.enterName', 'Enter your name')}
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
-          className="w-full px-4 py-3 rounded-lg bg-[#F7F2ED] border border-[#D4A373]/30 text-[#2B1F16] placeholder:text-[#2B1F16]/30 focus:outline-none focus:border-[#D4A373] text-center font-serif"
+          disabled={isLocked}
+          className={`w-full px-4 py-3 rounded-lg bg-[#F7F2ED] border border-[#D4A373]/30 text-[#2B1F16] placeholder:text-[#2B1F16]/30 focus:outline-none focus:border-[#D4A373] text-center font-serif ${
+            isLocked ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
           maxLength={20}
         />
 

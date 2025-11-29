@@ -50,33 +50,74 @@ export class PayService {
     const cached = this.priceCache.get(key);
     if (cached) return cached;
 
-    const prices = await this.stripe.prices.list({
-      active: true,
-      currency: key,
-      limit: 100,
-    });
+    try {
+      const prices = await this.stripe.prices.list({
+        active: true,
+        currency: key,
+        limit: 100,
+      });
 
-    const price = prices.data.find((p) => p.type === 'one_time') ?? prices.data[0];
-    if (!price) {
-      throw new Error(`No active Stripe price found for currency: ${currency}`);
+      const price = prices.data.find((p) => p.type === 'one_time') ?? prices.data[0];
+      if (price) {
+        this.priceCache.set(key, price.id);
+        return price.id;
+      }
+
+      console.warn(`No active Stripe price found for currency: ${currency}. Attempting to auto-create one.`);
+      
+      // Auto-create product and price
+      const product = await this.stripe.products.create({
+        name: 'Tarot Reading Unlock',
+        metadata: { type: 'tarot_unlock' }
+      });
+
+      const newPrice = await this.stripe.prices.create({
+        product: product.id,
+        currency: key,
+        unit_amount: 500, // 5.00
+      });
+      
+      console.log(`Auto-created price ${newPrice.id} for currency ${currency}`);
+      this.priceCache.set(key, newPrice.id);
+      return newPrice.id;
+
+    } catch (err) {
+      console.error(`Error resolving/creating price for ${currency}:`, err);
+      throw err;
     }
-
-    this.priceCache.set(key, price.id);
-    return price.id;
   }
 
   async createSession(input: {
     currency: string;
     metadata?: Record<string, unknown>;
   }) {
-    const publicBaseUrl = process.env.PUBLIC_BASE_URL || '';
+    let publicBaseUrl = process.env.PUBLIC_BASE_URL || '';
     if (!publicBaseUrl) {
+      console.error('Missing PUBLIC_BASE_URL env var');
       throw new Error('PUBLIC_BASE_URL is required for Stripe redirect');
     }
+    // Remove trailing slash if present
+    if (publicBaseUrl.endsWith('/')) {
+      publicBaseUrl = publicBaseUrl.slice(0, -1);
+    }
+    console.log(`Creating Stripe session with callback URL base: ${publicBaseUrl}`);
 
     const priceId = await this.resolvePriceIdByCurrency(input.currency);
 
     let session: Stripe.Checkout.Session;
+    
+    // Prepare metadata for Stripe: Flatten/Serialize nested objects
+    const stripeMetadata: Record<string, string> = {};
+    if (input.metadata) {
+      for (const [k, v] of Object.entries(input.metadata)) {
+        if (typeof v === 'object' && v !== null) {
+          stripeMetadata[k] = JSON.stringify(v);
+        } else {
+          stripeMetadata[k] = String(v);
+        }
+      }
+    }
+
     try {
       session = await this.stripe.checkout.sessions.create({
         mode: 'payment',
@@ -88,12 +129,13 @@ export class PayService {
         ],
         success_url: `${publicBaseUrl}/pay/callback?status=success&order_id={ORDER_ID}&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${publicBaseUrl}/pay/callback?status=cancel&order_id={ORDER_ID}`,
-        metadata: { ...(input.metadata || {}) },
+        metadata: stripeMetadata,
       } as Stripe.Checkout.SessionCreateParams);
     } catch (error) {
       console.error('Stripe Session Creation Failed:', error);
       throw error;
     }
+    console.log(`Stripe session created: ${session.id}, URL: ${session.url}`);
 
     const amount = session.amount_total ?? session.amount_subtotal ?? 0;
     const currency = session.currency ?? input.currency;
@@ -101,17 +143,18 @@ export class PayService {
       amount,
       currency,
       status: 'pending',
-      metadata: input.metadata,
+      metadata: input.metadata, // Store original structured metadata in DB
       stripe_session_id: session.id,
     });
     await this.orders.save(order);
 
     // 把订单 ID 写回 session metadata（需更新后再保存）
+    stripeMetadata.order_id = order.id;
     if (!session.metadata) session.metadata = {};
-    session.metadata.order_id = order.id;
+    
     try {
       await this.stripe.checkout.sessions.update(session.id, {
-        metadata: session.metadata,
+        metadata: stripeMetadata,
       });
     } catch (err) {
       console.error('Failed to update session metadata with order id', err);

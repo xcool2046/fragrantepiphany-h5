@@ -71,7 +71,7 @@
     }
   },
   "result": {
-    "title": "The Revelation",
+    "title": "Revelation",
     "cardLabel": "The Card",
     "timeframes": {
       "past": {
@@ -232,5 +232,12 @@
     "notFound": "No fragrance journey found",
     "noCards": "No cards provided",
     "loadFailed": "Failed to load fragrance journey"
+  },
+  "share": {
+    "finish": "Finish Journey",
+    "enterName": "Enter your name",
+    "for": "For",
+    "download": "Save Card",
+    "generating": "Generating..."
   }
 }

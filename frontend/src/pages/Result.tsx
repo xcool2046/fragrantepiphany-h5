@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { CardFace } from '../components/CardFace'
 import { useTranslation } from 'react-i18next'
-import { createCheckout, getOrder, matchRule } from '../api'
+import { createCheckout, getOrder, getReading, fetchPayConfig, ReadingResult } from '../api'
 import ResultSkeleton from '../components/ResultSkeleton'
 
 // Import assets (Arbitrary assignment, to be verified by user)
@@ -11,17 +11,6 @@ import ResultSkeleton from '../components/ResultSkeleton'
 interface LocationState {
   cardIds?: number[]
   answers?: Record<string, string>
-}
-
-interface RuleMatch {
-  interpretation_full?: {
-    en?: string
-    zh?: string
-  } | null
-  summary_free?: {
-    en?: string
-    zh?: string
-  } | null
 }
 
 type MatchStatus = 'idle' | 'loading' | 'success' | 'error'
@@ -45,12 +34,16 @@ const Result: React.FC = () => {
   const [revealed, setRevealed] = useState<boolean[]>([false, false, false])
   const [unlocking, setUnlocking] = useState(false)
   const [orderError, setOrderError] = useState<string | null>(null)
-  const [ruleMatch, setRuleMatch] = useState<RuleMatch | null>(null)
+  const [readingData, setReadingData] = useState<ReadingResult | null>(null)
   const [matchStatus, setMatchStatus] = useState<MatchStatus>('idle')
   const [unlockedByOrder, setUnlockedByOrder] = useState(false)
-  
-  // Hardcoded price for simplified UI
-  const priceLabel = "$5.00"
+  const [priceLabel, setPriceLabel] = useState('$5.00') // Default fallback
+
+  useEffect(() => {
+    fetchPayConfig().then(cfg => {
+        if (cfg?.priceDisplay) setPriceLabel(cfg.priceDisplay)
+    }).catch(err => console.warn('Failed to load price config', err))
+  }, [])
 
   // Ensure returning to this page always starts at the top (e.g., back from Perfume)
   useEffect(() => {
@@ -111,17 +104,29 @@ const Result: React.FC = () => {
       else if (categoryAnswer.includes('自我') || categoryAnswer.includes('Self')) category = 'Self'
     }
 
-    matchRule({ card_indices: normalizedCardIds, answers, language: i18n.language, category })
+    const currentOrderId = searchParams.get('orderId') || undefined
+    const debugMode = searchParams.get('debug') === 'unlocked'
+    const effectiveOrderId = debugMode ? 'debug-unlocked' : currentOrderId
+
+    getReading({
+      card_indices: normalizedCardIds,
+      language: i18n.language,
+      category,
+      orderId: effectiveOrderId,
+    })
       .then((res) => {
-        setRuleMatch(res.rule || null)
+        setReadingData(res)
+        if (res.is_unlocked) {
+          setUnlockedByOrder(true)
+        }
         setMatchStatus('success')
       })
       .catch((err) => {
-        console.error('rule match failed', err)
-        setRuleMatch(null)
+        console.error('reading fetch failed', err)
+        setReadingData(null)
         setMatchStatus('error')
       })
-  }, [normalizedCardIds, answers, i18n.language])
+  }, [normalizedCardIds, answers, i18n.language, searchParams])
 
   // Determine unlocked state:
   // 1. Payment success (orderId + status)
@@ -134,6 +139,29 @@ const Result: React.FC = () => {
         if (res?.status === 'succeeded') {
           setUnlockedByOrder(true)
         }
+        // Restore state from metadata if missing locally (e.g. return from payment)
+        if (res?.metadata && (!state.cardIds || state.cardIds.length === 0)) {
+            try {
+                const meta = res.metadata as { cardIds?: string; answers?: Record<string, string> };
+                let recoveredIds: number[] = [];
+                if (typeof meta.cardIds === 'string') {
+                    recoveredIds = meta.cardIds.split(',').map((s: string) => parseInt(s.trim(), 10)).filter((n: number) => !isNaN(n));
+                }
+                
+                if (recoveredIds.length === 3) {
+                    navigate(location.pathname + location.search, {
+                        state: {
+                            ...state,
+                            cardIds: recoveredIds,
+                            answers: meta.answers || state.answers
+                        },
+                        replace: true
+                    });
+                }
+            } catch (e) {
+                console.error("Failed to recover state from order metadata", e);
+            }
+        }
       })
       .catch((err) => {
         console.error('order check failed', err)
@@ -144,19 +172,10 @@ const Result: React.FC = () => {
       const debug = searchParams.get('debug');
       const orderId = searchParams.get('orderId');
       const status = searchParams.get('status');
+      // Prioritize readingData.is_unlocked if available
+      if (readingData?.is_unlocked) return true;
       return (debug === 'unlocked') || unlockedByOrder || (!!orderId && (status === 'paid' || status === 'succeeded'));
-  }, [searchParams, unlockedByOrder]);
-
-  const ruleText = useMemo(() => {
-    if (!ruleMatch) return null
-    return (
-      ruleMatch.interpretation_full?.en ||
-      ruleMatch.interpretation_full?.zh ||
-      ruleMatch.summary_free?.en ||
-      ruleMatch.summary_free?.zh ||
-      null
-    )
-  }, [ruleMatch])
+  }, [searchParams, unlockedByOrder, readingData]);
 
   const handleUnlock = async () => {
     setUnlocking(true)
@@ -314,9 +333,9 @@ const Result: React.FC = () => {
 
               {/* Free Content Section (PAST) */}
               <div className="mb-12">
-                  {ruleText && (
+                  {readingData?.past?.content?.summary && (
                     <p className="text-[#3E3025] font-serif italic text-center text-sm mb-8 opacity-80 leading-relaxed px-2">
-                      {ruleText}
+                      {readingData.past.content.summary}
                     </p>
                   )}
 
@@ -325,8 +344,8 @@ const Result: React.FC = () => {
                           <div className="w-16 h-[1px] bg-[#4A3B32]/20" />
                       </div>
                       <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-wider">{t('result.timeframes.past.label', 'PAST')}</h3>
-                      <p className="mb-8">
-                          {t('result.timeframes.past.description', "Your journey has led you here. Embrace the wisdom of the cards as they reveal the path ahead. Trust in their guidance, for they speak the language of your soul's deepest knowing.")}
+                      <p className="mb-8 whitespace-pre-wrap">
+                          {readingData?.past?.content?.interpretation || t('result.timeframes.past.description', "Your journey has led you here. Embrace the wisdom of the cards as they reveal the path ahead. Trust in their guidance, for they speak the language of your soul's deepest knowing.")}
                       </p>
                   </div>
               </div>
@@ -345,8 +364,8 @@ const Result: React.FC = () => {
                 <div className="space-y-8">
                   <div>
                     <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.present.label', 'PRESENT')}</h3>
-                    <p className="mb-0 text-[#3E3025]/90">
-                      {t('result.timeframes.present.description', 'The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.')}
+                    <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap">
+                      {readingData?.present?.content?.interpretation || t('result.timeframes.present.description', 'The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.')}
                     </p>
                   </div>
                   <div>
@@ -354,8 +373,8 @@ const Result: React.FC = () => {
                       <div className="w-16 h-[1px] bg-[#4A3B32]/15" />
                     </div>
                     <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.future.label', 'FUTURE')}</h3>
-                    <p className="mb-0 text-[#3E3025]/90">
-                      {t('result.timeframes.future.description', 'Trust your intuition and take the next step with confidence. Your destiny awaits.')}
+                    <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap">
+                      {readingData?.future?.content?.interpretation || t('result.timeframes.future.description', 'Trust your intuition and take the next step with confidence. Your destiny awaits.')}
                     </p>
                   </div>
                 </div>

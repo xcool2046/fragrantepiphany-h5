@@ -126,6 +126,32 @@ export class InterpretationService {
     return this.repo.delete(id);
   }
 
+  async getInterpretationsForCards(
+    cards: { name_en: string }[],
+    category: string,
+    language: string,
+  ) {
+    const positions = ['Past', 'Present', 'Future'];
+    const results: { position: string; card_name: string; content: any }[] = [];
+
+    for (let i = 0; i < Math.min(cards.length, 3); i++) {
+      const card = cards[i];
+      const position = positions[i];
+      const interp = await this.findOne({
+        card_name: card.name_en,
+        category,
+        position,
+        language,
+      });
+      results.push({
+        position,
+        card_name: card.name_en,
+        content: interp,
+      });
+    }
+    return results;
+  }
+
   exportAll() {
     return this.repo.find();
   }

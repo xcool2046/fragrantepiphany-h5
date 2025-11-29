@@ -20,6 +20,7 @@ const AdminLayout = React.lazy(() => import('./pages/admin/AdminLayout'))
 const Interpretations = React.lazy(() => import('./pages/admin/Interpretations'))
 const Questions = React.lazy(() => import('./pages/admin/Questions'))
 const Cards = React.lazy(() => import('./pages/admin/Cards'))
+const PayCallback = React.lazy(() => import('./pages/PayCallback'))
 
 // Global scroll manager to avoid returning to a page at the previous offset (e.g., back from Perfume to Result)
 const ScrollManager: React.FC = () => {
@@ -35,15 +36,13 @@ const ScrollManager: React.FC = () => {
   return null
 }
 
-const Loading = () => (
-  <div className="flex-center" style={{ height: '100vh', color: 'var(--color-primary-gold)' }}>
-    Loading...
-  </div>
-)
+import GlobalLoading from './components/GlobalLoading'
+
+// ... (imports)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<GlobalLoading />}>
       <BrowserRouter>
         <ScrollManager />
         <RippleEffect />
@@ -56,6 +55,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/about" element={<About />} />
           <Route path="/perfume" element={<PerfumeView />} />
           <Route path="/journey/complete" element={<JourneyComplete />} />
+          <Route path="/pay/callback" element={<PayCallback />} />
           <Route path="/share" element={<SharePage />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>

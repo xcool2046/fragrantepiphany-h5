@@ -45,4 +45,15 @@ export class PayController {
   getOrder(@Param('id') id: string) {
     return this.payService.getOrder(id);
   }
+
+  @Get('config')
+  getConfig() {
+    // Return configured price or default
+    // In real scenario, this might come from DB or Stripe Price API
+    return {
+      priceDisplay: '$5.00',
+      currency: 'usd',
+      priceAmount: 500 // cents
+    };
+  }
 }

@@ -146,8 +146,49 @@ export type PerfumeChapter = {
 
 export const getPerfumeChapters = (cardIds: number[], language = 'zh') => {
   return api.get<{ chapters: PerfumeChapter[] }>('/api/perfume/chapters', {
-    params: { cardIds: cardIds.join(','), language },
+    params: { card_indices: cardIds.join(','), language },
   })
+}
+
+export interface ReadingContent {
+  card_name: string;
+  category: string;
+  position: string;
+  language: string;
+  summary: string | null;
+  interpretation: string | null;
+  action: string | null;
+  future: string | null;
+  recommendation: string | null;
+}
+
+export interface ReadingSection {
+  position: string;
+  card_name: string;
+  content: ReadingContent | null;
+  is_locked: boolean;
+}
+
+export interface ReadingResult {
+  is_unlocked: boolean;
+  past: ReadingSection | null;
+  present: ReadingSection | null;
+  future: ReadingSection | null;
+}
+
+export async function getReading(payload: {
+  card_indices: number[];
+  orderId?: string;
+  language?: string;
+  category?: string;
+}) {
+  const res = await api.post<ReadingResult>('/api/interp/reading', payload);
+  return res.data;
+}
+
+export async function fetchPayConfig() {
+  const res = await api.get<{ priceDisplay: string; currency: string; priceAmount: number }>('/api/pay/config');
+  return res.data;
 }
 
 export default api

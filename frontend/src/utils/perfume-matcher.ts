@@ -10,7 +10,13 @@ import { PerfumeChapter } from '../api'
  */
 export function matchSceneChoice(chapters: PerfumeChapter[], scentAnswer?: string): PerfumeChapter | undefined {
   if (!chapters.length) return undefined
-  if (!scentAnswer) return chapters[0]
+  
+  // Default fallback: 
+  // Logic: Return the chapter associated with the "Future" position (usually the 3rd one, i.e. index 2).
+  // If only 1 or 2 chapters exist, fallback to the last one.
+  const defaultFallback = chapters[chapters.length - 1];
+
+  if (!scentAnswer) return defaultFallback
 
   // Fuzzy match logic
   // DB has "A. 玫瑰园", "午后被阳光烘暖的木质家具"
@@ -35,5 +41,5 @@ export function matchSceneChoice(chapters: PerfumeChapter[], scentAnswer?: strin
     })
   })
 
-  return match || chapters[0]
+  return match || defaultFallback
 }

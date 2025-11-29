@@ -280,23 +280,59 @@ export default function Interpretations() {
         </div>
         
         {total > pageSize && (
-          <div className="flex gap-2 mt-4 justify-center">
+          <div className="flex flex-wrap gap-2 mt-4 justify-center items-center">
             <button
               disabled={page === 1}
               onClick={() => fetchInterps(page - 1)}
-              className="px-3 py-1 rounded border bg-white disabled:opacity-50 text-sm text-[#2B1F16]"
+              className="px-3 py-1 rounded border bg-white disabled:opacity-50 text-sm text-[#2B1F16] hover:bg-gray-50"
             >
-              上一页
+              Prev
             </button>
-            <div className="text-sm text-gray-600 px-2 py-1">
-              {page} / {Math.ceil(total / pageSize)}
-            </div>
+            
+            {/* Numeric Pagination Logic */}
+            {(() => {
+              const totalPages = Math.ceil(total / pageSize)
+              const maxVisible = 5
+              const pages = []
+              
+              if (totalPages <= maxVisible) {
+                for (let i = 1; i <= totalPages; i++) pages.push(i)
+              } else {
+                // Always show first, last, and range around current
+                if (page <= 3) {
+                  pages.push(1, 2, 3, 4, '...', totalPages)
+                } else if (page >= totalPages - 2) {
+                  pages.push(1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages)
+                } else {
+                  pages.push(1, '...', page - 1, page, page + 1, '...', totalPages)
+                }
+              }
+
+              return pages.map((p, idx) => (
+                typeof p === 'number' ? (
+                  <button
+                    key={idx}
+                    onClick={() => fetchInterps(p)}
+                    className={`w-8 h-8 rounded border text-sm flex items-center justify-center transition-colors ${
+                      page === p 
+                        ? 'bg-[#2B1F16] text-white border-[#2B1F16]' 
+                        : 'bg-white text-[#2B1F16] border-gray-200 hover:border-[#D4A373]'
+                    }`}
+                  >
+                    {p}
+                  </button>
+                ) : (
+                  <span key={idx} className="text-gray-400 text-sm px-1">...</span>
+                )
+              ))
+            })()}
+
             <button
               disabled={page * pageSize >= total}
               onClick={() => fetchInterps(page + 1)}
-              className="px-3 py-1 rounded border bg-white disabled:opacity-50 text-sm text-[#2B1F16]"
+              className="px-3 py-1 rounded border bg-white disabled:opacity-50 text-sm text-[#2B1F16] hover:bg-gray-50"
             >
-              下一页
+              Next
             </button>
           </div>
         )}

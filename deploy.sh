@@ -11,17 +11,22 @@ NOTE=${1:-"fast deploy"}
 
 echo "🚀 Fast Deployment Started: $NOTE"
 
-# 0. Git Backup
-echo "💾 Backing up code to GitHub..."
-git add .
-if ! git diff-index --quiet HEAD --; then
-    git commit -m "Deploy: $NOTE"
-    echo "✅ Changes committed."
+# Check for --fast flag to skip git
+if [[ "${2:-}" == "--fast" ]]; then
+    echo "⏩ Skipping Git backup (--fast mode)"
 else
-    echo "✨ No local changes to commit."
+    # 0. Git Backup
+    echo "💾 Backing up code to GitHub..."
+    git add .
+    if ! git diff-index --quiet HEAD --; then
+        git commit -m "Deploy: $NOTE"
+        echo "✅ Changes committed."
+    else
+        echo "✨ No local changes to commit."
+    fi
+    echo "⬆️  Pushing to remote..."
+    git push
 fi
-echo "⬆️  Pushing to remote..."
-git push
 
 # 1. Build Frontend Locally
 echo "🏗️  Building Frontend (VITE_API_BASE_URL=/api)..."
@@ -32,9 +37,22 @@ popd >/dev/null
 
 # 2. Build Backend Locally
 echo "🏗️  Building Backend..."
-rm -rf backend/dist
+rm -rf backend/dist backend/assets
 pushd backend >/dev/null
 npm run build
+
+# 2.1 Compile Seed Script (Directly to JS for production)
+echo "📜 Compiling Seed Script..."
+# Compile the TS script to JS so it can run in the production node:alpine image without ts-node
+npx tsc scripts/seed_tarot_direct.ts --outDir dist/scripts \
+  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck || echo "⚠️ Script compilation warning (ignoring)"
+
+# 2.2 Prepare Assets for Docker
+echo "📂 Copying assets for deployment..."
+mkdir -p assets
+# Copy from project root assets to backend/assets so Docker can access them
+cp -r ../assets/excel_files assets/
+
 popd >/dev/null
 
 # 3. Create Deployment Dockerfile
@@ -46,6 +64,7 @@ ENV NODE_ENV=production
 COPY package*.json ./
 RUN npm ci --omit=dev
 COPY dist ./dist
+COPY assets ./assets
 COPY ormconfig.ts ./ormconfig.ts
 COPY ormconfig.cjs ./ormconfig.cjs
 EXPOSE 3000
@@ -55,16 +74,22 @@ EOF
 # 4. Upload Files
 echo "📤 Uploading Frontend Assets..."
 rsync -av --delete frontend/dist/ "${SERVER}:${REMOTE_DIR}/frontend/dist/"
+# Crucial: Upload the Dockerfile so the remote build uses the new configuration (dist -> /var/www/html)
+rsync -av frontend/Dockerfile "${SERVER}:${REMOTE_DIR}/frontend/Dockerfile"
 
 echo "📤 Uploading Backend Artifacts..."
+# Note: Added backend/assets to the list to sync the Excel files
 rsync -av --delete \
   --exclude 'node_modules' \
   --exclude '.git' \
   --exclude '.env' \
   --exclude 'uploads' \
-  backend/dist backend/package*.json backend/ormconfig.* backend/Dockerfile.deploy \
-  nginx.conf docker-compose*.yml \
+  backend/dist backend/assets backend/package*.json backend/ormconfig.* backend/Dockerfile.deploy \
   "${SERVER}:${REMOTE_DIR}/backend/"
+
+# Upload Config files to Root (to ensure docker compose uses latest)
+echo "📤 Uploading Configs..."
+rsync -av nginx.conf docker-compose*.yml "${SERVER}:${REMOTE_DIR}/"
 
 # Also upload the Dockerfile.deploy to the correct location on server
 rsync -av backend/Dockerfile.deploy "${SERVER}:${REMOTE_DIR}/backend/Dockerfile"
@@ -73,7 +98,10 @@ rsync -av backend/Dockerfile.deploy "${SERVER}:${REMOTE_DIR}/backend/Dockerfile"
 echo "🔄 Executing Remote Restart..."
 ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   docker compose up -d --build backend nginx && \
+  echo '⏳ Waiting for backend to start...' && sleep 5 && \
   docker compose exec backend npm run typeorm -- -d ormconfig.cjs migration:run && \
+  echo '🌱 Seeding Tarot Data...' && \
+  docker compose exec backend node dist/scripts/seed_tarot_direct.js && \
   docker compose restart nginx"
 
 echo "✅ Deployment Complete!"

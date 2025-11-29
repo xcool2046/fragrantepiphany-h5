@@ -15,12 +15,15 @@ import { Repository, In } from 'typeorm';
 import { Card } from '../entities/card.entity';
 import { TAROT_POSITIONS, TAROT_CATEGORIES, DEFAULT_PAGE_SIZE } from '../constants/tarot';
 
+import { PayService } from '../pay/pay.service';
+
 @Controller('api/interp')
 export class InterpretationController {
   constructor(
     private readonly service: InterpretationService,
     private readonly drawService: DrawService,
     @InjectRepository(Card) private cardRepo: Repository<Card>,
+    private readonly payService: PayService,
   ) {}
 
   @Get()
@@ -31,6 +34,96 @@ export class InterpretationController {
     @Query('language') language: string,
   ) {
     return this.service.findOne({ card_name, category, position, language });
+  }
+
+  @Post('reading')
+  async getReading(
+    @Body()
+    body: {
+      card_indices: number[];
+      orderId?: string;
+      language?: string;
+      category?: string;
+    },
+  ) {
+    const { card_indices, orderId, language = 'en', category = 'Self' } = body;
+
+    if (!Array.isArray(card_indices) || card_indices.length !== 3) {
+      return { error: 'Invalid cards' };
+    }
+
+    // 1. Resolve Cards
+    const cardCodes = card_indices.map((idx) =>
+      String((idx % 78) + 1).padStart(2, '0'),
+    );
+    const cards = await this.cardRepo.find({ where: { code: In(cardCodes) } });
+    // Sort to match Past, Present, Future order
+    const sortedCards = cardCodes
+      .map((code) => cards.find((c) => c.code === code))
+      .filter(Boolean) as Card[];
+
+    if (sortedCards.length !== 3) {
+      return { error: 'Cards not found' };
+    }
+
+    // 2. Get Raw Interpretations
+    const rawInterps = await this.service.getInterpretationsForCards(
+      sortedCards,
+      category,
+      language,
+    );
+
+    // 3. Check Access
+    let isUnlocked = false;
+    if (orderId) {
+      if (orderId === 'debug-unlocked') {
+        isUnlocked = true;
+      } else {
+        const order = await this.payService.getOrder(orderId);
+        if (order && order.status === 'succeeded') {
+          isUnlocked = true;
+        }
+      }
+    }
+
+    // 4. Construct Response
+    const response: any = {
+      is_unlocked: isUnlocked,
+      past: null,
+      present: null,
+      future: null,
+    };
+
+    // Map rawInterps to response keys
+    rawInterps.forEach((item) => {
+      const key = item.position.toLowerCase(); // past, present, future
+      const content = item.content;
+
+      if (key === 'past') {
+        // Past is always fully visible
+        response.past = {
+          ...content,
+          is_locked: false,
+        };
+      } else {
+        // Present & Future are locked unless paid
+        if (isUnlocked) {
+          response[key] = {
+            ...content,
+            is_locked: false,
+          };
+        } else {
+          // Locked: only return null or limited data
+          response[key] = {
+            summary: null,
+            interpretation: null,
+            is_locked: true,
+          };
+        }
+      }
+    });
+
+    return response;
   }
 
   @Get('draw')
