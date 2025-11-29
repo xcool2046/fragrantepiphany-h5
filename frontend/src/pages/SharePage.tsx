@@ -8,6 +8,8 @@ interface LocationState {
   perfumeName: string
   quote: string
   brandName?: string
+  isLocked?: boolean
+  savedName?: string
 }
 
 const SharePage: React.FC = () => {
@@ -16,9 +18,9 @@ const SharePage: React.FC = () => {
   const navigate = useNavigate()
   const state = (location.state as LocationState) || {}
   
-  const [userName, setUserName] = useState('')
+  const [userName, setUserName] = useState(state.savedName || '')
   const [generating, setGenerating] = useState(false)
-  const [isLocked, setIsLocked] = useState(false)
+  const [isLocked, setIsLocked] = useState(state.isLocked || false)
   const cardRef = useRef<HTMLDivElement>(null)
 
   const perfumeName = state.perfumeName || 'Unknown Perfume'
@@ -32,6 +34,11 @@ const SharePage: React.FC = () => {
       const confirmed = window.confirm(t('share.confirmLock', 'After saving, the name cannot be modified. Confirm to save?'))
       if (!confirmed) return
       setIsLocked(true)
+      // Persist lock state and name to history so it survives navigation
+      navigate('.', { 
+        state: { ...state, isLocked: true, savedName: userName }, 
+        replace: true 
+      })
     }
 
     setGenerating(true)
