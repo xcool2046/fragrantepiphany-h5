@@ -44,11 +44,8 @@ export class SeedSceneChoiceEn1764320000000 implements MigrationInterface {
     // We use IF NOT EXISTS to be safe, but Postgres ADD COLUMN IF NOT EXISTS is only available in newer versions (9.6+)
     // TypeORM usually handles this via schema sync, but we are doing manual migrations.
     // Let's check if column exists or just try to add it.
-    try {
-      await queryRunner.query(`ALTER TABLE "perfumes" ADD "scene_choice_en" character varying(255)`);
-    } catch (e) {
-      // Ignore if exists
-    }
+    // Column should already exist from previous migration (1764305000000)
+    // We skip adding it to avoid transaction aborts if it exists.
 
     for (const map of mappings) {
       // Update where scene_choice contains the Chinese text
