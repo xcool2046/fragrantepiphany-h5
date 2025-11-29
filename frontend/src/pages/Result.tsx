@@ -142,18 +142,33 @@ const Result: React.FC = () => {
         // Restore state from metadata if missing locally (e.g. return from payment)
         if (res?.metadata && (!state.cardIds || state.cardIds.length === 0)) {
             try {
-                const meta = res.metadata as { cardIds?: string; answers?: Record<string, string> };
+                const meta = res.metadata as { cardIds?: string | number[]; answers?: string | Record<string, string> };
+                
                 let recoveredIds: number[] = [];
-                if (typeof meta.cardIds === 'string') {
+                if (Array.isArray(meta.cardIds)) {
+                    recoveredIds = meta.cardIds;
+                } else if (typeof meta.cardIds === 'string') {
                     recoveredIds = meta.cardIds.split(',').map((s: string) => parseInt(s.trim(), 10)).filter((n: number) => !isNaN(n));
+                }
+
+                let recoveredAnswers: Record<string, string> = {};
+                if (typeof meta.answers === 'object' && meta.answers !== null) {
+                    recoveredAnswers = meta.answers as Record<string, string>;
+                } else if (typeof meta.answers === 'string') {
+                    try {
+                        recoveredAnswers = JSON.parse(meta.answers);
+                    } catch {
+                        console.warn('Failed to parse answers string');
+                    }
                 }
                 
                 if (recoveredIds.length === 3) {
+                    // Force update state and re-render
                     navigate(location.pathname + location.search, {
                         state: {
                             ...state,
                             cardIds: recoveredIds,
-                            answers: meta.answers || state.answers
+                            answers: recoveredAnswers
                         },
                         replace: true
                     });
