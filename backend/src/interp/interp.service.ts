@@ -52,34 +52,47 @@ export class InterpretationService {
   }
 
   async importMany(items: Partial<Interpretation>[]) {
-    const mapped = items.map((item) => {
-      const lang = (item as any).language || 'en';
+    // 1. Group items by language to ensure consistent keys in each batch upsert
+    const groups: Record<string, any[]> = {};
+    
+    for (const item of items) {
+      const lang = ((item as any).language || 'en').toLowerCase();
+      const normLang = lang.startsWith('zh') ? 'zh' : 'en';
+      
+      if (!groups[normLang]) groups[normLang] = [];
+      
       const base = {
         card_name: item.card_name,
         category: item.category,
         position: item.position,
-        summary_en: null,
-        summary_zh: null,
-        interpretation_en: null,
-        interpretation_zh: null,
-        action_en: null,
-        action_zh: null,
-        future_en: null,
-        future_zh: null,
-        recommendation_en: null,
-        recommendation_zh: null,
       } as any;
-      const prefix = lang.toLowerCase() === 'zh' ? '_zh' : '_en';
-      base[`summary${prefix}`] = (item as any).summary ?? null;
-      base[`interpretation${prefix}`] = (item as any).interpretation ?? null;
-      base[`action${prefix}`] = (item as any).action ?? null;
-      base[`future${prefix}`] = (item as any).future ?? null;
-      base[`recommendation${prefix}`] = (item as any).recommendation ?? null;
-      return base;
-    });
-    const entities = this.repo.create(mapped);
-    await this.repo.upsert(entities, ['card_name', 'category', 'position']);
-    return entities;
+
+      const prefix = normLang === 'zh' ? '_zh' : '_en';
+      
+      // Only set fields for the specific language. 
+      // Do NOT set other language fields to null to avoid overwriting them in DB.
+      if ((item as any).summary !== undefined) base[`summary${prefix}`] = (item as any).summary;
+      if ((item as any).interpretation !== undefined) base[`interpretation${prefix}`] = (item as any).interpretation;
+      if ((item as any).action !== undefined) base[`action${prefix}`] = (item as any).action;
+      if ((item as any).future !== undefined) base[`future${prefix}`] = (item as any).future;
+      if ((item as any).recommendation !== undefined) base[`recommendation${prefix}`] = (item as any).recommendation;
+
+      groups[normLang].push(base);
+    }
+
+    const results: Partial<Interpretation>[] = [];
+    // 2. Execute upsert for each language group
+    for (const lang of Object.keys(groups)) {
+      const batch = groups[lang];
+      if (batch.length > 0) {
+        // Upsert will only update the columns present in 'batch' objects.
+        // Since we separated by language, this batch only touches columns for 'lang'.
+        await this.repo.upsert(batch, ['card_name', 'category', 'position']);
+        results.push(...batch);
+      }
+    }
+    
+    return results;
   }
 
   async findAll(page = 1, limit = DEFAULT_PAGE_SIZE, filters: any = {}) {

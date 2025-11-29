@@ -44,7 +44,9 @@ cd backend
 npm install
 npm run build
 npm run typeorm -- migration:run   # 应用 migrations
-npm run seed                       # 导入 sample-data/cards-example.json
+npm run seed                       # 标准种子 (scripts/seed.ts)
+# 或使用更快的直接插入脚本 (生产环境用):
+# npx ts-node scripts/seed_tarot_direct.ts
 npm run start:dev                  # http://localhost:3000
 ```
 3) 前端：
@@ -54,6 +56,10 @@ npm install
 npm run dev -- --host --port 4173  # http://localhost:4173
 ```
 4) Stripe Webhook（本地调试）：可用 `stripe listen` 转发到 `http://localhost:3000/api/pay/webhook`，并把得到的 whsec 写入 `.env` 的 `STRIPE_WEBHOOK_SECRET`。
+
+## Draw Page Redesign (Spotlight Mode)
+The Draw page has undergone a major visual and technical overhaul (Dark Mode, Spotlight effect, Z-Index optimization).
+See `docs/02-features/draw-page-overhaul.md` for specific implementation details.
 
 ## Docker Compose 运行
 ```bash

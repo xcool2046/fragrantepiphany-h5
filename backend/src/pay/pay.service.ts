@@ -42,7 +42,7 @@ export class PayService {
     return mapping;
   }
 
-  private async resolvePriceIdByCurrency(currency: string): Promise<string> {
+  public async resolvePriceIdByCurrency(currency: string): Promise<string> {
     const key = currency.toLowerCase();
 
     if (this.envPriceMap?.[key]) return this.envPriceMap[key];

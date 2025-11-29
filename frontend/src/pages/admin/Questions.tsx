@@ -90,9 +90,40 @@ export default function Questions() {
     fetchData()
   }
 
-  const adjustWeight = async (q: Question, delta: number) => {
-    await api.patch(`/api/admin/questions/${q.id}`, { weight: q.weight + delta }, { headers: tokenHeader })
-    fetchData()
+  const adjustWeight = async (q: Question, direction: 'up' | 'down') => {
+    const index = items.findIndex(item => item.id === q.id)
+    if (index === -1) return
+
+    const targetIndex = direction === 'up' ? index - 1 : index + 1
+    if (targetIndex < 0 || targetIndex >= items.length) return
+
+    const targetItem = items[targetIndex]
+    
+    // Swap weights
+    // If weights are equal, force a divergence to ensure order change
+    let newWeightQ = targetItem.weight
+    let newWeightTarget = q.weight
+
+    if (newWeightQ === newWeightTarget) {
+        if (direction === 'up') {
+            newWeightQ -= 1
+            newWeightTarget += 1
+        } else {
+            newWeightQ += 1
+            newWeightTarget -= 1
+        }
+    }
+
+    try {
+        await Promise.all([
+            api.patch(`/api/admin/questions/${q.id}`, { weight: newWeightQ }, { headers: tokenHeader }),
+            api.patch(`/api/admin/questions/${targetItem.id}`, { weight: newWeightTarget }, { headers: tokenHeader })
+        ])
+        fetchData()
+    } catch (e) {
+        console.error("Failed to swap weights", e)
+        alert("排序调整失败")
+    }
   }
 
   const remove = async (q: Question) => {
@@ -128,8 +159,8 @@ export default function Questions() {
                 )}
               </div>
               <div className="flex items-center gap-2 mt-3 md:mt-0">
-                <button onClick={() => adjustWeight(q, -5)} className="px-3 py-1 rounded-lg bg-white border text-sm text-[#2B1F16] hover:border-[#D4A373]">上移</button>
-                <button onClick={() => adjustWeight(q, 5)} className="px-3 py-1 rounded-lg bg-white border text-sm text-[#2B1F16] hover:border-[#D4A373]">下移</button>
+                <button onClick={() => adjustWeight(q, 'up')} disabled={index === 0} className="px-3 py-1 rounded-lg bg-white border text-sm text-[#2B1F16] hover:border-[#D4A373] disabled:opacity-50">上移</button>
+                <button onClick={() => adjustWeight(q, 'down')} disabled={index === items.length - 1} className="px-3 py-1 rounded-lg bg-white border text-sm text-[#2B1F16] hover:border-[#D4A373] disabled:opacity-50">下移</button>
                 <button onClick={() => toggleActive(q)} className="px-3 py-1 rounded-lg bg-white border text-sm text-[#2B1F16] hover:border-[#D4A373]">
                   {q.active ? '禁用' : '启用'}
                 </button>

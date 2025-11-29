@@ -37,7 +37,7 @@ Stores perfume recommendations mapped to Tarot cards and Scene choices. Supports
 | `updated_at` | TIMESTAMP | Last update time |
 
 ### `questions`
-Stores questionnaire data.
+Stores questionnaire definitions (questions and options). User answers are NOT stored permanently.
 
 | Column | Type | Description |
 | :--- | :--- | :--- |
@@ -45,6 +45,9 @@ Stores questionnaire data.
 | `text` | TEXT | Question text |
 | `options` | JSONB | Options array |
 | `...` | ... | ... |
+
+### `users`
+Stores Admin users only. No C-end user accounts.
 
 ### `rules`
 Maps Tarot cards to interpretation rules.

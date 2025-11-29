@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import LanguageToggle from '../components/LanguageToggle'
 import homeBgDecorationWebp from '../assets/home-bg-decoration.webp'
 import homeBgDecorationJpg from '../assets/home-bg-decoration.jpg'
-import NoiseOverlay from '../components/NoiseOverlay'
 import ZodiacWheel from '../components/ZodiacWheel'
 
 import StarryBackground from '../components/StarryBackground'
@@ -18,7 +17,6 @@ const Home: React.FC = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden text-[#2B1F16] selection:bg-[#D4A373]/30 bg-[#F7F2ED]">
-      <NoiseOverlay />
       
       <div className="absolute top-6 right-6 z-50">
         <LanguageToggle />
@@ -37,7 +35,7 @@ const Home: React.FC = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.2 }}
-          transition={{ duration: 2, ease: "easeOut" }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
           className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[150vw] h-[65vh] md:w-[110vh] md:h-[65vh] mix-blend-multiply pointer-events-none"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_closest-side,transparent_25%,#F7F2ED_85%)] z-10" />
@@ -63,7 +61,7 @@ const Home: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="mb-3 md:mb-4"
           >
             <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#2B1F16] font-sans font-medium opacity-50 block">
@@ -85,8 +83,8 @@ const Home: React.FC = () => {
                   initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
                   animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   transition={{
-                    duration: 1.2,
-                    delay: 0.8 + (idx * 0.2),
+                    duration: 0.8,
+                    delay: 0.3 + (idx * 0.1),
                     ease: [0.22, 1, 0.36, 1]
                   }}
                   className="block"
@@ -109,7 +107,7 @@ const Home: React.FC = () => {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 1.5 }}
+            transition={{ duration: 1, delay: 0.6 }}
             className="mt-2 text-sm md:text-base text-[#2B1F16]/60 font-serif italic tracking-[0.15em] relative z-10 mix-blend-multiply"
           >
             {t('home.subtitle')}
@@ -121,7 +119,7 @@ const Home: React.FC = () => {
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 1.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => navigate('/onboarding')}
@@ -148,7 +146,7 @@ const Home: React.FC = () => {
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 2.2 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
             onClick={() => navigate('/about')}
             className="group/learn relative text-[10px] uppercase tracking-[0.25em] text-[#2B1F16]/40 hover:text-[#2B1F16] transition-colors transition-transform duration-500 py-3 px-8 hover:-translate-y-[3px] border border-[#2B1F16]/[0.15] hover:border-[#2B1F16]/40 rounded-full"
           >

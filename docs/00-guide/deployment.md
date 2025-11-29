@@ -59,23 +59,36 @@ docker compose exec backend npm run seed
 # 在本地执行
 ./deploy.sh "你的部署备注"
 ```
-该脚本会自动完成：本地构建 -> 上传文件 -> 远程重启容器。
+该脚本会自动完成：**Git 备份 (commit & push)** -> 本地构建 (`npm run build`) -> 上传文件 (`rsync`) -> 远程重启容器 (`docker compose up -d --build`)。
+**注意**：脚本中使用的生产环境种子命令为 `node dist/scripts/seed_tarot_direct.js`，这比标准的 `npm run seed` 更适合生产环境（无需 `ts-node`）。
 
 ### 手动部署步骤 (如果不使用脚本)
-1.  **本地构建**：
+1.  **Git 备份（推荐）**：
+    ```bash
+    git add .
+    git commit -m "Deploy: 手动部署"
+    git push
+    ```
+2.  **本地构建**：
     ```bash
     cd frontend
     # 确保清空 VITE_API_BASE_URL 以使用相对路径 /api
     VITE_API_BASE_URL= npm run build
+    cd ../backend
+    npm run build
+    # 编译生产用种子脚本
+    npx tsc scripts/seed_tarot_direct.ts --outDir dist/scripts --target ES2019 --module commonjs --esModuleInterop
     ```
 2.  **上传文件**：
     ```bash
     rsync -av frontend/dist/ root@47.243.157.75:/root/fragrantepiphany-h5/frontend/dist/
+    # 同时上传 backend/dist, backend/assets 等
     ```
 3.  **服务器重启**：
     ```bash
-    ssh root@47.243.157.75 "cd /root/fragrantepiphany-h5 && docker compose up -d --build"
+    ssh root@47.243.157.75 "cd /root/fragrantepiphany-h5 && docker compose up -d --build nginx backend"
     ```
+    *注意：由于前端静态文件被 COPY 到了 Nginx 镜像中，**必须**使用 `--build nginx` 重建镜像才能生效新代码。*
 
 ### 验证
 ```bash

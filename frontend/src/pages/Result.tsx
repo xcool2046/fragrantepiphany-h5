@@ -40,6 +40,7 @@ const Result: React.FC = () => {
   const [priceLabel, setPriceLabel] = useState('$5.00') // Default fallback
 
   useEffect(() => {
+    // Fetch dynamic price from backend (which gets it from Stripe)
     fetchPayConfig().then(cfg => {
         if (cfg?.priceDisplay) setPriceLabel(cfg.priceDisplay)
     }).catch(err => console.warn('Failed to load price config', err))
@@ -196,7 +197,7 @@ const Result: React.FC = () => {
     setUnlocking(true)
     setOrderError(null)
     try {
-      // Create checkout session with hardcoded USD currency
+      // Always use USD as the single source of truth from Stripe configuration
       const res = await createCheckout({
         currency: 'usd',
         metadata: { cardIds: cardIds.join(','), answers }
@@ -402,13 +403,12 @@ const Result: React.FC = () => {
                   className={`group relative px-10 py-4 rounded-full font-serif tracking-widest text-[11px] uppercase transition-all duration-500 whitespace-nowrap ${isUnlocked ? 'bg-transparent text-[#2B1F16] border border-[#D4A373]/70 shadow-[0_10px_24px_-14px_rgba(43,31,22,0.35)] hover:-translate-y-0.5' : 'bg-[#2B1F16] text-[#E8DCC5] shadow-lg hover:shadow-xl hover:-translate-y-0.5'}`}
                 >
                   <span className="relative z-10">
-                    {isUnlocked ? t('journey.cta', 'Discover Your Fragrance') : unlocking ? t('draw.loading') + '...' : t('result.unlock', 'Unlock Full Reading')}
+                    {isUnlocked ? t('journey.cta', 'Discover Your Fragrance') : unlocking ? t('draw.loading') + '...' : `${t('result.unlock', 'Unlock Full Reading')} - ${priceLabel}`}
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent translate-x-[-120%] group-hover:translate-x-[120%] transition-transform duration-1000 ease-in-out rounded-full" />
                 </button>
 
                 <div className="flex flex-col items-center gap-1 text-center">
-                  {!isUnlocked && <span className="font-serif text-sm text-[#D4A373]">{priceLabel}</span>}
                   {orderError && <span className="text-xs text-red-800/80 animate-pulse font-serif">{orderError}</span>}
                 </div>
               </div>

@@ -28,7 +28,12 @@
 ## 页面级 UI 规范（按暖杏主题）
 - Home（落地）：浅米背景；Hero 实图（暖杏滤镜）；流程卡片 2×2，卡片浅暖底 + 1px 边框；主 CTA 金杏实底，次 CTA 半透明；语言按钮“EN / CN”浅描边；底部 Tab 半透明浅背景。
 - Questionnaire：浅米背景，题干深文字、选项卡浅暖底；选中态描边/填充金杏；底部进度和提交按钮（金杏实底）；Tab 栏同 Home。
-- Draw（抽牌）：右侧半圆轮盘深底卡背，左右留白；左侧 Past/Now/Future 槽位浅底描边；顶部提示文案；选中放大 + 按钮金杏；跳转前轻量 Loading；Tab 栏浅背景。
+- Draw（抽牌）：
+  - **Note**: See `docs/02-features/draw-page-overhaul.md` for latest "Spotlight" design specs.
+  - **Style**: Dark "Mystical" Mode (Deep Brown/Purple) for immersion, deviating from the general Light theme.
+  - **Interaction**: Vertical "Rolodex" Wheel with haptic feedback. Static "Spotlight" overlay for performance.
+  - **Feedback**: Gold flash on selection, physical flight to slot, gold ripple on landing.
+  - **Slots**: Breathing empty state, active "impact" animation.
 - Result：Past 免费区浅底；付费区（Now/Action/Future/推荐）浅底分区卡片；支付状态条/按钮金杏；可有“再次占卜/分享”次要 CTA；Tab 栏。
 - Pay：订单摘要卡片浅底，价格金杏高亮；Stripe CTA 金杏实底；回跳提示文案；Tab 栏。
 - 共通：圆角卡片 18–22px、按钮 14–18px；阴影轻；图标 FontAwesome；图片为真实可商用素材（暖杏/米色调）。

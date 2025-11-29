@@ -30,7 +30,7 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
 
     return (
         <div className={clsx(
-            "w-full h-full rounded-lg overflow-hidden relative shadow-2xl transition-all",
+            "w-full h-full rounded-lg overflow-hidden relative transition-all",
             "bg-[#14100F]",
             // Only apply radial gradient background if showing back or if image missing
             (side === 'back' || !imagePath) && "bg-[radial-gradient(circle_at_center,#2E241D_0%,#0F0B0A_100%)]",
@@ -63,7 +63,7 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
                             preserveAspectRatio={vertical ? "none" : "xMidYMid meet"}
                         >
                             <defs>
-                                <linearGradient id="decoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <linearGradient id={`decoGold-${id}`} x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" stopColor="#8B5A2B" />
                                     <stop offset="40%" stopColor="#F5D0A9" />
                                     <stop offset="60%" stopColor="#8B5A2B" />
@@ -72,7 +72,7 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
                             </defs>
                             
                             <g
-                                stroke="url(#decoGold)"
+                                stroke={`url(#decoGold-${id})`}
                                 strokeWidth="1.5"
                                 fill="none"
                                 strokeLinecap="square"
@@ -85,7 +85,7 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
                                 <path d="M 70 10 L 110 45 L 70 80 L 30 45 Z" />
                                 <circle cx="50" cy="45" r="18" opacity="0.5" />
                                 <circle cx="90" cy="45" r="18" opacity="0.5" />
-                                <circle cx="70" cy="45" r="4" fill="url(#decoGold)" stroke="none" />
+                                <circle cx="70" cy="45" r="4" fill={`url(#decoGold-${id})`} stroke="none" />
                                 <line x1="5" y1="5" x2="30" y2="30" opacity="0.3" />
                                 <line x1="5" y1="85" x2="30" y2="60" opacity="0.3" />
                                 <line x1="135" y1="5" x2="110" y2="30" opacity="0.3" />
@@ -95,9 +95,6 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
                     </div>
                 </>
             )}
-
-            {/* 3. Subtle Ambient Glow (Overlay on top of image too for atmosphere) */}
-            <div className="absolute inset-0 z-20 pointer-events-none mix-blend-overlay opacity-30 bg-[radial-gradient(circle_at_50%_0%,rgba(245,208,169,0.4)_0%,transparent_60%)]" />
 
             {showBadge && (
                 <div

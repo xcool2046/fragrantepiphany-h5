@@ -54,7 +54,7 @@ const FlyingCard = ({
                 height: startRect.height,
                 rotate: 90, // Wheel cards are rotated 90deg visually (horizontal)
                 scale: 1,
-                zIndex: 100,
+                zIndex: 200,
                 opacity: 1
             }}
             animate={{ 
@@ -66,7 +66,7 @@ const FlyingCard = ({
                 scale: 1,
             }}
             transition={{ 
-                duration: 0.8,
+                duration: 0.5, // Snappier flight
                 ease: [0.16, 1, 0.3, 1], // Apple-style easeOut
             }}
             onAnimationComplete={onComplete}
@@ -77,7 +77,7 @@ const FlyingCard = ({
                  <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: [0, 0.8, 0] }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.5 }}
                     className="absolute inset-0 bg-[#D4A373] blur-xl rounded-lg"
                  />
                  <CardFace id={cardId} variant="slot" vertical={true} side="back" />
@@ -122,14 +122,7 @@ const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isHidden 
     // 6. Z-Index: Center on top
     const zIndex = useTransform(distance, (d) => 100 - Math.round(Math.abs(d)))
     
-    // 7. Brightness/Darkness: Darken distant cards
-    const darkOverlayOpacity = useTransform(distance, [-8, 0, 8], [0.6, 0, 0.6])
-
-    // 8. Glow: Only center card glows (Enhanced)
-    const glowOpacity = useTransform(distance, (d) => {
-        const absD = Math.abs(d)
-        return Math.max(0, 1 - absD * 0.3) // Slower decay for wider glow
-    })
+    // NOTE: Darkening/Spotlight effect is now handled by a global overlay in the parent Wheel component.
 
     return (
         <motion.div
@@ -142,23 +135,18 @@ const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isHidden 
                 rotateZ: rotate, // Explicitly rotate Z
                 pointerEvents: isHidden ? 'none' : 'auto',
             }}
+            // Added whileTap for instant feedback
+            whileTap={{ scale: 0.95 }}
             // Adjusted top to 46% to align better with "Present" slot
             className="absolute top-[46%] left-[15%] -translate-y-1/2 w-[120px] h-[76px] origin-center cursor-pointer will-change-transform"
             onClick={isHidden ? undefined : onClick}
         >
-            {/* Hero Glow (Behind card) - Optimized for performance */}
-            <motion.div
-                style={{ opacity: glowOpacity }}
-                className="absolute inset-0 -z-10 bg-[#D4A373]/70 blur-[35px] scale-125 rounded-full pointer-events-none"
-            />
-            
             <CardFace id={cardId} variant="wheel" />
 
-            {/* Brightness/Darkness Overlay */}
-            <motion.div
-                style={{ opacity: darkOverlayOpacity }}
-                className="absolute inset-0 bg-black pointer-events-none rounded-lg transition-opacity duration-300"
-            />
+            {/* Shadow for depth - Simpler box-shadow or use a PNG asset if needed. 
+                Here we use a very subtle localized shadow that moves with the card 
+            */}
+            <div className="absolute inset-0 rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.3)] pointer-events-none" />
         </motion.div>
     )
 })
@@ -167,11 +155,12 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
   // --- Infinite Scroll State ---
   const scrollIndex = useMotionValue(INITIAL_INDEX)
   
-  // Use a spring for smooth visual updates, but we'll control the underlying value with inertia
+  // Use a spring for smooth visual updates
+  // Tweak physics for "Heavy" feel: Higher damping, Higher mass.
   const smoothIndex = useSpring(scrollIndex, { 
     stiffness: 200, 
-    damping: 30, 
-    mass: 0.5,
+    damping: 40, 
+    mass: 1,
     restDelta: 0.001 
   })
 
@@ -183,7 +172,12 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
     if (rounded !== renderIndex) {
       setRenderIndex(rounded)
     }
+    // Haptic Feedback: Trigger when passing an index threshold
     if (rounded !== lastHapticIndex.current) {
+      if (navigator.vibrate) {
+         // Short, crisp vibration for "tick" feel
+         navigator.vibrate(5)
+      }
       lastHapticIndex.current = rounded
     }
   })
@@ -217,12 +211,15 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
     touchStartY.current = currentY
     lastTouchTime.current = currentTime
 
+    // Adjust sensitivity
     const deltaIndex = deltaPixel / 60 
     scrollIndex.set(scrollIndex.get() + deltaIndex)
 
     // Calculate velocity (pixels per ms, converted to index change)
     if (deltaTime > 0) {
-      velocity.current = deltaIndex / deltaTime
+      // Weighted average for smoother velocity
+      const newVelocity = deltaIndex / deltaTime
+      velocity.current = velocity.current * 0.8 + newVelocity * 0.2
     }
   }, [scrollIndex])
 
@@ -233,11 +230,11 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
     // We use a simple decay animation on the motion value
     const currentVelocity = velocity.current * 1000 // Scale up for usable units
     
-    animate(scrollIndex, scrollIndex.get() + currentVelocity * 0.5, {
+    animate(scrollIndex, scrollIndex.get() + currentVelocity * 0.6, {
       type: "decay",
       velocity: currentVelocity,
-      timeConstant: 300,
-      power: 0.8,
+      timeConstant: 250, // Quicker stop = heavier feel
+      power: 0.6, // Less distance = heavier feel
       restDelta: 0.001,
     })
     
@@ -275,11 +272,11 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
       
       const currentVelocity = velocity.current * 1000
       
-      animate(scrollIndex, scrollIndex.get() + currentVelocity * 0.5, {
+      animate(scrollIndex, scrollIndex.get() + currentVelocity * 0.6, {
         type: "decay",
         velocity: currentVelocity,
-        timeConstant: 300,
-        power: 0.8,
+        timeConstant: 250,
+        power: 0.6,
         restDelta: 0.001
       })
     }
@@ -294,7 +291,7 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
       animate(scrollIndex, clickedAbsoluteIndex, {
         type: "spring",
         stiffness: 200,
-        damping: 30
+        damping: 40
       })
       return
     }
@@ -307,7 +304,8 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
   }, [scrollIndex, onCardSelect])
 
   // Reduce visible range for better performance on mobile
-  const visibleRange = 10 
+  // 8 cards either side is enough for the viewport
+  const visibleRange = 8 
   const indices = []
   for (let i = renderIndex - visibleRange; i <= renderIndex + visibleRange; i++) {
     indices.push(i)
@@ -315,7 +313,7 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
 
   return (
       <div 
-        className="flex-1 min-w-0 h-screen relative overflow-hidden bg-[#F7F2ED] cursor-grab active:cursor-grabbing"
+        className="flex-1 min-w-0 h-screen relative overflow-hidden bg-[#1a1614] cursor-grab active:cursor-grabbing"
         style={{ touchAction: 'none' }} // Critical for smooth touch handling
         onWheel={handleWheel}
         onTouchStart={handleTouchStart}
@@ -326,14 +324,23 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
-        {/* Ambient Background Effects */}
-        <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/2 right-0 w-[800px] h-[800px] bg-[#D4A373]/10 rounded-full blur-[80px] transform translate-x-1/2 -translate-y-1/2"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0)_0%,#F7F2ED_100%)]"></div>
-        </div>
+        {/* 1. Ambient Background - Updated for "Film/Noise" Feel */}
+        {/* Deep mystical background with noise texture */}
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,#2B1F16_0%,#130F11_100%)]" />
+        
+        {/* Noise Texture - Subtle Grain */}
+        <div 
+            className="absolute inset-0 pointer-events-none opacity-20 mix-blend-overlay z-0"
+            style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E")`
+            }}
+        />
+
+        {/* 2. Stage Spotlight Effect (Global Overlay) */}
+        <div className="absolute inset-0 pointer-events-none z-[90] bg-[radial-gradient(circle_at_30%_46%,transparent_60px,#0F0B0A_360px)] opacity-90" />
         
         {/* Scene Container */}
-        <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute top-0 left-0 w-full h-full z-10">
              <AnimatePresence>
                 {indices.map((index) => {
                    const cardId = ((index % TOTAL_CARDS) + TOTAL_CARDS) % TOTAL_CARDS
@@ -350,7 +357,6 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
                    )
                 })}
              </AnimatePresence>
-
         </div>
       </div>
   )
@@ -442,16 +448,6 @@ const Draw: React.FC = () => {
   return (
     <div className="min-h-screen w-full bg-[#F7F2ED] text-[#4A4A4A] overflow-hidden flex flex-row font-serif">
       
-      {/* Flying Card Overlay */}
-      {flyingCard && (
-          <FlyingCard 
-            cardId={flyingCard.id} 
-            startRect={flyingCard.startRect} 
-            targetRect={flyingCard.targetRect} 
-            onComplete={handleAnimationComplete} 
-          />
-      )}
-
       {/* LEFT PANEL: Info & Slots (35% width) */}
       <div className="w-[34%] min-w-[130px] max-w-[320px] h-screen flex flex-col items-center justify-center p-6 z-20 relative bg-white/40 border-r border-[#8B5A2B]/10 shadow-xl backdrop-blur-md">
 
@@ -485,38 +481,52 @@ const Draw: React.FC = () => {
                 ref={el => slotRefs.current[index] = el}
                 className="relative w-full aspect-[2/3] rounded-xl border-2 border-[#D4A373]/40 flex items-center justify-center bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm shadow-[0_8px_24px_rgba(212,163,115,0.15)] overflow-hidden group transition-all duration-300 hover:border-[#D4A373]/60 hover:shadow-[0_12px_32px_rgba(212,163,115,0.25)]"
               >
-                {/* Empty State */}
+                {/* Empty State - Breathing Animation */}
                 {cardId === null && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-[#D4A373]/50 font-serif text-sm tracking-[0.2em] uppercase group-hover:text-[#D4A373] transition-colors font-light">
+                  <motion.div 
+                    animate={{ opacity: [0.4, 0.8, 0.4] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <span className="text-[#D4A373] font-serif text-sm tracking-[0.2em] uppercase font-light">
                       {t(`draw.slots.${slotNames[index]}`)}
                     </span>
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* Filled State */}
                 <AnimatePresence>
                   {cardId !== null && (
-                    <motion.div
-                      layoutId={`card-slot-${cardId}`} 
-                      className="absolute inset-0 w-full h-full z-10 flex items-center justify-center"
-                      initial={{ opacity: 0, scale: 1.2, y: 0, rotate: 0 }}
-                      animate={{ opacity: 1, scale: 1.1, y: 0, rotate: 0 }} // Portrait layout无需旋转
-                      exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)", rotate: 0 }}
-                      transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                      onClick={() => {
-                        // Clear this specific slot
-                        setSelectedCards(prev => {
-                            const newSelected = [...prev]
-                            newSelected[index] = null
-                            return newSelected
-                        })
-                      }}
-                    >
-                       <div className="w-[80px] h-[120px]"> {/* 竖版卡片：直接使用纵向比例，无需旋转 */}
-                           <CardFace id={cardId} variant="slot" vertical />
-                       </div>
-                    </motion.div>
+                    <>
+                      {/* Ripple/Impact Effect when card lands - BRIGHT FLASH */}
+                      <motion.div
+                         initial={{ scale: 0.9, opacity: 0.9 }}
+                         animate={{ scale: 1.6, opacity: 0 }}
+                         transition={{ duration: 0.8, ease: "easeOut" }}
+                         className="absolute inset-0 bg-[#FFD700] rounded-xl z-0 mix-blend-screen"
+                      />
+                      
+                      <motion.div
+                        layoutId={`card-slot-${cardId}`} 
+                        className="absolute inset-0 w-full h-full z-10 flex items-center justify-center"
+                        initial={{ opacity: 0, scale: 1.2, y: 0, rotate: 0 }}
+                        animate={{ opacity: 1, scale: 1.1, y: 0, rotate: 0 }} // Portrait layout无需旋转
+                        exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)", rotate: 0 }}
+                        transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                        onClick={() => {
+                          // Clear this specific slot
+                          setSelectedCards(prev => {
+                              const newSelected = [...prev]
+                              newSelected[index] = null
+                              return newSelected
+                          })
+                        }}
+                      >
+                         <div className="w-[80px] h-[120px]"> {/* 竖版卡片：直接使用纵向比例，无需旋转 */}
+                             <CardFace id={cardId} variant="slot" vertical />
+                         </div>
+                      </motion.div>
+                    </>
                   )}
                 </AnimatePresence>
               </div>
@@ -549,6 +559,16 @@ const Draw: React.FC = () => {
 
       {/* RIGHT PANEL: Wheel */}
       <Wheel onCardSelect={handleCardSelect} selectedCards={selectedCards} flyingCardId={flyingCard?.id ?? null} />
+
+      {/* Flying Card Overlay - MOVED TO BOTTOM FOR HIGHEST Z-STACKING */}
+      {flyingCard && (
+          <FlyingCard 
+            cardId={flyingCard.id} 
+            startRect={flyingCard.startRect} 
+            targetRect={flyingCard.targetRect} 
+            onComplete={handleAnimationComplete} 
+          />
+      )}
     </div>
   )
 }

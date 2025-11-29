@@ -47,13 +47,35 @@ export class PayController {
   }
 
   @Get('config')
-  getConfig() {
-    // Return configured price or default
-    // In real scenario, this might come from DB or Stripe Price API
-    return {
-      priceDisplay: '$5.00',
-      currency: 'usd',
-      priceAmount: 500 // cents
-    };
+  async getConfig() {
+    try {
+      // Default to USD as per requirements
+      const priceId = await this.payService.resolvePriceIdByCurrency('usd');
+      const stripe = this.payService.getStripe();
+      
+      const price = await stripe.prices.retrieve(priceId);
+      const amount = price.unit_amount ?? 500;
+      const currency = price.currency;
+      
+      // Format price display (e.g., $5.00)
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: currency.toUpperCase(),
+      });
+      
+      return {
+        priceDisplay: formatter.format(amount / 100),
+        currency,
+        priceAmount: amount
+      };
+    } catch (err) {
+      console.error('Failed to fetch price config', err);
+      // Fallback safe default if Stripe fails
+      return {
+        priceDisplay: '$5.00',
+        currency: 'usd',
+        priceAmount: 500
+      };
+    }
   }
 }

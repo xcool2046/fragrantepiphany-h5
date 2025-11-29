@@ -57,6 +57,5 @@ Establish the Backend Database as the single source of truth, eliminating hardco
 ---
 
 ## 3. Future Enhancements
--   **User Accounts**: Persistent history for users.
 -   **Payment Integration**: Expand Stripe integration for more products.
 -   **Analytics**: Track user journey and drop-off rates.
