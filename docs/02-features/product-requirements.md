@@ -107,6 +107,7 @@
 - [x] 抽牌 UI (半圆轮盘)
 - [x] 结果页 (免费/付费逻辑)
 - [x] 支付流程 (Stripe CNY/USD)
+- [x] 香水推荐旅程 (Perfume Journey)
 
 ### Phase 2: 管理后台 (Completed)
 - [x] 登录/鉴权

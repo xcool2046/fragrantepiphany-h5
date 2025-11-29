@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback, memo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useMotionValueEvent, MotionValue } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useMotionValueEvent, MotionValue, animate } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 
@@ -10,24 +10,83 @@ const TOTAL_CARDS = 78
 const INITIAL_INDEX = 39
 
 // --- Types ---
+// --- Types ---
 interface WheelProps {
-  onCardSelect: (cardId: number) => void;
-  selectedCards: number[];
+  onCardSelect: (cardId: number, startRect: DOMRect) => void;
+  selectedCards: (number | null)[];
+  flyingCardId: number | null;
 }
 
 interface WheelCardProps {
   absoluteIndex: number;
   scrollIndex: MotionValue<number>;
   cardId: number;
-  onClick: () => void;
-  isSelected: boolean;
+  onClick: (e: React.MouseEvent | React.TouchEvent) => void;
+  isHidden: boolean;
 }
 
 // --- Components ---
 
 import { CardFace } from '../components/CardFace'
 
-const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isSelected }: WheelCardProps) => {
+// Flying Card Component for Animation
+const FlyingCard = ({ 
+    cardId, 
+    startRect, 
+    targetRect, 
+    onComplete 
+}: { 
+    cardId: number, 
+    startRect: DOMRect, 
+    targetRect: DOMRect, 
+    onComplete: () => void 
+}) => {
+    // Calculate deltas
+    // We render fixed at top-left 0,0 and translate
+    
+    return (
+        <motion.div
+            initial={{ 
+                position: 'fixed',
+                top: startRect.top,
+                left: startRect.left,
+                width: startRect.width,
+                height: startRect.height,
+                rotate: 90, // Wheel cards are rotated 90deg visually (horizontal)
+                scale: 1,
+                zIndex: 100,
+                opacity: 1
+            }}
+            animate={{ 
+                top: targetRect.top,
+                left: targetRect.left,
+                width: targetRect.width,
+                height: targetRect.height,
+                rotate: 0, // Slot cards are vertical 0deg
+                scale: 1,
+            }}
+            transition={{ 
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1], // Apple-style easeOut
+            }}
+            onAnimationComplete={onComplete}
+            className="pointer-events-none"
+        >
+            <div className="w-full h-full relative shadow-2xl">
+                 {/* Add a glow effect during flight */}
+                 <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 0.8, 0] }}
+                    transition={{ duration: 0.8 }}
+                    className="absolute inset-0 bg-[#D4A373] blur-xl rounded-lg"
+                 />
+                 <CardFace id={cardId} variant="slot" vertical={true} side="back" />
+            </div>
+        </motion.div>
+    )
+}
+
+const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isHidden }: WheelCardProps) => {
     // Calculate distance from center (0 means centered)
     const distance = useTransform(scrollIndex, (current: number) => {
         return absoluteIndex - current
@@ -78,13 +137,14 @@ const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isSelecte
                 x,
                 y,
                 scale,
-                opacity,
+                opacity: isHidden ? 0 : opacity,
                 zIndex,
                 rotateZ: rotate, // Explicitly rotate Z
+                pointerEvents: isHidden ? 'none' : 'auto',
             }}
             // Adjusted top to 46% to align better with "Present" slot
             className="absolute top-[46%] left-[15%] -translate-y-1/2 w-[120px] h-[76px] origin-center cursor-pointer will-change-transform"
-            onClick={onClick}
+            onClick={isHidden ? undefined : onClick}
         >
             {/* Hero Glow (Behind card) - Optimized for performance */}
             <motion.div
@@ -99,30 +159,19 @@ const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isSelecte
                 style={{ opacity: darkOverlayOpacity }}
                 className="absolute inset-0 bg-black pointer-events-none rounded-lg transition-opacity duration-300"
             />
-
-            {/* Selected State Overlay */}
-            {isSelected && (
-                <div className="absolute inset-0 bg-[#2B1F16]/50 pointer-events-none rounded-lg backdrop-blur-[2px] border-2 border-[#D4A373] transition-all duration-300">
-                    {/* Selected checkmark indicator */}
-                    <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-[#D4A373] flex items-center justify-center">
-                        <svg viewBox="0 0 12 12" className="w-3 h-3 text-[#2B1F16]" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M2 6 L5 9 L10 3" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </div>
-                </div>
-            )}
         </motion.div>
     )
 })
 
-const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards }) => {
+const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId }) => {
   // --- Infinite Scroll State ---
   const scrollIndex = useMotionValue(INITIAL_INDEX)
   
+  // Use a spring for smooth visual updates, but we'll control the underlying value with inertia
   const smoothIndex = useSpring(scrollIndex, { 
-    stiffness: 150, 
-    damping: 20, 
-    mass: 0.8,
+    stiffness: 200, 
+    damping: 30, 
+    mass: 0.5,
     restDelta: 0.001 
   })
 
@@ -141,75 +190,124 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards }) => {
 
   // --- Interaction Handlers ---
   const handleWheel = useCallback((e: React.WheelEvent) => {
-    // Invert deltaY for natural scrolling (scroll down = move down list = index decreases? No, usually scroll down = view lower items = index increases)
-    // Let's stick to standard: scroll down (positive delta) -> increase index -> move cards up
     const delta = e.deltaY * 0.005 
     scrollIndex.set(scrollIndex.get() + delta)
   }, [scrollIndex])
 
   const touchStartY = useRef(0)
   const isDragging = useRef(false)
+  const lastTouchTime = useRef(0)
+  const velocity = useRef(0)
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     touchStartY.current = e.touches[0].clientY
+    lastTouchTime.current = Date.now()
     isDragging.current = true
-  }, [])
+    velocity.current = 0
+    scrollIndex.stop() // Stop any ongoing animation
+  }, [scrollIndex])
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
     if (!isDragging.current) return
     const currentY = e.touches[0].clientY
+    const currentTime = Date.now()
     const deltaPixel = touchStartY.current - currentY
+    const deltaTime = currentTime - lastTouchTime.current
+    
     touchStartY.current = currentY
-    // Drag up (positive delta) -> move cards up -> increase index
-    const deltaIndex = deltaPixel / 60 // More sensitive than before
+    lastTouchTime.current = currentTime
+
+    const deltaIndex = deltaPixel / 60 
     scrollIndex.set(scrollIndex.get() + deltaIndex)
+
+    // Calculate velocity (pixels per ms, converted to index change)
+    if (deltaTime > 0) {
+      velocity.current = deltaIndex / deltaTime
+    }
   }, [scrollIndex])
 
   const handleTouchEnd = useCallback(() => {
     isDragging.current = false
-    const current = scrollIndex.get()
-    const target = Math.round(current)
-    scrollIndex.set(target)
+    
+    // Apply momentum/inertia
+    // We use a simple decay animation on the motion value
+    const currentVelocity = velocity.current * 1000 // Scale up for usable units
+    
+    animate(scrollIndex, scrollIndex.get() + currentVelocity * 0.5, {
+      type: "decay",
+      velocity: currentVelocity,
+      timeConstant: 300,
+      power: 0.8,
+      restDelta: 0.001,
+    })
+    
   }, [scrollIndex])
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     touchStartY.current = e.clientY
+    lastTouchTime.current = Date.now()
     isDragging.current = true
-  }, [])
+    velocity.current = 0
+    scrollIndex.stop()
+  }, [scrollIndex])
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!isDragging.current) return
     const currentY = e.clientY
+    const currentTime = Date.now()
     const deltaPixel = touchStartY.current - currentY
+    const deltaTime = currentTime - lastTouchTime.current
+
     touchStartY.current = currentY
+    lastTouchTime.current = currentTime
+
     const deltaIndex = deltaPixel / 60
     scrollIndex.set(scrollIndex.get() + deltaIndex)
+
+    if (deltaTime > 0) {
+      velocity.current = deltaIndex / deltaTime
+    }
   }, [scrollIndex])
 
   const handleMouseUp = useCallback(() => {
     if (isDragging.current) {
       isDragging.current = false
-      const current = scrollIndex.get()
-      const target = Math.round(current)
-      scrollIndex.set(target)
+      
+      const currentVelocity = velocity.current * 1000
+      
+      animate(scrollIndex, scrollIndex.get() + currentVelocity * 0.5, {
+        type: "decay",
+        velocity: currentVelocity,
+        timeConstant: 300,
+        power: 0.8,
+        restDelta: 0.001
+      })
     }
   }, [scrollIndex])
 
-  const handleCardClick = useCallback((clickedAbsoluteIndex: number) => {
+  const handleCardClick = useCallback((clickedAbsoluteIndex: number, e: React.MouseEvent | React.TouchEvent) => {
     const current = scrollIndex.get()
     const distance = Math.abs(current - clickedAbsoluteIndex)
     
     if (distance > 0.5) {
-      scrollIndex.set(clickedAbsoluteIndex)
+      // Smooth scroll to card if it's far
+      animate(scrollIndex, clickedAbsoluteIndex, {
+        type: "spring",
+        stiffness: 200,
+        damping: 30
+      })
       return
     }
 
     const cardId = ((clickedAbsoluteIndex % TOTAL_CARDS) + TOTAL_CARDS) % TOTAL_CARDS
-    onCardSelect(cardId)
+    
+    // Get click coordinates for animation
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
+    onCardSelect(cardId, rect)
   }, [scrollIndex, onCardSelect])
 
-  // Increase visible range for vertical stack
-  const visibleRange = 14 
+  // Reduce visible range for better performance on mobile
+  const visibleRange = 10 
   const indices = []
   for (let i = renderIndex - visibleRange; i <= renderIndex + visibleRange; i++) {
     indices.push(i)
@@ -218,6 +316,7 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards }) => {
   return (
       <div 
         className="flex-1 min-w-0 h-screen relative overflow-hidden bg-[#F7F2ED] cursor-grab active:cursor-grabbing"
+        style={{ touchAction: 'none' }} // Critical for smooth touch handling
         onWheel={handleWheel}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -238,14 +337,15 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards }) => {
              <AnimatePresence>
                 {indices.map((index) => {
                    const cardId = ((index % TOTAL_CARDS) + TOTAL_CARDS) % TOTAL_CARDS
+                   const isHidden = selectedCards.includes(cardId) || cardId === flyingCardId
                    return (
                      <WheelCard
                        key={index}
                        absoluteIndex={index}
                        scrollIndex={smoothIndex}
                        cardId={cardId}
-                       onClick={() => handleCardClick(index)}
-                       isSelected={selectedCards.includes(cardId)}
+                       onClick={(e) => handleCardClick(index, e)}
+                       isHidden={isHidden}
                      />
                    )
                 })}
@@ -260,28 +360,97 @@ const Draw: React.FC = () => {
   const navigate = useNavigate()
   const location = useLocation() as { state?: { answers?: Record<string, string> } }
   const { t } = useTranslation()
-  const [selectedCards, setSelectedCards] = useState<number[]>([])
+  const [selectedCards, setSelectedCards] = useState<(number | null)[]>([null, null, null])
   const [submitting, setSubmitting] = useState(false)
   
-  const handleCardSelect = useCallback((cardId: number) => {
-    if (selectedCards.includes(cardId)) {
-      setSelectedCards(prev => prev.filter(id => id !== cardId))
-    } else {
-      if (selectedCards.length < 3) {
-        setSelectedCards(prev => [...prev, cardId])
-      }
+  // Animation State
+  const [flyingCard, setFlyingCard] = useState<{ id: number, startRect: DOMRect, targetRect: DOMRect, targetIndex: number } | null>(null)
+  const slotRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  const handleCardSelect = useCallback((cardId: number, startRect: DOMRect) => {
+    // Check if card is already selected (in any slot)
+    const existingIndex = selectedCards.indexOf(cardId)
+    if (existingIndex !== -1) {
+      // If already selected, remove it from that specific slot
+      setSelectedCards(prev => {
+          const newSelected = [...prev]
+          newSelected[existingIndex] = null
+          return newSelected
+      })
+      return
+    }
+
+    // Determine target slot
+    // Rule: "Default downwards, don't fly into cancelled slot"
+    // Logic: Try to fill (maxFilledIndex + 1). If that's not possible (full or out of bounds), fall back to first empty.
+    
+    const filledIndices = selectedCards.map((id, idx) => id !== null ? idx : -1).filter(i => i !== -1)
+    const maxFilled = filledIndices.length > 0 ? Math.max(...filledIndices) : -1
+    
+    let targetIndex = maxFilled + 1
+    
+    // If target is out of bounds (e.g. we filled slot 2) or already filled (unlikely given max logic but possible if we skipped slots?), 
+    // fall back to the first empty slot (wrapping around).
+    if (targetIndex > 2 || selectedCards[targetIndex] !== null) {
+        targetIndex = selectedCards.indexOf(null)
+    }
+
+    if (targetIndex !== -1) {
+        // Trigger Fly Animation to this specific slot
+        const targetSlot = slotRefs.current[targetIndex]
+        
+        if (targetSlot) {
+            const targetRect = targetSlot.getBoundingClientRect()
+            setFlyingCard({
+                id: cardId,
+                startRect,
+                targetRect,
+                targetIndex: targetIndex
+            })
+        } else {
+            // Fallback if ref missing
+            setSelectedCards(prev => {
+                const newSelected = [...prev]
+                newSelected[targetIndex] = cardId
+                return newSelected
+            })
+        }
     }
   }, [selectedCards])
 
+  const handleAnimationComplete = useCallback(() => {
+      if (flyingCard) {
+          setSelectedCards(prev => {
+              const newSelected = [...prev]
+              newSelected[flyingCard.targetIndex] = flyingCard.id
+              return newSelected
+          })
+          setFlyingCard(null)
+      }
+  }, [flyingCard])
+
+  const filledCount = selectedCards.filter(id => id !== null).length
+
   const handleContinue = () => {
-    if (selectedCards.length !== 3 || submitting) return
+    if (filledCount !== 3 || submitting) return
     setSubmitting(true)
-    // 保留手动跳转，附带问卷答案
-    navigate('/result', { state: { cardIds: selectedCards, answers: location.state?.answers } })
+    // Filter out nulls for the result page
+    const finalIds = selectedCards.filter((id): id is number => id !== null)
+    navigate('/result', { state: { cardIds: finalIds, answers: location.state?.answers } })
   }
 
   return (
     <div className="min-h-screen w-full bg-[#F7F2ED] text-[#4A4A4A] overflow-hidden flex flex-row font-serif">
+      
+      {/* Flying Card Overlay */}
+      {flyingCard && (
+          <FlyingCard 
+            cardId={flyingCard.id} 
+            startRect={flyingCard.startRect} 
+            targetRect={flyingCard.targetRect} 
+            onComplete={handleAnimationComplete} 
+          />
+      )}
 
       {/* LEFT PANEL: Info & Slots (35% width) */}
       <div className="w-[34%] min-w-[130px] max-w-[320px] h-screen flex flex-col items-center justify-center p-6 z-20 relative bg-white/40 border-r border-[#8B5A2B]/10 shadow-xl backdrop-blur-md">
@@ -296,7 +465,7 @@ const Draw: React.FC = () => {
                <div
                  key={index}
                  className={`w-2 h-2 rounded-full transition-all duration-500 ${
-                   index < selectedCards.length
+                   selectedCards[index] !== null
                      ? 'bg-[#D4A373] shadow-[0_0_8px_rgba(212,163,115,0.6)]'
                      : 'bg-[#D4A373]/20'
                  }`}
@@ -313,10 +482,11 @@ const Draw: React.FC = () => {
             return (
               <div
                 key={index}
+                ref={el => slotRefs.current[index] = el}
                 className="relative w-full aspect-[2/3] rounded-xl border-2 border-[#D4A373]/40 flex items-center justify-center bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm shadow-[0_8px_24px_rgba(212,163,115,0.15)] overflow-hidden group transition-all duration-300 hover:border-[#D4A373]/60 hover:shadow-[0_12px_32px_rgba(212,163,115,0.25)]"
               >
                 {/* Empty State */}
-                {cardId === undefined && (
+                {cardId === null && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-[#D4A373]/50 font-serif text-sm tracking-[0.2em] uppercase group-hover:text-[#D4A373] transition-colors font-light">
                       {t(`draw.slots.${slotNames[index]}`)}
@@ -326,16 +496,21 @@ const Draw: React.FC = () => {
 
                 {/* Filled State */}
                 <AnimatePresence>
-                  {cardId !== undefined && (
+                  {cardId !== null && (
                     <motion.div
                       layoutId={`card-slot-${cardId}`} 
                       className="absolute inset-0 w-full h-full z-10 flex items-center justify-center"
-                      initial={{ opacity: 0, scale: 1.2, y: 50, rotate: 0 }}
+                      initial={{ opacity: 0, scale: 1.2, y: 0, rotate: 0 }}
                       animate={{ opacity: 1, scale: 1.1, y: 0, rotate: 0 }} // Portrait layout无需旋转
                       exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)", rotate: 0 }}
                       transition={{ type: "spring", stiffness: 120, damping: 20 }}
                       onClick={() => {
-                        setSelectedCards(prev => prev.filter(id => id !== cardId))
+                        // Clear this specific slot
+                        setSelectedCards(prev => {
+                            const newSelected = [...prev]
+                            newSelected[index] = null
+                            return newSelected
+                        })
                       }}
                     >
                        <div className="w-[80px] h-[120px]"> {/* 竖版卡片：直接使用纵向比例，无需旋转 */}
@@ -351,16 +526,16 @@ const Draw: React.FC = () => {
 
         {/* Continue Button */}
         <button
-          disabled={selectedCards.length !== 3 || submitting}
+          disabled={filledCount !== 3 || submitting}
           onClick={handleContinue}
           className={clsx(
             "group relative overflow-hidden w-full max-w-[180px] px-10 py-4 rounded-full transition-all duration-500 text-[11px] uppercase tracking-[0.2em] font-medium whitespace-nowrap",
-            selectedCards.length === 3 && !submitting
+            filledCount === 3 && !submitting
               ? "bg-[#2B1F16] text-[#F7F2ED] shadow-[0_16px_32px_rgba(43,31,22,0.3)] hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(43,31,22,0.35)]"
               : "bg-[#2B1F16]/30 text-[#2B1F16]/40 cursor-not-allowed shadow-[0_8px_16px_rgba(43,31,22,0.1)]"
           )}
         >
-          {selectedCards.length === 3 && !submitting && (
+          {filledCount === 3 && !submitting && (
             <>
               <div className="absolute inset-0 bg-gradient-to-r from-[#2B1F16] via-[#3E2D20] to-[#2B1F16] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-[radial-gradient(circle_at_center,white,transparent)] blur-xl transition-opacity duration-500" />
@@ -373,7 +548,7 @@ const Draw: React.FC = () => {
       </div>
 
       {/* RIGHT PANEL: Wheel */}
-      <Wheel onCardSelect={handleCardSelect} selectedCards={selectedCards} />
+      <Wheel onCardSelect={handleCardSelect} selectedCards={selectedCards} flyingCardId={flyingCard?.id ?? null} />
     </div>
   )
 }

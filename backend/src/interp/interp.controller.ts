@@ -13,6 +13,7 @@ import { DrawService } from './draw.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, In } from 'typeorm';
 import { Card } from '../entities/card.entity';
+import { TAROT_POSITIONS, TAROT_CATEGORIES, DEFAULT_PAGE_SIZE } from '../constants/tarot';
 
 @Controller('api/interp')
 export class InterpretationController {
@@ -56,7 +57,7 @@ export class InterpretationController {
   @Get('list')
   async list(
     @Query('page') page = 1,
-    @Query('limit') limit = 10,
+    @Query('limit') limit = DEFAULT_PAGE_SIZE,
     @Query('card_name') card_name?: string,
     @Query('category') category?: string,
     @Query('position') position?: string,
@@ -93,7 +94,7 @@ export class InterpretationController {
   // 根据三张牌 + 问卷答案匹配规则（按 priority ASC, id ASC）
   @Post('rule-match')
   async matchRule(
-    @Body() body: { card_indices: number[]; answers?: Record<string, string>; language?: string },
+    @Body() body: { card_indices: number[]; answers?: Record<string, string>; language?: string; category?: string },
   ) {
     const cardIndices = Array.isArray(body.card_indices)
       ? body.card_indices.slice(0, 3)
@@ -103,7 +104,6 @@ export class InterpretationController {
     // 1) 将卡片下标映射为两位 code（01~78）
     const cardCodes = cardIndices
       .map((idx) => String((idx % 78) + 1).padStart(2, '0'))
-      .sort();
 
     // 2) 用卡牌默认解读拼接合成结果
     const cards = await this.cardRepo.find({
@@ -112,14 +112,15 @@ export class InterpretationController {
     const sortedCards = cardCodes.map((code) =>
       cards.find((c) => c.code === code),
     );
-    const positions = ['Past', 'Present', 'Future'];
+    const category = body.category || TAROT_CATEGORIES[0]; // Default to Self
     const interpretations = await Promise.all(
       sortedCards.map((card, i) =>
         card
           ? this.service.findOne({
               card_name: card.name_en,
-              position: positions[i],
+              position: TAROT_POSITIONS[i],
               language: body.language || 'en',
+              category,
             })
           : null,
       ),
@@ -137,7 +138,7 @@ export class InterpretationController {
     const interpretationText = interpretations
       .map((i, idx) => {
         if (!i?.interpretation) return '';
-        const label = positions[idx];
+        const label = TAROT_POSITIONS[idx];
         return `${label}: ${i.interpretation}`;
       })
       .filter(Boolean)

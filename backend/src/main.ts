@@ -17,12 +17,13 @@ async function bootstrap() {
   );
   app.use(
     json({
+      limit: '10mb',
       verify: (req: IncomingMessage & { rawBody?: Buffer }, _res, buf) => {
         req.rawBody = buf;
       },
     }),
   );
-  app.use(urlencoded({ extended: true }));
+  app.use(urlencoded({ extended: true, limit: '10mb' }));
   const allowedOrigins = process.env.CORS_ORIGINS?.split(',')
     .map((o) => o.trim())
     .filter(Boolean);

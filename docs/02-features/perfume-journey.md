@@ -15,15 +15,15 @@
 ```
 ┌─────────────────────────────────────────────────────┐
 │                                                       │
-│  左侧面板 (绿色 #E8DCC5)  │   右侧面板 (粉色 #F5D5C8)   │
+│  左侧面板 (2/3)           │   右侧面板 (1/3)          │
 │  ─────────────            │   ────────────             │
 │  • 品牌名 (小金色)        │   • 产品图片 (高清)         │
-│  • 产品名 (大衬线体)      │   • 香调金字塔 (交互组件)   │
+│  • 产品名 (大衬线体)      │   • 渐变遮罩               │
 │  • 标签 (3个)             │                            │
 │  • 描述文案               │                            │
 │  • 励志语录               │                            │
 │                           │                            │
-│           [←]                 [→]  (导航按钮)          │
+│  [完成按钮]  [页码/场景]  │                            │
 │                                                       │
 └─────────────────────────────────────────────────────┘
 ```
@@ -43,14 +43,20 @@
 | :--- | :--- | :--- |
 | `id` | INT | 主键 |
 | `card_id` | INT | 关联的塔罗牌 ID |
-| `scene_choice` | VARCHAR | 气味偏好 (A/B/C/D) |
-| `brand_name` | VARCHAR | 品牌名 |
-| `product_name` | VARCHAR | 产品名 |
-| `tags` | JSON | 标签数组 (e.g. ["Fresh", "Floral"]) |
-| `description` | TEXT | 推荐理由/描述 |
-| `quote` | TEXT | 励志引语 |
+| `scene_choice` | VARCHAR | 气味偏好 (中文) |
+| `scene_choice_en` | VARCHAR | 气味偏好 (英文) |
+| `brand_name` | VARCHAR | 品牌名 (中文) |
+| `brand_name_en` | VARCHAR | 品牌名 (英文) |
+| `product_name` | VARCHAR | 产品名 (中文) |
+| `product_name_en` | VARCHAR | 产品名 (英文) |
+| `tags` | JSON | 标签数组 |
+| `description` | TEXT | 推荐理由/描述 (中文) |
+| `description_en` | TEXT | 推荐理由/描述 (英文) |
+| `quote` | TEXT | 励志引语 (中文) |
+| `quote_en` | TEXT | 励志引语 (英文) |
 | `image_url` | VARCHAR | 图片路径 |
-| `notes_top/heart/base` | TEXT | 香调信息 |
+| `notes_top/heart/base` | TEXT | 香调信息 (中文) |
+| `notes_top_en/heart_en/base_en` | TEXT | 香调信息 (英文) |
 
 ### API 接口
 
@@ -68,6 +74,9 @@
       "id": 1,
       "order": 1,
       "cardName": "The Lovers",
+      "sceneChoice": "约会",
+      "sceneChoiceZh": "约会",
+      "sceneChoiceEn": "Date",
       "brandName": "Jo Malone",
       "productName": "Red Roses Cologne",
       "tags": ["Fresh", "Floral"],

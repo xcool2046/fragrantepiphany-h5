@@ -125,7 +125,7 @@ const Home: React.FC = () => {
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => navigate('/onboarding')}
-            className="group relative overflow-hidden px-14 py-5 md:px-20 md:py-6 rounded-full bg-[#2B1F16] text-[#F7F2ED] shadow-[0_20px_50px_-15px_rgba(43,31,22,0.4)] transition-all duration-700 inner-glow-gold hover:shadow-[0_30px_80px_-15px_rgba(212,163,115,0.3)]"
+            className="group relative overflow-hidden px-14 py-5 md:px-20 md:py-6 rounded-full bg-[#2B1F16] text-[#F7F2ED] shadow-[0_20px_50px_-15px_rgba(43,31,22,0.4)] transition-shadow transition-colors duration-700 inner-glow-gold hover:shadow-[0_30px_80px_-15px_rgba(212,163,115,0.3)]"
           >
             {/* Shimmer effect - slower */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_ease-in-out_infinite]" />
@@ -150,7 +150,7 @@ const Home: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 2.2 }}
             onClick={() => navigate('/about')}
-            className="group/learn relative text-[10px] uppercase tracking-[0.25em] text-[#2B1F16]/40 hover:text-[#2B1F16] transition-all duration-500 py-3 px-8 hover:-translate-y-[3px] border border-[#2B1F16]/[0.15] hover:border-[#2B1F16]/40 rounded-full"
+            className="group/learn relative text-[10px] uppercase tracking-[0.25em] text-[#2B1F16]/40 hover:text-[#2B1F16] transition-colors transition-transform duration-500 py-3 px-8 hover:-translate-y-[3px] border border-[#2B1F16]/[0.15] hover:border-[#2B1F16]/40 rounded-full"
           >
             <span className="relative z-10">{t('common.learnMore')}</span>
             {/* 极淡的悬浮阴影 */}

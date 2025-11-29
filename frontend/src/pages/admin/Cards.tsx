@@ -274,7 +274,7 @@ export default function Cards() {
                     onChange={(e) => e.target.files?.[0] && uploadImage(e.target.files[0])}
                     className="text-sm"
                   />
-                  <span className="text-xs text-[#6B5542]">支持 JPG / PNG，建议 600×1000，≤ 1MB</span>
+                  <span className="text-xs text-[#6B5542]">支持 JPG / PNG，≤ 10MB</span>
                 </div>
                 <input
                   value={form.image_url}

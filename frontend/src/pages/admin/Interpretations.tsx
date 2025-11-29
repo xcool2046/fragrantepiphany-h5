@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Section from '../../components/Section'
 import SearchBar from '../../components/admin/SearchBar'
 import api from '../../api'
+import { TAROT_CATEGORIES, TAROT_POSITIONS, DEFAULT_PAGE_SIZE } from '../../constants/tarot'
 
 type InterpretationItem = {
   id: number
@@ -29,10 +30,26 @@ export default function Interpretations() {
   const [editingItem, setEditingItem] = useState<InterpretationItem | null>(null)
   const [query, setQuery] = useState('')
   const [positionFilter, setPositionFilter] = useState<'all' | string>('all')
-  const [languageFilter, setLanguageFilter] = useState<'all' | 'en' | 'zh'>('all')
-  const [formData, setFormData] = useState({
+  const [categoryFilter, setCategoryFilter] = useState<'all' | string>('all')
+  const [page, setPage] = useState(1)
+  const [total, setTotal] = useState(0)
+  const pageSize = DEFAULT_PAGE_SIZE
+  const [formData, setFormData] = useState<{
+    card_name: string
+    category: string
+    position: string
+    summary_en: string
+    summary_zh: string
+    interpretation_en: string
+    interpretation_zh: string
+    action_en: string
+    action_zh: string
+    future_en: string
+    future_zh: string
+  }>({
     card_name: '',
-    position: 'Past',
+    category: TAROT_CATEGORIES[0],
+    position: TAROT_POSITIONS[0],
     summary_en: '',
     summary_zh: '',
     interpretation_en: '',
@@ -44,41 +61,44 @@ export default function Interpretations() {
   })
   const [textLang, setTextLang] = useState<'en' | 'zh'>('zh')
 
-  const fetchInterps = useCallback(async (kw = query, position = positionFilter, lang = languageFilter) => {
+  const fetchInterps = useCallback(async (p = 1, kw = query, position = positionFilter, category = categoryFilter) => {
     setLoading(true)
     try {
       const token = localStorage.getItem('admin_token')
       const params = new URLSearchParams()
-      params.set('page', '1')
-      params.set('limit', '500')
+      params.set('page', String(p))
+      params.set('limit', String(pageSize))
       if (kw.trim()) params.set('keyword', kw.trim())
       if (position !== 'all') params.set('position', position)
-      if (lang !== 'all') params.set('language', lang)
+      if (category !== 'all') params.set('category', category)
       const res = await api.get(`/api/interp/list?${params.toString()}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       setInterps(res.data?.items ?? [])
+      setTotal(res.data?.total ?? 0)
+      setPage(p)
     } catch (err) {
       console.error(err)
     } finally {
       setLoading(false)
     }
-  }, [languageFilter, positionFilter, query])
+  }, [positionFilter, categoryFilter, query])
 
   useEffect(() => {
     fetchInterps()
-  }, [fetchInterps])
+  }, [])
 
   useEffect(() => {
-    const t = setTimeout(() => fetchInterps(query, positionFilter, languageFilter), 250)
+    const t = setTimeout(() => fetchInterps(1, query, positionFilter, categoryFilter), 250)
     return () => clearTimeout(t)
-  }, [fetchInterps, query, positionFilter, languageFilter])
+  }, [fetchInterps, query, positionFilter, categoryFilter])
 
   const openCreate = () => {
     setEditingItem(null)
     setFormData({
       card_name: '',
-      position: 'Past',
+      category: TAROT_CATEGORIES[0],
+      position: TAROT_POSITIONS[0],
       summary_en: '',
       summary_zh: '',
       interpretation_en: '',
@@ -111,10 +131,12 @@ export default function Interpretations() {
       }
 
       setIsModalOpen(false)
-      fetchInterps()
+      setIsModalOpen(false)
+      fetchInterps(page)
       setFormData({
         card_name: '',
-        position: 'Past',
+        category: TAROT_CATEGORIES[0],
+        position: TAROT_POSITIONS[0],
         summary_en: '',
         summary_zh: '',
         interpretation_en: '',
@@ -144,7 +166,8 @@ export default function Interpretations() {
       alert('已删除')
       setIsModalOpen(false)
       setEditingItem(null)
-      fetchInterps()
+      setEditingItem(null)
+      fetchInterps(page)
     } catch (err) {
       console.error(err)
       alert('Delete failed')
@@ -175,20 +198,22 @@ export default function Interpretations() {
               className="px-3 py-2 rounded-xl border border-gray-200 text-sm focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20"
             >
               <option value="all">全部位</option>
-              <option value="Past">Past</option>
-              <option value="Now">Now</option>
-              <option value="Future">Future</option>
+              {TAROT_POSITIONS.map(p => <option key={p} value={p}>{p}</option>)}
             </select>
             <select
-              value={languageFilter}
-              onChange={(e) => setLanguageFilter(e.target.value as any)}
+              value={categoryFilter}
+              onChange={(e) => setCategoryFilter(e.target.value)}
               className="px-3 py-2 rounded-xl border border-gray-200 text-sm focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20"
             >
-              <option value="all">中英都看</option>
-              <option value="zh">仅中文</option>
-              <option value="en">仅英文</option>
+              <option value="all">全类别</option>
+              {TAROT_CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
+        </div>
+
+        <div className="flex items-center justify-between text-xs text-[#6B5542] px-1">
+          <span>共 {total} 条记录</span>
+          <span>第 {page} / {Math.ceil(total / pageSize) || 1} 页</span>
         </div>
 
         <div className="grid gap-4">
@@ -199,7 +224,7 @@ export default function Interpretations() {
           ) : (
             interps.map(item => {
               const badgeClass =
-                item.position === 'Now'
+                item.position === 'Present'
                   ? 'bg-amber-50 text-amber-700'
                   : item.position === 'Future'
                     ? 'bg-purple-50 text-purple-700'
@@ -215,6 +240,9 @@ export default function Interpretations() {
                       <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-semibold ${badgeClass}`}>
                         {item.position}
                       </span>
+                      <span className="inline-flex px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700">
+                        {item.category || 'Self'}
+                      </span>
                       <span className="text-xs flex gap-1">
                         {hasZh && <span className="px-2 py-0.5 rounded-full bg-[#F7F0E5] text-[#2B1F16]">ZH</span>}
                         {hasEn && <span className="px-2 py-0.5 rounded-full bg-[#F7F0E5] text-[#2B1F16]">EN</span>}
@@ -225,6 +253,7 @@ export default function Interpretations() {
                         setEditingItem(item)
                         setFormData({
                           card_name: item.card_name,
+                          category: item.category || TAROT_CATEGORIES[0],
                           position: item.position,
                           summary_en: item.summary_en || '',
                           summary_zh: item.summary_zh || '',
@@ -249,6 +278,28 @@ export default function Interpretations() {
             })
           )}
         </div>
+        
+        {total > pageSize && (
+          <div className="flex gap-2 mt-4 justify-center">
+            <button
+              disabled={page === 1}
+              onClick={() => fetchInterps(page - 1)}
+              className="px-3 py-1 rounded border bg-white disabled:opacity-50 text-sm text-[#2B1F16]"
+            >
+              上一页
+            </button>
+            <div className="text-sm text-gray-600 px-2 py-1">
+              {page} / {Math.ceil(total / pageSize)}
+            </div>
+            <button
+              disabled={page * pageSize >= total}
+              onClick={() => fetchInterps(page + 1)}
+              className="px-3 py-1 rounded border bg-white disabled:opacity-50 text-sm text-[#2B1F16]"
+            >
+              下一页
+            </button>
+          </div>
+        )}
       </Section>
 
       {isModalOpen && (
@@ -289,9 +340,17 @@ export default function Interpretations() {
                     onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                     className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
                   >
-                    <option value="Past">Past</option>
-                    <option value="Now">Now</option>
-                    <option value="Future">Future</option>
+                    {TAROT_POSITIONS.map(p => <option key={p} value={p}>{p}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label className="text-sm text-[#6B5542]">Category</label>
+                  <select
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
+                  >
+                    {TAROT_CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                 </div>
               </div>

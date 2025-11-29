@@ -24,6 +24,23 @@ pnpm-debug.log*
 # OS
 Thumbs.db
 
+# Legacy and Archives
+legacy/
+
+# Excel files (if not tracked)
+# *.xlsx
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System Files
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+
 # Archive/backup
 *.zip
 *.tar

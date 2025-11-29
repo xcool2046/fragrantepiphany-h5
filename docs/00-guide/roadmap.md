@@ -1,6 +1,6 @@
 # Project Roadmap & Migration Plan
 
-**Last Updated**: 2025-11-27
+**Last Updated**: 2025-11-28
 **Status**: Active Development
 
 ---
@@ -19,12 +19,10 @@
 -   **Status**: ✅ Done
 -   **Outcome**: `perfumes` table populated with 168 records from Excel.
 
-### Task 3: Chinese Translation (Medium Priority)
+### Task 3: Chinese Translation (Completed)
 **Goal**: Full localization for the Perfume Journey.
--   **Scope**:
-    -   Dynamic content (Perfume names, descriptions).
-    -   Static UI elements (Navigation, Labels).
--   **Strategy**: Use `i18next` for UI, and potentially dual-column storage (`name_en`, `name_zh`) or dynamic translation keys for DB content.
+-   **Status**: ✅ Done
+-   **Outcome**: UI and Content (Perfume names, descriptions, notes) are fully localized (en/zh).
 
 ---
 

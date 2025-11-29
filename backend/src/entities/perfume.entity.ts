@@ -22,6 +22,9 @@ export class Perfume {
   @Column({ type: 'varchar', length: 255 })
   scene_choice!: string;
 
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  scene_choice_en!: string | null;
+
   @Column({ type: 'varchar', length: 255 })
   brand_name!: string;
 

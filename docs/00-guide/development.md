@@ -7,7 +7,7 @@
 - 后端：NestJS + TypeORM，PostgreSQL，Stripe Checkout。
 - **核心数据表**：
   - `questions`: 问卷题目（ID 1-6）。
-  - `perfumes`: 香水数据（品牌、名称、香调、图片），由 Excel 导入。
+  - `perfumes`: 香水数据（品牌、名称、香调、图片），由 Excel 导入。包含 `_en` 后缀字段支持中英双语。
   - `rules`: 塔罗牌与香水的映射规则（决定 Result 页展示内容）。
   - `orders`: 支付订单记录。
 - 价格机制：优先按 `STRIPE_PRICE_IDS_JSON`（或 `_TEST`）映射币种到 price_id。
@@ -80,8 +80,8 @@ docker compose exec backend npm run seed
 - 后端：`npm run build`，`npm run test`（如需），`npm run lint`（带 --fix）。
 - 常见问题：若 TypeORM 找不到实体，确认 `DATABASE_URL` 正确、迁移已运行；若支付报错检查是否配置了正确的 `STRIPE_PRICE_IDS_JSON` 或 Stripe 账户下是否存在对应币种的启用价格。
 
-## Mock 支付提示
-- 前端 Result 页支持 `?mock_pay=true` 解锁，用于开发联调；请在上线前移除或仅在 `import.meta.env.DEV` 下启用（详见 `docs/development_notes.md`）。
+## Mock 支付 / 调试解锁
+- 前端 Result 页支持调试模式解锁，用于开发联调；请在上线前移除或仅在 `import.meta.env.DEV` 下启用。
 
 ## 目录速览
 - `frontend/src`：路由、页面、store、API 封装（Axios 基于 `VITE_API_BASE_URL`）；后台卡面素材路径规范 `/assets/cards/01.jpg`~`78.jpg`（已在 DB 批量映射）。
@@ -90,10 +90,9 @@ docker compose exec backend npm run seed
 
 ## 开发小贴士 (Tips / FAQ)
 
-### Mock 支付 (解锁测试)
+### 调试解锁 (Debug Unlock)
 为了方便测试 Result 页的解锁逻辑（无需真实支付），可使用后门参数：
-- **用法**: URL 后追加 `?mock_pay=true`
-  - 例: `http://localhost:8080/result?mock_pay=true`
-- **效果**: 强制页面显示为“已支付”状态（解锁所有卡牌和解读）。
+- **用法**: URL 后追加 `?debug=unlocked`
+  - 例: `http://localhost:8080/result?debug=unlocked`
+- **隐式后门**: 连续点击标题 "The Revelation" 5次，也会自动触发此模式。
 - **注意**: 上线前请确保在 `Result.tsx` 中禁用或移除此逻辑，或改为仅在 `import.meta.env.DEV` 下生效。
-

@@ -117,7 +117,7 @@ export type RuleMatchResult = {
   }
 }
 
-export async function matchRule(payload: { card_indices: number[]; answers?: Record<string, string>; language?: string }) {
+export async function matchRule(payload: { card_indices: number[]; answers?: Record<string, string>; language?: string; category?: string }) {
   const res = await api.post<RuleMatchResult>('/api/interp/rule-match', payload)
   return res.data
 }
@@ -133,6 +133,8 @@ export type PerfumeChapter = {
   order: number
   cardName: string
   sceneChoice: string
+  sceneChoiceZh?: string
+  sceneChoiceEn?: string
   brandName: string
   productName: string
   tags: string[]

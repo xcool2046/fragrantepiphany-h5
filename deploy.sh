@@ -11,14 +11,28 @@ NOTE=${1:-"fast deploy"}
 
 echo "🚀 Fast Deployment Started: $NOTE"
 
+# 0. Git Backup
+echo "💾 Backing up code to GitHub..."
+git add .
+if ! git diff-index --quiet HEAD --; then
+    git commit -m "Deploy: $NOTE"
+    echo "✅ Changes committed."
+else
+    echo "✨ No local changes to commit."
+fi
+echo "⬆️  Pushing to remote..."
+git push
+
 # 1. Build Frontend Locally
 echo "🏗️  Building Frontend (VITE_API_BASE_URL=/api)..."
+rm -rf frontend/dist
 pushd frontend >/dev/null
 VITE_API_BASE_URL= npm run build
 popd >/dev/null
 
 # 2. Build Backend Locally
 echo "🏗️  Building Backend..."
+rm -rf backend/dist
 pushd backend >/dev/null
 npm run build
 popd >/dev/null
@@ -59,7 +73,7 @@ rsync -av backend/Dockerfile.deploy "${SERVER}:${REMOTE_DIR}/backend/Dockerfile"
 echo "🔄 Executing Remote Restart..."
 ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   docker compose up -d --build backend nginx && \
-  docker compose exec backend npm run typeorm -- -d dist/ormconfig.js migration:run && \
+  docker compose exec backend npm run typeorm -- -d ormconfig.cjs migration:run && \
   docker compose restart nginx"
 
 echo "✅ Deployment Complete!"

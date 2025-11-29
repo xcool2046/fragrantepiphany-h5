@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Interpretation } from '../entities/interpretation.entity';
+import { DEFAULT_PAGE_SIZE } from '../constants/tarot';
 
 @Injectable()
 export class InterpretationService {
@@ -81,8 +82,8 @@ export class InterpretationService {
     return entities;
   }
 
-  async findAll(page = 1, limit = 10, filters: any = {}) {
-    const take = Math.min(500, Math.max(1, Number(limit) || 10));
+  async findAll(page = 1, limit = DEFAULT_PAGE_SIZE, filters: any = {}) {
+    const take = Math.min(500, Math.max(1, Number(limit) || DEFAULT_PAGE_SIZE));
     const qb = this.repo.createQueryBuilder('i');
     if (filters.card_name)
       qb.andWhere('i.card_name = :card', { card: filters.card_name });

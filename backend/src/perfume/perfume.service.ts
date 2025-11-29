@@ -19,6 +19,10 @@ export class PerfumeService {
       order: { card_id: 'ASC', sort_order: 'ASC', id: 'ASC' },
     });
 
+    // Fetch cards to get localized names
+    const cards = await this.cardRepo.find({ where: { id: In(cardIds) } });
+    const cardMap = new Map(cards.map(c => [c.id, c]));
+
     const orderMap = new Map<number, number>();
     cardIds.forEach((id, idx) => orderMap.set(id, idx));
 
@@ -32,23 +36,36 @@ export class PerfumeService {
 
     const isEn = language === 'en';
 
-    return sorted.map((item, idx) => ({
-      id: item.id,
-      order: idx + 1,
-      cardName: item.card_name, // Card name might need separate localization if stored in Perfume, but it seems to come from Card entity usually? No, it's stored here.
-      sceneChoice: item.scene_choice,
-      brandName: (isEn ? item.brand_name_en : item.brand_name) || item.brand_name,
-      productName: (isEn ? item.product_name_en : item.product_name) || item.product_name,
-      tags: item.tags ?? [],
-      notes: {
-        top: (isEn ? item.notes_top_en : item.notes_top) || item.notes_top || '',
-        heart: (isEn ? item.notes_heart_en : item.notes_heart) || item.notes_heart || '',
-        base: (isEn ? item.notes_base_en : item.notes_base) || item.notes_base || '',
-      },
-      description: (isEn ? item.description_en : item.description) || item.description || '',
-      quote: (isEn ? item.quote_en : item.quote) || item.quote || '',
-      imageUrl: item.image_url ?? '',
-    }));
+    return sorted.map((item, idx) => {
+      const card = cardMap.get(item.card_id);
+      const cardName = (isEn ? card?.name_en : card?.name_zh) || item.card_name;
+      
+      // Use notes_top_en as tags if English, split by comma
+      let tags = item.tags ?? [];
+      if (isEn && item.notes_top_en) {
+        tags = item.notes_top_en.split(/[,，]\s*/).filter(Boolean);
+      }
+
+      return {
+        id: item.id,
+        order: idx + 1,
+        cardName: cardName,
+        sceneChoice: (isEn ? item.scene_choice_en : item.scene_choice) || item.scene_choice,
+        sceneChoiceZh: item.scene_choice,
+        sceneChoiceEn: item.scene_choice_en || '',
+        brandName: (isEn ? item.brand_name_en : item.brand_name) || item.brand_name,
+        productName: (isEn ? item.product_name_en : item.product_name) || item.product_name,
+        tags: tags,
+        notes: {
+          top: (isEn ? item.notes_top_en : item.notes_top) || item.notes_top || '',
+          heart: (isEn ? item.notes_heart_en : item.notes_heart) || item.notes_heart || '',
+          base: (isEn ? item.notes_base_en : item.notes_base) || item.notes_base || '',
+        },
+        description: (isEn ? item.description_en : item.description) || item.description || '',
+        quote: (isEn ? item.quote_en : item.quote) || item.quote || '',
+        imageUrl: item.image_url ?? '',
+      };
+    });
   }
 
   async list(params: { page: number; pageSize: number; q?: string; status?: string }) {

@@ -21,12 +21,11 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
     const imageKey = `../assets/cards/${fileIndex}.jpg`
     const imagePath = cardImages[imageKey]
     
-    // Use a simple '#' prefix or just the number for cleaner look, or localize if needed
-    // For now, using '#' as it's universal and fits the design
-    const numberLabel = `#${fileIndex}`
+    // Use 'NO.' prefix as requested
+    const numberLabel = `NO.${fileIndex}`
     const isWheel = variant === 'wheel'
-    // 仅在明确 vertical 时旋转徽标，普通竖卡（slot）保持水平避免跑出角落
-    const isVerticalLayout = vertical
+    // Show badge on back side OR if explicitly requested (though usually back side has the number)
+    // The user request implies number is on the back.
     const showBadge = side === 'back'
 
     return (
@@ -104,27 +103,32 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
                 <div
                     className={clsx(
                         "absolute z-30 pointer-events-none select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]",
-                        isWheel ? "top-1 right-1" : "top-1.5 right-1.5"
+                        // Positioning: 
+                        // For vertical cards (slots), top-right is top-right.
+                        // For horizontal cards (wheel), top-right is top-right.
+                        // But if the SVG content is rotated, does "top-right" change?
+                        // The container is the div. The SVG is just decoration.
+                        // So absolute positioning is relative to the div.
+                        // If vertical=true (slot), the div is vertical (w < h). Top-right is correct.
+                        // If vertical=false (wheel), the div is horizontal (w > h). Top-right is correct.
+                        // However, previous code had rotation logic: `transform: isVerticalLayout ? 'rotate(90deg)' : 'none'`
+                        // If the card is physically vertical but the design is horizontal rotated 90deg, then top-right of the design might be bottom-right of the div?
+                        // Let's assume standard positioning first.
+                        "top-2 right-2"
                     )}
-                    style={{
-                        transform: isVerticalLayout ? 'rotate(90deg)' : 'none',
-                        transformOrigin: 'top right'
-                    }}
                 >
                     <div
                         className={clsx(
                             "relative rounded-full border border-[#F5D0A9]/70 bg-[#0F0B0A]/80 shadow-[0_8px_20px_rgba(0,0,0,0.45)] backdrop-blur-[2px]",
-                            isWheel ? "px-2 py-[2px] min-w-[40px]" : "px-2.5 py-[2.5px] min-w-[44px]"
+                            "px-2 py-[2px]"
                         )}
-                        style={{
-                            width: isWheel ? 'clamp(38px, 9vw, 52px)' : 'clamp(42px, 10vw, 58px)'
-                        }}
                     >
                         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-80" />
                         <span
                             className={clsx(
-                                "relative block text-center text-[#F7E6CE] uppercase leading-none font-semibold",
-                                isWheel ? "text-[8.5px] tracking-[0.16em]" : "text-[9.5px] tracking-[0.18em]"
+                                "relative block text-center text-[#F7E6CE] uppercase leading-none font-semibold font-sans",
+                                // Adjust font size for NO.XX
+                                isWheel ? "text-[8px] tracking-[0.1em]" : "text-[9px] tracking-[0.1em]"
                             )}
                             style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.6))' }}
                         >

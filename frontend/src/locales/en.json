@@ -17,7 +17,8 @@
     "cancel": "Cancel",
     "begin": "Begin",
     "tapToContinue": "Tap to continue",
-    "restart": "Restart"
+    "restart": "Restart",
+    "complete": "Complete"
   },
   "home": {
     "title": "A Journey\nThrough Scent,\nSpirit and Stars",
@@ -74,15 +75,15 @@
     "cardLabel": "The Card",
     "timeframes": {
       "past": {
-        "label": "The Past",
+        "label": "Past",
         "description": "You have been carrying a heavy burden, but it has made you stronger. Your journey has led you here. Embrace the wisdom of the cards as they reveal the path ahead. Trust in their guidance, for they speak the language of your soul's deepest knowing."
       },
       "present": {
-        "label": "The Present",
+        "label": "Present",
         "description": "A moment of clarity is approaching. The present moment holds infinite possibilities. Open your heart to receive the blessings around you now."
       },
       "future": {
-        "label": "The Future",
+        "label": "Future",
         "description": "New opportunities will bloom if you are willing to let go of the old. Trust your intuition and take the next step with confidence. Your destiny awaits."
       }
     },
@@ -104,9 +105,9 @@
     "noAnswers": "No answers captured",
     "priceLabel": "Select currency",
     "interpretations": [
-      { "title": "The Past", "content": "You have been carrying a heavy burden, but it has made you stronger." },
-      { "title": "The Present", "content": "A moment of clarity is approaching. Trust your instincts." },
-      { "title": "The Future", "content": "New opportunities will bloom if you are willing to let go of the old." }
+      { "title": "Past", "content": "You have been carrying a heavy burden, but it has made you stronger." },
+      { "title": "Present", "content": "A moment of clarity is approaching. Trust your instincts." },
+      { "title": "Future", "content": "New opportunities will bloom if you are willing to let go of the old." }
     ],
     "unlocked": {
       "title": "Your Fragrance Journey",
@@ -224,5 +225,12 @@
     "tagline": "About Us",
     "intro1": "Fragrant Epiphany is not just a tarot reading; it is a journey into the soul. We combine ancient wisdom with modern aesthetics to provide you with clarity, guidance, and a touch of magic in your daily life.",
     "intro2": "Our readings are designed to be intuitive, empowering, and deeply personal. Whether you seek answers about love, career, or self-discovery, our cards hold the mirror to your inner truth."
+  },
+  "perfume": {
+    "bgAlt": "Background",
+    "imgAlt": "Perfume Image",
+    "notFound": "No fragrance journey found",
+    "noCards": "No cards provided",
+    "loadFailed": "Failed to load fragrance journey"
   }
 }

@@ -12,10 +12,9 @@ const Question = React.lazy(() => import('./pages/Question'))
 const Draw = React.lazy(() => import('./pages/Draw'))
 const Result = React.lazy(() => import('./pages/Result'))
 const About = React.lazy(() => import('./pages/About'))
-const JourneyHub = React.lazy(() => import('./pages/JourneyHub'))
-const JourneyDetail = React.lazy(() => import('./pages/JourneyDetail'))
 const JourneyComplete = React.lazy(() => import('./pages/JourneyComplete'))
 const PerfumeView = React.lazy(() => import('./pages/PerfumeView'))
+const SharePage = React.lazy(() => import('./pages/SharePage'))
 const AdminLogin = React.lazy(() => import('./pages/admin/AdminLogin'))
 const AdminLayout = React.lazy(() => import('./pages/admin/AdminLayout'))
 const Interpretations = React.lazy(() => import('./pages/admin/Interpretations'))
@@ -56,9 +55,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/result" element={<Result />} />
           <Route path="/about" element={<About />} />
           <Route path="/perfume" element={<PerfumeView />} />
-          <Route path="/journey" element={<JourneyHub />} />
           <Route path="/journey/complete" element={<JourneyComplete />} />
-          <Route path="/journey/:chapterId" element={<JourneyDetail />} />
+          <Route path="/share" element={<SharePage />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Interpretations />} />

@@ -45,22 +45,37 @@ docker compose exec backend npm run seed
 - 访问：前端/后台 `http://localhost:8080`。
 - Stripe Webhook（本地）可用 `stripe listen` 转发到 `http://localhost:3000/api/pay/webhook`，将 whsec 写入 `.env`。
 
-## 4. 生产部署 (Multi-stage Build)
+## 4. 生产部署 (Local Build + Static Docker)
+> **推荐方案**：由于服务器资源（CPU/RAM）有限，我们采用**本地构建** + **静态镜像**的策略。
 
-我们采用 **Docker Multi-stage Build** 策略：
-1.  **构建**：Docker 容器内部负责 `npm install` 和 `npm run build`。
-2.  **运行**：构建产物自动复制到 Nginx 容器中运行。
-3.  **优势**：无需在服务器安装 Node环境，彻底解决文件挂载路径 (`no such file`) 问题。
+### 核心流程
+1.  **本地构建**：在你高性能的开发机上运行 `npm run build`，生成 `dist` 静态文件。
+2.  **上传**：将 `dist` 文件夹同步到服务器。
+3.  **打包运行**：服务器端 Docker 仅执行 `COPY dist` 操作（极快），无需运行 `npm install`。
 
-### 部署步骤
-在服务器根目录下直接运行：
+### 部署脚本 (推荐)
+使用项目根目录下的 `deploy.sh` 脚本一键部署：
 ```bash
-# 拉取最新代码
-git pull
-
-# 构建并启动 (Docker 会自动处理前端构建)
-docker compose up -d --build
+# 在本地执行
+./deploy.sh "你的部署备注"
 ```
+该脚本会自动完成：本地构建 -> 上传文件 -> 远程重启容器。
+
+### 手动部署步骤 (如果不使用脚本)
+1.  **本地构建**：
+    ```bash
+    cd frontend
+    # 确保清空 VITE_API_BASE_URL 以使用相对路径 /api
+    VITE_API_BASE_URL= npm run build
+    ```
+2.  **上传文件**：
+    ```bash
+    rsync -av frontend/dist/ root@47.243.157.75:/root/fragrantepiphany-h5/frontend/dist/
+    ```
+3.  **服务器重启**：
+    ```bash
+    ssh root@47.243.157.75 "cd /root/fragrantepiphany-h5 && docker compose up -d --build"
+    ```
 
 ### 验证
 ```bash
@@ -106,7 +121,7 @@ server {
 1) `cd /root/fragrantepiphany-h5 && git pull`
 2) 确认 `.env` 存在且含 `PORT=3000`、`HOST=0.0.0.0`、正确域名 / Stripe key
 3) `docker compose up -d --build`
-4) 迁移：`docker compose exec backend npm run typeorm -- -d dist/ormconfig.js migration:run`
+4) 迁移：`docker compose exec backend npm run typeorm -- -d ormconfig.cjs migration:run`
 5) 健康检查：`docker compose ps`（backend/nginx == Up），`curl 127.0.0.1:3000/api/health`
 6) Nginx：`nginx -t && systemctl reload nginx`
 常见 502 处理：看后端日志 `docker compose logs backend --tail=100`，检查端口监听 `ss -lntp | grep 3000`，以及 Nginx 反代是否仍指向 127.0.0.1:3000。

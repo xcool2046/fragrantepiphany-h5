@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { CardFace } from '../components/CardFace'
 import { useTranslation } from 'react-i18next'
 import { createCheckout, getOrder, matchRule } from '../api'
+import ResultSkeleton from '../components/ResultSkeleton'
 
 // Import assets (Arbitrary assignment, to be verified by user)
 
@@ -45,7 +46,7 @@ const Result: React.FC = () => {
   const [unlocking, setUnlocking] = useState(false)
   const [orderError, setOrderError] = useState<string | null>(null)
   const [ruleMatch, setRuleMatch] = useState<RuleMatch | null>(null)
-  const [, setMatchStatus] = useState<MatchStatus>('idle')
+  const [matchStatus, setMatchStatus] = useState<MatchStatus>('idle')
   const [unlockedByOrder, setUnlockedByOrder] = useState(false)
   
   // Hardcoded price for simplified UI
@@ -94,19 +95,23 @@ const Result: React.FC = () => {
     }
   }, []);
 
-  // 规则匹配：根据三张牌 + 问卷答案（如有）尝试获取定制解读
-  const normalizedCardIds = useMemo(() => {
-    return cardIds.map((id) => {
-      if (id >= 1 && id <= 78) return id - 1
-      if (id >= 0 && id < 78) return id
-      return 0
-    })
-  }, [cardIds])
+  // Use card IDs directly as they are already 0-based indices (0-77) from Draw.tsx
+  const normalizedCardIds = cardIds
 
   useEffect(() => {
     if (normalizedCardIds.length !== 3) return
     setMatchStatus('loading')
-    matchRule({ card_indices: normalizedCardIds, answers, language: i18n.language })
+
+    // Determine category from answers (Question ID 1)
+    let category = 'Self'
+    const categoryAnswer = answers['1']
+    if (categoryAnswer) {
+      if (categoryAnswer.includes('关系') || categoryAnswer.includes('Relationships')) category = 'Love'
+      else if (categoryAnswer.includes('事业') || categoryAnswer.includes('Career')) category = 'Career'
+      else if (categoryAnswer.includes('自我') || categoryAnswer.includes('Self')) category = 'Self'
+    }
+
+    matchRule({ card_indices: normalizedCardIds, answers, language: i18n.language, category })
       .then((res) => {
         setRuleMatch(res.rule || null)
         setMatchStatus('success')
@@ -116,7 +121,7 @@ const Result: React.FC = () => {
         setRuleMatch(null)
         setMatchStatus('error')
       })
-  }, [normalizedCardIds, answers])
+  }, [normalizedCardIds, answers, i18n.language])
 
   // Determine unlocked state:
   // 1. Payment success (orderId + status)
@@ -191,6 +196,10 @@ const Result: React.FC = () => {
       setTitleClickCount(prev => prev + 1);
   }
   };
+
+  if (matchStatus === 'loading' || matchStatus === 'idle') {
+    return <ResultSkeleton />
+  }
 
   if (normalizedCardIds.length !== 3) {
     return (
