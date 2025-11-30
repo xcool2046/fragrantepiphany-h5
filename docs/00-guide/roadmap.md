@@ -7,13 +7,10 @@
 
 ## 1. Immediate Pending Tasks (待开发任务)
 
-### Task 1: PerfumeAdmin Panel (High Priority)
+### Task 1: PerfumeAdmin Panel (Completed)
 **Goal**: Build a backend management interface for Perfume data.
--   **Features**:
-    -   CRUD for Perfumes (Brand, Name, Notes, Images).
-    -   Image Upload.
--   **Tech Stack**: React + React Hook Form + Tailwind.
--   **Estimated Effort**: 5-7 days (Frontend + Backend).
+-   **Status**: ✅ Done
+-   **Outcome**: Backend API and Frontend Management Page (`/admin/perfumes`) are implemented.
 
 ### Task 2: Data Import (Completed)
 -   **Status**: ✅ Done

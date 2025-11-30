@@ -97,4 +97,4 @@
 - **Frontend**: ✅ 已完成 (UI + API 集成)。
 - **Backend**: ✅ 已完成 (API + 数据库迁移)。
 - **Data**: ✅ 已导入 (168 条记录)。
-- **Admin**: ⏳ 待开发 (Task 1)。
+- **Admin**: ✅ 已完成 (基础 CRUD)。

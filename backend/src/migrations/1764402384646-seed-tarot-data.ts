@@ -14,6 +14,14 @@ export class SeedTarotData1764402384646 implements MigrationInterface {
 
     const baseDir = path.join(__dirname, '../../../assets/excel_files');
 
+    const CARD_NAMES = [
+      "The Fool", "The Magician", "The High Priestess", "The Empress", "The Emperor", "The Hierophant", "The Lovers", "The Chariot", "Strength", "The Hermit", "Wheel of Fortune", "Justice", "The Hanged Man", "Death", "Temperance", "The Devil", "The Tower", "The Star", "The Moon", "The Sun", "Judgement", "The World",
+      "Ace of Wands", "Two of Wands", "Three of Wands", "Four of Wands", "Five of Wands", "Six of Wands", "Seven of Wands", "Eight of Wands", "Nine of Wands", "Ten of Wands", "Page of Wands", "Knight of Wands", "Queen of Wands", "King of Wands",
+      "Ace of Cups", "Two of Cups", "Three of Cups", "Four of Cups", "Five of Cups", "Six of Cups", "Seven of Cups", "Eight of Cups", "Nine of Cups", "Ten of Cups", "Page of Cups", "Knight of Cups", "Queen of Cups", "King of Cups",
+      "Ace of Swords", "Two of Swords", "Three of Swords", "Four of Swords", "Five of Swords", "Six of Swords", "Seven of Swords", "Eight of Swords", "Nine of Swords", "Ten of Swords", "Page of Swords", "Knight of Swords", "Queen of Swords", "King of Swords",
+      "Ace of Pentacles", "Two of Pentacles", "Three of Pentacles", "Four of Pentacles", "Five of Pentacles", "Six of Pentacles", "Seven of Pentacles", "Eight of Pentacles", "Nine of Pentacles", "Ten of Pentacles", "Page of Pentacles", "Knight of Pentacles", "Queen of Pentacles", "King of Pentacles"
+    ];
+
     for (const fileInfo of files) {
       const filePath = path.join(baseDir, fileInfo.name);
       if (!fs.existsSync(filePath)) {
@@ -28,17 +36,20 @@ export class SeedTarotData1764402384646 implements MigrationInterface {
       if (!sheet['!ref']) continue;
       const range = XLSX.utils.decode_range(sheet['!ref']);
 
+      let cardIndex = 0;
       // Start from row 1 (skipping header at row 0)
       for (let R = range.s.r + 1; R <= range.e.r; ++R) {
+        if (cardIndex >= CARD_NAMES.length) break;
+
         const getCell = (C: number) => {
           const cell = sheet[XLSX.utils.encode_cell({ r: R, c: C })];
           return cell ? cell.v : null;
         };
 
-        const cardNameEn = getCell(0); // Column 0: English Name
-        const cardNameCn = getCell(1); // Column 1: Chinese Name
-
-        if (!cardNameEn) continue;
+        // Ignore Column 0 (Name) as it is unreliable
+        // Use our standard ordered list
+        const cardNameEn = CARD_NAMES[cardIndex];
+        cardIndex++;
 
         const summaryZh = getCell(5); // Column 5: Sentence CN
         const summaryEn = getCell(9); // Column 9: Sentence EN
@@ -68,23 +79,14 @@ export class SeedTarotData1764402384646 implements MigrationInterface {
             [cardNameEn, fileInfo.category, pos.name],
           );
 
-          // If not found, check if entry exists with Chinese Name
-          if (!existing || existing.length === 0) {
-             existing = await queryRunner.query(
-              `SELECT id FROM "tarot_interpretations" WHERE "card_name" = $1 AND "category" = $2 AND "position" = $3`,
-              [cardNameCn, fileInfo.category, pos.name],
-            );
-          }
-
           if (existing && existing.length > 0) {
-            // Update (and migrate name to English)
+            // Update
             await queryRunner.query(
               `UPDATE "tarot_interpretations" SET 
-                "card_name" = $1,
-                "summary_zh" = $2, "summary_en" = $3, 
-                "interpretation_zh" = $4, "interpretation_en" = $5
-               WHERE "id" = $6`,
-              [cardNameEn, summaryZh, summaryEn, pos.zh, pos.en, existing[0].id],
+                "summary_zh" = $1, "summary_en" = $2, 
+                "interpretation_zh" = $3, "interpretation_en" = $4
+               WHERE "id" = $5`,
+              [summaryZh, summaryEn, pos.zh, pos.en, existing[0].id],
             );
           } else {
             // Insert

@@ -3,13 +3,15 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useMotionValueEvent, MotionValue, animate } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
+import { createPortal } from 'react-dom'
+
+import { CardFace } from '../components/CardFace'
+import drawBg from '../assets/draw_bg.jpg'
 
 // --- Constants ---
 const TOTAL_CARDS = 78
-
 const INITIAL_INDEX = 38
 
-// --- Types ---
 // --- Types ---
 interface WheelProps {
   onCardSelect: (cardId: number, startRect: DOMRect, rotation: number) => void;
@@ -23,38 +25,29 @@ interface WheelCardProps {
   cardId: number;
   onClick: (e: React.MouseEvent | React.TouchEvent, rotation: number) => void;
   isHidden: boolean;
+  isInteracting: boolean;
 }
 
 // --- Components ---
 
-import { CardFace } from '../components/CardFace'
-import drawBg from '../assets/draw_bg.jpg'
-
-import { createPortal } from 'react-dom'
-
-// Flying Card Component for Animation
+// FlyingCard Component for Animation
 const FlyingCard = ({
     cardId,
     startRect,
     targetRect,
     initialRotate = 0,
-    onComplete
 }: {
     cardId: number,
     startRect: DOMRect,
     targetRect: DOMRect,
     initialRotate?: number,
-    onComplete: () => void
+    onComplete?: () => void 
 }) => {
-    // Safety: Ensure onComplete is called even if animation hangs
-    React.useEffect(() => {
-        const timer = setTimeout(() => {
-            onComplete()
-        }, 1500) // 1.5s fallback (animation is 0.7s)
-        return () => clearTimeout(timer)
-    }, [onComplete])
-
     // Portal Strategy: Render to body to escape parent transforms.
+    
+    // Card Constants (Fixed dimensions to match WheelCard)
+    const CARD_WIDTH = 180
+    const CARD_HEIGHT = 120
 
     // Start Geometry (Center based)
     const startCenterX = startRect.left + startRect.width / 2
@@ -65,113 +58,76 @@ const FlyingCard = ({
     const targetCenterY = targetRect.top + targetRect.height / 2
 
     // Initial State
-    const initialWidth = startRect.width
-    const initialHeight = startRect.height
-    const initialTop = startCenterY - initialHeight / 2
-    const initialLeft = startCenterX - initialWidth / 2
+    // Center the 180x120 card over the start center
+    const initialX = startCenterX - CARD_WIDTH / 2
+    const initialY = startCenterY - CARD_HEIGHT / 2
     
     // Target State
-    const targetWidth = targetRect.width
-    const targetHeight = targetRect.height
-    const targetTop = targetCenterY - targetHeight / 2
-    const targetLeft = targetCenterX - targetWidth / 2
+    // Center the 180x120 card over the target center
+    const targetX = targetCenterX - CARD_WIDTH / 2
+    const targetY = targetCenterY - CARD_HEIGHT / 2
+
+    // Scale Calculation
+    // Target slot is ~80x120 (Vertical). Card is 180x120 (Horizontal).
+    // We rotate 90deg -> Visual size becomes 120x180.
+    // We need to fit 120x180 into targetRect.width x targetRect.height.
+    // Scale = targetRect.width (80) / CARD_HEIGHT (120) = 0.666
+    const scale = targetRect.width / CARD_HEIGHT
 
     return createPortal(
         <motion.div
             initial={{ 
                 position: 'fixed',
-                top: initialTop,
-                left: initialLeft,
-                width: initialWidth,
-                height: initialHeight,
-                rotate: initialRotate,
+                top: 0,
+                left: 0,
+                x: initialX,
+                y: initialY,
+                width: CARD_WIDTH,
+                height: CARD_HEIGHT,
+                rotate: initialRotate, 
                 scale: 1,
                 opacity: 1,
-                zIndex: 99999,
+                zIndex: 99999, 
             }}
             animate={{ 
-                top: targetTop,
-                left: targetLeft,
-                width: targetWidth,
-                height: targetHeight,
-                rotate: 0,
-                scale: 1,
+                x: targetX,
+                y: targetY,
+                rotate: 90, // Rotate to vertical
+                scale: scale,
             }}
             transition={{ 
-                duration: 0.7,
+                duration: 0.8,
                 ease: [0.16, 1, 0.3, 1], // Smooth easeOut
             }}
-            onAnimationComplete={onComplete}
             className="pointer-events-none font-serif fixed z-[99999]"
             style={{ transformOrigin: 'center center' }}
         >
             <div className="w-full h-full relative shadow-2xl">
-                 <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: [0, 0.8, 0] }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute inset-0 bg-[#D4A373] blur-xl rounded-lg"
-                 />
-                 {/* Use aspect ratio to determine vertical prop. 
-                     Start: 180x120 (Horizontal) -> vertical=false.
-                     End: 120x180 (Vertical) -> vertical=true.
-                     Framer motion animates width/height. 
-                     But React re-renders? 
-                     This component mounts once. 'initialWidth' is fixed.
-                     The content inside won't magically switch props unless we base it on a MotionValue or State.
-                     For now, let's force vertical={true} to ensure it lands correctly in the slot, 
-                     OR use a layout that fits both (e.g. contain).
-                     CardFace 'vertical' toggles the SVG viewBox. 
-                     If we start with vertical=true on a wide box, it looks bad.
-                     If we start with vertical=false on a tall box, it looks bad.
-                     
-                     Let's try a 2-stage animation or just keep vertical={true} 
-                     but initiate with rotate: 90?
-                     If WheelCard is native horizontal (0 deg), FlyingCard starts at 0 deg.
-                     If we force FlyingCard to be vertical=true (Portrait), we must rotate it 90 deg to match the start rect (Wide).
-                     
-                     So:
-                     Initial: width=120, height=180 (Portrait Dimensions), rotate=90 + initialRotate.
-                     This visually creates a 180x120 box.
-                     Target: width=120, height=180, rotate=0.
-                     This matches the slot.
-                     
-                     This seems the most robust way to handle the shape change without squashing SVGs.
-                  */}
-                 <CardFace id={cardId} variant="slot" vertical={true} side="back" />
+                 <CardFace id={cardId} variant="slot" vertical={false} side="back" />
             </div>
         </motion.div>,
         document.body
     )
 }
 
-const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isHidden, isInteracting }: WheelCardProps & { isInteracting: boolean }) => {
-    const [isHovered, setIsHovered] = useState(false)
-
+const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isHidden, isInteracting }: WheelCardProps) => {
     // Calculate distance from center
     const distance = useTransform(scrollIndex, (current: number) => {
         return absoluteIndex - current
     })
 
-    // --- Visuals: Vertical Stack, Horizontal Cards ---
-
-    // 1. Rotation: Fanning out clockwise
-    const anglePerCard = -6
+    // --- Visuals: Big Wheel Rotation Model ---
+    
+    // 1. Rotation: Negative angle for Right-Side Center (Counter-Clockwise stack)
+    const anglePerCard = -4.5 // Increased angle slightly to maintain spacing with tighter curve
     const rotateZ = useTransform(distance, (d) => d * anglePerCard)
 
-    // 2. Y Position: Waterfall flow (Vertical spacing)
-    const y = useTransform(distance, (d) => d * 55)
-
-    // 3. X Position: Arc
-    const x = useTransform(distance, (d) => {
-        return Math.pow(d, 2) * 2.0
-    })
-
-    // 4. Z-Index: Stacking Order
-    const zIndex = isHovered ? 9999 : absoluteIndex
+    // 2. Z-Index: Stacking Order (Top cards overlap bottom ones)
+    // FIX: Use a large base to prevent negative z-index, which causes occlusion issues.
+    const zIndex = 2000 - absoluteIndex
 
     const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
-        if (isHidden || isInteracting) return // Block click if hidden or system is busy
+        if (isHidden || isInteracting) return 
         const currentDist = absoluteIndex - scrollIndex.get()
         const currentRotation = currentDist * anglePerCard
         onClick(e, currentRotation)
@@ -180,37 +136,30 @@ const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isHidden,
     return (
         <motion.div
             style={{
-                x,
-                y,
-                rotateZ,
+                rotateZ, 
                 zIndex,
-                rotateY: 0,
+                rotateY: 0, 
                 rotateX: 0,
                 scale: 1,
                 opacity: isHidden ? 0 : 1,
-                transformOrigin: "center center",
+                // FIX: Center is on the RIGHT side (positive X)
+                // Adjusted to 650px for a more visible arc (tighter curve)
+                transformOrigin: "650px 50%", 
             }}
-            // Position: Right side, Vertically Centered
-            // top-[50%] puts the top edge at center. -mt-[60px] pulls it up by half height (120/2) to center the card.
+            // Position: 
+            // transform-origin is 650px to the right.
+            // Adjusting right position to bring the arc into view comfortably.
             className={clsx(
-                "absolute top-[50%] right-[15%] -mt-[60px] w-[180px] h-[120px] origin-center will-change-transform",
+                "absolute top-[50%] right-[70px] -mt-[60px] w-[180px] h-[120px] origin-center will-change-transform",
                 (isHidden || isInteracting) ? "cursor-default" : "cursor-pointer"
             )}
             onClick={handleClick}
-            onHoverStart={() => !isInteracting && setIsHovered(true)}
-            onHoverEnd={() => setIsHovered(false)}
         >
-             {/* Inner container handles hover effects. No permanent rotation needed for native horizontal. */}
+             {/* Inner container handles visual effects. 
+                 REMOVED Hover Animation: No more pop-left or scale on hover.
+             */}
              <motion.div 
                 className="w-full h-full shadow-[-5px_0px_10px_rgba(0,0,0,0.2)] rounded-lg bg-[#14100F]"
-                animate={{
-                    // Pop LEFT (Global Left).
-                    // Native horizontal: X is Horizontal. Negative X is Left.
-                    x: isHovered && !isInteracting ? -40 : 0,
-                    y: 0,
-                    scale: isHovered && !isInteracting ? 1.1 : 1,
-                }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 whileTap={{ scale: 0.95 }}
              >
                  <CardFace id={cardId} variant="slot" vertical={false} side="back" />
@@ -346,7 +295,7 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
   }, [scrollIndex, onCardSelect])
 
   // Reduce visible range
-  const visibleRange = 10
+  const visibleRange = 20 
   const indices = []
   for (let i = renderIndex - visibleRange; i <= renderIndex + visibleRange; i++) {
     indices.push(i)
@@ -410,16 +359,45 @@ const Draw: React.FC = () => {
   // Animation State
   const [flyingCard, setFlyingCard] = useState<{ id: number, startRect: DOMRect, targetRect: DOMRect, targetIndex: number, initialRotate: number } | null>(null)
   const slotRefs = useRef<(HTMLDivElement | null)[]>([])
-  // containerRef removed as we use Portal
+  const animationTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const handleAnimationComplete = useCallback((completedCardId?: number, completedTargetIndex?: number) => {
+      // Clear timer
+      if (animationTimer.current) {
+          clearTimeout(animationTimer.current)
+          animationTimer.current = null
+      }
+
+      setFlyingCard(currentFlying => {
+          if (!currentFlying) return null 
+          
+          const finalId = completedCardId ?? currentFlying.id
+          const finalIndex = completedTargetIndex ?? currentFlying.targetIndex
+
+          setSelectedCards(prev => {
+              const newSelected = [...prev]
+              newSelected[finalIndex] = finalId
+              return newSelected
+          })
+          
+          // Keep flying card for a moment to prevent flash
+          return currentFlying 
+      })
+
+      // Unmount after a short delay to ensure the slot card is rendered
+      setTimeout(() => {
+          setFlyingCard(null)
+      }, 50)
+  }, [])
 
   const handleCardSelect = useCallback((cardId: number, startRect: DOMRect, rotation: number = 0) => {
-    // Check if ANY card is currently flying. If so, ignore new clicks.
+    // Safety: Prevent concurrent animations
     if (flyingCard) return
 
     // Check if card is already selected (in any slot)
     const existingIndex = selectedCards.indexOf(cardId)
     if (existingIndex !== -1) {
-      // If already selected, remove it from that specific slot
+      // If already selected, remove it
       setSelectedCards(prev => {
           const newSelected = [...prev]
           newSelected[existingIndex] = null
@@ -429,27 +407,23 @@ const Draw: React.FC = () => {
     }
 
     // Determine target slot
-    // Rule: "Default downwards, don't fly into cancelled slot"
-    // Logic: Try to fill (maxFilledIndex + 1). If that's not possible (full or out of bounds), fall back to first empty.
-    
     const filledIndices = selectedCards.map((id, idx) => id !== null ? idx : -1).filter(i => i !== -1)
     const maxFilled = filledIndices.length > 0 ? Math.max(...filledIndices) : -1
     
     let targetIndex = maxFilled + 1
     
-    // If target is out of bounds (e.g. we filled slot 2) or already filled (unlikely given max logic but possible if we skipped slots?), 
-    // fall back to the first empty slot (wrapping around).
     if (targetIndex > 2 || selectedCards[targetIndex] !== null) {
         targetIndex = selectedCards.indexOf(null)
     }
 
     if (targetIndex !== -1) {
-        // Trigger Fly Animation to this specific slot
         const targetSlot = slotRefs.current[targetIndex]
         
         if (targetSlot) {
             const targetRect = targetSlot.getBoundingClientRect()
             
+            // Pass the raw targetRect to FlyingCard. 
+            // FlyingCard will handle the scaling calculation based on its fixed dimensions.
             setFlyingCard({
                 id: cardId,
                 startRect,
@@ -457,6 +431,13 @@ const Draw: React.FC = () => {
                 targetIndex: targetIndex,
                 initialRotate: rotation
             })
+
+            // Force complete after 850ms (0.8s animation + 0.05s buffer)
+            if (animationTimer.current) clearTimeout(animationTimer.current)
+            animationTimer.current = setTimeout(() => {
+                handleAnimationComplete(cardId, targetIndex)
+            }, 850)
+
         } else {
             // Fallback if ref missing
             setSelectedCards(prev => {
@@ -466,18 +447,7 @@ const Draw: React.FC = () => {
             })
         }
     }
-  }, [selectedCards])
-
-  const handleAnimationComplete = useCallback(() => {
-      if (flyingCard) {
-          setSelectedCards(prev => {
-              const newSelected = [...prev]
-              newSelected[flyingCard.targetIndex] = flyingCard.id
-              return newSelected
-          })
-          setFlyingCard(null)
-      }
-  }, [flyingCard])
+  }, [selectedCards, flyingCard, handleAnimationComplete])
 
   const filledCount = selectedCards.filter(id => id !== null).length
 
@@ -531,7 +501,12 @@ const Draw: React.FC = () => {
                 <div
                     key={index}
                     ref={el => slotRefs.current[index] = el}
-                    className="relative w-full aspect-[2/3] rounded-xl border-2 border-[#D4A373]/40 flex items-center justify-center bg-white/20 backdrop-blur-md shadow-[0_8px_24px_rgba(212,163,115,0.15)] overflow-hidden group transition-all duration-300 hover:border-[#D4A373]/60 hover:shadow-[0_12px_32px_rgba(212,163,115,0.25)]"
+                    className={clsx(
+                        "relative w-full aspect-[2/3] rounded-xl flex items-center justify-center transition-all duration-300",
+                        cardId === null 
+                            ? "border-2 border-[#D4A373]/40 bg-white/20 backdrop-blur-md shadow-[0_8px_24px_rgba(212,163,115,0.15)] hover:border-[#D4A373]/60 hover:shadow-[0_12px_32px_rgba(212,163,115,0.25)]"
+                            : "border-none bg-transparent shadow-none"
+                    )}
                 >
                     {/* Empty State - Breathing Animation */}
                     {cardId === null && (
@@ -550,21 +525,15 @@ const Draw: React.FC = () => {
                     <AnimatePresence>
                     {cardId !== null && (
                         <>
-                        {/* Ripple/Impact Effect when card lands - BRIGHT FLASH */}
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0.9 }}
-                            animate={{ scale: 1.6, opacity: 0 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="absolute inset-0 bg-[#FFD700] rounded-xl z-0 mix-blend-screen"
-                        />
+                        {/* Ripple/Impact Effect REMOVED */}
                         
                         <motion.div
                             layoutId={`card-slot-${cardId}`} 
                             className="absolute inset-0 w-full h-full z-10 flex items-center justify-center"
-                            initial={{ opacity: 0, scale: 1.2, y: 0, rotate: 0 }}
-                            animate={{ opacity: 1, scale: 1.1, y: 0, rotate: 0 }} // Portrait layout无需旋转
+                            initial={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+                            animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
                             exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)", rotate: 0 }}
-                            transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                            transition={{ duration: 0 }} // No transition for entry
                             onClick={() => {
                             // Clear this specific slot
                             setSelectedCards(prev => {
@@ -613,11 +582,11 @@ const Draw: React.FC = () => {
       {/* Flying Card Overlay - MOVED TO BOTTOM FOR HIGHEST Z-STACKING */}
       {flyingCard && (
           <FlyingCard 
+            key={flyingCard.id} // FIX: Add key to force remount and animation trigger
             cardId={flyingCard.id} 
             startRect={flyingCard.startRect} 
             targetRect={flyingCard.targetRect} 
             initialRotate={flyingCard.initialRotate}
-            onComplete={handleAnimationComplete} 
           />
       )}
     </div>

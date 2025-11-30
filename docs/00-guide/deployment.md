@@ -30,6 +30,7 @@ ADMIN_USER=admin
 ADMIN_PASS=admin
 PUBLIC_BASE_URL=http://localhost:4173
 VITE_API_BASE_URL=http://localhost:3000
+JWT_SECRET=your-secret-key-here
 ```
 - 支付价格取自 Stripe Dashboard 的 price，建议在 `STRIPE_PRICE_IDS_JSON`（或 `_TEST`）中为各币种配置对应的 price_id；未填则后端会调用 Stripe API 按币种抓取首个启用的价格并缓存，仍推荐显式配置以避免抓到错误 price。
 - `PUBLIC_BASE_URL` 会拼接 `/pay/callback` 作为 Stripe 回跳地址，请与实际域名一致。

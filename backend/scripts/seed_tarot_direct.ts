@@ -19,11 +19,72 @@ const AppDataSource = new DataSource({
   synchronize: false,
 });
 
+function normalizeChineseName(name: string): string {
+  if (!name) return '';
+  let n = name.replace(/牌$/, ''); // Remove '牌' suffix first
+  
+  // Suits
+  n = n.replace(/圣杯/g, '聖杯');
+  n = n.replace(/宝剑/g, '寶劍');
+  n = n.replace(/星币/g, '星幣');
+  n = n.replace(/权杖/g, '權杖');
+  
+  // Court
+  n = n.replace(/侍卫/g, '侍者');
+  n = n.replace(/骑士/g, '騎士');
+  n = n.replace(/女王/g, '皇后');
+  n = n.replace(/国王/g, '國王');
+  
+  // Major Arcana (Simplified -> Traditional)
+  n = n.replace(/魔术师/g, '魔術師');
+  n = n.replace(/战车/g, '戰車');
+  n = n.replace(/恋人/g, '戀人');
+  n = n.replace(/隐士/g, '隱士');
+  n = n.replace(/隐者/g, '隱士');
+  n = n.replace(/命运之轮/g, '命運之輪');
+  n = n.replace(/正义/g, '正義');
+  n = n.replace(/挂人/g, '倒吊人');
+  n = n.replace(/吊人/g, '倒吊人');
+  n = n.replace(/节制/g, '節制');
+  n = n.replace(/恶魔/g, '惡魔');
+  n = n.replace(/审判/g, '審判');
+  n = n.replace(/世界/g, '世界');
+  n = n.replace(/太阳/g, '太陽');
+  n = n.replace(/月亮/g, '月亮');
+  n = n.replace(/星星/g, '星星');
+  
+  return n;
+}
+
+const manualMap: Record<string, string> = {
+    '隐者': 'The Hermit',
+    '隐士': 'The Hermit',
+    '愚人': 'The Fool',
+    '女皇': 'The Empress',
+    '吊人': 'The Hanged Man',
+    '倒吊人': 'The Hanged Man',
+    '太阳': 'The Sun',
+    '月亮': 'The Moon',
+    '星星': 'The Star'
+};
+
 async function seed() {
   try {
     console.log('Connecting to database...');
     await AppDataSource.initialize();
     console.log('Connected.');
+
+    // 1. Build Card Map from DB
+    console.log('Building Card Map...');
+    const cards = await AppDataSource.query('SELECT name_en, name_zh FROM cards');
+    const cardMap = new Map<string, string>();
+    cards.forEach((c: any) => {
+        if (c.name_zh) {
+            cardMap.set(c.name_zh, c.name_en);
+            cardMap.set(c.name_zh + '牌', c.name_en);
+        }
+        cardMap.set(c.name_en, c.name_en);
+    });
 
     const files = [
       { name: '事业正式.xlsx', category: 'Career' },
@@ -35,7 +96,7 @@ async function seed() {
       process.env.ASSETS_DIR ||
       (fs.existsSync('/home/code/h5-web/assets/excel_files')
         ? '/home/code/h5-web/assets/excel_files' // Local Dev specific
-        : path.join(__dirname, '../../assets/excel_files')); // Production: dist/scripts/ -> ../../assets
+        : path.join(__dirname, '../../assets/excel_files')); // Production
 
     for (const fileInfo of files) {
       const filePath = path.join(baseDir, fileInfo.name);
@@ -49,84 +110,67 @@ async function seed() {
       const workbook = XLSX.readFile(filePath);
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
-      const ref = sheet['!ref'];
-      if (!ref) {
-        console.warn(`Empty sheet in ${fileInfo.name}`);
-        continue;
-      }
-      const range = XLSX.utils.decode_range(ref);
-      console.log(`Sheet loaded. Rows: ${range.e.r}`);
+      const rows: any[] = XLSX.utils.sheet_to_json(sheet);
 
       let count = 0;
-      // Start from row 1 (skipping header at row 0)
-      for (let R = range.s.r + 1; R <= range.e.r; ++R) {
-        const getCell = (C: number) => {
-          const cell = sheet[XLSX.utils.encode_cell({ r: R, c: C })];
-          return cell ? cell.v : null;
-        };
-
-        const cardNameEn = getCell(0); // Column 0: English Name
-        const cardNameCn = getCell(1); // Column 1: Chinese Name
-
-        if (!cardNameEn) continue;
-
-        const summaryZh = getCell(5); // Column 5: Sentence CN
-        const summaryEn = getCell(9); // Column 9: Sentence EN (Corrected index)
-
-        // Data for Past
-        const pastZh = getCell(2); // Column 2: Past CN
-        const pastEn = getCell(6); // Column 6: Past EN
-
-        // Data for Present
-        const presentZh = getCell(3); // Column 3: Present CN
-        const presentEn = getCell(7); // Column 7: Present EN
-
-        // Data for Future
-        const futureZh = getCell(4); // Column 4: Future CN
-        const futureEn = getCell(8); // Column 8: Future EN
-
-        const positions = [
-          { name: 'Past', zh: pastZh, en: pastEn },
-          { name: 'Present', zh: presentZh, en: presentEn },
-          { name: 'Future', zh: futureZh, en: futureEn },
-        ];
-
-        for (const pos of positions) {
-          // Check if entry exists
-          const existing = await AppDataSource.query(
-            `SELECT id FROM "tarot_interpretations" WHERE "card_name" = $1 AND "category" = $2 AND "position" = $3`,
-            [cardNameEn, fileInfo.category, pos.name],
-          );
-
-          if (existing && existing.length > 0) {
-            // Update
-            await AppDataSource.query(
-              `UPDATE "tarot_interpretations" SET 
-                "summary_zh" = $1, "summary_en" = $2, 
-                "interpretation_zh" = $3, "interpretation_en" = $4
-               WHERE "id" = $5`,
-              [summaryZh, summaryEn, pos.zh, pos.en, existing[0].id],
-            );
-          } else {
-            // Insert
-            await AppDataSource.query(
-              `INSERT INTO "tarot_interpretations" 
-                ("card_name", "category", "position", "summary_zh", "summary_en", "interpretation_zh", "interpretation_en")
-               VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-              [
-                cardNameEn,
-                fileInfo.category,
-                pos.name,
-                summaryZh,
-                summaryEn,
-                pos.zh,
-                pos.en,
-              ],
-            );
+      for (const row of rows) {
+          // Map Card Name
+          let rawName = row['__EMPTY_1'] || row['name'] || row['card'] || row['name_en'];
+          if (!rawName || rawName === 'name' || rawName === 'Name') continue;
+          
+          let cardName = cardMap.get(rawName);
+          if (!cardName) {
+              const cleanName = rawName.replace(/牌$/, '');
+              if (manualMap[cleanName]) {
+                  cardName = manualMap[cleanName];
+              }
           }
-        }
-        count++;
-        if (count % 10 === 0) process.stdout.write('.');
+
+          if (!cardName) {
+              const normalized = normalizeChineseName(rawName);
+              cardName = cardMap.get(normalized);
+              if (!cardName) cardName = cardMap.get(normalized + '牌');
+          }
+          
+          if (!cardName) {
+              console.warn(`Unknown card name: ${rawName}`);
+              continue;
+          }
+
+          // Map Data
+          const sentenceCn = row['sentence_cn'] || row['sentence'] || row['summary'];
+          const sentenceEn = row['sentence_en_new'] || row['sentence_en'] || row['summary_en'];
+
+          const positions = ['Past', 'Present', 'Future'];
+          for (const pos of positions) {
+              const posKey = pos.toLowerCase();
+              const contentCn = row[posKey] || row[posKey + '_cn'];
+              const contentEn = row[posKey + '_en_new'] || row[posKey + '_en'];
+
+              // Check existing
+              const existing = await AppDataSource.query(
+                `SELECT id FROM "tarot_interpretations" WHERE "card_name" = $1 AND "category" = $2 AND "position" = $3`,
+                [cardName, fileInfo.category, pos]
+              );
+
+              if (existing && existing.length > 0) {
+                  await AppDataSource.query(
+                    `UPDATE "tarot_interpretations" SET 
+                      "recommendation_zh" = $1, "recommendation_en" = $2, 
+                      "interpretation_zh" = $3, "interpretation_en" = $4
+                     WHERE "id" = $5`,
+                    [sentenceCn, sentenceEn, contentCn, contentEn, existing[0].id]
+                  );
+              } else {
+                  await AppDataSource.query(
+                    `INSERT INTO "tarot_interpretations" 
+                      ("card_name", "category", "position", "recommendation_zh", "recommendation_en", "interpretation_zh", "interpretation_en")
+                     VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+                    [cardName, fileInfo.category, pos, sentenceCn, sentenceEn, contentCn, contentEn]
+                  );
+              }
+          }
+          count++;
       }
       console.log(`\nFinished ${fileInfo.name}. Processed ${count} cards.`);
     }
@@ -135,6 +179,7 @@ async function seed() {
     await AppDataSource.destroy();
   } catch (err) {
     console.error('\nError:', err);
+    process.exit(1);
   }
 }
 

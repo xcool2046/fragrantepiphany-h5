@@ -37,17 +37,20 @@ Stores perfume recommendations mapped to Tarot cards and Scene choices. Supports
 | `updated_at` | TIMESTAMP | Last update time |
 
 ### `questions`
-Stores questionnaire definitions (questions and options). User answers are NOT stored permanently.
+Stores questionnaire definitions.
 
 | Column | Type | Description |
 | :--- | :--- | :--- |
 | `id` | INT | Primary Key |
-| `text` | TEXT | Question text |
-| `options` | JSONB | Options array |
-| `...` | ... | ... |
+| `title_en` | TEXT | Question text (English) |
+| `title_zh` | TEXT | Question text (Chinese) |
+| `options_en` | JSONB | Options array (English) |
+| `options_zh` | JSONB | Options array (Chinese) |
+| `active` | BOOLEAN | Is active |
+| `weight` | INT | Sort order |
 
 ### `users`
-Stores Admin users only. No C-end user accounts.
+(Removed) Authentication is handled via Environment Variables (`ADMIN_USER`, `ADMIN_PASS`).
 
 ### `rules`
 Maps Tarot cards to interpretation rules.

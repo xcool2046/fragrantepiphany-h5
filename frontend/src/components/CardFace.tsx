@@ -1,8 +1,9 @@
-import { memo } from 'react'
+import { memo, useEffect, useState } from 'react'
 import clsx from 'clsx'
 
-// Load all card images eagerly
-const cardImages = import.meta.glob('../assets/cards/*.jpg', { eager: true, as: 'url' })
+// Lazy load all card images
+// eager: false (default) returns functions that return Promises
+const cardImages = import.meta.glob('../assets/cards/*.jpg', { eager: false, as: 'url' })
 
 interface CardFaceProps {
     id: number;
@@ -12,20 +13,34 @@ interface CardFaceProps {
 }
 
 export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical = false }: CardFaceProps) => {
-    // Get real image path
+    const [imageSrc, setImageSrc] = useState<string | null>(null)
+
+    // Get real image path key
     // ID is 0-77 (from array index), but files are 01.jpg - 78.jpg
-    // So file index = id + 1
     const fileIndex = String(id + 1).padStart(2, '0')
-    // Vite's import.meta.glob returns keys relative to the current file
-    // Ensure the key matches exactly what's on disk
     const imageKey = `../assets/cards/${fileIndex}.jpg`
-    const imagePath = cardImages[imageKey]
+
+    useEffect(() => {
+        // Only load image if we are showing the front
+        if (side === 'front') {
+            const loader = cardImages[imageKey]
+            if (loader) {
+                loader().then((url) => {
+                    setImageSrc(url)
+                }).catch((err) => {
+                    console.error(`Failed to load card image: ${imageKey}`, err)
+                })
+            }
+        } else {
+            // If side changes back to back, we technically don't need to clear it, 
+            // but we won't render it. 
+            // Keeping it loaded is fine for cache.
+        }
+    }, [id, side, imageKey])
     
-    // Use 'NO.' prefix as requested
-    const numberLabel = `NO.${fileIndex}`
+    // Use 'NO.' prefix as requested -> CHANGED to pure number
+    const numberLabel = `${fileIndex}`
     const isWheel = variant === 'wheel'
-    // Show badge on back side OR if explicitly requested (though usually back side has the number)
-    // The user request implies number is on the back.
     const showBadge = side === 'back'
 
     return (
@@ -33,12 +48,12 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
             "w-full h-full rounded-lg overflow-hidden relative transition-all",
             "bg-[#14100F]",
             // Only apply radial gradient background if showing back or if image missing
-            (side === 'back' || !imagePath) && "bg-[radial-gradient(circle_at_center,#2E241D_0%,#0F0B0A_100%)]",
+            (side === 'back' || !imageSrc) && "bg-[radial-gradient(circle_at_center,#2E241D_0%,#0F0B0A_100%)]",
             "border border-[#8B5A2B]/40" 
         )}>
-            {side === 'front' && imagePath ? (
+            {side === 'front' && imageSrc ? (
                 <img 
-                    src={imagePath} 
+                    src={imageSrc} 
                     alt={`Card ${id}`} 
                     className="w-full h-full object-cover"
                 />
@@ -101,10 +116,11 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
                     className={clsx(
                         "absolute z-30 pointer-events-none select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]",
                         // Positioning: 
-                        // For vertical cards (slots), top-right is standard.
-                        // For horizontal cards (wheel, vertical=false), user requested Top-Left.
-                        // Rely on 'vertical' prop instead of 'variant' name for more robust layout logic.
-                        !vertical ? "top-2 left-2" : "top-2 right-2"
+                        // For vertical cards (slots/result), use Top-Left.
+                        // For horizontal cards (wheel, vertical=false), use Bottom-Left.
+                        // This ensures that when a horizontal card (bottom-left badge) rotates 90deg clockwise to become vertical,
+                        // the badge ends up in the top-left, creating a seamless transition.
+                        !vertical ? "bottom-2 left-2" : "top-2 left-2"
                     )}
                 >
                     <div

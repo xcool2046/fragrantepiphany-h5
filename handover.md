@@ -10,19 +10,13 @@
         - 自动同步 `assets` 目录到生产环境。
         - 自动在部署后执行数据填充脚本 (`node dist/scripts/seed_tarot_direct.js`)。
 - **生产环境同步**：已执行 `deploy.sh`，生产环境数据填充成功。
-
-## 📊 当前进度快照 (Progress Snapshot)
-- **当前阶段**：生产环境验证通过，数据已就绪。
-- **最近验证可用功能**：
-    1.  **Admin Panel**：功能包含解读管理 (Interpretations)、问卷管理 (Questions)、卡牌管理 (Cards)。鉴权逻辑通过（Admin 账号：`admin` / `admin`）。
-    2.  **部署脚本**：一键部署包含了数据修复逻辑。
-
-## 💡 关键技术方案与技巧 (Key Solutions & Techniques)
-- **数据填充策略 (Data Seeding)**：
-    - 使用 `seed_tarot_direct.ts` 绕过 TypeORM Migration 死锁问题。
-    - 脚本编译为 JS 后在生产环境 `node:alpine` 镜像中直接运行，无需安装 `ts-node`。
-- **Docker 资源注入**：
-    - 在 `deploy.sh` 中临时将 `assets` 复制到 `backend` 构建上下文，利用 `COPY assets ./assets` 注入镜像。
+- **数据完整性修复**：
+    - 修复了 Excel 导入脚本中的中文名称映射问题（如“隐者”->“隐士”，“吊人”->“倒吊人”），确保所有 78 张牌的解读和香水推荐语（Sentence）均已正确入库。
+    - 解决了结果页解读文案显示默认兜底文本的问题。
+- **移动端体验优化**：
+    - **性能优化**：实现了塔罗牌图片的按需加载 (Lazy Loading)，大幅降低首屏内存占用和流量消耗。
+    - **视觉修复**：修复了 iOS Safari 上卡牌翻转时的 Z-fighting 问题（背面穿透）和 3D 变换兼容性问题。
+    - **交互优化**：适配了 iOS 安全区域 (`safe-area-inset-bottom`)，防止底部按钮被 Home Indicator 遮挡。
 
 ## 🚧 遗留难点与待办 (Pending Issues)
 - **无**：核心卡点已解决。建议后续监控生产环境运行状态。

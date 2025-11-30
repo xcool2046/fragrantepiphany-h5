@@ -134,6 +134,7 @@ const Result: React.FC = () => {
       category,
       answers,
       orderId: effectiveOrderId,
+      timestamp: Date.now(),
     })
       .then((res) => {
         setReadingData(res)
@@ -315,16 +316,19 @@ const Result: React.FC = () => {
                             rotateY: revealed[index] ? 180 : 0,
                         }}
                         transition={{ duration: 0.8, ease: "easeInOut", delay: index * 0.8 }}
-                        style={{ transformStyle: 'preserve-3d' }}
+                        style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
                     >
                         {/* Back of Card */}
-                        <div className="absolute inset-0 backface-hidden rounded-xl shadow-xl overflow-hidden">
+                        <div 
+                            className="absolute inset-0 backface-hidden rounded-xl shadow-xl overflow-hidden"
+                            style={{ transform: 'translateZ(1px)' }}
+                        >
                              <CardFace id={normalizedCardIds[index]} variant="slot" side="back" vertical={true} />
                         </div>
                         {/* Front of Card */}
                         <div
                             className="absolute inset-0 backface-hidden rounded-xl shadow-xl overflow-hidden"
-                            style={{ transform: 'rotateY(180deg)' }}
+                            style={{ transform: 'rotateY(180deg) translateZ(1px)' }}
                         >
                              <CardFace id={normalizedCardIds[index]} variant="slot" side="front" />
                              {/* Blur & Lock Overlay for Present & Future until unlocked */}
@@ -416,14 +420,14 @@ const Result: React.FC = () => {
                 </div>
               </div>
 
-              <div className="relative z-30 mt-10 flex flex-col items-center gap-3">
+              <div className="relative z-30 mt-10 flex flex-col items-center gap-3 pb-[env(safe-area-inset-bottom)]">
                 <button
                   onClick={isUnlocked ? () => navigate('/perfume', { state: { cardIds: normalizedCardIds, answers } }) : handleUnlock}
                   disabled={unlocking}
                   className={`group relative px-10 py-4 rounded-full font-serif tracking-widest text-[11px] uppercase transition-all duration-500 whitespace-nowrap ${isUnlocked ? 'bg-transparent text-[#2B1F16] border border-[#D4A373]/70 shadow-[0_10px_24px_-14px_rgba(43,31,22,0.35)] hover:-translate-y-0.5' : 'bg-[#2B1F16] text-[#E8DCC5] shadow-lg hover:shadow-xl hover:-translate-y-0.5'}`}
                 >
                   <span className="relative z-10">
-                    {isUnlocked ? t('journey.cta', 'Discover Your Fragrance') : unlocking ? t('draw.loading') + '...' : `${t('result.unlock', 'Unlock Full Reading')} - ${priceLabel}`}
+                    {isUnlocked ? t('journey.cta', 'Discover Your Fragrance') : unlocking ? t('draw.loading') + '...' : `${t('result.unlock', 'Reveal Your Destiny')}  |  ${priceLabel}`}
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent translate-x-[-120%] group-hover:translate-x-[120%] transition-transform duration-1000 ease-in-out rounded-full" />
                 </button>

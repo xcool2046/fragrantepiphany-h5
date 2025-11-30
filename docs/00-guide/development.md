@@ -30,6 +30,7 @@ ADMIN_USER=admin
 ADMIN_PASS=admin
 PUBLIC_BASE_URL=http://localhost:4173
 VITE_API_BASE_URL=http://localhost:3000
+JWT_SECRET=your-secret-key-here
 ```
 - 前端只需要 `VITE_API_BASE_URL`（可在构建 args 传入），其余由后端使用。
 - 后端支付：必须设置 `STRIPE_SECRET_KEY`（对应环境的秘钥）和 `STRIPE_WEBHOOK_SECRET`（Dashboard/Webhook 配置生成）。价格由 Stripe Dashboard 的 price 决定，需要配置 `STRIPE_PRICE_IDS_JSON`（如 `{ "usd": "price_xxx", "cny": "price_yyy" }`；测试可用 `_TEST` 变量），按请求币种匹配对应 price_id，未配置对应币种会报错。

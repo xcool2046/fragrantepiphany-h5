@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 
 // Lazy load pages
 const Home = React.lazy(() => import('./pages/Home'))
@@ -22,15 +22,9 @@ const PayCallback = React.lazy(() => import('./pages/PayCallback'))
 
 // Wrapper for smooth page transitions
 const PageWrapper = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-  <motion.div
-    initial={{ opacity: 0, filter: 'blur(8px)' }}
-    animate={{ opacity: 1, filter: 'blur(0px)', transitionEnd: { filter: 'none' } }}
-    exit={{ opacity: 0, filter: 'blur(8px)' }}
-    transition={{ duration: 0.5, ease: "easeInOut" }}
-    className={`w-full min-h-screen ${className || ''}`}
-  >
+  <div className={`w-full min-h-screen ${className || ''}`}>
     {children}
-  </motion.div>
+  </div>
 )
 
 const AppRoutes: React.FC = () => {

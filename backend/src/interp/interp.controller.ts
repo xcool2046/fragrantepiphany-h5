@@ -69,13 +69,19 @@ export class InterpretationController {
     const cardCodes = card_indices.map((idx) =>
       String((idx % 78) + 1).padStart(2, '0'),
     );
+    console.log(`[Reading] Indices: ${card_indices} -> Codes: ${cardCodes}`);
+
     const cards = await this.cardRepo.find({ where: { code: In(cardCodes) } });
-    // Sort to match Past, Present, Future order
+    
+    // Sort to match Past, Present, Future order explicitly
     const sortedCards = cardCodes
       .map((code) => cards.find((c) => c.code === code))
       .filter(Boolean) as Card[];
 
+    console.log(`[Reading] Sorted Cards: ${sortedCards.map(c => c.name_en).join(', ')}`);
+
     if (sortedCards.length !== 3) {
+      console.warn(`[Reading] Mismatch! Found ${sortedCards.length} cards for ${cardCodes}`);
       return { error: 'Cards not found' };
     }
 
@@ -85,6 +91,8 @@ export class InterpretationController {
       derivedCategory,
       language,
     );
+    
+    console.log(`[Reading] Interps Returned: ${rawInterps.map(i => `${i.position}:${i.card_name}`).join(', ')}`);
 
     // 3. Check Access
     let isUnlocked = false;

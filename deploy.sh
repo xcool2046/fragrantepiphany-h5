@@ -39,7 +39,9 @@ npm run build
 echo "📜 Compiling Seed Script..."
 # Compile the TS script to JS so it can run in the production node:alpine image without ts-node
 npx tsc scripts/seed_tarot_direct.ts --outDir dist/scripts \
-  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck
+  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
+npx tsc scripts/fix_tarot_data_v2.ts --outDir dist/scripts \
+  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 
 # 2.2 Prepare Assets for Docker
 echo "📂 Copying assets for deployment..."
@@ -112,6 +114,8 @@ ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   docker compose exec backend npx typeorm -d ormconfig.cjs migration:run && \
   echo '🌱 Seeding Tarot Data...' && \
   docker compose exec backend node dist/scripts/seed_tarot_direct.js && \
+  echo '🔧 Fixing Tarot Data (ID Mismatch & Content)...' && \
+  docker compose exec backend node dist/scripts/fix_tarot_data_v2.js && \
   docker compose restart nginx"
 
 # 6. Push to GitHub only after successful deployment (unless --fast)

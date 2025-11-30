@@ -174,6 +174,7 @@ export async function getReading(payload: {
   orderId?: string;
   language?: string;
   category?: string;
+  timestamp?: number;
 }) {
   const res = await api.post<ReadingResult>('/api/interp/reading', payload);
   return res.data;
