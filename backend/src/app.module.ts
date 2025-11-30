@@ -27,6 +27,7 @@ import { PerfumeModule } from './perfume/perfume.module';
       useFactory: () => ({
         ...ormconfig.options,
         entities: [Interpretation, Order, User, Question, Card, Perfume],
+        migrations: [],
       }),
     }),
     PayModule,

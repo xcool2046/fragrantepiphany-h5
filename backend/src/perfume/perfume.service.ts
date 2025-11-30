@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { Perfume } from '../entities/perfume.entity';
 import { Card } from '../entities/card.entity';
+import { findPerfumeByCardAndScent } from './perfume-mapping.loader';
 
 @Injectable()
 export class PerfumeService {
@@ -11,7 +12,7 @@ export class PerfumeService {
     @InjectRepository(Card) private cardRepo: Repository<Card>,
   ) {}
 
-  async getChapters(cardIds: number[], language = 'zh') {
+  async getChapters(cardIds: number[], language = 'zh', scentAnswer?: string) {
     if (!cardIds.length) return [];
 
     const items = await this.perfumeRepo.find({
@@ -39,6 +40,7 @@ export class PerfumeService {
     return sorted.map((item, idx) => {
       const card = cardMap.get(item.card_id);
       const cardName = (isEn ? card?.name_en : card?.name_zh) || item.card_name;
+      const mapping = card ? findPerfumeByCardAndScent(card, scentAnswer) : null;
       
       // Use notes_top_en as tags if English, split by comma
       let tags = item.tags ?? [];
@@ -53,15 +55,15 @@ export class PerfumeService {
         sceneChoice: (isEn ? item.scene_choice_en : item.scene_choice) || item.scene_choice,
         sceneChoiceZh: item.scene_choice,
         sceneChoiceEn: item.scene_choice_en || '',
-        brandName: (isEn ? item.brand_name_en : item.brand_name) || item.brand_name,
-        productName: (isEn ? item.product_name_en : item.product_name) || item.product_name,
+        brandName: mapping ? '' : (isEn ? item.brand_name_en : item.brand_name) || item.brand_name,
+        productName: mapping ? mapping.productName : (isEn ? item.product_name_en : item.product_name) || item.product_name,
         tags: tags,
         notes: {
-          top: (isEn ? item.notes_top_en : item.notes_top) || item.notes_top || '',
+          top: mapping ? mapping.notes : (isEn ? item.notes_top_en : item.notes_top) || item.notes_top || '',
           heart: (isEn ? item.notes_heart_en : item.notes_heart) || item.notes_heart || '',
           base: (isEn ? item.notes_base_en : item.notes_base) || item.notes_base || '',
         },
-        description: (isEn ? item.description_en : item.description) || item.description || '',
+        description: mapping ? mapping.reason : (isEn ? item.description_en : item.description) || item.description || '',
         quote: (isEn ? item.quote_en : item.quote) || item.quote || '',
         imageUrl: item.image_url ?? '',
       };

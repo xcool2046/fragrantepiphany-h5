@@ -7,7 +7,7 @@ export class AuthService {
 
   async validateUser(username: string, pass: string): Promise<any> {
     const adminUser = process.env.ADMIN_USER || 'admin';
-    const adminPass = process.env.ADMIN_PASS || 'admin123';
+    const adminPass = process.env.ADMIN_PASS || 'admin';
 
     if (username === adminUser && pass === adminPass) {
       return { username: adminUser };

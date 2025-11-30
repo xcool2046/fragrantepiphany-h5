@@ -96,14 +96,33 @@ const Result: React.FC = () => {
     if (normalizedCardIds.length !== 3) return
     setMatchStatus('loading')
 
-    // Determine category from answers (Question ID 1)
-    let category = 'Self'
-    const categoryAnswer = answers['1']
-    if (categoryAnswer) {
-      if (categoryAnswer.includes('关系') || categoryAnswer.includes('Relationships')) category = 'Love'
-      else if (categoryAnswer.includes('事业') || categoryAnswer.includes('Career')) category = 'Career'
-      else if (categoryAnswer.includes('自我') || categoryAnswer.includes('Self')) category = 'Self'
+    // Determine category: prefer Q4 (A/B/C -> Self/Career/Love), fallback to Q1 heuristic
+    const mapQ4 = (val?: string) => {
+      if (!val || typeof val !== 'string') return null
+      const first = val.trim().charAt(0).toUpperCase()
+      if (first === 'A') return 'Self'
+      if (first === 'B') return 'Career'
+      if (first === 'C') return 'Love'
+      return null
     }
+
+    let category = mapQ4(answers['4']) || 'Self'
+
+    if (!mapQ4(answers['4'])) {
+      const categoryAnswer = answers['1']
+      if (categoryAnswer && typeof categoryAnswer === 'string') {
+        const ans = categoryAnswer.toLowerCase()
+        if (ans.includes('关系') || ans.includes('relationship') || ans.includes('love')) {
+            category = 'Love'
+        } else if (ans.includes('事业') || ans.includes('career') || ans.includes('work') || ans.includes('job')) {
+            category = 'Career'
+        } else if (ans.includes('自我') || ans.includes('self') || ans.includes('growth')) {
+            category = 'Self'
+        }
+      }
+    }
+    
+    console.log('Fetching reading for category:', category)
 
     const currentOrderId = searchParams.get('orderId') || undefined
     const debugMode = searchParams.get('debug') === 'unlocked'
@@ -113,6 +132,7 @@ const Result: React.FC = () => {
       card_indices: normalizedCardIds,
       language: i18n.language,
       category,
+      answers,
       orderId: effectiveOrderId,
     })
       .then((res) => {
@@ -349,9 +369,9 @@ const Result: React.FC = () => {
 
               {/* Free Content Section (PAST) */}
               <div className="mb-12">
-                  {readingData?.past?.content?.summary && (
+                  {readingData?.past?.summary && (
                     <p className="text-[#3E3025] font-serif italic text-center text-sm mb-8 opacity-80 leading-relaxed px-2">
-                      {readingData.past.content.summary}
+                      {readingData.past.summary}
                     </p>
                   )}
 
@@ -361,7 +381,7 @@ const Result: React.FC = () => {
                       </div>
                       <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-wider">{t('result.timeframes.past.label', 'PAST')}</h3>
                       <p className="mb-8 whitespace-pre-wrap">
-                          {readingData?.past?.content?.interpretation || t('result.timeframes.past.description', "Your journey has led you here. Embrace the wisdom of the cards as they reveal the path ahead. Trust in their guidance, for they speak the language of your soul's deepest knowing.")}
+                          {readingData?.past?.interpretation || t('result.timeframes.past.description', "Your journey has led you here. Embrace the wisdom of the cards as they reveal the path ahead. Trust in their guidance, for they speak the language of your soul's deepest knowing.")}
                       </p>
                   </div>
               </div>
@@ -381,7 +401,7 @@ const Result: React.FC = () => {
                   <div>
                     <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.present.label', 'PRESENT')}</h3>
                     <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap">
-                      {readingData?.present?.content?.interpretation || t('result.timeframes.present.description', 'The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.')}
+                      {readingData?.present?.interpretation || t('result.timeframes.present.description', 'The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.')}
                     </p>
                   </div>
                   <div>
@@ -390,7 +410,7 @@ const Result: React.FC = () => {
                     </div>
                     <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.future.label', 'FUTURE')}</h3>
                     <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap">
-                      {readingData?.future?.content?.interpretation || t('result.timeframes.future.description', 'Trust your intuition and take the next step with confidence. Your destiny awaits.')}
+                      {readingData?.future?.interpretation || t('result.timeframes.future.description', 'Trust your intuition and take the next step with confidence. Your destiny awaits.')}
                     </p>
                   </div>
                 </div>

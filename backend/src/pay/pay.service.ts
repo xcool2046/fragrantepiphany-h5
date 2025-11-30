@@ -7,21 +7,31 @@ const STRIPE_API_VERSION = '2024-06-20' as unknown as Stripe.LatestApiVersion;
 
 @Injectable()
 export class PayService {
-  private stripe: Stripe;
+  private stripe: Stripe | null = null;
+  private stripeReady = false;
   private priceCache = new Map<string, string>();
   private envPriceMap: Record<string, string> | null;
 
   constructor(@InjectRepository(Order) private orders: Repository<Order>) {
     const secret = process.env.STRIPE_SECRET_KEY;
     if (!secret) {
-      throw new Error('STRIPE_SECRET_KEY is required');
+      console.warn('STRIPE_SECRET_KEY is missing, Stripe features are disabled');
+      this.stripeReady = false;
+      this.stripe = null as unknown as Stripe;
     }
-    this.stripe = new Stripe(secret, { apiVersion: STRIPE_API_VERSION });
+    if (secret) {
+      this.stripe = new Stripe(secret, { apiVersion: STRIPE_API_VERSION });
+      this.stripeReady = true;
+    }
     this.envPriceMap = this.loadEnvPriceMap();
   }
 
   getStripe() {
-    return this.stripe;
+    return this.stripeReady ? this.stripe : null;
+  }
+
+  isStripeReady() {
+    return this.stripeReady;
   }
 
   private loadEnvPriceMap(): Record<string, string> | null {
@@ -45,13 +55,19 @@ export class PayService {
   public async resolvePriceIdByCurrency(currency: string): Promise<string> {
     const key = currency.toLowerCase();
 
+    // Prefer env mapping
     if (this.envPriceMap?.[key]) return this.envPriceMap[key];
 
     const cached = this.priceCache.get(key);
     if (cached) return cached;
 
+    // If Stripe is not configured, we cannot resolve dynamically
+    if (!this.stripeReady) {
+      throw new Error('Stripe is not configured and no price mapping provided');
+    }
+
     try {
-      const prices = await this.stripe.prices.list({
+      const prices = await this.stripe!.prices.list({
         active: true,
         currency: key,
         limit: 100,
@@ -66,12 +82,12 @@ export class PayService {
       console.warn(`No active Stripe price found for currency: ${currency}. Attempting to auto-create one.`);
       
       // Auto-create product and price
-      const product = await this.stripe.products.create({
+      const product = await this.stripe!.products.create({
         name: 'Tarot Reading Unlock',
         metadata: { type: 'tarot_unlock' }
       });
 
-      const newPrice = await this.stripe.prices.create({
+      const newPrice = await this.stripe!.prices.create({
         product: product.id,
         currency: key,
         unit_amount: 500, // 5.00
@@ -91,6 +107,9 @@ export class PayService {
     currency: string;
     metadata?: Record<string, unknown>;
   }) {
+    if (!this.stripeReady) {
+      throw new Error('Stripe is not configured');
+    }
     let publicBaseUrl = process.env.PUBLIC_BASE_URL || '';
     if (!publicBaseUrl) {
       console.error('Missing PUBLIC_BASE_URL env var');
@@ -135,7 +154,7 @@ export class PayService {
       // 3. Create Stripe Session
       stripeMetadata.order_id = order.id;
       
-      session = await this.stripe.checkout.sessions.create({
+      session = await this.stripe!.checkout.sessions.create({
         mode: 'payment',
         client_reference_id: order.id,
         line_items: [
@@ -176,6 +195,9 @@ export class PayService {
     const secret = process.env.STRIPE_WEBHOOK_SECRET;
     if (!secret) {
       throw new Error('STRIPE_WEBHOOK_SECRET is required');
+    }
+    if (!this.stripe) {
+      throw new Error('Stripe is not initialized');
     }
     return this.stripe.webhooks.constructEvent(rawBody, sig, secret);
   }
@@ -241,6 +263,8 @@ export class PayService {
     if (!order) return null;
     if (order.status === 'succeeded') return order;
     if (!order.stripe_session_id) return order;
+
+    if (!this.stripe) return order;
 
     try {
         const session = await this.stripe.checkout.sessions.retrieve(order.stripe_session_id);

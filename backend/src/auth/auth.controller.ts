@@ -18,13 +18,18 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() body: LoginDto) {
-    const user = await this.authService.validateUser(
-      body.username,
-      body.password,
-    );
-    if (!user) {
-      throw new UnauthorizedException();
+    try {
+      const user = await this.authService.validateUser(
+        body.username,
+        body.password,
+      );
+      if (!user) {
+        throw new UnauthorizedException();
+      }
+      return this.authService.login(user);
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
     }
-    return this.authService.login(user);
   }
 }

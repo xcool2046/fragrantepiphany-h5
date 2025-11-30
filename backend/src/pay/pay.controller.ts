@@ -15,7 +15,15 @@ export class PayController {
       metadata?: Record<string, unknown>;
     },
   ) {
-    return this.payService.createSession(body);
+    try {
+      return await this.payService.createSession(body);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      if (message.includes('Stripe is not configured')) {
+        return { error: 'Payment is temporarily unavailable (missing Stripe config)' };
+      }
+      throw err;
+    }
   }
 
   @Post('webhook')
@@ -52,7 +60,19 @@ export class PayController {
       // Default to USD as per requirements
       const priceId = await this.payService.resolvePriceIdByCurrency('usd');
       const stripe = this.payService.getStripe();
-      
+
+      if (!stripe) {
+        // Stripe not configured but mapping exists
+        const fallbackAmount = 500;
+        return {
+          priceDisplay: '$5.00',
+          currency: 'usd',
+          priceAmount: fallbackAmount,
+          priceId,
+          source: 'env-mapping'
+        };
+      }
+
       const price = await stripe.prices.retrieve(priceId);
       const amount = price.unit_amount ?? 500;
       const currency = price.currency;
@@ -66,7 +86,9 @@ export class PayController {
       return {
         priceDisplay: formatter.format(amount / 100),
         currency,
-        priceAmount: amount
+        priceAmount: amount,
+        priceId,
+        source: 'stripe'
       };
     } catch (err) {
       console.error('Failed to fetch price config', err);
@@ -74,7 +96,8 @@ export class PayController {
       return {
         priceDisplay: '$5.00',
         currency: 'usd',
-        priceAmount: 500
+        priceAmount: 500,
+        source: 'fallback'
       };
     }
   }

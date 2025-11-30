@@ -144,28 +144,20 @@ export type PerfumeChapter = {
   imageUrl: string
 }
 
-export const getPerfumeChapters = (cardIds: number[], language = 'zh') => {
+export const getPerfumeChapters = (cardIds: number[], language = 'zh', scentAnswer?: string) => {
   return api.get<{ chapters: PerfumeChapter[] }>('/api/perfume/chapters', {
-    params: { card_indices: cardIds.join(','), language },
+    params: { card_indices: cardIds.join(','), language, scentAnswer },
   })
 }
 
-export interface ReadingContent {
-  card_name: string;
-  category: string;
-  position: string;
-  language: string;
-  summary: string | null;
-  interpretation: string | null;
-  action: string | null;
-  future: string | null;
-  recommendation: string | null;
-}
-
 export interface ReadingSection {
-  position: string;
-  card_name: string;
-  content: ReadingContent | null;
+  position?: string;
+  card_name?: string;
+  summary?: string | null;
+  interpretation?: string | null;
+  action?: string | null;
+  future?: string | null;
+  recommendation?: string | null;
   is_locked: boolean;
 }
 
@@ -178,6 +170,7 @@ export interface ReadingResult {
 
 export async function getReading(payload: {
   card_indices: number[];
+  answers?: Record<string, string>;
   orderId?: string;
   language?: string;
   category?: string;

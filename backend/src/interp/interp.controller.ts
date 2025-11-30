@@ -41,16 +41,29 @@ export class InterpretationController {
     @Body()
     body: {
       card_indices: number[];
+      answers?: Record<string, string>;
       orderId?: string;
       language?: string;
       category?: string;
     },
   ) {
-    const { card_indices, orderId, language = 'en', category = 'Self' } = body;
+    const { card_indices, orderId, language = 'en', category = 'Self', answers = {} } = body;
 
     if (!Array.isArray(card_indices) || card_indices.length !== 3) {
       return { error: 'Invalid cards' };
     }
+
+    // Prefer Q4 (A/B/C) to decide category; fallback to provided category
+    const mapQ4 = (val?: string) => {
+      if (!val || typeof val !== 'string') return null;
+      const first = val.trim().charAt(0).toUpperCase();
+      if (first === 'A') return 'Self';
+      if (first === 'B') return 'Career';
+      if (first === 'C') return 'Love';
+      return null;
+    };
+
+    const derivedCategory = mapQ4(answers['4']) || category;
 
     // 1. Resolve Cards
     const cardCodes = card_indices.map((idx) =>
@@ -69,16 +82,16 @@ export class InterpretationController {
     // 2. Get Raw Interpretations
     const rawInterps = await this.service.getInterpretationsForCards(
       sortedCards,
-      category,
+      derivedCategory,
       language,
     );
 
     // 3. Check Access
     let isUnlocked = false;
-    if (orderId) {
-      if (orderId === 'debug-unlocked') {
-        isUnlocked = true;
-      } else {
+      if (orderId) {
+        if (orderId === 'debug-unlocked') {
+          isUnlocked = true;
+        } else {
         // Use checkAndUpdateStatus to handle webhook delays
         const order = await this.payService.checkAndUpdateStatus(orderId);
         if (order && order.status === 'succeeded') {

@@ -82,7 +82,7 @@ docker compose exec backend npm run seed
 - Webhook：`STRIPE_WEBHOOK_SECRET` 用于校验签名；`orders` 表记录 `status`（pending/succeeded/failed）。
 
 ## 构建/检查命令
-- 前端：`npm run build`（tsc + vite），`npm run lint`。后台默认页 `/admin/interpretations`，登录凭据由 `.env` 的 `ADMIN_USER/ADMIN_PASS` 控制。
+- 前端：`npm run build`（tsc + vite），`npm run lint`。后台默认页 `/admin/interpretations`，登录凭据由 `.env` 的 `ADMIN_USER/ADMIN_PASS` 控制（当前默认：admin/admin）。
 - 后端：`npm run build`，`npm run test`（如需），`npm run lint`（带 --fix）。
 - 常见问题：若 TypeORM 找不到实体，确认 `DATABASE_URL` 正确、迁移已运行；若支付报错检查是否配置了正确的 `STRIPE_PRICE_IDS_JSON` 或 Stripe 账户下是否存在对应币种的启用价格。
 

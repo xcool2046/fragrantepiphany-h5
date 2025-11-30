@@ -41,8 +41,9 @@ const PerfumeView: React.FC = () => {
     const fetchChapters = async () => {
       try {
         setLoading(true)
-        // Modified line: Pass i18n.language and handle response structure
-        const res = await getPerfumeChapters(cardIds, i18n.language)
+        // Pass language + scent answer (prefer Q2, fallback Q4)
+        const scentAnswer = answers['2'] || answers['4']
+        const res = await getPerfumeChapters(cardIds, i18n.language, scentAnswer)
         setChapters(res.data.chapters)
         setError(null)
       } catch (err) {
@@ -56,10 +57,9 @@ const PerfumeView: React.FC = () => {
     fetchChapters()
   }, [cardIds, i18n.language])
 
-  // Filter chapters based on Q4 answer (scent preference)
+  // Filter chapters based on scent answer (prefer Q2, fallback Q4)
   const chapter = useMemo(() => {
-    // Q4 answer (scent preference)
-    const scentAnswer = answers['4']
+    const scentAnswer = answers['2'] || answers['4']
     return matchSceneChoice(chapters, scentAnswer)
   }, [chapters, answers])
 

@@ -7,32 +7,26 @@ set -euo pipefail
 
 SERVER=${SERVER:-root@47.243.157.75}
 REMOTE_DIR=${REMOTE_DIR:-/root/fragrantepiphany-h5}
-NOTE=${1:-"fast deploy"}
+
+# Parse args: optional note + --fast flag
+NOTE="fast deploy"
+FAST_MODE=false
+for arg in "$@"; do
+    if [[ "$arg" == "--fast" ]]; then
+        FAST_MODE=true
+    elif [[ -z "${NOTE_SET:-}" ]]; then
+        NOTE="$arg"
+        NOTE_SET=1
+    fi
+done
 
 echo "🚀 Fast Deployment Started: $NOTE"
 
-# Check for --fast flag to skip git
-if [[ "${2:-}" == "--fast" ]]; then
-    echo "⏩ Skipping Git backup (--fast mode)"
-else
-    # 0. Git Backup
-    echo "💾 Backing up code to GitHub..."
-    git add .
-    if ! git diff-index --quiet HEAD --; then
-        git commit -m "Deploy: $NOTE"
-        echo "✅ Changes committed."
-    else
-        echo "✨ No local changes to commit."
-    fi
-    echo "⬆️  Pushing to remote..."
-    git push
-fi
-
 # 1. Build Frontend Locally
-echo "🏗️  Building Frontend (VITE_API_BASE_URL=/api)..."
+echo "🏗️  Building Frontend (VITE_API_BASE_URL=${VITE_API_BASE_URL:-/api})..."
 rm -rf frontend/dist
 pushd frontend >/dev/null
-VITE_API_BASE_URL= npm run build
+VITE_API_BASE_URL=${VITE_API_BASE_URL:-/api} npm run build
 popd >/dev/null
 
 # 2. Build Backend Locally
@@ -45,15 +39,31 @@ npm run build
 echo "📜 Compiling Seed Script..."
 # Compile the TS script to JS so it can run in the production node:alpine image without ts-node
 npx tsc scripts/seed_tarot_direct.ts --outDir dist/scripts \
-  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck || echo "⚠️ Script compilation warning (ignoring)"
+  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck
 
 # 2.2 Prepare Assets for Docker
 echo "📂 Copying assets for deployment..."
 mkdir -p assets
 # Copy from project root assets to backend/assets so Docker can access them
 cp -r ../assets/excel_files assets/
+# Include legacy perfume mapping for Q4/Q2 logic
+cp -f ../legacy/data/perfume.xlsx assets/
 
 popd >/dev/null
+
+# 2.3 Git Backup (post-build to ensure builds passed; still skips in --fast)
+if [[ "$FAST_MODE" == true ]]; then
+    echo "⏩ Skipping Git backup (--fast mode)"
+else
+    echo "💾 Backing up code to GitHub..."
+    git add .
+    if ! git diff-index --quiet HEAD --; then
+        git commit -m "Deploy: $NOTE"
+        echo "✅ Changes committed."
+    else
+        echo "✨ No local changes to commit."
+    fi
+fi
 
 # 3. Create Deployment Dockerfile
 echo "📝 Creating Deployment Dockerfile..."
@@ -99,9 +109,15 @@ echo "🔄 Executing Remote Restart..."
 ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   docker compose up -d --build backend nginx && \
   echo '⏳ Waiting for backend to start...' && sleep 5 && \
-  docker compose exec backend npm run typeorm -- -d ormconfig.cjs migration:run && \
+  docker compose exec backend npx typeorm -d ormconfig.cjs migration:run && \
   echo '🌱 Seeding Tarot Data...' && \
   docker compose exec backend node dist/scripts/seed_tarot_direct.js && \
   docker compose restart nginx"
+
+# 6. Push to GitHub only after successful deployment (unless --fast)
+if [[ "$FAST_MODE" == false ]]; then
+    echo "⬆️  Pushing to remote..."
+    git push
+fi
 
 echo "✅ Deployment Complete!"

@@ -15,12 +15,14 @@ export class PerfumeController {
    * GET /api/perfume/chapters?card_indices=0,1,2
    * OR
    * GET /api/perfume/chapters?cardIds=1,2,3 (Legacy/Direct ID support)
+   * scentAnswer (optional): 用户香气偏好答案（用于 Excel 映射）
    */
   @Get('chapters')
   async getChapters(
     @Query('cardIds') cardIds?: string,
     @Query('card_indices') cardIndices?: string,
     @Query('language') language = 'zh',
+    @Query('scentAnswer') scentAnswer?: string,
   ) {
     let ids: number[] = [];
 
@@ -60,7 +62,7 @@ export class PerfumeController {
     // Normalize language
     const lang = language.toLowerCase().startsWith('zh') ? 'zh' : 'en';
 
-    const chapters = await this.perfumeService.getChapters(ids, lang);
+    const chapters = await this.perfumeService.getChapters(ids, lang, scentAnswer);
     return { chapters };
   }
 }

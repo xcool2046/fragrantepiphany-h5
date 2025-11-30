@@ -59,7 +59,9 @@ class CreateQuestionDto {
   weight?: number;
 }
 
-class UpdateQuestionDto extends CreateQuestionDto {}
+import { PartialType } from '@nestjs/swagger';
+
+class UpdateQuestionDto extends PartialType(CreateQuestionDto) {}
 
 class CreateCardDto {
   @IsString()

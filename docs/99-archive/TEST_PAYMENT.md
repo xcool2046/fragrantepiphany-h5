@@ -4,7 +4,7 @@
 - **前端入口**：`http://localhost:8080/`（Nginx 代理 Vite，参考 `docs/dev-guide.md`）。
 - **后端 / API**：`http://localhost:3000`，`POST /api/pay/create-session`、`GET /api/pay/order/:id`、`POST /api/pay/webhook` 位于 `backend/src/pay/pay.service.ts` 与 `pay.controller.ts`。
 - **Stripe 测试模式**：使用 `.env` 中的 `STRIPE_PUBLISHABLE_KEY` / `STRIPE_SECRET_KEY`（目前指向 test key），支持 `mock_pay=true` 查询参数快速模拟已支付状态（参见 `docs/dev-guide.md` Testing Guide）。
-- **后台账户**：`.env` 提供 `ADMIN_USER=monicacjx`、`ADMIN_PASS=kittycjx88358985`，登录 URL `http://localhost:8080/admin/login`。
+- **后台账户**：`.env` 提供 `ADMIN_USER=admin`、`ADMIN_PASS=admin`，登录 URL `http://localhost:8080/admin/login`。
 
 ## 2. 前台全链路自动化脚本（桌面视角 1280×720）
 ### 2.1 商品选择（Home → Quiz）
