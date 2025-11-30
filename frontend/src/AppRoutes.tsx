@@ -16,6 +16,7 @@ const AdminLogin = React.lazy(() => import('./pages/admin/AdminLogin'))
 const AdminLayout = React.lazy(() => import('./pages/admin/AdminLayout'))
 const Interpretations = React.lazy(() => import('./pages/admin/Interpretations'))
 const Questions = React.lazy(() => import('./pages/admin/Questions'))
+const Perfumes = React.lazy(() => import('./pages/admin/Perfumes'))
 const Cards = React.lazy(() => import('./pages/admin/Cards'))
 const PayCallback = React.lazy(() => import('./pages/PayCallback'))
 
@@ -62,6 +63,7 @@ const AppRoutes: React.FC = () => {
           <Route index element={<Interpretations />} />
           <Route path="interpretations" element={<Interpretations />} />
           <Route path="questions" element={<Questions />} />
+          <Route path="perfumes" element={<Perfumes />} />
           <Route path="cards" element={<Cards />} />
         </Route>
         

@@ -23,6 +23,8 @@ export class PerfumeController {
     @Query('card_indices') cardIndices?: string,
     @Query('language') language = 'zh',
     @Query('scentAnswer') scentAnswer?: string,
+    @Query('category') categoryParam?: string,
+    @Query('q4Answer') q4Answer?: string,
   ) {
     let ids: number[] = [];
 
@@ -62,7 +64,18 @@ export class PerfumeController {
     // Normalize language
     const lang = language.toLowerCase().startsWith('zh') ? 'zh' : 'en';
 
-    const chapters = await this.perfumeService.getChapters(ids, lang, scentAnswer);
+    // Derive Category from Q4 or param
+    let category = 'Self';
+    if (q4Answer) {
+      const first = q4Answer.trim().charAt(0).toUpperCase();
+      if (first === 'A') category = 'Self';
+      else if (first === 'B') category = 'Career';
+      else if (first === 'C') category = 'Love';
+    } else if (categoryParam) {
+      category = categoryParam;
+    }
+
+    const chapters = await this.perfumeService.getChapters(ids, lang, scentAnswer, category);
     return { chapters };
   }
 }

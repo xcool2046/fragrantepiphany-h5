@@ -19,6 +19,7 @@ import { Order } from '../entities/order.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { Question } from '../entities/question.entity';
 import { Card } from '../entities/card.entity';
+import { Perfume } from '../entities/perfume.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -94,51 +95,17 @@ class CreateCardDto {
 }
 
 class UpdateCardDto extends CreateCardDto {}
-// Feature flags default to off; enable via env when customer付费后再开放
-const ORDERS_ENABLED = process.env.FEATURE_ADMIN_ORDERS === 'true';
-const PRICING_ENABLED = process.env.FEATURE_ADMIN_PRICING === 'true';
-
 @Controller('api/admin')
 @UseGuards(AuthGuard('jwt'))
 export class AdminController {
   constructor(
-    @InjectRepository(Order)
-    private orderRepo: Repository<Order>,
     @InjectRepository(Question)
     private questionRepo: Repository<Question>,
     @InjectRepository(Card)
     private cardRepo: Repository<Card>,
+    @InjectRepository(Perfume)
+    private perfumeRepo: Repository<Perfume>,
   ) {}
-
-  @Get('orders')
-  async getOrders() {
-    if (!ORDERS_ENABLED) {
-      throw new NotFoundException('Orders management is disabled');
-    }
-    return this.orderRepo.find({
-      order: { created_at: 'DESC' },
-      take: 100, // Limit to last 100 for now
-    });
-  }
-
-  @Get('config')
-  getConfig() {
-    if (!PRICING_ENABLED) {
-      throw new NotFoundException('Pricing management is disabled');
-    }
-    return { price_cny: 1500, price_usd: 500 };
-  }
-
-  @Post('config')
-  saveConfig(@Body() body: any) {
-    if (!PRICING_ENABLED) {
-      throw new NotFoundException('Pricing management is disabled');
-    }
-    return {
-      price_cny: Number(body.price_cny),
-      price_usd: Number(body.price_usd),
-    };
-  }
 
   // ========== Questions ==========
   @Get('questions')
@@ -184,6 +151,55 @@ export class AdminController {
   @Delete('questions/:id')
   async deleteQuestion(@Param('id') id: string) {
     await this.questionRepo.delete({ id: Number(id) });
+    return { ok: true };
+  }
+
+  // ========== Perfumes ==========
+  @Get('perfumes')
+  async listPerfumes(
+    @Query('page') page = '1',
+    @Query('pageSize') pageSize = '20',
+    @Query('keyword') keyword?: string,
+  ) {
+    const take = Math.min(100, Math.max(1, Number(pageSize) || 20));
+    const skip = (Math.max(1, Number(page) || 1) - 1) * take;
+    const qb = this.perfumeRepo.createQueryBuilder('p').orderBy('p.id', 'DESC');
+
+    if (keyword) {
+      const kw = `%${keyword.trim()}%`;
+      qb.andWhere(
+        '(p.brand_name ILIKE :kw OR p.product_name ILIKE :kw OR p.card_name ILIKE :kw)',
+        { kw },
+      );
+    }
+
+    const [items, total] = await qb.skip(skip).take(take).getManyAndCount();
+    return { items, total, page: Number(page), pageSize: take };
+  }
+
+  @Post('perfumes')
+  async createPerfume(@Body() body: any) {
+    // Basic validation
+    if (!body.card_id || !body.brand_name || !body.product_name) {
+      throw new BadRequestException('card_id, brand_name, product_name are required');
+    }
+    const entity = this.perfumeRepo.create(body);
+    return await this.perfumeRepo.save(entity);
+  }
+
+  @Patch('perfumes/:id')
+  async updatePerfume(@Param('id') id: string, @Body() body: any) {
+    const p = await this.perfumeRepo.findOne({ where: { id: Number(id) } });
+    if (!p) throw new NotFoundException('Perfume not found');
+    
+    // Allow updating any field passed in body
+    Object.assign(p, body);
+    return await this.perfumeRepo.save(p);
+  }
+
+  @Delete('perfumes/:id')
+  async deletePerfume(@Param('id') id: string) {
+    await this.perfumeRepo.delete({ id: Number(id) });
     return { ok: true };
   }
 

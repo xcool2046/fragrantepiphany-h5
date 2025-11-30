@@ -18,6 +18,7 @@ export default function AdminLayout() {
       items: [
         { label: 'Interpretations', path: '/admin/interpretations', icon: '🔮' },
         { label: 'Questions', path: '/admin/questions', icon: '❓' },
+        { label: 'Perfumes', path: '/admin/perfumes', icon: '🌸' },
       ]
     },
     {

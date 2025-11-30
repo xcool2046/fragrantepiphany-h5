@@ -101,17 +101,10 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
                     className={clsx(
                         "absolute z-30 pointer-events-none select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]",
                         // Positioning: 
-                        // For vertical cards (slots), top-right is top-right.
-                        // For horizontal cards (wheel), top-right is top-right.
-                        // But if the SVG content is rotated, does "top-right" change?
-                        // The container is the div. The SVG is just decoration.
-                        // So absolute positioning is relative to the div.
-                        // If vertical=true (slot), the div is vertical (w < h). Top-right is correct.
-                        // If vertical=false (wheel), the div is horizontal (w > h). Top-right is correct.
-                        // However, previous code had rotation logic: `transform: isVerticalLayout ? 'rotate(90deg)' : 'none'`
-                        // If the card is physically vertical but the design is horizontal rotated 90deg, then top-right of the design might be bottom-right of the div?
-                        // Let's assume standard positioning first.
-                        "top-2 right-2"
+                        // For vertical cards (slots), top-right is standard.
+                        // For horizontal cards (wheel, vertical=false), user requested Top-Left.
+                        // Rely on 'vertical' prop instead of 'variant' name for more robust layout logic.
+                        !vertical ? "top-2 left-2" : "top-2 right-2"
                     )}
                 >
                     <div

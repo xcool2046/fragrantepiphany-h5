@@ -4,15 +4,17 @@ import { In, Repository } from 'typeorm';
 import { Perfume } from '../entities/perfume.entity';
 import { Card } from '../entities/card.entity';
 import { findPerfumeByCardAndScent } from './perfume-mapping.loader';
+import { InterpretationService } from '../interp/interp.service';
 
 @Injectable()
 export class PerfumeService {
   constructor(
     @InjectRepository(Perfume) private perfumeRepo: Repository<Perfume>,
     @InjectRepository(Card) private cardRepo: Repository<Card>,
+    private readonly interpService: InterpretationService,
   ) {}
 
-  async getChapters(cardIds: number[], language = 'zh', scentAnswer?: string) {
+  async getChapters(cardIds: number[], language = 'zh', scentAnswer?: string, category = 'Self') {
     if (!cardIds.length) return [];
 
     const items = await this.perfumeRepo.find({
@@ -37,6 +39,23 @@ export class PerfumeService {
 
     const isEn = language === 'en';
 
+    // Fetch dynamic quotes (recommendations) from InterpretationService
+    // Logic: Quote = Interpretation(Card, Category, Position='Present').recommendation
+    // We assume the perfume is associated with the "Present" card context as per requirements.
+    const quotes = await Promise.all(
+      sorted.map(async (item) => {
+        const card = cardMap.get(item.card_id);
+        if (!card) return null;
+        const interp = await this.interpService.findOne({
+          card_name: card.name_en,
+          category,
+          position: 'Present', 
+          language,
+        });
+        return interp?.recommendation || null;
+      })
+    );
+
     return sorted.map((item, idx) => {
       const card = cardMap.get(item.card_id);
       const cardName = (isEn ? card?.name_en : card?.name_zh) || item.card_name;
@@ -47,6 +66,10 @@ export class PerfumeService {
       if (isEn && item.notes_top_en) {
         tags = item.notes_top_en.split(/[,，]\s*/).filter(Boolean);
       }
+
+      // Dynamic quote overrides static quote
+      const dynamicQuote = quotes[idx];
+      const staticQuote = (isEn ? item.quote_en : item.quote) || item.quote || '';
 
       return {
         id: item.id,
@@ -64,7 +87,7 @@ export class PerfumeService {
           base: (isEn ? item.notes_base_en : item.notes_base) || item.notes_base || '',
         },
         description: mapping ? mapping.reason : (isEn ? item.description_en : item.description) || item.description || '',
-        quote: (isEn ? item.quote_en : item.quote) || item.quote || '',
+        quote: dynamicQuote || staticQuote,
         imageUrl: item.image_url ?? '',
       };
     });

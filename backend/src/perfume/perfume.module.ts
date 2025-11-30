@@ -5,8 +5,10 @@ import { Card } from '../entities/card.entity';
 import { PerfumeService } from './perfume.service';
 import { PerfumeController } from './perfume.controller';
 
+import { InterpModule } from '../interp/interp.module';
+
 @Module({
-  imports: [TypeOrmModule.forFeature([Perfume, Card])],
+  imports: [TypeOrmModule.forFeature([Perfume, Card]), InterpModule],
   controllers: [PerfumeController],
   providers: [PerfumeService],
 })

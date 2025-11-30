@@ -14,7 +14,7 @@
 ## 📊 当前进度快照 (Progress Snapshot)
 - **当前阶段**：生产环境验证通过，数据已就绪。
 - **最近验证可用功能**：
-    1.  **Admin Panel**：数据列表加载正常，鉴权逻辑通过（Admin 账号：`admin` / `admin`）。
+    1.  **Admin Panel**：功能包含解读管理 (Interpretations)、问卷管理 (Questions)、卡牌管理 (Cards)。鉴权逻辑通过（Admin 账号：`admin` / `admin`）。
     2.  **部署脚本**：一键部署包含了数据修复逻辑。
 
 ## 💡 关键技术方案与技巧 (Key Solutions & Techniques)

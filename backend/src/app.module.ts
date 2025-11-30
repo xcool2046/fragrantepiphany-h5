@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 import ormconfig from '../ormconfig';
 import { Interpretation } from './entities/interpretation.entity';
 import { Order } from './entities/order.entity';
-import { User } from './entities/user.entity';
+
 import { Question } from './entities/question.entity';
 import { Card } from './entities/card.entity';
 import { Perfume } from './entities/perfume.entity';
@@ -26,7 +26,7 @@ import { PerfumeModule } from './perfume/perfume.module';
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         ...ormconfig.options,
-        entities: [Interpretation, Order, User, Question, Card, Perfume],
+        entities: [Interpretation, Order, Question, Card, Perfume],
         migrations: [],
       }),
     }),

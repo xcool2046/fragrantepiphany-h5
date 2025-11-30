@@ -11,5 +11,6 @@ import { PayModule } from '../pay/pay.module';
   imports: [TypeOrmModule.forFeature([Interpretation, Card]), PayModule],
   providers: [InterpretationService, DrawService],
   controllers: [InterpretationController],
+  exports: [InterpretationService],
 })
 export class InterpModule {}

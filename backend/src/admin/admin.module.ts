@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AdminController } from './admin.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Order } from '../entities/order.entity';
+
 import { Question } from '../entities/question.entity';
 import { Card } from '../entities/card.entity';
+import { Perfume } from '../entities/perfume.entity';
 import { MulterModule } from '@nestjs/platform-express';
 import { memoryStorage } from 'multer';
 
@@ -13,7 +14,7 @@ import { memoryStorage } from 'multer';
       storage: memoryStorage(),
       limits: { fileSize: 10 * 1024 * 1024 },
     }),
-    TypeOrmModule.forFeature([Order, Question, Card]),
+    TypeOrmModule.forFeature([Question, Card, Perfume]),
   ],
   controllers: [AdminController],
 })
