@@ -23,10 +23,10 @@ done
 echo "🚀 Fast Deployment Started: $NOTE"
 
 # 1. Build Frontend Locally
-echo "🏗️  Building Frontend (VITE_API_BASE_URL=${VITE_API_BASE_URL:-/api})..."
+echo "🏗️  Building Frontend (VITE_API_BASE_URL=${VITE_API_BASE_URL:-})..."
 rm -rf frontend/dist
 pushd frontend >/dev/null
-VITE_API_BASE_URL=${VITE_API_BASE_URL:-/api} npm run build
+VITE_API_BASE_URL=${VITE_API_BASE_URL:-} npm run build
 popd >/dev/null
 
 # 2. Build Backend Locally
