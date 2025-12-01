@@ -4,7 +4,7 @@ import zodiacWheelImage from '../assets/zodiac-wheel.png'
 
 const ZodiacWheel: React.FC = () => {
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-10 pointer-events-none overflow-hidden">
+    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-10 pointer-events-none overflow-hidden">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{

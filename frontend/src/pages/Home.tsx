@@ -53,7 +53,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* --- Content Layer: Centered Layout --- */}
-      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-end text-center pb-52 md:pb-60">
+      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-end text-center pb-[65vw]">
 
         {/* Title Group with Fixed Height Container */}
         <div className="mb-3 md:mb-4 flex flex-col items-center relative">
