@@ -42,6 +42,8 @@ npx tsc scripts/seed_tarot_direct.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 npx tsc scripts/fix_tarot_data_v2.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
+npx tsc scripts/seed_perfume_ranges.ts --outDir dist/scripts \
+  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 
 # 2.2 Prepare Assets for Docker
 echo "📂 Copying assets for deployment..."
