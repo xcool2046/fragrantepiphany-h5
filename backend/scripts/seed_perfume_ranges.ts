@@ -42,7 +42,7 @@ async function seed() {
   const cardRepo = AppDataSource.getRepository(Card);
 
   // Load Excel
-  const excelPath = path.resolve(__dirname, '../../legacy/data/perfume.xlsx');
+  const excelPath = path.resolve(__dirname, '../assets/perfume.xlsx');
   console.log(`Loading Excel from ${excelPath}`);
   const workbook = xlsx.readFile(excelPath);
   const sheet = workbook.Sheets[workbook.SheetNames[0]];
