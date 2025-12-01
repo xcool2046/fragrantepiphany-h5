@@ -6,6 +6,7 @@ import { AnimatePresence } from 'framer-motion'
 const Home = React.lazy(() => import('./pages/Home'))
 const Onboarding = React.lazy(() => import('./pages/Onboarding'))
 const Question = React.lazy(() => import('./pages/Question'))
+const Breath = React.lazy(() => import('./pages/Breath'))
 const Draw = React.lazy(() => import('./pages/Draw'))
 const Result = React.lazy(() => import('./pages/Result'))
 const About = React.lazy(() => import('./pages/About'))
@@ -43,6 +44,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
         <Route path="/onboarding" element={<PageWrapper><Onboarding /></PageWrapper>} />
         <Route path="/question" element={<PageWrapper><Question /></PageWrapper>} />
+        <Route path="/breath" element={<PageWrapper><Breath /></PageWrapper>} />
         <Route path="/draw" element={<PageWrapper><Draw /></PageWrapper>} />
         <Route path="/result" element={<PageWrapper><Result /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />

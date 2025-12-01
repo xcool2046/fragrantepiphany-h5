@@ -67,7 +67,7 @@ const QuestionPage: React.FC = () => {
       // 前端不阻塞流程，继续跳转
     }
 
-    navigate('/draw', { state: { answers } })
+    navigate('/breath', { state: { answers } })
   }
 
   if (loading) {

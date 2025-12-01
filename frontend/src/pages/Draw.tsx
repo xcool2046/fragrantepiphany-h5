@@ -46,7 +46,7 @@ const FlyingCard = ({
     // Portal Strategy: Render to body to escape parent transforms.
     
     // Card Constants (Fixed dimensions to match WheelCard)
-    const CARD_WIDTH = 180
+    const CARD_WIDTH = 80
     const CARD_HEIGHT = 120
 
     // Start Geometry (Center based)
@@ -58,21 +58,20 @@ const FlyingCard = ({
     const targetCenterY = targetRect.top + targetRect.height / 2
 
     // Initial State
-    // Center the 180x120 card over the start center
+    // Center the 80x120 card over the start center
     const initialX = startCenterX - CARD_WIDTH / 2
     const initialY = startCenterY - CARD_HEIGHT / 2
     
     // Target State
-    // Center the 180x120 card over the target center
+    // Center the 80x120 card over the target center
     const targetX = targetCenterX - CARD_WIDTH / 2
     const targetY = targetCenterY - CARD_HEIGHT / 2
 
     // Scale Calculation
-    // Target slot is ~80x120 (Vertical). Card is 180x120 (Horizontal).
-    // We rotate 90deg -> Visual size becomes 120x180.
-    // We need to fit 120x180 into targetRect.width x targetRect.height.
-    // Scale = targetRect.width (80) / CARD_HEIGHT (120) = 0.666
-    const scale = targetRect.width / CARD_HEIGHT
+    // Target slot is ~80x120 (Vertical). Card is 80x120 (Vertical).
+    // We rotate 0deg -> Visual size matches.
+    // Scale = targetRect.width / CARD_WIDTH
+    const scale = targetRect.width / CARD_WIDTH
 
     return createPortal(
         <motion.div
@@ -84,7 +83,7 @@ const FlyingCard = ({
                 y: initialY,
                 width: CARD_WIDTH,
                 height: CARD_HEIGHT,
-                rotate: initialRotate, 
+                rotate: initialRotate - 90, // Start as "Horizontal" (Vertical - 90)
                 scale: 1,
                 opacity: 1,
                 zIndex: 99999, 
@@ -92,7 +91,7 @@ const FlyingCard = ({
             animate={{ 
                 x: targetX,
                 y: targetY,
-                rotate: 90, // Rotate to vertical
+                rotate: 0, // Rotate to Vertical (Upright)
                 scale: scale,
             }}
             transition={{ 
@@ -103,7 +102,7 @@ const FlyingCard = ({
             style={{ transformOrigin: 'center center' }}
         >
             <div className="w-full h-full relative shadow-2xl">
-                 <CardFace id={cardId} variant="slot" vertical={false} side="back" />
+                 <CardFace id={cardId} variant="slot" vertical={true} side="back" />
             </div>
         </motion.div>,
         document.body
@@ -119,7 +118,7 @@ const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isHidden,
     // --- Visuals: Big Wheel Rotation Model ---
     
     // 1. Rotation: Negative angle for Right-Side Center (Counter-Clockwise stack)
-    const anglePerCard = -4.5 // Increased angle slightly to maintain spacing with tighter curve
+    const anglePerCard = -3.0 // Reduced angle for smaller cards
     const rotateZ = useTransform(distance, (d) => d * anglePerCard)
 
     // 2. Z-Index: Stacking Order (Top cards overlap bottom ones)
@@ -150,7 +149,7 @@ const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isHidden,
             // transform-origin is 650px to the right.
             // Adjusting right position to bring the arc into view comfortably.
             className={clsx(
-                "absolute top-[50%] right-[70px] -mt-[60px] w-[180px] h-[120px] origin-center will-change-transform",
+                "absolute top-[50%] right-[70px] -mt-[40px] w-[120px] h-[80px] origin-center will-change-transform",
                 (isHidden || isInteracting) ? "cursor-default" : "cursor-pointer"
             )}
             onClick={handleClick}
@@ -544,7 +543,7 @@ const Draw: React.FC = () => {
                             }}
                         >
                             <div className="w-[80px] h-[120px]"> {/* 竖版卡片：直接使用纵向比例，无需旋转 */}
-                                <CardFace id={cardId} variant="slot" vertical />
+                                <CardFace id={cardId} variant="slot" vertical={true} />
                             </div>
                         </motion.div>
                         </>
