@@ -1,9 +1,10 @@
+
 import React, { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { getPerfumeChapters, PerfumeChapter } from '../api'
 import PerfumePage from '../components/PerfumePage'
-import PerfumeSkeleton from '../components/PerfumeSkeleton'
+import GlobalLoading from '../components/GlobalLoading'
 
 import { matchSceneChoice } from '../utils/perfume-matcher'
 
@@ -69,7 +70,7 @@ const PerfumeView: React.FC = () => {
   }, [])
 
   if (loading) {
-    return <PerfumeSkeleton />
+    return <GlobalLoading />
   }
 
   if (error || chapters.length === 0 || !chapter) {

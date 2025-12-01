@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { CardFace } from '../components/CardFace'
 import { useTranslation } from 'react-i18next'
 import { createCheckout, getOrder, getReading, fetchPayConfig, ReadingResult } from '../api'
-import ResultSkeleton from '../components/ResultSkeleton'
+import GlobalLoading from '../components/GlobalLoading'
 
 interface LocationState {
   cardIds?: number[]
@@ -313,7 +313,7 @@ const Result: React.FC = () => {
   };
 
   if (matchStatus === 'loading' || matchStatus === 'idle') {
-    return <ResultSkeleton />
+    return <GlobalLoading />
   }
 
   if (normalizedCardIds.length !== 3) {
@@ -369,7 +369,8 @@ const Result: React.FC = () => {
                         animate={{
                             rotateY: revealed[index] ? 180 : 0,
                         }}
-                        transition={{ duration: 0.8, ease: "easeInOut", delay: index * 0.8 }}
+                        // FIX: Removed index-based delay. Staggering is handled by 'revealed' state timing.
+                        transition={{ duration: 0.8, ease: "easeInOut" }}
                         style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
                     >
                         <div 
@@ -416,7 +417,7 @@ const Result: React.FC = () => {
              ref={pastSectionRef}
              initial={{ opacity: 0 }}
              animate={{ opacity: textVisible ? 1 : 0 }}
-             transition={{ duration: 1.0, delay: 0.8 }}
+             transition={{ duration: 1.0, delay: 0.5 }} // Reduced delay slightly for better flow
              className="w-full relative text-center"
           >
               <h2
@@ -443,8 +444,10 @@ const Result: React.FC = () => {
           {/* Premium Container: CTA + Paid Content */}
           <motion.div 
              initial={{ opacity: 0 }}
-             animate={{ opacity: revealed[2] ? 1 : 0 }}
-             transition={{ duration: 1.0, delay: 0.8 }}
+             // FIX: Depend on textVisible (end of sequence) instead of revealed[2] (card start)
+             animate={{ opacity: textVisible ? 1 : 0 }}
+             // FIX: Delay 1.0s to ensure it appears AFTER the Past text (which has delay 0.5s)
+             transition={{ duration: 1.0, delay: 1.0 }}
              className="relative mt-6"
           >
             <div className="relative overflow-hidden rounded-2xl border border-[#D4A373]/25 bg-[#F7F2ED]/75 shadow-[0_22px_60px_-34px_rgba(43,31,22,0.5)] px-5 py-9 md:px-7 md:py-11 transition-all duration-700">

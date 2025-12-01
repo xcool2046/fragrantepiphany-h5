@@ -25,7 +25,7 @@ export class DrawService {
       .getMany();
     const now = await qb
       .clone()
-      .andWhere('LOWER(i.position) = LOWER(:p)', { p: 'Now' })
+      .andWhere('LOWER(i.position) = LOWER(:p)', { p: 'Present' })
       .getMany();
     const future = await qb
       .clone()

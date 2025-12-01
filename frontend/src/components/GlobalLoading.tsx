@@ -10,43 +10,30 @@ const GlobalLoading: React.FC = () => {
       <div className="relative flex flex-col items-center gap-8">
         {/* Mystical Orb/Star Animation */}
         <div className="relative w-16 h-16 flex items-center justify-center">
-          {/* Outer pulsating ring */}
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 0.1, 0.3],
-              rotate: 180
-            }}
-            transition={{ 
-              duration: 3, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-            className="absolute inset-0 border border-[#D4A373]/40 rounded-full"
-          />
+          {/* Static Orbit Ring */}
+          <div className="absolute inset-0 border border-[#D4A373]/30 rounded-full" />
           
           {/* Inner glowing core */}
           <motion.div 
             animate={{ 
-              scale: [0.8, 1.2, 0.8],
-              opacity: [0.8, 1, 0.8],
-              filter: ['blur(4px)', 'blur(8px)', 'blur(4px)']
+              opacity: [0.6, 1, 0.6],
+              scale: [0.9, 1.1, 0.9],
             }}
             transition={{ 
               duration: 2, 
               repeat: Infinity, 
               ease: "easeInOut" 
             }}
-            className="absolute w-4 h-4 bg-[#D4A373] rounded-full shadow-[0_0_20px_#D4A373]"
+            className="absolute w-3 h-3 bg-[#D4A373] rounded-full blur-[2px]"
           />
 
-          {/* Orbiting particles */}
+          {/* Orbiting particle */}
           <motion.div 
             animate={{ rotate: 360 }}
-            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
             className="absolute inset-0"
           >
-             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#2B1F16] rounded-full opacity-60" />
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-[#2B1F16] rounded-full" />
           </motion.div>
         </div>
         
