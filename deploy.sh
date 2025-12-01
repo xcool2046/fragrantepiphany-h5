@@ -116,6 +116,8 @@ ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   docker compose exec backend node dist/scripts/seed_tarot_direct.js && \
   echo '🔧 Fixing Tarot Data (ID Mismatch & Content)...' && \
   docker compose exec backend node dist/scripts/fix_tarot_data_v2.js && \
+  echo '🌸 Seeding Perfume Data (Ranges)...' && \
+  docker compose exec backend node dist/scripts/seed_perfume_ranges.js && \
   docker compose restart nginx"
 
 # 6. Push to GitHub only after successful deployment (unless --fast)
