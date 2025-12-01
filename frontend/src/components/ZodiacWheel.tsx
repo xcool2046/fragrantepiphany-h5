@@ -10,27 +10,17 @@ const ZodiacWheel: React.FC = () => {
         animate={{
           opacity: 0.85,
           scale: 1,
-          rotate: 360
         }}
         transition={{
-          opacity: { duration: 2, delay: 2.5, ease: "easeOut" },
-          scale: { duration: 2, delay: 2.5, ease: "easeOut" },
-          rotate: {
-            duration: 45,
-            repeat: Infinity,
-            ease: "linear",
-            delay: 4.5
-          }
+          opacity: { duration: 1.5, delay: 0.5, ease: "easeOut" },
+          scale: { duration: 1.5, delay: 0.5, ease: "easeOut" },
         }}
         className="w-[120vw] h-[120vw] md:w-[900px] md:h-[900px] mix-blend-multiply"
-        style={{
-          willChange: 'transform'
-        }}
       >
         <img
           src={zodiacWheelImage}
           alt=""
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain animate-[spin_60s_linear_infinite]"
           loading="eager"
           decoding="async"
         />
