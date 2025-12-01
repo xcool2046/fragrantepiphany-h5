@@ -12,7 +12,7 @@ export default function AdminLogin() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      const res = await api.post('/api/auth/login', { username, password })
+      const res = await api.post('/api/auth/login', { username: username.trim(), password: password.trim() })
       localStorage.setItem('admin_token', res.data.access_token)
       navigate('/admin/interpretations')
     } catch (err: any) {
