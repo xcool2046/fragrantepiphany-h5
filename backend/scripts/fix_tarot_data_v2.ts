@@ -74,7 +74,8 @@ async function bootstrap() {
       const categoryMap = new Map<string, any>();
       
       
-      const idCol = file.category === 'Self' ? 8 : 6;
+      // Use Column 0 (English Name) to identify the card for ALL categories
+      const idCol = 0;
 
       // Iterate all rows to find card names from CONTENT
       for (let r = 0; r < data.length; r++) {
