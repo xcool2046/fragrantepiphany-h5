@@ -123,34 +123,55 @@ async function seed() {
       let count = 0;
       for (const row of rows) {
           // Map Card Name
-          let rawName = row['__EMPTY_1'] || row['name'] || row['card'] || row['name_en'];
-          if (!rawName || rawName === 'name' || rawName === 'Name') continue;
-          
-          let cardName = cardMap.get(rawName);
-          if (!cardName) {
-              const cleanName = rawName.replace(/牌$/, '');
-              if (manualMap[cleanName]) {
-                  cardName = manualMap[cleanName];
-              }
-          }
+          // Try English Name first (Col 0 / __EMPTY) as it matches our hardcoded list
+          let rawNameCandidates = [
+              row['__EMPTY'],      // Col 0 (English)
+              row['__EMPTY_1'],    // Col 1 (Chinese)
+              row['name'], 
+              row['card'], 
+              row['name_en']
+          ];
 
-          if (!cardName) {
-              const normalized = normalizeChineseName(rawName);
-              cardName = cardMap.get(normalized);
-              if (!cardName) cardName = cardMap.get(normalized + '牌');
-          }
-          
-          // Fallback: Case-insensitive match against hardcoded English names
-          if (!cardName) {
-              const lowerRaw = rawName.trim().toLowerCase();
+          let cardName: string | undefined;
+
+          for (const raw of rawNameCandidates) {
+              if (!raw || typeof raw !== 'string') continue;
+              const cleanRaw = raw.trim();
+              if (cleanRaw === 'name' || cleanRaw === 'Name') continue;
+
+              // 1. Try Exact/Fuzzy Match against Hardcoded English List
+              const lowerRaw = cleanRaw.toLowerCase();
               const match = CARD_NAMES.find(n => n.toLowerCase() === lowerRaw);
               if (match) {
                   cardName = match;
+                  break; 
+              }
+
+              // 2. Try DB Map (Chinese -> English)
+              const mapped = cardMap.get(cleanRaw);
+              if (mapped) {
+                  cardName = mapped;
+                  break;
+              }
+              
+              // 3. Try Manual Map
+              const cleanName = cleanRaw.replace(/牌$/, '');
+              if (manualMap[cleanName]) {
+                  cardName = manualMap[cleanName];
+                  break;
+              }
+
+              // 4. Try Normalized Chinese
+              const normalized = normalizeChineseName(cleanRaw);
+              const normMapped = cardMap.get(normalized) || cardMap.get(normalized + '牌');
+              if (normMapped) {
+                  cardName = normMapped;
+                  break;
               }
           }
-
+          
           if (!cardName) {
-              console.warn(`Unknown card name: ${rawName}`);
+              // console.warn(`Skipping row, could not identify card from: ${rawNameCandidates.filter(x=>x).join(', ')}`);
               continue;
           }
 
