@@ -95,7 +95,7 @@ const FlyingCard = ({
                 scale: scale,
             }}
             transition={{ 
-                duration: 0.8,
+                duration: 1.5,
                 ease: [0.16, 1, 0.3, 1], // Smooth easeOut
             }}
             className="pointer-events-none font-serif fixed z-[99999]"
@@ -431,11 +431,11 @@ const Draw: React.FC = () => {
                 initialRotate: rotation
             })
 
-            // Force complete after 850ms (0.8s animation + 0.05s buffer)
+            // Force complete after 1550ms (1.5s animation + 0.05s buffer)
             if (animationTimer.current) clearTimeout(animationTimer.current)
             animationTimer.current = setTimeout(() => {
                 handleAnimationComplete(cardId, targetIndex)
-            }, 850)
+            }, 1550)
 
         } else {
             // Fallback if ref missing

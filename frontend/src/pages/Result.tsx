@@ -373,12 +373,6 @@ const Result: React.FC = () => {
 
               {/* Free Content Section (PAST) */}
               <div className="mb-12">
-                  {readingData?.past?.summary && (
-                    <p className="text-[#3E3025] font-serif italic text-center text-sm mb-8 opacity-80 leading-relaxed px-2">
-                      {readingData.past.summary}
-                    </p>
-                  )}
-
                   <div className="text-[#3E3025] font-serif text-sm leading-8 text-left px-2">
                       <div className="flex justify-center mb-6">
                           <div className="w-16 h-[1px] bg-[#4A3B32]/20" />
@@ -397,51 +391,92 @@ const Result: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-[#F1E6D4]/88 via-[#E8DCC5]/78 to-[#E8DCC5]/86 backdrop-blur-md z-20 pointer-events-none" />
               )}
 
-              <div className={`relative z-10 space-y-10 text-[#3E3025] font-serif text-sm leading-8 ${!isUnlocked ? 'filter blur-[3px]' : ''}`}>
-                <div className="flex justify-center mb-2 mt-2">
-                  <div className="w-16 h-[1px] bg-[#4A3B32]/15" />
+              {/* Content Switch: Mutually Exclusive Rendering to ensure correct height */}
+              {!isUnlocked ? (
+                // LOCKED STATE: Promotional Content
+                <div className="relative z-30 flex flex-col items-center justify-center px-2 py-4 text-center">
+                    <div className="w-full space-y-5">
+                        <div className="space-y-3 font-serif text-[15px] leading-relaxed text-[#3E3025]">
+                        <p dangerouslySetInnerHTML={{ __html: t('result.locked.promo.p1') }} />
+                        <p>
+                            {t('result.locked.promo.p2_pre')} <span className="text-[#B58558] font-medium">{t('result.locked.promo.p2_highlight')}</span> {t('result.locked.promo.p2_post')}
+                        </p>
+                        <p>
+                            {t('result.locked.promo.p3_pre')} <span className="text-[#B58558] font-medium">{t('result.locked.promo.p3_highlight1')}</span>
+                            <span dangerouslySetInnerHTML={{ __html: t('result.locked.promo.p3_mid') }} /> <span className="text-[#B58558] font-medium">{t('result.locked.promo.p3_highlight2')}</span>{t('result.locked.promo.p3_post')}
+                        </p>
+                        <p>
+                            {t('result.locked.promo.p4_pre')} <span className="text-[#B58558] font-medium">{t('result.locked.promo.p4_highlight')}</span> {t('result.locked.promo.p4_post')}
+                        </p>
+                        </div>
+
+                        {/* Mock Scent Card */}
+                        <div className="mx-auto w-28 h-40 bg-[#F9F7F2] rounded shadow-sm border border-[#E8DCC5] flex flex-col items-center justify-center p-3 gap-2 mt-4">
+                            <span className="text-[8px] tracking-widest text-[#8B5A2B] uppercase">Chloe</span>
+                            <span className="text-[10px] text-[#3E3025] text-center leading-tight">Chloe Rose Tangerine</span>
+                            <div className="w-4 h-[1px] bg-[#D4A373]/30 my-1" />
+                            <span className="text-[8px] text-[#8B5A2B]/60 font-mono">abcdfddf</span>
+                            <div className="mt-2 text-[8px] text-[#3E3025]">
+                                <span className="text-[#8B5A2B]/60 text-[6px] uppercase tracking-wider block text-center mb-0.5">FOR</span>
+                                monica
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {/* Unlock Button */}
+                    <div className="mt-10 w-full flex flex-col items-center gap-2">
+                        <button
+                        onClick={handleUnlock}
+                        disabled={unlocking}
+                        className="group relative px-10 py-4 rounded-full font-serif tracking-widest text-[11px] uppercase transition-all duration-500 whitespace-nowrap bg-[#2B1F16] text-[#E8DCC5] shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                        >
+                        <span className="relative z-10">
+                            {unlocking ? t('draw.loading') + '...' : `${t('result.unlock', 'Reveal Your Destiny')}  |  ${priceLabel}`}
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent translate-x-[-120%] group-hover:translate-x-[120%] transition-transform duration-1000 ease-in-out rounded-full" />
+                        </button>
+                        {orderError && <span className="text-xs text-red-800/80 animate-pulse font-serif">{orderError}</span>}
+                    </div>
                 </div>
-                <div className="space-y-8">
-                  <div>
-                    <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.present.label', 'PRESENT')}</h3>
-                    <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap">
-                      {readingData?.present?.interpretation || t('result.timeframes.present.description', 'The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.')}
-                    </p>
-                  </div>
-                  <div>
-                    <div className="flex justify-center mb-6">
+              ) : (
+                // UNLOCKED STATE: Reading Content
+                <>
+                  <div className="relative z-10 space-y-10 text-[#3E3025] font-serif text-sm leading-8">
+                    <div className="flex justify-center mb-2 mt-2">
                       <div className="w-16 h-[1px] bg-[#4A3B32]/15" />
                     </div>
-                    <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.future.label', 'FUTURE')}</h3>
-                    <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap">
-                      {readingData?.future?.interpretation || t('result.timeframes.future.description', 'Trust your intuition and take the next step with confidence. Your destiny awaits.')}
-                    </p>
+                    <div className="space-y-8">
+                      <div>
+                        <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.present.label', 'PRESENT')}</h3>
+                        <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap">
+                          {readingData?.present?.interpretation || t('result.timeframes.present.description', 'The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.')}
+                        </p>
+                      </div>
+                      <div>
+                        <div className="flex justify-center mb-6">
+                          <div className="w-16 h-[1px] bg-[#4A3B32]/15" />
+                        </div>
+                        <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.future.label', 'FUTURE')}</h3>
+                        <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap">
+                          {readingData?.future?.interpretation || t('result.timeframes.future.description', 'Trust your intuition and take the next step with confidence. Your destiny awaits.')}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              <div className="relative z-30 mt-10 flex flex-col items-center gap-3 pb-[env(safe-area-inset-bottom)]">
-                <button
-                  onClick={isUnlocked ? () => navigate('/perfume', { state: { cardIds: normalizedCardIds, answers } }) : handleUnlock}
-                  disabled={unlocking}
-                  className={`group relative px-10 py-4 rounded-full font-serif tracking-widest text-[11px] uppercase transition-all duration-500 whitespace-nowrap ${isUnlocked ? 'bg-transparent text-[#2B1F16] border border-[#D4A373]/70 shadow-[0_10px_24px_-14px_rgba(43,31,22,0.35)] hover:-translate-y-0.5' : 'bg-[#2B1F16] text-[#E8DCC5] shadow-lg hover:shadow-xl hover:-translate-y-0.5'}`}
-                >
-                  <span className="relative z-10">
-                    {isUnlocked ? t('journey.cta', 'Discover Your Fragrance') : unlocking ? t('draw.loading') + '...' : `${t('result.unlock', 'Reveal Your Destiny')}  |  ${priceLabel}`}
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent translate-x-[-120%] group-hover:translate-x-[120%] transition-transform duration-1000 ease-in-out rounded-full" />
-                </button>
-
-                <div className="flex flex-col items-center gap-1 text-center">
-                  {orderError && <span className="text-xs text-red-800/80 animate-pulse font-serif">{orderError}</span>}
-                </div>
-              </div>
-
-              {isUnlocked && (
-                <div
-                  className="absolute inset-0 z-40"
-                  style={{ pointerEvents: 'none' }}
-                />
+                  {/* Next Step Button */}
+                  <div className="relative z-30 mt-10 flex flex-col items-center gap-3 pb-[env(safe-area-inset-bottom)]">
+                    <button
+                      onClick={() => navigate('/perfume', { state: { cardIds: normalizedCardIds, answers } })}
+                      className="group relative px-10 py-4 rounded-full font-serif tracking-widest text-[11px] uppercase transition-all duration-500 whitespace-nowrap bg-transparent text-[#2B1F16] border border-[#D4A373]/70 shadow-[0_10px_24px_-14px_rgba(43,31,22,0.35)] hover:-translate-y-0.5"
+                    >
+                      <span className="relative z-10">
+                        {t('journey.cta', 'Discover Your Fragrance')}
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent translate-x-[-120%] group-hover:translate-x-[120%] transition-transform duration-1000 ease-in-out rounded-full" />
+                    </button>
+                  </div>
+                </>
               )}
             </div>
           </div>

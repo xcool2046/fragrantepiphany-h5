@@ -46,9 +46,10 @@ const PerfumeView: React.FC = () => {
         const res = await getPerfumeChapters(cardIds, i18n.language, scentAnswer)
         setChapters(res.data.chapters)
         setError(null)
-      } catch (err) {
+      } catch (err: any) {
         console.error('Failed to fetch perfume chapters:', err)
-        setError(t('perfume.loadFailed', 'Failed to load fragrance journey'))
+        const msg = err.response?.data?.message || err.message || t('perfume.loadFailed', 'Failed to load fragrance journey')
+        setError(msg)
       } finally {
         setLoading(false)
       }

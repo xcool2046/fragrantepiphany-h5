@@ -38,38 +38,54 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers 
 
         {/* 内容 */}
         <div className="relative z-10 h-full overflow-y-auto px-6 md:px-16 py-10 md:py-14">
-          <div className="w-full max-w-[500px] flex flex-col gap-8">
-            <div className="space-y-6">
-              <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-[#A87B51] font-medium">{chapter.brandName}</p>
-              </div>
-              <div>
-                <h2 className="text-3xl md:text-5xl font-serif text-[#2B1F16] leading-tight">{chapter.productName}</h2>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {tags.map((tag, idx) => (
-                  <span key={idx} className="text-xs uppercase tracking-wider text-[#2B1F16]/70 font-medium border-b border-[#D4A373]/30 pb-1">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="h-px bg-[#2B1F16]/10 w-full" />
-              <div className="space-y-4">
-                <p className="text-sm md:text-lg font-serif text-[#2B1F16] leading-relaxed">{description}</p>
-                {quote && <p className="text-sm italic text-[#2B1F16]/70 font-serif">&quot;{quote}&quot;</p>}
-              </div>
+          <div className="w-full max-w-[500px] flex flex-col items-center h-full">
+            {/* Brand - Left Aligned */}
+            <div className="w-full text-left mb-8">
+              <p className="text-2xl font-serif text-[#2B1F16]">{chapter.brandName}</p>
             </div>
 
-            <div className="flex flex-col gap-3 pt-6">
+            {/* Product Name - Centered */}
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-serif text-[#2B1F16] leading-tight">{chapter.productName}</h2>
+            </div>
+
+            {/* Tags - Centered Pills */}
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              {tags.map((tag, idx) => {
+                 const bgColors = ['bg-[#8B5A2B]', 'bg-[#656B2F]', 'bg-[#D97706]'];
+                 const bgColor = bgColors[idx % bgColors.length];
+                 return (
+                  <span key={idx} className={`px-6 py-2 rounded-full text-white text-xs font-medium tracking-wide ${bgColor}`}>
+                    {tag}
+                  </span>
+                 )
+              })}
+            </div>
+
+            {/* Description (Result) - Centered */}
+            <div className="space-y-6 text-center mb-8">
+              <h3 className="text-2xl font-serif text-[#2B1F16]">{t('perfume.resultTitle', 'Result')}</h3>
+              <p className="text-sm md:text-base font-serif text-[#2B1F16]/80 leading-relaxed max-w-sm mx-auto">
+                  {description}
+              </p>
+            </div>
+
+            {/* Quote (Sentence) - Centered */}
+            {quote && (
+                <div className="text-center space-y-4 mb-auto">
+                    <h3 className="text-xl font-serif text-[#2B1F16]">{t('perfume.quoteTitle', 'Sentence')}</h3>
+                    <p className="text-lg italic text-[#2B1F16] font-serif leading-relaxed">&quot;{quote}&quot;</p>
+                </div>
+            )}
+
+            {/* Button - Centered Gradient */}
+            <div className="pt-10 pb-6 mt-auto">
               <button
                 onClick={onComplete}
-                className="w-fit px-8 py-3 rounded-full bg-[#2B1F16] text-[#F7F2ED] text-xs uppercase tracking-[0.22em] shadow-lg hover:-translate-y-0.5 transition"
+                className="px-12 py-4 rounded-full bg-gradient-to-r from-[#3E2723] to-[#5D4037] text-[#F7F2ED] text-sm font-serif tracking-wide shadow-xl hover:-translate-y-0.5 transition border border-[#D4A373]/20 whitespace-nowrap"
               >
-                {t('common.complete', 'Complete')}
+                {t('perfume.customize', 'Customize scent card')}
               </button>
-              <div className="text-xs uppercase tracking-widest text-[#A87B51]/70">
-                {chapter.cardName} · {chapter.sceneChoice}
-              </div>
             </div>
           </div>
         </div>

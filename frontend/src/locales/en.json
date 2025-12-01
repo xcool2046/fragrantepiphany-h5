@@ -48,6 +48,11 @@
       "p2": "If you are ready, let Fragrant Epiphany accompany you starting from a deck of cards and a scent, slowly approaching the self that even you will fall in love with. 🌙✨"
     }
   },
+  "breath": {
+    "p1": "Take a deep breath...",
+    "p2": "Let your mind settle.",
+    "p3": "Connect with the message that is approaching you"
+  },
   "question": {
     "page1Title": "Focus Inward",
     "page2Title": "Deepen the Connection",
@@ -90,6 +95,20 @@
     "unlock": "Reveal Your Destiny",
     "locked": {
       "title": "THE REVELATION",
+      "promo": {
+        "p1": "You’ve seen your past.<br/>Unlock your present & future chapter 🔮",
+        "p2_pre": "and one signature scent that fits exactly",
+        "p2_highlight": "how you are right now",
+        "p2_post": "🧴 —",
+        "p3_pre": "a smell picked to match your mood,",
+        "p3_highlight1": "calm your noise",
+        "p3_mid": ",<br/>and help you step into the version of",
+        "p3_highlight2": "you you just saw in the cards",
+        "p3_post": ".",
+        "p4_pre": "Then turn it into a",
+        "p4_highlight": "name-personalized scent card",
+        "p4_post": "✍️"
+      },
       "summary": "A deep story from pause to rebirth.",
       "desc": "You may have enjoyed a phase of fulfillment (9 of Cups) but also needed solitude to reset (4 of Swords). Now a clear new opportunity is calling (Ace of Wands) — rest time is over; step forward.",
       "price": {
@@ -231,7 +250,10 @@
     "imgAlt": "Perfume Image",
     "notFound": "No fragrance journey found",
     "noCards": "No cards provided",
-    "loadFailed": "Failed to load fragrance journey"
+    "loadFailed": "Failed to load fragrance journey",
+    "resultTitle": "Result",
+    "quoteTitle": "Sentence",
+    "customize": "Customize scent card"
   },
   "share": {
     "finish": "Finish Journey",

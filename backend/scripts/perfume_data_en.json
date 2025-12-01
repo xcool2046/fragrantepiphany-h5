@@ -1,0 +1,1010 @@
+[
+  {
+    "id": 10,
+    "product": "Maison Francis Kurkdjian Oud Satin Mood",
+    "desc_en": "The Empress's inclusive embrace expands in woody warmth, accepting imperfections in love.",
+    "quote_en": "",
+    "notes_en": "Rose, Oud, Vanilla"
+  },
+  {
+    "id": 14,
+    "product": "Bvlgari Le Gemme Imperiali",
+    "desc_en": "The Emperor's sense of responsibility deepens in warm woods, promising to be a reliable pillar in the relationship.",
+    "quote_en": "",
+    "notes_en": "Rose, Sandalwood, Rare Woods"
+  },
+  {
+    "id": 18,
+    "product": "Maison Christian Dior La Colle Noire",
+    "desc_en": "The Hierophant's traditional wisdom is inherited in the woody undertones, guarding promises and vows in love.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Lily of the Valley, Amber Wood"
+  },
+  {
+    "id": 22,
+    "product": "Diptyque Eau Capitale",
+    "desc_en": "The Lovers' harmonious relationship grows in the woody embrace, balancing giving and receiving in love.",
+    "quote_en": "",
+    "notes_en": "Pepper Rose, Patchouli, Woody Notes"
+  },
+  {
+    "id": 26,
+    "product": "Le Labo Rose 31",
+    "desc_en": "The Chariot's goal-oriented drive stands firm in woody strength, leading the relationship towards shared dreams.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Cedar, Musk"
+  },
+  {
+    "id": 30,
+    "product": "Maison Francis Kurkdjian Oud Satin Mood",
+    "desc_en": "Strength's inner resilience takes root in the woody foundation, patiently waiting for love to blossom.",
+    "quote_en": "",
+    "notes_en": "Rose, Oud, Vanilla"
+  },
+  {
+    "id": 34,
+    "product": "Le Labo Rose 31",
+    "desc_en": "The Hermit's solitary exploration is warmed by woody companionship, where distance makes feelings clearer.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Cedar, Musk"
+  },
+  {
+    "id": 38,
+    "product": "Diptyque Eau Capitale",
+    "desc_en": "The Wheel of Fortune's changes are met with composure in woody stability; relationship ups and downs are gifts of growth.",
+    "quote_en": "",
+    "notes_en": "Pepper Rose, Patchouli, Woody Notes"
+  },
+  {
+    "id": 42,
+    "product": "Le Labo Rose 31",
+    "desc_en": "Justice's rational judgment remains fair in woody stability, establishing healthy boundaries for the relationship.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Cedar, Musk"
+  },
+  {
+    "id": 46,
+    "product": "Aesop Rozu",
+    "desc_en": "The Hanged Man's sacrifice is worthy in the woody embrace; true love is willing to wait and give.",
+    "quote_en": "",
+    "notes_en": "Rose, Moss, Woody Notes"
+  },
+  {
+    "id": 50,
+    "product": "Tom Ford Noir de Noir",
+    "desc_en": "Death's transformative power brews in the woody depths; pain will eventually bloom into flowers of wisdom.",
+    "quote_en": "",
+    "notes_en": "Black Truffle Rose, Oud, Vanilla"
+  },
+  {
+    "id": 54,
+    "product": "Diptyque Eau Capitale",
+    "desc_en": "Temperance's principle of moderation is practiced in woody stability; love needs just the right distance.",
+    "quote_en": "",
+    "notes_en": "Pepper Rose, Patchouli, Woody Notes"
+  },
+  {
+    "id": 58,
+    "product": "Maison Francis Kurkdjian Oud Satin Mood",
+    "desc_en": "The Devil's obsession is perceived in the woody depths, moving from attachment to true love.",
+    "quote_en": "",
+    "notes_en": "Rose, Oud, Vanilla"
+  },
+  {
+    "id": 62,
+    "product": "Le Labo Rose 31",
+    "desc_en": "The Tower's collapse and rebuilding proceed on a woody foundation; crisis becomes a turning point.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Cedar, Musk"
+  },
+  {
+    "id": 66,
+    "product": "Aesop Rozu",
+    "desc_en": "The Star's inspiration is nurtured in the woody embrace, maintaining openness and trust in love.",
+    "quote_en": "",
+    "notes_en": "Rose, Moss, Woody Notes"
+  },
+  {
+    "id": 70,
+    "product": "Serge Lutens Rose de Nuit",
+    "desc_en": "The Moon's intuitive guidance flows in woody mystery, trusting the inner voice.",
+    "quote_en": "",
+    "notes_en": "Dark Rose, Musk, Animalic"
+  },
+  {
+    "id": 74,
+    "product": "Penhaligon's The Coveted Duchess Rose",
+    "desc_en": "The Sun's vitality and confidence radiate in woody warmth, infecting everyone around.",
+    "quote_en": "",
+    "notes_en": "Tart Citrus Rose, Woody Base"
+  },
+  {
+    "id": 78,
+    "product": "Bvlgari Le Gemme Imperiali",
+    "desc_en": "Judgement's self-evaluation takes place in woody wisdom, seeing clearly the responsibilities and choices in love.",
+    "quote_en": "",
+    "notes_en": "Rose, Sandalwood, Rare Woods"
+  },
+  {
+    "id": 82,
+    "product": "Maison Christian Dior La Colle Noire",
+    "desc_en": "The World's complete belonging is realized in the woody embrace, finding a home for the soul.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Lily of the Valley, Amber Wood"
+  },
+  {
+    "id": 86,
+    "product": "Diptyque Eau Capitale",
+    "desc_en": "Page of Wands' enthusiasm for learning takes root in the woody foundation, treating every relationship seriously.",
+    "quote_en": "",
+    "notes_en": "Pepper Rose, Patchouli, Woody Notes"
+  },
+  {
+    "id": 90,
+    "product": "Le Labo Rose 31",
+    "desc_en": "Knight of Wands' passion for pursuit persists in woody firmness, never giving up on the beloved.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Cedar, Musk"
+  },
+  {
+    "id": 94,
+    "product": "Byredo Rose of No Man's Land",
+    "desc_en": "Queen of Wands' confident radiance shines in woody warmth, being her own queen.",
+    "quote_en": "",
+    "notes_en": "Turkish Rose, Raspberry, Papyrus"
+  },
+  {
+    "id": 98,
+    "product": "Bvlgari Le Gemme Imperiali",
+    "desc_en": "King of Wands' authoritative protection is solid in woody strength, becoming the pillar of the relationship.",
+    "quote_en": "",
+    "notes_en": "Rose, Sandalwood, Rare Woods"
+  },
+  {
+    "id": 102,
+    "product": "Hermès Hermessence Rose Ikebana",
+    "desc_en": "Page of Swords' learning attitude progresses in woody clarity, understanding the complexity of feelings.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Tea, Clean Accord"
+  },
+  {
+    "id": 106,
+    "product": "Le Labo Rose 31",
+    "desc_en": "Knight of Swords' determination in action is shown in woody firmness, bravely facing relationship challenges.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Cedar, Musk"
+  },
+  {
+    "id": 110,
+    "product": "Aesop Rozu",
+    "desc_en": "Queen of Swords' calm analysis takes place in woody stability, seeing through to the essence of feelings.",
+    "quote_en": "",
+    "notes_en": "Rose, Moss, Woody Notes"
+  },
+  {
+    "id": 114,
+    "product": "Bvlgari Le Gemme Imperiali",
+    "desc_en": "King of Swords' authoritative wisdom is established in woody stability; relationships need principles and boundaries.",
+    "quote_en": "",
+    "notes_en": "Rose, Sandalwood, Rare Woods"
+  },
+  {
+    "id": 118,
+    "product": "Diptyque Eau Rose EDT",
+    "desc_en": "Page of Cups' intuitive gift is enhanced in woody sensitivity, foreseeing the development of feelings.",
+    "quote_en": "",
+    "notes_en": "Lychee Rose, Cool Greenery"
+  },
+  {
+    "id": 122,
+    "product": "Penhaligon's The Coveted Duchess Rose",
+    "desc_en": "Knight of Cups' deep confession is spoken in woody sincerity, touching the heart.",
+    "quote_en": "",
+    "notes_en": "Tart Citrus Rose, Woody Base"
+  },
+  {
+    "id": 126,
+    "product": "Byredo Rose of No Man's Land",
+    "desc_en": "Queen of Cups' empathetic inclusion expands in woody warmth, accepting all emotions.",
+    "quote_en": "",
+    "notes_en": "Turkish Rose, Raspberry, Papyrus"
+  },
+  {
+    "id": 138,
+    "product": "Le Labo Rose 31",
+    "desc_en": "Knight of Pentacles' patient cultivation continues in woody stability, slowly building love.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Cedar, Musk"
+  },
+  {
+    "id": 142,
+    "product": "Byredo Rose of No Man's Land",
+    "desc_en": "Queen of Pentacles' generous sharing flows in woody abundance, giving love selflessly.",
+    "quote_en": "",
+    "notes_en": "Turkish Rose, Raspberry, Papyrus"
+  },
+  {
+    "id": 146,
+    "product": "Bvlgari Le Gemme Imperiali",
+    "desc_en": "King of Pentacles' successful achievement is secured in woody authority, building an empire of feelings.",
+    "quote_en": "",
+    "notes_en": "Rose, Sandalwood, Rare Woods"
+  },
+  {
+    "id": 7,
+    "product": "Serge Lutens Rose de Nuit",
+    "desc_en": "The High Priestess's mystery meets coffee depth, exploring unspoken emotions in the relationship.",
+    "quote_en": "",
+    "notes_en": "Dark Rose, Musk, Deep Accord"
+  },
+  {
+    "id": 11,
+    "product": "Tom Ford Noir de Noir",
+    "desc_en": "The Empress's sensual charm flows in the rich coffee, reigniting passion and desire in the relationship.",
+    "quote_en": "",
+    "notes_en": "Black Truffle Rose, Oud, Vanilla"
+  },
+  {
+    "id": 15,
+    "product": "Cartier L'Heure Défendue",
+    "desc_en": "The Emperor's leadership becomes approachable in the café, guiding the relationship toward shared goals.",
+    "quote_en": "",
+    "notes_en": "Rose, Pepper, Leather"
+  },
+  {
+    "id": 19,
+    "product": "Comme des Garçons Incense Zagorsk",
+    "desc_en": "The Hierophant's sense of ritual deepens in coffee contemplation, filling daily love with sacred moments.",
+    "quote_en": "",
+    "notes_en": "Pine Rose, Incense, Cold Accord"
+  },
+  {
+    "id": 23,
+    "product": "Byredo Rose Noir",
+    "desc_en": "The Lovers' deep connection brews in the coffee's warmth, the transition moment from like to deep love.",
+    "quote_en": "",
+    "notes_en": "Black Rose, Juniper Berry, Amber"
+  },
+  {
+    "id": 27,
+    "product": "Tom Ford Cafe Rose",
+    "desc_en": "The Chariot's drive accelerates in coffee enthusiasm, overcoming distances and challenges in love.",
+    "quote_en": "",
+    "notes_en": "Dark Rose, Coffee, Patchouli"
+  },
+  {
+    "id": 31,
+    "product": "Tom Ford Noir de Noir",
+    "desc_en": "Strength's courage ferments in the depth of coffee, facing fears and insecurities in the relationship.",
+    "quote_en": "",
+    "notes_en": "Black Truffle Rose, Oud, Vanilla"
+  },
+  {
+    "id": 35,
+    "product": "Serge Lutens Rose de Nuit",
+    "desc_en": "The Hermit's deep thinking takes place in coffee contemplation, understanding the true essence of feelings.",
+    "quote_en": "",
+    "notes_en": "Dark Rose, Musk, Animalic"
+  },
+  {
+    "id": 39,
+    "product": "Byredo Rose Noir",
+    "desc_en": "The Wheel of Fortune's turning point is accepted in the rich coffee; every parting is for a better reunion.",
+    "quote_en": "",
+    "notes_en": "Black Rose, Coffee, Amber"
+  },
+  {
+    "id": 43,
+    "product": "Tom Ford Cafe Rose",
+    "desc_en": "Justice's pursuit of truth proceeds in the depth of coffee, bravely facing the reality of the relationship.",
+    "quote_en": "",
+    "notes_en": "Dark Rose, Coffee, Patchouli"
+  },
+  {
+    "id": 47,
+    "product": "Serge Lutens Rose de Nuit",
+    "desc_en": "The Hanged Man's different perspective is gained in coffee contemplation, breaking through relationship blind spots.",
+    "quote_en": "",
+    "notes_en": "Dark Rose, Musk, Deep Accord"
+  },
+  {
+    "id": 51,
+    "product": "Byredo Rose Noir",
+    "desc_en": "Death's farewell is experienced in the bittersweet coffee, grateful for the growth brought by every relationship.",
+    "quote_en": "",
+    "notes_en": "Black Rose, Coffee, Amber"
+  },
+  {
+    "id": 55,
+    "product": "Tom Ford Cafe Rose",
+    "desc_en": "Temperance's blending wisdom is learned in the rich coffee, accepting different facets of the relationship.",
+    "quote_en": "",
+    "notes_en": "Dark Rose, Coffee, Patchouli"
+  },
+  {
+    "id": 59,
+    "product": "Byredo Rose Noir",
+    "desc_en": "The Devil's addictive pattern sobers up in the coffee intoxication, breaking the vicious cycle in the relationship.",
+    "quote_en": "",
+    "notes_en": "Black Rose, Coffee, Amber"
+  },
+  {
+    "id": 63,
+    "product": "Tom Ford Cafe Rose",
+    "desc_en": "The Tower's truth revelation is faced in coffee clarity; lies will eventually shatter.",
+    "quote_en": "",
+    "notes_en": "Dark Rose, Coffee, Patchouli"
+  },
+  {
+    "id": 67,
+    "product": "Maison Francis Kurkdjian A La Rose",
+    "desc_en": "The Star's vision realization draws near in coffee warmth; the dream love is no longer far away.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Violet, Cedar"
+  },
+  {
+    "id": 71,
+    "product": "Byredo Rose Noir",
+    "desc_en": "The Moon's dream truth emerges in the deep coffee, seeing the hidden messages in the relationship.",
+    "quote_en": "",
+    "notes_en": "Black Rose, Coffee, Amber"
+  },
+  {
+    "id": 75,
+    "product": "Maison Francis Kurkdjian A La Rose",
+    "desc_en": "The Sun's success celebration takes place in coffee gathering; the fruits of love are sweet and abundant.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Violet, Cedar"
+  },
+  {
+    "id": 79,
+    "product": "Tom Ford Noir de Noir",
+    "desc_en": "Judgement's facing of truth is completed in coffee clarity, no longer escaping relationship reality.",
+    "quote_en": "",
+    "notes_en": "Black Truffle Rose, Oud, Vanilla"
+  },
+  {
+    "id": 83,
+    "product": "Maison Francis Kurkdjian Oud Satin Mood",
+    "desc_en": "The World's success sharing is savored in the rich coffee, the abundant result of love.",
+    "quote_en": "",
+    "notes_en": "Rose, Oud, Vanilla"
+  },
+  {
+    "id": 87,
+    "product": "Maison Francis Kurkdjian A La Rose",
+    "desc_en": "Page of Wands' good news is conveyed in coffee warmth; the relationship development is promising.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Violet, Cedar"
+  },
+  {
+    "id": 91,
+    "product": "Tom Ford Cafe Rose",
+    "desc_en": "Knight of Wands' expedition spirit recharges in the rich coffee, traveling the world for love.",
+    "quote_en": "",
+    "notes_en": "Dark Rose, Coffee, Patchouli"
+  },
+  {
+    "id": 95,
+    "product": "Tom Ford Noir de Noir",
+    "desc_en": "Queen of Wands' sensual vitality flows in the rich coffee, enjoying the nourishment of love.",
+    "quote_en": "",
+    "notes_en": "Black Truffle Rose, Oud, Vanilla"
+  },
+  {
+    "id": 99,
+    "product": "Cartier L'Heure Défendue",
+    "desc_en": "King of Wands' visionary leadership becomes clear in coffee wisdom, planning the future of the relationship.",
+    "quote_en": "",
+    "notes_en": "Rose, Pepper, Leather"
+  },
+  {
+    "id": 103,
+    "product": "Guerlain Aqua Allegoria Rosa Rossa",
+    "desc_en": "Page of Swords' message delivery proceeds in coffee lightness; communication brings understanding.",
+    "quote_en": "",
+    "notes_en": "Fresh Rose, Lychee, Cedar"
+  },
+  {
+    "id": 107,
+    "product": "Comme des Garçons Incense Zagorsk",
+    "desc_en": "Knight of Swords' pursuit of truth persists in coffee clarity, speaking no words against the heart.",
+    "quote_en": "",
+    "notes_en": "Pine Rose, Incense, Cold Accord"
+  },
+  {
+    "id": 111,
+    "product": "Diptyque Eau Capitale",
+    "desc_en": "Queen of Swords' independent thinking matures in coffee depth, not relying on others to define happiness.",
+    "quote_en": "",
+    "notes_en": "Pepper Rose, Patchouli, Woody Notes"
+  },
+  {
+    "id": 115,
+    "product": "Cartier L'Heure Défendue",
+    "desc_en": "King of Swords' insistence on truth is shown in coffee seriousness; honesty is the foundation of love.",
+    "quote_en": "",
+    "notes_en": "Rose, Pepper, Leather"
+  },
+  {
+    "id": 119,
+    "product": "Maison Francis Kurkdjian A La Rose",
+    "desc_en": "Page of Cups' emotional message is received in coffee softness; telepathy is enhanced.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Violet, Cedar"
+  },
+  {
+    "id": 123,
+    "product": "Chloé Rose Tangerine",
+    "desc_en": "Knight of Cups' courtship action proceeds in coffee romance, creating unforgettable dates.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, White Musk"
+  },
+  {
+    "id": 127,
+    "product": "Maison Francis Kurkdjian Oud Satin Mood",
+    "desc_en": "Queen of Cups' emotional wisdom matures in coffee depth, understanding the complexity of love.",
+    "quote_en": "",
+    "notes_en": "Rose, Oud, Vanilla"
+  },
+  {
+    "id": 131,
+    "product": "Byredo Rose of No Man's Land",
+    "desc_en": "King of Cups' spiritual guidance is given in coffee wisdom, resolving relationship puzzles.",
+    "quote_en": "",
+    "notes_en": "Turkish Rose, Raspberry, Papyrus"
+  },
+  {
+    "id": 135,
+    "product": "Guerlain Aqua Allegoria Rosa Rossa",
+    "desc_en": "Page of Pentacles' growth news is conveyed in coffee seriousness; the relationship progresses steadily.",
+    "quote_en": "",
+    "notes_en": "Fresh Rose, Lychee, Cedar"
+  },
+  {
+    "id": 139,
+    "product": "Aesop Rozu",
+    "desc_en": "Knight of Pentacles' reliable promise is realized in coffee steadfastness; a relationship that walks the talk.",
+    "quote_en": "",
+    "notes_en": "Rose, Moss, Woody Notes"
+  },
+  {
+    "id": 143,
+    "product": "Penhaligon's The Coveted Duchess Rose",
+    "desc_en": "Queen of Pentacles' family warmth overflows in the rich coffee, creating a happy space.",
+    "quote_en": "",
+    "notes_en": "Tart Citrus Rose, Woody Base"
+  },
+  {
+    "id": 147,
+    "product": "Cartier L'Heure Défendue",
+    "desc_en": "King of Pentacles' business mind operates in coffee wisdom, planning a blueprint for the relationship.",
+    "quote_en": "",
+    "notes_en": "Rose, Pepper, Leather"
+  },
+  {
+    "id": 8,
+    "product": "Guerlain Aqua Allegoria Rosa Rossa",
+    "desc_en": "The High Priestess's clarity shines through soapy brightness, illuminating the blurred zones in the relationship.",
+    "quote_en": "",
+    "notes_en": "Fresh Rose, Lychee, Cedar"
+  },
+  {
+    "id": 12,
+    "product": "Chloé Rose Tangerine",
+    "desc_en": "The Empress's gentleness is lightened by soapy notes, allowing giving and receiving to flow naturally in love.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, White Musk"
+  },
+  {
+    "id": 16,
+    "product": "By Kilian Roses on Ice",
+    "desc_en": "The Emperor's authority is softened by soapy notes, ensuring protection doesn't become control, authority with tenderness.",
+    "quote_en": "",
+    "notes_en": "Cucumber Rose, Juniper Berry"
+  },
+  {
+    "id": 20,
+    "product": "Jo Malone Wild Bluebell Cologne",
+    "desc_en": "The Hierophant's teaching is freshened by soapy notes, turning relationship guidance into gentle companionship.",
+    "quote_en": "",
+    "notes_en": "Bluebell, Rose, White Musk"
+  },
+  {
+    "id": 24,
+    "product": "Maison Francis Kurkdjian A La Rose",
+    "desc_en": "The Lovers' pure love is purified by soapy notes, returning to the original look of love.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Clean Musk"
+  },
+  {
+    "id": 28,
+    "product": "By Kilian Roses on Ice",
+    "desc_en": "The Chariot's combat power is purified by soapy notes, turning competition into cooperation, conflict into understanding.",
+    "quote_en": "",
+    "notes_en": "Cucumber Rose, Juniper Berry"
+  },
+  {
+    "id": 32,
+    "product": "Chloé Rose Tangerine",
+    "desc_en": "Strength's resilience is lightened by soapy notes; gentle persistence doesn't become domineering control.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, White Musk"
+  },
+  {
+    "id": 36,
+    "product": "Diptyque Eau Rose EDT",
+    "desc_en": "The Hermit's solitude is brightened by soapy notes; self-space becomes a charging moment for the relationship.",
+    "quote_en": "",
+    "notes_en": "Lychee Rose, Cool Greenery"
+  },
+  {
+    "id": 40,
+    "product": "Guerlain Aqua Allegoria Rosa Rossa",
+    "desc_en": "The Wheel of Fortune's cycle is clarified by soapy notes, seeing the cause and effect and learning in the relationship.",
+    "quote_en": "",
+    "notes_en": "Fresh Rose, Lychee, Cedar"
+  },
+  {
+    "id": 44,
+    "product": "Hermès Hermessence Rose Ikebana",
+    "desc_en": "Justice's clear boundaries are defined by soapy notes; love needs respect and space.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Tea, Clean Accord"
+  },
+  {
+    "id": 48,
+    "product": "Diptyque Eau Rose EDT",
+    "desc_en": "The Hanged Man's waiting is purified by soapy notes; patience becomes the wisdom of the relationship.",
+    "quote_en": "",
+    "notes_en": "Lychee Rose, Cool Greenery"
+  },
+  {
+    "id": 52,
+    "product": "By Kilian Roses on Ice",
+    "desc_en": "Death's ending is purified by soapy notes; clearing the past to welcome the new.",
+    "quote_en": "",
+    "notes_en": "Cucumber Rose, Juniper Berry"
+  },
+  {
+    "id": 56,
+    "product": "Maison Francis Kurkdjian A La Rose",
+    "desc_en": "Temperance's balance is perfected by soapy notes, finding balance between giving and holding back.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Clean Musk"
+  },
+  {
+    "id": 60,
+    "product": "Chloé Rose Tangerine",
+    "desc_en": "The Devil's bondage is liberated by soapy notes, finding freedom from possessiveness.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, White Musk"
+  },
+  {
+    "id": 64,
+    "product": "By Kilian Roses on Ice",
+    "desc_en": "The Tower's chaos is clarified by soapy notes, seeing new life from the ruins.",
+    "quote_en": "",
+    "notes_en": "Cucumber Rose, Juniper Berry"
+  },
+  {
+    "id": 68,
+    "product": "Jo Malone Wild Bluebell Cologne",
+    "desc_en": "The Star's hope is purified by soapy notes, keeping the heart clear and believing.",
+    "quote_en": "",
+    "notes_en": "Bluebell, Rose, White Musk"
+  },
+  {
+    "id": 72,
+    "product": "Diptyque Eau Rose EDT",
+    "desc_en": "The Moon's mist is dispersed by soapy notes, moving from confusion to clarity.",
+    "quote_en": "",
+    "notes_en": "Lychee Rose, Cool Greenery"
+  },
+  {
+    "id": 76,
+    "product": "Guerlain Aqua Allegoria Rosa Rossa",
+    "desc_en": "The Sun's radiance is purified by soapy notes; the essence of love is so simple and bright.",
+    "quote_en": "",
+    "notes_en": "Fresh Rose, Lychee, Cedar"
+  },
+  {
+    "id": 80,
+    "product": "Hermès Hermessence Rose Ikebana",
+    "desc_en": "Judgement's rebirth is purified by soapy notes; forgiving the past to embrace the future.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Tea, Clean Accord"
+  },
+  {
+    "id": 84,
+    "product": "Frederic Malle Une Rose",
+    "desc_en": "The World's harmony is perfected by soapy notes; every aspect of the relationship blends completely.",
+    "quote_en": "",
+    "notes_en": "Bourbon Rose, Velvet Accord"
+  },
+  {
+    "id": 88,
+    "product": "Guerlain Aqua Allegoria Rosa Rossa",
+    "desc_en": "Page of Wands' innocence is protected by soapy notes, keeping an open beginner's mind in love.",
+    "quote_en": "",
+    "notes_en": "Fresh Rose, Lychee, Cedar"
+  },
+  {
+    "id": 92,
+    "product": "By Kilian Roses on Ice",
+    "desc_en": "Knight of Wands' urgency is calmed by soapy notes; impulse turns into wise action.",
+    "quote_en": "",
+    "notes_en": "Cucumber Rose, Juniper Berry"
+  },
+  {
+    "id": 96,
+    "product": "Chloé Rose Tangerine",
+    "desc_en": "Queen of Wands' passion is elegantized by soapy notes; strength carries tenderness.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, White Musk"
+  },
+  {
+    "id": 100,
+    "product": "Hermès Hermessence Rose Ikebana",
+    "desc_en": "King of Wands' authority is made approachable by soapy notes; leadership carries thoughtfulness.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Tea, Clean Accord"
+  },
+  {
+    "id": 104,
+    "product": "Maison Francis Kurkdjian A La Rose",
+    "desc_en": "Page of Swords' flexible thinking is clarified by soapy notes, finding relationship solutions.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Clean Musk"
+  },
+  {
+    "id": 108,
+    "product": "By Kilian Roses on Ice",
+    "desc_en": "Knight of Swords' eagerness is calmed by soapy notes; decisiveness doesn't become impulse.",
+    "quote_en": "",
+    "notes_en": "Cucumber Rose, Juniper Berry"
+  },
+  {
+    "id": 112,
+    "product": "Jo Malone Wild Bluebell Cologne",
+    "desc_en": "Queen of Swords' rationality is softened by soapy notes; wisdom carries empathy.",
+    "quote_en": "",
+    "notes_en": "Bluebell, Rose, White Musk"
+  },
+  {
+    "id": 116,
+    "product": "Hermès Hermessence Rose Ikebana",
+    "desc_en": "King of Swords' strictness is made fair by soapy notes; principles carry understanding.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Tea, Clean Accord"
+  },
+  {
+    "id": 120,
+    "product": "Jo Malone Wild Bluebell Cologne",
+    "desc_en": "Page of Cups' sensitivity is stabilized by soapy notes; empathy doesn't become emotionalism.",
+    "quote_en": "",
+    "notes_en": "Bluebell, Rose, White Musk"
+  },
+  {
+    "id": 124,
+    "product": "Guerlain Aqua Allegoria Rosa Rossa",
+    "desc_en": "Knight of Cups' passion is purified by soapy notes; romance doesn't become frivolity.",
+    "quote_en": "",
+    "notes_en": "Fresh Rose, Lychee, Cedar"
+  },
+  {
+    "id": 128,
+    "product": "Chloé Rose Tangerine",
+    "desc_en": "Queen of Cups' deep affection is clarified by soapy notes; loving others while loving oneself.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, White Musk"
+  },
+  {
+    "id": 132,
+    "product": "Maison Francis Kurkdjian A La Rose",
+    "desc_en": "King of Cups' compassion is purified by soapy notes; guidance doesn't become control.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Clean Musk"
+  },
+  {
+    "id": 136,
+    "product": "Jo Malone Wild Bluebell Cologne",
+    "desc_en": "Page of Pentacles' effort is lightened by soapy notes; seriousness doesn't become heaviness.",
+    "quote_en": "",
+    "notes_en": "Bluebell, Rose, White Musk"
+  },
+  {
+    "id": 140,
+    "product": "Diptyque Eau Rose EDT",
+    "desc_en": "Knight of Pentacles' steadiness is made flexible by soapy notes; responsibility carries ease.",
+    "quote_en": "",
+    "notes_en": "Lychee Rose, Cool Greenery"
+  },
+  {
+    "id": 144,
+    "product": "Chloé Rose Tangerine",
+    "desc_en": "Queen of Pentacles' abundance is refined by soapy notes; giving while accepting feedback.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, White Musk"
+  },
+  {
+    "id": 148,
+    "product": "Hermès Hermessence Rose Ikebana",
+    "desc_en": "King of Pentacles' wealth is elegantized by soapy notes; success carries taste.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Tea, Clean Accord"
+  },
+  {
+    "id": 6,
+    "product": "Aesop Rozu",
+    "desc_en": "The High Priestess's introspective wisdom settles in the woody embrace, suitable for relationships needing deep understanding.",
+    "quote_en": "",
+    "notes_en": "Rose, Moss, Woody Notes"
+  },
+  {
+    "id": 5,
+    "product": "Diptyque Eau Rose EDT",
+    "desc_en": "The High Priestess's intuition awakens in fresh rose, guiding you to perceive the true intentions in love.",
+    "quote_en": "",
+    "notes_en": "Lychee Rose, Cool Greenery"
+  },
+  {
+    "id": 9,
+    "product": "Byredo Rose of No Man's Land",
+    "desc_en": "The Empress's nourishing love blooms in abundant rose, warming every relationship that needs care.",
+    "quote_en": "",
+    "notes_en": "Turkish Rose, Raspberry, Papyrus"
+  },
+  {
+    "id": 13,
+    "product": "Le Labo Rose 31",
+    "desc_en": "The Emperor's protective power is softened in the rose garden, building a safe and stable haven for the relationship.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Cedar, Musk"
+  },
+  {
+    "id": 17,
+    "product": "Serge Lutens Sa Majeste La Rose",
+    "desc_en": "The Hierophant's blessing energy flows in sacred rose, injecting spiritual connection into the relationship.",
+    "quote_en": "",
+    "notes_en": "Honey Rose, Clove, Myrrh"
+  },
+  {
+    "id": 21,
+    "product": "Frederic Malle Une Rose",
+    "desc_en": "The Lovers' true love choice is witnessed in pure rose, commemorating every moment of heartbeat.",
+    "quote_en": "",
+    "notes_en": "Bourbon Rose, Velvet Accord"
+  },
+  {
+    "id": 25,
+    "product": "Maison Francis Kurkdjian A La Rose",
+    "desc_en": "The Chariot's forward momentum is guided in fresh rose, breaking through difficulties for the relationship.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Violet, Cedar"
+  },
+  {
+    "id": 29,
+    "product": "Byredo Rose of No Man's Land",
+    "desc_en": "Strength's gentle courage grows in the rose garden, repairing relationship trauma with softness overcoming hardness.",
+    "quote_en": "",
+    "notes_en": "Turkish Rose, Raspberry, Papyrus"
+  },
+  {
+    "id": 33,
+    "product": "Aesop Rozu",
+    "desc_en": "The Hermit's introspective wisdom settles in quiet rose; solitude is for loving better.",
+    "quote_en": "",
+    "notes_en": "Green Rose, Moss, Smoky Accord"
+  },
+  {
+    "id": 37,
+    "product": "Maison Christian Dior La Colle Noire",
+    "desc_en": "The Wheel of Fortune's destiny flow is witnessed in the rose garden, cherishing every miracle of meeting.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Lily of the Valley, Woody Notes"
+  },
+  {
+    "id": 41,
+    "product": "By Kilian Roses on Ice",
+    "desc_en": "Justice's fair balance is realized in clear rose; relationships need sincerity and equality.",
+    "quote_en": "",
+    "notes_en": "Cucumber Rose, Juniper Berry, Sandalwood"
+  },
+  {
+    "id": 45,
+    "product": "L'Artisan Parfumeur Venenum",
+    "desc_en": "The Hanged Man's perspective taking is practiced in unique rose; understanding is the beginning of love.",
+    "quote_en": "",
+    "notes_en": "Green Rose, Myrrh, Smoky Wood"
+  },
+  {
+    "id": 49,
+    "product": "Serge Lutens Rose de Nuit",
+    "desc_en": "",
+    "quote_en": "",
+    "notes_en": "Dark Rose, Musk, Patchouli"
+  },
+  {
+    "id": 53,
+    "product": "Hermès Hermessence Rose Ikebana",
+    "desc_en": "Temperance's art of harmony is shown in balanced rose; relationships need patient grinding.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Tea, Pepper"
+  },
+  {
+    "id": 57,
+    "product": "Tom Ford Noir de Noir",
+    "desc_en": "The Devil's desire temptation is faced in enchanting rose, acknowledging the shadow side of the relationship.",
+    "quote_en": "",
+    "notes_en": "Black Truffle Rose, Oud, Vanilla"
+  },
+  {
+    "id": 61,
+    "product": "Comme des Garçons Incense Zagorsk",
+    "desc_en": "The Tower's sudden awakening shocks in impacting rose, breaking relationship illusions.",
+    "quote_en": "",
+    "notes_en": "Pine Rose, Incense, Cold Accord"
+  },
+  {
+    "id": 65,
+    "product": "Guerlain Aqua Allegoria Rosa Rossa",
+    "desc_en": "The Star's hope guidance shines in starlight rose, believing in the existence of true love.",
+    "quote_en": "",
+    "notes_en": "Fresh Rose, Lychee, Cedar"
+  },
+  {
+    "id": 69,
+    "product": "Maison Margiela REPLICA Soul of the Soul",
+    "desc_en": "The Moon's subconscious exploration takes place in misty rose, facing fears in the relationship directly.",
+    "quote_en": "",
+    "notes_en": "Rose, Saffron, Moss"
+  },
+  {
+    "id": 73,
+    "product": "Chloé Rose Tangerine",
+    "desc_en": "The Sun's joyful success blooms in sunny rose, sharing the joy and warmth of love.",
+    "quote_en": "",
+    "notes_en": "Sunny Citrus Rose, White Musk"
+  },
+  {
+    "id": 77,
+    "product": "Cartier L'Heure Défendue",
+    "desc_en": "Judgement's awakening call sounds in reborn rose, making important decisions for the relationship.",
+    "quote_en": "",
+    "notes_en": "Rose, Pepper, Vanilla"
+  },
+  {
+    "id": 81,
+    "product": "Bvlgari Le Gemme Imperiali",
+    "desc_en": "The World's perfect achievement is celebrated in harmonious rose, the beautiful destination of the love journey.",
+    "quote_en": "",
+    "notes_en": "Mixed Rose, Sandalwood, Musk"
+  },
+  {
+    "id": 85,
+    "product": "Jo Malone Red Roses Cologne",
+    "desc_en": "Page of Wands' curious exploration begins in fresh rose; new possibilities in love await discovery.",
+    "quote_en": "",
+    "notes_en": "Fresh Red Rose, Lemon, Mint"
+  },
+  {
+    "id": 89,
+    "product": "Byredo Rose Noir",
+    "desc_en": "Knight of Wands' fast action sprints in intense rose, bravely adventuring for love.",
+    "quote_en": "",
+    "notes_en": "Black Rose, Juniper Berry, Amber"
+  },
+  {
+    "id": 93,
+    "product": "Maison Francis Kurkdjian Oud Satin Mood",
+    "desc_en": "Queen of Wands' warm charm blooms in abundant rose, attracting beautiful relationships.",
+    "quote_en": "",
+    "notes_en": "Rose, Oud, Vanilla"
+  },
+  {
+    "id": 97,
+    "product": "Le Labo Rose 31",
+    "desc_en": "King of Wands' leadership charm is shown in steady rose, protecting the loved one.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Cedar, Musk"
+  },
+  {
+    "id": 101,
+    "product": "Diptyque Eau Rose EDT",
+    "desc_en": "Page of Swords' witty observation is sharp in fresh rose, detecting subtle changes in the relationship.",
+    "quote_en": "",
+    "notes_en": "Lychee Rose, Cool Greenery"
+  },
+  {
+    "id": 105,
+    "product": "By Kilian Roses on Ice",
+    "desc_en": "Knight of Swords' fast decision is executed in sharp rose, finding a way out for relationship dilemmas.",
+    "quote_en": "",
+    "notes_en": "Cucumber Rose, Juniper Berry, Sandalwood"
+  },
+  {
+    "id": 109,
+    "product": "Hermès Hermessence Rose Ikebana",
+    "desc_en": "Queen of Swords' rational wisdom operates in clear rose; relationships need wise judgment.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Tea, Clean Accord"
+  },
+  {
+    "id": 113,
+    "product": "Le Labo Rose 31",
+    "desc_en": "King of Swords' fair judgment is delivered in calm rose, establishing fair principles for the relationship.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Cedar, Musk"
+  },
+  {
+    "id": 117,
+    "product": "Jo Malone Red Roses Cologne",
+    "desc_en": "Page of Cups' sensitive heart opens in innocent rose, feeling every bit of true emotion.",
+    "quote_en": "",
+    "notes_en": "Fresh Red Rose, Lemon, Mint"
+  },
+  {
+    "id": 121,
+    "product": "Maison Francis Kurkdjian A La Rose",
+    "desc_en": "Knight of Cups' romantic pursuit is realized in sensual rose, weaving dreams of love.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Violet, Cedar"
+  },
+  {
+    "id": 125,
+    "product": "Frederic Malle Une Rose",
+    "desc_en": "Queen of Cups' unconditional love flows in abundant rose, nourishing every heart.",
+    "quote_en": "",
+    "notes_en": "Bourbon Rose, Velvet Accord"
+  },
+  {
+    "id": 129,
+    "product": "Penhaligon's The Coveted Duchess Rose",
+    "desc_en": "King of Cups' emotional wisdom is revealed in steady rose, guiding relationship growth.",
+    "quote_en": "",
+    "notes_en": "Tart Citrus Rose, Woody Base"
+  },
+  {
+    "id": 133,
+    "product": "Jo Malone Red Roses Cologne",
+    "desc_en": "Page of Pentacles' serious learning progresses in pragmatic rose, laying the foundation for the relationship.",
+    "quote_en": "",
+    "notes_en": "Fresh Red Rose, Lemon, Mint"
+  },
+  {
+    "id": 137,
+    "product": "Diptyque Eau Capitale",
+    "desc_en": "Knight of Pentacles' steady advance is practiced in pragmatic rose, taking responsibility for love.",
+    "quote_en": "",
+    "notes_en": "Pepper Rose, Patchouli, Woody Notes"
+  },
+  {
+    "id": 141,
+    "product": "Aesop Rozu",
+    "desc_en": "Queen of Pentacles' abundant nourishment is embodied in pragmatic rose, creating a comfortable environment for love.",
+    "quote_en": "",
+    "notes_en": "Rose, Moss, Woody Notes"
+  },
+  {
+    "id": 145,
+    "product": "Le Labo Rose 31",
+    "desc_en": "King of Pentacles' wealth protection is shown in successful rose, providing security for love.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Cedar, Musk"
+  },
+  {
+    "id": 130,
+    "product": "Maison Christian Dior La Colle Noire",
+    "desc_en": "King of Cups' compassionate support is solid in the woody embrace, becoming a relationship mentor.",
+    "quote_en": "",
+    "notes_en": "Grasse Rose, Lily of the Valley, Amber Wood"
+  },
+  {
+    "id": 134,
+    "product": "Hermès Hermessence Rose Ikebana",
+    "desc_en": "Page of Pentacles' diligent attitude is shown in woody steadfastness, managing the relationship with care.",
+    "quote_en": "",
+    "notes_en": "Citrus Rose, Tea, Clean Accord"
+  }
+]

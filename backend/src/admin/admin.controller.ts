@@ -161,6 +161,7 @@ export class AdminController {
     @Query('pageSize') pageSize = '20',
     @Query('keyword') keyword?: string,
   ) {
+    console.log(`[Admin] listPerfumes called. Page: ${page}, Size: ${pageSize}, Keyword: ${keyword}`);
     const take = Math.min(100, Math.max(1, Number(pageSize) || 20));
     const skip = (Math.max(1, Number(page) || 1) - 1) * take;
     const qb = this.perfumeRepo.createQueryBuilder('p').orderBy('p.id', 'DESC');
@@ -174,6 +175,7 @@ export class AdminController {
     }
 
     const [items, total] = await qb.skip(skip).take(take).getManyAndCount();
+    console.log(`[Admin] listPerfumes found ${items.length} items, total: ${total}`);
     return { items, total, page: Number(page), pageSize: take };
   }
 

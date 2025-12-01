@@ -52,7 +52,7 @@ const Breath: React.FC = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="text-xl md:text-2xl tracking-wide font-medium text-[#E5C4A3]"
           >
-            Take a deep breath...
+            {t('breath.p1')}
           </motion.p>
 
           <motion.p
@@ -61,7 +61,7 @@ const Breath: React.FC = () => {
             transition={{ duration: 1, delay: 1.5 }}
             className="text-xl md:text-2xl tracking-wide font-medium text-[#E5C4A3]"
           >
-            Let your mind settle.
+            {t('breath.p2')}
           </motion.p>
 
           <motion.p
@@ -70,7 +70,7 @@ const Breath: React.FC = () => {
             transition={{ duration: 1, delay: 2.5 }}
             className="text-lg md:text-xl tracking-wider text-[#E5C4A3] leading-relaxed mt-4"
           >
-            Connect with the message that is approaching you
+            {t('breath.p3')}
           </motion.p>
         </div>
 
