@@ -50,12 +50,12 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers 
             </div>
 
             {/* Tags - Centered Pills */}
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <div className="flex justify-center gap-3 mb-8 flex-wrap">
               {tags.map((tag, idx) => {
                  const bgColors = ['bg-[#8B5A2B]', 'bg-[#656B2F]', 'bg-[#D97706]'];
                  const bgColor = bgColors[idx % bgColors.length];
                  return (
-                  <span key={idx} className={`px-6 py-2 rounded-full text-white text-xs font-medium tracking-wide ${bgColor}`}>
+                  <span key={idx} className={`px-5 py-1.5 rounded-full text-white text-xs font-medium tracking-wide ${bgColor} whitespace-nowrap`}>
                     {tag}
                   </span>
                  )
@@ -63,29 +63,28 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers 
             </div>
 
             {/* Description (Result) - Centered */}
-            <div className="space-y-6 text-center mb-8">
-              <h3 className="text-2xl font-serif text-[#2B1F16]">{t('perfume.resultTitle', 'Result')}</h3>
+            <div className="space-y-6 text-center mb-6 mt-12">
               <p className="text-sm md:text-base font-serif text-[#2B1F16]/80 leading-relaxed max-w-sm mx-auto">
                   {description}
               </p>
             </div>
 
-            {/* Quote (Sentence) - Centered */}
-            {quote && (
-                <div className="text-center space-y-4 mb-auto">
-                    <h3 className="text-xl font-serif text-[#2B1F16]">{t('perfume.quoteTitle', 'Sentence')}</h3>
-                    <p className="text-lg italic text-[#2B1F16] font-serif leading-relaxed">&quot;{quote}&quot;</p>
-                </div>
-            )}
+            {/* Bottom Section: Quote + Button */}
+            <div className="mt-auto w-full flex flex-col items-center pb-6">
+                {/* Quote (Sentence) */}
+                {quote && (
+                    <div className="text-center space-y-4 mb-8">
+                        <p className="text-lg italic text-[#2B1F16] font-serif leading-relaxed px-4">&quot;{quote}&quot;</p>
+                    </div>
+                )}
 
-            {/* Button - Centered Gradient */}
-            <div className="pt-10 pb-6 mt-auto">
-              <button
-                onClick={onComplete}
-                className="px-12 py-4 rounded-full bg-gradient-to-r from-[#3E2723] to-[#5D4037] text-[#F7F2ED] text-sm font-serif tracking-wide shadow-xl hover:-translate-y-0.5 transition border border-[#D4A373]/20 whitespace-nowrap"
-              >
-                {t('perfume.customize', 'Customize scent card')}
-              </button>
+                {/* Button */}
+                <button
+                    onClick={onComplete}
+                    className="px-12 py-4 rounded-full bg-gradient-to-r from-[#3E2723] to-[#5D4037] text-[#F7F2ED] text-sm font-serif tracking-wide shadow-xl hover:-translate-y-0.5 transition border border-[#D4A373]/20 whitespace-nowrap"
+                >
+                    {t('perfume.customize', 'Customize scent card')}
+                </button>
             </div>
           </div>
         </div>

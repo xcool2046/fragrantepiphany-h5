@@ -365,8 +365,9 @@ export default function Interpretations() {
                   <input
                     value={formData.card_name}
                     onChange={(e) => setFormData({ ...formData, card_name: e.target.value })}
-                    className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
+                    className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30 disabled:bg-gray-100 disabled:text-gray-500"
                     required
+                    disabled={!!editingItem}
                   />
                 </div>
                 <div>
@@ -374,7 +375,8 @@ export default function Interpretations() {
                   <select
                     value={formData.position}
                     onChange={(e) => setFormData({ ...formData, position: e.target.value })}
-                    className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
+                    className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30 disabled:bg-gray-100 disabled:text-gray-500"
+                    disabled={!!editingItem}
                   >
                     {TAROT_POSITIONS.map(p => <option key={p} value={p}>{p}</option>)}
                   </select>
@@ -384,7 +386,8 @@ export default function Interpretations() {
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
+                    className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30 disabled:bg-gray-100 disabled:text-gray-500"
+                    disabled={!!editingItem}
                   >
                     {TAROT_CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>

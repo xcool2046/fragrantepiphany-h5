@@ -1,12 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { CardFace } from '../components/CardFace'
 import { useTranslation } from 'react-i18next'
 import { createCheckout, getOrder, getReading, fetchPayConfig, ReadingResult } from '../api'
 import ResultSkeleton from '../components/ResultSkeleton'
-
-// Import assets (Arbitrary assignment, to be verified by user)
 
 interface LocationState {
   cardIds?: number[]
@@ -24,62 +22,104 @@ const Result: React.FC = () => {
   const state = useMemo(() => (location.state as LocationState) || {}, [location.state])
   const cardIds = useMemo(() => {
     const ids = state.cardIds || []
-    if (ids.length === 3) return ids
-    // 测试/调试模式允许兜底卡组，方便直接查看解锁内容
+    if (ids.length === 3) {
+        localStorage.setItem('last_card_ids', JSON.stringify(ids))
+        return ids
+    }
+    
+    try {
+        const saved = localStorage.getItem('last_card_ids')
+        if (saved) {
+            const parsed = JSON.parse(saved)
+            if (Array.isArray(parsed) && parsed.length === 3) return parsed
+        }
+    } catch {
+        console.warn('Failed to recover cards from local storage')
+    }
+
     if (searchParams.get('debug') === 'unlocked') return [1, 2, 3]
     return []
   }, [state.cardIds, searchParams])
   const answers = useMemo(() => state.answers || {}, [state.answers])
 
   const [revealed, setRevealed] = useState<boolean[]>([false, false, false])
+  const [textVisible, setTextVisible] = useState(false)
   const [unlocking, setUnlocking] = useState(false)
   const [orderError, setOrderError] = useState<string | null>(null)
   const [readingData, setReadingData] = useState<ReadingResult | null>(null)
   const [matchStatus, setMatchStatus] = useState<MatchStatus>('idle')
   const [unlockedByOrder, setUnlockedByOrder] = useState(false)
-  const [priceLabel, setPriceLabel] = useState('$5.00') // Default fallback
+  const [priceLabel, setPriceLabel] = useState('$5.00')
+  const [currentPageStep, setCurrentPageStep] = useState(0) // 0 = Present, 1 = Future
+  const [direction, setDirection] = useState(0) // -1 = Back, 1 = Next
+  const [isInPastSection, setIsInPastSection] = useState(true)
+
+  const pastSectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Fetch dynamic price from backend (which gets it from Stripe)
     fetchPayConfig().then(cfg => {
         if (cfg?.priceDisplay) setPriceLabel(cfg.priceDisplay)
     }).catch(err => console.warn('Failed to load price config', err))
   }, [])
 
-  // Ensure returning to this page always starts at the top (e.g., back from Perfume)
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' })
   }, [])
 
+  // FIXED: Observer Race Condition
+  // Now depends on matchStatus to ensure DOM elements exist before observing
   useEffect(() => {
-    // Robust Sequential Reveal Animation
-    // We use a mounted flag to prevent state updates on unmounted component
+    if (matchStatus !== 'success') return
+
+    const pastElement = pastSectionRef.current
+    if (!pastElement) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsInPastSection(entry.isIntersecting && entry.intersectionRatio > 0.3)
+        })
+      },
+      {
+        threshold: [0, 0.3, 0.5, 1],
+        rootMargin: '-100px 0px -200px 0px'
+      }
+    )
+
+    observer.observe(pastElement)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [matchStatus])
+
+  useEffect(() => {
     let isMounted = true;
 
     const revealSequence = async () => {
-        // Force initial state
-        if (isMounted) setRevealed([false, false, false]);
+        if (isMounted) {
+            setRevealed([false, false, false]);
+            setTextVisible(false);
+        }
 
-        // Initial delay to ensure layout is stable and images are loaded
         await new Promise(r => setTimeout(r, 800));
         if (!isMounted) return;
 
-        // 1. Past Card (Index 0)
         setRevealed(() => [true, false, false]);
         
-        // Wait 0.6s
         await new Promise(r => setTimeout(r, 600));
         if (!isMounted) return;
 
-        // 2. Present Card (Index 1)
         setRevealed(() => [true, true, false]);
 
-        // Wait 0.6s
         await new Promise(r => setTimeout(r, 600));
         if (!isMounted) return;
         
-        // 3. Future Card (Index 2)
         setRevealed(() => [true, true, true]);
+
+        await new Promise(r => setTimeout(r, 800));
+        if (!isMounted) return;
+        setTextVisible(true);
     }
 
     revealSequence();
@@ -89,14 +129,12 @@ const Result: React.FC = () => {
     }
   }, []);
 
-  // Use card IDs directly as they are already 0-based indices (0-77) from Draw.tsx
   const normalizedCardIds = cardIds
 
   useEffect(() => {
     if (normalizedCardIds.length !== 3) return
     setMatchStatus('loading')
 
-    // Determine category: prefer Q4 (A/B/C -> Self/Career/Love), fallback to Q1 heuristic
     const mapQ4 = (val?: string) => {
       if (!val || typeof val !== 'string') return null
       const first = val.trim().charAt(0).toUpperCase()
@@ -150,9 +188,6 @@ const Result: React.FC = () => {
       })
   }, [normalizedCardIds, answers, i18n.language, searchParams])
 
-  // Determine unlocked state:
-  // 1. Payment success (orderId + status)
-  // 2. Debug mode (?debug=unlocked)
   useEffect(() => {
     const orderId = searchParams.get('orderId')
     if (!orderId) return
@@ -161,7 +196,6 @@ const Result: React.FC = () => {
         if (res?.status === 'succeeded') {
           setUnlockedByOrder(true)
         }
-        // Restore state from metadata if missing locally (e.g. return from payment)
         if (res?.metadata && (!state.cardIds || state.cardIds.length === 0)) {
             try {
                 const meta = res.metadata as { cardIds?: string | number[]; answers?: string | Record<string, string> };
@@ -185,7 +219,6 @@ const Result: React.FC = () => {
                 }
                 
                 if (recoveredIds.length === 3) {
-                    // Force update state and re-render
                     navigate(location.pathname + location.search, {
                         state: {
                             ...state,
@@ -209,26 +242,38 @@ const Result: React.FC = () => {
       const debug = searchParams.get('debug');
       const orderId = searchParams.get('orderId');
       const status = searchParams.get('status');
-      // Prioritize readingData.is_unlocked if available
       if (readingData?.is_unlocked) return true;
       return (debug === 'unlocked') || unlockedByOrder || (!!orderId && (status === 'paid' || status === 'succeeded'));
   }, [searchParams, unlockedByOrder, readingData]);
+
+  useEffect(() => {
+    if (!isUnlocked) return
+
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+      e.returnValue = ''
+      return ''
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+    }
+  }, [isUnlocked])
 
   const handleUnlock = async () => {
     setUnlocking(true)
     setOrderError(null)
     try {
-      // Always use USD as the single source of truth from Stripe configuration
       const res = await createCheckout({
         currency: 'usd',
         metadata: { cardIds: cardIds.join(','), answers }
       })
       
-      // Redirect to payment
       if (res?.sessionUrl) {
         window.location.href = res.sessionUrl
       } else {
-        // Fallback or error if no session URL
         console.error("No session URL returned")
         setOrderError('Payment initialization failed. Please try again.')
       }
@@ -240,17 +285,31 @@ const Result: React.FC = () => {
     }
   }
 
-  // Debug backdoor: Click title 5 times to unlock
   const [titleClickCount, setTitleClickCount] = useState(0);
   const handleTitleClick = () => {
       if (titleClickCount + 1 >= 5) {
-          // Redirect to same URL with debug param
       const newUrl = new URL(window.location.href);
       newUrl.searchParams.set('debug', 'unlocked');
       window.location.href = newUrl.toString();
   } else {
       setTitleClickCount(prev => prev + 1);
   }
+  };
+
+  // Animation Variants
+  const variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 50 : -50,
+      opacity: 0
+    }),
+    center: {
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? 50 : -50,
+      opacity: 0
+    })
   };
 
   if (matchStatus === 'loading' || matchStatus === 'idle') {
@@ -271,15 +330,12 @@ const Result: React.FC = () => {
     )
   }
 
-
-
   return (
-    <div className="min-h-screen w-full bg-[#E8DCC5] text-[#2B1F16] overflow-x-hidden relative py-8 px-4">
-      {/* Main Content - Card Style Container */}
+    <div className="min-h-screen w-full bg-[#E8DCC5] text-[#2B1F16] relative">
       <div className="relative z-10 max-w-md mx-auto">
-
-          {/* 1. Cards Section */}
-          <div className="flex flex-row justify-center items-end gap-3 md:gap-6 mb-8 perspective-1000">
+          {/* 1. Cards Section - Sticky Fixed */}
+          <div className="sticky top-0 z-50 bg-[#E8DCC5] pt-8 pb-4 px-4">
+            <div className="flex flex-row justify-center items-end gap-3 md:gap-6 perspective-1000">
             {normalizedCardIds.map((_, index) => {
               const labels = [
                 t('result.timeframes.past.label', 'Past'),
@@ -289,7 +345,6 @@ const Result: React.FC = () => {
               const isBlurLocked = index > 0 && !isUnlocked
               return (
               <div key={index} className="flex flex-col items-center gap-3">
-                {/* Label */}
                 <div className="flex flex-col items-center gap-1">
                     <motion.span
                         initial={{ opacity: 0 }}
@@ -308,7 +363,6 @@ const Result: React.FC = () => {
                 </div>
 
                 <div className="relative w-24 h-36 md:w-32 md:h-48 perspective-1000">
-                    {/* Container for Card */}
                     <motion.div
                         className="w-full h-full relative preserve-3d"
                         initial={{ rotateY: 0 }}
@@ -318,20 +372,17 @@ const Result: React.FC = () => {
                         transition={{ duration: 0.8, ease: "easeInOut", delay: index * 0.8 }}
                         style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
                     >
-                        {/* Back of Card */}
                         <div 
                             className="absolute inset-0 backface-hidden rounded-xl shadow-xl overflow-hidden"
                             style={{ transform: 'translateZ(1px)' }}
                         >
                              <CardFace id={normalizedCardIds[index]} variant="slot" side="back" vertical={true} />
                         </div>
-                        {/* Front of Card */}
                         <div
                             className="absolute inset-0 backface-hidden rounded-xl shadow-xl overflow-hidden"
                             style={{ transform: 'rotateY(180deg) translateZ(1px)' }}
                         >
                              <CardFace id={normalizedCardIds[index]} variant="slot" side="front" />
-                             {/* Blur & Lock Overlay for Present & Future until unlocked */}
                              {index > 0 && (
                                  <motion.div
                                     initial={{ opacity: 0 }}
@@ -354,16 +405,20 @@ const Result: React.FC = () => {
               </div>
               )
             })}
+            </div>
           </div>
 
-          {/* 2. Content Section (Freemium Layout) */}
+          {/* 2. Scrollable Content Area */}
+          <div className="px-4 pb-8">
+
+          {/* Content Fade-in Wrapper */}
           <motion.div
+             ref={pastSectionRef}
              initial={{ opacity: 0 }}
-             animate={{ opacity: revealed[2] ? 1 : 0 }}
-             transition={{ duration: 1.0, delay: 2.4 }}
+             animate={{ opacity: textVisible ? 1 : 0 }}
+             transition={{ duration: 1.0, delay: 0.8 }}
              className="w-full relative text-center"
           >
-              {/* Simplified Title */}
               <h2
                 onClick={handleTitleClick}
                 className="text-2xl text-[#4A3B32] font-serif mb-8 tracking-wider leading-tight cursor-pointer select-none opacity-90"
@@ -371,8 +426,8 @@ const Result: React.FC = () => {
                 {t('result.title', 'The Revelation')}
               </h2>
 
-              {/* Free Content Section (PAST) */}
-              <div className="mb-12">
+              {/* 2.1 Past Section - Always Visible */}
+              <div className="mb-8">
                   <div className="text-[#3E3025] font-serif text-sm leading-8 text-left px-2">
                       <div className="flex justify-center mb-6">
                           <div className="w-16 h-[1px] bg-[#4A3B32]/20" />
@@ -383,17 +438,21 @@ const Result: React.FC = () => {
                       </p>
                   </div>
               </div>
+          </motion.div>
 
-          {/* Premium Container: CTA + Paid Content (统一样式，避免割裂) */}
-          <div className="relative mt-6">
+          {/* Premium Container: CTA + Paid Content */}
+          <motion.div 
+             initial={{ opacity: 0 }}
+             animate={{ opacity: revealed[2] ? 1 : 0 }}
+             transition={{ duration: 1.0, delay: 0.8 }}
+             className="relative mt-6"
+          >
             <div className="relative overflow-hidden rounded-2xl border border-[#D4A373]/25 bg-[#F7F2ED]/75 shadow-[0_22px_60px_-34px_rgba(43,31,22,0.5)] px-5 py-9 md:px-7 md:py-11 transition-all duration-700">
               {!isUnlocked && (
                 <div className="absolute inset-0 bg-gradient-to-b from-[#F1E6D4]/88 via-[#E8DCC5]/78 to-[#E8DCC5]/86 backdrop-blur-md z-20 pointer-events-none" />
               )}
 
-              {/* Content Switch: Mutually Exclusive Rendering to ensure correct height */}
               {!isUnlocked ? (
-                // LOCKED STATE: Promotional Content
                 <div className="relative z-30 flex flex-col items-center justify-center px-2 py-4 text-center">
                     <div className="w-full space-y-5">
                         <div className="space-y-3 font-serif text-[15px] leading-relaxed text-[#3E3025]">
@@ -410,7 +469,6 @@ const Result: React.FC = () => {
                         </p>
                         </div>
 
-                        {/* Mock Scent Card */}
                         <div className="mx-auto w-28 h-40 bg-[#F9F7F2] rounded shadow-sm border border-[#E8DCC5] flex flex-col items-center justify-center p-3 gap-2 mt-4">
                             <span className="text-[8px] tracking-widest text-[#8B5A2B] uppercase">Chloe</span>
                             <span className="text-[10px] text-[#3E3025] text-center leading-tight">Chloe Rose Tangerine</span>
@@ -423,7 +481,6 @@ const Result: React.FC = () => {
                         </div>
                     </div>
                     
-                    {/* Unlock Button */}
                     <div className="mt-10 w-full flex flex-col items-center gap-2">
                         <button
                         onClick={handleUnlock}
@@ -439,39 +496,89 @@ const Result: React.FC = () => {
                     </div>
                 </div>
               ) : (
-                // UNLOCKED STATE: Reading Content
                 <>
-                  <div className="relative z-10 space-y-10 text-[#3E3025] font-serif text-sm leading-8">
-                    <div className="flex justify-center mb-2 mt-2">
-                      <div className="w-16 h-[1px] bg-[#4A3B32]/15" />
-                    </div>
-                    <div className="space-y-8">
-                      <div>
-                        <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.present.label', 'PRESENT')}</h3>
-                        <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap">
-                          {readingData?.present?.interpretation || t('result.timeframes.present.description', 'The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.')}
-                        </p>
-                      </div>
-                      <div>
-                        <div className="flex justify-center mb-6">
-                          <div className="w-16 h-[1px] bg-[#4A3B32]/15" />
-                        </div>
-                        <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.future.label', 'FUTURE')}</h3>
-                        <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap">
-                          {readingData?.future?.interpretation || t('result.timeframes.future.description', 'Trust your intuition and take the next step with confidence. Your destiny awaits.')}
-                        </p>
-                      </div>
-                    </div>
+                  <div className="relative z-10 flex justify-center gap-2 mb-8">
+                    <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isInPastSection ? 'bg-[#4A3B32]' : 'bg-[#4A3B32]/20'}`} />
+                    <div className={`w-2 h-2 rounded-full transition-all duration-300 ${!isInPastSection && currentPageStep === 0 ? 'bg-[#4A3B32]' : 'bg-[#4A3B32]/20'}`} />
+                    <div className={`w-2 h-2 rounded-full transition-all duration-300 ${!isInPastSection && currentPageStep === 1 ? 'bg-[#4A3B32]' : 'bg-[#4A3B32]/20'}`} />
                   </div>
 
-                  {/* Next Step Button */}
-                  <div className="relative z-30 mt-10 flex flex-col items-center gap-3 pb-[env(safe-area-inset-bottom)]">
+                  <div className="relative overflow-hidden min-h-[400px]">
+                    <AnimatePresence mode='wait' custom={direction}>
+                        <motion.div
+                          key={currentPageStep}
+                          custom={direction}
+                          variants={variants}
+                          initial="enter"
+                          animate="center"
+                          exit="exit"
+                          transition={{ duration: 0.3 }}
+                          drag="x"
+                          dragConstraints={{ left: 0, right: 0 }}
+                          dragElastic={0.2}
+                          style={{ touchAction: 'pan-y' }} 
+                          onDragEnd={(_e, info) => {
+                            const swipeThreshold = 50
+                            if (info.offset.x > swipeThreshold && currentPageStep === 1) {
+                              // Swipe right: go back to Present
+                              setDirection(-1)
+                              setCurrentPageStep(0)
+                            } else if (info.offset.x < -swipeThreshold && currentPageStep === 0) {
+                              // Swipe left: go to Future
+                              setDirection(1)
+                              setCurrentPageStep(1)
+                            }
+                          }}
+                          className="relative z-10 text-[#3E3025] font-serif text-sm leading-8 cursor-grab active:cursor-grabbing"
+                        >
+                          <div className="flex justify-center mb-6">
+                            <div className="w-16 h-[1px] bg-[#4A3B32]/15" />
+                          </div>
+
+                          {currentPageStep === 0 ? (
+                            <div>
+                              <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.present.label', 'PRESENT')}</h3>
+                              <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap text-left px-2">
+                                {readingData?.present?.interpretation || t('result.timeframes.present.description', 'The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.')}
+                              </p>
+                            </div>
+                          ) : (
+                            <div>
+                              <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.future.label', 'FUTURE')}</h3>
+                              <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap text-left px-2">
+                                {readingData?.future?.interpretation || t('result.timeframes.future.description', 'Trust your intuition and take the next step with confidence. Your destiny awaits.')}
+                              </p>
+                            </div>
+                          )}
+                        </motion.div>
+                    </AnimatePresence>
+                  </div>
+
+                  <div className="relative z-30 mt-10 flex justify-center items-center gap-4 pb-[env(safe-area-inset-bottom)]">
+                    {currentPageStep === 1 && (
+                      <button
+                        onClick={() => {
+                            setDirection(-1)
+                            setCurrentPageStep(0)
+                        }}
+                        className="px-8 py-3 rounded-full font-serif tracking-widest text-[10px] uppercase transition-all duration-300 bg-transparent text-[#2B1F16]/60 border border-[#D4A373]/30 hover:border-[#D4A373]/50"
+                      >
+                        {t('common.back', 'Back')}
+                      </button>
+                    )}
                     <button
-                      onClick={() => navigate('/perfume', { state: { cardIds: normalizedCardIds, answers } })}
-                      className="group relative px-10 py-4 rounded-full font-serif tracking-widest text-[11px] uppercase transition-all duration-500 whitespace-nowrap bg-transparent text-[#2B1F16] border border-[#D4A373]/70 shadow-[0_10px_24px_-14px_rgba(43,31,22,0.35)] hover:-translate-y-0.5"
+                      onClick={() => {
+                        if (currentPageStep === 0) {
+                          setDirection(1)
+                          setCurrentPageStep(1)
+                        } else {
+                          navigate('/perfume', { state: { cardIds: normalizedCardIds, answers } })
+                        }
+                      }}
+                      className="group relative px-10 py-4 rounded-full font-serif tracking-widest text-[11px] uppercase transition-all duration-500 whitespace-nowrap bg-[#2B1F16] text-[#E8DCC5] shadow-lg hover:-translate-y-0.5"
                     >
                       <span className="relative z-10">
-                        {t('journey.cta', 'Discover Your Fragrance')}
+                        {currentPageStep === 0 ? t('common.continue', 'Continue') : t('journey.cta', 'Discover Your Fragrance')}
                       </span>
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent translate-x-[-120%] group-hover:translate-x-[120%] transition-transform duration-1000 ease-in-out rounded-full" />
                     </button>
@@ -479,9 +586,9 @@ const Result: React.FC = () => {
                 </>
               )}
             </div>
-          </div>
-
           </motion.div>
+          
+          </div>
       </div>
     </div>
   )
