@@ -96,7 +96,7 @@ const FlyingCard = ({
             }}
             transition={{ 
                 duration: 1.5,
-                ease: [0.16, 1, 0.3, 1], // Smooth easeOut
+                ease: "easeInOut", // Smooth easeInOut
             }}
             className="pointer-events-none font-serif fixed z-[99999]"
             style={{ transformOrigin: 'center center' }}
@@ -191,7 +191,7 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
       setRenderIndex(rounded)
     }
     if (rounded !== lastHapticIndex.current) {
-      if (navigator.vibrate) navigator.vibrate(5)
+      // Removed haptic feedback
       lastHapticIndex.current = rounded
     }
   })
@@ -450,13 +450,23 @@ const Draw: React.FC = () => {
 
   const filledCount = selectedCards.filter(id => id !== null).length
 
-  const handleContinue = () => {
+  const handleContinue = useCallback(() => {
     if (filledCount !== 3 || submitting) return
     setSubmitting(true)
     // Filter out nulls for the result page
     const finalIds = selectedCards.filter((id): id is number => id !== null)
     navigate('/result', { state: { cardIds: finalIds, answers: location.state?.answers } })
-  }
+  }, [filledCount, submitting, selectedCards, navigate, location.state])
+
+  // Auto-navigate when 3 cards are selected
+  React.useEffect(() => {
+      if (filledCount === 3 && !submitting && !flyingCard) {
+          const timer = setTimeout(() => {
+              handleContinue()
+          }, 800) // 0.8s delay to see the card settle
+          return () => clearTimeout(timer)
+      }
+  }, [filledCount, submitting, flyingCard, handleContinue])
 
   return (
     <div 

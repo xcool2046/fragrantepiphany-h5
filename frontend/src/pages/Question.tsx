@@ -75,7 +75,7 @@ const QuestionPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-background text-text px-4 py-12 pb-32">
+    <div className="min-h-screen w-full bg-background text-text px-4 py-12 pb-48">
       <div className="max-w-lg mx-auto">
         <h2 className="text-3xl text-text font-serif text-center mb-8">
           {page === 0 ? t('question.page1Title') : t('question.page2Title')}
@@ -94,7 +94,7 @@ const QuestionPage: React.FC = () => {
                 key={q.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.2 }}
+                transition={{ duration: 0.8, delay: idx * 0.4 }}
                 className="glass-panel p-8 border-white/60 shadow-card"
               >
                 <h3 className="text-xl font-serif mb-6 text-text">

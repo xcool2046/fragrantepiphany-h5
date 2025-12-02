@@ -94,6 +94,8 @@ const Result: React.FC = () => {
   }, [matchStatus])
 
   useEffect(() => {
+    if (matchStatus !== 'success') return
+
     let isMounted = true;
 
     const revealSequence = async () => {
@@ -102,22 +104,23 @@ const Result: React.FC = () => {
             setTextVisible(false);
         }
 
-        await new Promise(r => setTimeout(r, 800));
+        // Wait for Wipe transition (1.25s) + small buffer
+        await new Promise(r => setTimeout(r, 1500));
         if (!isMounted) return;
 
         setRevealed(() => [true, false, false]);
         
-        await new Promise(r => setTimeout(r, 600));
+        await new Promise(r => setTimeout(r, 800));
         if (!isMounted) return;
 
         setRevealed(() => [true, true, false]);
 
-        await new Promise(r => setTimeout(r, 600));
+        await new Promise(r => setTimeout(r, 800));
         if (!isMounted) return;
         
         setRevealed(() => [true, true, true]);
 
-        await new Promise(r => setTimeout(r, 800));
+        await new Promise(r => setTimeout(r, 1000));
         if (!isMounted) return;
         setTextVisible(true);
     }
@@ -127,7 +130,7 @@ const Result: React.FC = () => {
     return () => {
         isMounted = false;
     }
-  }, []);
+  }, [matchStatus]);
 
   const normalizedCardIds = cardIds
 
@@ -474,9 +477,9 @@ const Result: React.FC = () => {
 
                         <div className="mx-auto w-28 h-40 bg-[#F9F7F2] rounded shadow-sm border border-[#E8DCC5] flex flex-col items-center justify-center p-3 gap-2 mt-4">
                             <span className="text-[8px] tracking-widest text-[#8B5A2B] uppercase">Chloe</span>
-                            <span className="text-[10px] text-[#3E3025] text-center leading-tight">Chloe Rose Tangerine</span>
+                            <span className="text-[14px] text-[#3E3025] text-center leading-tight font-medium">Chloe Rose Tangerine</span>
                             <div className="w-4 h-[1px] bg-[#D4A373]/30 my-1" />
-                            <span className="text-[8px] text-[#8B5A2B]/60 font-mono">abcdfddf</span>
+                            <span className="text-[9px] text-[#8B5A2B]/60 font-serif italic">"abcdfddf"</span>
                             <div className="mt-2 text-[8px] text-[#3E3025]">
                                 <span className="text-[#8B5A2B]/60 text-[6px] uppercase tracking-wider block text-center mb-0.5">FOR</span>
                                 monica

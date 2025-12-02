@@ -16,8 +16,9 @@
   --color-text-lighter: rgba(43, 31, 22, 0.4);
 
   /* Fonts */
-  --font-serif: 'Playfair Display', serif;
+  --font-serif: 'Playfair Display', 'Noto Serif SC', serif;
   --font-sans: 'Inter', sans-serif;
+  --font-script: 'Rouge Script', cursive;
 
   /* Glassmorphism depth */
   --glass-blur-strong: 28px;

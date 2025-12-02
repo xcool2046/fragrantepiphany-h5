@@ -30,11 +30,10 @@ const Breath: React.FC = () => {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center px-6 text-center w-full max-w-md">
         
-        {/* Icon */}
+        {/* Icon - Static to appear with background via Wipe, with subtle float */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           className="mb-12"
         >
           <img 
@@ -58,7 +57,7 @@ const Breath: React.FC = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.5 }}
+            transition={{ duration: 1, delay: 3.0 }}
             className="text-xl md:text-2xl tracking-wide font-medium text-[#E5C4A3]"
           >
             {t('breath.p2')}
@@ -67,7 +66,7 @@ const Breath: React.FC = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 2.5 }}
+            transition={{ duration: 1, delay: 5.5 }}
             className="text-lg md:text-xl tracking-wider text-[#E5C4A3] leading-relaxed mt-4"
           >
             {t('breath.p3')}
@@ -78,7 +77,7 @@ const Breath: React.FC = () => {
         <motion.button
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 3.5 }}
+          transition={{ duration: 1, delay: 8.0 }}
           onClick={handleContinue}
           className="px-10 py-3 rounded-full bg-[#5C4033]/80 border border-[#D4A373]/30 text-[#D4A373] uppercase tracking-[0.2em] text-sm hover:bg-[#5C4033] hover:text-[#F7F2ED] transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
         >

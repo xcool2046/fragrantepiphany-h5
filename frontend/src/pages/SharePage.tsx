@@ -81,13 +81,13 @@ const SharePage: React.FC = () => {
                {brandName && (
                  <p className="text-xs uppercase tracking-[0.2em] text-[#A87B51] font-medium">{brandName}</p>
                )}
-               <h2 className="text-2xl font-serif leading-tight">{perfumeName}</h2>
+               <h2 className="text-3xl font-serif leading-tight">{perfumeName}</h2>
                <div className="w-12 h-[1px] bg-[#2B1F16]/20 my-2" />
             </div>
 
             {/* Middle Section: Quote */}
             <div className="flex-1 flex items-center justify-center">
-                <p className="text-sm font-serif italic text-center leading-loose opacity-80 px-2">
+                <p className="text-sm font-serif italic text-center leading-loose opacity-60 px-2 text-[#2B1F16]/80">
                   &quot;{quote}&quot;
                 </p>
             </div>
@@ -95,8 +95,14 @@ const SharePage: React.FC = () => {
             {/* Bottom Section: User Name */}
             <div className="flex flex-col items-center text-center mb-8">
                 <p className="text-[10px] uppercase tracking-widest text-[#A87B51] mb-2">{t('share.for', 'For')}</p>
-                <p className="text-xl font-serif border-b border-[#2B1F16]/30 pb-1 min-w-[100px]">
+                <p className="text-2xl font-serif border-b border-[#2B1F16]/30 pb-1 min-w-[100px]">
                   {userName || '_______'}
+                </p>
+                <p className="text-[9px] text-[#A87B51]/60 mt-2 font-sans tracking-wide">
+                  {t('share.sub', 'Today you are learning to love yourself in a new way')}
+                </p>
+                <p className="text-[8px] text-[#A87B51]/40 mt-4 font-sans tracking-wider">
+                  @Fragrant Epiphany . Scent Message for this chapter
                 </p>
             </div>
             

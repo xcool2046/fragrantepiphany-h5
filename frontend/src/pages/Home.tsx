@@ -53,7 +53,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* --- Content Layer: Centered Layout --- */}
-      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-end text-center pb-[65vw]">
+      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-end text-center pb-[40vw]">
 
         {/* Title Group with Fixed Height Container */}
         <div className="mb-3 md:mb-4 flex flex-col items-center relative">
@@ -119,7 +119,7 @@ const Home: React.FC = () => {
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+            transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => navigate('/onboarding')}

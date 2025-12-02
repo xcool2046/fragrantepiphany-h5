@@ -140,23 +140,23 @@ async function bootstrap() {
           }
 
           if (row) {
-              const colOffset = file.category === 'Self' ? 2 : 0; 
+              const enOffset = file.category === 'Self' ? 2 : 0; 
               const clean = (txt: any) => txt ? String(txt).trim() : '';
 
               // Update Past
               await interpRepo.update(
                   { card_name: correctName, category: file.category, position: 'Past' },
-                  { interpretation_zh: clean(row[2 + colOffset]), interpretation_en: clean(row[6 + colOffset]) }
+                  { interpretation_zh: clean(row[2]), interpretation_en: clean(row[6 + enOffset]) }
               );
               // Update Present
               await interpRepo.update(
                   { card_name: correctName, category: file.category, position: 'Present' },
-                  { interpretation_zh: clean(row[3 + colOffset]), interpretation_en: clean(row[7 + colOffset]) }
+                  { interpretation_zh: clean(row[3]), interpretation_en: clean(row[7 + enOffset]) }
               );
               // Update Future
               await interpRepo.update(
                   { card_name: correctName, category: file.category, position: 'Future' },
-                  { interpretation_zh: clean(row[4 + colOffset]), interpretation_en: clean(row[8 + colOffset]) }
+                  { interpretation_zh: clean(row[4]), interpretation_en: clean(row[8 + enOffset]) }
               );
               
           } else {

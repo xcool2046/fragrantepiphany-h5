@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
+import WipeTransition from './components/WipeTransition'
 
 // Lazy load pages
 const Home = React.lazy(() => import('./pages/Home'))
@@ -23,9 +24,11 @@ const PayCallback = React.lazy(() => import('./pages/PayCallback'))
 
 // Wrapper for smooth page transitions
 const PageWrapper = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-  <div className={`w-full min-h-screen ${className || ''}`}>
-    {children}
-  </div>
+  <WipeTransition>
+    <div className={`w-full min-h-screen ${className || ''}`}>
+      {children}
+    </div>
+  </WipeTransition>
 )
 
 const AppRoutes: React.FC = () => {
