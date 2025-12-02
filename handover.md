@@ -1,63 +1,40 @@
 ## 📊 当前进度快照 (Progress Snapshot)
-- **阶段**：UI 细节打磨与内容更新（Post-Deployment Polish）。重点修复了 Onboarding 页面的视觉 Bug、统一了按钮样式、优化了页面转场动画，并完成了多语言文案更新。
-- **已验证功能**：
-  1. **Onboarding 页面修复**：移除了导致文字重叠的背景图引用；按钮样式已统一为胶囊型（Pill Style）；按钮 Hover 颜色已修正。
-  2. **全局字体修复**：`Rouge Script` 字体已正确配置进 Tailwind，卡牌数字字体显示正常。
-  3. **页面转场优化**：全局转场动画已从 "Wipe" 改为 "Fade + Slide"（仿 Onboarding 点击效果），体验更流畅。
-  4. **Tailwind 配置恢复**：修复了意外丢失的 `colors` 配置，全站自定义颜色（`bg-text`, `bg-primary`）恢复正常。
+- **当前阶段**：UI 交互精细化打磨（重点优化抽卡动画体验）与 后端图片上传优化。
+- **已确认可用功能**：
+  - **抽卡页动画 (Draw.tsx)**：已实现“无缝、无震动、无缩放、无闪烁”的完美飞入效果（代码逻辑已修改，待浏览器最终肉眼验证）。
+  - **结果页 (Result.tsx)**：已添加 API 错误处理 UI（重试按钮）。
+  - **后台图片上传**：已集成 `sharp` 进行图片自动压缩与 WebP 转换（代码已合入）。
 
 ## 💡 关键技术方案与技巧 (Key Solutions & Techniques)
-- **全局页面转场 (Page Transition)**
-  - **方案**：使用 `framer-motion` 在 `WipeTransition.tsx` 中实现。
-  - **逻辑**：利用 `AnimatePresence` 包裹 `Routes`。当前效果为 `initial={{ opacity: 0, x: 20 }}` -> `animate={{ opacity: 1, x: 0 }}`，模拟“点击继续”的轻量滑动感。
-  - **注意**：不要改回 `clipPath` 方案，用户明确不喜欢那个“黑屏/擦除”效果。
+### 1. 抽卡动画“绝对无缝”方案 (Draw.tsx)
+- **场景**：卡牌从飞入状态切换到落位状态时，出现微小震动、尺寸收缩、阴影突变和闪烁。
+- **解决方案**：
+  - **消除震动 (Sub-pixel)**：`FlyingCard` 目标坐标强制使用 `Math.round()` 取整，对齐物理像素。
+  - **消除缩放 (Box-sizing)**：卡槽容器尺寸设为 `w-[84px] h-[124px]`（含 2px 边框），确保内部内容区域精确为 `80x120px`，与飞行卡牌尺寸 1:1 匹配，避免 `border-box` 导致的 4px 挤压。
+  - **消除突变 (Shadow)**：移除 `FlyingCard` 的 `shadow-2xl`，与落位后的扁平风格保持一致。
+  - **消除闪烁 (Flash)**：**移除**落位卡牌 (`SlotCard`) 的 `AnimatePresence` 和 `motion.div` 包装，改用原生 `div`，确保状态切换时 DOM 瞬间渲染，无初始化延迟。
+  - **消除消失感**：卡槽边框 (`border-[#D4A373]/40`) 设置为永久可见，不随卡牌进入而消失。
 
-- **塔罗数据修复 (Tarot Data Fix)**
-  - **场景**：Excel 源数据中 "Self" 类别的英文列位置与其他类别不同，导致导入错位。
-  - **方案**：`backend/scripts/fix_tarot_data_v2.ts` 中硬编码了 `enOffset` 逻辑 (`const enOffset = file.category === 'Self' ? 2 : 0;`)。
-  - **关键**：每次部署都会自动运行此脚本 (`deploy.sh`)，**严禁**在未确认数据源变更的情况下修改此 Offset 逻辑。
-
-- **字体系统 (Typography)**
-  - **方案**：Google Fonts 在 `index.html` 引入，Tailwind 在 `tailwind.config.cjs` 扩展。
-  - **关键配置**：必须在 `theme.extend.fontFamily` 中保留 `script: ['"Rouge Script"', 'cursive']`，否则 `CardFace.tsx` 中的 `font-script` 类名失效。
-
-- **多语言内容 (Localization)**
-  - **方案**：`react-i18next`。
-  - **约定**：所有文案必须提取到 `frontend/src/locales/{en,zh}.json`。禁止在组件内硬编码文本（除临时调试外）。
+### 2. 图片上传优化 (Backend)
+- **场景**：用户上传大图导致加载慢、存储浪费。
+- **解决方案**：引入 `sharp` 库，在 `admin.controller.ts` 中拦截上传流，强制 Resize 到宽 800px 并转为 WebP 格式 (80% 质量) 后再保存。
 
 ## 🚧 遗留难点与待办 (Pending Issues)
-- **生产环境验证 (Production Verification)**
-  - **状态**：代码已修复，待部署验证。
-  - **关注点**：
-    1. 检查 `Onboarding` 页背景是否干净（无文字重影）。
-    2. 检查 `Question` 页底部按钮是否为胶囊型且居中（非全宽条）。
-    3. 检查卡牌数字是否为手写体 (`Rouge Script`)。
-  - **查阅**：直接访问 H5 页面或查看 `frontend/src/pages/Onboarding.tsx`。
-
-- **"Self" 类别塔罗牌数据 (Self Category Data)**
-  - **状态**：脚本已更新，理论上已修复。
-  - **验证**：需在 Admin Panel 或数据库确认 "Self" 类别的英文解释 (`interpretation_en`) 是否不再是错位的中文或乱码。
-  - **查阅**：`backend/scripts/inspect_tarot_db.ts` 可用于快速抽检。
+- **[待验证] 抽卡动画最终效果**
+  - **状态**：代码已修改，等待用户在浏览器中进行“肉眼验收”。
+  - **关注点**：确认是否还有任何毫秒级的闪烁或 1px 的位移。
+- **[已验证] 生产环境 Sharp 依赖**
+  - **状态**：已通过本地 Docker 构建验证 (`node:20-alpine` + `npm ci`)，`sharp` 安装正常。
 
 ## 📂 核心文件结构 (Core Directory Structure)
-- `frontend/`
-  - `src/AppRoutes.tsx`           # 路由定义，包含全局 AnimatePresence
-  - `src/components/WipeTransition.tsx` # 全局页面转场组件 (Fade+Slide)
-  - `src/pages/Onboarding.tsx`    # 引导页 (已修复背景与按钮)
-  - `src/pages/Question.tsx`      # 问卷页 (已修复按钮样式)
-  - `src/components/CardFace.tsx` # 卡牌组件 (字体应用点)
-  - `tailwind.config.cjs`         # Tailwind 配置 (含 colors 和 fonts 关键定义)
-  - `src/locales/`                # 多语言 JSON 文件
-- `backend/`
-  - `scripts/fix_tarot_data_v2.ts` # 核心数据修复脚本 (含 Offset 逻辑)
-  - `src/interp/`                 # 解读模块 (Controller/Service)
-- `deploy.sh`                     # 部署脚本 (含自动执行数据修复)
+- `frontend/src/pages/Draw.tsx` # 抽卡核心页面，包含 FlyingCard 动画与 Slot 逻辑（本次修改重点）
+- `frontend/src/pages/Result.tsx` # 结果展示页，含翻牌动画与错误重试逻辑
+- `frontend/src/components/CardFace.tsx` # 卡牌正反面渲染组件，控制卡牌尺寸与图片加载
+- `backend/src/admin/admin.controller.ts` # 后台管理接口，包含图片上传优化逻辑
+- `backend/package.json` # 后端依赖，新增了 sharp
 
 ## ➡️ 下一步指令 (Next Action)
-1. **优先检查**：`frontend/tailwind.config.cjs`，确保 `colors` 和 `fontFamily` (含 `script`) 配置块完整存在。这是最近一次回归的根源。
-2. **部署验证**：运行 `deploy.sh` 部署最新代码到生产环境。
-3. **视觉验收**：
-   - 打开 H5，走一遍 Onboarding -> Question -> Breath -> Draw 流程。
-   - 重点确认：Onboarding 无重影、Question 按钮样式正常、页面切换流畅。
-4. **数据抽检**：如果时间允许，运行 `npx ts-node backend/scripts/inspect_tarot_db.ts` 确认 "Self" 类别数据正确性。
-5. **禁止操作**：**不要**随意修改 `fix_tarot_data_v2.ts` 中的 `enOffset` 逻辑，除非你完全理解了 Excel 源文件的列结构变化。
+1. **优先验证动画**：直接打开浏览器访问抽卡页，选择 3 张牌，仔细观察卡牌落入卡槽的瞬间。标准是“像物理物体一样移动过去，没有任何视觉突变”。
+2. **检查构建状态**：运行后端构建或启动命令，确保 `sharp` 安装无误且能正常处理图片上传。
+3. **不要回滚动画逻辑**：目前的 `Draw.tsx` 是经过多次微调（坐标取整、尺寸补偿、移除动画库包装）的最终版本，**切勿**为了“加特效”而重新引入 `layoutId` 或 `AnimatePresence`，这会带回震动和闪烁。
+4. **推进部署**：确认前端无误后，执行 `deploy.sh` 进行部署。
