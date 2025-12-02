@@ -95,16 +95,14 @@ async function seed() {
     ];
 
     const files = [
-      { name: '事业正式.xlsx', category: 'Career' },
-      { name: '感情正式.xlsx', category: 'Love' },
-      { name: '自我正式.xlsx', category: 'Self' },
-    ];
+    { name: '事业正式.xlsx', category: 'Career' },
+    { name: '感情正式.xlsx', category: 'Love' },
+    { name: '自我正式.xlsx', category: 'Self' }
+  ];
 
-    const baseDir =
-      process.env.ASSETS_DIR ||
-      (fs.existsSync('/home/code/h5-web/assets/excel_files')
-        ? '/home/code/h5-web/assets/excel_files' // Local Dev specific
-        : path.join(__dirname, '../../assets/excel_files')); // Production
+  // Use excel_files directory
+  const assetsDir = process.env.ASSETS_DIR || path.join(__dirname, '../../assets');
+  const baseDir = path.join(assetsDir, 'excel_files');
 
     for (const fileInfo of files) {
       const filePath = path.join(baseDir, fileInfo.name);
@@ -116,74 +114,99 @@ async function seed() {
       }
 
       const workbook = XLSX.readFile(filePath);
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      const rows: any[] = XLSX.utils.sheet_to_json(sheet);
+      const sheet = workbook.Sheets[workbook.SheetNames[0]];
+      const data = XLSX.utils.sheet_to_json(sheet, { header: 1 }) as any[][];
+
+      console.log(`Processing ${fileInfo.name}, found ${data.length} rows`);
 
       let count = 0;
-      for (const row of rows) {
-          // Map Card Name
-          // Try English Name first (Col 0 / __EMPTY) as it matches our hardcoded list
-          let rawNameCandidates = [
-              row['__EMPTY'],      // Col 0 (English)
-              row['__EMPTY_1'],    // Col 1 (Chinese)
-              row['name'], 
-              row['card'], 
-              row['name_en']
+      for (let r = 0; r < data.length; r++) {
+          const row = data[r];
+          if (!row || row.length < 5) continue;
+
+          // Column 0: English Name (Identity)
+          const rawName = String(row[0] || '').trim();
+          if (!rawName || rawName.toLowerCase() === 'name') continue;
+
+          // Match Card Name using startsWith logic (same as fix script)
+          let cardName: string | undefined;
+          
+          // Check Majors
+          const MAJORS = [
+            'The Fool', 'The Magician', 'The High Priestess', 'The Empress', 'The Emperor',
+            'The Hierophant', 'The Lovers', 'The Chariot', 'Strength', 'The Hermit',
+            'Wheel of Fortune', 'Justice', 'The Hanged Man', 'Death', 'Temperance',
+            'The Devil', 'The Tower', 'The Star', 'The Moon', 'The Sun',
+            'Judgement', 'The World'
+          ];
+          const SUITS = ['Swords', 'Pentacles', 'Wands', 'Cups'];
+          const RANKS = [
+            'Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
+            'Page', 'Knight', 'Queen', 'King'
           ];
 
-          let cardName: string | undefined;
-
-          for (const raw of rawNameCandidates) {
-              if (!raw || typeof raw !== 'string') continue;
-              const cleanRaw = raw.trim();
-              if (cleanRaw === 'name' || cleanRaw === 'Name') continue;
-
-              // 1. Try Exact/Fuzzy Match against Hardcoded English List
-              const lowerRaw = cleanRaw.toLowerCase();
-              const match = CARD_NAMES.find(n => n.toLowerCase() === lowerRaw);
-              if (match) {
-                  cardName = match;
-                  break; 
-              }
-
-              // 2. Try DB Map (Chinese -> English)
-              const mapped = cardMap.get(cleanRaw);
-              if (mapped) {
-                  cardName = mapped;
-                  break;
-              }
-              
-              // 3. Try Manual Map
-              const cleanName = cleanRaw.replace(/牌$/, '');
-              if (manualMap[cleanName]) {
-                  cardName = manualMap[cleanName];
-                  break;
-              }
-
-              // 4. Try Normalized Chinese
-              const normalized = normalizeChineseName(cleanRaw);
-              const normMapped = cardMap.get(normalized) || cardMap.get(normalized + '牌');
-              if (normMapped) {
-                  cardName = normMapped;
+          for (const name of MAJORS) {
+              if (rawName.toLowerCase().startsWith(name.toLowerCase())) {
+                  cardName = name;
                   break;
               }
           }
-          
           if (!cardName) {
-              // console.warn(`Skipping row, could not identify card from: ${rawNameCandidates.filter(x=>x).join(', ')}`);
+              for (const suit of SUITS) {
+                  for (const rank of RANKS) {
+                      const name = `${rank} of ${suit}`;
+                      if (rawName.toLowerCase().startsWith(name.toLowerCase())) {
+                          cardName = name;
+                          break;
+                      }
+                  }
+                  if (cardName) break;
+              }
+          }
+
+          if (!cardName) {
+              // console.warn(`Skipping row ${r}: Could not identify card from '${rawName}'`);
               continue;
           }
 
-          // Map Data
-          const sentenceCn = row['sentence_cn'] || row['sentence'] || row['summary'];
-          const sentenceEn = row['sentence_en_new'] || row['sentence_en'] || row['summary_en'];
+          if (fileInfo.category === 'Career' && (cardName === 'The Fool' || cardName === 'The Magician' || cardName === 'The World')) {
+              console.log(`!!! DEBUG CAREER ${cardName.toUpperCase()} !!!`);
+              console.log('Row:', JSON.stringify(row));
+          }
 
+          // Extract Data (Columns based on fix script observation)
+          // Fix script: 
+          // Past: ZH=2, EN=6
+          // Present: ZH=3, EN=7
+          // Future: ZH=4, EN=8
+          // Sentence: ZH=5, EN=9 (Recommendation)
+          
+          // Wait, let's verify columns from fix script logic
+          // fix script: 
+          // Past: row[2 + colOffset], row[6 + colOffset]
+          // colOffset defaults to 0.
+          
+          const pastZh = String(row[2] || '');
+          const presentZh = String(row[3] || '');
+          const futureZh = String(row[4] || '');
+          const sentenceZh = String(row[5] || '');
+          
+          const pastEn = String(row[6] || '');
+          const presentEn = String(row[7] || '');
+          const futureEn = String(row[8] || '');
+          const sentenceEn = String(row[9] || '');
+
+          // Insert for each position
           const positions = ['Past', 'Present', 'Future'];
-          for (const pos of positions) {
-              const posKey = pos.toLowerCase();
-              const contentCn = row[posKey] || row[posKey + '_cn'];
-              const contentEn = row[posKey + '_en_new'] || row[posKey + '_en'];
+          const contentsZh = [pastZh, presentZh, futureZh];
+          const contentsEn = [pastEn, presentEn, futureEn];
+
+          for (let i = 0; i < 3; i++) {
+              const pos = positions[i];
+              const contentZh = contentsZh[i];
+              const contentEn = contentsEn[i];
+              
+              if (!contentZh && !contentEn) continue;
 
               // Check existing
               const existing = await AppDataSource.query(
@@ -197,14 +220,14 @@ async function seed() {
                       "recommendation_zh" = $1, "recommendation_en" = $2, 
                       "interpretation_zh" = $3, "interpretation_en" = $4
                      WHERE "id" = $5`,
-                    [sentenceCn, sentenceEn, contentCn, contentEn, existing[0].id]
+                    [sentenceZh, sentenceEn, contentZh, contentEn, existing[0].id]
                   );
               } else {
                   await AppDataSource.query(
                     `INSERT INTO "tarot_interpretations" 
                       ("card_name", "category", "position", "recommendation_zh", "recommendation_en", "interpretation_zh", "interpretation_en")
                      VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-                    [cardName, fileInfo.category, pos, sentenceCn, sentenceEn, contentCn, contentEn]
+                    [cardName, fileInfo.category, pos, sentenceZh, sentenceEn, contentZh, contentEn]
                   );
               }
           }

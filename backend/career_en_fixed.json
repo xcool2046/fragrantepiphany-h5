@@ -1,0 +1,548 @@
+[
+  {
+    "card": "The Fool",
+    "past_en": "The Fool in the past suggests a time of 'new beginnings and risks.' You may have started a new job, launched a business, or entered a new field with little experience but lots of enthusiasm. It was a time of taking a leap of faith.\nYou learned the value of 'courage.' You realized that sometimes you have to jump before you are ready. You learned to trust your instincts.\nThis card also speaks of 'unconventionality.' You took a path less traveled.\nYour soul is an 'innovator.' You know that every great journey starts with a single step.",
+    "present_en": "The Fool appearing now signals 'opportunity.' A new career path is opening up. You may be feeling the urge to quit your job and start something new. You are full of fresh ideas.\nYou are being asked to 'be bold.' Don't be afraid to look foolish. Take the risk.\nThis is a time for 'creativity.' Think outside the box.",
+    "future_en": "The Fool in the future promises 'adventure.' You will embark on a new professional journey that is exciting and unpredictable. You will find success by following your passion.\nTo welcome this, practice 'openness' now. Be willing to learn. Your future holds a career that is anything but boring.",
+    "sentence_en": "Trust your instincts and take a leap of faith; a new professional adventure awaits."
+  },
+  {
+    "card": "The Magician",
+    "past_en": "The Magician in the past suggests a time of 'skill and manifestation.' You were at the top of your game. You had the skills, the resources, and the confidence to get the job done. You were a master of your craft.\nYou learned the value of 'focus.' You realized that you can create your own reality. You learned to use your talents.\nThis card also speaks of 'communication.' You were a persuasive speaker.\nYour soul is a 'creator.' You know that work is magic.",
+    "present_en": "The Magician appearing now signals 'potential.' You have everything you need to succeed. You are feeling confident and capable. You are ready to make things happen.\nYou are being asked to 'take action.' Don't just dream it, do it. Use your skills.\nThis is a time for 'concentration.' Focus your will on your goal.",
+    "future_en": "The Magician in the future promises 'success.' You will achieve your career goals through sheer willpower and skill. You will be recognized as an expert in your field.\nTo reach this, practice 'mastery' now. Hone your craft. Your future holds a career where you call the shots.",
+    "sentence_en": "You have the tools and talent to succeed; focus your will and make it happen."
+  },
+  {
+    "card": "The High Priestess",
+    "past_en": "The High Priestess in the past suggests a time of 'intuition and hidden knowledge.' You may have been working behind the scenes, or in a field that required deep research or understanding. You trusted your gut more than the data.\nYou learned the value of 'silence.' You realized that sometimes the best move is to wait and observe. You learned to keep your counsel.\nThis card also speaks of 'mentorship.' You may have had a wise female mentor.\nYour soul is a 'sage.' You know that wisdom is power.",
+    "present_en": "The High Priestess appearing now signals 'mystery.' There may be things going on at work that you are not aware of. Trust your intuition. If something feels off, it probably is.\nYou are being asked to 'look deeper.' Don't take things at face value. Read between the lines.\nThis is a time for 'patience.' Wait for the right moment to act.",
+    "future_en": "The High Priestess in the future promises 'insight.' You will gain a deeper understanding of your career path. You may find success in a field related to psychology, research, or spirituality.\nTo welcome this, practice 'listening' now. Listen to your inner voice. Your future holds a career that honors your wisdom.",
+    "sentence_en": "Trust your intuition in business; hidden knowledge is your competitive advantage."
+  },
+  {
+    "card": "The Empress",
+    "past_en": "The Empress in the past suggests a time of 'creativity and abundance.' You were in a job that allowed you to be creative and productive. You may have birthed a new project or business. It was a time of growth and prosperity.\nYou learned the value of 'nurturing.' You realized that businesses, like plants, need care to grow. You learned to be a supportive leader.\nThis card also speaks of 'beauty.' You may have worked in the arts or design.\nYour soul is a 'creator.' You know that work should be fruitful.",
+    "present_en": "The Empress appearing now signals 'growth.' Your career is blooming. You are full of creative ideas. You are attracting success and abundance.\nYou are being asked to 'create.' Bring your ideas to life. Be generous with your time and talents.\nThis is a time for 'harvest.' Enjoy the fruits of your labor.",
+    "future_en": "The Empress in the future promises 'prosperity.' You will find a career that is both financially rewarding and creatively fulfilling. You will build something beautiful.\nTo reach this, practice 'abundance' now. Believe that there is enough for everyone. Your future holds a career that feeds your soul.",
+    "sentence_en": "Nurture your projects with creativity; abundance flows where energy goes."
+  },
+  {
+    "card": "The Emperor",
+    "past_en": "The Emperor in the past suggests a time of 'structure and authority.' You were in a position of leadership, or you worked in a highly structured environment. You valued discipline, order, and rules.\nYou learned the value of 'organization.' You realized that success requires a solid foundation. You learned to be a boss.\nThis card also speaks of 'ambition.' You climbed the ladder.\nYour soul is a 'leader.' You know that order brings success.",
+    "present_en": "The Emperor appearing now signals 'leadership.' You are stepping into a position of authority. You need to be firm but fair. You are building a structure for your future success.\nYou are being asked to 'take charge.' Set clear goals. Make a plan. Stick to it.\nThis is a time for 'discipline.' Do the work.",
+    "future_en": "The Emperor in the future promises 'power.' You will achieve a high level of success and authority in your field. You will build an empire.\nTo welcome this, practice 'responsibility' now. Own your actions. Your future holds a career where you rule.",
+    "sentence_en": "Build a solid foundation with discipline; structure leads to long-term success."
+  },
+  {
+    "card": "The Hierophant",
+    "past_en": "The Hierophant in the past suggests a time of 'learning and conformity.' You may have worked in a large corporation, a school, or a traditional institution. You followed the rules and learned from established mentors. It was a time of education.\nYou learned the value of 'tradition.' You realized that established systems exist for a reason. You learned to be a team player.\nThis card also speaks of 'mentorship.' You had a guide.\nYour soul is a 'student.' You know that knowledge is passed down.",
+    "present_en": "The Hierophant appearing now signals 'education.' You may be taking a course, attending a workshop, or seeking a mentor. You are looking for guidance and structure in your career.\nYou are being asked to 'follow the rules.' This is not the time to be a rebel. Stick to the protocol.\nThis is a time for 'conformity.' Fit in to get ahead.",
+    "future_en": "The Hierophant in the future promises 'expertise.' You will become a teacher or a mentor in your field. You will be respected for your knowledge and experience.\nTo reach this, practice 'dedication' now. Master the basics. Your future holds a career where you are the authority.",
+    "sentence_en": "Seek wisdom from tradition; mentorship and learning pave the way to expertise."
+  },
+  {
+    "card": "The Lovers",
+    "past_en": "The Lovers in the past suggests a time of 'partnership and choice.' You may have formed a business partnership or had to make a major career decision between two paths. It was a time of alignment and shared values.\nYou learned the value of 'collaboration.' You realized that you can achieve more with a partner. You learned to negotiate.\nThis card also speaks of 'passion.' You loved your work.\nYour soul is a 'partner.' You know that business is about relationships.",
+    "present_en": "The Lovers appearing now signals 'alignment.' You are finding a job that aligns with your values. You may be considering a partnership or a merger. You are feeling passionate about your work.\nYou are being asked to 'choose wisely.' Make career decisions that feel right in your heart. Don't sell your soul.\nThis is a time for 'harmony.' Balance work and life.",
+    "future_en": "The Lovers in the future promises 'fulfillment.' You will find a career that you truly love. You will work with people who share your vision.\nTo welcome this, practice 'authenticity' now. Be true to yourself. Your future holds a career that feels like a calling.",
+    "sentence_en": "Align your career with your values; passion and partnership lead to fulfillment."
+  },
+  {
+    "card": "The Chariot",
+    "past_en": "The Chariot in the past suggests a time of 'ambition and drive.' You were focused on your career goals and let nothing stand in your way. You overcame obstacles through sheer willpower. It was a time of rapid advancement.\nYou learned the value of 'determination.' You realized that success goes to the persistent. You learned to control your destiny.\nThis card also speaks of 'travel.' You may have traveled for work.\nYour soul is a 'driver.' You know that you are in the driver's seat.",
+    "present_en": "The Chariot appearing now signals 'momentum.' Your career is moving forward. You are taking charge. You are determined to succeed.\nYou are being asked to 'stay focused.' Don't get distracted. Keep your eyes on the road. Be aggressive if necessary.\nThis is a time for 'victory.' Go for the win.",
+    "future_en": "The Chariot in the future promises 'triumph.' You will achieve your career ambitions. You will overcome any competition.\nTo reach this, practice 'discipline' now. Stay the course. Your future holds a career where you are a winner.",
+    "sentence_en": "Charge forward with determination; focus and willpower lead to professional victory."
+  },
+  {
+    "card": "Strength",
+    "past_en": "Strength in the past suggests a time of 'resilience and patience.' You dealt with difficult colleagues or challenging projects with grace. You showed inner strength and endurance. You didn't give up.\nYou learned the value of 'soft power.' You realized that you can lead without shouting. You learned to control your temper.\nThis card also speaks of 'courage.' You stood up for yourself.\nYour soul is a 'lion.' You know that true strength is quiet.",
+    "present_en": "Strength appearing now signals 'endurance.' You are facing a test at work. You need to be patient and persistent. You have the inner resources to handle this.\nYou are being asked to 'be confident.' Believe in yourself. Don't let others intimidate you.\nThis is a time for 'compassion.' Be kind to difficult people.",
+    "future_en": "Strength in the future promises 'respect.' You will be admired for your resilience and leadership. You will handle any challenge with ease.\nTo welcome this, practice 'patience' now. Trust your strength. Your future holds a career where you are a pillar of support.",
+    "sentence_en": "Master your challenges with grace; inner strength is your greatest professional asset."
+  },
+  {
+    "card": "The Hermit",
+    "past_en": "The Hermit in the past suggests a time of 'research and solitude.' You may have worked alone, or taken time off to study or reflect on your career path. It was a time of deep thinking and planning.\nYou learned the value of 'introspection.' You realized that the answers are within you. You learned to work independently.\nThis card also speaks of 'expertise.' You became a specialist.\nYour soul is a 'thinker.' You know that great ideas come from silence.",
+    "present_en": "The Hermit appearing now signals 'reflection.' You are rethinking your career. You may feel the need to step back from the rat race. You are looking for deeper meaning in your work.\nYou are being asked to 'look within.' What do you really want to do? Don't follow the crowd.\nThis is a time for 'planning.' Map out your future.",
+    "future_en": "The Hermit in the future promises 'wisdom.' You will become a thought leader or a consultant. You will be sought after for your unique insights.\nTo reach this, practice 'authenticity' now. Follow your own path. Your future holds a career that honors your individuality.",
+    "sentence_en": "Take time to reflect on your path; solitude brings clarity to your career vision."
+  },
+  {
+    "card": "Wheel of Fortune",
+    "past_en": "The Wheel of Fortune in the past suggests a time of 'change and opportunity.' You may have experienced a sudden job change, a promotion, or a layoff. It was a time when external forces played a big role in your career.\nYou learned the value of 'adaptability.' You realized that the only constant is change. You learned to roll with the punches.\nThis card also speaks of 'luck.' You were in the right place at the right time.\nYour soul is a 'gambler.' You know that life is a cycle.",
+    "present_en": "The Wheel of Fortune appearing now signals 'movement.' Your career is in flux. Things are changing, and you need to be ready to pivot. A new opportunity is coming your way.\nYou are being asked to 'be flexible.' Don't resist the change. Embrace the new direction.\nThis is a time for 'optimism.' The wheel is turning in your favor.",
+    "future_en": "The Wheel of Fortune in the future promises 'destiny.' You will find yourself in a career that feels meant to be. You will experience a stroke of good luck.\nTo reach this, practice 'trust' now. Trust the universe. Your future holds a career that is full of surprises.",
+    "sentence_en": "Embrace the cycles of change; opportunity is turning in your favor."
+  },
+  {
+    "card": "Justice",
+    "past_en": "Justice in the past suggests a time of 'fairness and accountability.' You may have signed a contract, dealt with a legal matter, or faced a performance review. It was a time of reaping what you sowed.\nYou learned the value of 'integrity.' You realized that honesty is the best policy. You learned to take responsibility for your actions.\nThis card also speaks of 'balance.' You sought work-life balance.\nYour soul is a 'judge.' You know that truth matters.",
+    "present_en": "Justice appearing now signals 'decision.' You are weighing your options. You need to make a fair and balanced decision about your career. You may be negotiating a contract.\nYou are being asked to 'be objective.' Look at the facts. Don't let emotions cloud your judgment.\nThis is a time for 'truth.' Be honest with yourself and others.",
+    "future_en": "Justice in the future promises 'equilibrium.' You will find a career that is fair and just. You will be rewarded for your hard work and integrity.\nTo welcome this, practice 'fairness' now. Treat others with respect. Your future holds a career that honors your values.",
+    "sentence_en": "Seek balance and fairness; integrity is the foundation of professional success."
+  },
+  {
+    "card": "The Hanged Man",
+    "past_en": "The Hanged Man in the past suggests a time of 'suspension and sacrifice.' You may have felt stuck in a job, or you put your career on hold for personal reasons. It was a time of waiting and seeing things from a different angle.\nYou learned the value of 'patience.' You realized that sometimes doing nothing is doing something. You learned to let go of control.\nThis card also speaks of 'enlightenment.' You gained a new perspective.\nYour soul is a 'mystic.' You know that surrender brings power.",
+    "present_en": "The Hanged Man appearing now signals 'pause.' Your career feels stalled. You are waiting for something to happen. You may need to make a sacrifice to move forward.\nYou are being asked to 'change your view.' Look at the problem from a new angle. Maybe the delay is a blessing.\nThis is a time for 'reflection.' What are you willing to give up?",
+    "future_en": "The Hanged Man in the future promises 'breakthrough.' After a period of stagnation, you will have a sudden realization that changes everything. You will find a new path.\nTo reach this, practice 'letting go' now. Release your attachment to the outcome. Your future holds a career that is born from a new vision.",
+    "sentence_en": "Pause and reflect; sometimes a change in perspective is all you need to move forward."
+  },
+  {
+    "card": "Death",
+    "past_en": "Death in the past suggests a 'major transition.' You left a job, changed careers, or experienced a significant failure. It was the end of a chapter, painful but necessary for your growth.\nYou learned the value of 'resilience.' You realized that you can survive an ending. You learned to reinvent yourself.\nThis card also speaks of 'release.' You let go of what wasn't working.\nYour soul is a 'transformer.' You know that every end is a beginning.",
+    "present_en": "Death appearing now signals 'transformation.' A job or project is coming to an end. You may be facing a layoff or a restructuring. It is time to say goodbye to the old way of doing things.\nYou are being asked to 'accept change.' Don't fight it. Let the dead wood burn so new growth can appear.\nThis is a time for 'renewal.' Prepare for a fresh start.",
+    "future_en": "Death in the future promises 'rebirth.' You will rise from the ashes of your past career. You will find a new path that is more aligned with your true self.\nTo welcome this, practice 'courage' now. Be willing to let go. Your future holds a career that is alive and vibrant.",
+    "sentence_en": "Embrace transformation; letting go of the old paves the way for new professional growth."
+  },
+  {
+    "card": "Temperance",
+    "past_en": "Temperance in the past suggests a time of 'balance and moderation.' You were juggling multiple responsibilities with grace. You found a way to blend your passion with your profession. It was a time of steady progress.\nYou learned the value of 'patience.' You realized that success is a marathon, not a sprint. You learned to compromise.\nThis card also speaks of 'healing.' You recovered from burnout.\nYour soul is an 'alchemist.' You know how to mix the right ingredients for success.",
+    "present_en": "Temperance appearing now signals 'integration.' You are finding a healthy work-life balance. You are bringing different aspects of your skills together. You are calm and focused.\nYou are being asked to 'be patient.' Don't rush. Let things unfold naturally. Find the middle ground.\nThis is a time for 'harmony.' Create a peaceful work environment.",
+    "future_en": "Temperance in the future promises 'stability.' You will find a career that is sustainable and fulfilling. You will achieve long-term success through moderation and balance.\nTo reach this, practice 'equilibrium' now. Avoid extremes. Your future holds a career that brings you peace.",
+    "sentence_en": "Find balance in your work; patience and moderation lead to sustainable success."
+  },
+  {
+    "card": "The Devil",
+    "past_en": "The Devil in the past suggests a time of 'bondage and materialism.' You may have been stuck in a toxic work environment, or you were driven by greed and ambition at the expense of your ethics. You felt trapped by golden handcuffs.\nYou learned the value of 'freedom.' You realized that money isn't everything. You learned to break free from unhealthy patterns.\nThis card also speaks of 'addiction.' You were addicted to work.\nYour soul is a 'rebel.' You know that true success is freedom.",
+    "present_en": "The Devil appearing now signals 'temptation.' You may be tempted to cut corners or take a shady deal. You are feeling trapped in a job that drains your soul. You are obsessed with power or status.\nYou are being asked to 'break the chains.' Examine your motives. Are you working for passion or just for the paycheck?\nThis is a time for 'liberation.' Reclaim your power.",
+    "future_en": "The Devil in the future promises 'release.' You will break free from the limitations that are holding you back. You will find a career that is ethical and fulfilling.\nTo reach this, practice 'integrity' now. Don't sell out. Your future holds a career where you are free to be yourself.",
+    "sentence_en": "Break free from toxic patterns; true professional success comes from integrity and freedom."
+  },
+  {
+    "card": "The Tower",
+    "past_en": "The Tower in the past suggests a time of 'sudden change and upheaval.' You may have been fired, your company went bankrupt, or a major project failed spectacularly. It was a shock to the system, but it cleared the ground for something new.\nYou learned the value of 'resilience.' You realized that you can survive a disaster. You learned to rebuild.\nThis card also speaks of 'revelation.' The truth came out.\nYour soul is a 'survivor.' You know that sometimes things fall apart so better things can fall together.",
+    "present_en": "The Tower appearing now signals 'disruption.' A sudden change is coming to your workplace. It may feel like a crisis, but it is necessary. The old structures are crumbling.\nYou are being asked to 'let it fall.' Don't try to save what is broken. Embrace the chaos.\nThis is a time for 'rebuilding.' Start from scratch.",
+    "future_en": "The Tower in the future promises 'breakthrough.' After the dust settles, you will have a clear path forward. You will build a career on a stronger foundation.\nTo welcome this, practice 'adaptability' now. Be ready for anything. Your future holds a career that is built to last.",
+    "sentence_en": "Embrace the sudden changes; sometimes the old must crumble to build a stronger foundation."
+  },
+  {
+    "card": "The Star",
+    "past_en": "The Star in the past suggests a time of 'hope and inspiration.' You were working on a project that gave you a sense of purpose. You felt optimistic about your future. It was a time of healing after a difficult period.\nYou learned the value of 'vision.' You realized that you need a guiding star. You learned to believe in yourself.\nThis card also speaks of 'fame.' You were recognized for your talents.\nYour soul is a 'visionary.' You know that dreams can come true.",
+    "present_en": "The Star appearing now signals 'hope.' You are feeling inspired and optimistic about your career. You have a clear vision of where you want to go. You are attracting opportunities.\nYou are being asked to 'shine.' Share your talents with the world. Be a beacon of light.\nThis is a time for 'healing.' Recover from past burnout.",
+    "future_en": "The Star in the future promises 'success.' You will achieve your dreams. You will find a career that is fulfilling and meaningful. You will be a star in your field.\nTo reach this, practice 'faith' now. Keep your eyes on the prize. Your future holds a career that is out of this world.",
+    "sentence_en": "Follow your guiding star; hope and inspiration will lead you to professional fulfillment."
+  },
+  {
+    "card": "The Moon",
+    "past_en": "The Moon in the past suggests a time of 'confusion and illusion.' You were unsure of your career path. You may have been deceived by a boss or a colleague. It was a time of navigating through the fog.\nYou learned the value of 'intuition.' You realized that things are not always what they seem. You learned to trust your gut.\nThis card also speaks of 'fear.' You were afraid of failure.\nYour soul is a 'dreamer.' You know that the subconscious holds the key.",
+    "present_en": "The Moon appearing now signals 'uncertainty.' You are in a period of transition. You don't have all the facts. You may be feeling anxious or confused about your job.\nYou are being asked to 'trust your intuition.' Don't make big decisions yet. Wait for the fog to lift.\nThis is a time for 'exploration.' Look beneath the surface.",
+    "future_en": "The Moon in the future promises 'clarity.' The fog will eventually lift, and you will see the truth. You will find a career that honors your imagination and intuition.\nTo welcome this, practice 'patience' now. Don't force it. Your future holds a career that is full of mystery and magic.",
+    "sentence_en": "Navigate the uncertainty with intuition; clarity will emerge from the shadows."
+  },
+  {
+    "card": "The Sun",
+    "past_en": "The Sun in the past suggests a time of 'success and joy.' You achieved a major goal. You were happy, confident, and recognized for your work. It was a golden era in your career.\nYou learned the value of 'optimism.' You realized that a positive attitude attracts success. You learned to shine.\nThis card also speaks of 'clarity.' You knew exactly what you wanted.\nYour soul is a 'leader.' You know that you are meant to shine.",
+    "present_en": "The Sun appearing now signals 'victory.' You are experiencing a period of great success. You are full of energy and enthusiasm. Everything is going your way.\nYou are being asked to 'enjoy it.' Bask in the warmth of your success. Share your joy with others.\nThis is a time for 'visibility.' Step into the spotlight.",
+    "future_en": "The Sun in the future promises 'glory.' You will reach the pinnacle of your career. You will be happy, successful, and fulfilled.\nTo reach this, practice 'positivity' now. Radiate confidence. Your future holds a career that is bright and beautiful.",
+    "sentence_en": "Shine your light brightly; joy and success are the natural results of your efforts."
+  },
+  {
+    "card": "Judgement",
+    "past_en": "Judgement in the past suggests a time of 'awakening and calling.' You realized that you were meant for something more. You heard a call to change your career path. It was a time of self-evaluation and rebirth.\nYou learned the value of 'purpose.' You realized that work should be a vocation. You learned to listen to your inner voice.\nThis card also speaks of 'renewal.' You started over.\nYour soul is a 'messenger.' You know that you have a mission.",
+    "present_en": "Judgement appearing now signals 'evaluation.' You are at a crossroads. You are being asked to judge your own performance and your career path. Are you living up to your potential?\nYou are being asked to 'answer the call.' Don't ignore your true calling. Make the change.\nThis is a time for 'decision.' Rise up.",
+    "future_en": "Judgement in the future promises 'transformation.' You will undergo a major career shift that aligns you with your true purpose. You will find your calling.\nTo welcome this, practice 'honesty' now. Be true to yourself. Your future holds a career that is a reflection of your soul.",
+    "sentence_en": "Heed the call of your higher purpose; a professional awakening is at hand."
+  },
+  {
+    "card": "The World",
+    "past_en": "The World in the past suggests a time of 'completion and achievement.' You finished a major project, graduated, or reached a significant milestone. You felt a sense of wholeness and accomplishment.\nYou learned the value of 'integration.' You realized that everything is connected. You learned to celebrate your success.\nThis card also speaks of 'travel.' You may have worked internationally.\nYour soul is a 'citizen of the world.' You know that the world is your oyster.",
+    "present_en": "The World appearing now signals 'fulfillment.' You are reaching the end of a cycle. You are achieving your goals. You are ready to move on to the next level.\nYou are being asked to 'celebrate.' Acknowledge your achievements. Take a bow.\nThis is a time for 'expansion.' The world is opening up to you.",
+    "future_en": "The World in the future promises 'success.' You will achieve global recognition or complete a major life goal. You will feel a deep sense of satisfaction.\nTo reach this, practice 'gratitude' now. Be thankful for the journey. Your future holds a career that has no limits.",
+    "sentence_en": "Celebrate your achievements; you have completed a cycle and the world is yours."
+  },
+  {
+    "card": "Ace of Wands",
+    "past_en": "The Ace of Wands in the past suggests a time of 'inspiration and new beginnings.' You had a brilliant idea for a business or a project. You were full of energy and enthusiasm. It was a spark of genius.\nYou learned the value of 'passion.' You realized that you need to love what you do. You learned to take initiative.\nThis card also speaks of 'action.' You started something new.\nYour soul is a 'pioneer.' You know that every fire starts with a spark.",
+    "present_en": "The Ace of Wands appearing now signals 'opportunity.' A new project or job offer is coming your way. You are feeling inspired and ready to take action.\nYou are being asked to 'seize the moment.' Don't hesitate. Grab the torch and run with it.\nThis is a time for 'creativity.' Let your passion burn bright.",
+    "future_en": "The Ace of Wands in the future promises 'growth.' You will start a new venture that is highly successful. You will be a leader in your field.\nTo welcome this, practice 'courage' now. Be bold. Your future holds a career that is fueled by passion.",
+    "sentence_en": "Seize the spark of inspiration; a new professional passion is igniting."
+  },
+  {
+    "card": "Two of Wands",
+    "past_en": "The Two of Wands in the past suggests a time of 'planning and discovery.' You were looking at the big picture, mapping out your future. You were deciding where to focus your energy. It was a time of preparation.\nYou learned the value of 'vision.' You realized that you need a plan to succeed. You learned to think big.\nThis card also speaks of 'partnership.' You may have sought a partner.\nYour soul is an 'explorer.' You know that the world is waiting.",
+    "present_en": "The Two of Wands appearing now signals 'choice.' You are standing at a crossroads. You have the world in your hands, but you need to decide which path to take. You are ready to expand your horizons.\nYou are being asked to 'be decisive.' Make a plan. Take the first step.\nThis is a time for 'ambition.' Aim high.",
+    "future_en": "The Two of Wands in the future promises 'expansion.' You will take your career to the next level. You may travel or work internationally.\nTo reach this, practice 'foresight' now. Look ahead. Your future holds a career that has global reach.",
+    "sentence_en": "Plan your next move with vision; the world is ready for your ambition."
+  },
+  {
+    "card": "Three of Wands",
+    "past_en": "The Three of Wands in the past suggests a time of 'expansion and foresight.' You launched your ships and were waiting for them to come in. You were looking ahead with confidence. It was a time of growth.\nYou learned the value of 'patience.' You realized that success takes time. You learned to trust your vision.\nThis card also speaks of 'trade.' You may have expanded your business.\nYour soul is a 'merchant.' You know that investment pays off.",
+    "present_en": "The Three of Wands appearing now signals 'progress.' Your plans are starting to bear fruit. You are seeing the first signs of success. You are looking forward to what comes next.\nYou are being asked to 'keep going.' Don't stop now. Expand your reach.\nThis is a time for 'confidence.' Your ship is coming in.",
+    "future_en": "The Three of Wands in the future promises 'success.' Your long-term plans will pay off. You will achieve your goals and expand your horizons.\nTo welcome this, practice 'vision' now. Keep your eyes on the horizon. Your future holds a career that is vast and successful.",
+    "sentence_en": "Your ships are coming in; have patience and confidence in your long-term vision."
+  },
+  {
+    "card": "Four of Wands",
+    "past_en": "The Four of Wands in the past suggests a time of 'celebration and milestones.' You reached a significant goal in your career. It was a time of joy, recognition, and perhaps a company party or a successful launch.\nYou learned the value of 'community.' You realized that success is sweeter when shared. You learned to celebrate your wins.\nThis card also speaks of 'stability.' You built a solid foundation.\nYour soul is a 'host.' You know that work should be celebrated.",
+    "present_en": "The Four of Wands appearing now signals 'success.' You are hitting a milestone. You may be getting a promotion, finishing a project, or celebrating a work anniversary. You are feeling happy and secure.\nYou are being asked to 'celebrate.' Throw a party. Acknowledge your team. Enjoy the moment.\nThis is a time for 'harmony.' The office vibes are good.",
+    "future_en": "The Four of Wands in the future promises 'happiness.' You will achieve a level of success that allows you to relax and enjoy life. You will be part of a supportive work community.\nTo reach this, practice 'gratitude' now. Be thankful for your team. Your future holds a career that feels like a family.",
+    "sentence_en": "Celebrate your milestones; shared success builds a strong foundation for the future."
+  },
+  {
+    "card": "Five of Wands",
+    "past_en": "The Five of Wands in the past suggests a time of 'competition and conflict.' You were in a highly competitive environment. There were clashes of ego, office politics, and a struggle to be heard. It was a noisy time.\nYou learned the value of 'assertiveness.' You realized that you have to fight for your ideas. You learned to handle conflict.\nThis card also speaks of 'chaos.' It was a bit of a free-for-all.\nYour soul is a 'fighter.' You know that competition makes you stronger.",
+    "present_en": "The Five of Wands appearing now signals 'challenge.' You are facing competition or conflict at work. Everyone is trying to prove themselves. It may feel chaotic and stressful.\nYou are being asked to 'stand your ground.' Don't be afraid to compete. But play fair.\nThis is a time for 'brainstorming.' Let the best idea win.",
+    "future_en": "The Five of Wands in the future promises 'growth.' You will overcome the competition and emerge stronger. You will learn to thrive in a fast-paced environment.\nTo welcome this, practice 'resilience' now. Don't take it personally. Your future holds a career where you are a top contender.",
+    "sentence_en": "Embrace the competition; healthy conflict sharpens your skills and ideas."
+  },
+  {
+    "card": "Six of Wands",
+    "past_en": "The Six of Wands in the past suggests a time of 'victory and recognition.' You achieved a major success and were publicly praised for it. You were the hero of the hour. It was a time of high confidence.\nYou learned the value of 'leadership.' You realized that people follow success. You learned to accept praise.\nThis card also speaks of 'pride.' You were proud of your work.\nYour soul is a 'champion.' You know what it feels like to win.",
+    "present_en": "The Six of Wands appearing now signals 'recognition.' You are being noticed for your hard work. A promotion or award may be on the horizon. You are riding high.\nYou are being asked to 'be humble.' Enjoy the applause, but don't let it go to your head. Share the credit.\nThis is a time for 'visibility.' Step into the spotlight.",
+    "future_en": "The Six of Wands in the future promises 'triumph.' You will achieve your goals and be recognized as a leader in your field. You will have a successful public image.\nTo reach this, practice 'confidence' now. Believe in your success. Your future holds a career full of accolades.",
+    "sentence_en": "Accept the recognition you deserve; victory is the result of your hard work."
+  },
+  {
+    "card": "Seven of Wands",
+    "past_en": "The Seven of Wands in the past suggests a time of 'defense and perseverance.' You were in a position of success, but you had to fight to keep it. You were defending your territory against challengers.\nYou learned the value of 'conviction.' You realized that you have to stand up for what you believe in. You learned to hold your ground.\nThis card also speaks of 'pressure.' You were under fire.\nYour soul is a 'defender.' You know that success attracts envy.",
+    "present_en": "The Seven of Wands appearing now signals 'resistance.' You are facing opposition. People may be challenging your authority or your ideas. You feel like it's you against the world.\nYou are being asked to 'stand firm.' Don't back down. You have the high ground. Defend your position.\nThis is a time for 'courage.' Fight for your vision.",
+    "future_en": "The Seven of Wands in the future promises 'resilience.' You will successfully defend your position and prove your critics wrong. You will earn respect for your strength.\nTo welcome this, practice 'determination' now. Don't give up. Your future holds a career where you are unshakeable.",
+    "sentence_en": "Stand your ground with courage; your conviction will overcome all opposition."
+  },
+  {
+    "card": "Eight of Wands",
+    "past_en": "The Eight of Wands in the past suggests a time of 'speed and movement.' Things were happening fast in your career. Projects were moving forward, emails were flying, and you were busy. It was a time of rapid progress.\nYou learned the value of 'momentum.' You realized that speed is an asset. You learned to think on your feet.\nThis card also speaks of 'travel.' You may have had a business trip.\nYour soul is a 'messenger.' You know that time is money.",
+    "present_en": "The Eight of Wands appearing now signals 'acceleration.' Your career is picking up speed. Things are happening quickly. You may be overwhelmed by the pace.\nYou are being asked to 'keep up.' Don't delay. Strike while the iron is hot. Communicate clearly and quickly.\nThis is a time for 'action.' Go, go, go.",
+    "future_en": "The Eight of Wands in the future promises 'results.' You will see quick results from your efforts. Your career will advance rapidly.\nTo reach this, practice 'focus' now. Stay organized. Your future holds a career that moves at the speed of light.",
+    "sentence_en": "Move with speed and focus; momentum is carrying you toward your goals."
+  },
+  {
+    "card": "Nine of Wands",
+    "past_en": "The Nine of Wands in the past suggests a time of 'persistence and defense.' You faced many challenges in your career, but you kept going. You were tired, but you refused to give up. It was a test of your endurance.\nYou learned the value of 'resilience.' You realized that you are stronger than you think. You learned to protect your work.\nThis card also speaks of 'burnout.' You were running on fumes.\nYour soul is a 'warrior.' You know that the battle is almost won.",
+    "present_en": "The Nine of Wands appearing now signals 'stamina.' You are close to the finish line, but you are exhausted. You may be feeling defensive or guarded.\nYou are being asked to 'don't give up.' You have come too far to quit now. Muster your last reserves of strength.\nThis is a time for 'protection.' Guard your boundaries.",
+    "future_en": "The Nine of Wands in the future promises 'success.' You will overcome the final obstacles and achieve your goal. You will emerge from the battle victorious.\nTo reach this, practice 'perseverance' now. Keep standing. Your future holds a career that is hard-won and well-deserved.",
+    "sentence_en": "Persevere through the final challenges; your resilience is the key to professional victory."
+  },
+  {
+    "card": "Ten of Wands",
+    "past_en": "The Ten of Wands in the past suggests a time of 'burden and responsibility.' You took on too much work. You were carrying the weight of the world on your shoulders. It was a time of stress and overwhelm.\nYou learned the value of 'delegation.' You realized that you can't do it all alone. You learned to say no.\nThis card also speaks of 'ambition.' You worked hard for your success.\nYour soul is a 'worker.' You know the meaning of hard labor.",
+    "present_en": "The Ten of Wands appearing now signals 'overload.' You are drowning in work. You have taken on more than you can handle. You are stressed and exhausted.\nYou are being asked to 'lighten the load.' Delegate tasks. Prioritize. Drop what is not essential.\nThis is a time for 'release.' Put down the burden.",
+    "future_en": "The Ten of Wands in the future promises 'relief.' You will find a way to manage your workload. You will learn to work smarter, not harder.\nTo welcome this, practice 'balance' now. Don't burn out. Your future holds a career that is sustainable.",
+    "sentence_en": "Release the burdens that weigh you down; success should not break your back."
+  },
+  {
+    "card": "Page of Wands",
+    "past_en": "The Page of Wands in the past suggests a time of 'discovery and enthusiasm.' You were exploring a new career path. You were full of fresh ideas and eager to learn. It was a time of internships or entry-level jobs.\nYou learned the value of 'curiosity.' You realized that every expert was once a beginner. You learned to ask questions.\nThis card also speaks of 'news.' You received a job offer.\nYour soul is an 'explorer.' You know that the journey is just beginning.",
+    "present_en": "The Page of Wands appearing now signals 'potential.' You have a new idea or a new opportunity. You are feeling excited and energetic. You are ready to start something new.\nYou are being asked to 'be bold.' Share your ideas. Take a risk. Be enthusiastic.\nThis is a time for 'learning.' Be a sponge.",
+    "future_en": "The Page of Wands in the future promises 'adventure.' You will embark on a new career journey that is full of excitement and possibility.\nTo reach this, practice 'openness' now. Say yes to new things. Your future holds a career that keeps you young.",
+    "sentence_en": "Embrace new ideas with enthusiasm; curiosity is the spark of professional growth."
+  },
+  {
+    "card": "Knight of Wands",
+    "past_en": "The Knight of Wands in the past suggests a time of 'action and adventure.' You pursued your career goals with passion and speed. You may have changed jobs frequently or taken risks. It was a fast-paced time.\nYou learned the value of 'initiative.' You realized that you have to make things happen. You learned to be bold.\nThis card also speaks of 'impulsiveness.' You leaped before you looked.\nYour soul is a 'trailblazer.' You know that fortune favors the brave.",
+    "present_en": "The Knight of Wands appearing now signals 'movement.' Things are happening fast. You are feeling restless and ready for a change. You want to take action.\nYou are being asked to 'go for it.' Don't hesitate. Chase your dreams. But try to have a plan.\nThis is a time for 'passion.' Let your fire burn.",
+    "future_en": "The Knight of Wands in the future promises 'excitement.' You will have a dynamic and fast-paced career. You will travel and explore new territories.\nTo welcome this, practice 'courage' now. Be fearless. Your future holds a career that is an adventure.",
+    "sentence_en": "Pursue your goals with passion and courage; action leads to professional adventure."
+  },
+  {
+    "card": "Queen of Wands",
+    "past_en": "The Queen of Wands in the past suggests a time of 'confidence and charisma.' You were a natural leader. You inspired others with your energy and vision. You were popular and successful.\nYou learned the value of 'self-belief.' You realized that confidence is key. You learned to shine.\nThis card also speaks of 'creativity.' You brought flair to your work.\nYour soul is a 'queen.' You know that you are a star.",
+    "present_en": "The Queen of Wands appearing now signals 'leadership.' You are stepping into your power. You are confident, creative, and charismatic. People are looking to you for guidance.\nYou are being asked to 'lead.' Trust your instincts. Be bold. Inspire others.\nThis is a time for 'visibility.' Show the world what you can do.",
+    "future_en": "The Queen of Wands in the future promises 'influence.' You will become a powerful and respected leader in your field. You will have a career that allows you to shine.\nTo reach this, practice 'authenticity' now. Be yourself. Your future holds a career where you are the queen of your domain.",
+    "sentence_en": "Lead with confidence and charisma; your energy inspires success in others."
+  },
+  {
+    "card": "King of Wands",
+    "past_en": "The King of Wands in the past suggests a time of 'vision and authority.' You were a visionary leader. You had a clear plan and the charisma to execute it. You inspired loyalty and respect.\nYou learned the value of 'strategy.' You realized that passion needs a plan. You learned to see the big picture.\nThis card also speaks of 'entrepreneurship.' You built something from scratch.\nYour soul is a 'king.' You know that you are born to rule.",
+    "present_en": "The King of Wands appearing now signals 'command.' You are in charge. You have the experience and the vision to lead your team to success. You are a mentor to others.\nYou are being asked to 'be bold.' Take the lead. Make the tough decisions. Inspire your team.\nThis is a time for 'legacy.' Build something that lasts.",
+    "future_en": "The King of Wands in the future promises 'power.' You will achieve the highest level of success in your field. You will be a respected authority and a visionary leader.\nTo reach this, practice 'integrity' now. Lead by example. Your future holds a career where you leave a legacy.",
+    "sentence_en": "Lead with vision and authority; you are the master of your professional destiny."
+  },
+  {
+    "card": "Ace of Cups",
+    "past_en": "The Ace of Cups in the past suggests a time of 'emotional fulfillment and new beginnings.' You started a job that you truly loved. It felt less like work and more like a calling. You were emotionally invested in your career.\nYou learned the value of 'passion.' You realized that you can't succeed if your heart isn't in it. You learned to follow your bliss.\nThis card also speaks of 'creativity.' You tapped into your intuition.\nYour soul is a 'creator.' You know that love fuels success.",
+    "present_en": "The Ace of Cups appearing now signals 'inspiration.' A new creative opportunity is coming your way. You are feeling emotionally connected to your work. You are full of new ideas.\nYou are being asked to 'open your heart.' Let your intuition guide you. Do what you love.\nThis is a time for 'flow.' Let your creativity flow freely.",
+    "future_en": "The Ace of Cups in the future promises 'satisfaction.' You will find a career that brings you deep emotional joy. You will love what you do.\nTo welcome this, practice 'openness' now. Be receptive to new ideas. Your future holds a career that feeds your soul.",
+    "sentence_en": "Follow your heart in your career; emotional fulfillment is the key to true success."
+  },
+  {
+    "card": "Two of Cups",
+    "past_en": "The Two of Cups in the past suggests a time of 'partnership and harmony.' You had a great working relationship with a colleague or a business partner. You worked together seamlessly. It was a true collaboration.\nYou learned the value of 'connection.' You realized that business is about people. You learned to build bridges.\nThis card also speaks of 'agreement.' You signed a good deal.\nYour soul is a 'diplomat.' You know that win-win is the only way.",
+    "present_en": "The Two of Cups appearing now signals 'collaboration.' You are forming a partnership or working closely with someone. There is a mutual respect and understanding. You are on the same wavelength.\nYou are being asked to 'connect.' Reach out to others. Build relationships. Negotiate fairly.\nThis is a time for 'unity.' Work together.",
+    "future_en": "The Two of Cups in the future promises 'alliance.' You will form a powerful business partnership that leads to mutual success. You will find your professional soulmate.\nTo reach this, practice 'cooperation' now. Be a good partner. Your future holds a career built on strong relationships.",
+    "sentence_en": "Build strong partnerships; collaboration is the secret to professional growth."
+  },
+  {
+    "card": "Three of Cups",
+    "past_en": "The Three of Cups in the past suggests a time of 'celebration and teamwork.' You were part of a happy and successful team. You enjoyed your work and your colleagues. It was a time of camaraderie.\nYou learned the value of 'community.' You realized that a happy team is a productive team. You learned to have fun at work.\nThis card also speaks of 'networking.' You made good connections.\nYour soul is a 'socialite.' You know that people matter.",
+    "present_en": "The Three of Cups appearing now signals 'joy.' You are celebrating a team success. The atmosphere at work is positive and supportive. You are enjoying the company of your colleagues.\nYou are being asked to 'socialize.' Network. Go to the office party. Build morale.\nThis is a time for 'celebration.' Toast to your success.",
+    "future_en": "The Three of Cups in the future promises 'happiness.' You will work in a positive environment where you feel supported and appreciated. You will have fun at work.\nTo welcome this, practice 'friendship' now. Be a team player. Your future holds a career that is a joy to be a part of.",
+    "sentence_en": "Celebrate your team's success; a positive work environment fuels productivity."
+  },
+  {
+    "card": "Four of Cups",
+    "past_en": "The Four of Cups in the past suggests a time of 'boredom and dissatisfaction.' You were uninspired by your job. You felt stuck in a rut, ignoring new opportunities because you were focused on what was missing.\nYou learned the value of 'gratitude.' You realized that attitude is everything. You learned to look for the silver lining.\nThis card also speaks of 'apathy.' You just didn't care.\nYour soul understands 'longing.' You know that there must be more.",
+    "present_en": "The Four of Cups appearing now signals 'stagnation.' You are feeling bored or unappreciated at work. You may be missing an opportunity that is right in front of you. You are disengaged.\nYou are being asked to 'wake up.' Look around. There is a new path offering itself to you. Don't miss it.\nThis is a time for 'reevaluation.' What do you really want?",
+    "future_en": "The Four of Cups in the future promises 'awareness.' You will snap out of your funk and see a new opportunity. You will find renewed passion for your work.\nTo reach this, practice 'mindfulness' now. Pay attention. Your future holds a career that you almost missed.",
+    "sentence_en": "Don't let boredom blind you to opportunity; a new path is waiting to be discovered."
+  },
+  {
+    "card": "Five of Cups",
+    "past_en": "The Five of Cups in the past suggests a time of 'disappointment and loss.' You may have lost a job, failed at a project, or felt let down by a colleague. You were focused on what went wrong. It was a time of regret.\nYou learned the value of 'resilience.' You realized that failure is not fatal. You learned to pick yourself up.\nThis card also speaks of 'grief.' You mourned a lost opportunity.\nYour soul is a 'survivor.' You know that there is always hope.",
+    "present_en": "The Five of Cups appearing now signals 'setback.' You are dealing with a disappointment at work. A deal may have fallen through, or you didn't get the promotion you wanted. You are feeling sad and defeated.\nYou are being asked to 'shift your focus.' Stop looking at the spilled cups. Look at what remains.\nThis is a time for 'healing.' Don't dwell on the negative.",
+    "future_en": "The Five of Cups in the future promises 'recovery.' You will move past this setback. You will find new opportunities that are even better than what you lost.\nTo reach this, practice 'optimism' now. Believe that the best is yet to come. Your future holds a career that is full of promise.",
+    "sentence_en": "Don't cry over spilled milk; new opportunities are waiting for you to turn around."
+  },
+  {
+    "card": "Six of Cups",
+    "past_en": "The Six of Cups in the past suggests a time of 'nostalgia and roots.' You may have returned to a previous job, worked with old friends, or drawn inspiration from your past. It was a time of comfort and familiarity.\nYou learned the value of 'connection.' You realized that your past experiences are valuable. You learned to honor your history.\nThis card also speaks of 'mentorship.' You helped a junior colleague.\nYour soul is a 'historian.' You know that the past shapes the future.",
+    "present_en": "The Six of Cups appearing now signals 'reconnection.' You may be reconnecting with a former colleague or revisiting an old project. You are finding joy in simple tasks.\nYou are being asked to 'be kind.' Help others. Create a supportive work environment.\nThis is a time for 'creativity.' Draw on your past for inspiration.",
+    "future_en": "The Six of Cups in the future promises 'fulfillment.' You will find a career that feels like home. You will work with people you trust and respect.\nTo welcome this, practice 'generosity' now. Share your knowledge. Your future holds a career that is emotionally rewarding.",
+    "sentence_en": "Reconnect with your roots; past experiences hold the key to future success."
+  },
+  {
+    "card": "Seven of Cups",
+    "past_en": "The Seven of Cups in the past suggests a time of 'confusion and options.' You were overwhelmed by career choices. You had many ideas but struggled to focus on one. It was a time of dreaming but not doing.\nYou learned the value of 'focus.' You realized that you can't do everything. You learned to make a choice.\nThis card also speaks of 'illusion.' You chased a pipe dream.\nYour soul is a 'dreamer.' You know that vision needs action.",
+    "present_en": "The Seven of Cups appearing now signals 'possibility.' You have many options in front of you. You may be considering a career change or starting a new business. But be careful of illusions.\nYou are being asked to 'be realistic.' Not all that glitters is gold. Do your research.\nThis is a time for 'decision.' Pick a path.",
+    "future_en": "The Seven of Cups in the future promises 'clarity.' You will sift through the options and find the one that is right for you. You will turn your dreams into reality.\nTo reach this, practice 'discernment' now. Know what is real. Your future holds a career that is better than you imagined.",
+    "sentence_en": "Focus your vision; turn your many dreams into one concrete reality."
+  },
+  {
+    "card": "Eight of Cups",
+    "past_en": "The Eight of Cups in the past suggests a time of 'departure and search.' You walked away from a job that no longer fulfilled you. It was a difficult decision to leave security behind, but you knew you needed more.\nYou learned the value of 'authenticity.' You realized that money isn't everything. You learned to follow your soul.\nThis card also speaks of 'transition.' You moved on.\nYour soul is a 'seeker.' You know that the journey matters.",
+    "present_en": "The Eight of Cups appearing now signals 'dissatisfaction.' You are feeling unfulfilled at work. You have outgrown your current role. You are ready to leave it all behind and search for something meaningful.\nYou are being asked to 'be brave.' It takes courage to walk away. Trust that you will find what you are looking for.\nThis is a time for 'quest.' Go find your purpose.",
+    "future_en": "The Eight of Cups in the future promises 'discovery.' You will find a career that aligns with your deeper values. You will find emotional fulfillment.\nTo welcome this, practice 'detachment' now. Let go of what doesn't serve you. Your future holds a career that feeds your spirit.",
+    "sentence_en": "Have the courage to walk away from the unfulfilling; a higher calling awaits."
+  },
+  {
+    "card": "Nine of Cups",
+    "past_en": "The Nine of Cups in the past suggests a time of 'satisfaction and success.' You achieved a major career goal. You were happy, content, and proud of your achievements. It was a time of enjoying the fruits of your labor.\nYou learned the value of 'gratitude.' You realized that success is sweet. You learned to celebrate.\nThis card also speaks of 'confidence.' You believed in yourself.\nYour soul is a 'winner.' You know that you deserve the best.",
+    "present_en": "The Nine of Cups appearing now signals 'fulfillment.' Your career wishes are coming true. You are in a good place. You are feeling confident and successful.\nYou are being asked to 'enjoy.' Savor your success. You earned it.\nThis is a time for 'happiness.' Make a wish.",
+    "future_en": "The Nine of Cups in the future promises 'joy.' You will achieve your heart's desire in your career. You will be emotionally and financially fulfilled.\nTo reach this, practice 'optimism' now. Believe in your dreams. Your future holds a career that is a wish come true.",
+    "sentence_en": "Your professional wish is granted; savor the satisfaction of success."
+  },
+  {
+    "card": "Ten of Cups",
+    "past_en": "The Ten of Cups in the past suggests a time of 'harmony and belonging.' You worked in a place that felt like a family. You were happy, supported, and emotionally fulfilled. It was a golden age in your career.\nYou learned the value of 'culture.' You realized that a positive work environment is essential. You learned to build community.\nThis card also speaks of 'peace.' You were content.\nYour soul is a 'peacemaker.' You know that happiness is success.",
+    "present_en": "The Ten of Cups appearing now signals 'satisfaction.' You are happy with your job. You feel a sense of belonging and purpose. Your team is supportive and harmonious.\nYou are being asked to 'appreciate.' Be grateful for your colleagues. Foster a positive culture.\nThis is a time for 'unity.' Work together.",
+    "future_en": "The Ten of Cups in the future promises 'fulfillment.' You will find a career that brings you joy and a sense of family. You will be happy and successful.\nTo reach this, practice 'connection' now. Build strong relationships. Your future holds a career that feels like home.",
+    "sentence_en": "Create harmony in your workplace; true success is shared happiness."
+  },
+  {
+    "card": "Page of Cups",
+    "past_en": "The Page of Cups in the past suggests a time of 'creativity and new ideas.' You were exploring a creative career path. You were open to new possibilities and eager to learn. It was a time of imagination.\nYou learned the value of 'intuition.' You realized that logic isn't everything. You learned to trust your gut.\nThis card also speaks of 'messages.' You received good news.\nYour soul is an 'artist.' You know that work should be beautiful.",
+    "present_en": "The Page of Cups appearing now signals 'inspiration.' You have a new creative idea for a project. You are feeling imaginative and intuitive. You may receive a message about a new opportunity.\nYou are being asked to 'be creative.' Think outside the box. Trust your intuition.\nThis is a time for 'exploration.' Follow your curiosity.",
+    "future_en": "The Page of Cups in the future promises 'artistry.' You will find a career that allows you to express your creativity. You will be inspired and fulfilled.\nTo welcome this, practice 'imagination' now. Dream big. Your future holds a career that is a work of art.",
+    "sentence_en": "Trust your creative instincts; imagination is the seed of innovation."
+  },
+  {
+    "card": "Knight of Cups",
+    "past_en": "The Knight of Cups in the past suggests a time of 'passion and pursuit.' You followed your heart in your career. You chased a dream or a passion project. You were idealistic and romantic about your work.\nYou learned the value of 'vision.' You realized that you need to believe in what you do. You learned to be a dreamer.\nThis card also speaks of 'offers.' You received an invitation.\nYour soul is a 'visionary.' You know that dreams can come true.",
+    "present_en": "The Knight of Cups appearing now signals 'opportunity.' A job offer or a new project is coming your way. It is something that appeals to your emotions and your values.\nYou are being asked to 'follow your heart.' Does this opportunity feel right? Trust your feelings.\nThis is a time for 'romance.' Fall in love with your work.",
+    "future_en": "The Knight of Cups in the future promises 'fulfillment.' You will find a career that aligns with your deepest values. You will be emotionally satisfied.\nTo reach this, practice 'idealism' now. Don't settle. Your future holds a career that makes your heart sing.",
+    "sentence_en": "Follow your passion; emotional alignment leads to professional fulfillment."
+  },
+  {
+    "card": "Queen of Cups",
+    "past_en": "The Queen of Cups in the past suggests a time of 'empathy and intuition.' You were a supportive and understanding colleague. You used your emotional intelligence to navigate the workplace. You were a healer.\nYou learned the value of 'compassion.' You realized that kindness is a strength. You learned to listen.\nThis card also speaks of 'creativity.' You brought heart to your work.\nYour soul is a 'healer.' You know that people matter more than profits.",
+    "present_en": "The Queen of Cups appearing now signals 'emotional intelligence.' You are being asked to use your intuition and empathy at work. Listen to your colleagues. Be supportive.\nYou are being asked to 'trust your gut.' Your feelings are a valid source of information.\nThis is a time for 'nurturing.' Take care of your team.",
+    "future_en": "The Queen of Cups in the future promises 'wisdom.' You will become a respected leader known for your compassion and insight. You will create a supportive work environment.\nTo welcome this, practice 'empathy' now. Be kind. Your future holds a career where you heal the world.",
+    "sentence_en": "Lead with empathy and intuition; emotional intelligence is your professional superpower."
+  },
+  {
+    "card": "King of Cups",
+    "past_en": "The King of Cups in the past suggests a time of 'emotional maturity and balance.' You were a calm and steady leader. You handled stress with grace. You were able to balance your head and your heart.\nYou learned the value of 'diplomacy.' You realized that you can be firm without being harsh. You learned to manage emotions.\nThis card also speaks of 'mentorship.' You guided others.\nYour soul is a 'sage.' You know that true power is calm.",
+    "present_en": "The King of Cups appearing now signals 'stability.' You are in control of your emotions at work. You are able to handle difficult situations with diplomacy. You are a calming influence.\nYou are being asked to 'be a leader.' Lead with compassion and wisdom. Keep a cool head.\nThis is a time for 'balance.' Find the middle ground.",
+    "future_en": "The King of Cups in the future promises 'mastery.' You will achieve a high level of emotional intelligence and leadership. You will be respected for your wisdom and fairness.\nTo reach this, practice 'grace' now. Stay calm under pressure. Your future holds a career where you are a pillar of strength.",
+    "sentence_en": "Master your emotions; calm leadership inspires trust and respect."
+  },
+  {
+    "card": "Ace of Swords",
+    "past_en": "The Ace of Swords in the past suggests a time of 'clarity and breakthrough.' You had a brilliant idea or a moment of insight that changed your career trajectory. You cut through the confusion and saw the truth.\nYou learned the value of 'intellect.' You realized that knowledge is power. You learned to communicate clearly.\nThis card also speaks of 'decision.' You made a sharp cut.\nYour soul is a 'strategist.' You know that the mind is a weapon.",
+    "present_en": "The Ace of Swords appearing now signals 'truth.' You are having a moment of clarity about your job. You see things as they really are. You are ready to make a tough decision or have a difficult conversation.\nYou are being asked to 'be direct.' Speak your mind. Cut to the chase.\nThis is a time for 'justice.' Do what is right.",
+    "future_en": "The Ace of Swords in the future promises 'victory.' You will overcome obstacles through clear thinking and decisive action. You will achieve a breakthrough in your career.\nTo reach this, practice 'focus' now. Sharpen your mind. Your future holds a career that is built on truth.",
+    "sentence_en": "Seize the moment of clarity; a new idea will cut through the noise and lead to success."
+  },
+  {
+    "card": "Two of Swords",
+    "past_en": "The Two of Swords in the past suggests a time of 'indecision and stalemate.' You were stuck between two career paths, unable to move forward. You may have been avoiding a difficult choice. It was a time of blocked energy.\nYou learned the value of 'balance.' You realized that not choosing is a choice. You learned to face your fears.\nThis card also speaks of 'truce.' You compromised.\nYour soul understands 'peace.' You know that sometimes you have to wait.",
+    "present_en": "The Two of Swords appearing now signals 'denial.' You are refusing to see the truth about your work situation. You are wearing a blindfold. You are avoiding a conflict.\nYou are being asked to 'make a choice.' You can't stay on the fence forever. Trust your gut.\nThis is a time for 'courage.' Take the blindfold off.",
+    "future_en": "The Two of Swords in the future promises 'resolution.' You will finally make the decision you have been avoiding. You will find peace after the storm.\nTo welcome this, practice 'honesty' now. Stop hiding. Your future holds a career that is free from doubt.",
+    "sentence_en": "Remove the blindfold; making a difficult decision is the only way to move forward."
+  },
+  {
+    "card": "Three of Swords",
+    "past_en": "The Three of Swords in the past suggests a time of 'heartbreak and failure.' You experienced a painful setback in your career, such as a firing, a rejection, or a betrayal. It was a time of deep disappointment.\nYou learned the value of 'resilience.' You realized that failure is a teacher. You learned to heal.\nThis card also speaks of 'sorrow.' You grieved a loss.\nYour soul is a 'survivor.' You know that wounds heal.",
+    "present_en": "The Three of Swords appearing now signals 'pain.' You are dealing with a difficult situation at work. You may be feeling hurt or betrayed by a colleague. Allow yourself to feel the pain, but don't dwell on it.\nYou are being asked to 'let go.' Don't hold onto resentment. Forgive and move on.\nThis is a time for 'healing.' Learn from the experience.",
+    "future_en": "The Three of Swords in the future promises 'recovery.' The pain will pass. You will emerge from this setback stronger and wiser.\nTo reach this, practice 'acceptance' now. Accept what has happened. Your future holds a career that is free from the past.",
+    "sentence_en": "Heal from the setback; disappointment is often a necessary step toward growth."
+  },
+  {
+    "card": "Four of Swords",
+    "past_en": "The Four of Swords in the past suggests a time of 'rest and recuperation.' You took a break from your career to recharge. You may have gone on sabbatical or taken a leave of absence. It was a time of quiet reflection.\nYou learned the value of 'stillness.' You realized that burnout is real. You learned to pace yourself.\nThis card also speaks of 'retreat.' You stepped back.\nYour soul understands 'peace.' You know that rest is productive.",
+    "present_en": "The Four of Swords appearing now signals 'burnout.' You are exhausted. You need a break. Step back from the stress of work and find a quiet place to rest.\nYou are being asked to 'recharge.' Take a vacation. Meditate. Sleep.\nThis is a time for 'healing.' Don't push yourself.",
+    "future_en": "The Four of Swords in the future promises 'renewal.' After a period of rest, you will return to your career with renewed energy and clarity.\nTo welcome this, practice 'self-care' now. Listen to your body. Your future holds a career that is sustainable.",
+    "sentence_en": "Take a break to recharge; rest is essential for long-term professional endurance."
+  },
+  {
+    "card": "Five of Swords",
+    "past_en": "The Five of Swords in the past suggests a time of 'conflict and hollow victory.' You may have won a battle at work, but lost the war. You alienated colleagues or compromised your ethics. It was a time of ego and strife.\nYou learned the value of 'humility.' You realized that winning isn't everything. You learned to pick your battles.\nThis card also speaks of 'betrayal.' You were stabbed in the back.\nYour soul is a 'learner.' You know the cost of ambition.",
+    "present_en": "The Five of Swords appearing now signals 'tension.' You are in a conflict at work where no one wins. There is a toxic atmosphere. You may be feeling defeated or resentful.\nYou are being asked to 'walk away.' Don't engage in office politics. Cut your losses.\nThis is a time for 'integrity.' Rise above the drama.",
+    "future_en": "The Five of Swords in the future promises 'peace.' You will leave the conflict behind. You will find a work environment that is free from hostility.\nTo reach this, practice 'forgiveness' now. Let go of the need to be right. Your future holds a career based on mutual respect.",
+    "sentence_en": "Choose your battles wisely; integrity is more valuable than a hollow victory."
+  },
+  {
+    "card": "Six of Swords",
+    "past_en": "The Six of Swords in the past suggests a time of 'transition and movement.' You left a difficult job or a toxic work environment. It was a journey towards calmer waters. You may have relocated for work.\nYou learned the value of 'change.' You realized that sometimes you have to leave to grow. You learned to seek peace.\nThis card also speaks of 'support.' You had help during the transition.\nYour soul understands 'passage.' You know that better days are ahead.",
+    "present_en": "The Six of Swords appearing now signals 'recovery.' You are moving away from a stressful period at work. Things are calming down. You are entering a phase of stability and healing.\nYou are being asked to 'keep moving.' Don't look back. Trust the journey.\nThis is a time for 'calm.' Breathe easier.",
+    "future_en": "The Six of Swords in the future promises 'peace.' You will find a work environment that is supportive and low-stress. You will leave your troubles behind.\nTo reach this, practice 'acceptance' now. Accept the change. Your future holds a career that is a safe harbor.",
+    "sentence_en": "Trust the transition; you are moving toward a calmer and more stable professional future."
+  },
+  {
+    "card": "Seven of Swords",
+    "past_en": "The Seven of Swords in the past suggests a time of 'strategy and stealth.' You may have had to be discreet about your career plans, or you dealt with a dishonest colleague. It was a time of keeping your cards close to your chest.\nYou learned the value of 'caution.' You realized that not everyone is trustworthy. You learned to protect your ideas.\nThis card also speaks of 'independence.' You acted alone.\nYour soul is a 'strategist.' You know that business is a game.",
+    "present_en": "The Seven of Swords appearing now signals 'vigilance.' Be careful what you say and who you trust at work. Someone may be trying to undermine you. Or you may need to use a clever strategy to get ahead.\nYou are being asked to 'be smart.' Don't show your hand. Think two steps ahead.\nThis is a time for 'discretion.' Silence is golden.",
+    "future_en": "The Seven of Swords in the future promises 'autonomy.' You will find a way to succeed on your own terms. You may become a freelancer or start your own business.\nTo welcome this, practice 'awareness' now. Stay sharp. Your future holds a career where you outsmart the competition.",
+    "sentence_en": "Be strategic and discreet; protect your ideas and navigate office politics with care."
+  },
+  {
+    "card": "Eight of Swords",
+    "past_en": "The Eight of Swords in the past suggests a time of 'restriction and fear.' You felt trapped in a job you hated, but felt powerless to leave. You were held back by self-doubt and limiting beliefs.\nYou learned the value of 'mindset.' You realized that the only prison is in your mind. You learned to free yourself.\nThis card also speaks of 'victimhood.' You felt stuck.\nYour soul understands 'liberation.' You know that you have the key.",
+    "present_en": "The Eight of Swords appearing now signals 'paralysis.' You are feeling stuck in your career. You think you have no options, but you do. Fear is keeping you frozen.\nYou are being asked to 'open your eyes.' Look for the exit. It's right there. Take a step.\nThis is a time for 'courage.' Break the mental chains.",
+    "future_en": "The Eight of Swords in the future promises 'freedom.' You will break free from the limitations that are holding you back. You will find your voice and your power.\nTo reach this, practice 'empowerment' now. Believe in yourself. Your future holds a career that is limitless.",
+    "sentence_en": "Open your eyes to the possibilities; the only limits on your career are the ones you accept."
+  },
+  {
+    "card": "Nine of Swords",
+    "past_en": "The Nine of Swords in the past suggests a time of 'anxiety and stress.' You were overwhelmed by work-related worry. You lost sleep over deadlines or fear of failure. It was a mental nightmare.\nYou learned the value of 'perspective.' You realized that worry doesn't solve problems. You learned to manage stress.\nThis card also speaks of 'guilt.' You were hard on yourself.\nYour soul is a 'healer.' You know that peace of mind is success.",
+    "present_en": "The Nine of Swords appearing now signals 'overwhelm.' You are stressed out about work. You are imagining the worst-case scenario. You are suffering from anxiety.\nYou are being asked to 'breathe.' It's not as bad as you think. Talk to someone. Get support.\nThis is a time for 'release.' Let go of the fear.",
+    "future_en": "The Nine of Swords in the future promises 'relief.' The stress will pass. You will find a way to manage your anxiety and find peace at work.\nTo welcome this, practice 'calm' now. Quiet your mind. Your future holds a career that is healthy and balanced.",
+    "sentence_en": "Release your work anxieties; the dawn of clarity and peace is coming."
+  },
+  {
+    "card": "Ten of Swords",
+    "past_en": "The Ten of Swords in the past suggests a time of 'failure and endings.' You experienced a major career setback, like a firing or a bankruptcy. It felt like the end of the world. It was a painful rock bottom.\nYou learned the value of 'resilience.' You realized that you can survive anything. You learned to start over.\nThis card also speaks of 'finality.' It was over.\nYour soul is a 'phoenix.' You know how to rise.",
+    "present_en": "The Ten of Swords appearing now signals 'conclusion.' A difficult chapter in your career is ending. It may be painful, but it is necessary. Accept the end so you can begin again.\nYou are being asked to 'surrender.' Don't fight the inevitable. Let it go.\nThis is a time for 'rebirth.' The sun will rise.",
+    "future_en": "The Ten of Swords in the future promises 'new beginnings.' After the darkness comes the light. You will rise from the ashes of your past career and build something new.\nTo reach this, practice 'hope' now. Look to the horizon. Your future holds a career that is a fresh start.",
+    "sentence_en": "Accept the ending of this chapter; a new professional beginning is on the horizon."
+  },
+  {
+    "card": "Page of Swords",
+    "past_en": "The Page of Swords in the past suggests a time of 'curiosity and research.' You were gathering information about your career. You were asking questions, learning new skills, and exploring different paths. It was a time of mental activity.\nYou learned the value of 'preparation.' You realized that knowledge is the key to success. You learned to be observant.\nThis card also speaks of 'communication.' You may have been a writer or a speaker.\nYour soul is a 'student.' You know that learning never ends.",
+    "present_en": "The Page of Swords appearing now signals 'inquiry.' You are researching a new opportunity. You are gathering facts and figures. You are feeling sharp and analytical.\nYou are being asked to 'be curious.' Ask questions. Don't assume anything. Get the details.\nThis is a time for 'planning.' Map out your strategy.",
+    "future_en": "The Page of Swords in the future promises 'clarity.' You will gain a new understanding of your career path. You will receive news or information that helps you move forward.\nTo reach this, practice 'vigilance' now. Stay alert. Your future holds a career that keeps you on your toes.",
+    "sentence_en": "Stay curious and sharp; research and preparation are the keys to professional growth."
+  },
+  {
+    "card": "Knight of Swords",
+    "past_en": "The Knight of Swords in the past suggests a time of 'ambition and haste.' You were driven to succeed and moved quickly to achieve your goals. You may have been aggressive or impatient. It was a time of fast progress.\nYou learned the value of 'drive.' You realized that you have to push for what you want. You learned to be decisive.\nThis card also speaks of 'competition.' You fought for your place.\nYour soul is a 'warrior.' You know that business is a battlefield.",
+    "present_en": "The Knight of Swords appearing now signals 'action.' You are ready to charge ahead with a new project. You are feeling ambitious and focused. You want results now.\nYou are being asked to 'be bold.' Take the initiative. But be careful not to run over others.\nThis is a time for 'speed.' Strike while the iron is hot.",
+    "future_en": "The Knight of Swords in the future promises 'rapid advancement.' Your career will take off. You will achieve your goals quickly.\nTo welcome this, practice 'focus' now. Keep your eye on the prize. Your future holds a career that is fast and furious.",
+    "sentence_en": "Charge forward with ambition; decisive action leads to rapid professional advancement."
+  },
+  {
+    "card": "Queen of Swords",
+    "past_en": "The Queen of Swords in the past suggests a time of 'clarity and independence.' You were a clear thinker and a strong communicator. You valued logic over emotion. You may have been a leader who was respected for her intellect.\nYou learned the value of 'objectivity.' You realized that you need to see things clearly to succeed. You learned to speak your truth.\nThis card also speaks of 'autonomy.' You worked well alone.\nYour soul is a 'judge.' You know that facts matter.",
+    "present_en": "The Queen of Swords appearing now signals 'strategy.' You are taking a logical approach to your career. You are cutting through the noise and focusing on what matters. You are communicating with authority.\nYou are being asked to 'be professional.' Keep your emotions in check. Be clear and direct.\nThis is a time for 'boundaries.' Protect your time and energy.",
+    "future_en": "The Queen of Swords in the future promises 'wisdom.' You will become a respected expert in your field. You will be known for your sharp mind and your integrity.\nTo reach this, practice 'honesty' now. Speak the truth. Your future holds a career where your intellect is your greatest asset.",
+    "sentence_en": "Communicate with clarity and authority; your intellect commands respect."
+  },
+  {
+    "card": "King of Swords",
+    "past_en": "The King of Swords in the past suggests a time of 'authority and logic.' You were a fair and just leader. You made decisions based on facts and reason. You were respected for your intellect and your ability to solve problems.\nYou learned the value of 'leadership.' You realized that a good leader serves the truth. You learned to be impartial.\nThis card also speaks of 'law.' You may have worked in a legal field.\nYour soul is a 'strategist.' You know that the mind rules.",
+    "present_en": "The King of Swords appearing now signals 'command.' You are in a position of authority. You need to make tough decisions. You are being asked to lead with your head, not your heart.\nYou are being asked to 'be fair.' Weigh the evidence. Be just.\nThis is a time for 'strategy.' Plan your next move carefully.",
+    "future_en": "The King of Swords in the future promises 'power.' You will achieve a high level of success and influence. You will be a leader in your industry.\nTo welcome this, practice 'integrity' now. Be a person of your word. Your future holds a career where you set the standard.",
+    "sentence_en": "Lead with logic and fairness; your strategic mind is the key to professional mastery."
+  },
+  {
+    "card": "Ace of Pentacles",
+    "past_en": "The Ace of Pentacles in the past suggests a time of 'opportunity and manifestation.' You started a new job or business that had great potential. It was a time of planting seeds for future prosperity.\nYou learned the value of 'investment.' You realized that you have to put something in to get something out. You learned to be practical.\nThis card also speaks of 'wealth.' You received a bonus or a raise.\nYour soul is a 'builder.' You know that success is built brick by brick.",
+    "present_en": "The Ace of Pentacles appearing now signals 'offer.' A new financial or career opportunity is coming your way. It is solid and tangible. You are being given a chance to build something real.\nYou are being asked to 'accept.' Take the offer. Invest in your future.\nThis is a time for 'growth.' Plant the seed.",
+    "future_en": "The Ace of Pentacles in the future promises 'abundance.' You will achieve financial security and professional success. Your hard work will pay off.\nTo reach this, practice 'patience' now. Good things take time. Your future holds a career that is grounded and prosperous.",
+    "sentence_en": "Seize the tangible opportunity; a solid foundation for professional abundance is being laid."
+  },
+  {
+    "card": "Two of Pentacles",
+    "past_en": "The Two of Pentacles in the past suggests a time of 'juggling and adaptability.' You were managing multiple projects or jobs at once. It was a busy time that required you to be flexible and quick on your feet.\nYou learned the value of 'balance.' You realized that you have to keep moving to stay upright. You learned to multitask.\nThis card also speaks of 'finance.' You managed your budget.\nYour soul is a 'juggler.' You know that work is a balancing act.",
+    "present_en": "The Two of Pentacles appearing now signals 'flux.' You are juggling a lot of responsibilities at work. You may be dealing with financial fluctuations or changing priorities.\nYou are being asked to 'be flexible.' Adapt to the changes. Prioritize your tasks. Keep your balance.\nThis is a time for 'management.' Handle your resources wisely.",
+    "future_en": "The Two of Pentacles in the future promises 'equilibrium.' You will find a way to manage your workload and your finances with ease. You will be able to handle whatever comes your way.\nTo reach this, practice 'agility' now. Stay light on your feet. Your future holds a career that is dynamic and balanced.",
+    "sentence_en": "Adapt to the changes; flexibility and balance are your keys to professional stability."
+  },
+  {
+    "card": "Three of Pentacles",
+    "past_en": "The Three of Pentacles in the past suggests a time of 'collaboration and mastery.' You were working with a team of experts to build something lasting. You were respected for your skills and your contribution.\nYou learned the value of 'teamwork.' You realized that great things are built together. You learned to appreciate quality.\nThis card also speaks of 'recognition.' Your work was admired.\nYour soul is an 'architect.' You know that quality matters.",
+    "present_en": "The Three of Pentacles appearing now signals 'cooperation.' You are working on a team project that requires everyone's expertise. You are learning from your colleagues.\nYou are being asked to 'collaborate.' Share your skills. Listen to others. Build something great.\nThis is a time for 'construction.' Lay a solid foundation.",
+    "future_en": "The Three of Pentacles in the future promises 'excellence.' You will be recognized as a master of your craft. You will work on prestigious projects with talented people.\nTo welcome this, practice 'diligence' now. Do your best work. Your future holds a career that is built on excellence.",
+    "sentence_en": "Collaborate with others; shared expertise builds professional masterpieces."
+  },
+  {
+    "card": "Four of Pentacles",
+    "past_en": "The Four of Pentacles in the past suggests a time of 'security and control.' You were focused on saving money and protecting your assets. You may have been risk-averse in your career, preferring stability over growth.\nYou learned the value of 'conservation.' You realized that resources are limited. You learned to be frugal.\nThis card also speaks of 'stagnation.' You held on too tight.\nYour soul understands 'value.' You know what you are worth.",
+    "present_en": "The Four of Pentacles appearing now signals 'caution.' You are holding onto your job or your money out of fear. You are afraid to take risks. You may be hoarding information or resources.\nYou are being asked to 'loosen up.' Security is good, but don't let it become a prison. Invest in your growth.\nThis is a time for 'generosity.' Share what you have.",
+    "future_en": "The Four of Pentacles in the future promises 'stability.' You will achieve financial security. But be careful not to become too rigid.\nTo reach this, practice 'trust' now. Trust that there is enough. Your future holds a career that is secure but open to growth.",
+    "sentence_en": "Release your fear of scarcity; true security comes from an open and generous mindset."
+  },
+  {
+    "card": "Five of Pentacles",
+    "past_en": "The Five of Pentacles in the past suggests a time of 'hardship and loss.' You may have experienced unemployment, financial struggle, or a feeling of being left out. It was a difficult winter in your career.\nYou learned the value of 'perseverance.' You realized that you can survive tough times. You learned to ask for help.\nThis card also speaks of 'isolation.' You felt alone.\nYour soul is a 'survivor.' You know that spring always comes.",
+    "present_en": "The Five of Pentacles appearing now signals 'struggle.' You are going through a tough time at work. You may be worried about money or feeling excluded from the team.\nYou are being asked to 'seek support.' Don't suffer in silence. Reach out to your network. Look for the light in the darkness.\nThis is a time for 'hope.' This too shall pass.",
+    "future_en": "The Five of Pentacles in the future promises 'recovery.' You will come out of the cold. You will find a new job or a new source of income.\nTo welcome this, practice 'resilience' now. Keep going. Your future holds a career that provides for your needs.",
+    "sentence_en": "Seek support in tough times; resilience will lead you out of the professional wilderness."
+  },
+  {
+    "card": "Six of Pentacles",
+    "past_en": "The Six of Pentacles in the past suggests a time of 'generosity and exchange.' You may have received a grant, a scholarship, or help from a mentor. Or you were in a position to help others. It was a time of giving and receiving.\nYou learned the value of 'reciprocity.' You realized that success is a cycle. You learned to share your wealth.\nThis card also speaks of 'charity.' You gave back.\nYour soul is a 'philanthropist.' You know that giving is receiving.",
+    "present_en": "The Six of Pentacles appearing now signals 'balance.' You are in a position to give or receive help. You may be negotiating a salary or seeking funding.\nYou are being asked to 'be fair.' Give what you can, and receive with gratitude. Balance the scales.\nThis is a time for 'sharing.' Mentor someone.",
+    "future_en": "The Six of Pentacles in the future promises 'prosperity.' You will be financially successful and able to help others. You will have a career that allows you to give back.\nTo reach this, practice 'generosity' now. Be kind. Your future holds a career that is abundant and charitable.",
+    "sentence_en": "Balance giving and receiving; generosity creates a cycle of professional abundance."
+  },
+  {
+    "card": "Seven of Pentacles",
+    "past_en": "The Seven of Pentacles in the past suggests a time of 'patience and investment.' You were working hard on a long-term project, waiting for the results to show. It was a time of planting seeds and tending to the garden.\nYou learned the value of 'perseverance.' You realized that good things take time. You learned to wait.\nThis card also speaks of 'assessment.' You paused to check your progress.\nYour soul is a 'farmer.' You know that harvest comes after the work.",
+    "present_en": "The Seven of Pentacles appearing now signals 'evaluation.' You have put in the work, and now you are waiting for the payoff. You may be wondering if you are on the right track.\nYou are being asked to 'be patient.' Don't dig up the seeds to see if they are growing. Trust the process.\nThis is a time for 'reflection.' Are you happy with what you are growing?",
+    "future_en": "The Seven of Pentacles in the future promises 'harvest.' Your hard work will pay off. You will see the fruits of your labor.\nTo reach this, practice 'dedication' now. Keep tending your garden. Your future holds a career that is fruitful and rewarding.",
+    "sentence_en": "Be patient with your progress; the seeds of success take time to grow."
+  },
+  {
+    "card": "Eight of Pentacles",
+    "past_en": "The Eight of Pentacles in the past suggests a time of 'diligence and skill-building.' You were focused on mastering your craft. You worked hard, paid attention to detail, and improved your skills. It was a time of apprenticeship.\nYou learned the value of 'mastery.' You realized that excellence is in the details. You learned to love the work itself.\nThis card also speaks of 'focus.' You were single-minded.\nYour soul is an 'artisan.' You know that quality takes time.",
+    "present_en": "The Eight of Pentacles appearing now signals 'dedication.' You are working hard to improve your skills or finish a project. You are focused and productive. You are building a reputation for quality.\nYou are being asked to 'keep working.' Don't cut corners. Focus on the details.\nThis is a time for 'craftsmanship.' Do your best work.",
+    "future_en": "The Eight of Pentacles in the future promises 'expertise.' You will become a master in your field. You will be highly sought after for your skills.\nTo welcome this, practice 'discipline' now. Keep learning. Your future holds a career built on excellence.",
+    "sentence_en": "Focus on mastering your craft; diligence and attention to detail lead to expertise."
+  },
+  {
+    "card": "Nine of Pentacles",
+    "past_en": "The Nine of Pentacles in the past suggests a time of 'independence and luxury.' You achieved a level of financial success that allowed you to enjoy the finer things in life. You were self-sufficient and confident.\nYou learned the value of 'self-reliance.' You realized that you can take care of yourself. You learned to enjoy your success.\nThis card also speaks of 'reward.' You treated yourself.\nYour soul is an 'aristocrat.' You know that you deserve the best.",
+    "present_en": "The Nine of Pentacles appearing now signals 'abundance.' You are enjoying the fruits of your labor. You are feeling financially secure and independent. You are surrounded by beauty.\nYou are being asked to 'enjoy.' Treat yourself. You earned it.\nThis is a time for 'gratitude.' Appreciate what you have.",
+    "future_en": "The Nine of Pentacles in the future promises 'prosperity.' You will achieve financial independence and live a life of comfort and luxury.\nTo reach this, practice 'discipline' now. Manage your resources well. Your future holds a career that provides a beautiful life.",
+    "sentence_en": "Enjoy the fruits of your labor; independence and abundance are your rewards."
+  },
+  {
+    "card": "Ten of Pentacles",
+    "past_en": "The Ten of Pentacles in the past suggests a time of 'legacy and wealth.' You were part of a successful family business or a large, stable organization. You felt secure and supported. It was a time of long-term planning.\nYou learned the value of 'tradition.' You realized that success is built over generations. You learned to think long-term.\nThis card also speaks of 'inheritance.' You received a gift.\nYour soul is a 'patriarch/matriarch.' You know that family comes first.",
+    "present_en": "The Ten of Pentacles appearing now signals 'stability.' You are building a solid foundation for your future. You may be thinking about your retirement or your legacy. You are focused on long-term security.\nYou are being asked to 'plan ahead.' Think about the future. Build something that will last.\nThis is a time for 'wealth.' Secure your assets.",
+    "future_en": "The Ten of Pentacles in the future promises 'legacy.' You will build a career that leaves a lasting impact. You will achieve generational wealth and success.\nTo welcome this, practice 'vision' now. Think big. Your future holds a career that stands the test of time.",
+    "sentence_en": "Build a lasting legacy; long-term vision leads to enduring professional success."
+  },
+  {
+    "card": "Page of Pentacles",
+    "past_en": "The Page of Pentacles in the past suggests a time of 'study and new beginnings.' You were learning a new trade or starting a new job. You were practical, eager to learn, and focused on the basics.\nYou learned the value of 'grounding.' You realized that you have to start at the bottom. You learned to be reliable.\nThis card also speaks of 'opportunity.' You got a foot in the door.\nYour soul is a 'student.' You know that practice makes perfect.",
+    "present_en": "The Page of Pentacles appearing now signals 'ambition.' You have a new goal or a new project. You are ready to work hard and learn what is needed to succeed. You are feeling practical and focused.\nYou are being asked to 'be diligent.' Do the work. Study hard. Be reliable.\nThis is a time for 'manifestation.' Make it real.",
+    "future_en": "The Page of Pentacles in the future promises 'growth.' You will develop new skills that lead to financial success. You will build a solid career foundation.\nTo reach this, practice 'consistency' now. Show up every day. Your future holds a career that is built on solid ground.",
+    "sentence_en": "Embrace the opportunity to learn; practical skills are the foundation of success."
+  },
+  {
+    "card": "Knight of Pentacles",
+    "past_en": "The Knight of Pentacles in the past suggests a time of 'methodical progress.' You were a hard worker, reliable and consistent. You may have been slow to start, but you finished what you started. It was a time of steady climbing.\nYou learned the value of 'routine.' You realized that consistency is key. You learned to be dependable.\nThis card also speaks of 'responsibility.' You carried the load.\nYour soul is a 'builder.' You know that Rome wasn't built in a day.",
+    "present_en": "The Knight of Pentacles appearing now signals 'reliability.' You are the person everyone counts on at work. You are handling the details and getting the job done. You are practical and efficient.\nYou are being asked to 'be consistent.' Stick to the plan. Don't rush. Do it right.\nThis is a time for 'productivity.' Grind it out.",
+    "future_en": "The Knight of Pentacles in the future promises 'security.' You will achieve your goals through hard work and determination. You will build a solid and secure career.\nTo welcome this, practice 'discipline' now. Stay the course. Your future holds a career that is rock solid.",
+    "sentence_en": "Be reliable and consistent; steady progress leads to professional security."
+  },
+  {
+    "card": "Queen of Pentacles",
+    "past_en": "The Queen of Pentacles in the past suggests a time of 'practicality and nurturing.' You were a capable and resourceful professional. You managed your career and your home life with skill. You were grounded and sensible.\nYou learned the value of 'resourcefulness.' You realized that you can make a lot out of a little. You learned to care for yourself.\nThis card also speaks of 'abundance.' You created a comfortable life.\nYour soul is a 'provider.' You know how to nurture growth.",
+    "present_en": "The Queen of Pentacles appearing now signals 'prosperity.' You are in a good place financially and professionally. You are able to support yourself and others. You are practical and down-to-earth.\nYou are being asked to 'be practical.' Use your common sense. Manage your resources well.\nThis is a time for 'nurturing.' Take care of your business.",
+    "future_en": "The Queen of Pentacles in the future promises 'comfort.' You will achieve a high level of financial security and personal comfort. You will be able to enjoy the good life.\nTo reach this, practice 'gratitude' now. Appreciate what you have. Your future holds a career that supports a beautiful life.",
+    "sentence_en": "Nurture your resources with practicality; prosperity is the result of sensible management."
+  },
+  {
+    "card": "King of Pentacles",
+    "past_en": "The King of Pentacles in the past suggests a time of 'success and mastery.' You were a successful business person or a leader in your field. You had a Midas touch. You were financially savvy and secure.\nYou learned the value of 'ambition.' You realized that you can achieve great things. You learned to manage wealth.\nThis card also speaks of 'power.' You were a boss.\nYour soul is a 'tycoon.' You know how to make money work.",
+    "present_en": "The King of Pentacles appearing now signals 'achievement.' You have reached the top of your game. You are financially successful and respected. You are a master of your domain.\nYou are being asked to 'be a leader.' Use your power wisely. Mentor others. Invest in the future.\nThis is a time for 'empire.' Build your legacy.",
+    "future_en": "The King of Pentacles in the future promises 'wealth.' You will achieve great financial success and influence. You will leave a lasting legacy.\nTo welcome this, practice 'generosity' now. Share your wealth. Your future holds a career where you are the king of the hill.",
+    "sentence_en": "Master your domain with ambition; financial success and influence are within your grasp."
+  }
+]
