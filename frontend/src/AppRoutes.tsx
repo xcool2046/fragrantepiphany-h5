@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import WipeTransition from './components/WipeTransition'
+import GlobalLoading from './components/GlobalLoading'
 
 // Lazy load pages
 const Home = React.lazy(() => import('./pages/Home'))
@@ -26,7 +27,9 @@ const PayCallback = React.lazy(() => import('./pages/PayCallback'))
 const PageWrapper = ({ children, className }: { children: React.ReactNode; className?: string }) => (
   <WipeTransition>
     <div className={`w-full min-h-screen ${className || ''}`}>
-      {children}
+      <Suspense fallback={<GlobalLoading />}>
+        {children}
+      </Suspense>
     </div>
   </WipeTransition>
 )

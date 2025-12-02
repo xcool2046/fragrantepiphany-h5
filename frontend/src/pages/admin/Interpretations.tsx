@@ -64,16 +64,14 @@ export default function Interpretations() {
   const fetchInterps = useCallback(async (p = 1, kw = query, position = positionFilter, category = categoryFilter) => {
     setLoading(true)
     try {
-      const token = localStorage.getItem('admin_token')
+
       const params = new URLSearchParams()
       params.set('page', String(p))
       params.set('limit', String(pageSize))
       if (kw.trim()) params.set('keyword', kw.trim())
       if (position !== 'all') params.set('position', position)
       if (category !== 'all') params.set('category', category)
-      const res = await api.get(`/api/interp/list?${params.toString()}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      const res = await api.get(`/api/interp/list?${params.toString()}`)
       setInterps(res.data?.items ?? [])
       setTotal(res.data?.total ?? 0)
       setPage(p)
@@ -116,17 +114,13 @@ export default function Interpretations() {
     e.preventDefault()
     setIsSaving(true)
     try {
-      const token = localStorage.getItem('admin_token')
+
       const payload = { ...formData }
       if (editingItem) {
-        await api.post(`/api/interp/update/${editingItem.id}`, payload, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
+        await api.post(`/api/interp/update/${editingItem.id}`, payload)
         alert('更新成功')
       } else {
-        await api.post('/api/interp', payload, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
+        await api.post('/api/interp', payload)
         alert('创建成功')
       }
 
@@ -159,10 +153,7 @@ export default function Interpretations() {
     if (!window.confirm('确认删除这条解读吗？')) return
     setIsDeleting(true)
     try {
-      const token = localStorage.getItem('admin_token')
-      await api.post(`/api/interp/delete/${editingItem.id}`, {}, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      await api.post(`/api/interp/delete/${editingItem.id}`, {})
       alert('已删除')
       setIsModalOpen(false)
       setEditingItem(null)

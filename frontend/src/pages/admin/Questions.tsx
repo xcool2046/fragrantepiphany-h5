@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Section from '../../components/Section'
 import api from '../../api'
 
@@ -21,19 +21,19 @@ export default function Questions() {
   const [modalOpen, setModalOpen] = useState(false)
   const [form, setForm] = useState({ title_en: '', title_zh: '', options_en: '', options_zh: '', active: true, weight: 0 })
 
-  const tokenHeader = useMemo(() => ({ Authorization: `Bearer ${localStorage.getItem('admin_token') || ''}` }), [])
+
 
   const fetchData = useCallback(async () => {
     setLoading(true)
     try {
-      const res = await api.get('/api/admin/questions', { headers: tokenHeader })
+      const res = await api.get('/api/admin/questions')
       setItems(res.data.items || [])
     } catch (e) {
       console.error(e)
     } finally {
       setLoading(false)
     }
-  }, [tokenHeader])
+  }, [])
 
   useEffect(() => {
     fetchData()
@@ -73,9 +73,9 @@ export default function Questions() {
     }
     try {
       if (editing) {
-        await api.patch(`/api/admin/questions/${editing.id}`, payload, { headers: tokenHeader })
+        await api.patch(`/api/admin/questions/${editing.id}`, payload)
       } else {
-        await api.post('/api/admin/questions', payload, { headers: tokenHeader })
+        await api.post('/api/admin/questions', payload)
       }
       setModalOpen(false)
       fetchData()
@@ -86,7 +86,7 @@ export default function Questions() {
   }
 
   const toggleActive = async (q: Question) => {
-    await api.patch(`/api/admin/questions/${q.id}`, { active: !q.active }, { headers: tokenHeader })
+    await api.patch(`/api/admin/questions/${q.id}`, { active: !q.active })
     fetchData()
   }
 
@@ -116,8 +116,8 @@ export default function Questions() {
 
     try {
         await Promise.all([
-            api.patch(`/api/admin/questions/${q.id}`, { weight: newWeightQ }, { headers: tokenHeader }),
-            api.patch(`/api/admin/questions/${targetItem.id}`, { weight: newWeightTarget }, { headers: tokenHeader })
+            api.patch(`/api/admin/questions/${q.id}`, { weight: newWeightQ }),
+            api.patch(`/api/admin/questions/${targetItem.id}`, { weight: newWeightTarget })
         ])
         fetchData()
     } catch (e) {
@@ -128,7 +128,7 @@ export default function Questions() {
 
   const remove = async (q: Question) => {
     if (!window.confirm('确认删除该问题？')) return
-    await api.delete(`/api/admin/questions/${q.id}`, { headers: tokenHeader })
+    await api.delete(`/api/admin/questions/${q.id}`)
     fetchData()
   }
 

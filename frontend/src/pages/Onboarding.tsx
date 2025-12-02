@@ -48,7 +48,15 @@ const Onboarding: React.FC = () => {
               <li>{t('onboarding.slide2.list4')}</li>
             )}
           </ul>
-          <p className="text-primary font-medium text-sm whitespace-pre-line">
+        </>
+      )
+    },
+    {
+      id: 3,
+      title: t('onboarding.slide2.title'),
+      content: (
+        <>
+          <p className="text-primary font-medium text-sm whitespace-pre-line leading-loose">
             {t('onboarding.slide2.p2')}
           </p>
         </>
@@ -72,7 +80,7 @@ const Onboarding: React.FC = () => {
       {/* Background Texture */}
       <div className="absolute inset-0 z-0 opacity-30 bg-cover bg-center mix-blend-overlay" />
       
-      <div className="relative z-10 max-w-md w-full glass-panel p-10 min-h-[60vh] flex flex-col justify-center text-center shadow-card">
+      <div className="relative z-10 max-w-md w-full glass-panel p-10 h-[65vh] flex flex-col justify-center text-center shadow-card overflow-y-auto">
         <AnimatePresence mode='wait'>
           <motion.div
             key={step}
@@ -99,7 +107,7 @@ const Onboarding: React.FC = () => {
                   e.stopPropagation()
                   handleNext()
                 }}
-                className="mt-12 px-12 py-3 bg-text text-white rounded-full hover:opacity-90 transition-opacity duration-300 shadow-md font-serif tracking-widest text-sm uppercase active:scale-95 transform"
+                className="mt-12 px-12 py-3 bg-text text-white rounded-full hover:opacity-90 transition-colors duration-300 shadow-md font-serif tracking-widest text-sm uppercase active:scale-95 transform"
               >
                 {t('onboarding.startBtn')}
               </motion.button>

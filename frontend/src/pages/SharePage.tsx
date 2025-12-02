@@ -93,15 +93,24 @@ const SharePage: React.FC = () => {
             </div>
 
             {/* Bottom Section: User Name */}
-            <div className="flex flex-col items-center text-center mb-8">
+            <div className="flex flex-col items-center text-center mb-16">
                 <p className="text-[10px] uppercase tracking-widest text-[#A87B51] mb-2">{t('share.for', 'For')}</p>
-                <p className="text-2xl font-serif border-b border-[#2B1F16]/30 pb-1 min-w-[100px]">
-                  {userName || '_______'}
-                </p>
+                <div className="flex flex-col items-center min-w-[100px]">
+                  <p className="text-2xl font-serif leading-none">
+                    {userName || '_______'}
+                  </p>
+                  {/* Explicit spacer for html2canvas */}
+                  <div className="w-full h-2" />
+                  <div className="w-full h-[1px] bg-[#2B1F16]/30" />
+                </div>
                 <p className="text-[9px] text-[#A87B51]/60 mt-2 font-sans tracking-wide">
                   {t('share.sub', 'Today you are learning to love yourself in a new way')}
                 </p>
-                <p className="text-[8px] text-[#A87B51]/40 mt-4 font-sans tracking-wider">
+            </div>
+
+            {/* Footer Text - Absolute Bottom */}
+            <div className="absolute bottom-6 left-0 w-full text-center">
+                <p className="text-[8px] text-[#A87B51]/40 font-sans tracking-wider">
                   @Fragrant Epiphany . Scent Message for this chapter
                 </p>
             </div>

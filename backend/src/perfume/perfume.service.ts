@@ -17,10 +17,22 @@ export class PerfumeService {
   async getChapters(cardIds: number[], language = 'zh', scentAnswer?: string, category = 'Self') {
     if (!cardIds.length) return [];
 
-    const items = await this.perfumeRepo.find({
+    let items = await this.perfumeRepo.find({
       where: { card_id: In(cardIds), status: 'active' },
       order: { card_id: 'ASC', sort_order: 'ASC', id: 'ASC' },
     });
+
+    // Fallback: If no perfumes found (e.g. cards have no data), use a default one
+    if (items.length === 0) {
+      const defaultPerfume = await this.perfumeRepo.findOne({ where: { id: 22 } }); // Diptyque Eau Capitale
+      if (defaultPerfume) {
+        items = [defaultPerfume];
+        // Ensure we fetch the card for this perfume
+        if (!cardIds.includes(defaultPerfume.card_id)) {
+          cardIds.push(defaultPerfume.card_id);
+        }
+      }
+    }
 
     // Fetch cards to get localized names
     const cards = await this.cardRepo.find({ where: { id: In(cardIds) } });

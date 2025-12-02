@@ -30,7 +30,7 @@ export default function Cards() {
   const [total, setTotal] = useState(0)
   const pageSize = 500
 
-  const tokenHeader = useMemo(() => ({ Authorization: `Bearer ${localStorage.getItem('admin_token') || ''}` }), [])
+
 
   const fetchData = useCallback(async (p = 1, kw = keyword, enabled = onlyEnabled) => {
     setLoading(true)
@@ -40,7 +40,7 @@ export default function Cards() {
       params.set('pageSize', String(pageSize))
       if (kw.trim()) params.set('keyword', kw.trim())
       if (enabled) params.set('onlyEnabled', 'true')
-      const res = await api.get(`/api/admin/cards?${params.toString()}`, { headers: tokenHeader })
+      const res = await api.get(`/api/admin/cards?${params.toString()}`)
       setItems(res.data.items || [])
       setTotal(res.data.total || 0)
       setPage(res.data.page || p)
@@ -49,7 +49,7 @@ export default function Cards() {
     } finally {
       setLoading(false)
     }
-  }, [keyword, onlyEnabled, pageSize, tokenHeader])
+  }, [keyword, onlyEnabled, pageSize])
 
   useEffect(() => {
     fetchData()
@@ -108,9 +108,9 @@ export default function Cards() {
     }
     try {
       if (editing) {
-        await api.patch(`/api/admin/cards/${editing.id}`, payload, { headers: tokenHeader })
+        await api.patch(`/api/admin/cards/${editing.id}`, payload)
       } else {
-        await api.post('/api/admin/cards', payload, { headers: tokenHeader })
+        await api.post('/api/admin/cards', payload)
       }
       setModalOpen(false)
       fetchData(page)
@@ -120,17 +120,22 @@ export default function Cards() {
   }
 
   const toggle = async (c: Card) => {
-    await api.patch(`/api/admin/cards/${c.id}`, { enabled: !c.enabled }, { headers: tokenHeader })
+    await api.patch(`/api/admin/cards/${c.id}`, { enabled: !c.enabled })
     fetchData(page)
   }
 
   const uploadImage = async (inputFile: File) => {
     const fd = new FormData()
     fd.append('file', inputFile)
-    const res = await api.post('/api/admin/cards/upload', fd, {
-      headers: { ...tokenHeader, 'Content-Type': 'multipart/form-data' },
-    })
-    setForm((prev) => ({ ...prev, image_url: res.data.url }))
+    try {
+      const res = await api.post('/api/admin/cards/upload', fd, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      setForm((prev) => ({ ...prev, image_url: res.data.url }))
+    } catch (e: any) {
+      console.error(e)
+      alert(e?.response?.data?.message || '上传失败，请检查文件大小(≤10MB)与格式')
+    }
   }
 
   const handleImport = async () => {
@@ -138,7 +143,7 @@ export default function Cards() {
     const fd = new FormData()
     fd.append('file', file)
     try {
-      await api.post('/api/admin/cards/import', fd, { headers: { ...tokenHeader, 'Content-Type': 'multipart/form-data' } })
+      await api.post('/api/admin/cards/import', fd, { headers: { 'Content-Type': 'multipart/form-data' } })
       alert('导入完成')
       setImportOpen(false)
       fetchData(page)
@@ -149,7 +154,7 @@ export default function Cards() {
 
   const handleExport = () => {
     api
-      .get('/api/admin/cards/export', { headers: tokenHeader, responseType: 'blob' })
+      .get('/api/admin/cards/export', { responseType: 'blob' })
       .then((res) => {
         const url = window.URL.createObjectURL(new Blob([res.data]))
         const link = document.createElement('a')
@@ -163,7 +168,7 @@ export default function Cards() {
 
   const handleDelete = async (c: Card) => {
     if (!window.confirm('确认删除该卡牌？')) return
-    await api.delete(`/api/admin/cards/${c.id}`, { headers: tokenHeader })
+    await api.delete(`/api/admin/cards/${c.id}`)
     fetchData(page)
   }
 
@@ -274,7 +279,7 @@ export default function Cards() {
                     onChange={(e) => e.target.files?.[0] && uploadImage(e.target.files[0])}
                     className="text-sm"
                   />
-                  <span className="text-xs text-[#6B5542]">支持 JPG / PNG，≤ 10MB</span>
+                  <span className="text-xs text-[#6B5542]">支持常见图片格式 (JPG/PNG/GIF/HEIC等)，≤ 10MB</span>
                 </div>
                 <input
                   value={form.image_url}

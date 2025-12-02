@@ -30,10 +30,8 @@ const Breath: React.FC = () => {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center px-6 text-center w-full max-w-md">
         
-        {/* Icon - Static to appear with background via Wipe, with subtle float */}
-        <motion.div
-          animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        {/* Icon - Static to appear with background via Wipe */}
+        <div
           className="mb-12"
         >
           <img 
@@ -41,7 +39,7 @@ const Breath: React.FC = () => {
             alt="Sun and Moon" 
             className="w-80 h-80 md:w-[30rem] md:h-[30rem] object-contain drop-shadow-[0_0_15px_rgba(212,163,115,0.3)]"
           />
-        </motion.div>
+        </div>
 
         {/* Text */}
         <div className="space-y-6 mb-16">
@@ -79,7 +77,7 @@ const Breath: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 8.0 }}
           onClick={handleContinue}
-          className="px-10 py-3 rounded-full bg-[#5C4033]/80 border border-[#D4A373]/30 text-[#D4A373] uppercase tracking-[0.2em] text-sm hover:bg-[#5C4033] hover:text-[#F7F2ED] transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+          className="px-10 py-3 rounded-full bg-[#5C4033]/80 border border-[#D4A373]/30 text-[#D4A373] uppercase tracking-[0.2em] text-sm hover:bg-[#5C4033] hover:text-[#F7F2ED] transition-colors duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
         >
           {t('common.continue')}
         </motion.button>

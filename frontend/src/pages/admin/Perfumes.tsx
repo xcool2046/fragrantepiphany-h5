@@ -43,13 +43,12 @@ export default function Perfumes() {
 
   const [form, setForm] = useState<Partial<Perfume>>({})
 
-  const tokenHeader = { Authorization: `Bearer ${localStorage.getItem('admin_token') || ''}` }
+
 
   const fetchData = useCallback(async (p = 1, kw = query) => {
     setLoading(true)
     try {
       const res = await api.get('/api/admin/perfumes', {
-        headers: tokenHeader,
         params: { page: p, pageSize, keyword: kw }
       })
       setItems(res.data.items || [])
@@ -98,9 +97,9 @@ export default function Perfumes() {
     }
     try {
       if (editing) {
-        await api.patch(`/api/admin/perfumes/${editing.id}`, form, { headers: tokenHeader })
+        await api.patch(`/api/admin/perfumes/${editing.id}`, form)
       } else {
-        await api.post('/api/admin/perfumes', form, { headers: tokenHeader })
+        await api.post('/api/admin/perfumes', form)
       }
       setModalOpen(false)
       fetchData(page)
@@ -113,7 +112,7 @@ export default function Perfumes() {
   const remove = async (id: number) => {
     if (!window.confirm('Confirm delete?')) return
     try {
-      await api.delete(`/api/admin/perfumes/${id}`, { headers: tokenHeader })
+      await api.delete(`/api/admin/perfumes/${id}`)
       fetchData(page)
     } catch (e) {
       console.error(e)

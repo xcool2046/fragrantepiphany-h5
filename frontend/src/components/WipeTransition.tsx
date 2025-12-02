@@ -7,7 +7,7 @@ interface WipeTransitionProps {
 
 const WipeTransition: React.FC<WipeTransitionProps> = ({ children }) => {
   return (
-    <div className="relative w-full min-h-screen overflow-hidden bg-[var(--color-bg-main)]">
+    <div className="relative w-full min-h-screen bg-[var(--color-bg-main)]">
       <motion.div
         className="w-full min-h-screen"
         initial={{ opacity: 0, x: 20 }}

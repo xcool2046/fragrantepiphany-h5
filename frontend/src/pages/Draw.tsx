@@ -95,8 +95,8 @@ const FlyingCard = ({
                 scale: scale,
             }}
             transition={{ 
-                duration: 1.5,
-                ease: "easeInOut", // Smooth easeInOut
+                duration: 0.8,
+                ease: "easeOut", // Snappy easeOut
             }}
             onAnimationComplete={onComplete}
             className="pointer-events-none font-serif fixed z-[99999]"
@@ -513,10 +513,10 @@ const Draw: React.FC = () => {
                     key={index}
                     ref={el => slotRefs.current[index] = el}
                     className={clsx(
-                        "relative w-full h-[124px] rounded-xl flex items-center justify-center border-2 border-[#D4A373]/40", // Fixed h-124px (120 content + 4 border)
+                        "relative w-full h-[124px] rounded-xl flex items-center justify-center border-2 border-[#D4A373]/40 bg-white/20 backdrop-blur-md shadow-[0_8px_24px_rgba(212,163,115,0.15)] transition-all duration-300", // Constant style
                         cardId === null 
-                            ? "bg-white/20 backdrop-blur-md shadow-[0_8px_24px_rgba(212,163,115,0.15)] hover:border-[#D4A373]/60 hover:shadow-[0_12px_32px_rgba(212,163,115,0.25)] transition-all duration-300" 
-                            : "bg-transparent shadow-none" // Keep border, just remove bg/shadow
+                            ? "hover:border-[#D4A373]/60 hover:shadow-[0_12px_32px_rgba(212,163,115,0.25)]" 
+                            : "" 
                     )}
                 >
                     {/* Empty State - Breathing Animation */}
@@ -555,24 +555,17 @@ const Draw: React.FC = () => {
             })}
             </div>
 
-            {/* Continue Button - Pre-rendered to prevent layout shift */}
+            {/* Continue Text - Pre-rendered to prevent layout shift */}
             <div className={clsx(
                 "transition-all duration-1000 ease-out",
                 (filledCount === 3 && !flyingCard && !submitting) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
             )}>
-                <button
+                <div
                     onClick={handleContinue}
-                    disabled={!(filledCount === 3 && !flyingCard && !submitting)}
-                    className="group relative overflow-hidden w-full max-w-[180px] px-10 py-4 rounded-full bg-[#2B1F16] text-[#F7F2ED] shadow-[0_16px_32px_rgba(43,31,22,0.3)] hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(43,31,22,0.35)] transition-all duration-500 text-[11px] uppercase tracking-[0.2em] font-medium whitespace-nowrap"
+                    className="w-[84px] text-left text-sm text-[#F7F2ED]/60 animate-bounce uppercase tracking-widest cursor-pointer whitespace-nowrap pl-1"
                 >
-                    <>
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#2B1F16] via-[#3E2D20] to-[#2B1F16] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-[radial-gradient(circle_at_center,white,transparent)] blur-xl transition-opacity duration-500" />
-                    </>
-                    <span className="relative z-10 flex items-center justify-center">
-                        {t('common.continue')}
-                    </span>
-                </button>
+                    {t('common.tapToContinue')}
+                </div>
             </div>
         </div>
       </div>
