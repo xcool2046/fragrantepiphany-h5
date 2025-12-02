@@ -36,6 +36,7 @@ const FlyingCard = ({
     startRect,
     targetRect,
     initialRotate = 0,
+    onComplete
 }: {
     cardId: number,
     startRect: DOMRect,
@@ -64,14 +65,13 @@ const FlyingCard = ({
     
     // Target State
     // Center the 80x120 card over the target center
-    const targetX = targetCenterX - CARD_WIDTH / 2
-    const targetY = targetCenterY - CARD_HEIGHT / 2
+    // FIX: Round to nearest pixel to avoid sub-pixel vibration when switching to static layout
+    const targetX = Math.round(targetCenterX - CARD_WIDTH / 2)
+    const targetY = Math.round(targetCenterY - CARD_HEIGHT / 2)
 
     // Scale Calculation
-    // Target slot is ~80x120 (Vertical). Card is 80x120 (Vertical).
-    // We rotate 0deg -> Visual size matches.
-    // Scale = targetRect.width / CARD_WIDTH
-    const scale = targetRect.width / CARD_WIDTH
+    // FIX: Disable scaling as requested. Keep card at natural 80x120 size.
+    const scale = 1
 
     return createPortal(
         <motion.div
@@ -98,10 +98,11 @@ const FlyingCard = ({
                 duration: 1.5,
                 ease: "easeInOut", // Smooth easeInOut
             }}
+            onAnimationComplete={onComplete}
             className="pointer-events-none font-serif fixed z-[99999]"
             style={{ transformOrigin: 'center center' }}
         >
-            <div className="w-full h-full relative shadow-2xl">
+            <div className="w-full h-full relative"> {/* Removed shadow-2xl to match SlotCard flat style */}
                  <CardFace id={cardId} variant="slot" vertical={true} side="back" />
             </div>
         </motion.div>,
@@ -432,10 +433,11 @@ const Draw: React.FC = () => {
             })
 
             // Force complete after 1550ms (1.5s animation + 0.05s buffer)
-            if (animationTimer.current) clearTimeout(animationTimer.current)
-            animationTimer.current = setTimeout(() => {
-                handleAnimationComplete(cardId, targetIndex)
-            }, 1550)
+            // REMOVED: Using onAnimationComplete in FlyingCard instead for instant transition
+            // if (animationTimer.current) clearTimeout(animationTimer.current)
+            // animationTimer.current = setTimeout(() => {
+            //     handleAnimationComplete(cardId, targetIndex)
+            // }, 1550)
 
         } else {
             // Fallback if ref missing
@@ -502,7 +504,7 @@ const Draw: React.FC = () => {
             </div>
 
             {/* Vertical Slots */}
-            <div className="flex flex-col gap-6 mb-12 w-full max-w-[180px]">
+            <div className="flex flex-col gap-6 mb-12 w-[84px]"> {/* Fixed width 84px (80 content + 4 border) */}
             {[0, 1, 2].map((index) => {
                 const cardId = selectedCards[index]
                 const slotNames = ['past', 'present', 'future']
@@ -511,10 +513,10 @@ const Draw: React.FC = () => {
                     key={index}
                     ref={el => slotRefs.current[index] = el}
                     className={clsx(
-                        "relative w-full aspect-[2/3] rounded-xl flex items-center justify-center transition-all duration-300",
+                        "relative w-full h-[124px] rounded-xl flex items-center justify-center border-2 border-[#D4A373]/40", // Fixed h-124px (120 content + 4 border)
                         cardId === null 
-                            ? "border-2 border-[#D4A373]/40 bg-white/20 backdrop-blur-md shadow-[0_8px_24px_rgba(212,163,115,0.15)] hover:border-[#D4A373]/60 hover:shadow-[0_12px_32px_rgba(212,163,115,0.25)]"
-                            : "border-none bg-transparent shadow-none"
+                            ? "bg-white/20 backdrop-blur-md shadow-[0_8px_24px_rgba(212,163,115,0.15)] hover:border-[#D4A373]/60 hover:shadow-[0_12px_32px_rgba(212,163,115,0.25)] transition-all duration-300" 
+                            : "bg-transparent shadow-none" // Keep border, just remove bg/shadow
                     )}
                 >
                     {/* Empty State - Breathing Animation */}
@@ -531,18 +533,9 @@ const Draw: React.FC = () => {
                     )}
 
                     {/* Filled State */}
-                    <AnimatePresence>
                     {cardId !== null && (
-                        <>
-                        {/* Ripple/Impact Effect REMOVED */}
-                        
-                        <motion.div
-                            layoutId={`card-slot-${cardId}`} 
+                        <div
                             className="absolute inset-0 w-full h-full z-10 flex items-center justify-center"
-                            initial={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
-                            animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
-                            exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)", rotate: 0 }}
-                            transition={{ duration: 0 }} // No transition for entry
                             onClick={() => {
                             // Clear this specific slot
                             setSelectedCards(prev => {
@@ -552,39 +545,35 @@ const Draw: React.FC = () => {
                             })
                             }}
                         >
-                            <div className="w-[80px] h-[120px]"> {/* 竖版卡片：直接使用纵向比例，无需旋转 */}
+                            <div className="w-[80px] h-[120px]"> {/* Fixed size 80x120 to match FlyingCard, centered in slot */}
                                 <CardFace id={cardId} variant="slot" vertical={true} />
                             </div>
-                        </motion.div>
-                        </>
+                        </div>
                     )}
-                    </AnimatePresence>
                 </div>
                 )
             })}
             </div>
 
-            {/* Continue Button */}
-            <button
-            disabled={filledCount !== 3 || submitting}
-            onClick={handleContinue}
-            className={clsx(
-                "group relative overflow-hidden w-full max-w-[180px] px-10 py-4 rounded-full transition-all duration-500 text-[11px] uppercase tracking-[0.2em] font-medium whitespace-nowrap",
-                filledCount === 3 && !submitting
-                ? "bg-[#2B1F16] text-[#F7F2ED] shadow-[0_16px_32px_rgba(43,31,22,0.3)] hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(43,31,22,0.35)]"
-                : "bg-[#F7F2ED]/10 text-[#F7F2ED]/40 border border-[#F7F2ED]/20 cursor-not-allowed shadow-[0_8px_16px_rgba(0,0,0,0.1)]"
-            )}
-            >
-            {filledCount === 3 && !submitting && (
-                <>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#2B1F16] via-[#3E2D20] to-[#2B1F16] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-[radial-gradient(circle_at_center,white,transparent)] blur-xl transition-opacity duration-500" />
-                </>
-            )}
-            <span className="relative z-10 flex items-center justify-center">
-                {submitting ? t('draw.loading') : t('common.continue')}
-            </span>
-            </button>
+            {/* Continue Button - Pre-rendered to prevent layout shift */}
+            <div className={clsx(
+                "transition-all duration-1000 ease-out",
+                (filledCount === 3 && !flyingCard && !submitting) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+            )}>
+                <button
+                    onClick={handleContinue}
+                    disabled={!(filledCount === 3 && !flyingCard && !submitting)}
+                    className="group relative overflow-hidden w-full max-w-[180px] px-10 py-4 rounded-full bg-[#2B1F16] text-[#F7F2ED] shadow-[0_16px_32px_rgba(43,31,22,0.3)] hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(43,31,22,0.35)] transition-all duration-500 text-[11px] uppercase tracking-[0.2em] font-medium whitespace-nowrap"
+                >
+                    <>
+                        <div className="absolute inset-0 bg-gradient-to-r from-[#2B1F16] via-[#3E2D20] to-[#2B1F16] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-[radial-gradient(circle_at_center,white,transparent)] blur-xl transition-opacity duration-500" />
+                    </>
+                    <span className="relative z-10 flex items-center justify-center">
+                        {t('common.continue')}
+                    </span>
+                </button>
+            </div>
         </div>
       </div>
       
@@ -596,6 +585,7 @@ const Draw: React.FC = () => {
             startRect={flyingCard.startRect} 
             targetRect={flyingCard.targetRect} 
             initialRotate={flyingCard.initialRotate}
+            onComplete={() => handleAnimationComplete(flyingCard.id, flyingCard.targetIndex)}
           />
       )}
     </div>
