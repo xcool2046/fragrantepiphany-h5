@@ -17,13 +17,14 @@ async function inspect() {
   await AppDataSource.initialize();
   const repo = AppDataSource.getRepository(Interpretation);
 
-  const samples = await repo.find({ take: 5 });
+  const samples = await repo.find({ where: { category: 'Self' }, take: 5 });
   
-  console.log('--- Sample Interpretations ---');
+  console.log('--- Sample Interpretations (Self) ---');
   for (const item of samples) {
     console.log(`ID: ${item.id}, Card: ${item.card_name}, Category: ${item.category}, Position: ${item.position}`);
     console.log(`Summary (ZH): ${item.summary_zh}`);
-    console.log(`Interpretation (ZH): ${item.interpretation_zh?.substring(0, 100)}...`); // Truncate for readability
+    console.log(`Interpretation (ZH): ${item.interpretation_zh?.substring(0, 50)}...`);
+    console.log(`Interpretation (EN): ${item.interpretation_en?.substring(0, 50)}...`);
     console.log('------------------------------');
   }
 

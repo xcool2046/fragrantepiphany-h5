@@ -132,9 +132,9 @@ export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical =
                         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-80" />
                         <span
                             className={clsx(
-                                "relative block text-center text-[#F7E6CE] uppercase leading-none font-semibold font-sans",
+                                "relative block text-center text-[#F7E6CE] uppercase leading-none font-semibold font-script",
                                 // Adjust font size for NO.XX
-                                isWheel ? "text-[8px] tracking-[0.1em]" : "text-[9px] tracking-[0.1em]"
+                                isWheel ? "text-[10px] tracking-[0.05em]" : "text-[12px] tracking-[0.05em]"
                             )}
                             style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.6))' }}
                         >

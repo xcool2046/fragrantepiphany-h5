@@ -1,50 +1,63 @@
-# Handover Document
-
 ## 📊 当前进度快照 (Progress Snapshot)
-- **当前阶段**：生产环境数据修复与验证 (Production Data Fix & Verification)。
-- **已完成**：
-  - **Self & Love 数据修复**：发现 `自我正式.xlsx` 和 `感情正式.xlsx` 包含英文数据，通过 `import_self_love_en.ts` 成功导入生产环境。
-  - **Career (事业) 数据修复**：解决了 `事业正式.xlsx` 中英文文本错位的问题。
-  - **后端部署流程**：确立了 "Local Build + Static Docker" 的部署策略，`deploy.sh` 可靠可用。
-  - **数据库重置**：`reset_tarot_data.ts` 可用于清空表并重置 ID，`seed_tarot_direct.ts` 用于基础数据灌入。
-- **当前卡点**：无 (Self/Love 数据已修复)。
+- **阶段**：UI 细节打磨与内容更新（Post-Deployment Polish）。重点修复了 Onboarding 页面的视觉 Bug、统一了按钮样式、优化了页面转场动画，并完成了多语言文案更新。
+- **已验证功能**：
+  1. **Onboarding 页面修复**：移除了导致文字重叠的背景图引用；按钮样式已统一为胶囊型（Pill Style）；按钮 Hover 颜色已修正。
+  2. **全局字体修复**：`Rouge Script` 字体已正确配置进 Tailwind，卡牌数字字体显示正常。
+  3. **页面转场优化**：全局转场动画已从 "Wipe" 改为 "Fade + Slide"（仿 Onboarding 点击效果），体验更流畅。
+  4. **Tailwind 配置恢复**：修复了意外丢失的 `colors` 配置，全站自定义颜色（`bg-text`, `bg-primary`）恢复正常。
 
 ## 💡 关键技术方案与技巧 (Key Solutions & Techniques)
-- **Excel 数据错位修复 (Career)**：
-  - **问题**：`事业正式.xlsx` 中英文文本列整体右移，导致 "The Fool" 对应了 "The Lovers" 的文本。
-  - **方案**：不依赖列索引，而是通过正则匹配英文文本内容 (如 "The Fool in the past...") 来反向识别归属卡牌。
-  - **脚本**：`backend/scripts/fix_career_scramble.ts` (生成修正 JSON), `backend/scripts/fix_career_en.ts` (应用到 DB)。
-- **部署与脚本执行**：
-  - **策略**：本地编译 TS -> JS，通过 `scp` 上传到服务器，`docker cp` 到容器，再 `docker compose exec` 执行。
-  - **命令参考**：`deploy.sh` 中的 `run_remote_scripts` 函数。
-- **数据库操作**：
-  - **清空**：`TRUNCATE TABLE tarot_interpretations RESTART IDENTITY CASCADE` (在 `reset_tarot_data.ts` 中)。
-  - **查询验证**：使用 `check_card_mapping.ts` 检查特定卡牌 (如 `Queen of Swords`) 的数据准确性。
+- **全局页面转场 (Page Transition)**
+  - **方案**：使用 `framer-motion` 在 `WipeTransition.tsx` 中实现。
+  - **逻辑**：利用 `AnimatePresence` 包裹 `Routes`。当前效果为 `initial={{ opacity: 0, x: 20 }}` -> `animate={{ opacity: 1, x: 0 }}`，模拟“点击继续”的轻量滑动感。
+  - **注意**：不要改回 `clipPath` 方案，用户明确不喜欢那个“黑屏/擦除”效果。
+
+- **塔罗数据修复 (Tarot Data Fix)**
+  - **场景**：Excel 源数据中 "Self" 类别的英文列位置与其他类别不同，导致导入错位。
+  - **方案**：`backend/scripts/fix_tarot_data_v2.ts` 中硬编码了 `enOffset` 逻辑 (`const enOffset = file.category === 'Self' ? 2 : 0;`)。
+  - **关键**：每次部署都会自动运行此脚本 (`deploy.sh`)，**严禁**在未确认数据源变更的情况下修改此 Offset 逻辑。
+
+- **字体系统 (Typography)**
+  - **方案**：Google Fonts 在 `index.html` 引入，Tailwind 在 `tailwind.config.cjs` 扩展。
+  - **关键配置**：必须在 `theme.extend.fontFamily` 中保留 `script: ['"Rouge Script"', 'cursive']`，否则 `CardFace.tsx` 中的 `font-script` 类名失效。
+
+- **多语言内容 (Localization)**
+  - **方案**：`react-i18next`。
+  - **约定**：所有文案必须提取到 `frontend/src/locales/{en,zh}.json`。禁止在组件内硬编码文本（除临时调试外）。
 
 ## 🚧 遗留难点与待办 (Pending Issues)
-- **Self & Love 数据缺失 (RESOLVED)**：
-  - **状态**：已修复。确认 Excel 文件中包含数据，已通过 `import_self_love_en.ts` 导入。
-- **前端兜底文案 (Fallback Text)**：
-  - **状态**：已解决。数据补充后，兜底文案不再触发。
+- **生产环境验证 (Production Verification)**
+  - **状态**：代码已修复，待部署验证。
+  - **关注点**：
+    1. 检查 `Onboarding` 页背景是否干净（无文字重影）。
+    2. 检查 `Question` 页底部按钮是否为胶囊型且居中（非全宽条）。
+    3. 检查卡牌数字是否为手写体 (`Rouge Script`)。
+  - **查阅**：直接访问 H5 页面或查看 `frontend/src/pages/Onboarding.tsx`。
+
+- **"Self" 类别塔罗牌数据 (Self Category Data)**
+  - **状态**：脚本已更新，理论上已修复。
+  - **验证**：需在 Admin Panel 或数据库确认 "Self" 类别的英文解释 (`interpretation_en`) 是否不再是错位的中文或乱码。
+  - **查阅**：`backend/scripts/inspect_tarot_db.ts` 可用于快速抽检。
 
 ## 📂 核心文件结构 (Core Directory Structure)
-- `backend/scripts/`
-  - `seed_tarot_direct.ts`      # 主种子脚本 (注意：需确保 Excel 源文件正确)
-  - `fix_career_scramble.ts`    # [关键] 修复 Career 数据错位的逻辑脚本
-  - `fix_career_en.ts`          # [关键] 将修复后的 Career JSON 更新到 DB
-  - `check_card_mapping.ts`     # 生产环境数据验证脚本
-  - `analyze_career_shift.ts`   # Excel 内容分析工具
-- `backend/assets/excel_files/` # Excel 数据源 (目前 Self/Love 文件内容不全)
-- `deploy.sh`                   # 自动化部署脚本
-- `frontend/src/pages/Result.tsx` # 结果页逻辑 (含兜底文案触发条件)
+- `frontend/`
+  - `src/AppRoutes.tsx`           # 路由定义，包含全局 AnimatePresence
+  - `src/components/WipeTransition.tsx` # 全局页面转场组件 (Fade+Slide)
+  - `src/pages/Onboarding.tsx`    # 引导页 (已修复背景与按钮)
+  - `src/pages/Question.tsx`      # 问卷页 (已修复按钮样式)
+  - `src/components/CardFace.tsx` # 卡牌组件 (字体应用点)
+  - `tailwind.config.cjs`         # Tailwind 配置 (含 colors 和 fonts 关键定义)
+  - `src/locales/`                # 多语言 JSON 文件
+- `backend/`
+  - `scripts/fix_tarot_data_v2.ts` # 核心数据修复脚本 (含 Offset 逻辑)
+  - `src/interp/`                 # 解读模块 (Controller/Service)
+- `deploy.sh`                     # 部署脚本 (含自动执行数据修复)
 
 ## ➡️ 下一步指令 (Next Action)
-1.  **解决数据源问题 (最高优先级)**：
-    -   **询问用户**：是否拥有包含英文内容的 `自我正式.xlsx` 和 `感情正式.xlsx`。
-    -   **替代方案**：若无文件，需编写脚本导出这两份文件的中文内容 (参考 `dump_career_zh.ts`)，调用 LLM 翻译成英文，再生成 JSON 导入。
-2.  **执行导入**：
-    -   一旦有了数据 (Excel 或 JSON)，编写/复用脚本 (`seed_tarot_direct.ts` 或类似 `fix_career_en.ts` 的更新脚本) 将数据写入生产数据库。
-3.  **验证修复**：
-    -   运行 `backend/scripts/check_card_mapping.ts`，重点检查 `Self` 和 `Love` 分类的 `Queen of Swords` (或其他任意卡牌)，确认 `interpretation_en` 不为 NULL。
-4.  **前端验证**：
-    -   通知用户在 H5 页面重新抽牌 (确保清除缓存或使用新卡组)，验证 `Self` / `Love` 分类不再显示 "heavy burden" 等兜底文案。
+1. **优先检查**：`frontend/tailwind.config.cjs`，确保 `colors` 和 `fontFamily` (含 `script`) 配置块完整存在。这是最近一次回归的根源。
+2. **部署验证**：运行 `deploy.sh` 部署最新代码到生产环境。
+3. **视觉验收**：
+   - 打开 H5，走一遍 Onboarding -> Question -> Breath -> Draw 流程。
+   - 重点确认：Onboarding 无重影、Question 按钮样式正常、页面切换流畅。
+4. **数据抽检**：如果时间允许，运行 `npx ts-node backend/scripts/inspect_tarot_db.ts` 确认 "Self" 类别数据正确性。
+5. **禁止操作**：**不要**随意修改 `fix_tarot_data_v2.ts` 中的 `enOffset` 逻辑，除非你完全理解了 Excel 源文件的列结构变化。

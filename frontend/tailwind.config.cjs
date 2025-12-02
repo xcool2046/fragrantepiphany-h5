@@ -7,12 +7,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        serif: ['"Playfair Display"', 'serif'],
-        lora: ['"Lora"', 'serif'],
-        cinzel: ['"Cinzel"', 'serif'],
-      },
       colors: {
         background: '#F7F2ED', // Warm Apricot Light
         card: '#FFFFFF',       // Pure White
@@ -36,6 +30,7 @@ module.exports = {
         cinzel: ['"Cinzel"', 'serif'],
         songti: ['"Songti SC"', '"Noto Serif SC"', 'serif'],
         kaiti: ['"Kaiti SC"', '"KaiTi"', 'serif'],
+        script: ['"Rouge Script"', 'cursive'],
       },
       backgroundImage: {
         'gradient-gold': 'linear-gradient(135deg, #D4A373 0%, #C08B5C 100%)',

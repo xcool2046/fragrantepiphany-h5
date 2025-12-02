@@ -458,15 +458,15 @@ const Draw: React.FC = () => {
     navigate('/result', { state: { cardIds: finalIds, answers: location.state?.answers } })
   }, [filledCount, submitting, selectedCards, navigate, location.state])
 
-  // Auto-navigate when 3 cards are selected
-  React.useEffect(() => {
-      if (filledCount === 3 && !submitting && !flyingCard) {
-          const timer = setTimeout(() => {
-              handleContinue()
-          }, 800) // 0.8s delay to see the card settle
-          return () => clearTimeout(timer)
-      }
-  }, [filledCount, submitting, flyingCard, handleContinue])
+  // Auto-navigate removed. User must click "Continue".
+  // React.useEffect(() => {
+  //     if (filledCount === 3 && !submitting && !flyingCard) {
+  //         const timer = setTimeout(() => {
+  //             handleContinue()
+  //         }, 800) // 0.8s delay to see the card settle
+  //         return () => clearTimeout(timer)
+  //     }
+  // }, [filledCount, submitting, flyingCard, handleContinue])
 
   return (
     <div 

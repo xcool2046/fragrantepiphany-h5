@@ -288,10 +288,17 @@ export class AdminController {
     const uploadsDir = path.join(process.cwd(), 'uploads');
     if (!fs.existsSync(uploadsDir))
       fs.mkdirSync(uploadsDir, { recursive: true });
-    const ext = path.extname(file.originalname) || '.bin';
-    const filename = `${Date.now()}-${Math.random().toString(16).slice(2)}${ext}`;
+    
+    // Use sharp to optimize
+    const sharp = require('sharp');
+    const filename = `${Date.now()}-${Math.random().toString(16).slice(2)}.webp`;
     const filepath = path.join(uploadsDir, filename);
-    await fs.promises.writeFile(filepath, file.buffer);
+
+    await sharp(file.buffer)
+      .resize({ width: 800, withoutEnlargement: true })
+      .webp({ quality: 80 })
+      .toFile(filepath);
+
     const url = `/uploads/${filename}`;
     return { url };
   }

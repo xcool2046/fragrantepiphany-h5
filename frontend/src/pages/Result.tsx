@@ -333,6 +333,20 @@ const Result: React.FC = () => {
     )
   }
 
+  if (matchStatus === 'error') {
+    return (
+      <div className="min-h-screen bg-[#E8DCC5] flex flex-col items-center justify-center gap-4 text-[#2B1F16] px-4 text-center font-serif">
+        <p className="text-lg">{t('result.error', 'Failed to load your reading.')}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="px-8 py-3 rounded-full bg-[#2B1F16] text-[#E8DCC5] text-sm tracking-widest uppercase hover:scale-105 transition-transform"
+        >
+          {t('common.retry', 'Retry')}
+        </button>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen w-full bg-[#E8DCC5] text-[#2B1F16] relative">
       <div className="relative z-10 max-w-md mx-auto">

@@ -14,16 +14,22 @@ const Onboarding: React.FC = () => {
       title: t('onboarding.slide1.title'),
       content: (
         <>
-          <p className="mb-4 font-serif text-lg">{t('onboarding.slide1.p1')}</p>
-          <p className="mb-6 text-sm text-subtext leading-relaxed">
-            {t('onboarding.slide1.p2')}<br/><br/>
-            {t('onboarding.slide1.p3')}<br/><br/>
-            {t('onboarding.slide1.p4')}
+          <p className="mb-6 font-serif text-lg whitespace-pre-line">{t('onboarding.slide1.p1')}</p>
+          <p className="mb-6 text-sm text-subtext leading-relaxed whitespace-pre-line">
+            {t('onboarding.slide1.p2')}
           </p>
-          <div className="w-12 h-px bg-primary/40 mx-auto mb-6" />
-          <p className="text-sm text-subtext/80 italic font-serif whitespace-pre-line">
-            {t('onboarding.slide1.quote')}
+          <p className="mb-6 text-sm text-subtext leading-relaxed whitespace-pre-line">
+            {t('onboarding.slide1.p3')}
           </p>
+          {/* Conditionally render quote if it exists and is not empty */}
+          {t('onboarding.slide1.quote', { defaultValue: '' }) && (
+            <>
+              <div className="w-12 h-px bg-primary/40 mx-auto mb-6 mt-6" />
+              <p className="text-sm text-subtext/80 italic font-serif whitespace-pre-line">
+                {t('onboarding.slide1.quote')}
+              </p>
+            </>
+          )}
         </>
       )
     },
@@ -33,12 +39,16 @@ const Onboarding: React.FC = () => {
       content: (
         <>
           <p className="mb-6 font-serif text-lg">{t('onboarding.slide2.p1')}</p>
-          <ul className="text-sm text-subtext space-y-4 mb-8 list-none leading-relaxed">
+          <ul className="text-sm text-subtext space-y-4 mb-8 list-disc pl-5 text-left leading-relaxed">
             <li>{t('onboarding.slide2.list1')}</li>
             <li>{t('onboarding.slide2.list2')}</li>
             <li>{t('onboarding.slide2.list3')}</li>
+            {/* Only render list4 if it exists (non-empty and not the key itself) */}
+            {t('onboarding.slide2.list4', { defaultValue: '' }) && (
+              <li>{t('onboarding.slide2.list4')}</li>
+            )}
           </ul>
-          <p className="text-primary font-medium text-sm">
+          <p className="text-primary font-medium text-sm whitespace-pre-line">
             {t('onboarding.slide2.p2')}
           </p>
         </>
@@ -60,7 +70,7 @@ const Onboarding: React.FC = () => {
       onClick={() => step < slides.length - 1 && handleNext()}
     >
       {/* Background Texture */}
-      <div className="absolute inset-0 z-0 opacity-30 bg-[url('/src/assets/ref/onboarding_1.png')] bg-cover bg-center mix-blend-overlay" />
+      <div className="absolute inset-0 z-0 opacity-30 bg-cover bg-center mix-blend-overlay" />
       
       <div className="relative z-10 max-w-md w-full glass-panel p-10 min-h-[60vh] flex flex-col justify-center text-center shadow-card">
         <AnimatePresence mode='wait'>
@@ -89,9 +99,9 @@ const Onboarding: React.FC = () => {
                   e.stopPropagation()
                   handleNext()
                 }}
-                className="mt-12 px-12 py-3 bg-text text-white rounded-full hover:bg-primary hover:text-white transition-colors duration-500 shadow-md font-serif tracking-widest text-sm uppercase"
+                className="mt-12 px-12 py-3 bg-text text-white rounded-full hover:opacity-90 transition-opacity duration-300 shadow-md font-serif tracking-widest text-sm uppercase active:scale-95 transform"
               >
-                {t('common.begin')}
+                {t('onboarding.startBtn')}
               </motion.button>
             )}
             

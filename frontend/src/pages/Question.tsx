@@ -124,16 +124,16 @@ const QuestionPage: React.FC = () => {
           })}
         </div>
 
-        {/* Fixed Bottom Button */}
-        <div className="fixed bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#F7F2ED] via-[#F7F2ED]/90 to-transparent z-50 flex justify-center">
+        {/* Standard Pill Button (Not Fixed Bottom Bar) */}
+        <div className="mt-12 mb-12 flex justify-center">
           <button
             disabled={page === 0 ? !isPageComplete : !isAllComplete}
             onClick={handleContinue}
             className={clsx(
-              "w-full max-w-md py-4 rounded-full font-serif text-lg tracking-wider transition-all duration-500 shadow-lg",
-              isPageComplete
-                ? "bg-text text-white shadow-xl translate-y-0 opacity-100"
-                : "bg-gray-300 text-gray-400 translate-y-4 opacity-0 pointer-events-none"
+              "px-12 py-3 rounded-full font-serif text-sm tracking-widest uppercase transition-all duration-500 shadow-md transform active:scale-95",
+              (page === 0 ? isPageComplete : isAllComplete)
+                ? "bg-text text-white hover:opacity-90"
+                : "bg-gray-200 text-gray-400 cursor-not-allowed"
             )}
           >
             {page === 0 ? t('common.continue') : t('question.reveal')}

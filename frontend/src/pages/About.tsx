@@ -40,6 +40,10 @@ export default function About() {
           <p className="text-lg font-light leading-relaxed text-text/80 mt-6">
             {t('about.intro2')}
           </p>
+          
+          <p className="text-xs font-light leading-relaxed text-text/50 mt-12 whitespace-pre-line">
+            {t('about.disclaimer')}
+          </p>
         </div>
 
         {/* Decorative Image Placeholder (using a gradient if image missing) */}
