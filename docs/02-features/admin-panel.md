@@ -8,9 +8,19 @@
 
 ## 模块与路由（计划保留）
 - 登录/鉴权：单租户账号密码登录（已实现）。
-- 卡牌信息管理：
-  - 列表、查看、编辑 78 张卡牌基础信息（名称/花色或编号/语言标签/封面）。
-  - 可选字段：展示状态（上/下架）、排序。
+### 4. 卡牌管理 (Cards)
+- **路径**: `/admin/cards`
+- **功能**:
+    - **列表**: 查看所有卡牌，支持按 Code/Name 搜索。
+    - **新增/编辑**:
+        - **Code** (必填): 唯一标识 (e.g., `fool`, `magician`).
+        - **Name EN** (必填): 英文名称.
+        - **Image**: 支持上传本地图片或填写 URL。
+    - **CSV 导入**:
+        - 支持批量导入卡牌。
+        - **格式**: `code,name_en,image_url` (表头)。
+        - **Google Drive 支持**: `image_url` 可以填 Google Drive 分享链接（需开启“任何人可见”权限），系统会自动下载图片并存入服务器。
+    - **导出**: 导出当前所有卡牌为 CSV。
 - 解读库管理：
   - 按 `card_name + category(爱情/友情/亲情) + position(Past/Now/Future) + language` 的唯一组合增删改查。
   - 字段：summary、interpretation、action（列表）、future、recommendation（列表）。

@@ -16,20 +16,14 @@ export class Card {
   @Column({ type: 'varchar', length: 120 })
   code!: string;
 
-  @Column({ type: 'text' })
-  name_en!: string;
+  @Column({ type: 'text', nullable: true })
+  name_en: string;
 
   @Column({ type: 'text', nullable: true })
-  name_zh!: string | null;
+  name_zh: string;
 
   @Column({ type: 'text', nullable: true })
-  image_url!: string | null;
-
-  @Column({ type: 'text', nullable: true })
-  default_meaning_en!: string | null;
-
-  @Column({ type: 'text', nullable: true })
-  default_meaning_zh!: string | null;
+  image_url: string | null;
 
   @Column({ type: 'boolean', default: true })
   enabled!: boolean;

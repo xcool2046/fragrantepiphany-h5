@@ -67,6 +67,8 @@ const PerfumeView: React.FC = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' })
+    // Preload SharePage to prevent "vibration" (loading state) on navigation
+    import('./SharePage')
   }, [])
 
   if (loading) {

@@ -81,9 +81,9 @@ export function findPerfumeByCardAndScent(card: Card, scentAnswer?: string) {
   const map = loadPerfumeMapping();
   const normalized = normalizeScentChoice(scentAnswer);
   if (!normalized) return null;
-  // Try Chinese name (primary in sheet)
-  const cnKey = `${card.name_zh}__${normalized}`;
-  if (map.has(cnKey)) return map.get(cnKey)!;
+  // Try Chinese name (primary in sheet) - REMOVED as name_zh is deleted
+  // const cnKey = `${card.name_zh}__${normalized}`;
+  // if (map.has(cnKey)) return map.get(cnKey)!;
   // Try English name if provided (less likely)
   const enKey = `${card.name_en}__${normalized}`;
   if (map.has(enKey)) return map.get(enKey)!;

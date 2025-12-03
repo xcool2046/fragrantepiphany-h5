@@ -70,7 +70,7 @@ export class PerfumeService {
 
     return sorted.map((item, idx) => {
       const card = cardMap.get(item.card_id);
-      const cardName = (isEn ? card?.name_en : card?.name_zh) || item.card_name;
+      const cardName = (isEn ? card?.name_en : item.card_name) || item.card_name;
       const mapping = card ? findPerfumeByCardAndScent(card, scentAnswer) : null;
       
       // Use notes_top_en as tags if English, split by comma
@@ -154,7 +154,7 @@ export class PerfumeService {
   }
 
   async resolveCardId(cardName: string) {
-    const card = await this.cardRepo.findOne({ where: { name_zh: cardName } });
+    const card = await this.cardRepo.findOne({ where: { name_en: cardName } });
     return card?.id ?? null;
   }
 }

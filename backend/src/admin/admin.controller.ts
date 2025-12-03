@@ -64,37 +64,49 @@ import { PartialType } from '@nestjs/swagger';
 
 class UpdateQuestionDto extends PartialType(CreateQuestionDto) {}
 
-class CreateCardDto {
+export class CreateCardDto {
   @IsString()
   @IsNotEmpty()
   code!: string;
 
   @IsString()
-  @IsNotEmpty()
-  name_en!: string;
-
   @IsOptional()
-  @IsString()
-  name_zh?: string | null;
+  name_en?: string;
 
-  @IsOptional()
   @IsString()
-  image_url?: string | null;
+  @IsOptional()
+  name_zh?: string;
 
-  @IsOptional()
   @IsString()
-  default_meaning_en?: string | null;
-
   @IsOptional()
-  @IsString()
-  default_meaning_zh?: string | null;
+  image_url?: string;
 
   @IsOptional()
   @IsBoolean()
   enabled?: boolean;
 }
 
-class UpdateCardDto extends CreateCardDto {}
+export class UpdateCardDto {
+  @IsString()
+  @IsOptional()
+  code?: string;
+
+  @IsString()
+  @IsOptional()
+  name_en?: string;
+
+  @IsString()
+  @IsOptional()
+  name_zh?: string;
+
+  @IsString()
+  @IsOptional()
+  image_url?: string;
+
+  @IsBoolean()
+  @IsOptional()
+  enabled?: boolean;
+}
 @Controller('api/admin')
 @UseGuards(AuthGuard('jwt'))
 export class AdminController {
@@ -106,6 +118,51 @@ export class AdminController {
     @InjectRepository(Perfume)
     private perfumeRepo: Repository<Perfume>,
   ) {}
+
+  // Helper to download image
+  private async downloadImage(url: string): Promise<string | null> {
+    try {
+      // Check if it's a Google Drive link
+      // Format: https://drive.google.com/file/d/1oLl3qfdEgsuxoFixrY3VaAfKM0XswmJL/view?usp=drive_link
+      const driveRegex = /\/file\/d\/([^\/]+)\//;
+      const match = url.match(driveRegex);
+      let downloadUrl = url;
+      
+      if (match && match[1]) {
+          const fileId = match[1];
+          downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+      } else if (url.includes('drive.google.com') && url.includes('id=')) {
+          // Already a direct link format? keep it
+      } else if (!url.startsWith('http')) {
+          return url; // Local path or invalid
+      }
+
+      const uploadsDir = path.join(process.cwd(), 'uploads');
+      if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
+      
+      const filename = `${Date.now()}-${Math.random().toString(16).slice(2)}.jpg`; // Assume jpg/png, sharp can handle
+      const filepath = path.join(uploadsDir, filename);
+
+      // Use fetch to download
+      const response = await fetch(downloadUrl);
+      if (!response.ok) throw new Error(`Failed to fetch ${downloadUrl}: ${response.statusText}`);
+      
+      const buffer = await response.arrayBuffer();
+      
+      // Use sharp to optimize and save
+      const sharp = require('sharp');
+      await sharp(Buffer.from(buffer))
+        .resize({ width: 800, withoutEnlargement: true })
+        .toFile(filepath);
+        
+      return `/uploads/${filename}`;
+    } catch (e) {
+      console.error(`Failed to download image from ${url}:`, e);
+      return null; // Keep original or null? If failed, maybe keep original so user sees it's broken or external
+    }
+  }
+
+
 
   // ========== Questions ==========
   @Get('questions')
@@ -235,19 +292,24 @@ export class AdminController {
 
   @Post('cards')
   async createCard(@Body() body: CreateCardDto) {
-    if (!body.code || !body.name_en)
-      throw new BadRequestException('code and name_en are required');
+    if (!body.code)
+      throw new BadRequestException('code is required');
     const existing = await this.cardRepo.findOne({
       where: { code: body.code },
     });
     if (existing) throw new BadRequestException('code already exists');
+    
+    let image_url = body.image_url ?? null;
+    if (image_url && image_url.startsWith('http')) {
+        const localUrl = await this.downloadImage(image_url);
+        if (localUrl) image_url = localUrl;
+    }
+
     const entity = this.cardRepo.create({
       code: body.code,
-      name_en: body.name_en,
-      name_zh: body.name_zh ?? null,
-      image_url: body.image_url ?? null,
-      default_meaning_en: body.default_meaning_en ?? null,
-      default_meaning_zh: body.default_meaning_zh ?? null,
+      name_en: body.name_en ?? body.code, // Default to code if name_en is not provided
+      name_zh: body.name_zh ?? undefined,
+      image_url,
       enabled: body.enabled ?? true,
     });
     return await this.cardRepo.save(entity);
@@ -257,12 +319,18 @@ export class AdminController {
   async updateCard(@Param('id') id: string, @Body() body: UpdateCardDto) {
     const card = await this.cardRepo.findOne({ where: { id: Number(id) } });
     if (!card) throw new NotFoundException('Card not found');
+    
+    let image_url = body.image_url;
+    if (image_url && image_url !== card.image_url && image_url.startsWith('http')) {
+        const localUrl = await this.downloadImage(image_url);
+        if (localUrl) image_url = localUrl;
+    }
+
     Object.assign(card, {
+      code: body.code ?? card.code,
       name_en: body.name_en ?? card.name_en,
       name_zh: body.name_zh ?? card.name_zh,
-      image_url: body.image_url ?? card.image_url,
-      default_meaning_en: body.default_meaning_en ?? card.default_meaning_en,
-      default_meaning_zh: body.default_meaning_zh ?? card.default_meaning_zh,
+      image_url: image_url ?? card.image_url,
       enabled: body.enabled ?? card.enabled,
     });
     return await this.cardRepo.save(card);
@@ -328,30 +396,41 @@ export class AdminController {
     });
     let created = 0;
     let updated = 0;
+    
+
+
     for (const [idx, r] of rows.entries()) {
       const code = (r.code || '').trim();
-      const name_en = (r.name_en || '').trim();
-      const name_zh = r.name_zh?.trim?.() || null;
-      if (!code || !name_en) {
-        throw new BadRequestException(
-          `Row ${idx + 2}: code and name_en are required`,
-        );
+      let name_en = (r.name_en || '').trim();
+      let name_zh = (r.name_zh || '').trim();
+      
+      // Relax validation: if name_en missing, use code
+      if (!name_en) name_en = code;
+      if (!name_zh) name_zh = null; // Ensure it's null if empty
+
+      if (!code) {
+        // Skip empty rows
+        continue;
       }
-      if (!/^[a-zA-Z0-9_-]+$/.test(code))
-        throw new BadRequestException(`Row ${idx + 2}: invalid code`);
+      
+      let image_url = r.image_url?.trim?.() || null;
+      if (image_url && image_url.startsWith('http')) {
+          const localUrl = await this.downloadImage(image_url);
+          if (localUrl) image_url = localUrl;
+      }
+
       const payload: Partial<Card> = {
         code,
         name_en,
         name_zh,
-        image_url: r.image_url?.trim?.() || null,
-        default_meaning_en: r.default_meaning_en?.trim?.() || null,
-        default_meaning_zh: r.default_meaning_zh?.trim?.() || null,
+        image_url,
       };
+      
       const existing = await this.cardRepo.findOne({ where: { code } });
       if (existing) {
         Object.assign(
           existing,
-          Object.fromEntries(Object.entries(payload).filter(([, v]) => v)),
+          Object.fromEntries(Object.entries(payload).filter(([, v]) => v !== null && v !== undefined)),
         );
         await this.cardRepo.save(existing);
         updated++;
@@ -377,8 +456,6 @@ export class AdminController {
         name_en: item.name_en,
         name_zh: item.name_zh ?? '',
         image_url: item.image_url ?? '',
-        default_meaning_en: item.default_meaning_en ?? '',
-        default_meaning_zh: item.default_meaning_zh ?? '',
       });
     });
     csvStream.end();

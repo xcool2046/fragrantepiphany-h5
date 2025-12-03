@@ -80,7 +80,7 @@ const Onboarding: React.FC = () => {
       {/* Background Texture */}
       <div className="absolute inset-0 z-0 opacity-30 bg-cover bg-center mix-blend-overlay" />
       
-      <div className="relative z-10 max-w-md w-full glass-panel p-10 h-[65vh] flex flex-col justify-center text-center shadow-card overflow-y-auto">
+      <div className="relative z-10 max-w-md w-full glass-panel p-10 pt-16 h-[65vh] flex flex-col justify-start text-center shadow-card overflow-y-auto">
         <AnimatePresence mode='wait'>
           <motion.div
             key={step}
