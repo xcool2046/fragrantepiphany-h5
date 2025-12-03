@@ -1,40 +1,49 @@
-## 📊 当前进度快照 (Progress Snapshot)
-- **当前阶段**：UI 交互精细化打磨（重点优化抽卡动画体验）与 后端图片上传优化。
-- **已确认可用功能**：
-  - **抽卡页动画 (Draw.tsx)**：已实现“无缝、无震动、无缩放、无闪烁”的完美飞入效果（代码逻辑已修改，待浏览器最终肉眼验证）。
-  - **结果页 (Result.tsx)**：已添加 API 错误处理 UI（重试按钮）。
-  - **后台图片上传**：已集成 `sharp` 进行图片自动压缩与 WebP 转换（代码已合入）。
+# 📊 当前进度快照 (Progress Snapshot)
+- **当前阶段**：Perfume 数据治理与 Admin UI 本地化阶段。重点在于修复香水数据的英文缺失问题，以及 Admin 后台的中文适配。
+- **已验证功能**：
+  1. **Admin UI 本地化**：`Perfumes.tsx` 已完成全量汉化（标题、按钮、表单），已在前端验证。
+  2. **基础数据同步**：运行了 `sync_perfume_names.ts`，将 `brand_name`/`product_name` 同步到 `_en` 字段（作为兜底），修复了 312 条数据。
+  3. **保存报错修复**：后端 `admin.controller.ts` 已处理 Postgres 23505 唯一键冲突错误，前端可正确提示“ID重复”。
 
-## 💡 关键技术方案与技巧 (Key Solutions & Techniques)
-### 1. 抽卡动画“绝对无缝”方案 (Draw.tsx)
-- **场景**：卡牌从飞入状态切换到落位状态时，出现微小震动、尺寸收缩、阴影突变和闪烁。
-- **解决方案**：
-  - **消除震动 (Sub-pixel)**：`FlyingCard` 目标坐标强制使用 `Math.round()` 取整，对齐物理像素。
-  - **消除缩放 (Box-sizing)**：卡槽容器尺寸设为 `w-[84px] h-[124px]`（含 2px 边框），确保内部内容区域精确为 `80x120px`，与飞行卡牌尺寸 1:1 匹配，避免 `border-box` 导致的 4px 挤压。
-  - **消除突变 (Shadow)**：移除 `FlyingCard` 的 `shadow-2xl`，与落位后的扁平风格保持一致。
-  - **消除闪烁 (Flash)**：**移除**落位卡牌 (`SlotCard`) 的 `AnimatePresence` 和 `motion.div` 包装，改用原生 `div`，确保状态切换时 DOM 瞬间渲染，无初始化延迟。
-  - **消除消失感**：卡槽边框 (`border-[#D4A373]/40`) 设置为永久可见，不随卡牌进入而消失。
+# 💡 关键技术方案与技巧 (Key Solutions & Techniques)
+- **数据演进策略**：
+  - **问题**：历史数据只有 `brand_name` (混合语言)，新需求要求分离 `_zh` 和 `_en`。
+  - **方案**：TypeORM Migration 添加 `_en` 列 -> 脚本 `sync_perfume_names.ts` 进行存量数据迁移/兜底 -> 后续通过 Admin 面板维护。
+  - **技巧**：使用 `ts-node` 运行独立脚本操作 TypeORM DataSource，需注意 `dotenv` 加载路径 (`path: __dirname + '/.env'`) 和 SSL 连接配置。
+- **Admin 交互优化**：
+  - **自动填充**：前端 `Perfumes.tsx` 监听 `card_id` 变化，自动从后端获取 `card_name`，避免人工输入错误。
+  - **错误处理**：后端拦截底层 DB 错误，转换为 HTTP 400 + 友好 Message 返回给前端。
 
-### 2. 图片上传优化 (Backend)
-- **场景**：用户上传大图导致加载慢、存储浪费。
-- **解决方案**：引入 `sharp` 库，在 `admin.controller.ts` 中拦截上传流，强制 Resize 到宽 800px 并转为 WebP 格式 (80% 质量) 后再保存。
+# 🚧 遗留难点与待办 (Pending Issues)
+- **缺失英文描述 (Critical)**：
+  - **状态**：进行中。用户反馈 "Oud Satin Mood" (Card ID 78) 等香水的 `description_en` 仍为空或显示中文。
+  - **排查进度**：
+    - 已检查 `perfume_translations_final.json` 和 `batch1`，**未找到** "Oud Satin Mood" 的翻译。
+    - 数据库查询确认 ID 459 (Oud Satin Mood) 的 `description_en` 为空。
+    - 怀疑翻译源文件遗漏，或位于 `assets/excel_files` 中的原始 Excel 表格里。
+  - **下一步**：必须找到这部分缺失数据的来源（可能是 `perfume.xlsx` 或其他 Excel），提取并写入数据库。
 
-## 🚧 遗留难点与待办 (Pending Issues)
-- **[待验证] 抽卡动画最终效果**
-  - **状态**：代码已修改，等待用户在浏览器中进行“肉眼验收”。
-  - **关注点**：确认是否还有任何毫秒级的闪烁或 1px 的位移。
-- **[已验证] 生产环境 Sharp 依赖**
-  - **状态**：已通过本地 Docker 构建验证 (`node:20-alpine` + `npm ci`)，`sharp` 安装正常。
+# 📂 核心文件结构 (Core Directory Structure)
+- `backend/`
+  - `src/entities/perfume.entity.ts` # 香水实体定义，包含 `_en` 和 `_zh` 字段
+  - `src/admin/admin.controller.ts`  # Admin 接口，含香水 CRUD 和错误处理
+  - `sync_perfume_names.ts`          # [工具脚本] 用于同步名称字段 (已验证可用)
+  - `check_perfume_data.ts`          # [工具脚本] 用于排查特定香水数据
+  - `perfume_translations_*.json`    # 翻译源文件 (目前发现不全)
+- `frontend/`
+  - `src/pages/admin/Perfumes.tsx`   # 香水管理页 (已汉化)
+- `assets/`
+  - `excel_files/`                   # 原始数据源 (Excel)，可能是缺失数据的藏身处
 
-## 📂 核心文件结构 (Core Directory Structure)
-- `frontend/src/pages/Draw.tsx` # 抽卡核心页面，包含 FlyingCard 动画与 Slot 逻辑（本次修改重点）
-- `frontend/src/pages/Result.tsx` # 结果展示页，含翻牌动画与错误重试逻辑
-- `frontend/src/components/CardFace.tsx` # 卡牌正反面渲染组件，控制卡牌尺寸与图片加载
-- `backend/src/admin/admin.controller.ts` # 后台管理接口，包含图片上传优化逻辑
-- `backend/package.json` # 后端依赖，新增了 sharp
-
-## ➡️ 下一步指令 (Next Action)
-1. **优先验证动画**：直接打开浏览器访问抽卡页，选择 3 张牌，仔细观察卡牌落入卡槽的瞬间。标准是“像物理物体一样移动过去，没有任何视觉突变”。
-2. **检查构建状态**：运行后端构建或启动命令，确保 `sharp` 安装无误且能正常处理图片上传。
-3. **不要回滚动画逻辑**：目前的 `Draw.tsx` 是经过多次微调（坐标取整、尺寸补偿、移除动画库包装）的最终版本，**切勿**为了“加特效”而重新引入 `layoutId` 或 `AnimatePresence`，这会带回震动和闪烁。
-4. **推进部署**：确认前端无误后，执行 `deploy.sh` 进行部署。
+# ➡️ 下一步指令 (Next Action)
+1. **定位缺失数据源**：
+   - 优先检查 `assets/excel_files/` 目录下的 Excel 文件（如 `perfume.xlsx` 或类似），查找 "Oud Satin Mood" 的英文描述。
+   - 如果 Excel 中也没有，需询问用户提供或使用翻译 API 生成。
+2. **补充数据迁移脚本**：
+   - 参考 `sync_perfume_names.ts`，编写新脚本读取找到的数据源，更新 `description_en`, `quote_en`, `notes_*_en` 字段。
+   - **注意**：不要覆盖已有的正确数据，仅更新 NULL 或空值。
+3. **验证修复**：
+   - 运行脚本后，使用 `check_perfume_data.ts` 验证 ID 459 的数据。
+   - 通知用户在 Admin 面板刷新查看。
+4. **清理**：
+   - 确认无误后，删除临时的 `check_*.ts` 和 `sync_*.ts` 脚本，保持项目整洁。

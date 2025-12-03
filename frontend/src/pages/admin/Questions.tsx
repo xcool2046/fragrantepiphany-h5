@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import Section from '../../components/Section'
 import api from '../../api'
+import { Reorder } from 'framer-motion'
 
 type Question = {
   id: number
@@ -12,16 +13,52 @@ type Question = {
   weight: number
 }
 
+// Internal type for draggable items to ensure unique keys
+type DraggableOption = {
+  id: string
+  text: string
+}
+
 const bgClass = 'bg-gradient-to-br from-[#F7F0E5] via-white to-[#F7F0E5]'
+
+// Helper to generate unique ID
+const generateId = () => Math.random().toString(36).substr(2, 9)
+
+// Helper to ensure array has exactly 4 items and convert to DraggableOption
+const toDraggable = (arr?: string[] | null): DraggableOption[] => {
+  const newArr = arr ? [...arr] : []
+  while (newArr.length < 4) {
+    newArr.push('')
+  }
+  return newArr.slice(0, 4).map(text => ({ id: generateId(), text }))
+}
+
+const OPTION_LABELS = ['A', 'B', 'C', 'D']
 
 export default function Questions() {
   const [items, setItems] = useState<Question[]>([])
   const [loading, setLoading] = useState(false)
   const [editing, setEditing] = useState<Question | null>(null)
   const [modalOpen, setModalOpen] = useState(false)
-  const [form, setForm] = useState({ title_en: '', title_zh: '', options_en: '', options_zh: '', active: true, weight: 0 })
+  
+  // Form state
+  const [form, setForm] = useState<{
+    title_en: string
+    title_zh: string
+    options_en: DraggableOption[]
+    options_zh: DraggableOption[]
+    active: boolean
+    weight: number
+  }>({ 
+    title_en: '', 
+    title_zh: '', 
+    options_en: [], 
+    options_zh: [], 
+    active: true, 
+    weight: 0 
+  })
 
-
+  const [textLang, setTextLang] = useState<'zh' | 'en'>('zh')
 
   const fetchData = useCallback(async () => {
     setLoading(true)
@@ -41,7 +78,15 @@ export default function Questions() {
 
   const openCreate = () => {
     setEditing(null)
-    setForm({ title_en: '', title_zh: '', options_en: '', options_zh: '', active: true, weight: items.length * 10 })
+    setForm({ 
+      title_en: '', 
+      title_zh: '', 
+      options_en: toDraggable([]), 
+      options_zh: toDraggable([]), 
+      active: true, 
+      weight: items.length * 10 
+    })
+    setTextLang('zh')
     setModalOpen(true)
   }
 
@@ -50,11 +95,12 @@ export default function Questions() {
     setForm({
       title_en: q.title_en,
       title_zh: q.title_zh || '',
-      options_en: (q.options_en || []).join(' | '),
-      options_zh: (q.options_zh || []).join(' | '),
+      options_en: toDraggable(q.options_en),
+      options_zh: toDraggable(q.options_zh),
       active: q.active,
       weight: q.weight,
     })
+    setTextLang('zh')
     setModalOpen(true)
   }
 
@@ -66,8 +112,9 @@ export default function Questions() {
     const payload = {
       title_en: form.title_en.trim(),
       title_zh: form.title_zh.trim() || null,
-      options_en: form.options_en ? form.options_en.split('|').map((s) => s.trim()).filter(Boolean) : null,
-      options_zh: form.options_zh ? form.options_zh.split('|').map((s) => s.trim()).filter(Boolean) : null,
+      // Map back to string array and filter
+      options_en: form.options_en.map(o => o.text.trim()).filter(Boolean),
+      options_zh: form.options_zh.map(o => o.text.trim()).filter(Boolean),
       active: form.active,
       weight: Number(form.weight) || 0,
     }
@@ -99,8 +146,6 @@ export default function Questions() {
 
     const targetItem = items[targetIndex]
     
-    // Swap weights
-    // If weights are equal, force a divergence to ensure order change
     let newWeightQ = targetItem.weight
     let newWeightTarget = q.weight
 
@@ -130,6 +175,26 @@ export default function Questions() {
     if (!window.confirm('确认删除该问题？')) return
     await api.delete(`/api/admin/questions/${q.id}`)
     fetchData()
+  }
+
+  const updateOptionText = (lang: 'zh' | 'en', index: number, value: string) => {
+    if (lang === 'zh') {
+      const newOptions = [...form.options_zh]
+      newOptions[index] = { ...newOptions[index], text: value }
+      setForm({ ...form, options_zh: newOptions })
+    } else {
+      const newOptions = [...form.options_en]
+      newOptions[index] = { ...newOptions[index], text: value }
+      setForm({ ...form, options_en: newOptions })
+    }
+  }
+
+  const setOptions = (lang: 'zh' | 'en', newOptions: DraggableOption[]) => {
+    if (lang === 'zh') {
+      setForm({ ...form, options_zh: newOptions })
+    } else {
+      setForm({ ...form, options_en: newOptions })
+    }
   }
 
   return (
@@ -174,37 +239,100 @@ export default function Questions() {
 
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-          <div className="w-full max-w-2xl rounded-3xl bg-white shadow-2xl p-6 space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xl font-serif text-[#2B1F16]">{editing ? '编辑问题' : '新增问题'}</h3>
+          <div className="w-full max-w-2xl rounded-3xl bg-white shadow-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b pb-2">
+              <div className="flex items-center gap-3">
+                <h3 className="text-xl font-serif text-[#2B1F16]">{editing ? '编辑问题' : '新增问题'}</h3>
+                <div className="flex items-center gap-2 bg-[#F7F0E5] rounded-full px-3 py-1 text-sm text-[#6B5542]">
+                  <button
+                    className={`px-2 py-0.5 rounded-full ${textLang === 'zh' ? 'bg-white shadow-sm text-[#2B1F16]' : ''}`}
+                    onClick={() => setTextLang('zh')}
+                  >ZH</button>
+                  <button
+                    className={`px-2 py-0.5 rounded-full ${textLang === 'en' ? 'bg-white shadow-sm text-[#2B1F16]' : ''}`}
+                    onClick={() => setTextLang('en')}
+                  >EN</button>
+                </div>
+              </div>
               <button onClick={() => setModalOpen(false)} className="text-gray-400 hover:text-[#2B1F16]">✕</button>
             </div>
-            <div className="grid md:grid-cols-2 gap-4">
+
+            <div className="grid gap-4">
+              {/* Title */}
               <div>
-                <label className="text-sm text-[#6B5542]">Title (EN)</label>
-                <input value={form.title_en} onChange={(e) => setForm({ ...form, title_en: e.target.value })} className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30" />
+                <label className="text-sm text-[#6B5542] mb-1 block">
+                  {textLang === 'zh' ? '标题 (ZH)' : 'Title (EN)'}
+                </label>
+                {textLang === 'zh' ? (
+                  <input 
+                    value={form.title_zh} 
+                    onChange={(e) => setForm({ ...form, title_zh: e.target.value })} 
+                    className="w-full rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30" 
+                  />
+                ) : (
+                  <input 
+                    value={form.title_en} 
+                    onChange={(e) => setForm({ ...form, title_en: e.target.value })} 
+                    className="w-full rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30" 
+                  />
+                )}
               </div>
+
+              {/* Options */}
               <div>
-                <label className="text-sm text-[#6B5542]">标题 (ZH)</label>
-                <input value={form.title_zh} onChange={(e) => setForm({ ...form, title_zh: e.target.value })} className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30" />
+                <label className="text-sm text-[#6B5542] mb-1 block">
+                  {textLang === 'zh' ? '选项 (ZH) - 拖拽调整顺序' : 'Options (EN) - Drag to reorder'}
+                </label>
+                <Reorder.Group 
+                  axis="y" 
+                  values={textLang === 'zh' ? form.options_zh : form.options_en} 
+                  onReorder={(newOrder) => setOptions(textLang, newOrder)} 
+                  className="space-y-2"
+                >
+                  {(textLang === 'zh' ? form.options_zh : form.options_en).map((opt, index) => (
+                    <Reorder.Item key={opt.id} value={opt} className="flex items-center gap-3">
+                      {/* Drag Handle */}
+                      <div className="cursor-grab text-gray-400 hover:text-[#D4A373] active:cursor-grabbing">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="8" y1="6" x2="21" y2="6"></line>
+                          <line x1="8" y1="12" x2="21" y2="12"></line>
+                          <line x1="8" y1="18" x2="21" y2="18"></line>
+                          <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                          <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                          <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                      </div>
+                      
+                      {/* Fixed Label A/B/C/D */}
+                      <div className="w-6 h-6 flex items-center justify-center rounded-full bg-[#F7F0E5] text-[#6B5542] text-xs font-bold shrink-0">
+                        {OPTION_LABELS[index] || '?'}
+                      </div>
+
+                      {/* Input */}
+                      <input 
+                        value={opt.text} 
+                        onChange={(e) => updateOptionText(textLang, index, e.target.value)} 
+                        className="flex-1 rounded-lg border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30 text-sm"
+                        placeholder={`Option ${OPTION_LABELS[index]}`}
+                      />
+                    </Reorder.Item>
+                  ))}
+                </Reorder.Group>
               </div>
-              <div>
-                <label className="text-sm text-[#6B5542]">选项 EN（用 | 分隔，可留空）</label>
-                <input value={form.options_en} onChange={(e) => setForm({ ...form, options_en: e.target.value })} className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30" />
-              </div>
-              <div>
-                <label className="text-sm text-[#6B5542]">选项 ZH（用 | 分隔，可留空）</label>
-                <input value={form.options_zh} onChange={(e) => setForm({ ...form, options_zh: e.target.value })} className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30" />
-              </div>
-              <div>
-                <label className="text-sm text-[#6B5542]">权重（越小越靠前）</label>
-                <input type="number" value={form.weight} onChange={(e) => setForm({ ...form, weight: Number(e.target.value) })} className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30" />
-              </div>
-              <div className="flex items-center gap-2">
-                <input type="checkbox" checked={form.active} onChange={(e) => setForm({ ...form, active: e.target.checked })} className="h-4 w-4 text-[#D4A373]" />
-                <span className="text-sm text-[#2B1F16]">启用</span>
+
+              {/* Shared Settings */}
+              <div className="grid grid-cols-2 gap-4 pt-2 border-t mt-2">
+                <div>
+                  <label className="text-sm text-[#6B5542]">权重</label>
+                  <input type="number" value={form.weight} onChange={(e) => setForm({ ...form, weight: Number(e.target.value) })} className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30" />
+                </div>
+                <div className="flex items-center gap-2 pt-6">
+                  <input type="checkbox" checked={form.active} onChange={(e) => setForm({ ...form, active: e.target.checked })} className="h-4 w-4 text-[#D4A373]" />
+                  <span className="text-sm text-[#2B1F16]">启用</span>
+                </div>
               </div>
             </div>
+
             <div className="flex justify-end gap-3 pt-2">
               <button onClick={() => setModalOpen(false)} className="px-4 py-2 rounded-xl border text-[#2B1F16]">取消</button>
               <button onClick={save} className="px-4 py-2 rounded-xl bg-[#2B1F16] text-[#F3E6D7] hover:scale-105 transition">保存</button>

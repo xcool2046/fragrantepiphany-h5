@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Section from '../../components/Section'
 import SearchBar from '../../components/admin/SearchBar'
 import api from '../../api'
+import { Reorder } from 'framer-motion'
 
 type Perfume = {
   id: number
@@ -16,15 +17,7 @@ type Perfume = {
   tags?: string[] | null
   description?: string | null
   description_en?: string | null
-  quote?: string | null
-  quote_en?: string | null
   image_url?: string | null
-  notes_top?: string | null
-  notes_top_en?: string | null
-  notes_heart?: string | null
-  notes_heart_en?: string | null
-  notes_base?: string | null
-  notes_base_en?: string | null
   sort_order: number
   status: string
 }
@@ -37,38 +30,69 @@ export default function Perfumes() {
   const [modalOpen, setModalOpen] = useState(false)
   const [editing, setEditing] = useState<Perfume | null>(null)
   const [query, setQuery] = useState('')
+  const [sceneFilter, setSceneFilter] = useState('all')
   const [page, setPage] = useState(1)
   const [total, setTotal] = useState(0)
-  const pageSize = 20
+  const [inputPage, setInputPage] = useState('1')
+  const pageSize = 10
 
   const [form, setForm] = useState<Partial<Perfume>>({})
+  // Tags state: array of strings
+  const [tagsList, setTagsList] = useState<string[]>([])
+  // Language toggle state
+  const [textLang, setTextLang] = useState<'zh' | 'en'>('zh')
 
+  // Store all cards for lookup
+  const [cards, setCards] = useState<any[]>([])
 
+  // Fetch cards for lookup
+  const fetchCards = useCallback(async () => {
+    try {
+      const res = await api.get('/api/admin/cards?pageSize=1000')
+      setCards(res.data.items || [])
+    } catch (e) {
+      console.error('Failed to fetch cards', e)
+    }
+  }, [])
 
-  const fetchData = useCallback(async (p = 1, kw = query) => {
+  const fetchData = useCallback(async (p = 1, kw = query, sc = sceneFilter) => {
     setLoading(true)
     try {
       const res = await api.get('/api/admin/perfumes', {
-        params: { page: p, pageSize, keyword: kw }
+        params: { page: p, pageSize, keyword: kw, scene: sc }
       })
       setItems(res.data.items || [])
       setTotal(res.data.total || 0)
       setPage(p)
+      setInputPage(String(p))
     } catch (e) {
       console.error(e)
     } finally {
       setLoading(false)
     }
-  }, [query])
+  }, [query, sceneFilter])
 
   useEffect(() => {
     fetchData()
+    fetchCards()
   }, [])
 
   useEffect(() => {
-    const t = setTimeout(() => fetchData(1, query), 300)
+    const t = setTimeout(() => fetchData(1, query, sceneFilter), 300)
     return () => clearTimeout(t)
-  }, [query])
+  }, [query, sceneFilter])
+
+  // Auto-update card name when card_id changes
+  useEffect(() => {
+    if (modalOpen && form.card_id) {
+      const card = cards.find(c => c.id === form.card_id)
+      if (card) {
+        setForm(prev => ({ ...prev, card_name: card.name_en }))
+      } else {
+        setForm(prev => ({ ...prev, card_name: '无效卡牌 ID' }))
+      }
+    }
+  }, [form.card_id, cards, modalOpen])
 
   const openCreate = () => {
     setEditing(null)
@@ -79,187 +103,307 @@ export default function Perfumes() {
       brand_name: '',
       product_name: '',
       status: 'active',
-      sort_order: 0
+      sort_order: 0,
+      tags: []
     })
+    // Initialize with 3 empty tags
+    setTagsList(['', '', ''])
+    setTextLang('zh')
     setModalOpen(true)
   }
 
   const openEdit = (item: Perfume) => {
     setEditing(item)
     setForm({ ...item })
+    
+    // Initialize tags: ensure at least 3 items
+    const currentTags = item.tags ? [...item.tags] : []
+    while (currentTags.length < 3) {
+      currentTags.push('')
+    }
+    setTagsList(currentTags)
+    
+    setTextLang('zh')
     setModalOpen(true)
   }
 
   const save = async () => {
     if (!form.card_id || !form.brand_name || !form.product_name) {
-      alert('Card ID, Brand, Product Name are required')
+      alert('卡牌ID、品牌和产品名称必填')
       return
     }
+
+    // Validate Card ID
+    const cardExists = cards.find(c => c.id === form.card_id)
+    if (!cardExists) {
+      alert('无效的卡牌 ID，请输入正确的 ID。')
+      return
+    }
+
+    // Process tags: filter out empty strings
+    const processedTags = tagsList.map(t => t.trim()).filter(Boolean)
+    const payload = { ...form, tags: processedTags }
+
     try {
       if (editing) {
-        await api.patch(`/api/admin/perfumes/${editing.id}`, form)
+        await api.patch(`/api/admin/perfumes/${editing.id}`, payload)
       } else {
-        await api.post('/api/admin/perfumes', form)
+        await api.post('/api/admin/perfumes', payload)
       }
       setModalOpen(false)
       fetchData(page)
-    } catch (e) {
+    } catch (e: any) {
       console.error(e)
-      alert('Save failed')
+      const msg = e.response?.data?.message 
+        ? (Array.isArray(e.response.data.message) ? e.response.data.message.join(', ') : e.response.data.message)
+        : e.message || '保存失败'
+      alert(`错误: ${msg}`)
     }
   }
 
   const remove = async (id: number) => {
-    if (!window.confirm('Confirm delete?')) return
+    if (!window.confirm('确认删除吗？')) return
     try {
       await api.delete(`/api/admin/perfumes/${id}`)
       fetchData(page)
     } catch (e) {
       console.error(e)
-      alert('Delete failed')
+      alert('删除失败')
     }
+  }
+
+  const toggleStatus = async (item: Perfume) => {
+    try {
+      const newStatus = item.status === 'active' ? 'inactive' : 'active'
+      await api.patch(`/api/admin/perfumes/${item.id}`, { status: newStatus })
+      fetchData(page)
+    } catch (e) {
+      console.error(e)
+      alert('更新状态失败')
+    }
+  }
+
+  const updateTag = (index: number, value: string) => {
+    const newTags = [...tagsList]
+    newTags[index] = value
+    setTagsList(newTags)
   }
 
   return (
     <div className={`space-y-6 ${bgClass} p-1 rounded-3xl shadow-inner`}>
-      <Section title="Perfumes" description="Manage perfume recommendations">
-        <div className="flex flex-wrap gap-3 items-center mb-4">
+      <Section title="Perfumes" description="管理香水推荐配置">
+        <div className="flex flex-wrap gap-3 items-center">
           <button onClick={openCreate} className="px-4 py-2 bg-[#2B1F16] text-[#F3E6D7] rounded-xl hover:scale-105 transition-all shadow-md">
-            + New Perfume
+            + 新增香水
           </button>
-          <SearchBar value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search brand, product, card..." />
         </div>
 
-        <div className="grid gap-4">
-          {loading && <div className="text-sm text-gray-500">Loading...</div>}
-          {!loading && items.map((item) => (
-            <div key={item.id} className="rounded-2xl border border-[#D4A373]/30 bg-white/70 backdrop-blur shadow-sm p-4 flex flex-col md:flex-row md:items-center md:justify-between hover:shadow-lg transition">
-              <div className="flex-1 space-y-1">
+        <div className="mt-4 flex flex-wrap gap-3 items-center bg-white/70 border border-[#D4A373]/20 rounded-2xl px-4 py-3 shadow-sm">
+          <SearchBar value={query} onChange={(e) => setQuery(e.target.value)} placeholder="搜索品牌、产品、卡牌..." />
+          
+          <select
+            value={sceneFilter}
+            onChange={(e) => setSceneFilter(e.target.value)}
+            className="px-3 py-2 rounded-xl border border-gray-200 text-sm focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20"
+          >
+            <option value="all">全场景</option>
+            <option value="A">A. 卧室</option>
+            <option value="B">B. 浴室</option>
+            <option value="C">C. 咖啡馆</option>
+            <option value="D">D. 白皂</option>
+          </select>
+
+          <span className="text-xs text-[#6B5542]">
+            共 {total} 条
+          </span>
+        </div>
+
+        <div className={`mt-4 grid gap-4 transition-opacity duration-200 ${loading ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
+          {items.map((item) => (
+            <div key={item.id} className="rounded-2xl border border-[#D4A373]/30 bg-white/70 backdrop-blur shadow-sm p-4 hover:shadow-lg transition">
+              <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="px-2 py-0.5 rounded bg-[#F7F0E5] text-xs text-[#6B5542]">ID: {item.id}</span>
                   <span className="font-serif font-bold text-[#2B1F16]">{item.brand_name} - {item.product_name}</span>
                   <span className="text-xs text-gray-500">({item.brand_name_en} - {item.product_name_en})</span>
+                  {item.status !== 'active' && <span className="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-600">禁用</span>}
                 </div>
-                <div className="text-sm text-[#6B5542] flex gap-4">
-                  <span>Card: {item.card_name} (ID: {item.card_id})</span>
-                  <span>Scene: {item.scene_choice}</span>
-                  <span>Status: {item.status}</span>
+                <div className="text-sm text-[#6B5542] flex gap-4 flex-wrap items-center">
+                  <span>卡牌: {item.card_name} (ID: {item.card_id})</span>
+                  <span>场景: {item.scene_choice}</span>
+                  {item.tags && item.tags.length > 0 && (
+                    <span className="text-xs bg-gray-100 px-1 rounded text-gray-500">标签: {item.tags.join(', ')}</span>
+                  )}
                 </div>
-              </div>
-              <div className="flex items-center gap-2 mt-3 md:mt-0">
-                <button onClick={() => openEdit(item)} className="px-3 py-1 rounded-lg bg-[#D4A373] text-[#2B1F16] text-sm hover:brightness-105">Edit</button>
-                <button onClick={() => remove(item.id)} className="px-3 py-1 rounded-lg bg-white border text-sm text-red-500 hover:border-red-400">Delete</button>
+                <div className="flex gap-2 pt-2">
+                  <button onClick={() => toggleStatus(item)} className="px-3 py-1 rounded-lg bg-white border text-sm text-[#2B1F16] hover:border-[#D4A373]">{item.status === 'active' ? '禁用' : '启用'}</button>
+                  <button onClick={() => openEdit(item)} className="px-3 py-1 rounded-lg bg-[#D4A373] text-[#2B1F16] text-sm hover:brightness-105">编辑</button>
+                  <button onClick={() => remove(item.id)} className="px-3 py-1 rounded-lg bg-white border text-sm text-red-500 hover:border-red-400">删除</button>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Simple Pagination */}
-        <div className="flex justify-center gap-2 mt-6">
-            <button disabled={page === 1} onClick={() => fetchData(page - 1)} className="px-3 py-1 rounded border bg-white disabled:opacity-50">Prev</button>
-            <span className="px-2 py-1 text-sm text-[#6B5542]">Page {page} of {Math.ceil(total / pageSize) || 1}</span>
-            <button disabled={page * pageSize >= total} onClick={() => fetchData(page + 1)} className="px-3 py-1 rounded border bg-white disabled:opacity-50">Next</button>
-        </div>
+        {/* Advanced Pagination */}
+        {total > pageSize && (
+          <div className="flex gap-2 mt-6 items-center justify-center">
+            <button
+              disabled={page === 1}
+              onClick={() => fetchData(page - 1)}
+              className="px-3 py-1 rounded border bg-white disabled:opacity-50 hover:bg-gray-50"
+            >
+              上一页
+            </button>
+            <div className="flex items-center gap-2 mx-2">
+              <span className="text-sm text-gray-600">页码</span>
+              <input
+                type="number"
+                min={1}
+                max={Math.ceil(total / pageSize)}
+                value={inputPage}
+                onChange={(e) => setInputPage(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    const p = Math.max(1, Math.min(Number(inputPage) || 1, Math.ceil(total / pageSize)))
+                    fetchData(p)
+                  }
+                }}
+                onBlur={() => {
+                  const p = Math.max(1, Math.min(Number(inputPage) || 1, Math.ceil(total / pageSize)))
+                  if (p !== page) fetchData(p)
+                  else setInputPage(String(p))
+                }}
+                className="w-16 text-center rounded border border-gray-300 py-1 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
+              />
+              <span className="text-sm text-gray-600">/ {Math.ceil(total / pageSize)}</span>
+            </div>
+            <button
+              disabled={page * pageSize >= total}
+              onClick={() => fetchData(page + 1)}
+              className="px-3 py-1 rounded border bg-white disabled:opacity-50 hover:bg-gray-50"
+            >
+              下一页
+            </button>
+          </div>
+        )}
       </Section>
 
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
           <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center border-b pb-2">
-              <h3 className="text-xl font-serif text-[#2B1F16]">{editing ? 'Edit Perfume' : 'New Perfume'}</h3>
+              <div className="flex items-center gap-3">
+                  <h3 className="text-xl font-serif text-[#2B1F16]">{editing ? '编辑香水' : '新增香水'}</h3>
+                  <div className="flex items-center gap-2 bg-[#F7F0E5] rounded-full px-3 py-1 text-sm text-[#6B5542]">
+                    <button
+                      className={`px-2 py-0.5 rounded-full ${textLang === 'zh' ? 'bg-white shadow-sm text-[#2B1F16]' : ''}`}
+                      onClick={() => setTextLang('zh')}
+                    >ZH</button>
+                    <button
+                      className={`px-2 py-0.5 rounded-full ${textLang === 'en' ? 'bg-white shadow-sm text-[#2B1F16]' : ''}`}
+                      onClick={() => setTextLang('en')}
+                    >EN</button>
+                  </div>
+              </div>
               <button onClick={() => setModalOpen(false)} className="text-gray-400 hover:text-[#2B1F16]">✕</button>
             </div>
             
             <div className="grid md:grid-cols-2 gap-4">
-               {/* Basic Info */}
+               {/* Basic Info (Shared) */}
                <div className="space-y-3">
-                  <h4 className="font-bold text-[#D4A373] text-sm uppercase tracking-wider">Basic Info</h4>
-                  <div>
-                    <label className="text-xs text-[#6B5542]">Card ID</label>
-                    <input type="number" value={form.card_id} onChange={e => setForm({...form, card_id: Number(e.target.value)})} className="w-full rounded-lg border p-2 text-sm" />
+                  <div className="flex gap-4">
+                    <div className="w-1/3">
+                      <label className="text-xs text-[#6B5542]">卡牌 ID</label>
+                      <input 
+                        type="number" 
+                        value={form.card_id} 
+                        onChange={e => setForm({...form, card_id: Number(e.target.value)})} 
+                        className="w-full rounded-lg border p-2 text-sm" 
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="text-xs text-[#6B5542]">卡牌名称</label>
+                      <input 
+                        value={form.card_name || ''} 
+                        readOnly
+                        className={`w-full rounded-lg border p-2 text-sm ${form.card_name === '无效卡牌 ID' ? 'bg-red-50 text-red-500' : 'bg-gray-100 text-gray-500'} cursor-not-allowed`} 
+                      />
+                    </div>
                   </div>
                   <div>
-                    <label className="text-xs text-[#6B5542]">Card Name</label>
-                    <input value={form.card_name || ''} onChange={e => setForm({...form, card_name: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
-                  </div>
-                  <div>
-                    <label className="text-xs text-[#6B5542]">Scene Choice (ZH)</label>
-                    <input value={form.scene_choice || ''} onChange={e => setForm({...form, scene_choice: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
-                  </div>
-                  <div>
-                    <label className="text-xs text-[#6B5542]">Scene Choice (EN)</label>
-                    <input value={form.scene_choice_en || ''} onChange={e => setForm({...form, scene_choice_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
-                  </div>
-                  <div>
-                    <label className="text-xs text-[#6B5542]">Sort Order</label>
-                    <input type="number" value={form.sort_order} onChange={e => setForm({...form, sort_order: Number(e.target.value)})} className="w-full rounded-lg border p-2 text-sm" />
-                  </div>
-                  <div>
-                    <label className="text-xs text-[#6B5542]">Status</label>
-                    <select value={form.status} onChange={e => setForm({...form, status: e.target.value})} className="w-full rounded-lg border p-2 text-sm">
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                    </select>
+                    <label className="text-xs text-[#6B5542] mb-1 block">标签 (拖拽排序)</label>
+                    <Reorder.Group axis="y" values={tagsList} onReorder={setTagsList} className="space-y-2">
+                      {tagsList.map((tag, index) => (
+                        <Reorder.Item key={tag} value={tag} className="flex items-center gap-2">
+                          <div className="cursor-grab text-gray-400 hover:text-[#D4A373] active:cursor-grabbing">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <line x1="8" y1="6" x2="21" y2="6"></line>
+                              <line x1="8" y1="12" x2="21" y2="12"></line>
+                              <line x1="8" y1="18" x2="21" y2="18"></line>
+                              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                            </svg>
+                          </div>
+                          <input 
+                            value={tag} 
+                            onChange={e => updateTag(index, e.target.value)} 
+                            placeholder={`标签 ${index + 1}`} 
+                            className="flex-1 rounded-lg border p-2 text-sm" 
+                          />
+                        </Reorder.Item>
+                      ))}
+                    </Reorder.Group>
                   </div>
                </div>
 
-               {/* Product Info */}
+               {/* Product Info (Localized) */}
                <div className="space-y-3">
-                  <h4 className="font-bold text-[#D4A373] text-sm uppercase tracking-wider">Product Info</h4>
-                  <div>
-                    <label className="text-xs text-[#6B5542]">Brand (ZH)</label>
-                    <input value={form.brand_name || ''} onChange={e => setForm({...form, brand_name: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
-                  </div>
-                  <div>
-                    <label className="text-xs text-[#6B5542]">Brand (EN)</label>
-                    <input value={form.brand_name_en || ''} onChange={e => setForm({...form, brand_name_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
-                  </div>
-                  <div>
-                    <label className="text-xs text-[#6B5542]">Product (ZH)</label>
-                    <input value={form.product_name || ''} onChange={e => setForm({...form, product_name: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
-                  </div>
-                  <div>
-                    <label className="text-xs text-[#6B5542]">Product (EN)</label>
-                    <input value={form.product_name_en || ''} onChange={e => setForm({...form, product_name_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
-                  </div>
-                  <div>
-                    <label className="text-xs text-[#6B5542]">Image URL</label>
-                    <input value={form.image_url || ''} onChange={e => setForm({...form, image_url: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
-                  </div>
+                  {textLang === 'zh' ? (
+                    <>
+                      <div>
+                        <label className="text-xs text-[#6B5542]">场景选择 (ZH)</label>
+                        <input value={form.scene_choice || ''} onChange={e => setForm({...form, scene_choice: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
+                      </div>
+                      <div>
+                        <label className="text-xs text-[#6B5542]">品牌 (ZH)</label>
+                        <input value={form.brand_name || ''} onChange={e => setForm({...form, brand_name: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
+                      </div>
+                      <div>
+                        <label className="text-xs text-[#6B5542]">产品名称 (ZH)</label>
+                        <input value={form.product_name || ''} onChange={e => setForm({...form, product_name: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
+                      </div>
+                      <div>
+                        <label className="text-xs text-[#6B5542]">描述文案 (ZH)</label>
+                        <textarea value={form.description || ''} onChange={e => setForm({...form, description: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={5} />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div>
+                        <label className="text-xs text-[#6B5542]">场景选择 (EN)</label>
+                        <input value={form.scene_choice_en || ''} onChange={e => setForm({...form, scene_choice_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
+                      </div>
+                      <div>
+                        <label className="text-xs text-[#6B5542]">品牌 (EN)</label>
+                        <input value={form.brand_name_en || ''} onChange={e => setForm({...form, brand_name_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
+                      </div>
+                      <div>
+                        <label className="text-xs text-[#6B5542]">产品名称 (EN)</label>
+                        <input value={form.product_name_en || ''} onChange={e => setForm({...form, product_name_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" />
+                      </div>
+                      <div>
+                        <label className="text-xs text-[#6B5542]">描述文案 (EN)</label>
+                        <textarea value={form.description_en || ''} onChange={e => setForm({...form, description_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={5} />
+                      </div>
+                    </>
+                  )}
                </div>
-            </div>
-
-            {/* Details */}
-            <div className="grid md:grid-cols-2 gap-4 pt-4 border-t">
-                <div className="space-y-2">
-                    <label className="text-xs text-[#6B5542]">Description (ZH)</label>
-                    <textarea value={form.description || ''} onChange={e => setForm({...form, description: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={3} />
-                    <label className="text-xs text-[#6B5542]">Quote (ZH)</label>
-                    <textarea value={form.quote || ''} onChange={e => setForm({...form, quote: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={2} />
-                    <label className="text-xs text-[#6B5542]">Notes (Top/Heart/Base) ZH</label>
-                    <div className="grid grid-cols-3 gap-2">
-                        <input placeholder="Top" value={form.notes_top || ''} onChange={e => setForm({...form, notes_top: e.target.value})} className="rounded border p-1 text-xs" />
-                        <input placeholder="Heart" value={form.notes_heart || ''} onChange={e => setForm({...form, notes_heart: e.target.value})} className="rounded border p-1 text-xs" />
-                        <input placeholder="Base" value={form.notes_base || ''} onChange={e => setForm({...form, notes_base: e.target.value})} className="rounded border p-1 text-xs" />
-                    </div>
-                </div>
-                <div className="space-y-2">
-                    <label className="text-xs text-[#6B5542]">Description (EN)</label>
-                    <textarea value={form.description_en || ''} onChange={e => setForm({...form, description_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={3} />
-                    <label className="text-xs text-[#6B5542]">Quote (EN)</label>
-                    <textarea value={form.quote_en || ''} onChange={e => setForm({...form, quote_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={2} />
-                    <label className="text-xs text-[#6B5542]">Notes (Top/Heart/Base) EN</label>
-                    <div className="grid grid-cols-3 gap-2">
-                        <input placeholder="Top" value={form.notes_top_en || ''} onChange={e => setForm({...form, notes_top_en: e.target.value})} className="rounded border p-1 text-xs" />
-                        <input placeholder="Heart" value={form.notes_heart_en || ''} onChange={e => setForm({...form, notes_heart_en: e.target.value})} className="rounded border p-1 text-xs" />
-                        <input placeholder="Base" value={form.notes_base_en || ''} onChange={e => setForm({...form, notes_base_en: e.target.value})} className="rounded border p-1 text-xs" />
-                    </div>
-                </div>
             </div>
 
             <div className="flex justify-end gap-3 pt-4 border-t">
-              <button onClick={() => setModalOpen(false)} className="px-4 py-2 rounded-xl border text-[#2B1F16]">Cancel</button>
-              <button onClick={save} className="px-4 py-2 rounded-xl bg-[#2B1F16] text-[#F3E6D7] hover:scale-105 transition">Save</button>
+              <button onClick={() => setModalOpen(false)} className="px-4 py-2 rounded-xl border text-[#2B1F16]">取消</button>
+              <button onClick={save} className="px-4 py-2 rounded-xl bg-[#2B1F16] text-[#F3E6D7] hover:scale-105 transition">保存</button>
             </div>
           </div>
         </div>

@@ -217,8 +217,9 @@ export class AdminController {
     @Query('page') page = '1',
     @Query('pageSize') pageSize = '20',
     @Query('keyword') keyword?: string,
+    @Query('scene') scene?: string,
   ) {
-    console.log(`[Admin] listPerfumes called. Page: ${page}, Size: ${pageSize}, Keyword: ${keyword}`);
+    console.log(`[Admin] listPerfumes called. Page: ${page}, Size: ${pageSize}, Keyword: ${keyword}, Scene: ${scene}`);
     const take = Math.min(100, Math.max(1, Number(pageSize) || 20));
     const skip = (Math.max(1, Number(page) || 1) - 1) * take;
     const qb = this.perfumeRepo.createQueryBuilder('p').orderBy('p.id', 'DESC');
@@ -229,6 +230,11 @@ export class AdminController {
         '(p.brand_name ILIKE :kw OR p.product_name ILIKE :kw OR p.card_name ILIKE :kw)',
         { kw },
       );
+    }
+
+    if (scene && scene !== 'all') {
+      // Filter by scene prefix (e.g. "A" matches "A. 卧室")
+      qb.andWhere('p.scene_choice LIKE :scene', { scene: `${scene}%` });
     }
 
     const [items, total] = await qb.skip(skip).take(take).getManyAndCount();
@@ -243,7 +249,14 @@ export class AdminController {
       throw new BadRequestException('card_id, brand_name, product_name are required');
     }
     const entity = this.perfumeRepo.create(body);
-    return await this.perfumeRepo.save(entity);
+    try {
+      return await this.perfumeRepo.save(entity);
+    } catch (e: any) {
+      if (e.code === '23505') {
+        throw new BadRequestException('Perfume with this Card ID and Scene Choice already exists');
+      }
+      throw e;
+    }
   }
 
   @Patch('perfumes/:id')
@@ -253,7 +266,14 @@ export class AdminController {
     
     // Allow updating any field passed in body
     Object.assign(p, body);
-    return await this.perfumeRepo.save(p);
+    try {
+      return await this.perfumeRepo.save(p);
+    } catch (e: any) {
+      if (e.code === '23505') {
+        throw new BadRequestException('Perfume with this Card ID and Scene Choice already exists');
+      }
+      throw e;
+    }
   }
 
   @Delete('perfumes/:id')

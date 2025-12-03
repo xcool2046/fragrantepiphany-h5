@@ -1,0 +1,1834 @@
+[
+  {
+    "id": 150,
+    "product_name": "Gypsy Water",
+    "card_name": "The Magician",
+    "description_zh": "你正站在全新旅程的起点，内心充满对未知的好奇与不羁的自由。Byredo的Gypsy Water与这份心境完美契合——杜松子的清新与琥珀的温暖交织，仿佛吉普赛人的营火在星空下摇曳。这香气不设定终点，只陪伴每一次随心而动的探索，提醒你：生命的精彩往往藏在未经计划的转弯处。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 151,
+    "product_name": "Vanille Abricot",
+    "card_name": "The Magician",
+    "description_zh": "你正站在全新旅程的起点，内心充满天真无畏的探索欲。Comptoir Sud Pacifique的Vanille Abricot与这份自由心境完美契合——香草与杏子的甜美组合简单而直接，如同孩子般纯粹的快乐。这香气不预设终点，只陪伴你享受旅途中的每个意外惊喜，提醒你：生命的精彩往往来自不经意的转弯。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 152,
+    "product_name": "Fico di Amalfi",
+    "card_name": "The Magician",
+    "description_zh": "你正站在全新旅程的起点，内心充满对未知的好奇与期待。Acqua di Parma的Fico di Amalfi与这份自由心境完美契合——无花果叶的青翠与果实的清甜，勾勒出地中海岸的明媚风光。这香气不预设路径，只陪伴你享受探索的乐趣，在每一个转弯处发现生命的惊喜。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 154,
+    "product_name": "Terre d‘Hermès",
+    "card_name": "The Fool",
+    "description_zh": "你感受到内在潜能的苏醒，万物皆可为你所用。Hermès的Terre d'Hermès与这份掌控力共鸣——葡萄柚的活力与香根草的沉稳，构筑出天与地之间的力量场。这香气赋予你将想法化为现实的底气，让每一次行动都如咒语般精准有力。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 155,
+    "product_name": "Ani",
+    "card_name": "The Fool",
+    "description_zh": "你感受到将想法化为现实的魔力，万物皆可为你所用。Nishane的Ani与你此刻的创造力共鸣——生姜的辛辣与香草的醇厚碰撞出神奇火花，香柠檬的明亮贯穿始终。这香气如同施展魔法时的咒语，助你精准调和各种元素，让每个构想都能在现实中完美显现。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 156,
+    "product_name": "Eau des Sens",
+    "card_name": "The Fool",
+    "description_zh": "你感受到将想法化为现实的魔力，万物皆可为你所用。Diptyque的Eau des Sens与你此刻的创造力共鸣——苦橙的清澈与杜松子的绿意，在橙花的洁净中达成精妙平衡。这香气如同施展魔法时的咒语，助你精准调和各种元素，让灵感在现实中完美显现。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 158,
+    "product_name": "Tam Dao",
+    "card_name": "The High Priestess",
+    "description_zh": "你听见内在智慧的召唤，渴望在静默中与直觉对话。Diptyque的Tam Dao为你营造这片神圣空间——纯粹檀木的奶香与宁谧气息，仿佛古老寺庙中的沉思时刻。这香气不提供答案，却照亮你通往潜意识深处的路径。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 159,
+    "product_name": "Gris Charnel",
+    "card_name": "The High Priestess",
+    "description_zh": "你听见内心深处智慧的召唤，渴望在静默中获得启示。BDK的Gris Charnel与这份深邃的直觉相呼应——无花果的奶感与茶的清苦在檀木基底上交织，创造出朦胧而神秘的氛围。这香气不提供答案，却为你的灵性探索照亮前路。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 160,
+    "product_name": "Baie 19",
+    "card_name": "The High Priestess",
+    "description_zh": "你听见内心深处智慧的召唤，渴望在静默中获得启示。Le Labo的Baie 19与这份深邃的直觉相呼应——雨后矿物的清冷与湿土的气息，创造出空灵而神秘的氛围。这香气不提供答案，却为你的灵性探索照亮通往潜意识深处的路径。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 162,
+    "product_name": "À la Rose",
+    "card_name": "The Empress",
+    "description_zh": "你正处于丰饶与创造的周期，对生命的热爱如花绽放。Maison Francis Kurkdjian的À la Rose与你此刻的光彩相映——数百朵玫瑰盛开的奢华气息，仿佛漫步在盛夏黄昏的私人花园。这香气唤醒你对美的感知，提醒你本就是爱与滋养的源头。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 163,
+    "product_name": "Lira",
+    "card_name": "The Empress",
+    "description_zh": "你正处于丰饶与创造的巅峰，对生命的热爱如阳光般温暖。Xerjoff的Lira与你此刻的光彩相映——焦糖柠檬蛋糕的诱人香气，仿佛永不落幕的盛宴。这香气唤醒你对感官之美的全然接纳，提醒你本就是爱与丰盛的源头。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 164,
+    "product_name": "Love Story",
+    "card_name": "The Empress",
+    "description_zh": "你正处于丰饶与创造的周期，对生命的热爱如花绽放。Chloe的Love Story与你此刻的光彩相映——橙花的洁净与麝香的温柔，交织出优雅而充满女人味的氛围。这香气唤醒你对美的感知，提醒你本就是爱与滋养的源头。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 166,
+    "product_name": "Oud Wood",
+    "card_name": "The Emperor",
+    "description_zh": "你需要建立秩序与结构，以沉稳力量构筑自己的领域。Tom Ford的Oud Wood与你此刻的权威共鸣——沉静乌木与檀香的组合，如同历经时光打磨的王座。这香气为你在纷扰中奠定不可动摇的自信，展现从容不迫的掌控力。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 167,
+    "product_name": "Tonka Imperiale",
+    "card_name": "The Emperor",
+    "description_zh": "你需要建立秩序与权威，以稳健力量构筑自己的王国。Guerlain的Tonka Imperiale与你此刻的掌控力共鸣——零陵香豆的醇厚与烟草的温暖，宛如历经时光打磨的王座。这香气为你在纷乱中奠定不可动摇的基石。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 168,
+    "product_name": "Castile",
+    "card_name": "The Emperor",
+    "description_zh": "你需要建立秩序与结构，以沉稳力量构筑自己的领域。Penhaligon's的Castile与你此刻的权威共鸣——橙花与皂感的经典组合，展现历经时间考验的优雅格调。这香气为你在纷扰中奠定不可动摇的自信，在秩序中展现从容不迫的掌控力。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 170,
+    "product_name": "Myrrh & Tonka",
+    "card_name": "The Hierophant",
+    "description_zh": "你寻求精神的指引与传统的智慧，渴望在纷杂中找到内心的信仰。Jo Malone的Myrrh & Tonka与这份追寻相合——薰衣草的安宁与末药的神秘，交织出仪式般的庄严氛围。这香气如同古老的智慧书卷，为你提供心灵的依归。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 171,
+    "product_name": "Spiritueuse Double Vanille",
+    "card_name": "The Hierophant",
+    "description_zh": "你寻求精神的指引与传统的智慧，渴望在纷杂中找到信仰。Guerlain的Spiritueuse Double Vanille与这份追寻契合——香草的神圣与朗姆酒的醇烈，交织出仪式般的庄严氛围。这香气如同古老智慧的载体，为你的心灵提供永恒依归。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 172,
+    "product_name": "Blanche",
+    "card_name": "The Hierophant",
+    "description_zh": "你寻求精神的指引与传统的智慧，渴望在纷杂中找到内心的信仰。Byredo的Blanche与这份追寻契合——醛香的洁净与白麝香的纯粹，营造出仪式般的圣洁氛围。这香气如同通往更高意识的通道，为你的心灵提供永恒的依归。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 174,
+    "product_name": "001 Woman",
+    "card_name": "The Lovers",
+    "description_zh": "你经历着深刻的灵魂联结，或在关系中寻找真诚的共鸣。Loewe的001 Woman诠释这份亲密——香草与茉莉的温柔包裹着洁净的麝香，仿佛晨光中相拥的体温。这香气记录着心灵共振的瞬间，成为你们之间无言的承诺。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 176,
+    "product_name": "For Her Eau de Toilette",
+    "card_name": "The Lovers",
+    "description_zh": "你经历着深刻的灵魂联结，或在关系中寻找真诚的共鸣。Narciso Rodriguez的For Her Eau de Toilette诠释这份亲密——麝香的洁净与花香的温柔，勾勒出肌肤相亲的温暖记忆。这香气记录着心灵共振的瞬间，成为彼此之间无言的承诺。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 178,
+    "product_name": "Terre d‘Hermès",
+    "card_name": "The Chariot",
+    "description_zh": "你正驾驭对立的力量向前冲刺，意志是你手中的缰绳。Hermès的Terre d'Hermès与你迸发的行动力共鸣——矿物的冷峻与香根草的宽广，构筑出坚定不移的前进轨迹。这香气赋予你冲破障碍的勇气，让目标如地平线般清晰可见。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 179,
+    "product_name": "Awake",
+    "card_name": "The Chariot",
+    "description_zh": "你正全力向着目标冲刺，意志是你前进的动力。Akro的Awake与你迸发的行动力共鸣——浓缩咖啡的纯粹香气带来极致的专注力，仿佛永不停歇的引擎。这香气赋予你冲破一切障碍的决心，让目标变得触手可及。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 180,
+    "product_name": "Silver Mountain Water",
+    "card_name": "The Chariot",
+    "description_zh": "你正驾驭对立的力量向前冲刺，意志是你手中的缰绳。Creed的Silver Mountain Water与你迸发的行动力共鸣——冰山融水般的清澈与绿茶的清冽，构筑出坚定不移的前进轨迹。这香气赋予你冲破障碍的勇气，让目标如地平线般清晰可见。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 182,
+    "product_name": "Philosykos",
+    "card_name": "Strength",
+    "description_zh": "你学会以温柔掌控局面，发现真正的强大源于内心的从容。Diptyque的Philosykos与这份智慧相映——无花果叶的青绿与果实的奶甜，诉说着以柔克刚的生命哲学。这香气提醒你：最坚韧的力量，往往藏在最柔软的外表之下。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 183,
+    "product_name": "Gris Charnel",
+    "card_name": "Strength",
+    "description_zh": "你学会以柔克刚的智慧，发现真正的强大源于内心的从容。BDK的Gris Charnel与这份深沉的勇气相呼应——无花果的温柔与檀木的坚定，在灰色地带找到完美平衡。这香气提醒你：最坚韧的力量，往往藏在最平静的外表之下。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 184,
+    "product_name": "For Her Eau de Toilette",
+    "card_name": "Strength",
+    "description_zh": "你学会以温柔掌控局面，发现真正的强大源于内心的从容。Narciso Rodriguez的For Her Eau de Toilette与这份智慧相映——麝香的包容与花香的柔软，展现着以柔克刚的生命哲学。这香气提醒你：最坚韧的力量，往往藏在最温柔的外表之下。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 186,
+    "product_name": "Hwyl",
+    "card_name": "The Hermit",
+    "description_zh": "你主动选择退入内心，在孤独中寻找真理的微光。Aesop的Hwyl与你此刻的沉思共鸣——柏树的幽静与香根草的深邃，仿佛迷雾中的森林小径。这香气不指引方向，却为你的内在探索提供最安宁的陪伴。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 187,
+    "product_name": "Tonka Imperiale",
+    "card_name": "The Hermit",
+    "description_zh": "你主动选择退入内心，在孤独中寻找真理的微光。Guerlain的Tonka Imperiale与你此刻的沉思共鸣——烟草的醇厚与零陵香豆的温暖，营造出最适合独处的神圣空间。这香气不指引方向，却为你的内在探索提供最安宁的陪伴。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 188,
+    "product_name": "White Moss",
+    "card_name": "The Hermit",
+    "description_zh": "你主动选择退入内心，在孤独中寻找真理的微光。Acca Kappa的White Moss与你此刻的沉思共鸣——白麝香的洁净与苔藓的湿润，营造出最适合独处的安宁空间。这香气不指引方向，却为你的内在探索提供最静谧的陪伴。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 190,
+    "product_name": "Bal d'Afrique",
+    "card_name": "Wheel of Fortune",
+    "description_zh": "当生命的转折来临，你感受到宇宙安排的深意。Byredo的Bal d'Afrique以金色的温暖拥抱这个时刻——香柠檬的明亮与琥珀的醇厚，如同非洲大陆上欢庆的舞蹈。这香气不抗拒变化，却在每一个转折处洒下希望的阳光，提醒你：每一次结束都是新生的开始。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 191,
+    "product_name": "Angels' Share",
+    "card_name": "Wheel of Fortune",
+    "description_zh": "当命运的齿轮开始转动，你感受到生命周期的自然更迭。Kilian的Angels' Share与这转变时刻完美契合——干邑白兰地的醇香与榛果的暖甜，如同欢庆的盛宴。这香气不抗拒无常，却在每个转折处洒下金色的希望，提醒你接受生命的馈赠。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 192,
+    "product_name": "Aqua Celestia",
+    "card_name": "Wheel of Fortune",
+    "description_zh": "当命运的齿轮开始转动，你感受到生命周期的自然更迭。Maison Francis Kurkdjian的Aqua Celestia与这转变时刻完美契合——柠檬与薄荷的清新气息通透而明亮，如同天空倾泻而下的希望。这香气不抗拒无常，却在每个转折处带来新的可能，提醒你接受生命的馈赠。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 194,
+    "product_name": "Thé Noir 29",
+    "card_name": "Justice",
+    "description_zh": "站在天秤的中心，你寻求最公正的平衡。Le Labo的Thé Noir 29以精妙的协调回应这份追求——无花果的甜润与烟草的干涩，在黑茶的底蕴中达成完美和谐。这香气不偏不倚，如同最客观的裁决，帮助你在复杂中找到那条中正之道。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 195,
+    "product_name": "Ani",
+    "card_name": "Justice",
+    "description_zh": "你站在天秤中心寻求平衡，需要清晰的判断力。Nishane的Ani以精妙的协调回应这份追求——生姜的辛辣与香草的甜美，在香柠檬的调和下达至完美和谐。这香气如同最公正的裁决，帮助你在复杂中找到平衡之道。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 196,
+    "product_name": "Aqua Universalis",
+    "card_name": "Justice",
+    "description_zh": "你站在天秤中心寻求平衡，需要清晰的判断力。Maison Francis Kurkdjian的Aqua Universalis以绝对的纯净回应这份追求——柠檬与铃兰的洁净气息，如同最公正的裁决。这香气不带任何偏见，帮助你在复杂中找到那条中正之道。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 198,
+    "product_name": "Tacit",
+    "card_name": "The Hanged Man",
+    "description_zh": "当你选择换个视角看世界，Aesop的Tacit为这份悬停带来清明——罗勒的绿意与香根草的沉稳，构筑出一个安静的思考空间。这香气不催促答案，却让等待变成一种智慧的积累，在静止中看见不同的可能。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 199,
+    "product_name": "Changing Constance",
+    "card_name": "The Hanged Man",
+    "description_zh": "当你选择换个视角看世界，Penhaligon's的Changing Constance为这份悬停带来新的领悟——豆蔻的咸香与焦糖的甜蜜，在雪松的包裹中达成奇妙平衡。这香气让等待变成有价值的沉淀，从非常规角度发现新的可能。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 200,
+    "product_name": "Un Jardin Sur La Lagune",
+    "card_name": "The Hanged Man",
+    "description_zh": "当你选择换个视角看世界，Hermès的Un Jardin Sur La Lagune为这份悬停带来新的领悟——咸湿海风中的木兰与百合，勾勒出泻湖花园的独特景致。这香气让等待变成有价值的沉淀，从非常规角度发现被忽略的美好。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 202,
+    "product_name": "Chergui",
+    "card_name": "Death",
+    "description_zh": "面对必要的结束，Serge Lutens的Chergui以温暖的怀抱陪伴这场蜕变——蜂蜜的甜与干草的暖，在麝香的包裹中完成生命的轮回。这香气不畏惧消亡，反而在灰烬中点燃重生的火焰，告诉你：放手才能拥抱新生。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 203,
+    "product_name": "Side Effect",
+    "card_name": "Death",
+    "description_zh": "面对必要的结束，Initio的Side Effect以炽热的能量陪伴这场蜕变——朗姆酒的烈性与肉桂的暖意，在香草的抚慰中完成毁灭与重生。这香气不畏惧消亡，反而在灰烬中点燃新生的火焰。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 204,
+    "product_name": "Lazy Sunday Morning",
+    "card_name": "Death",
+    "description_zh": "面对必要的结束，Maison Martin Margiela的Lazy Sunday Morning以温柔的怀抱陪伴这场蜕变——铃兰与梨子的清新，在白麝香的包裹中完成生命的轮回。这香气不畏惧消亡，反而在结束时带来崭新的开始。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 206,
+    "product_name": "Wood Sage & Sea Salt",
+    "card_name": "Temperance",
+    "description_zh": "在冲突中寻找平衡，Jo Malone的Wood Sage & Sea Salt带来自然的调和——海风的微咸与鼠尾草的温暖，在海岸边找到完美的交汇点。这香气不急不躁，教你以柔和的姿态融合对立，在平静中找回内心的中正。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 207,
+    "product_name": "Herod",
+    "card_name": "Temperance",
+    "description_zh": "在冲突中寻找中庸之道，Parfums de Marly的Herod带来温和的调节——烟草的干燥与肉桂的暖意，在葡萄柚的清新中找到完美平衡。这香气不急不躁，教你以从容姿态融合对立。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 208,
+    "product_name": "Wood Sage & Sea Salt",
+    "card_name": "Temperance",
+    "description_zh": "在冲突中寻找平衡，Jo Malone的Wood Sage & Sea Salt带来自然的调和——海风的微咸与鼠尾草的温暖，在海岸边找到完美的交汇点。这香气不急不躁，教你以柔和的姿态融合对立，在平静中找回内心的中正。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 210,
+    "product_name": "By the Fireplace",
+    "card_name": "The Devil",
+    "description_zh": "当欲望在暗处低语，Maison Martin Margiela的By the Fireplace诚实地面对这份诱惑——烤栗子的甜与火焰的暖，交织出令人沉醉的温柔陷阱。这香气不批判沉溺，却让你在温暖中保持清醒，看清束缚与自由的界限。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 211,
+    "product_name": "Intoxicated",
+    "card_name": "The Devil",
+    "description_zh": "当欲望在暗处低语，Kilian的Intoxicated诚实地面对这份诱惑——咖啡的浓郁与小豆蔻的辛辣，交织出令人沉醉的迷境。这香气不批判沉溺，却让你在享受中保持清醒认知。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 212,
+    "product_name": "Original Musk",
+    "card_name": "The Devil",
+    "description_zh": "当欲望在暗处低语，Kiehl's的Original Musk诚实地面对这份诱惑——带着动物感的麝香，原始而真实，在肌肤上渐渐变得温暖干净。这香气不批判沉溺，却让你在温暖中保持清醒，看清束缚与自由的界限。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 214,
+    "product_name": "Bois Farine",
+    "card_name": "The Tower",
+    "description_zh": "当旧有结构崩塌，L'Artisan的Bois Farine在废墟中带来意外的慰藉——杏仁粉与雪松的独特组合，如同灾难后发现的新大陆。这香气不掩饰伤痛，却用质朴的温暖证明：摧毁往往是为了更真实的建造。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 215,
+    "product_name": "Jeux de Peau",
+    "card_name": "The Tower",
+    "description_zh": "当旧有结构崩塌，Serge Lutens的Jeux de Peau在废墟中带来意外慰藉——烤面包的暖香与牛奶的醇厚，用最质朴的气息抚平动荡。这香气证明：摧毁往往是为了更真实的建造。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 216,
+    "product_name": "Baie 19",
+    "card_name": "The Tower",
+    "description_zh": "当旧有结构崩塌，Le Labo的Baie 19在废墟中带来意外的清醒——雨后矿物的气息与湿润泥土的质感，如同灾难后最本真的状态。这香气不掩饰伤痛，却用最原始的真实证明：摧毁往往是为了重建更坚实的根基。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 218,
+    "product_name": "Gypsy Water",
+    "card_name": "The Star",
+    "description_zh": "在黑暗中看见希望，Byredo的Gypsy Water承载这份清澈的期待——杜松子的清新与琥珀的温暖，如同吉普赛人帐篷外的星空。这香气洗净疲惫，为每个黑夜注入黎明的信心，指引你走向光明的方向。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 219,
+    "product_name": "Cheirosa '62",
+    "card_name": "The Star",
+    "description_zh": "在黑暗中看见希望，Sol de Janeiro的Cheirosa '62承载这份明亮的期待——开心果与杏仁的奶甜，盐焦糖的温暖，仿佛海滩上的灿烂阳光。这香气洗净阴霾，为每个黑夜注入黎明的信心。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 220,
+    "product_name": "Silver Mountain Water",
+    "card_name": "The Star",
+    "description_zh": "在黑暗中看见希望，Creed的Silver Mountain Water承载这份清澈的期待——冰山融水般的清凉与绿茶的洁净，仿佛夜空中最明亮的指引。这香气洗净疲惫，为每个黑夜注入黎明的信心，照亮你前行的道路。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 222,
+    "product_name": "Hwyl",
+    "card_name": "The Moon",
+    "description_zh": "当潜入潜意识的深潭，Aesop的Hwyl陪伴这趟夜航——柏树的幽深与苔藓的湿润，勾勒出迷雾森林的神秘轮廓。这香气不驱散恐惧，却让你学会与未知共处，在朦胧中找到属于自己的真实。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 223,
+    "product_name": "Irish Leather",
+    "card_name": "The Moon",
+    "description_zh": "当潜入潜意识的深潭，Memo Paris的Irish Leather陪伴这趟夜航——威士忌的醇烈与皮革的粗犷，薄荷的清凉点缀其间。这香气不驱散迷雾，却让你学会在朦胧中寻找自己的真相。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 224,
+    "product_name": "Un Jardin Sur La Lagune",
+    "card_name": "The Moon",
+    "description_zh": "当潜入潜意识的深潭，Hermès的Un Jardin Sur La Lagune陪伴这趟夜航——咸水湖边的花香在月光下显得朦胧而神秘，水汽氤氲中带着不确定的美感。这香气不驱散迷雾，却让你学会在朦胧中寻找属于自己的真实。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 226,
+    "product_name": "Bal d'Afrique",
+    "card_name": "The Sun",
+    "description_zh": "当快乐如阳光洒满心间，Byredo的Bal d'Afrique放大这份纯粹的喜悦——香柠檬的活力与琥珀的温暖，仿佛非洲草原上的金色晨曦。这香气不复杂不深沉，只是单纯地庆祝生命的存在，提醒你：快乐本就是最自然的状态。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 227,
+    "product_name": "Grand Soir",
+    "card_name": "The Sun",
+    "description_zh": "当快乐如阳光洒满心间，Maison Francis Kurkdjian的Grand Soir放大这份纯粹的喜悦——琥珀的温暖与香草的绵长，仿佛永不落幕的黄金时刻。这香气单纯地庆祝生命的存在，提醒你活在当下的珍贵。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 228,
+    "product_name": "Sundazed",
+    "card_name": "The Sun",
+    "description_zh": "当快乐如阳光洒满心间，Byredo的Sundazed放大这份纯粹的喜悦——柑橘的明亮与麝香的温暖，仿佛被阳光亲吻过的棉花糖。这香气不复杂不深沉，只是单纯地庆祝生命的存在，提醒你：快乐本就是最自然的状态。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 230,
+    "product_name": "Sacred Wood",
+    "card_name": "Judgement",
+    "description_zh": "当灵魂迎来觉醒的时刻，Kilian的Sacred Wood为这神圣转折护航——极致纯净的檀木香气，带着奶香的宁静与神圣。这香气不评判过往，却提供澄澈的视角，让每一次反思都成为新生的契机。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 231,
+    "product_name": "Angels' Share",
+    "card_name": "Judgement",
+    "description_zh": "当灵魂迎来觉醒时刻，Kilian的Angels' Share为这神圣转折护航——干邑的醇香与橡木的沉淀，带来豁然开朗的顿悟。这香气不评判过往，却提供澄澈的视角，让每次反思都成为新生的契机。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 232,
+    "product_name": "Lazy Sunday Morning",
+    "card_name": "Judgement",
+    "description_zh": "当灵魂迎来觉醒的时刻，Maison Martin Margiela的Lazy Sunday Morning为这神圣转折护航——洁净的皂感与梨子的清甜，带来焕然一新的通透感。这香气不评判过往，却提供全新的视角，让每次反思都成为新生的契机。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 234,
+    "product_name": "Santal 33",
+    "card_name": "The World",
+    "description_zh": "当周期圆满达成，Le Labo的Santal 33为这完成时刻加冕——檀木与皮革的经典组合，沉稳而包容，如同站在巅峰回望所有旅程。这香气见证你创造的完整，在循环的终点也是起点处，给予最踏实的肯定。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 235,
+    "product_name": "Grand Soir",
+    "card_name": "The World",
+    "description_zh": "当周期圆满达成，Maison Francis Kurkdjian的Grand Soir为这完成时刻加冕——琥珀的辉煌与香草的丰盈，构筑出完美的终章。这香气见证你创造的完整，在循环的终点也是起点处，给予最璀璨的肯定。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 236,
+    "product_name": "Virgin Island Water",
+    "card_name": "The World",
+    "description_zh": "当周期圆满达成，Creed的Virgin Island Water为这完成时刻加冕——青柠与椰子的热带风情，朗姆酒的微醺点缀其间。这香气见证你创造的完整，在循环的终点也是起点处，给予最轻松的庆祝。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 238,
+    "product_name": "Tacit",
+    "card_name": "Ace of Swords",
+    "description_zh": "行动的火花正在你心中点燃，全新的计划等待着付诸实践。Aesop的Tacit与这份初生的能量完美契合——罗勒的清新绿意与香根草的温润木质，如同破晓时分的清晰视野。这香气为你注入启动的勇气，让每个想法都能找到落地的路径。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 239,
+    "product_name": "Awake",
+    "card_name": "Ace of Swords",
+    "description_zh": "行动的火花正在迸发，全新的计划亟待实施。Akro的Awake与这份初生的行动力完美契合——浓缩咖啡的纯粹香气带来即时的专注与能量，如同灵感划破沉寂。这香气不承诺结果，却为每个开始的瞬间注入坚定勇气。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 240,
+    "product_name": "Aqua Celestia",
+    "card_name": "Ace of Swords",
+    "description_zh": "行动的火花正在迸发，全新的计划亟待实施。Maison Francis Kurkdjian的Aqua Celestia与这份初生的行动力完美契合——柠檬与薄荷的清新气息带来即时的清晰与活力，如同划破长空的灵感之光。这香气为每个开始的瞬间注入通透的能量，让想法即刻转化为行动。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 242,
+    "product_name": "Terre d‘Hermès",
+    "card_name": "Two of Swords",
+    "description_zh": "你站在全局的高度审时度势，未来的蓝图在眼前徐徐展开。Hermès的Terre d'Hermès与这份远见相互呼应——葡萄柚的活力与矿物的沉稳，构筑出宽广的格局感。这香气赋予你掌控发展的自信，让每个决策都稳如大地。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 243,
+    "product_name": "Tonka Imperiale",
+    "card_name": "Two of Swords",
+    "description_zh": "你从容规划着未来蓝图，审慎权衡着各种可能性。Guerlain的Tonka Imperiale与这份运筹帷幄的心境相呼应——零陵香豆的醇厚与烟草的温暖，构筑出沉稳大气的格局。这香气赋予你掌控发展的自信与远见。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 244,
+    "product_name": "Silver Mountain Water",
+    "card_name": "Two of Swords",
+    "description_zh": "你从容规划着未来蓝图，以开阔的视野审时度势。Creed的Silver Mountain Water与这份远见相互呼应——冰山融水般的清澈与绿茶的凛冽，构筑出冷静而深远的格局感。这香气赋予你掌控发展的明晰思路，让每个决策都如水晶般透彻。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 246,
+    "product_name": "Bal d'Afrique",
+    "card_name": "Three of Swords",
+    "description_zh": "你的视野已超越当下，远方的合作与成功初现曙光。Byredo的Bal d'Afrique与这份开阔的心境共鸣——香柠檬的明亮与琥珀的温暖，仿佛金色阳光洒在启航的船帆上。这香气承载着对未来的乐观，见证你拓展疆界的每个脚步。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 247,
+    "product_name": "Angels' Share",
+    "card_name": "Three of Swords",
+    "description_zh": "你的视野已超越当下，远方的合作与成功初现端倪。Kilian的Angels' Share与这份开阔的期待共鸣——干邑白兰地的醇香与榛果的暖甜，仿佛预祝成功的盛宴。这香气承载着对未来的乐观，见证你拓展疆界的每个脚步。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 248,
+    "product_name": "On the Beach",
+    "card_name": "Three of Swords",
+    "description_zh": "你的视野已超越当下，远方的合作与成功初现端倪。Louis Vuitton的On the Beach与这份开阔的期待共鸣——佛手柑的清新与迷迭香的活力，仿佛海风送来的远方讯息。这香气承载着对未来的乐观，见证你拓展疆界的每个脚步。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 250,
+    "product_name": "By the Fireplace",
+    "card_name": "Four of Swords",
+    "description_zh": "你建立起稳固的根基，正享受着努力换来的温馨回报。Maison Martin Margiela的By the Fireplace完美捕捉这份满足——烤栗子的甜香与炉火的暖意，营造出充满欢庆的家庭氛围。这香气是对稳定成就的最佳礼赞。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 251,
+    "product_name": "Cheirosa '62",
+    "card_name": "Four of Swords",
+    "description_zh": "你建立起稳固的根基，正享受着努力换来的欢庆时刻。Sol de Janeiro的Cheirosa '62完美捕捉这份喜悦——开心果与杏仁的奶甜，盐焦糖的温暖，营造出充满欢笑的庆祝氛围。这香气是对稳定成就的最佳礼赞。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 252,
+    "product_name": "Sundazed",
+    "card_name": "Four of Swords",
+    "description_zh": "你建立起稳固的根基，正享受着努力换来的温馨回报。Byredo的Sundazed完美捕捉这份满足——柑橘的阳光气息与麝香的温暖质感，营造出充满欢庆的愉悦氛围。这香气是对稳定成就的最佳礼赞，如同永不休假的快乐。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 254,
+    "product_name": "Ombré Leather",
+    "card_name": "Five of Swords",
+    "description_zh": "你身处充满张力的竞争环境，不同的观点正在激烈交锋。Tom Ford的Ombré Leather与这份冲突的能量共振——皮革的野性与木质的深沉，展现出充满对抗的美感。这香气赋予你在混乱中保持风格的底气。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 255,
+    "product_name": "Ani",
+    "card_name": "Five of Swords",
+    "description_zh": "你身处充满张力的竞争环境，不同的力量正在激烈碰撞。Nishane的Ani与这份冲突的能量共振——生姜的辛辣与香草的醇厚形成有趣对抗，香柠檬的明亮穿梭其间。这香气赋予你在混乱中保持个性的底气。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 256,
+    "product_name": "Eau des Sens",
+    "card_name": "Five of Swords",
+    "description_zh": "你身处充满张力的竞争环境，不同的观点正在激烈碰撞。Diptyque的Eau des Sens与这份冲突的能量共振——苦橙的锐利与杜松子的青翠，在橙花的调和下形成精妙对抗。这香气赋予你在混乱中保持清醒知觉的底气。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 258,
+    "product_name": "Santal 33",
+    "card_name": "Six of Swords",
+    "description_zh": "你赢得应有的认可，正自信地享受着胜利的荣耀。Le Labo的Santal 33与你此刻的光芒相得益彰——檀木的醇厚与皮革的潇洒，如同凯旋时的自然气场。这香气不做声张，却让人无法忽视你的成就。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 259,
+    "product_name": "Grand Soir",
+    "card_name": "Six of Swords",
+    "description_zh": "你赢得应有的认可，正自信地享受着胜利的荣耀。Maison Francis Kurkdjian的Grand Soir与你此刻的光芒相得益彰——琥珀的辉煌与香草的绵长，如同凯旋时的盛大庆典。这香气不做声张，却让人无法忽视你的成就。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 260,
+    "product_name": "Sole di Positano",
+    "card_name": "Six of Swords",
+    "description_zh": "你赢得应有的认可，正自信地享受着胜利的荣耀。Tom Ford的Sole di Positano与你此刻的光芒相得益彰——柑橘的明亮与橙花的洁净，如同地中海阳光下的凯旋仪式。这香气不做声张，却自然吸引所有的赞赏与注目。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 262,
+    "product_name": "Thé Noir 29",
+    "card_name": "Seven of Swords",
+    "description_zh": "你坚定地守护立场，为信念抵御着各方的挑战。Le Labo的Thé Noir 29与这份坚守的智慧相合——红茶的醇厚与烟草的坚韧，在复杂层次中展现持久力量。这香气赋予你在压力中保持从容的深度。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 263,
+    "product_name": "Irish Leather",
+    "card_name": "Seven of Swords",
+    "description_zh": "你坚定地守护立场，为信念抵御着各方挑战。Memo Paris的Irish Leather与这份坚守的勇气相合——威士忌的烈性与皮革的韧性，在薄荷的清凉中展现不屈风骨。这香气赋予你在压力中保持风度的力量。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 264,
+    "product_name": "Wood Sage & Sea Salt",
+    "card_name": "Seven of Swords",
+    "description_zh": "你坚定地守护立场，为信念抵御着各方挑战。Jo Malone的Wood Sage & Sea Salt与这份坚守的智慧相合——海风的清新与鼠尾草的沉稳，展现出以柔克刚的防御力量。这香气赋予你在压力中保持从容的天然底气。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 266,
+    "product_name": "Tacit",
+    "card_name": "Eight of Swords",
+    "description_zh": "行动迅速展开，消息与进展如箭矢般飞驰。Aesop的Tacit以清晰的动能呼应这股节奏——柑橘的明快与香根草的导向性，带来直达目标的效率。这香气加速你的步伐，让计划以最流畅的方式实现。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 267,
+    "product_name": "Changing Constance",
+    "card_name": "Eight of Swords",
+    "description_zh": "行动迅速展开，计划以惊人的速度推进。Penhaligon's的Changing Constance以多变的动能呼应这股节奏——豆蔻的咸香与焦糖的甜蜜在雪松间流转，象征着敏捷的思维与行动。这香气加速你的步伐，让目标高效达成。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 268,
+    "product_name": "Aqua Celestia",
+    "card_name": "Eight of Swords",
+    "description_zh": "行动迅速展开，计划以惊人的速度推进。Maison Francis Kurkdjian的Aqua Celestia以流畅的动能呼应这股节奏——薄荷的清凉与柠檬的明快，象征着思维与行动的无缝衔接。这香气加速你的步伐，让目标以最优雅的方式达成。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 270,
+    "product_name": "Tam Dao",
+    "card_name": "Nine of Swords",
+    "description_zh": "你从过往经验中积累智慧，带着伤痕却更加警惕坚韧。Diptyque的Tam Dao与这份成熟的防御共鸣——檀木的宁谧与雪松的坚定，构筑出保护性的沉思空间。这香气不掩盖伤痛，却将经历转化为内在的力量。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 271,
+    "product_name": "Gris Charnel",
+    "card_name": "Nine of Swords",
+    "description_zh": "你从过往经验中积累智慧，带着警惕继续前行。BDK的Gris Charnel与这份成熟的防御共鸣——无花果的奶感与茶的清苦，在檀木基底上构筑出灰色地带的智慧。这香气将经历转化为内在的韧性。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 272,
+    "product_name": "White Moss",
+    "card_name": "Nine of Swords",
+    "description_zh": "你从过往经验中积累智慧，带着警惕继续前行。Acca Kappa的White Moss与这份成熟的防御共鸣——白麝香的洁净与苔藓的湿润，构筑出保护性的沉淀空间。这香气将经历转化为内在的韧性，为下一场战斗做好准备。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 274,
+    "product_name": "Bois Farine",
+    "card_name": "Ten of Swords",
+    "description_zh": "你承担着繁重的责任，虽感疲惫却依然坚持前行。L'Artisan的Bois Farine理解这份背负——杏仁粉的质朴与雪松的支撑感，如同最踏实的陪伴。这香气不减轻重量，却让负重前行的路上多一份温暖。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 275,
+    "product_name": "Jeux de Peau",
+    "card_name": "Ten of Swords",
+    "description_zh": "你承担着繁重的责任，虽感疲惫却依然坚持。Serge Lutens的Jeux de Peau理解这份背负——烤面包的暖香与牛奶的醇厚，提供最质朴的慰藉。这香气不减轻重量，却让负重前行的路上多一份温暖陪伴。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 276,
+    "product_name": "Lazy Sunday Morning",
+    "card_name": "Ten of Swords",
+    "description_zh": "你承担着繁重的责任，虽感疲惫却依然坚持。Maison Martin Margiela的Lazy Sunday Morning理解这份背负——铃兰的清新与梨子的水润，在白麝香的包裹中提供温柔的慰藉。这香气不减轻重量，却让负重前行的路上多一份舒缓。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 278,
+    "product_name": "Wood Sage & Sea Salt",
+    "card_name": "Page of Swords",
+    "description_zh": "你带着好奇探索世界，随时准备将灵感转化为行动。Jo Malone的Wood Sage & Sea Salt与你跃跃欲试的心境相合——海风的清新与鼠尾草的天然趣味，正是少年探险家的完美写照。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 279,
+    "product_name": "Cheirosa '62",
+    "card_name": "Page of Swords",
+    "description_zh": "你带着好奇探索世界，跃跃欲试地迎接每个新挑战。Sol de Janeiro的Cheirosa '62与你活泼的特质相合——开心果与杏仁的活泼甜香，盐焦糖的阳光气息，正是少年探险家的完美写照。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 280,
+    "product_name": "Fico di Amalfi",
+    "card_name": "Page of Swords",
+    "description_zh": "你带着好奇探索世界，跃跃欲试地迎接每个新挑战。Acqua di Parma的Fico di Amalfi与你活泼的特质相合——无花果叶的青翠与果实的清甜，正是少年探险家的完美写照。这香气鼓励你保持探索的热情，在尝试中积累经验。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 282,
+    "product_name": "Ombré Leather",
+    "card_name": "Knight of Swords",
+    "description_zh": "你以满腔热情投入行动，追求着速度与刺激的冒险。Tom Ford的Ombré Leather与你迸发的能量契合——皮革的不羁与木质的深度，展现着充满魅力的冒险精神。这香气是你追逐路上最性感的战歌。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 283,
+    "product_name": "Intoxicated",
+    "card_name": "Knight of Swords",
+    "description_zh": "你以满腔热情投入行动，追求着速度与刺激的冒险。Kilian的Intoxicated与你迸发的能量契合——咖啡的浓烈与小豆蔻的辛辣，展现着充满魅力的冒险精神。这香气是你追逐路上最令人沉醉的战歌。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 284,
+    "product_name": "Virgin Island Water",
+    "card_name": "Knight of Swords",
+    "description_zh": "你以满腔热情投入行动，追求着速度与刺激的冒险。Creed的Virgin Island Water与你迸发的能量契合——青柠的爽朗与椰子的热带风情，展现着充满活力的冒险精神。这香气是你追逐路上最令人愉悦的战歌。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 286,
+    "product_name": "À la Rose",
+    "card_name": "Queen of Swords",
+    "description_zh": "你散发着阳光般的自信与温暖，以创造力激励着周围的生命。Maison Francis Kurkdjian的À la Rose与你女王般的气场相映——盛大的玫瑰花园绽放着迷人的生命力，这香气正是你人格魅力的最佳诠释。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 287,
+    "product_name": "Lira",
+    "card_name": "Queen of Swords",
+    "description_zh": "你散发着阳光般的自信与温暖，以创造力激励着周围。Xerjoff的Lira与你女王般的气场相映——焦糖柠檬蛋糕的诱人香气，甜美而强大。这香气正是你人格魅力的最佳诠释，照亮你所处的每个空间。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 288,
+    "product_name": "Love Story",
+    "card_name": "Queen of Swords",
+    "description_zh": "你散发着阳光般的自信与温暖，以创造力激励着周围。Chloe的Love Story与你女王般的气场相映——橙花的洁净与麝香的温柔，交织出优雅而坚定的魅力。这香气正是你人格魅力的最佳诠释，照亮你所处的每个空间。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 290,
+    "product_name": "Santal 33",
+    "card_name": "King of Swords",
+    "description_zh": "你以成熟的远见引领方向，在沉稳中展现不可动摇的权威。Le Labo的Santal 33与你国王般的掌控力共鸣——檀木的深邃与皮革的力度，构筑出经得起时间考验的影响力。这香气不言自威，展现着真正的领袖风范。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 292,
+    "product_name": "Castile",
+    "card_name": "King of Swords",
+    "description_zh": "你以成熟的远见引领方向，在沉稳中展现不可动摇的权威。Penhaligon's的Castile与你国王般的掌控力共鸣——橙花与皂感的经典组合，展现历经时间考验的优雅力量。这香气不言自威，在古典格调中展现真正的领袖风范。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 294,
+    "product_name": "Tam Dao",
+    "card_name": "Ace of Pentacles",
+    "description_zh": "情感的源泉正在你心中涌动，无条件的爱与直觉自然流淌。Diptyque的Tam Dao与这份纯净的觉醒共鸣——檀木的奶香与雪松的宁谧，创造出神圣的情感空间。这香气不设边界，温柔拥抱每一份新生的感受，陪伴你体验心灵最初的悸动。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 295,
+    "product_name": "Vanille Abricot",
+    "card_name": "Ace of Pentacles",
+    "description_zh": "情感的源泉正在你心中涌动，纯真的爱意自然流淌。Comptoir Sud Pacifique的Vanille Abricot与这份纯净的觉醒共鸣——香草与杏子的甜美组合简单而温暖，如同初绽的花蕾。这香气不设边界，温柔拥抱每一份新生的感受，陪伴你体验心灵最初的悸动。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 296,
+    "product_name": "Blanche",
+    "card_name": "Ace of Pentacles",
+    "description_zh": "情感的源泉正在你心中自然流淌，纯净的爱意如初雪般清澈。Byredo的Blanche与这份觉醒完美契合——白麝香与醛香交织出绝对的洁净感，如同未经书写的美好篇章。这香气温柔拥抱每一份新生的感受，陪伴你体验心灵最初的悸动。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 298,
+    "product_name": "001 Woman",
+    "card_name": "Two of Pentacles",
+    "description_zh": "你正经历深刻的灵魂共鸣，两颗心在平等尊重中相互映照。Loewe的001 Woman诠释这份亲密联结——香草的温暖与茉莉的清甜，在麝香的包裹中交织出肌肤相亲的温柔。这香气记录着心灵相通的瞬间，成为彼此之间无言的承诺。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 300,
+    "product_name": "For Her Eau de Toilette",
+    "card_name": "Two of Pentacles",
+    "description_zh": "你正经历深刻的灵魂共鸣，两颗心在默契中相互映照。Narciso Rodriguez的For Her Eau de Toilette诠释这份亲密——麝香的洁净与花香的柔软，勾勒出肌肤相亲的温暖记忆。这香气记录着心灵相通的瞬间，成为彼此之间无言的承诺。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 302,
+    "product_name": "Bal d'Afrique",
+    "card_name": "Three of Pentacles",
+    "description_zh": "你沉浸在与他人的欢庆中，情感的丰收让心灵充实喜悦。Byredo的Bal d'Afrique与这份共享的快乐共鸣——香柠檬的明亮与琥珀的温暖，仿佛节日里的金色阳光。这香气属于相聚的时刻，见证着人与人之间最真诚的情感交流。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 303,
+    "product_name": "Angels' Share",
+    "card_name": "Three of Pentacles",
+    "description_zh": "你沉浸在与他人的欢庆中，情感的丰收让心灵充实喜悦。Kilian的Angels' Share与这份共享的快乐共鸣——干邑白兰地的醇香与榛果的暖甜，仿佛节日里的盛宴。这香气属于相聚的时刻，见证着人与人之间最温暖的情感交流。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 304,
+    "product_name": "Virgin Island Water",
+    "card_name": "Three of Pentacles",
+    "description_zh": "你沉浸在与他人的欢庆中，情感的丰收让心灵充实喜悦。Creed的Virgin Island Water与这份共享的快乐共鸣——青柠的爽朗与椰子的热带风情，仿佛永不落幕的海岛派对。这香气属于相聚的时刻，见证着人与人之间最真诚的情感交流。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 306,
+    "product_name": "Hwyl",
+    "card_name": "Four of Pentacles",
+    "description_zh": "你对外界的情感邀请感到倦怠，渴望在独处中寻找真实的满足。Aesop的Hwyl与这份自省的心境契合——柏树的幽深与苔藓的湿润，营造出远离尘嚣的静谧空间。这香气不打扰你的沉思，只为疲惫的心灵提供栖息之所。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 307,
+    "product_name": "Gris Charnel",
+    "card_name": "Four of Pentacles",
+    "description_zh": "你对外界的情感邀请感到倦怠，渴望在独处中寻找真实的满足。BDK的Gris Charnel与这份自省的心境契合——无花果的奶感与茶的清苦，在檀木基底上交织出朦胧的宁静。这香气不打扰你的沉思，只为疲惫的心灵提供栖息之所。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 308,
+    "product_name": "White Moss",
+    "card_name": "Four of Pentacles",
+    "description_zh": "你对外界的情感邀请感到倦怠，渴望在独处中寻找真实的满足。Acca Kappa的White Moss与这份自省的心境契合——白麝香的洁净与苔藓的湿润，营造出远离喧嚣的静谧空间。这香气不打扰你的沉思，只为疲惫的心灵提供栖息之所。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 310,
+    "product_name": "Chergui",
+    "card_name": "Five of Pentacles",
+    "description_zh": "你为失去而悲伤，沉浸在遗憾与失落的情感中。Serge Lutens的Chergui理解这份心痛——蜂蜜的甜暖与干草的醇厚，如同一个充满理解的拥抱。这香气不急于疗愈，却温柔地陪伴你走过这段必经的哀伤。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 311,
+    "product_name": "Jeux de Peau",
+    "card_name": "Five of Pentacles",
+    "description_zh": "你为失去而悲伤，沉浸在遗憾与失落的情感中。Serge Lutens的Jeux de Peau理解这份心痛——烤面包的暖香与牛奶的醇厚，用最质朴的温暖抚慰心灵。这香气不急于疗愈，却温柔地陪伴你走过这段必经的哀伤。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 312,
+    "product_name": "Lazy Sunday Morning",
+    "card_name": "Five of Pentacles",
+    "description_zh": "你为失去而悲伤，沉浸在遗憾与失落的情感中。Maison Martin Margiela的Lazy Sunday Morning理解这份心痛——铃兰的清新与梨子的水润，在白麝香的包裹中带来温柔的慰藉。这香气不急于疗愈，却让修复的过程充满希望。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 314,
+    "product_name": "By the Fireplace",
+    "card_name": "Six of Pentacles",
+    "description_zh": "你回到纯真的情感记忆里，童年的温暖与无私的赠予涌上心头。Maison Martin Margiela的By the Fireplace唤起这份怀念——烤栗子的甜香与炉火的暖意，重现那些被珍藏在心底的美好时光。这香气如同童年的壁炉边，永远保留着最初的温暖。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 315,
+    "product_name": "Cheirosa '62",
+    "card_name": "Six of Pentacles",
+    "description_zh": "你回到纯真的情感记忆里，童年的美好与无私的赠予涌上心头。Sol de Janeiro的Cheirosa '62唤起这份怀念——开心果与杏仁的奶甜，盐焦糖的温暖，重现那些被珍藏在心底的美好时光。这香气如同童年的礼物，永远保留着最初的真诚。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 316,
+    "product_name": "Love Story",
+    "card_name": "Six of Pentacles",
+    "description_zh": "你回到纯真的情感记忆里，童年的美好与无私的赠予涌上心头。Chloe的Love Story唤起这份怀念——橙花的洁净与麝香的温柔，重现那些被珍藏在心底的美好时光。这香气如同年少时的承诺，永远保留着最初的真诚。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 318,
+    "product_name": "Sacred Wood",
+    "card_name": "Seven of Pentacles",
+    "description_zh": "你沉浸在情感的幻想中，面对众多可能性难以抉择。Kilian的Sacred Wood与这份朦胧的渴望同行——极致纯净的檀木香气，带来清醒的灵性感知。这香气不打破梦境，却帮助你在情感的迷雾中找到内心的真相。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 319,
+    "product_name": "Lira",
+    "card_name": "Seven of Pentacles",
+    "description_zh": "你沉浸在情感的幻想中，面对众多可能性难以抉择。Xerjoff的Lira与这份朦胧的渴望同行——焦糖柠檬蛋糕的诱人香气，美好得如同梦中场景。这香气不催促你醒来，却邀请你看清内心真正的渴望。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 320,
+    "product_name": "Un Jardin Sur La Lagune",
+    "card_name": "Seven of Pentacles",
+    "description_zh": "你沉浸在情感的幻想中，面对众多可能性难以抉择。Hermès的Un Jardin Sur La Lagune与这份朦胧的渴望同行——咸湿海风中的木兰与百合，勾勒出梦幻般的花园景致。这香气不催促你醒来，却邀请你在想象与真实间找到平衡。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 322,
+    "product_name": "Ombré Leather",
+    "card_name": "Eight of Pentacles",
+    "description_zh": "你决定离开不再满足的情感状态，去寻找更深层的意义。Tom Ford的Ombré Leather赋予你转身的勇气——皮革的独立与木质的深邃，象征着决绝的告别。这香气不说挽留，却为你的情感成长开辟新的可能。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 323,
+    "product_name": "Herod",
+    "card_name": "Eight of Pentacles",
+    "description_zh": "你决定离开不再满足的情感状态，去寻找更深层的意义。Parfums de Marly的Herod赋予你转身的勇气——烟草的干燥与肉桂的暖意，在葡萄柚的清新中找到新的方向。这香气不说挽留，却为你的情感成长开辟新的可能。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 324,
+    "product_name": "Baie 19",
+    "card_name": "Eight of Pentacles",
+    "description_zh": "你决定离开不再满足的情感状态，去寻找更深层的意义。Le Labo的Baie 19赋予你转身的勇气——雨后矿物的清冷与湿土的气息，象征着清醒的告别。这香气不说挽留，却为你的情感成长开辟新的维度。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 326,
+    "product_name": "Myrrh & Tonka",
+    "card_name": "Nine of Pentacles",
+    "description_zh": "你享受着情感上的自我满足，为自己的魅力与成就感到欣喜。Jo Malone的Myrrh & Tonka与这份自我认可共鸣——薰衣草的安宁与香草的甜美，交织出充满喜悦的私密空间。这香气是对自我的犒赏，庆祝你成为自己最喜欢的样子。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 327,
+    "product_name": "Spiritueuse Double Vanille",
+    "card_name": "Nine of Pentacles",
+    "description_zh": "你享受着情感上的自我满足，为自己的魅力与成就感到欣喜。Guerlain的Spiritueuse Double Vanille与这份自我认可共鸣——香草的神圣与朗姆酒的醇烈，交织出充满喜悦的私密空间。这香气是对自我的犒赏，庆祝你成为自己最喜欢的样子。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 328,
+    "product_name": "Sundazed",
+    "card_name": "Nine of Pentacles",
+    "description_zh": "你享受着情感上的自我满足，为自己的魅力与成就感到欣喜。Byredo的Sundazed与这份自我认可共鸣——柑橘的阳光气息与麝香的温暖质感，交织出充满喜悦的私密空间。这香气是对自我的犒赏，庆祝你成为自己最喜欢的样子。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 330,
+    "product_name": "Santal 33",
+    "card_name": "Ten of Pentacles",
+    "description_zh": "你体验着情感的圆满与和谐，家庭与集体的爱让你感到完整。Le Labo的Santal 33为这幸福时刻加冕——檀木的温润与皮革的包容，构筑出充满归属感的情感共同体。这香气见证着你创造的爱的家园。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 331,
+    "product_name": "Grand Soir",
+    "card_name": "Ten of Pentacles",
+    "description_zh": "你体验着情感的圆满与和谐，爱与温暖让你感到完整。Maison Francis Kurkdjian的Grand Soir为这幸福时刻加冕——琥珀的温暖与香草的绵长，构筑出充满归属感的情感共同体。这香气见证着你创造的爱的家园。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 332,
+    "product_name": "Wood Sage & Sea Salt",
+    "card_name": "Ten of Pentacles",
+    "description_zh": "你体验着情感的圆满与和谐，爱与温暖让你感到完整。Jo Malone的Wood Sage & Sea Salt为这幸福时刻加冕——海风的清新与鼠尾草的温暖，构筑出充满归属感的情感共同体。这香气见证着你创造的爱的家园。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 334,
+    "product_name": "Philosykos",
+    "card_name": "Page of Pentacles",
+    "description_zh": "你带着温柔的好奇心探索情感世界，随时准备接收心灵的讯息。Diptyque的Philosykos与你天真敏锐的特质相合——无花果叶的青翠与果实的奶甜，捕捉着情感世界的微妙变化。这香气守护你探索的初心，让每次心动都成为成长的礼物。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 335,
+    "product_name": "Vanille Abricot",
+    "card_name": "Page of Pentacles",
+    "description_zh": "你带着温柔的好奇心探索情感世界，随时准备接收心灵的讯息。Comptoir Sud Pacifique的Vanille Abricot与你天真敏锐的特质相合——香草与杏子的简单甜美，捕捉着情感世界的微妙变化。这香气守护你探索的初心，让每次心动都成为成长的礼物。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 336,
+    "product_name": "Fico di Amalfi",
+    "card_name": "Page of Pentacles",
+    "description_zh": "你带着温柔的好奇心探索情感世界，随时准备接收心灵的讯息。Acqua di Parma的Fico di Amalfi与你天真敏锐的特质相合——无花果叶的青翠与果实的清甜，捕捉着情感世界的微妙变化。这香气守护你探索的初心，让每次心动都成为成长的礼物。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 338,
+    "product_name": "001 Woman",
+    "card_name": "Knight of Pentacles",
+    "description_zh": "你以浪漫的姿态走向世界，带着诗意与诚意追求心中的理想。Loewe的001 Woman与你骑士般的优雅同行——茉莉的纯洁与香草的缠绵，诉说着不求回报的深情。这香气赋予你追求的勇气，让每次心动都成为美好的诗篇。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 339,
+    "product_name": "Ani",
+    "card_name": "Knight of Pentacles",
+    "description_zh": "你以浪漫的姿态走向世界，带着诗意与诚意追求心中的理想。Nishane的Ani与你骑士般的优雅同行——生姜的活力与香草的醇厚，在香柠檬的明亮中诉说着不求回报的深情。这香气赋予你追求的勇气，让每次心动都成为美好的诗篇。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 340,
+    "product_name": "Sole di Positano",
+    "card_name": "Knight of Pentacles",
+    "description_zh": "你以浪漫的姿态走向世界，带着诗意与诚意追求心中的理想。Tom Ford的Sole di Positano与你骑士般的优雅同行——柑橘的明亮与橙花的洁净，诉说着不求回报的深情。这香气赋予你追求的勇气，让每次心动都成为美好的诗篇。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 342,
+    "product_name": "Tam Dao",
+    "card_name": "Queen of Pentacles",
+    "description_zh": "你以深刻的直觉滋养着周围的生命，温柔中蕴含着强大的共情力。Diptyque的Tam Dao与你女王般的慈悲共振——檀木的包容与雪松的守护，创造出充满安全感的情感空间。这香气不张扬，却以其深沉的温柔，抚慰每个需要安息的灵魂。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 343,
+    "product_name": "Gris Charnel",
+    "card_name": "Queen of Pentacles",
+    "description_zh": "你以深刻的直觉滋养着周围的生命，温柔中蕴含着强大的共情力。BDK的Gris Charnel与你女王般的慈悲共振——无花果的温柔与檀木的守护，创造出充满安全感的情感空间。这香气不张扬，却以其深沉的温柔，抚慰每个需要安息的灵魂。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 344,
+    "product_name": "For Her Eau de Toilette",
+    "card_name": "Queen of Pentacles",
+    "description_zh": "你以深刻的直觉滋养着周围的生命，温柔中蕴含着强大的共情力。Narciso Rodriguez的For Her Eau de Toilette与你女王般的慈悲共振——麝香的包容与花香的柔软，创造出充满安全感的情感空间。这香气不张扬，却以其深沉的温柔，抚慰每个需要安息的灵魂。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 346,
+    "product_name": "Thé Noir 29",
+    "card_name": "King of Pentacles",
+    "description_zh": "你以成熟的智慧平衡理智与情感，是众人信赖的心灵导师。Le Labo的Thé Noir 29与你国王般的从容相映——红茶的醇厚与烟草的深度，在无花果的甜润中达成完美平衡。这香气展现真正的力量：在理解中引领，在平静中深刻。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 347,
+    "product_name": "Tonka Imperiale",
+    "card_name": "King of Pentacles",
+    "description_zh": "你以成熟的智慧平衡理智与情感，是众人信赖的心灵导师。Guerlain的Tonka Imperiale与你国王般的从容相映——零陵香豆的醇厚与烟草的温暖，展现出历经沉淀的包容力。这香气展现真正的力量：在理解中引领，在平静中深刻。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 348,
+    "product_name": "Silver Mountain Water",
+    "card_name": "King of Pentacles",
+    "description_zh": "你以成熟的智慧平衡理智与情感，是众人信赖的心灵导师。Creed的Silver Mountain Water与你国王般的从容相映——冰山融水般的清澈与绿茶的凛冽，展现出历经沉淀的明晰判断。这香气展现真正的力量：在理解中引领，在冷静中深刻。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 350,
+    "product_name": "Tacit",
+    "card_name": "Ace of Wands",
+    "description_zh": "你的思维正迸发出锐利的灵感，一个清晰的念头划破迷雾。Aesop的Tacit与这份心智的锋芒完美契合——罗勒的清新绿意与香根草的明晰质感，如同出鞘的利刃。这香气助你切断纷乱思绪，专注在最具价值的核心概念上。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 351,
+    "product_name": "Awake",
+    "card_name": "Ace of Wands",
+    "description_zh": "你的思维正迸发出锐利的灵感，一个清晰的念头划破迷雾。Akro的Awake与这份心智的锋芒完美契合——浓缩咖啡的纯粹香气带来即时的精神专注，如同出鞘的利刃。这香气助你切断纷乱思绪，专注在最具价值的核心概念上。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 352,
+    "product_name": "Silver Mountain Water",
+    "card_name": "Ace of Wands",
+    "description_zh": "你的思维正迸发出锐利的灵感，一个突破性的想法划破迷雾。Creed的Silver Mountain Water与这份心智的锋芒完美契合——冰山融水般的清澈与绿茶的凛冽，带来极致的专注与明晰。这香气助你切断纷乱思绪，专注在最具价值的核心概念上。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 354,
+    "product_name": "Tam Dao",
+    "card_name": "Two of Wands",
+    "description_zh": "你站在选择的关口，用暂时的静默来守护内心的平衡。Diptyque的Tam Dao与这份悬而未决的状态共鸣——檀木的宁谧与雪松的沉静，营造出不受干扰的思考空间。这香气不催促答案，只为你的权衡过程提供平和的心境。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 355,
+    "product_name": "Gris Charnel",
+    "card_name": "Two of Wands",
+    "description_zh": "你站在选择的关口，用暂时的静默来守护内心的平衡。BDK的Gris Charnel与这份悬而未决的状态共鸣——无花果的奶感与茶的清苦，在檀木基底上构筑出朦胧的思考空间。这香气不催促答案，只为你的权衡过程提供平和的心境。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 356,
+    "product_name": "White Moss",
+    "card_name": "Two of Wands",
+    "description_zh": "你站在选择的关口，用暂时的静默来守护内心的平衡。Acca Kappa的White Moss与这份悬而未决的状态共鸣——白麝香的洁净与苔藓的湿润，营造出不受干扰的思考空间。这香气不催促答案，只为你的权衡过程提供平和的心境。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 358,
+    "product_name": "Chergui",
+    "card_name": "Three of Wands",
+    "description_zh": "你正经历心碎的痛楚，悲伤如三把利剑刺入心房。Serge Lutens的Chergui理解这种深刻的失落——蜂蜜的温暖与干草的醇厚，轻柔包裹着受伤的心灵。这香气不急于治愈，却让每一次呼吸都带来些许慰藉。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 359,
+    "product_name": "Jeux de Peau",
+    "card_name": "Three of Wands",
+    "description_zh": "你正经历心碎的痛楚，悲伤如利剑刺入心房。Serge Lutens的Jeux de Peau理解这种深刻的失落——烤面包的暖香与牛奶的醇厚，用最质朴的温暖抚慰受伤的心灵。这香气不急于治愈，却让每一次呼吸都带来些许慰藉。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 360,
+    "product_name": "Lazy Sunday Morning",
+    "card_name": "Three of Wands",
+    "description_zh": "你正经历心碎的痛楚，悲伤如利剑刺入心房。Maison Martin Margiela的Lazy Sunday Morning理解这种深刻的失落——铃兰的清新与梨子的水润，在白麝香的包裹中带来温柔的慰藉。这香气不急于治愈，却让每一次呼吸都带来些许安抚。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 362,
+    "product_name": "Hwyl",
+    "card_name": "Four of Wands",
+    "description_zh": "你主动选择休憩与隔离，让过度思考的心智获得必要的修复。Aesop的Hwyl为你创造理想的修复空间——柏树的幽静与苔藓的湿润，构筑出远离喧嚣的庇护所。这香气守护你的沉思时刻，让精神重获清明。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 363,
+    "product_name": "Tonka Imperiale",
+    "card_name": "Four of Wands",
+    "description_zh": "你主动选择休憩与隔离，让过度思考的心智获得必要的修复。Guerlain的Tonka Imperiale为你创造理想的修复空间——零陵香豆的醇厚与烟草的温暖，营造出最适合沉思的安宁氛围。这香气守护你的沉思时刻，让精神重获清明。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 364,
+    "product_name": "Aqua Universalis",
+    "card_name": "Four of Wands",
+    "description_zh": "你主动选择休憩与隔离，让过度思考的心智获得必要的修复。Maison Francis Kurkdjian的Aqua Universalis为你创造理想的修复空间——柠檬与铃兰的绝对洁净，构筑出纯粹的思想净土。这香气守护你的沉思时刻，让精神重获清明。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 366,
+    "product_name": "Terre d‘Hermès",
+    "card_name": "Five of Wands",
+    "description_zh": "你陷入无意义的争执，胜利的背后是空虚与疏离。Hermès的Terre d'Hermès映照这场冲突的本质——葡萄柚的锐利与矿物的冷峻，揭示着某些胜利的代价。这香气提醒你：真正的智慧在于看清什么值得争取。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 367,
+    "product_name": "Ani",
+    "card_name": "Five of Wands",
+    "description_zh": "你陷入无意义的争执，胜利的背后是空虚与疏离。Nishane的Ani映照这场冲突的本质——生姜的辛辣与香草的甜美形成有趣对抗，香柠檬的明亮穿梭其间。这香气提醒你：真正的智慧在于看清什么值得争取。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 368,
+    "product_name": "Aqua Celestia",
+    "card_name": "Five of Wands",
+    "description_zh": "你陷入无意义的争执，胜利的背后是空虚与疏离。Maison Francis Kurkdjian的Aqua Celestia映照这场冲突的本质——薄荷的清凉与柠檬的明亮，揭示着某些胜利的代价。这香气提醒你：真正的智慧在于看清什么值得争取。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 370,
+    "product_name": "Wood Sage & Sea Salt",
+    "card_name": "Six of Wands",
+    "description_zh": "你正平稳渡过情感的难关，带着伤痕走向更平静的彼岸。Jo Malone的Wood Sage & Sea Salt与这趟疗愈之旅同行——海风的清新与鼠尾草的温暖，为过渡期带来舒缓的陪伴。这香气不急于改变，却让修复的过程变得柔和。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 371,
+    "product_name": "Spiritueuse Double Vanille",
+    "card_name": "Six of Wands",
+    "description_zh": "你正平稳渡过情感的难关，带着伤痕走向更平静的彼岸。Guerlain的Spiritueuse Double Vanille与这趟疗愈之旅同行——香草的神圣与朗姆酒的醇烈，为过渡期带来舒缓的陪伴。这香气不急于改变，却让修复的过程充满温暖。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 372,
+    "product_name": "Wood Sage & Sea Salt",
+    "card_name": "Six of Wands",
+    "description_zh": "你正平稳渡过情感的难关，带着伤痕走向更平静的彼岸。Jo Malone的Wood Sage & Sea Salt与这趟疗愈之旅同行——海风的清新与鼠尾草的温暖，为过渡期带来舒缓的陪伴。这香气不急于改变，却让修复的过程变得柔和自然。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 374,
+    "product_name": "Thé Noir 29",
+    "card_name": "Seven of Wands",
+    "description_zh": "你以机智与策略应对挑战，用非传统的方式打开局面。Le Labo的Thé Noir 29与这份灵活的智慧呼应——红茶的醇厚与烟草的复杂，在无花果的甜润中展现多面性。这香气证明：有时候迂回比直击更有效。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 375,
+    "product_name": "Intoxicated",
+    "card_name": "Seven of Wands",
+    "description_zh": "你以机智与策略应对挑战，用非传统的方式打开局面。Kilian的Intoxicated与这份灵活的智慧呼应——咖啡的浓烈与小豆蔻的辛辣，展现出不按常理出牌的智慧。这香气证明：有时候迂回比直击更有效。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 376,
+    "product_name": "Eau des Sens",
+    "card_name": "Seven of Wands",
+    "description_zh": "你以机智与策略应对挑战，用非传统的方式打开局面。Diptyque的Eau des Sens与这份灵活的智慧呼应——苦橙的锐利与杜松子的青翠，在橙花的调和下展现多面性。这香气证明：有时候迂回比直击更有效。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 378,
+    "product_name": "Ombré Leather",
+    "card_name": "Eight of Wands",
+    "description_zh": "你被自我设限的念头束缚，却未意识到牢笼本是虚幻。Tom Ford的Ombré Leather以其不羁的本质回应困境——皮革的自由与木质的深度，打破无形的枷锁。这香气唤醒你：真正的解放始于意识的觉醒。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 379,
+    "product_name": "Lira",
+    "card_name": "Eight of Wands",
+    "description_zh": "你被自我设限的念头束缚，却未意识到牢笼本是虚幻。Xerjoff的Lira以其甜美的本质回应困境——焦糖柠檬蛋糕的诱人香气，提醒你世界充满美好可能。这香气唤醒你：真正的解放始于走出自我设限。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 380,
+    "product_name": "Sole di Positano",
+    "card_name": "Eight of Wands",
+    "description_zh": "你被自我设限的念头束缚，却未意识到牢笼本是虚幻。Tom Ford的Sole di Positano以其明亮的本质回应困境——柑橘的阳光气息与橙花的洁净，打破无形的枷锁。这香气唤醒你：真正的解放始于走出自我设限。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 382,
+    "product_name": "By the Fireplace",
+    "card_name": "Nine of Wands",
+    "description_zh": "你在深夜被焦虑困扰，负面思绪如潮水般涌来。Maison Martin Margiela的By the Fireplace驱散这份恐惧——烤栗子的甜香与炉火的温暖，照亮内心的黑暗角落。这香气不做承诺，却用实在的温暖对抗虚无的恐惧。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 383,
+    "product_name": "Cheirosa '62",
+    "card_name": "Nine of Wands",
+    "description_zh": "你在深夜被焦虑困扰，负面思绪如潮水般涌来。Sol de Janeiro的Cheirosa '62驱散这份恐惧——开心果与杏仁的活泼甜香，盐焦糖的阳光气息，照亮内心的黑暗角落。这香气用纯粹的快乐对抗虚无的恐惧。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 384,
+    "product_name": "Blanche",
+    "card_name": "Nine of Wands",
+    "description_zh": "你在深夜被焦虑与恐惧折磨，负面思绪如潮水般涌来。Byredo的Blanche以其绝对的纯净驱散这份恐惧——醛香与白麝香的洁白无瑕，照亮内心的黑暗角落。这香气不做承诺，却用纯粹的光明对抗虚无的恐惧。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 386,
+    "product_name": "Santal 33",
+    "card_name": "Ten of Wands",
+    "description_zh": "你经历着彻底的终结，旧有模式已被连根拔起。Le Labo的Santal 33与这毁灭性的完结共鸣——檀木的沉静与皮革的韧性，在废墟中保持最后的尊严。这香气见证一个周期的完结，为新生预留空间。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 387,
+    "product_name": "Grand Soir",
+    "card_name": "Ten of Wands",
+    "description_zh": "你经历着彻底的终结，旧有模式已被连根拔起。Maison Francis Kurkdjian的Grand Soir与这毁灭性的完结共鸣——琥珀的辉煌与香草的丰盈，在终结处保持最后的尊严。这香气见证一个周期的完结，为新生预留空间。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 388,
+    "product_name": "Baie 19",
+    "card_name": "Ten of Wands",
+    "description_zh": "你经历着彻底的终结，旧有模式已被连根拔起。Le Labo的Baie 19与这毁灭性的完结共鸣——雨后矿物的清冷与湿土的气息，在废墟中保持最后的真实。这香气见证一个周期的完结，为新生预留纯净空间。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 390,
+    "product_name": "Tacit",
+    "card_name": "Page of Wands",
+    "description_zh": "你以敏锐的思维捕捉信息，对世界充满探究的热情。Aesop的Tacit与你年轻的智慧共振——柑橘的明亮与香根草的清晰，正是求知欲的完美写照。这香气鼓励你保持思维的开放与敏捷。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 391,
+    "product_name": "Awake",
+    "card_name": "Page of Wands",
+    "description_zh": "你以敏锐的思维捕捉信息，对世界充满探究的热情。Akro的Awake与你年轻的智慧共振——浓缩咖啡的纯粹香气带来即时的精神专注，正是求知欲的完美写照。这香气鼓励你保持思维的开放与敏捷。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 392,
+    "product_name": "Aqua Celestia",
+    "card_name": "Page of Wands",
+    "description_zh": "你以敏锐的思维捕捉信息，对世界充满探究的热情。Maison Francis Kurkdjian的Aqua Celestia与你年轻的智慧共振——薄荷的清新与柠檬的明快，正是求知欲的完美写照。这香气鼓励你保持思维的开放与敏捷。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 394,
+    "product_name": "Terre d‘Hermès",
+    "card_name": "Knight of Wands",
+    "description_zh": "你的思维迅捷如风，为追求真理勇往直前。Hermès的Terre d'Hermès与你骑士般的锐利同行——矿物的冷峻与香根草的坚定，冲破一切思想障碍。这香气赋予你追求真相的无畏勇气。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 395,
+    "product_name": "Intoxicated",
+    "card_name": "Knight of Wands",
+    "description_zh": "你的思维迅捷如风，为追求真理勇往直前。Kilian的Intoxicated与你骑士般的锐利同行——咖啡的浓烈与小豆蔻的辛辣，冲破一切思想障碍。这香气赋予你追求真相的无畏勇气。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 396,
+    "product_name": "Silver Mountain Water",
+    "card_name": "Knight of Wands",
+    "description_zh": "你的思维迅捷如风，为追求真理勇往直前。Creed的Silver Mountain Water与你骑士般的锐利同行——冰山融水般的清澈穿透一切迷雾，绿茶的凛冽坚定前行方向。这香气赋予你追求真相的无畏勇气。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 398,
+    "product_name": "Oud Wood",
+    "card_name": "Queen of Wands",
+    "description_zh": "你以冷静的洞察力审视世界，历经风雨后拥有清晰的边界。Tom Ford的Oud Wood与你女王般的睿智相映——乌木的深邃与檀香的庄严，构筑出不可侵犯的思想领地。这香气展现历经沉淀的智慧力量。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 399,
+    "product_name": "Tonka Imperiale",
+    "card_name": "Queen of Wands",
+    "description_zh": "你以冷静的洞察力审视世界，历经风雨后拥有清晰的边界。Guerlain的Tonka Imperiale与你女王般的睿智相映——零陵香豆的醇厚与烟草的温暖，构筑出不可侵犯的思想领地。这香气展现历经沉淀的智慧力量。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 400,
+    "product_name": "Blanche",
+    "card_name": "Queen of Wands",
+    "description_zh": "你以冷静的洞察力审视世界，历经风雨后拥有清晰的边界。Byredo的Blanche与你女王般的睿智相映——绝对的纯净与客观，构筑出不可侵犯的思想领地。这香气展现历经沉淀的智慧力量。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 402,
+    "product_name": "Thé Noir 29",
+    "card_name": "King of Wands",
+    "description_zh": "你以绝对的理性掌控局面，是真理与原则的化身。Le Labo的Thé Noir 29与你国王般的权威契合——红茶的理性与烟草的深度，结构严谨如法典条文。这香气象征着你以智慧裁决纷争的王者风范。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 403,
+    "product_name": "Spiritueuse Double Vanille",
+    "card_name": "King of Wands",
+    "description_zh": "你以绝对的理性掌控局面，是真理与原则的化身。Guerlain的Spiritueuse Double Vanille与你国王般的权威契合——香草的神圣与朗姆酒的醇烈，结构严谨如法典条文。这香气象征着你以智慧裁决纷争的王者风范。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 404,
+    "product_name": "Aqua Universalis",
+    "card_name": "King of Wands",
+    "description_zh": "你以绝对的理性掌控局面，是真理与原则的化身。Maison Francis Kurkdjian的Aqua Universalis与你国王般的权威契合——极致的洁净与平衡，结构严谨如法典条文。这香气象征着你以智慧裁决纷争的王者风范。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 406,
+    "product_name": "Sacred Wood",
+    "card_name": "Ace of Cups",
+    "description_zh": "你正迎来全新的物质机遇，丰盛的种子在手中萌芽。Kilian的Sacred Wood与这份初生的能量共鸣——极致纯净的檀木香气，带着奶香的温润与神圣。这香气守护着每一个新开始的潜力，仿佛在说：最坚实的成就，都始于对美好的虔诚信念。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 407,
+    "product_name": "Vanille Abricot",
+    "card_name": "Ace of Cups",
+    "description_zh": "你正迎来全新的物质机遇，丰盛的种子在手中萌芽。Comptoir Sud Pacifique的Vanille Abricot与这份初生的能量共鸣——香草与杏子的甜美组合简单而温暖，如同破土而出的新芽。这香气守护着每一个新开始的潜力，提醒你：最坚实的成就，都始于对美好的纯粹信念。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 408,
+    "product_name": "Fico di Amalfi",
+    "card_name": "Ace of Cups",
+    "description_zh": "你正迎来全新的物质机遇，丰盛的种子在手中萌芽。Acqua di Parma的Fico di Amalfi与这份初生的能量共鸣——无花果叶的青翠与果实的清甜，如同破土而出的新芽。这香气守护着每一个新开始的潜力，提醒你：最坚实的成就，都始于对美好的纯粹信念。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 410,
+    "product_name": "Bal d'Afrique",
+    "card_name": "Two of Cups",
+    "description_zh": "你灵活周转着各项资源，在变动中保持着优雅的平衡。Byredo的Bal d'Afrique与这份从容的心境相合——香柠檬的明亮与琥珀的温暖，如同阳光下流转的金色沙粒。这香气提醒你：真正的掌控，来自对生活节奏的自信驾驭。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 411,
+    "product_name": "Cheirosa '62",
+    "card_name": "Two of Cups",
+    "description_zh": "你灵活周转着各项资源，在变动中保持着愉悦的平衡。Sol de Janeiro的Cheirosa '62与这份从容的心境相合——开心果与杏仁的活泼甜香，盐焦糖的阳光气息，让资源管理变得轻松自如。这香气提醒你：真正的掌控，来自对生活节奏的愉悦驾驭。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 412,
+    "product_name": "Wood Sage & Sea Salt",
+    "card_name": "Two of Cups",
+    "description_zh": "你灵活周转着各项资源，在变动中保持着从容的平衡。Jo Malone的Wood Sage & Sea Salt与这份游刃有余的心境相合——海风的清新与鼠尾草的温暖，让资源管理变得轻松自如。这香气提醒你：真正的掌控，来自对生活节奏的愉悦驾驭。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 414,
+    "product_name": "Thé Noir 29",
+    "card_name": "Three of Cups",
+    "description_zh": "你通过扎实的合作与技艺，共同构建着持久的价值。Le Labo的Thé Noir 29与这份专注的匠心呼应——红茶的醇厚与烟草的深度，在无花果的甜润中达成完美协作。这香气见证着将理念转化为实体的每个过程。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 415,
+    "product_name": "Ani",
+    "card_name": "Three of Cups",
+    "description_zh": "你通过扎实的合作与技艺，共同构建着持久的价值。Nishane的Ani与这份专注的匠心呼应——生姜的辛辣与香草的醇厚，在香柠檬的明亮中达成完美协作。这香气见证着将理念转化为实体的每个精雕细琢的过程。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 416,
+    "product_name": "Castile",
+    "card_name": "Three of Cups",
+    "description_zh": "你通过扎实的合作与技艺，共同构建着持久的价值。Penhaligon's的Castile与这份专注的匠心呼应——橙花与皂感的经典组合，展现历经时间考验的优雅格调。这香气见证着将理念转化为实体的每个精雕细琢的过程。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 418,
+    "product_name": "Santal 33",
+    "card_name": "Four of Cups",
+    "description_zh": "你谨慎守护着已有成果，建立起稳固的安全边界。Le Labo的Santal 33与这份守护的能量共鸣——檀木的沉稳与皮革的韧性，构筑出经得起时间考验的基业。这香气不鼓励冒险，却为你的积累提供最可靠的陪伴。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 419,
+    "product_name": "Spiritueuse Double Vanille",
+    "card_name": "Four of Cups",
+    "description_zh": "你谨慎守护着已有成果，建立起稳固的安全边界。Guerlain的Spiritueuse Double Vanille与这份守护的能量共鸣——香草的神圣与朗姆酒的醇烈，构筑出经得起时间考验的珍藏。这香气不鼓励冒险，却为你的积累提供最可靠的保障。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 420,
+    "product_name": "Blanche",
+    "card_name": "Four of Cups",
+    "description_zh": "你谨慎守护着已有成果，建立起稳固的安全边界。Byredo的Blanche与这份守护的能量共鸣——醛香与白麝香的绝对洁净，构筑出经得起时间考验的珍藏空间。这香气不鼓励冒险，却为你的积累提供最可靠的保障。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 422,
+    "product_name": "By the Fireplace",
+    "card_name": "Five of Cups",
+    "description_zh": "你感受到物质上的困顿，在寒冷中寻找温暖的慰藉。Maison Martin Margiela的By the Fireplace理解这份艰难——烤栗子的甜香与炉火的温暖，照亮了困境中的希望。这香气不改变现实，却让等待变得可以忍受。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 423,
+    "product_name": "Jeux de Peau",
+    "card_name": "Five of Cups",
+    "description_zh": "你感受到物质上的困顿，在寒冷中寻找温暖的慰藉。Serge Lutens的Jeux de Peau理解这份艰难——烤面包的暖香与牛奶的醇厚，照亮了困境中的希望。这香气不改变现实，却让等待变得可以忍受，在最朴素的需求中找到温暖。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 424,
+    "product_name": "Lazy Sunday Morning",
+    "card_name": "Five of Cups",
+    "description_zh": "你感受到物质上的困顿，在寒冷中寻找温暖的慰藉。Maison Martin Margiela的Lazy Sunday Morning理解这份艰难——铃兰的清新与梨子的水润，在白麝香的包裹中照亮困境中的希望。这香气不改变现实，却让等待变得可以忍受。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 426,
+    "product_name": "Wood Sage & Sea Salt",
+    "card_name": "Six of Cups",
+    "description_zh": "你慷慨地分享着资源，在给予与接受间保持优雅平衡。Jo Malone的Wood Sage & Sea Salt与这份慷慨的精神相映——海风的清新与鼠尾草的温暖，创造出平等包容的氛围。这香气提醒你：健康的流动，让财富更有意义。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 427,
+    "product_name": "Angels' Share",
+    "card_name": "Six of Cups",
+    "description_zh": "你慷慨地分享着资源，在给予与接受间保持优雅平衡。Kilian的Angels' Share与这份慷慨的精神相映——干邑白兰地的醇香与榛果的暖甜，创造出丰盛而愉悦的分享氛围。这香气提醒你：健康的流动，让财富更有意义。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 428,
+    "product_name": "For Her Eau de Toilette",
+    "card_name": "Six of Cups",
+    "description_zh": "你慷慨地分享着资源，在给予与接受间保持优雅平衡。Narciso Rodriguez的For Her Eau de Toilette与这份慷慨的精神相映——麝香的洁净与花香的柔软，创造出平等包容的分享氛围。这香气提醒你：健康的流动，让财富更有意义。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 430,
+    "product_name": "Hwyl",
+    "card_name": "Seven of Cups",
+    "description_zh": "你耐心等待着长期投资的回报，在沉淀中规划更远的未来。Aesop的Hwyl与这份等待的智慧契合——柏树的幽静与苔藓的持久，记录着时光的积累。这香气不催促结果，却陪伴你在静默中积蓄力量。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 431,
+    "product_name": "Tonka Imperiale",
+    "card_name": "Seven of Cups",
+    "description_zh": "你耐心等待着长期投资的回报，在沉淀中规划更远的未来。Guerlain的Tonka Imperiale与这份等待的智慧契合——零陵香豆的醇厚与烟草的温暖，记录着时光的积累。这香气不催促结果，却陪伴你在静默中积蓄力量。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 432,
+    "product_name": "White Moss",
+    "card_name": "Seven of Cups",
+    "description_zh": "你耐心等待着长期投资的回报，在沉淀中规划更远的未来。Acca Kappa的White Moss与这份等待的智慧契合——白麝香的洁净与苔藓的湿润，记录着时光的积累。这香气不催促结果，却陪伴你在静默中积蓄力量。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 434,
+    "product_name": "Tam Dao",
+    "card_name": "Eight of Cups",
+    "description_zh": "你专注于技能的打磨，在重复中追求极致的专业。Diptyque的Tam Dao与这份专注共鸣——檀木的纯粹与雪松的坚实，展现着持之以恒的匠心精神。这香气见证着你将平凡转化为卓越的每个日夜。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 435,
+    "product_name": "Gris Charnel",
+    "card_name": "Eight of Cups",
+    "description_zh": "你专注于技能的打磨，在重复中追求极致的专业。BDK的Gris Charnel与这份专注共鸣——无花果的奶感与茶的清苦，在檀木基底上展现着持之以恒的匠心精神。这香气见证着你将平凡转化为卓越的每个日夜。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 436,
+    "product_name": "Eau des Sens",
+    "card_name": "Eight of Cups",
+    "description_zh": "你专注于技能的打磨，在重复中追求极致的专业。Diptyque的Eau des Sens与这份专注共鸣——苦橙的清澈与杜松子的绿意，在橙花的洁净中展现着持之以恒的匠心精神。这香气见证着你将平凡转化为卓越的每个日夜。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 438,
+    "product_name": "À la Rose",
+    "card_name": "Nine of Cups",
+    "description_zh": "你享受着自律带来的丰盛成果，为自己的成就感到由衷自豪。Maison Francis Kurkdjian的À la Rose与这份自我奖赏的心境相合——盛大的玫瑰花园绽放着奢华的喜悦。这香气是对你努力的最好犒赏，提醒你值得拥有这一切美好。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 439,
+    "product_name": "Lira",
+    "card_name": "Nine of Cups",
+    "description_zh": "你享受着自律带来的丰盛成果，为自己的成就感到由衷自豪。Xerjoff的Lira与这份自我奖赏的心境相合——焦糖柠檬蛋糕的诱人香气，甜美而满足。这香气是对你努力的最好犒赏，提醒你值得拥有这一切美好。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 440,
+    "product_name": "Sundazed",
+    "card_name": "Nine of Cups",
+    "description_zh": "你享受着自律带来的丰盛成果，为自己的成就感到由衷自豪。Byredo的Sundazed与这份自我奖赏的心境相合——柑橘的阳光气息与麝香的温暖质感，交织出充满喜悦的私密空间。这香气是对你努力的最好犒赏，提醒你值得拥有这一切美好。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 442,
+    "product_name": "Terre d‘Hermès",
+    "card_name": "Ten of Cups",
+    "description_zh": "你建立起稳固的物质传承，享受着世代积累的丰盛与圆满。Hermès的Terre d'Hermès为这份成就加冕——葡萄柚的活力与香根草的宽广，构筑出值得传承的基业。这香气包容万物，见证着你创造的持久价值。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 443,
+    "product_name": "Grand Soir",
+    "card_name": "Ten of Cups",
+    "description_zh": "你建立起稳固的物质传承，享受着世代积累的丰盛与圆满。Maison Francis Kurkdjian的Grand Soir为这份成就加冕——琥珀的辉煌与香草的丰盈，构筑出值得传承的基业。这香气包容万物，见证着你创造的持久价值。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 444,
+    "product_name": "Love Story",
+    "card_name": "Ten of Cups",
+    "description_zh": "你建立起稳固的物质传承，享受着家庭与情感的圆满。Chloe的Love Story为这份成就加冕——橙花的洁净与麝香的温柔，构筑出充满归属感的幸福共同体。这香气见证着你创造的持久价值与温暖传承。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 446,
+    "product_name": "Tacit",
+    "card_name": "Page of Cups",
+    "description_zh": "你以务实的态度学习积累，为未来打下坚实基础。Aesop的Tacit与这份踏实的心境契合——柑橘的清新与香根草的明晰，记录着每个认真学习的时刻。这香气不追求捷径，却陪伴你在成长路上稳步前行。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 447,
+    "product_name": "Vanille Abricot",
+    "card_name": "Page of Cups",
+    "description_zh": "你以务实的态度学习积累，为未来打下坚实基础。Comptoir Sud Pacifique的Vanille Abricot与这份踏实的心境契合——香草与杏子的简单甜美，记录着每个认真学习的时刻。这香气不追求捷径，却陪伴你在成长路上稳步前行。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 448,
+    "product_name": "Fico di Amalfi",
+    "card_name": "Page of Cups",
+    "description_zh": "你以务实的态度学习积累，为未来打下坚实基础。Acqua di Parma的Fico di Amalfi与这份踏实的心境契合——无花果叶的青翠与果实的清甜，记录着每个认真学习的时刻。这香气不追求捷径，却陪伴你在成长路上稳步前行。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 450,
+    "product_name": "Chergui",
+    "card_name": "Knight of Cups",
+    "description_zh": "你以可靠的步伐稳步前进，用耐心兑现每个承诺。Serge Lutens的Chergui与你骑士般的稳健同行——蜂蜜的温暖与干草的醇厚，展现着经得起时间考验的品格。这香气不追求速度，却保证每个目标都能扎实达成。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 451,
+    "product_name": "Herod",
+    "card_name": "Knight of Cups",
+    "description_zh": "你以可靠的步伐稳步前进，用耐心兑现每个承诺。Parfums de Marly的Herod与你骑士般的稳健同行——烟草的干燥与肉桂的暖意，在葡萄柚的清新中展现着经得起时间考验的品格。这香气不追求速度，却保证每个目标都能扎实达成。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 452,
+    "product_name": "Wood Sage & Sea Salt",
+    "card_name": "Knight of Cups",
+    "description_zh": "你以可靠的步伐稳步前进，用耐心兑现每个承诺。Jo Malone的Wood Sage & Sea Salt与你骑士般的稳健同行——海风的清新与鼠尾草的温暖，展现着经得起时间考验的品格。这香气不追求速度，却保证每个目标都能扎实达成。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 454,
+    "product_name": "Philosykos",
+    "card_name": "Queen of Cups",
+    "description_zh": "你以温暖的滋养守护着周围的一切，将务实与关怀完美结合。Diptyque的Philosykos与你皇后般的滋养特质共鸣——无花果叶的青翠与果实的奶甜，如同大地母亲的慷慨怀抱。这香气不张扬，却以其自然的丰盈滋养每个生命。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 455,
+    "product_name": "Jeux de Peau",
+    "card_name": "Queen of Cups",
+    "description_zh": "你以温暖的滋养守护着周围的一切，将务实与关怀完美结合。Serge Lutens的Jeux de Peau与你皇后般的滋养特质共鸣——烤面包的暖香与牛奶的醇厚，如同大地母亲最质朴的慷慨。这香气不张扬，却以其自然的温暖滋养每个生命。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 456,
+    "product_name": "White Moss",
+    "card_name": "Queen of Cups",
+    "description_zh": "你以温暖的滋养守护着周围的一切，将务实与关怀完美结合。Acca Kappa的White Moss与你皇后般的滋养特质共鸣——白麝香的洁净与苔藓的湿润，如同大地母亲最质朴的慷慨。这香气不张扬，却以其自然的温暖滋养每个生命。",
+    "description_en": "",
+    "quote_en": ""
+  },
+  {
+    "id": 458,
+    "product_name": "Oud Wood",
+    "card_name": "King of Cups",
+    "description_zh": "你以丰富的经验掌控物质世界，是稳健而成功的领袖。Tom Ford的Oud Wood与你国王般的权威相映——乌木的深沉与檀香的庄严，构筑起不可动摇的事业版图。这香气强大而复杂，正如真正的财富力量，在沉稳中展现王者风范。",
+    "description_en": "",
+    "quote_en": ""
+  }
+]

@@ -35,7 +35,7 @@ export default function Cards() {
   const [file, setFile] = useState<File | null>(null)
   const [form, setForm] = useState({ code: '', name_en: '', name_zh: '', image_url: '' })
   const [keyword, setKeyword] = useState('')
-  const [onlyEnabled, setOnlyEnabled] = useState(false)
+
   const [page, setPage] = useState(1)
   const [total, setTotal] = useState(0)
   const [inputPage, setInputPage] = useState('1')
@@ -43,14 +43,13 @@ export default function Cards() {
 
 
 
-  const fetchData = useCallback(async (p = 1, kw = keyword, enabled = onlyEnabled) => {
+  const fetchData = useCallback(async (p = 1, kw = keyword) => {
     setLoading(true)
     try {
       const params = new URLSearchParams()
       params.set('page', String(p))
       params.set('pageSize', String(pageSize))
       if (kw.trim()) params.set('keyword', kw.trim())
-      if (enabled) params.set('onlyEnabled', 'true')
       const res = await api.get(`/api/admin/cards?${params.toString()}`)
       setItems(res.data.items || [])
       setTotal(res.data.total || 0)
@@ -61,16 +60,16 @@ export default function Cards() {
     } finally {
       setLoading(false)
     }
-  }, [keyword, onlyEnabled, pageSize])
+  }, [keyword, pageSize])
 
   useEffect(() => {
     fetchData()
   }, [fetchData])
 
   useEffect(() => {
-    const t = setTimeout(() => fetchData(1, keyword, onlyEnabled), 250)
+    const t = setTimeout(() => fetchData(1, keyword), 250)
     return () => clearTimeout(t)
-  }, [fetchData, keyword, onlyEnabled])
+  }, [fetchData, keyword])
 
   // Remove client-side filtering, rely on backend
   const filteredItems = items
@@ -187,15 +186,7 @@ export default function Cards() {
             onChange={(e) => setKeyword(e.target.value)}
             placeholder="按 code / 名称 搜索"
           />
-          <label className="flex items-center gap-2 text-sm text-[#2B1F16]">
-            <input
-              type="checkbox"
-              checked={onlyEnabled}
-              onChange={(e) => setOnlyEnabled(e.target.checked)}
-              className="h-4 w-4 text-[#D4A373]"
-            />
-            仅显示启用
-          </label>
+
           <span className="text-xs text-[#6B5542]">
             共 {total} 张
           </span>
