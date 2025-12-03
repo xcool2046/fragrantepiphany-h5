@@ -40,12 +40,12 @@ echo "📜 Compiling Seed Script..."
 # Compile the TS script to JS so it can run in the production node:alpine image without ts-node
 npx tsc scripts/seed_tarot_direct.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
-npx tsc scripts/fix_tarot_data_v2.ts --outDir dist/scripts \
+npx tsc scripts/fix_tarot_data_v2.ts --outDir dist \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 
 npx tsc scripts/import_self_love_en.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
-npx tsc scripts/check_card_mapping.ts --outDir dist/scripts \
+npx tsc scripts/check_card_mapping.ts --outDir dist \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 
 # 2.2 Prepare Assets for Docker
