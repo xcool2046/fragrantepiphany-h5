@@ -55,23 +55,7 @@ export class Perfume {
   @Column({ type: 'text', nullable: true })
   image_url!: string | null;
 
-  @Column({ type: 'text', nullable: true })
-  notes_top!: string | null;
 
-  @Column({ type: 'text', nullable: true })
-  notes_top_en!: string | null;
-
-  @Column({ type: 'text', nullable: true })
-  notes_heart!: string | null;
-
-  @Column({ type: 'text', nullable: true })
-  notes_heart_en!: string | null;
-
-  @Column({ type: 'text', nullable: true })
-  notes_base!: string | null;
-
-  @Column({ type: 'text', nullable: true })
-  notes_base_en!: string | null;
 
   @Column({ type: 'int', default: 0 })
   sort_order!: number;

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { Perfume } from '../entities/perfume.entity';
 import { Card } from '../entities/card.entity';
-import { findPerfumeByCardAndScent } from './perfume-mapping.loader';
+
 import { InterpretationService } from '../interp/interp.service';
 
 @Injectable()
@@ -21,6 +21,12 @@ export class PerfumeService {
       where: { card_id: In(cardIds), status: 'active' },
       order: { card_id: 'ASC', sort_order: 'ASC', id: 'ASC' },
     });
+
+    // Filter by scent answer if provided (e.g. 'A')
+    if (scentAnswer) {
+      const prefix = scentAnswer.toUpperCase();
+      items = items.filter(item => item.scene_choice.startsWith(prefix));
+    }
 
     // Fallback: If no perfumes found (e.g. cards have no data), use a default one
     if (items.length === 0) {
@@ -52,7 +58,7 @@ export class PerfumeService {
     const isEn = language === 'en';
 
     // Fetch dynamic quotes (recommendations) from InterpretationService
-    // Logic: Quote = Interpretation(Card, Category, Position='Present').recommendation
+    // Logic: Quote = Interpretation(Card, Category, Position='Present').summary
     // We assume the perfume is associated with the "Present" card context as per requirements.
     const quotes = await Promise.all(
       sorted.map(async (item) => {
@@ -64,23 +70,20 @@ export class PerfumeService {
           position: 'Present', 
           language,
         });
-        return interp?.recommendation || null;
+        return interp?.summary || null;
       })
     );
 
     return sorted.map((item, idx) => {
       const card = cardMap.get(item.card_id);
       const cardName = (isEn ? card?.name_en : item.card_name) || item.card_name;
-      const mapping = card ? findPerfumeByCardAndScent(card, scentAnswer) : null;
       
-      // Use notes_top_en as tags if English, split by comma
+      // Use tags from DB
       let tags = item.tags ?? [];
-      if (isEn && item.notes_top_en) {
-        tags = item.notes_top_en.split(/[,，]\s*/).filter(Boolean);
-      }
 
       // Dynamic quote overrides static quote
       const dynamicQuote = quotes[idx];
+      // Static quote is deprecated but kept as fallback if needed, though likely null
       const staticQuote = (isEn ? item.quote_en : item.quote) || item.quote || '';
 
       return {
@@ -90,15 +93,15 @@ export class PerfumeService {
         sceneChoice: (isEn ? item.scene_choice_en : item.scene_choice) || item.scene_choice,
         sceneChoiceZh: item.scene_choice,
         sceneChoiceEn: item.scene_choice_en || '',
-        brandName: mapping ? '' : (isEn ? item.brand_name_en : item.brand_name) || item.brand_name,
-        productName: mapping ? mapping.productName : (isEn ? item.product_name_en : item.product_name) || item.product_name,
+        brandName: (isEn ? item.brand_name_en : item.brand_name) || item.brand_name,
+        productName: (isEn ? item.product_name_en : item.product_name) || item.product_name,
         tags: tags,
         notes: {
-          top: mapping ? mapping.notes : (isEn ? item.notes_top_en : item.notes_top) || item.notes_top || '',
-          heart: (isEn ? item.notes_heart_en : item.notes_heart) || item.notes_heart || '',
-          base: (isEn ? item.notes_base_en : item.notes_base) || item.notes_base || '',
+          top: '',
+          heart: '',
+          base: '',
         },
-        description: mapping ? mapping.reason : (isEn ? item.description_en : item.description) || item.description || '',
+        description: (isEn ? item.description_en : item.description) || item.description || '',
         quote: dynamicQuote || staticQuote,
         imageUrl: item.image_url ?? '',
       };

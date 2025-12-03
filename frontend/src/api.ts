@@ -143,7 +143,8 @@ export type PerfumeChapter = {
   tags: string[]
   notes: PerfumeNotes
   description: string
-  quote: string
+  description_en?: string
+  quote?: string
   imageUrl: string
 }
 

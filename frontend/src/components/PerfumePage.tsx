@@ -49,9 +49,10 @@ const imageVariants = {
 }
 
 const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const tags = chapter.tags ?? []
-  const description = chapter.description ?? ''
+  const description = i18n.language === 'en' ? (chapter.description_en || '') : (chapter.description || '')
+  // Quote logic will be updated later to fetch from Tarot Interpretation
   const quote = chapter.quote ?? ''
 
   // 根据问卷答案选择背景图 (使用 Q4 答案)
@@ -74,7 +75,7 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers 
 
         {/* 内容 */}
         <motion.div 
-          className="relative z-10 h-full overflow-y-auto px-6 md:px-16 py-10 md:py-14"
+          className="relative z-10 h-full overflow-y-auto px-6 md:px-16 pt-10 md:pt-14 pb-4 md:pb-6"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -104,14 +105,14 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers 
             </motion.div>
 
             {/* Description (Result) - Centered */}
-            <motion.div className="space-y-6 text-center mb-6 mt-12" variants={itemVariants}>
+            <motion.div className="space-y-6 text-center mb-6 mt-4" variants={itemVariants}>
               <p className="text-sm md:text-base font-serif text-[#2B1F16]/80 leading-relaxed max-w-sm mx-auto">
                   {description}
               </p>
             </motion.div>
 
             {/* Bottom Section: Quote + Button */}
-            <div className="mt-auto w-full flex flex-col items-center pb-6">
+            <div className="mt-auto w-full flex flex-col items-center pb-2">
                 {/* Quote (Sentence) */}
                 {quote && (
                     <motion.div className="text-center space-y-4 mb-8" variants={itemVariants}>
