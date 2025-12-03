@@ -111,6 +111,7 @@ const PerfumeView: React.FC = () => {
             } 
           })}
           answers={answers}
+          presentCardId={cardIds[1]}
         />
       </div>
     </div>

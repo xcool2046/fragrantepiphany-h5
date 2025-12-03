@@ -42,8 +42,7 @@ npx tsc scripts/seed_tarot_direct.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 npx tsc scripts/fix_tarot_data_v2.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
-npx tsc scripts/seed_perfume_ranges.ts --outDir dist/scripts \
-  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
+
 npx tsc scripts/import_self_love_en.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 npx tsc scripts/check_card_mapping.ts --outDir dist/scripts \
@@ -122,8 +121,7 @@ ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   docker compose exec backend node dist/scripts/seed_tarot_direct.js && \
   echo '🔧 Fixing Tarot Data (ID Mismatch & Content)...' && \
   docker compose exec backend node dist/scripts/fix_tarot_data_v2.js && \
-  echo '🌸 Seeding Perfume Data (Ranges)...' && \
-  docker compose exec backend node dist/scripts/seed_perfume_ranges.js && \
+
   echo '💖 Importing Self/Love English Data...' && \
   docker compose exec backend node dist/scripts/import_self_love_en.js && \
   docker compose restart nginx"

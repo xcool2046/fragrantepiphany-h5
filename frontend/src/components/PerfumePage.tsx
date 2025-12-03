@@ -1,11 +1,13 @@
 import React from 'react'
 import { PerfumeChapter } from '../api'
 import { motion } from 'framer-motion'
+import { CardFace } from './CardFace'
 
 interface PerfumePageProps {
   chapter: PerfumeChapter
   onComplete: () => void
   answers?: Record<string, string> // 问卷答案，用于选择背景图
+  presentCardId?: number
 }
 
 import { BACKGROUND_IMAGES } from '../config/perfume-constants'
@@ -48,7 +50,7 @@ const imageVariants = {
   }
 }
 
-const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers }) => {
+const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers, presentCardId }) => {
   const { t, i18n } = useTranslation()
   const { sentence } = chapter;
   const tags = chapter.tags ?? []
@@ -83,12 +85,12 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers 
           <div className="w-full max-w-[500px] flex flex-col items-center h-full">
             {/* Brand - Left Aligned */}
             <motion.div className="w-full text-left mb-8" variants={itemVariants}>
-              <p className="text-2xl text-[#2B1F16]" style={{ fontFamily: "'Spectral SC', serif" }}>{chapter.brandName}</p>
+              <p className="text-[#2B1F16]" style={{ fontFamily: "'Spectral SC', serif", fontSize: '15px' }}>{chapter.brandName}</p>
             </motion.div>
 
             {/* Product Name - Centered */}
             <motion.div className="text-center mb-10" variants={itemVariants}>
-              <h2 className="text-[#2B1F16] leading-tight whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '48px' }}>{chapter.productName}</h2>
+              <h2 className="text-[#2B1F16] leading-tight whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '36px' }}>{chapter.productName}</h2>
             </motion.div>
 
             {/* Tags - Centered Pills */}
@@ -110,6 +112,18 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers 
                   {description}
               </p>
             </motion.div>
+
+            {/* Present Card Image */}
+            {presentCardId !== undefined && (
+              <motion.div 
+                className="my-6 flex justify-center" 
+                variants={itemVariants}
+              >
+                <div className="w-24 h-36 rounded-lg shadow-lg overflow-hidden border border-[#D4A373]/30">
+                  <CardFace id={presentCardId} side="front" variant="slot" vertical={true} />
+                </div>
+              </motion.div>
+            )}
 
             {/* Bottom Section: Quote + Button */}
             <div className="mt-auto w-full flex flex-col items-center pb-2">
