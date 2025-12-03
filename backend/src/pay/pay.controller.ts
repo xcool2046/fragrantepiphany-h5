@@ -20,7 +20,9 @@ export class PayController {
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unknown error';
       if (message.includes('Stripe is not configured')) {
-        return { error: 'Payment is temporarily unavailable (missing Stripe config)' };
+        return {
+          error: 'Payment is temporarily unavailable (missing Stripe config)',
+        };
       }
       throw err;
     }
@@ -69,26 +71,26 @@ export class PayController {
           currency: 'usd',
           priceAmount: fallbackAmount,
           priceId,
-          source: 'env-mapping'
+          source: 'env-mapping',
         };
       }
 
       const price = await stripe.prices.retrieve(priceId);
       const amount = price.unit_amount ?? 500;
       const currency = price.currency;
-      
+
       // Format price display (e.g., $5.00)
       const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: currency.toUpperCase(),
       });
-      
+
       return {
         priceDisplay: formatter.format(amount / 100),
         currency,
         priceAmount: amount,
         priceId,
-        source: 'stripe'
+        source: 'stripe',
       };
     } catch (err) {
       console.error('Failed to fetch price config', err);
@@ -97,7 +99,7 @@ export class PayController {
         priceDisplay: '$5.00',
         currency: 'usd',
         priceAmount: 500,
-        source: 'fallback'
+        source: 'fallback',
       };
     }
   }

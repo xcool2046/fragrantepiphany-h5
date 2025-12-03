@@ -321,16 +321,7 @@ export default function Questions() {
               </div>
 
               {/* Shared Settings */}
-              <div className="grid grid-cols-2 gap-4 pt-2 border-t mt-2">
-                <div>
-                  <label className="text-sm text-[#6B5542]">权重</label>
-                  <input type="number" value={form.weight} onChange={(e) => setForm({ ...form, weight: Number(e.target.value) })} className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30" />
-                </div>
-                <div className="flex items-center gap-2 pt-6">
-                  <input type="checkbox" checked={form.active} onChange={(e) => setForm({ ...form, active: e.target.checked })} className="h-4 w-4 text-[#D4A373]" />
-                  <span className="text-sm text-[#2B1F16]">启用</span>
-                </div>
-              </div>
+              {/* Shared Settings removed */}
             </div>
 
             <div className="flex justify-end gap-3 pt-2">

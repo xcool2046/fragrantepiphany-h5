@@ -32,6 +32,7 @@ export default function Perfumes() {
   const [editing, setEditing] = useState<Perfume | null>(null)
   const [query, setQuery] = useState('')
   const [sceneFilter, setSceneFilter] = useState('all')
+  const [cardIdFilter, setCardIdFilter] = useState('')
   const [page, setPage] = useState(1)
   const [total, setTotal] = useState(0)
   const [inputPage, setInputPage] = useState('1')
@@ -60,7 +61,7 @@ export default function Perfumes() {
     setLoading(true)
     try {
       const res = await api.get('/api/admin/perfumes', {
-        params: { page: p, pageSize, keyword: kw, scene: sc }
+        params: { page: p, pageSize, keyword: kw, scene: sc, cardId: cardIdFilter }
       })
       setItems(res.data.items || [])
       setTotal(res.data.total || 0)
@@ -71,7 +72,7 @@ export default function Perfumes() {
     } finally {
       setLoading(false)
     }
-  }, [query, sceneFilter])
+  }, [query, sceneFilter, cardIdFilter])
 
   useEffect(() => {
     fetchData()
@@ -81,7 +82,7 @@ export default function Perfumes() {
   useEffect(() => {
     const t = setTimeout(() => fetchData(1, query, sceneFilter), 300)
     return () => clearTimeout(t)
-  }, [query, sceneFilter])
+  }, [query, sceneFilter, cardIdFilter])
 
   // Auto-update card name when card_id changes
   useEffect(() => {
@@ -201,7 +202,7 @@ export default function Perfumes() {
         </div>
 
         <div className="mt-4 flex flex-wrap gap-3 items-center bg-white/70 border border-[#D4A373]/20 rounded-2xl px-4 py-3 shadow-sm">
-          <SearchBar value={query} onChange={(e) => setQuery(e.target.value)} placeholder="搜索品牌、产品、卡牌..." />
+          <SearchBar value={query} onChange={(e) => setQuery(e.target.value)} placeholder="搜索品牌、产品..." />
           
           <select
             value={sceneFilter}
@@ -214,6 +215,14 @@ export default function Perfumes() {
             <option value="C">C. 咖啡馆</option>
             <option value="D">D. 白皂</option>
           </select>
+
+          <input
+            type="number"
+            value={cardIdFilter}
+            onChange={(e) => setCardIdFilter(e.target.value)}
+            placeholder="卡牌ID"
+            className="w-24 px-3 py-2 rounded-xl border border-gray-200 text-sm focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20"
+          />
 
           <span className="text-xs text-[#6B5542]">
             共 {total} 条
@@ -232,8 +241,7 @@ export default function Perfumes() {
                 <div className="text-sm text-[#6B5542] flex gap-4 flex-wrap items-center">
                   <span>卡牌: {item.card_id}</span>
                   <span>场景: {item.scene_choice}</span>
-                  {item.sentence && <span className="text-xs bg-gray-100 px-1 rounded text-gray-500">文案 (ZH): {item.sentence}</span>}
-                  {item.sentence_en && <span className="text-xs bg-gray-100 px-1 rounded text-gray-500">文案 (EN): {item.sentence_en}</span>}
+
                   {item.tags && item.tags.length > 0 && (
                     <span className="text-xs bg-gray-100 px-1 rounded text-gray-500">标签: {item.tags.join(', ')}</span>
                   )}
@@ -334,29 +342,7 @@ export default function Perfumes() {
                       />
                     </div>
                   </div>
-                  <div className="space-y-4">
-                    <h3 className="text-sm font-medium text-[#2B1F16] border-b border-[#E8DCC5] pb-2">Sentence</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs text-[#4A3B32]/60 mb-1">English</label>
-                        <textarea
-                          rows={2}
-                          className="w-full px-4 py-2 bg-[#F9F7F2] border border-[#E8DCC5] rounded-lg focus:outline-none focus:border-[#8B5A2B]"
-                          value={form.sentence_en || ''}
-                          onChange={(e) => setForm({ ...form, sentence_en: e.target.value })}
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs text-[#4A3B32]/60 mb-1">Chinese</label>
-                        <textarea
-                          rows={2}
-                          className="w-full px-4 py-2 bg-[#F9F7F2] border border-[#E8DCC5] rounded-lg focus:outline-none focus:border-[#8B5A2B]"
-                          value={form.sentence || ''}
-                          onChange={(e) => setForm({ ...form, sentence: e.target.value })}
-                        />
-                      </div>
-                    </div>
-                  </div>
+
                   <div>
                     <label className="text-xs text-[#6B5542] mb-1 block">标签 (拖拽排序)</label>
                     <Reorder.Group axis="y" values={tagsList} onReorder={setTagsList} className="space-y-2">
@@ -404,6 +390,10 @@ export default function Perfumes() {
                         <label className="text-xs text-[#6B5542]">描述文案 (ZH)</label>
                         <textarea value={form.description || ''} onChange={e => setForm({...form, description: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={5} />
                       </div>
+                      <div>
+                        <label className="text-xs text-[#6B5542]">Sentence (ZH)</label>
+                        <textarea value={form.sentence || ''} onChange={e => setForm({...form, sentence: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={3} />
+                      </div>
                     </>
                   ) : (
                     <>
@@ -422,6 +412,10 @@ export default function Perfumes() {
                       <div>
                         <label className="text-xs text-[#6B5542]">描述文案 (EN)</label>
                         <textarea value={form.description_en || ''} onChange={e => setForm({...form, description_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={5} />
+                      </div>
+                      <div>
+                        <label className="text-xs text-[#6B5542]">Sentence (EN)</label>
+                        <textarea value={form.sentence_en || ''} onChange={e => setForm({...form, sentence_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={3} />
                       </div>
                     </>
                   )}

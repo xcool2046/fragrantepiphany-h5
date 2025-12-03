@@ -149,10 +149,13 @@ export type PerfumeChapter = {
   imageUrl: string
 }
 
-export const getPerfumeChapters = (cardIds: number[], language = 'zh', scentAnswer?: string) => {
-  return api.get<{ chapters: PerfumeChapter[] }>('/api/perfume/chapters', {
-    params: { card_indices: cardIds.join(','), language, scentAnswer },
-  })
+export const getPerfumeChapters = (cardIds: number[], language: string, scentAnswer?: string, category?: string) => {
+  const params = new URLSearchParams()
+  params.append('cardIds', cardIds.join(','))
+  params.append('language', language)
+  if (scentAnswer) params.append('scentAnswer', scentAnswer)
+  if (category) params.append('category', category)
+  return api.get<{ chapters: PerfumeChapter[] }>(`/api/perfume/chapters?${params.toString()}`)
 }
 
 export interface ReadingSection {

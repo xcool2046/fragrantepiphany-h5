@@ -14,38 +14,43 @@ export class PerfumeService {
     private readonly interpService: InterpretationService,
   ) {}
 
-  async getChapters(cardIds: number[], language = 'zh', scentAnswer?: string, category = 'Self') {
-    if (!cardIds.length) return [];
-
+  async getChapters(
+    ids: number[],
+    language: string = 'zh',
+    scentAnswer?: string,
+    category: string = 'Self',
+  ) {
     let items = await this.perfumeRepo.find({
-      where: { card_id: In(cardIds), status: 'active' },
+      where: { card_id: In(ids), status: 'active' },
       order: { card_id: 'ASC', sort_order: 'ASC', id: 'ASC' },
     });
 
     // Filter by scent answer if provided (e.g. 'A')
     if (scentAnswer) {
       const prefix = scentAnswer.toUpperCase();
-      items = items.filter(item => item.scene_choice.startsWith(prefix));
+      items = items.filter((item) => item.scene_choice.startsWith(prefix));
     }
 
     // Fallback: If no perfumes found (e.g. cards have no data), use a default one
     if (items.length === 0) {
-      const defaultPerfume = await this.perfumeRepo.findOne({ where: { id: 22 } }); // Diptyque Eau Capitale
+      const defaultPerfume = await this.perfumeRepo.findOne({
+        where: { id: 22 },
+      }); // Diptyque Eau Capitale
       if (defaultPerfume) {
         items = [defaultPerfume];
         // Ensure we fetch the card for this perfume
-        if (!cardIds.includes(defaultPerfume.card_id)) {
-          cardIds.push(defaultPerfume.card_id);
+        if (!ids.includes(defaultPerfume.card_id)) {
+          ids.push(defaultPerfume.card_id);
         }
       }
     }
 
     // Fetch cards to get localized names
-    const cards = await this.cardRepo.find({ where: { id: In(cardIds) } });
-    const cardMap = new Map(cards.map(c => [c.id, c]));
+    const cards = await this.cardRepo.find({ where: { id: In(ids) } });
+    const cardMap = new Map(cards.map((c) => [c.id, c]));
 
     const orderMap = new Map<number, number>();
-    cardIds.forEach((id, idx) => orderMap.set(id, idx));
+    ids.forEach((id, idx) => orderMap.set(id, idx));
 
     const sorted = items.sort((a, b) => {
       const aOrder = orderMap.get(a.card_id) ?? 999;
@@ -66,49 +71,67 @@ export class PerfumeService {
         if (!card) return null;
         const interp = await this.interpService.findOne({
           card_name: card.name_en,
-          category,
-          position: 'Present', 
-          language: 'en' 
+          category, // Use the passed category (Self/Career/Love)
+          position: 'Present',
+          language: isEn ? 'en' : 'zh', // Fetch correct language based on request
         });
-        return interp?.sentence || null;
-      })
+        return (interp?.sentence as string) || '';
+      }),
     );
 
     return sorted.map((item, idx) => {
       const card = cardMap.get(item.card_id);
-      const cardName = (isEn ? card?.name_en : item.card_name) || item.card_name;
-      
+      const cardName =
+        (isEn ? card?.name_en : item.card_name) || item.card_name;
+
       // Use tags from DB
-      let tags = item.tags ?? [];
+      const tags = item.tags ?? [];
 
       // Dynamic quote overrides static quote
       const dynamicQuote = quotes[idx];
       // Static quote is deprecated but kept as fallback if needed, though likely null
-      const staticSentence = (isEn ? item.sentence_en : item.sentence) || item.sentence_en || '';
+      const staticSentence = (isEn ? item.sentence_en : item.sentence) || '';
+
+      // Priority: Dynamic Quote > Static Override (if exists) > Empty String
+      // We prioritize dynamic because static is often just a placeholder or single-context string
+      const finalSentence = dynamicQuote || staticSentence || '';
 
       return {
         id: item.id,
         order: idx + 1,
         cardName: cardName,
-        sceneChoice: (isEn ? item.scene_choice_en : item.scene_choice) || item.scene_choice,
+        sceneChoice:
+          (isEn ? item.scene_choice_en : item.scene_choice) ||
+          item.scene_choice,
         sceneChoiceZh: item.scene_choice,
         sceneChoiceEn: item.scene_choice_en || '',
-        brandName: (isEn ? item.brand_name_en : item.brand_name) || item.brand_name,
-        productName: (isEn ? item.product_name_en : item.product_name) || item.product_name,
+        brandName:
+          (isEn ? item.brand_name_en : item.brand_name) || item.brand_name,
+        productName:
+          (isEn ? item.product_name_en : item.product_name) ||
+          item.product_name,
         tags: tags,
         notes: {
           top: '',
           heart: '',
           base: '',
         },
-        description: (isEn ? item.description_en : item.description) || item.description || '',
-        sentence: dynamicQuote || staticSentence,
+        description:
+          (isEn ? item.description_en : item.description) ||
+          item.description ||
+          '',
+        sentence: finalSentence,
         imageUrl: item.image_url ?? '',
       };
     });
   }
 
-  async list(params: { page: number; pageSize: number; q?: string; status?: string }) {
+  async list(params: {
+    page: number;
+    pageSize: number;
+    q?: string;
+    status?: string;
+  }) {
     const { page, pageSize, q, status } = params;
     const qb = this.perfumeRepo.createQueryBuilder('perfume');
     if (status) {
@@ -159,5 +182,12 @@ export class PerfumeService {
   async resolveCardId(cardName: string) {
     const card = await this.cardRepo.findOne({ where: { name_en: cardName } });
     return card?.id ?? null;
+  }
+
+  private mapIndexToId(index: number): number {
+    // Assuming 1-based IDs for now, or implement specific mapping logic if needed
+    // The controller logic suggests (idx % 78) + 1 mapping happens there,
+    // but if we need it here:
+    return index + 1;
   }
 }

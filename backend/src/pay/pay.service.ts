@@ -15,7 +15,9 @@ export class PayService {
   constructor(@InjectRepository(Order) private orders: Repository<Order>) {
     const secret = process.env.STRIPE_SECRET_KEY;
     if (!secret) {
-      console.warn('STRIPE_SECRET_KEY is missing, Stripe features are disabled');
+      console.warn(
+        'STRIPE_SECRET_KEY is missing, Stripe features are disabled',
+      );
       this.stripeReady = false;
       this.stripe = null as unknown as Stripe;
     }
@@ -47,7 +49,9 @@ export class PayService {
     try {
       mapping = JSON.parse(raw) as Record<string, string>;
     } catch (err) {
-      throw new Error('Invalid STRIPE_PRICE_IDS_JSON, must be valid JSON object');
+      throw new Error(
+        'Invalid STRIPE_PRICE_IDS_JSON, must be valid JSON object',
+      );
     }
     return mapping;
   }
@@ -73,18 +77,21 @@ export class PayService {
         limit: 100,
       });
 
-      const price = prices.data.find((p) => p.type === 'one_time') ?? prices.data[0];
+      const price =
+        prices.data.find((p) => p.type === 'one_time') ?? prices.data[0];
       if (price) {
         this.priceCache.set(key, price.id);
         return price.id;
       }
 
-      console.warn(`No active Stripe price found for currency: ${currency}. Attempting to auto-create one.`);
-      
+      console.warn(
+        `No active Stripe price found for currency: ${currency}. Attempting to auto-create one.`,
+      );
+
       // Auto-create product and price
       const product = await this.stripe!.products.create({
         name: 'Tarot Reading Unlock',
-        metadata: { type: 'tarot_unlock' }
+        metadata: { type: 'tarot_unlock' },
       });
 
       const newPrice = await this.stripe!.prices.create({
@@ -92,11 +99,10 @@ export class PayService {
         currency: key,
         unit_amount: 500, // 5.00
       });
-      
+
       console.log(`Auto-created price ${newPrice.id} for currency ${currency}`);
       this.priceCache.set(key, newPrice.id);
       return newPrice.id;
-
     } catch (err) {
       console.error(`Error resolving/creating price for ${currency}:`, err);
       throw err;
@@ -119,12 +125,14 @@ export class PayService {
     if (publicBaseUrl.endsWith('/')) {
       publicBaseUrl = publicBaseUrl.slice(0, -1);
     }
-    console.log(`Creating Stripe session with callback URL base: ${publicBaseUrl}`);
+    console.log(
+      `Creating Stripe session with callback URL base: ${publicBaseUrl}`,
+    );
 
     const priceId = await this.resolvePriceIdByCurrency(input.currency);
 
     let session: Stripe.Checkout.Session;
-    
+
     // Prepare metadata for Stripe: Flatten/Serialize nested objects
     const stripeMetadata: Record<string, string> = {};
     if (input.metadata) {
@@ -153,7 +161,7 @@ export class PayService {
 
       // 3. Create Stripe Session
       stripeMetadata.order_id = order.id;
-      
+
       session = await this.stripe!.checkout.sessions.create({
         mode: 'payment',
         client_reference_id: order.id,
@@ -173,18 +181,17 @@ export class PayService {
       // 4. Update Order with Session details
       const amount = session.amount_total ?? session.amount_subtotal ?? 0;
       const currency = session.currency ?? input.currency;
-      
+
       await this.orders.update(
-        { id: order.id }, 
+        { id: order.id },
         {
           amount,
           currency,
           stripe_session_id: session.id,
-        }
+        },
       );
 
       return { orderId: order.id, sessionUrl: session.url };
-
     } catch (error) {
       console.error('Stripe Session Creation Failed:', error);
       throw error;
@@ -267,20 +274,22 @@ export class PayService {
     if (!this.stripe) return order;
 
     try {
-        const session = await this.stripe.checkout.sessions.retrieve(order.stripe_session_id);
-        if (session.payment_status === 'paid') {
-            await this.orders.update(
-                { id: orderId },
-                {
-                    status: 'succeeded',
-                    payment_intent_id: session.payment_intent as string,
-                }
-            );
-            // Refetch updated order
-            return this.getOrder(orderId);
-        }
+      const session = await this.stripe.checkout.sessions.retrieve(
+        order.stripe_session_id,
+      );
+      if (session.payment_status === 'paid') {
+        await this.orders.update(
+          { id: orderId },
+          {
+            status: 'succeeded',
+            payment_intent_id: session.payment_intent as string,
+          },
+        );
+        // Refetch updated order
+        return this.getOrder(orderId);
+      }
     } catch (err) {
-        console.error(`Failed to check stripe status for order ${orderId}:`, err);
+      console.error(`Failed to check stripe status for order ${orderId}:`, err);
     }
     return order;
   }

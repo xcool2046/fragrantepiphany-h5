@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import LanguageToggle from '../components/LanguageToggle'
 import homeBgDecorationWebp from '../assets/home-bg-decoration.webp'
 import homeBgDecorationJpg from '../assets/home-bg-decoration.jpg'
+import homeTitleZh from '../assets/home-title-zh-trimmed.png'
 import ZodiacWheel from '../components/ZodiacWheel'
 
 import StarryBackground from '../components/StarryBackground'
@@ -53,7 +54,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* --- Content Layer: Centered Layout --- */}
-      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-end text-center pb-[40vw]">
+      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-end text-center pb-[25vh]">
 
         {/* Title Group with Fixed Height Container */}
         <div className="mb-3 md:mb-4 flex flex-col items-center relative">
@@ -73,34 +74,45 @@ const Home: React.FC = () => {
           <div
             className="flex flex-col items-center justify-center relative z-10"
             style={{
-              minHeight: isZh ? '160px' : '180px',
+              minHeight: '180px',
             }}
           >
             <h1 className="text-[#2B1F16] font-serif text-shadow-sm relative">
-              {heroTitleLines.map((line, idx) => (
-                <motion.span
-                  key={idx}
-                  initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.3 + (idx * 0.1),
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                  className="block"
-                  style={{
-                    fontSize: isZh
-                      ? 'clamp(2.8rem, 7.5vw, 5rem)'
-                      : 'clamp(2.5rem, 6.5vw, 4.8rem)',
-                    fontWeight: 500,
-                    letterSpacing: isZh ? '0.05em' : '-0.02em',
-                    lineHeight: isZh ? 1.25 : 1.1,
-                    marginTop: idx > 0 ? (isZh ? '0.2rem' : '0.15rem') : 0,
-                  }}
-                >
-                  {line}
-                </motion.span>
-              ))}
+              {isZh ? (
+                <div className="flex justify-center">
+                  <motion.img 
+                    src={homeTitleZh} 
+                    alt={t('home.title')} 
+                    initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
+                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="relative w-[80vw] max-w-[400px] md:max-w-[500px] h-auto object-contain opacity-90"
+                  />
+                </div>
+              ) : (
+                heroTitleLines.map((line, idx) => (
+                  <motion.span
+                    key={idx}
+                    initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    transition={{
+                      duration: 0.8,
+                      delay: 0.3 + (idx * 0.1),
+                      ease: [0.22, 1, 0.36, 1]
+                    }}
+                    className="block"
+                    style={{
+                      fontSize: 'clamp(2.5rem, 6.5vw, 4.8rem)',
+                      fontWeight: 500,
+                      letterSpacing: '-0.02em',
+                      lineHeight: 1.1,
+                      marginTop: idx > 0 ? '0.15rem' : 0,
+                    }}
+                  >
+                    {line}
+                  </motion.span>
+                ))
+              )}
             </h1>
           </div>
 

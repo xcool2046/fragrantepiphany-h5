@@ -127,42 +127,44 @@ export class AdminController {
       const driveRegex = /\/file\/d\/([^\/]+)\//;
       const match = url.match(driveRegex);
       let downloadUrl = url;
-      
+
       if (match && match[1]) {
-          const fileId = match[1];
-          downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+        const fileId = match[1];
+        downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
       } else if (url.includes('drive.google.com') && url.includes('id=')) {
-          // Already a direct link format? keep it
+        // Already a direct link format? keep it
       } else if (!url.startsWith('http')) {
-          return url; // Local path or invalid
+        return url; // Local path or invalid
       }
 
       const uploadsDir = path.join(process.cwd(), 'uploads');
-      if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
-      
+      if (!fs.existsSync(uploadsDir))
+        fs.mkdirSync(uploadsDir, { recursive: true });
+
       const filename = `${Date.now()}-${Math.random().toString(16).slice(2)}.jpg`; // Assume jpg/png, sharp can handle
       const filepath = path.join(uploadsDir, filename);
 
       // Use fetch to download
       const response = await fetch(downloadUrl);
-      if (!response.ok) throw new Error(`Failed to fetch ${downloadUrl}: ${response.statusText}`);
-      
+      if (!response.ok)
+        throw new Error(
+          `Failed to fetch ${downloadUrl}: ${response.statusText}`,
+        );
+
       const buffer = await response.arrayBuffer();
-      
+
       // Use sharp to optimize and save
       const sharp = require('sharp');
       await sharp(Buffer.from(buffer))
         .resize({ width: 800, withoutEnlargement: true })
         .toFile(filepath);
-        
+
       return `/uploads/${filename}`;
     } catch (e) {
       console.error(`Failed to download image from ${url}:`, e);
       return null; // Keep original or null? If failed, maybe keep original so user sees it's broken or external
     }
   }
-
-
 
   // ========== Questions ==========
   @Get('questions')
@@ -218,8 +220,11 @@ export class AdminController {
     @Query('pageSize') pageSize = '20',
     @Query('keyword') keyword?: string,
     @Query('scene') scene?: string,
+    @Query('cardId') cardId?: string,
   ) {
-    console.log(`[Admin] listPerfumes called. Page: ${page}, Size: ${pageSize}, Keyword: ${keyword}, Scene: ${scene}`);
+    console.log(
+      `[Admin] listPerfumes called. Page: ${page}, Size: ${pageSize}, Keyword: ${keyword}, Scene: ${scene}, CardId: ${cardId}`,
+    );
     const take = Math.min(100, Math.max(1, Number(pageSize) || 20));
     const skip = (Math.max(1, Number(page) || 1) - 1) * take;
     const qb = this.perfumeRepo.createQueryBuilder('p').orderBy('p.id', 'DESC');
@@ -237,8 +242,17 @@ export class AdminController {
       qb.andWhere('p.scene_choice LIKE :scene', { scene: `${scene}%` });
     }
 
+    if (cardId) {
+      const cid = Number(cardId);
+      if (!isNaN(cid)) {
+        qb.andWhere('p.card_id = :cid', { cid });
+      }
+    }
+
     const [items, total] = await qb.skip(skip).take(take).getManyAndCount();
-    console.log(`[Admin] listPerfumes found ${items.length} items, total: ${total}`);
+    console.log(
+      `[Admin] listPerfumes found ${items.length} items, total: ${total}`,
+    );
     return { items, total, page: Number(page), pageSize: take };
   }
 
@@ -246,14 +260,18 @@ export class AdminController {
   async createPerfume(@Body() body: any) {
     // Basic validation
     if (!body.card_id || !body.brand_name || !body.product_name) {
-      throw new BadRequestException('card_id, brand_name, product_name are required');
+      throw new BadRequestException(
+        'card_id, brand_name, product_name are required',
+      );
     }
     const entity = this.perfumeRepo.create(body);
     try {
       return await this.perfumeRepo.save(entity);
     } catch (e: any) {
       if (e.code === '23505') {
-        throw new BadRequestException('Perfume with this Card ID and Scene Choice already exists');
+        throw new BadRequestException(
+          'Perfume with this Card ID and Scene Choice already exists',
+        );
       }
       throw e;
     }
@@ -263,14 +281,16 @@ export class AdminController {
   async updatePerfume(@Param('id') id: string, @Body() body: any) {
     const p = await this.perfumeRepo.findOne({ where: { id: Number(id) } });
     if (!p) throw new NotFoundException('Perfume not found');
-    
+
     // Allow updating any field passed in body
     Object.assign(p, body);
     try {
       return await this.perfumeRepo.save(p);
     } catch (e: any) {
       if (e.code === '23505') {
-        throw new BadRequestException('Perfume with this Card ID and Scene Choice already exists');
+        throw new BadRequestException(
+          'Perfume with this Card ID and Scene Choice already exists',
+        );
       }
       throw e;
     }
@@ -312,17 +332,16 @@ export class AdminController {
 
   @Post('cards')
   async createCard(@Body() body: CreateCardDto) {
-    if (!body.code)
-      throw new BadRequestException('code is required');
+    if (!body.code) throw new BadRequestException('code is required');
     const existing = await this.cardRepo.findOne({
       where: { code: body.code },
     });
     if (existing) throw new BadRequestException('code already exists');
-    
+
     let image_url = body.image_url ?? null;
     if (image_url && image_url.startsWith('http')) {
-        const localUrl = await this.downloadImage(image_url);
-        if (localUrl) image_url = localUrl;
+      const localUrl = await this.downloadImage(image_url);
+      if (localUrl) image_url = localUrl;
     }
 
     const entity = this.cardRepo.create({
@@ -339,11 +358,15 @@ export class AdminController {
   async updateCard(@Param('id') id: string, @Body() body: UpdateCardDto) {
     const card = await this.cardRepo.findOne({ where: { id: Number(id) } });
     if (!card) throw new NotFoundException('Card not found');
-    
+
     let image_url = body.image_url;
-    if (image_url && image_url !== card.image_url && image_url.startsWith('http')) {
-        const localUrl = await this.downloadImage(image_url);
-        if (localUrl) image_url = localUrl;
+    if (
+      image_url &&
+      image_url !== card.image_url &&
+      image_url.startsWith('http')
+    ) {
+      const localUrl = await this.downloadImage(image_url);
+      if (localUrl) image_url = localUrl;
     }
 
     Object.assign(card, {
@@ -363,7 +386,9 @@ export class AdminController {
   }
 
   @Post('cards/upload')
-  @UseInterceptors(FileInterceptor('file', { limits: { fileSize: 10 * 1024 * 1024 } }))
+  @UseInterceptors(
+    FileInterceptor('file', { limits: { fileSize: 10 * 1024 * 1024 } }),
+  )
   async uploadCardImage(@UploadedFile() file?: Express.Multer.File) {
     if (!file) throw new BadRequestException('No file');
     const allowed = [
@@ -386,7 +411,7 @@ export class AdminController {
     const uploadsDir = path.join(process.cwd(), 'uploads');
     if (!fs.existsSync(uploadsDir))
       fs.mkdirSync(uploadsDir, { recursive: true });
-    
+
     // Use sharp to optimize
     const sharp = require('sharp');
     const filename = `${Date.now()}-${Math.random().toString(16).slice(2)}.webp`;
@@ -416,14 +441,12 @@ export class AdminController {
     });
     let created = 0;
     let updated = 0;
-    
-
 
     for (const [idx, r] of rows.entries()) {
       const code = (r.code || '').trim();
       let name_en = (r.name_en || '').trim();
       let name_zh = (r.name_zh || '').trim();
-      
+
       // Relax validation: if name_en missing, use code
       if (!name_en) name_en = code;
       if (!name_zh) name_zh = null; // Ensure it's null if empty
@@ -432,11 +455,11 @@ export class AdminController {
         // Skip empty rows
         continue;
       }
-      
+
       let image_url = r.image_url?.trim?.() || null;
       if (image_url && image_url.startsWith('http')) {
-          const localUrl = await this.downloadImage(image_url);
-          if (localUrl) image_url = localUrl;
+        const localUrl = await this.downloadImage(image_url);
+        if (localUrl) image_url = localUrl;
       }
 
       const payload: Partial<Card> = {
@@ -445,12 +468,16 @@ export class AdminController {
         name_zh,
         image_url,
       };
-      
+
       const existing = await this.cardRepo.findOne({ where: { code } });
       if (existing) {
         Object.assign(
           existing,
-          Object.fromEntries(Object.entries(payload).filter(([, v]) => v !== null && v !== undefined)),
+          Object.fromEntries(
+            Object.entries(payload).filter(
+              ([, v]) => v !== null && v !== undefined,
+            ),
+          ),
         );
         await this.cardRepo.save(existing);
         updated++;

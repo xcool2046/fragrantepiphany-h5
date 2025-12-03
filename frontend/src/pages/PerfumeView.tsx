@@ -44,7 +44,19 @@ const PerfumeView: React.FC = () => {
         setLoading(true)
         // Pass language + scent answer (prefer Q2, fallback Q4)
         const scentAnswer = answers['2'] || answers['4']
-        const res = await getPerfumeChapters(cardIds, i18n.language, scentAnswer)
+        
+        // Map Q4 answer to category (Self/Career/Love)
+        const mapCategory = (val?: string) => {
+          if (!val) return 'Self';
+          const first = val.trim().charAt(0).toUpperCase();
+          if (first === 'B') return 'Career';
+          if (first === 'C') return 'Love';
+          return 'Self'; // Default to Self (A)
+        };
+        const category = mapCategory(answers['4']);
+
+        const res = await getPerfumeChapters(cardIds, i18n.language, scentAnswer, category)
+
         setChapters(res.data.chapters)
         setError(null)
       } catch (err: any) {

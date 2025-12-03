@@ -13,16 +13,16 @@ export type PerfumeMappingEntry = {
 
 // Normalize scent answer to the canonical options used in Excel
 const scentKeywords: Record<string, string> = {
-  '玫瑰': 'A. 玫瑰园',
-  'rose': 'A. 玫瑰园',
-  '木质': 'B. 暖木',
-  'wood': 'B. 暖木',
-  '咖啡': 'C. 咖啡馆',
-  '烘焙': 'C. 咖啡馆',
-  'coffee': 'C. 咖啡馆',
-  '白皂': 'D. 白皂',
-  '皂': 'D. 白皂',
-  'soap': 'D. 白皂',
+  玫瑰: 'A. 玫瑰园',
+  rose: 'A. 玫瑰园',
+  木质: 'B. 暖木',
+  wood: 'B. 暖木',
+  咖啡: 'C. 咖啡馆',
+  烘焙: 'C. 咖啡馆',
+  coffee: 'C. 咖啡馆',
+  白皂: 'D. 白皂',
+  皂: 'D. 白皂',
+  soap: 'D. 白皂',
 };
 
 function normalizeScentChoice(input?: string): string | null {
@@ -42,7 +42,9 @@ function normalizeScentChoice(input?: string): string | null {
 
 let cache: Map<string, PerfumeMappingEntry> | null = null;
 
-export function loadPerfumeMapping(baseDir = process.cwd()): Map<string, PerfumeMappingEntry> {
+export function loadPerfumeMapping(
+  baseDir = process.cwd(),
+): Map<string, PerfumeMappingEntry> {
   if (cache) return cache;
 
   const candidates = [
@@ -52,14 +54,19 @@ export function loadPerfumeMapping(baseDir = process.cwd()): Map<string, Perfume
 
   const file = candidates.find((p) => fs.existsSync(p));
   if (!file) {
-    console.warn('[perfume-mapping] perfume.xlsx not found in assets or legacy/data');
+    console.warn(
+      '[perfume-mapping] perfume.xlsx not found in assets or legacy/data',
+    );
     cache = new Map();
     return cache;
   }
 
   const wb = xlsx.readFile(file);
-  const sheet = wb.SheetNames.find((n) => n.includes('香水')) || wb.SheetNames[0];
-  const rows: any[] = xlsx.utils.sheet_to_json(wb.Sheets[sheet], { defval: '' });
+  const sheet =
+    wb.SheetNames.find((n) => n.includes('香水')) || wb.SheetNames[0];
+  const rows: any[] = xlsx.utils.sheet_to_json(wb.Sheets[sheet], {
+    defval: '',
+  });
 
   const map = new Map<string, PerfumeMappingEntry>();
   rows.forEach((row) => {

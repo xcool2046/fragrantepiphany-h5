@@ -52,13 +52,13 @@ export class InterpretationService {
   async importMany(items: Partial<Interpretation>[]) {
     // 1. Group items by language to ensure consistent keys in each batch upsert
     const groups: Record<string, any[]> = {};
-    
+
     for (const item of items) {
       const lang = ((item as any).language || 'en').toLowerCase();
       const normLang = lang.startsWith('zh') ? 'zh' : 'en';
-      
+
       if (!groups[normLang]) groups[normLang] = [];
-      
+
       const base = {
         card_name: item.card_name,
         category: item.category,
@@ -66,12 +66,15 @@ export class InterpretationService {
       } as any;
 
       const prefix = normLang === 'zh' ? '_zh' : '_en';
-      
-      // Only set fields for the specific language. 
+
+      // Only set fields for the specific language.
       // Do NOT set other language fields to null to avoid overwriting them in DB.
-      if ((item as any).sentence !== undefined) base[`sentence${prefix}`] = (item as any).sentence;
-      if ((item as any).interpretation !== undefined) base[`interpretation${prefix}`] = (item as any).interpretation;
-      if ((item as any).recommendation !== undefined) base[`recommendation${prefix}`] = (item as any).recommendation;
+      if ((item as any).sentence !== undefined)
+        base[`sentence${prefix}`] = (item as any).sentence;
+      if ((item as any).interpretation !== undefined)
+        base[`interpretation${prefix}`] = (item as any).interpretation;
+      if ((item as any).recommendation !== undefined)
+        base[`recommendation${prefix}`] = (item as any).recommendation;
 
       groups[normLang].push(base);
     }
@@ -87,7 +90,7 @@ export class InterpretationService {
         results.push(...batch);
       }
     }
-    
+
     return results;
   }
 

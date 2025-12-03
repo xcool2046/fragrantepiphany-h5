@@ -7,9 +7,7 @@ export class DropRules1764239000000 implements MigrationInterface {
     await queryRunner.query(
       `ALTER TABLE "rules" DROP CONSTRAINT IF EXISTS "FK_rules_question"`,
     );
-    await queryRunner.query(
-      `DROP INDEX IF EXISTS "uq_rule_question_cards"`,
-    );
+    await queryRunner.query(`DROP INDEX IF EXISTS "uq_rule_question_cards"`);
     await queryRunner.query(`DROP TABLE IF EXISTS "rules"`);
   }
 

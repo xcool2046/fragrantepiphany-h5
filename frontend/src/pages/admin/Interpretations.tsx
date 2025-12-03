@@ -29,6 +29,7 @@ export default function Interpretations() {
   const [categoryFilter, setCategoryFilter] = useState<'all' | string>('all')
   const [page, setPage] = useState(1)
   const [total, setTotal] = useState(0)
+  const [inputPage, setInputPage] = useState('1')
   const pageSize = DEFAULT_PAGE_SIZE
   const [formData, setFormData] = useState<{
     card_name: string
@@ -63,6 +64,7 @@ export default function Interpretations() {
       setInterps(res.data?.items ?? [])
       setTotal(res.data?.total ?? 0)
       setPage(p)
+      setInputPage(String(p))
     } catch (err) {
       console.error(err)
     } finally {
@@ -148,7 +150,7 @@ export default function Interpretations() {
 
   return (
     <div className={`space-y-6 ${bgClass} p-1 rounded-3xl shadow-inner`}>
-      <Section title="Interpretations" description="卡牌解读库（card + position 唯一）">
+      <Section title="Interpretations" description="卡牌解读库">
         <div className="flex flex-wrap gap-3 items-center">
           <button
             onClick={openCreate}
@@ -162,31 +164,35 @@ export default function Interpretations() {
             placeholder="按 card_name / 内容 搜索"
             className="bg-white/80 border border-[#D4A373]/20 rounded-2xl px-2 py-1"
           />
-          <div className="flex items-center gap-2 bg-white/80 border border-[#D4A373]/20 rounded-2xl px-3 py-2 shadow-sm">
-            <select
-              value={positionFilter}
-              onChange={(e) => setPositionFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-gray-200 text-sm focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20"
-            >
-              <option value="all">全部位</option>
-              {TAROT_POSITIONS.map(p => <option key={p} value={p}>{p}</option>)}
-            </select>
+        </div>
 
-            <select
-              value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-gray-200 text-sm focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20"
-            >
-              <option value="all">全类别</option>
-              {TAROT_CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex gap-2">
+            <div className="relative">
+              <select
+                value={positionFilter}
+                onChange={(e) => setPositionFilter(e.target.value)}
+                className="px-3 py-2 rounded-xl border border-gray-200 text-sm focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20"
+              >
+                <option value="all">全部位</option>
+                {TAROT_POSITIONS.map(p => <option key={p} value={p}>{p}</option>)}
+              </select>
+            </div>
+            <div className="relative">
+              <select
+                value={categoryFilter}
+                onChange={(e) => setCategoryFilter(e.target.value)}
+                className="px-3 py-2 rounded-xl border border-gray-200 text-sm focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20"
+              >
+                <option value="all">全类别</option>
+                {TAROT_CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+              </select>
+            </div>
           </div>
+          <span className="text-xs text-[#6B5542]">共 {total} 条</span>
         </div>
 
-        <div className="flex items-center justify-between text-xs text-[#6B5542] px-1">
-          <span>共 {total} 条记录</span>
-          <span>第 {page} / {Math.ceil(total / pageSize) || 1} 页</span>
-        </div>
+
 
         <div className="grid gap-4">
           {loading ? (
@@ -248,59 +254,43 @@ export default function Interpretations() {
         </div>
         
         {total > pageSize && (
-          <div className="flex flex-wrap gap-2 mt-4 justify-center items-center">
+          <div className="flex gap-2 mt-4 items-center justify-center">
             <button
               disabled={page === 1}
               onClick={() => fetchInterps(page - 1)}
-              className="px-3 py-1 rounded border bg-white disabled:opacity-50 text-sm text-[#2B1F16] hover:bg-gray-50"
+              className="px-3 py-1 rounded border bg-white disabled:opacity-50 hover:bg-gray-50"
             >
-              Prev
+              上一页
             </button>
-            
-            {/* Numeric Pagination Logic */}
-            {(() => {
-              const totalPages = Math.ceil(total / pageSize)
-              const maxVisible = 5
-              const pages = []
-              
-              if (totalPages <= maxVisible) {
-                for (let i = 1; i <= totalPages; i++) pages.push(i)
-              } else {
-                // Always show first, last, and range around current
-                if (page <= 3) {
-                  pages.push(1, 2, 3, 4, '...', totalPages)
-                } else if (page >= totalPages - 2) {
-                  pages.push(1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages)
-                } else {
-                  pages.push(1, '...', page - 1, page, page + 1, '...', totalPages)
-                }
-              }
-
-              return pages.map((p, idx) => (
-                typeof p === 'number' ? (
-                  <button
-                    key={idx}
-                    onClick={() => fetchInterps(p)}
-                    className={`w-8 h-8 rounded border text-sm flex items-center justify-center transition-colors ${
-                      page === p 
-                        ? 'bg-[#2B1F16] text-white border-[#2B1F16]' 
-                        : 'bg-white text-[#2B1F16] border-gray-200 hover:border-[#D4A373]'
-                    }`}
-                  >
-                    {p}
-                  </button>
-                ) : (
-                  <span key={idx} className="text-gray-400 text-sm px-1">...</span>
-                )
-              ))
-            })()}
-
+            <div className="flex items-center gap-2 mx-2">
+              <span className="text-sm text-gray-600">第</span>
+              <input
+                type="number"
+                min={1}
+                max={Math.ceil(total / pageSize)}
+                value={inputPage}
+                onChange={(e) => setInputPage(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    const p = Math.max(1, Math.min(Number(inputPage) || 1, Math.ceil(total / pageSize)))
+                    fetchInterps(p)
+                  }
+                }}
+                onBlur={() => {
+                  const p = Math.max(1, Math.min(Number(inputPage) || 1, Math.ceil(total / pageSize)))
+                  if (p !== page) fetchInterps(p)
+                  else setInputPage(String(p))
+                }}
+                className="w-16 text-center rounded border border-gray-300 py-1 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
+              />
+              <span className="text-sm text-gray-600">/ {Math.ceil(total / pageSize)} 页</span>
+            </div>
             <button
               disabled={page * pageSize >= total}
               onClick={() => fetchInterps(page + 1)}
-              className="px-3 py-1 rounded border bg-white disabled:opacity-50 text-sm text-[#2B1F16] hover:bg-gray-50"
+              className="px-3 py-1 rounded border bg-white disabled:opacity-50 hover:bg-gray-50"
             >
-              Next
+              下一页
             </button>
           </div>
         )}

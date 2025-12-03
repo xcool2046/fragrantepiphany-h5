@@ -55,8 +55,6 @@ export class Perfume {
   @Column({ type: 'text', nullable: true })
   image_url!: string | null;
 
-
-
   @Column({ type: 'int', default: 0 })
   sort_order!: number;
 

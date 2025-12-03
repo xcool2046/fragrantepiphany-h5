@@ -1,4 +1,4 @@
-import { Controller, Get, Query, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { PerfumeService } from './perfume.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Card } from '../entities/card.entity';
@@ -19,11 +19,11 @@ export class PerfumeController {
    */
   @Get('chapters')
   async getChapters(
-    @Query('cardIds') cardIds?: string,
     @Query('card_indices') cardIndices?: string,
-    @Query('language') language = 'zh',
+    @Query('cardIds') cardIdsParam?: string,
+    @Query('language') language: string = 'zh',
     @Query('scentAnswer') scentAnswer?: string,
-    @Query('category') categoryParam?: string,
+    @Query('category') categoryParam: string = 'Self',
     @Query('q4Answer') q4Answer?: string,
   ) {
     let ids: number[] = [];
@@ -48,15 +48,15 @@ export class PerfumeController {
     }
 
     // 2. Fallback to direct IDs if no indices resolved
-    if (ids.length === 0 && cardIds) {
-      ids = cardIds
+    if (ids.length === 0 && cardIdsParam) {
+      ids = cardIdsParam
         .split(',')
         .map((v) => Number(v.trim()))
         .filter((v) => Number.isInteger(v) && v > 0);
     }
 
     if (ids.length === 0) {
-      // If we had input but resolved nothing, that's an issue. 
+      // If we had input but resolved nothing, that's an issue.
       // But to avoid breaking errors, return empty.
       return { chapters: [] };
     }
@@ -65,20 +65,26 @@ export class PerfumeController {
     const lang = language.toLowerCase().startsWith('zh') ? 'zh' : 'en';
 
     // Derive Category from Q4 or param
-    let category = 'Self';
+    let category = categoryParam;
     if (q4Answer) {
       const first = q4Answer.trim().charAt(0).toUpperCase();
       if (first === 'A') category = 'Self';
       else if (first === 'B') category = 'Career';
       else if (first === 'C') category = 'Love';
-    } else if (categoryParam) {
-      category = categoryParam;
     }
 
-    const result = await this.perfumeService.getChapters(ids, language, scentAnswer, category);
+    const result = await this.perfumeService.getChapters(
+      ids,
+      lang,
+      scentAnswer,
+      category,
+    ); // Pass derived 'category'
     if (result.length > 0) {
-      console.log('DEBUG: First Perfume Chapter:', JSON.stringify(result[0], null, 2));
+      console.log(
+        'DEBUG: First Perfume Chapter:',
+        JSON.stringify(result[0], null, 2),
+      );
     }
-    return result;
+    return { chapters: result }; // Wrap result in an object with 'chapters' key
   }
 }

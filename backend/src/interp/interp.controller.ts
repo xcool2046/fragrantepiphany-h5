@@ -13,7 +13,11 @@ import { DrawService } from './draw.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, In } from 'typeorm';
 import { Card } from '../entities/card.entity';
-import { TAROT_POSITIONS, TAROT_CATEGORIES, DEFAULT_PAGE_SIZE } from '../constants/tarot';
+import {
+  TAROT_POSITIONS,
+  TAROT_CATEGORIES,
+  DEFAULT_PAGE_SIZE,
+} from '../constants/tarot';
 
 import { PayService } from '../pay/pay.service';
 
@@ -33,7 +37,12 @@ export class InterpretationController {
     @Query('position') position: string,
     @Query('language') language: string,
   ) {
-    const result = await this.service.findOne({ card_name, category, position, language });
+    const result = await this.service.findOne({
+      card_name,
+      category,
+      position,
+      language,
+    });
     console.log('DEBUG: getOne result:', JSON.stringify(result, null, 2));
     return result;
   }
@@ -49,7 +58,13 @@ export class InterpretationController {
       category?: string;
     },
   ) {
-    const { card_indices, orderId, language = 'en', category = 'Self', answers = {} } = body;
+    const {
+      card_indices,
+      orderId,
+      language = 'en',
+      category = 'Self',
+      answers = {},
+    } = body;
 
     if (!Array.isArray(card_indices) || card_indices.length !== 3) {
       return { error: 'Invalid cards' };
@@ -74,16 +89,20 @@ export class InterpretationController {
     console.log(`[Reading] Indices: ${card_indices} -> Codes: ${cardCodes}`);
 
     const cards = await this.cardRepo.find({ where: { code: In(cardCodes) } });
-    
+
     // Sort to match Past, Present, Future order explicitly
     const sortedCards = cardCodes
       .map((code) => cards.find((c) => c.code === code))
       .filter(Boolean) as Card[];
 
-    console.log(`[Reading] Sorted Cards: ${sortedCards.map(c => c.name_en).join(', ')}`);
+    console.log(
+      `[Reading] Sorted Cards: ${sortedCards.map((c) => c.name_en).join(', ')}`,
+    );
 
     if (sortedCards.length !== 3) {
-      console.warn(`[Reading] Mismatch! Found ${sortedCards.length} cards for ${cardCodes}`);
+      console.warn(
+        `[Reading] Mismatch! Found ${sortedCards.length} cards for ${cardCodes}`,
+      );
       return { error: 'Cards not found' };
     }
 
@@ -93,15 +112,17 @@ export class InterpretationController {
       derivedCategory,
       language,
     );
-    
-    console.log(`[Reading] Interps Returned: ${rawInterps.map(i => `${i.position}:${i.card_name}`).join(', ')}`);
+
+    console.log(
+      `[Reading] Interps Returned: ${rawInterps.map((i) => `${i.position}:${i.card_name}`).join(', ')}`,
+    );
 
     // 3. Check Access
     let isUnlocked = false;
-      if (orderId) {
-        if (orderId === 'debug-unlocked') {
-          isUnlocked = true;
-        } else {
+    if (orderId) {
+      if (orderId === 'debug-unlocked') {
+        isUnlocked = true;
+      } else {
         // Use checkAndUpdateStatus to handle webhook delays
         const order = await this.payService.checkAndUpdateStatus(orderId);
         if (order && order.status === 'succeeded') {
@@ -189,7 +210,10 @@ export class InterpretationController {
       keyword,
     });
     if (result.items.length > 0) {
-      console.log('DEBUG: First Interp Item:', JSON.stringify(result.items[0], null, 2));
+      console.log(
+        'DEBUG: First Interp Item:',
+        JSON.stringify(result.items[0], null, 2),
+      );
     }
     return result;
   }
@@ -215,7 +239,13 @@ export class InterpretationController {
   // 根据三张牌 + 问卷答案匹配规则（按 priority ASC, id ASC）
   @Post('rule-match')
   async matchRule(
-    @Body() body: { card_indices: number[]; answers?: Record<string, string>; language?: string; category?: string },
+    @Body()
+    body: {
+      card_indices: number[];
+      answers?: Record<string, string>;
+      language?: string;
+      category?: string;
+    },
   ) {
     const cardIndices = Array.isArray(body.card_indices)
       ? body.card_indices.slice(0, 3)
@@ -223,8 +253,9 @@ export class InterpretationController {
     if (cardIndices.length !== 3) return { rule: null };
 
     // 1) 将卡片下标映射为两位 code（01~78）
-    const cardCodes = cardIndices
-      .map((idx) => String((idx % 78) + 1).padStart(2, '0'))
+    const cardCodes = cardIndices.map((idx) =>
+      String((idx % 78) + 1).padStart(2, '0'),
+    );
 
     // 2) 用卡牌默认解读拼接合成结果
     const cards = await this.cardRepo.find({

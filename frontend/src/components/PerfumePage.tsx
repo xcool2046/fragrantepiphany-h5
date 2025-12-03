@@ -83,21 +83,21 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers 
           <div className="w-full max-w-[500px] flex flex-col items-center h-full">
             {/* Brand - Left Aligned */}
             <motion.div className="w-full text-left mb-8" variants={itemVariants}>
-              <p className="text-2xl font-serif text-[#2B1F16]">{chapter.brandName}</p>
+              <p className="text-2xl text-[#2B1F16]" style={{ fontFamily: "'Spectral SC', serif" }}>{chapter.brandName}</p>
             </motion.div>
 
             {/* Product Name - Centered */}
             <motion.div className="text-center mb-10" variants={itemVariants}>
-              <h2 className="text-3xl md:text-4xl font-serif text-[#2B1F16] leading-tight">{chapter.productName}</h2>
+              <h2 className="text-[#2B1F16] leading-tight whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '48px' }}>{chapter.productName}</h2>
             </motion.div>
 
             {/* Tags - Centered Pills */}
-            <motion.div className="flex justify-center gap-3 mb-8 flex-wrap" variants={itemVariants}>
+            <motion.div className="flex justify-center gap-1.5 mb-8 flex-wrap w-full px-1" variants={itemVariants}>
               {tags.map((tag, idx) => {
                  const bgColors = ['bg-[#8B5A2B]', 'bg-[#656B2F]', 'bg-[#D97706]'];
                  const bgColor = bgColors[idx % bgColors.length];
                  return (
-                  <span key={idx} className={`px-5 py-1.5 rounded-full text-white text-xs font-medium tracking-wide ${bgColor} whitespace-nowrap`}>
+                  <span key={idx} className={`px-2.5 py-1 rounded-full text-white text-[9px] font-medium tracking-wide ${bgColor} whitespace-nowrap`}>
                     {tag}
                   </span>
                  )
@@ -111,16 +111,15 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers 
               </p>
             </motion.div>
 
-            {sentence && (
-            <div className="mt-8 text-center px-6">
-              <p className="font-serif italic text-[#4A3B32]/80 text-lg leading-relaxed">
-                "{sentence}"
-              </p>
-            </div>
-          )}
             {/* Bottom Section: Quote + Button */}
             <div className="mt-auto w-full flex flex-col items-center pb-2">
-
+              {sentence && (
+                <motion.div className="mb-8 text-center px-6" variants={itemVariants}>
+                  <p className="font-serif italic text-[#4A3B32]/80 text-sm md:text-base leading-relaxed">
+                    "{sentence}"
+                  </p>
+                </motion.div>
+              )}
 
                 {/* Button */}
                 <motion.button
