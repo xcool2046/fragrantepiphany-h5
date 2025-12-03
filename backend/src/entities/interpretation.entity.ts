@@ -15,33 +15,21 @@ export class Interpretation {
   @Column()
   position: string;
 
-  @Column({ type: 'text', nullable: true })
-  summary_en: string | null;
+  @Column({ name: 'summary_en', type: 'text', nullable: true })
+  sentence_en!: string | null;
+
+  @Column({ name: 'summary_zh', type: 'text', nullable: true })
+  sentence_zh!: string | null;
 
   @Column({ type: 'text', nullable: true })
-  summary_zh: string | null;
+  interpretation_en!: string | null;
 
   @Column({ type: 'text', nullable: true })
-  interpretation_en: string | null;
+  interpretation_zh!: string | null;
 
   @Column({ type: 'text', nullable: true })
-  interpretation_zh: string | null;
+  recommendation_en!: string | null;
 
   @Column({ type: 'text', nullable: true })
-  action_en: string | null;
-
-  @Column({ type: 'text', nullable: true })
-  action_zh: string | null;
-
-  @Column({ type: 'text', nullable: true })
-  future_en: string | null;
-
-  @Column({ type: 'text', nullable: true })
-  future_zh: string | null;
-
-  @Column({ type: 'text', nullable: true })
-  recommendation_en: string | null;
-
-  @Column({ type: 'text', nullable: true })
-  recommendation_zh: string | null;
+  recommendation_zh!: string | null;
 }

@@ -9,14 +9,10 @@ type InterpretationItem = {
   card_name: string
   category?: string | null
   position: string
-  summary_en?: string | null
-  summary_zh?: string | null
+  sentence_en?: string | null
+  sentence_zh?: string | null
   interpretation_en?: string | null
   interpretation_zh?: string | null
-  action_en?: string | null
-  action_zh?: string | null
-  future_en?: string | null
-  future_zh?: string | null
 }
 
 const bgClass = 'bg-gradient-to-br from-[#F7F0E5] via-white to-[#F7F0E5]'
@@ -38,26 +34,18 @@ export default function Interpretations() {
     card_name: string
     category: string
     position: string
-    summary_en: string
-    summary_zh: string
+    sentence_en: string
+    sentence_zh: string
     interpretation_en: string
     interpretation_zh: string
-    action_en: string
-    action_zh: string
-    future_en: string
-    future_zh: string
   }>({
     card_name: '',
     category: TAROT_CATEGORIES[0],
     position: TAROT_POSITIONS[0],
-    summary_en: '',
-    summary_zh: '',
+    sentence_en: '',
+    sentence_zh: '',
     interpretation_en: '',
     interpretation_zh: '',
-    action_en: '',
-    action_zh: '',
-    future_en: '',
-    future_zh: ''
   })
   const [textLang, setTextLang] = useState<'en' | 'zh'>('zh')
 
@@ -97,14 +85,10 @@ export default function Interpretations() {
       card_name: '',
       category: TAROT_CATEGORIES[0],
       position: TAROT_POSITIONS[0],
-      summary_en: '',
-      summary_zh: '',
+      sentence_en: '',
+      sentence_zh: '',
       interpretation_en: '',
       interpretation_zh: '',
-      action_en: '',
-      action_zh: '',
-      future_en: '',
-      future_zh: ''
     })
     setTextLang('zh')
     setIsModalOpen(true)
@@ -131,14 +115,10 @@ export default function Interpretations() {
         card_name: '',
         category: TAROT_CATEGORIES[0],
         position: TAROT_POSITIONS[0],
-        summary_en: '',
-        summary_zh: '',
+        sentence_en: '',
+        sentence_zh: '',
         interpretation_en: '',
         interpretation_zh: '',
-        action_en: '',
-        action_zh: '',
-        future_en: '',
-        future_zh: ''
       })
       setEditingItem(null)
     } catch (err) {
@@ -191,6 +171,7 @@ export default function Interpretations() {
               <option value="all">全部位</option>
               {TAROT_POSITIONS.map(p => <option key={p} value={p}>{p}</option>)}
             </select>
+
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
@@ -220,9 +201,9 @@ export default function Interpretations() {
                   : item.position === 'Future'
                     ? 'bg-purple-50 text-purple-700'
                     : 'bg-blue-50 text-blue-700'
-              const hasZh = !!(item.summary_zh || item.interpretation_zh)
-              const hasEn = !!(item.summary_en || item.interpretation_en)
-              const displayText = item.summary_zh || item.summary_en || item.interpretation_zh || item.interpretation_en || '—'
+              const hasZh = !!(item.sentence_zh || item.interpretation_zh)
+              const hasEn = !!(item.sentence_en || item.interpretation_en)
+              const displayText = item.sentence_zh || item.sentence_en || item.interpretation_zh || item.interpretation_en || '—'
               return (
                 <div key={item.id} className="rounded-2xl border border-[#D4A373]/25 bg-white/80 backdrop-blur shadow-sm p-4 flex flex-col gap-2 hover:shadow-lg transition">
                   <div className="flex items-center justify-between">
@@ -246,17 +227,13 @@ export default function Interpretations() {
                           card_name: item.card_name,
                           category: item.category || TAROT_CATEGORIES[0],
                           position: item.position,
-                          summary_en: item.summary_en || '',
-                          summary_zh: item.summary_zh || '',
+                          sentence_en: item.sentence_en || '',
+                          sentence_zh: item.sentence_zh || '',
                           interpretation_en: item.interpretation_en || '',
                           interpretation_zh: item.interpretation_zh || '',
-                          action_en: item.action_en || '',
-                          action_zh: item.action_zh || '',
-                          future_en: item.future_en || '',
-                          future_zh: item.future_zh || '',
                         })
                         setIsModalOpen(true)
-                        setTextLang(item.summary_zh ? 'zh' : 'en')
+                        setTextLang(item.sentence_zh ? 'zh' : 'en')
                       }}
                       className="text-sm px-3 py-1 rounded-full bg-white border hover:border-[#D4A373] text-[#2B1F16]"
                     >
@@ -389,10 +366,10 @@ export default function Interpretations() {
                 {textLang === 'en' ? (
                   <>
                     <div>
-                      <label className="text-sm text-[#6B5542]">Summary EN</label>
+                      <label className="text-sm text-[#6B5542]">Sentence EN</label>
                       <textarea
-                        value={formData.summary_en}
-                        onChange={(e) => setFormData({ ...formData, summary_en: e.target.value })}
+                        value={formData.sentence_en}
+                        onChange={(e) => setFormData({ ...formData, sentence_en: e.target.value })}
                         className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
                         rows={2}
                       />
@@ -406,32 +383,14 @@ export default function Interpretations() {
                         rows={5}
                       />
                     </div>
-                    <div>
-                      <label className="text-sm text-[#6B5542]">Action EN</label>
-                      <textarea
-                        value={formData.action_en}
-                        onChange={(e) => setFormData({ ...formData, action_en: e.target.value })}
-                        className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
-                        rows={4}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm text-[#6B5542]">Future EN</label>
-                      <textarea
-                        value={formData.future_en}
-                        onChange={(e) => setFormData({ ...formData, future_en: e.target.value })}
-                        className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
-                        rows={4}
-                      />
-                    </div>
                   </>
                 ) : (
                   <>
                     <div>
-                      <label className="text-sm text-[#6B5542]">摘要 ZH</label>
+                      <label className="text-sm text-[#6B5542]">Sentence ZH</label>
                       <textarea
-                        value={formData.summary_zh}
-                        onChange={(e) => setFormData({ ...formData, summary_zh: e.target.value })}
+                        value={formData.sentence_zh}
+                        onChange={(e) => setFormData({ ...formData, sentence_zh: e.target.value })}
                         className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
                         rows={2}
                       />
@@ -443,24 +402,6 @@ export default function Interpretations() {
                         onChange={(e) => setFormData({ ...formData, interpretation_zh: e.target.value })}
                         className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
                         rows={5}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm text-[#6B5542]">行动建议 ZH</label>
-                      <textarea
-                        value={formData.action_zh}
-                        onChange={(e) => setFormData({ ...formData, action_zh: e.target.value })}
-                        className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
-                        rows={4}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm text-[#6B5542]">未来指引 ZH</label>
-                      <textarea
-                        value={formData.future_zh}
-                        onChange={(e) => setFormData({ ...formData, future_zh: e.target.value })}
-                        className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
-                        rows={4}
                       />
                     </div>
                   </>

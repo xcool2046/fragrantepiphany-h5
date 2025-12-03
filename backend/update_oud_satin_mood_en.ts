@@ -47,7 +47,7 @@ async function updatePerfumes() {
       const perfume = await perfumeRepo.findOne({ where: { id: update.id } });
       if (perfume) {
         perfume.description_en = update.description_en;
-        perfume.quote_en = update.quote_en;
+        perfume.sentence_en = update.quote_en;
         await perfumeRepo.save(perfume);
         console.log(`Updated ID ${update.id}: ${perfume.product_name}`);
       } else {

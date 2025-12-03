@@ -5,7 +5,7 @@
 核心逻辑：
 - **输入**：3 张塔罗牌 ID + 1 个气味偏好（问卷 Q4）。
 - **处理**：后端根据塔罗牌映射到对应的香水数据，并结合气味偏好选择背景图。
-- **输出**：3 个“香水章节”页面，包含品牌、产品名、香调、描述、引语和图片。
+- **输出**：3 个“香水章节”页面，包含品牌、产品名、香调、描述、一句话文案 (Sentence) 和图片。
 
 ## 2. UI 指南 (UI Guide)
 
@@ -52,8 +52,8 @@
 | `tags` | JSON | 标签数组 |
 | `description` | TEXT | 推荐理由/描述 (中文) |
 | `description_en` | TEXT | 推荐理由/描述 (英文) |
-| `quote` | TEXT | 励志引语 (中文) |
-| `quote_en` | TEXT | 励志引语 (英文) |
+| `sentence` | TEXT | 一句话文案 (中文) |
+| `sentence_en` | TEXT | 一句话文案 (英文) |
 | `image_url` | VARCHAR | 图片路径 |
 | `notes_top/heart/base` | TEXT | 香调信息 (中文) |
 | `notes_top_en/heart_en/base_en` | TEXT | 香调信息 (英文) |
@@ -86,7 +86,7 @@
         "base": "White musk"
       },
       "description": "...",
-      "quote": "...",
+      "sentence": "...",
       "imageUrl": "/assets/perfume/..."
     }
   ]

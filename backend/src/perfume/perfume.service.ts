@@ -68,9 +68,9 @@ export class PerfumeService {
           card_name: card.name_en,
           category,
           position: 'Present', 
-          language,
+          language: 'en' 
         });
-        return interp?.summary || null;
+        return interp?.sentence || null;
       })
     );
 
@@ -84,7 +84,7 @@ export class PerfumeService {
       // Dynamic quote overrides static quote
       const dynamicQuote = quotes[idx];
       // Static quote is deprecated but kept as fallback if needed, though likely null
-      const staticQuote = (isEn ? item.quote_en : item.quote) || item.quote || '';
+      const staticSentence = (isEn ? item.sentence_en : item.sentence) || item.sentence_en || '';
 
       return {
         id: item.id,
@@ -102,7 +102,7 @@ export class PerfumeService {
           base: '',
         },
         description: (isEn ? item.description_en : item.description) || item.description || '',
-        quote: dynamicQuote || staticQuote,
+        sentence: dynamicQuote || staticSentence,
         imageUrl: item.image_url ?? '',
       };
     });

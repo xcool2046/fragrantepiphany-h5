@@ -44,10 +44,8 @@ export class ImportController {
         position: r.position,
       };
       const suffix = lang === 'zh' ? '_zh' : '_en';
-      obj[`summary${suffix}`] = r.summary;
+      obj[`sentence${suffix}`] = r.summary;
       obj[`interpretation${suffix}`] = r.interpretation;
-      obj[`action${suffix}`] = r.action;
-      obj[`future${suffix}`] = r.future;
       obj[`recommendation${suffix}`] = r.recommendation
         ? JSON.parse(r.recommendation)
         : null;
@@ -76,14 +74,10 @@ export class ImportController {
         card_name: item.card_name,
         category: item.category,
         position: item.position,
-        summary_en: item.summary_en || '',
-        summary_zh: item.summary_zh || '',
+        sentence_en: item.sentence_en || '',
+        sentence_zh: item.sentence_zh || '',
         interpretation_en: item.interpretation_en || '',
         interpretation_zh: item.interpretation_zh || '',
-        action_en: item.action_en || '',
-        action_zh: item.action_zh || '',
-        future_en: item.future_en || '',
-        future_zh: item.future_zh || '',
         recommendation_en: item.recommendation_en
           ? JSON.stringify(item.recommendation_en)
           : '',

@@ -94,7 +94,7 @@ const PerfumeView: React.FC = () => {
           onComplete={() => navigate('/share', { 
             state: { 
               perfumeName: chapter.productName, 
-              quote: chapter.quote, 
+              sentence: chapter.sentence, 
               brandName: chapter.brandName 
             } 
           })}

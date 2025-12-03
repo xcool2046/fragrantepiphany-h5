@@ -16,7 +16,7 @@ export const mockPerfumeChapters: PerfumeChapter[] = [
     },
     description:
       'Lovers drawn to this are experiencing the genuine opening of new feelings. This perfume brings with it the clarity of fresh rose petals at dawn, bringing pure emotional experience to the initial stage of love or reconnection, allowing that tender heart feeling to be shown by the initial love or re-purchase good fragrance.',
-    quote: 'The fragrance of true beginnings',
+    sentence: 'The fragrance of true beginnings',
     imageUrl: '/src/assets/web/07296560-77c6-4ef6-9797-d84d25347096.png',
   },
   {
@@ -34,7 +34,7 @@ export const mockPerfumeChapters: PerfumeChapter[] = [
     },
     description:
       'The Magician embodies transformation and power. This warm woody scent brings confidence and presence, creating an aura of sophistication around you. It\'s perfect for those who are manifesting their desires and need to feel grounded in their personal power.',
-    quote: 'Power lies in transformation',
+    sentence: 'Power lies in transformation',
     imageUrl: '/src/assets/web/7a62202d-0ab3-4899-b037-cf676229c36c.png',
   },
   {
@@ -52,7 +52,7 @@ export const mockPerfumeChapters: PerfumeChapter[] = [
     },
     description:
       'The Hermit seeks wisdom in solitude. This mysterious dark floral guides you inward, inviting contemplation and deep self-discovery. The depth of this scent mirrors the journey of finding your own light within, revealing hidden truths and inner wisdom.',
-    quote: 'Wisdom blooms in stillness',
+    sentence: 'Wisdom blooms in stillness',
     imageUrl: '/src/assets/web/9aa28f50-b479-4eaa-b05d-e7287130c5ca.png',
   },
 ]

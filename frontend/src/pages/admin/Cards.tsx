@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Section from '../../components/Section'
 import SearchBar from '../../components/admin/SearchBar'
 import api from '../../api'

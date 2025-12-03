@@ -114,7 +114,7 @@ export type RuleMatchResult = {
     question_id: number
     card_codes: string[]
     priority: number
-    summary_free?: { en?: string; zh?: string } | null
+    sentence_free?: { en?: string; zh?: string } | null
     interpretation_full?: { en?: string; zh?: string } | null
     recommendations?: Array<{ title_en?: string; title_zh?: string; desc_en?: string; desc_zh?: string }> | null
   }
@@ -144,7 +144,8 @@ export type PerfumeChapter = {
   notes: PerfumeNotes
   description: string
   description_en?: string
-  quote?: string
+  sentence?: string
+  sentence_en?: string
   imageUrl: string
 }
 
@@ -157,10 +158,8 @@ export const getPerfumeChapters = (cardIds: number[], language = 'zh', scentAnsw
 export interface ReadingSection {
   position?: string;
   card_name?: string;
-  summary?: string | null;
+  sentence?: string | null;
   interpretation?: string | null;
-  action?: string | null;
-  future?: string | null;
   recommendation?: string | null;
   is_locked: boolean;
 }

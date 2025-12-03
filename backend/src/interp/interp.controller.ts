@@ -33,7 +33,9 @@ export class InterpretationController {
     @Query('position') position: string,
     @Query('language') language: string,
   ) {
-    return this.service.findOne({ card_name, category, position, language });
+    const result = await this.service.findOne({ card_name, category, position, language });
+    console.log('DEBUG: getOne result:', JSON.stringify(result, null, 2));
+    return result;
   }
 
   @Post('reading')
@@ -179,13 +181,17 @@ export class InterpretationController {
     @Query('language') language?: string,
     @Query('keyword') keyword?: string,
   ) {
-    return this.service.findAll(Number(page), Number(limit), {
+    const result = await this.service.findAll(Number(page), Number(limit), {
       card_name,
       category,
       position,
       language,
       keyword,
     });
+    if (result.items.length > 0) {
+      console.log('DEBUG: First Interp Item:', JSON.stringify(result.items[0], null, 2));
+    }
+    return result;
   }
 
   @UseGuards(AuthGuard('jwt'))
@@ -246,9 +252,9 @@ export class InterpretationController {
     }
 
     const summary =
-      interpretations[1]?.summary ||
-      interpretations[0]?.summary ||
-      interpretations[2]?.summary ||
+      interpretations[1]?.sentence ||
+      interpretations[0]?.sentence ||
+      interpretations[2]?.sentence ||
       '';
     const interpretationText = interpretations
       .map((i, idx) => {

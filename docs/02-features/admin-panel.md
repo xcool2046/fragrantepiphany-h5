@@ -23,13 +23,14 @@
     - **导出**: 导出当前所有卡牌为 CSV。
 - 解读库管理：
   - 按 `card_name + category(爱情/友情/亲情) + position(Past/Now/Future) + language` 的唯一组合增删改查。
-  - 字段：summary、interpretation、action（列表）、future、recommendation（列表）。
+  - 字段：sentence (原 summary)、interpretation、recommendation（列表）。
+  - *注：action 和 future 字段已弃用。*
   - 批量导入导出：支持 CSV/JSON；导入前校验必填字段和重复组合。
 - 问卷配置：
   - 三问四选一的文案与选项可编辑；支持多语言字段。
   - 状态保存后即时生效，前台读取最新配置。
 - 香水管理 (Perfume Management)（已实现）：
-  - 列表、查看、编辑香水信息（品牌、名称、香调、描述、引用、图片）。
+  - 列表、查看、编辑香水信息（品牌、名称、香调、描述、文案 (Sentence)、图片）。
   - 支持中英双语字段编辑。
   - 关联卡牌与场景选择。
 - 素材/静态配置（可选）：卡背/封面上传入口留空或简单上传，如时间不足可隐藏。

@@ -6,7 +6,7 @@ import shareBg from '../assets/share_bg.png'
 
 interface LocationState {
   perfumeName: string
-  quote: string
+  sentence: string;
   brandName?: string
   isLocked?: boolean
   savedName?: string
@@ -18,14 +18,14 @@ const SharePage: React.FC = () => {
   const navigate = useNavigate()
   const state = (location.state as LocationState) || {}
   
-  const [userName, setUserName] = useState(state.savedName || '')
+  const { perfumeName, brandName, savedName } = state
+  
+  const [userName, setUserName] = useState(savedName || '')
   const [generating, setGenerating] = useState(false)
   const [isLocked, setIsLocked] = useState(state.isLocked || false)
   const cardRef = useRef<HTMLDivElement>(null)
 
-  const perfumeName = state.perfumeName || 'Unknown Perfume'
-  const quote = state.quote || ''
-  const brandName = state.brandName || ''
+
 
   const handleGenerate = async () => {
     if (!cardRef.current) return
@@ -85,14 +85,13 @@ const SharePage: React.FC = () => {
                <div className="w-12 h-[1px] bg-[#2B1F16]/20 my-2" />
             </div>
 
-            {/* Middle Section: Quote */}
-            <div className="flex-1 flex items-center justify-center">
-                <p className="text-sm font-serif italic text-center leading-loose opacity-60 px-2 text-[#2B1F16]/80">
-                  &quot;{quote}&quot;
+              {state.sentence && (
+              <div className="mt-6 text-center px-4">
+                <p className="font-serif italic text-[#4A3B32]/90 text-sm leading-relaxed">
+                  "{state.sentence}"
                 </p>
-            </div>
-
-            {/* Bottom Section: User Name */}
+              </div>
+            )} {/* Bottom Section: User Name */}
             <div className="flex flex-col items-center text-center mb-16">
                 <p className="text-[10px] uppercase tracking-widest text-[#A87B51] mb-2">{t('share.for', 'For')}</p>
                 <div className="flex flex-col items-center min-w-[100px]">

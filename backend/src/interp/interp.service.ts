@@ -36,10 +36,8 @@ export class InterpretationService {
       category: record.category,
       position: record.position,
       language: lang,
-      summary: pick('summary'),
+      sentence: pick('sentence'),
       interpretation: pick('interpretation'),
-      action: pick('action'),
-      future: pick('future'),
       recommendation: pick('recommendation'),
     };
   }
@@ -71,10 +69,8 @@ export class InterpretationService {
       
       // Only set fields for the specific language. 
       // Do NOT set other language fields to null to avoid overwriting them in DB.
-      if ((item as any).summary !== undefined) base[`summary${prefix}`] = (item as any).summary;
+      if ((item as any).sentence !== undefined) base[`sentence${prefix}`] = (item as any).sentence;
       if ((item as any).interpretation !== undefined) base[`interpretation${prefix}`] = (item as any).interpretation;
-      if ((item as any).action !== undefined) base[`action${prefix}`] = (item as any).action;
-      if ((item as any).future !== undefined) base[`future${prefix}`] = (item as any).future;
       if ((item as any).recommendation !== undefined) base[`recommendation${prefix}`] = (item as any).recommendation;
 
       groups[normLang].push(base);
@@ -107,13 +103,13 @@ export class InterpretationService {
     if (filters.language) {
       const lang = filters.language.toLowerCase();
       qb.andWhere(
-        `(i.summary_${lang} IS NOT NULL OR i.interpretation_${lang} IS NOT NULL)`,
+        `(i.sentence_${lang} IS NOT NULL OR i.interpretation_${lang} IS NOT NULL)`,
       );
     }
     if (filters.keyword) {
       const kw = `%${filters.keyword.trim()}%`;
       qb.andWhere(
-        `(i.card_name ILIKE :kw OR i.summary_en ILIKE :kw OR i.summary_zh ILIKE :kw OR i.interpretation_en ILIKE :kw OR i.interpretation_zh ILIKE :kw OR i.action_en ILIKE :kw OR i.action_zh ILIKE :kw OR i.future_en ILIKE :kw OR i.future_zh ILIKE :kw)`,
+        `(i.card_name ILIKE :kw OR i.sentence_en ILIKE :kw OR i.sentence_zh ILIKE :kw OR i.interpretation_en ILIKE :kw OR i.interpretation_zh ILIKE :kw)`,
         { kw },
       );
     }

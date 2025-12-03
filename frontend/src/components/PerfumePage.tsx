@@ -50,10 +50,10 @@ const imageVariants = {
 
 const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers }) => {
   const { t, i18n } = useTranslation()
+  const { sentence } = chapter;
   const tags = chapter.tags ?? []
   const description = i18n.language === 'en' ? (chapter.description_en || '') : (chapter.description || '')
-  // Quote logic will be updated later to fetch from Tarot Interpretation
-  const quote = chapter.quote ?? ''
+
 
   // 根据问卷答案选择背景图 (使用 Q4 答案)
   const scentAnswer = answers?.['4']
@@ -111,14 +111,16 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers 
               </p>
             </motion.div>
 
+            {sentence && (
+            <div className="mt-8 text-center px-6">
+              <p className="font-serif italic text-[#4A3B32]/80 text-lg leading-relaxed">
+                "{sentence}"
+              </p>
+            </div>
+          )}
             {/* Bottom Section: Quote + Button */}
             <div className="mt-auto w-full flex flex-col items-center pb-2">
-                {/* Quote (Sentence) */}
-                {quote && (
-                    <motion.div className="text-center space-y-4 mb-8" variants={itemVariants}>
-                        <p className="text-lg italic text-[#2B1F16] font-serif leading-relaxed px-4">&quot;{quote}&quot;</p>
-                    </motion.div>
-                )}
+
 
                 {/* Button */}
                 <motion.button

@@ -24,3 +24,7 @@
 - [x] Deployment <!-- id: 11 -->
     - [x] Deploy updates if necessary <!-- id: 12 -->
     - [x] Run data fix script on production <!-- id: 13 -->
+
+- [x] Fix Empty Sentence Fields <!-- id: 14 -->
+    - [x] Delete empty rows in `tarot_interpretations` <!-- id: 15 -->
+    - [x] Populate `quote` in `perfumes` from `description` <!-- id: 16 -->

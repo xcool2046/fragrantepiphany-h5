@@ -7,7 +7,8 @@ import { Reorder } from 'framer-motion'
 type Perfume = {
   id: number
   card_id: number
-  card_name: string
+  sentence: string
+  sentence_en: string
   scene_choice: string
   scene_choice_en?: string | null
   brand_name: string
@@ -98,7 +99,8 @@ export default function Perfumes() {
     setEditing(null)
     setForm({
       card_id: 1,
-      card_name: '',
+      sentence: '',
+      sentence_en: '',
       scene_choice: '',
       brand_name: '',
       product_name: '',
@@ -228,8 +230,10 @@ export default function Perfumes() {
                   {item.status !== 'active' && <span className="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-600">禁用</span>}
                 </div>
                 <div className="text-sm text-[#6B5542] flex gap-4 flex-wrap items-center">
-                  <span>卡牌: {item.card_name} (ID: {item.card_id})</span>
+                  <span>卡牌: {item.card_id}</span>
                   <span>场景: {item.scene_choice}</span>
+                  {item.sentence && <span className="text-xs bg-gray-100 px-1 rounded text-gray-500">文案 (ZH): {item.sentence}</span>}
+                  {item.sentence_en && <span className="text-xs bg-gray-100 px-1 rounded text-gray-500">文案 (EN): {item.sentence_en}</span>}
                   {item.tags && item.tags.length > 0 && (
                     <span className="text-xs bg-gray-100 px-1 rounded text-gray-500">标签: {item.tags.join(', ')}</span>
                   )}
@@ -324,10 +328,33 @@ export default function Perfumes() {
                     <div className="flex-1">
                       <label className="text-xs text-[#6B5542]">卡牌名称</label>
                       <input 
-                        value={form.card_name || ''} 
+                        value={cards.find(c => c.id === form.card_id)?.name_en || '无效卡牌 ID'} 
                         readOnly
-                        className={`w-full rounded-lg border p-2 text-sm ${form.card_name === '无效卡牌 ID' ? 'bg-red-50 text-red-500' : 'bg-gray-100 text-gray-500'} cursor-not-allowed`} 
+                        className={`w-full rounded-lg border p-2 text-sm ${!cards.find(c => c.id === form.card_id) ? 'bg-red-50 text-red-500' : 'bg-gray-100 text-gray-500'} cursor-not-allowed`} 
                       />
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-medium text-[#2B1F16] border-b border-[#E8DCC5] pb-2">Sentence</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs text-[#4A3B32]/60 mb-1">English</label>
+                        <textarea
+                          rows={2}
+                          className="w-full px-4 py-2 bg-[#F9F7F2] border border-[#E8DCC5] rounded-lg focus:outline-none focus:border-[#8B5A2B]"
+                          value={form.sentence_en || ''}
+                          onChange={(e) => setForm({ ...form, sentence_en: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs text-[#4A3B32]/60 mb-1">Chinese</label>
+                        <textarea
+                          rows={2}
+                          className="w-full px-4 py-2 bg-[#F9F7F2] border border-[#E8DCC5] rounded-lg focus:outline-none focus:border-[#8B5A2B]"
+                          value={form.sentence || ''}
+                          onChange={(e) => setForm({ ...form, sentence: e.target.value })}
+                        />
+                      </div>
                     </div>
                   </div>
                   <div>

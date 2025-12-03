@@ -75,7 +75,10 @@ export class PerfumeController {
       category = categoryParam;
     }
 
-    const chapters = await this.perfumeService.getChapters(ids, lang, scentAnswer, category);
-    return { chapters };
+    const result = await this.perfumeService.getChapters(ids, language, scentAnswer, category);
+    if (result.length > 0) {
+      console.log('DEBUG: First Perfume Chapter:', JSON.stringify(result[0], null, 2));
+    }
+    return result;
   }
 }
