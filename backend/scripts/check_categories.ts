@@ -5,13 +5,15 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
+const dbUrl = process.env.DATABASE_URL;
+if (!dbUrl) {
+  console.error('Error: DATABASE_URL environment variable is not set.');
+  process.exit(1);
+}
+
 const AppDataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'tarot',
-  password: 'tarot',
-  database: 'tarot',
+  url: dbUrl,
   entities: [Interpretation],
   synchronize: false,
 });

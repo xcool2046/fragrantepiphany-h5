@@ -1,29 +1,34 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  css: {
-    postcss: {
-      plugins: [
-        tailwindcss(),
-        autoprefixer(),
-      ],
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+  const target = env.VITE_API_TARGET || 'http://localhost:3000'
+
+  return {
+    plugins: [react()],
+    css: {
+      postcss: {
+        plugins: [
+          tailwindcss(),
+          autoprefixer(),
+        ],
+      },
     },
-  },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-      },
-      '/uploads': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-      },
+    server: {
+      proxy: {
+        '/api': {
+          target: target,
+          changeOrigin: true,
+        },
+        '/uploads': {
+          target: target,
+          changeOrigin: true,
+        },
+      }
     }
   }
 })

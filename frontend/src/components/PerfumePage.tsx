@@ -11,7 +11,7 @@ interface PerfumePageProps {
   presentCardId?: number
 }
 
-import { BACKGROUND_IMAGES } from '../config/perfume-constants'
+import { SCENE_IMAGES } from '../config/perfume-constants'
 
 import { useTranslation } from 'react-i18next'
 import bgImage from '../assets/bg.png'
@@ -60,7 +60,7 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers,
 
   // 根据问卷答案选择背景图 (智能匹配选项内容，不依赖题号)
   const scentAnswer = useMemo(() => findScentAnswer(answers || {}), [answers])
-  const rightImage = (scentAnswer && BACKGROUND_IMAGES[scentAnswer]) || BACKGROUND_IMAGES.default
+  const rightImage = (scentAnswer && SCENE_IMAGES[scentAnswer]) || SCENE_IMAGES.default
 
   return (
     <div className="relative min-h-screen w-full bg-[#E8DCC5] overflow-hidden flex">

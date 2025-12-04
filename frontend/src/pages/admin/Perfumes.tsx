@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Section from '../../components/Section'
 import SearchBar from '../../components/admin/SearchBar'
 import api from '../../api'
+import { SCENE_OPTIONS } from '../../config/perfume-constants'
 import { Reorder } from 'framer-motion'
 
 type Perfume = {
@@ -226,10 +227,11 @@ export default function Perfumes() {
             className="px-3 py-2 rounded-xl border border-gray-200 text-sm focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20"
           >
             <option value="all">全场景</option>
-            <option value="A">A. 卧室</option>
-            <option value="B">B. 浴室</option>
-            <option value="C">C. 咖啡馆</option>
-            <option value="D">D. 白皂</option>
+            {SCENE_OPTIONS.map((opt) => (
+              <option key={opt.code} value={opt.code}>
+                {opt.label}
+              </option>
+            ))}
           </select>
 
           <input

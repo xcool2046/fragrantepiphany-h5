@@ -5,13 +5,15 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
+const dbUrl = process.env.DATABASE_URL;
+if (!dbUrl) {
+  console.error('Error: DATABASE_URL environment variable is not set.');
+  process.exit(1);
+}
+
 const AppDataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'tarot',
-  password: 'tarot',
-  database: 'tarot',
+  url: dbUrl,
   entities: [Interpretation],
   synchronize: false,
 });
@@ -31,9 +33,9 @@ async function run() {
       console.log('Category:', sample.category);
       console.log('Position:', sample.position);
       console.log('Interpretation EN:', sample.interpretation_en ? sample.interpretation_en.substring(0, 50) + '...' : 'NULL');
-      console.log('Summary EN:', sample.summary_en);
+      console.log('Summary EN:', sample.sentence_en);
       
-      if (sample.interpretation_en && sample.summary_en) {
+      if (sample.interpretation_en && sample.sentence_en) {
           console.log('VERIFICATION PASSED: English fields are populated.');
       } else {
           console.error('VERIFICATION FAILED: English fields are missing.');

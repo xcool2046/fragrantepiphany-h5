@@ -14,6 +14,8 @@ type Card = {
 
 const bgClass = 'bg-gradient-to-br from-[#F7F0E5] via-white to-[#F7F0E5]'
 
+const DEFAULT_CARD_BACK_IMAGE = '/assets/card-back.png'
+
 export default function Cards() {
   const getPreviewUrl = (url: string) => {
     if (!url) return ''
@@ -197,14 +199,14 @@ export default function Cards() {
             <div key={c.id} className="rounded-2xl border border-[#D4A373]/30 bg-white/70 backdrop-blur shadow-sm p-4 flex gap-3 hover:shadow-lg transition">
               <div className="w-20 h-28 rounded-xl overflow-hidden bg-[#F7F0E5] flex items-center justify-center border border-[#D4A373]/30">
                 <img
-                  src={c.image_url || `/assets/cards/${c.code}.jpg`}
+                  src={c.image_url || DEFAULT_CARD_BACK_IMAGE}
                   alt={c.name_en}
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     const target = e.currentTarget
                     if (target.dataset.fallbackApplied) return
                     target.dataset.fallbackApplied = '1'
-                    target.src = '/assets/card-back.png'
+                    target.src = DEFAULT_CARD_BACK_IMAGE
                   }}
                 />
               </div>
