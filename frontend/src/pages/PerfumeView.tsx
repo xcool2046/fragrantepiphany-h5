@@ -75,7 +75,7 @@ const PerfumeView: React.FC = () => {
           if (first === 'C') return 'Love';
           return 'Self'; // Default to Self (A)
         };
-        const category = mapCategory(scentAnswer);
+        const category = mapCategory(answers?.['4']);
 
         const res = await getPerfumeChapters({
           cardIndices,

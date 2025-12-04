@@ -27,23 +27,27 @@ export class PerfumeController {
     @Query('q4Answer') q4Answer?: string,
   ) {
     let ids: number[] = [];
+    let indicesResolved: number[] = [];
 
     // 1. Try resolving from indices (Frontend 0-77)
     if (cardIndices) {
-      const indices = cardIndices
+      indicesResolved = cardIndices
         .split(',')
         .map((v) => Number(v.trim()))
         .filter((v) => Number.isInteger(v));
 
-      if (indices.length > 0) {
+      if (indicesResolved.length > 0) {
         // Map indices to codes (0->01, 77->78)
-        const codes = indices.map((idx) =>
+        const codes = indicesResolved.map((idx) =>
           String((idx % 78) + 1).padStart(2, '0'),
         );
         const cards = await this.cardRepo.find({ where: { code: In(codes) } });
-        // Map back to IDs, preserving order relative to input indices not strictly required but good practice
-        // actually service sorts by card_id/order anyway.
         ids = cards.map((c) => c.id);
+
+        // Fallback: 如果按 code 查不到，退回用 index+1 作为卡 ID（数据库通常按 1-78 自增）
+        if (ids.length === 0) {
+          ids = indicesResolved.map((idx) => (idx % 78) + 1);
+        }
       }
     }
 
@@ -55,11 +59,11 @@ export class PerfumeController {
         .filter((v) => Number.isInteger(v) && v > 0);
     }
 
-    if (ids.length === 0) {
-      // If we had input but resolved nothing, that's an issue.
-      // But to avoid breaking errors, return empty.
-      return { chapters: [] };
-    }
+    // REMOVED: Early return if ids is empty.
+    // We want to call the service even with empty IDs so the fallback logic (default perfume) can trigger.
+    // if (ids.length === 0) {
+    //   return { chapters: [] };
+    // }
 
     // Normalize language
     const lang = language.toLowerCase().startsWith('zh') ? 'zh' : 'en';

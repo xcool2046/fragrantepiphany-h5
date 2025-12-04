@@ -64,49 +64,10 @@ export class PayService {
 
     const cached = this.priceCache.get(key);
     if (cached) return cached;
-
-    // If Stripe is not configured, we cannot resolve dynamically
-    if (!this.stripeReady) {
-      throw new Error('Stripe is not configured and no price mapping provided');
-    }
-
-    try {
-      const prices = await this.stripe!.prices.list({
-        active: true,
-        currency: key,
-        limit: 100,
-      });
-
-      const price =
-        prices.data.find((p) => p.type === 'one_time') ?? prices.data[0];
-      if (price) {
-        this.priceCache.set(key, price.id);
-        return price.id;
-      }
-
-      console.warn(
-        `No active Stripe price found for currency: ${currency}. Attempting to auto-create one.`,
-      );
-
-      // Auto-create product and price
-      const product = await this.stripe!.products.create({
-        name: 'Tarot Reading Unlock',
-        metadata: { type: 'tarot_unlock' },
-      });
-
-      const newPrice = await this.stripe!.prices.create({
-        product: product.id,
-        currency: key,
-        unit_amount: 500, // 5.00
-      });
-
-      console.log(`Auto-created price ${newPrice.id} for currency ${currency}`);
-      this.priceCache.set(key, newPrice.id);
-      return newPrice.id;
-    } catch (err) {
-      console.error(`Error resolving/creating price for ${currency}:`, err);
-      throw err;
-    }
+    // 不再自动创建，强制要求配置映射，避免静默硬编码价/商品名
+    throw new Error(
+      `Missing Stripe price mapping for currency "${currency}". Please set STRIPE_PRICE_IDS_JSON(_TEST) with a key "${key}" pointing to a valid price_id.`,
+    );
   }
 
   async createSession(input: {

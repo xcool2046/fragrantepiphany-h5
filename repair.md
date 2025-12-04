@@ -1,66 +1,19 @@
-基于你提供的视频批注和文字补充，我对《Fragrant Epiphany》H5应用的**UI/UX优化需求**进行了详细总结。
+卡牌解读（Result 页）
 
-核心指导思想是：**“沉浸感”与“书卷气”**。用户希望整个交互过程像**翻阅一本神秘的书籍**，有自然的翻页过程（耗时），而不是生硬的网页跳转。
+前端分类规则：frontend/src/pages/Result.tsx 中 mapQ4 把 Q4 选项首字母 A/B/C 映射到 Self/Career/Love，否则默认 Self，并在 Q4 缺失时用 Q1 文本做一次简单兜底（包含“关系/事业/自我”等关键词）。
+卡位映射：Result 页把用户选的 3 张牌按顺序当作 Past/Present/Future 传给后端（使用 realCardIds，由 deck_mapping 还原真实卡牌 ID）。
+后端解读：backend/src/interp/interp.controller.ts 在 /api/interp/reading 再次按 Q4 映射 Self/Career/Love，然后用传入卡牌顺序依次取 Past/Present/Future 解读（getInterpretationsForCards 在 backend/src/interp/interp.service.ts）。Past 永远解锁，Present/Future 未付费时锁定。
+结论：卡牌解读按图示“Q4 决定领域，自我/事业/感情，具体文案取决于卡牌位置”运行，与图片描述一致；额外存在的 Q1 兜底仅在 Q4 缺失时启用。
+香水解读（Perfume 页）
 
-以下是具体的修改清单：
+输入来源：frontend/src/pages/PerfumeView.tsx 取卡牌 ID 为“视觉 ID”（未经过 deck_mapping 还原真实卡），问卷答案用 findScentAnswer（frontend/src/utils/perfume-matcher.ts）遍历所有答案文本，找到与香氛场景文案匹配的那一项（未限定必须是 Q2，只按内容匹配）。Q4 同样映射成 Self/Career/Love 并传给后端。
+后端取数：backend/src/perfume/perfume.controller.ts 将传入的 card_indices 直接按 (idx%78)+1 映射成卡牌 code→ID，未使用前端的 deck_mapping。category 优先由 q4Answer 推导。
+数据筛选与句子生成：backend/src/perfume/perfume.service.ts 先查出所有匹配卡牌 ID 的香水（每张牌通常有 4 个场景），再用 scentAnswer 过滤场景选项。为每条香水记录调用 InterpretationService.findOne，使用传入的 category 和固定 position: 'Present' 取一句动态文案作为 sentence。
+前端选用哪一条香水：取回的 chapters 里，matchSceneChoice（frontend/src/utils/perfume-matcher.ts）按场景文案再次匹配 scentAnswer，返回第一条匹配的记录，若匹配不到则用最后一条作为兜底。由于后端已按卡牌顺序排序，这个“第一条”通常是第一张牌（Past），而不是图片要求的“现在”那张牌。页面上展示的卡图却是 presentCardId = cardIndices[1]（Present 位置的视觉 ID），出现卡图与文案不一定同源的风险。
+与图片要求的差异：
+按图应“根据 Q2 + 现在牌”挑香水，当前实现基于 scentAnswer 选出全部卡的匹配记录后取第一条，未强制使用“现在”的那张牌。
+取卡牌 ID 时未应用 deck_mapping，如果牌堆被洗牌（默认会），后端用的卡牌与 Result 页解读的真实卡可能不一致。
+动态句子用的是香水记录对应卡的 Present 位置 + Q4 决定的领域；若选中的香水记录不是“现在”那张牌，则句子也会偏离“现在牌 + Q4”的预期。
+其他：香水页面的“客观信息/映射文案/劝忘句子”三个层次目前呈现为品牌/产品/标签/描述 + 动态 sentence，没有额外拆出单独的“映射文案”段落。
+如需我按“现在牌 + Q2 场景 + Q4 领域”严格落地，需确认是否要：a) 在 PerfumeView 用 deck_mapping 把卡牌还原成真实 ID；b) 仅使用 Present 位置的卡生成香水章节；c) 明确三个文案段落的内容来源。
 
-### 1. 核心体验与节奏 (Core Vibe & Pacing)
-
-- **总体节奏变慢**：目前的体验过于急促，缺乏神秘感。需要留给用户“呼吸”和“阅读”的时间。
-    
-- **拒绝突兀跳转 (No Sudden Jumps)**：极其排斥点击按钮后下一页直接“蹦”出来（Pop-up）。
-    
-- **转场隐喻**：参考**PPT的“平移/擦除”（Wipe）特效**，模拟**翻页**的感觉。
-    
-- **转场时长**：全局页面切换/转场动画时间建议设定为 **1.25秒**（01.25s），给予用户心理缓冲。
-    
-
-### 2. 布局调整 (Layout)
-
-- **首页按钮下移**：
-    
-    - 视频 00:03 处，首页的 `START EXPLORE` 和 `LEARN MORE` 按钮区域（红框部分）位置过高，需要整体**向下移动**，以此平衡视觉重心。
-        
-- **问答页显示不全**：
-    
-    - 视频 00:21 处，问题选项页面因为文字排版问题，导致下方的文字被遮挡，用户需要滑动才能看到，这破坏了沉浸感。建议优化行高或容器高度，确保单屏内完整显示。
-        
-
-### 3. 具体交互与动画细节 (Interaction & Animation)
-
-按流程顺序优化：
-
-- **关于页 (About Page) -> 开始**：
-    
-    - `Begin` 按钮出现得太快（"嗖一下就飞上来了"）。需要更舒缓的淡入或上浮。
-        
-- **问答环节 (Questions)**：
-    
-    - 问题弹出太突兀。需要应用你在 `Tap to continue` 那个环节用过的、较慢的过渡方式。
-        
-- **引导语页面 ("Take a deep breath...")**：
-    
-    - **文字展示时长**：目前的文字停留时间太短（约1秒），用户来不及阅读。**要求：**延长一倍，调整为 **2秒 - 2.5秒**。
-        
-    - **背景图标**：视频 00:40 处，太阳/星盘图案与背景色应该**作为整体同时出现**，不要先出背景色再出线条图案，显得像加载卡顿。
-        
-- **抽牌环节 (Card Selection)**：
-    
-    - **进入牌阵**：视频 00:51 处，跳转到牌阵界面太突然，需要增加“翻页/过渡”动画。
-        
-    - **选牌动画逻辑**：视频 00:58 处，目前的动画是“移动过去很快，插进卡槽很慢”，这很不符合物理直觉。**要求：** 匀速或自然的缓动，并且卡牌入槽后**自动**进入下一步，**不需要**用户再点击一次确认或“Next”。
-        
-    - **抽牌结束**：选完三张牌后，不需要再“震一下”。
-        
-- **结果揭晓 (Revelation)**：
-    
-    - 视频 1:10 处，从抽牌结束到结果页，建议使用 **PPT特效（淡出/平移）** 缓慢过渡，不要白屏突变。
-        
-
-### 4. 下一步行动建议
-
-你可以将这段总结直接发给开发/设计人员，重点强调：
-
-> **"这不是一个只有功能的网页，而是一个线上的冥想仪式。所有的动画都要慢下来，模拟翻书的物理质感（Wipe, 1.25s duration），文字要让人以此读完，不要让用户感到被催促。"**
-
-需要我帮你把这些需求整理成英文的开发Ticket（工单）格式吗？

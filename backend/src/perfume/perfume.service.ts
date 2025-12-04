@@ -6,6 +6,11 @@ import { Card } from '../entities/card.entity';
 
 import { InterpretationService } from '../interp/interp.service';
 
+// 简易配置层，避免硬编码兜底 ID
+const FALLBACK_PERFUME_ID = process.env.PERFUME_FALLBACK_ID
+  ? Number(process.env.PERFUME_FALLBACK_ID)
+  : null;
+
 @Injectable()
 export class PerfumeService {
   constructor(
@@ -55,15 +60,41 @@ export class PerfumeService {
 
     // Fallback: If no perfumes found (e.g. cards have no data), use a default one
     if (items.length === 0) {
-      const defaultPerfume = await this.perfumeRepo.findOne({
-        where: { id: 22 },
-      }); // Diptyque Eau Capitale
-      if (defaultPerfume) {
-        items = [defaultPerfume];
-        // Ensure we fetch the card for this perfume
-        if (!ids.includes(defaultPerfume.card_id)) {
-          ids.push(defaultPerfume.card_id);
+      let fallback: Perfume | null = null;
+
+      // 1. Priority: Try Env-defined ID
+      if (FALLBACK_PERFUME_ID) {
+        fallback = await this.perfumeRepo.findOne({
+          where: { id: FALLBACK_PERFUME_ID, status: 'active' },
+        });
+        if (!fallback) {
+          console.warn(
+            `Perfume fallback id=${FALLBACK_PERFUME_ID} not found or inactive.`,
+          );
         }
+      }
+
+      // 2. Backup: Try first active perfume if Env failed
+      if (!fallback) {
+        fallback = await this.perfumeRepo.findOne({
+          where: { status: 'active' },
+          order: { id: 'ASC' },
+        });
+        if (fallback) {
+          console.log(
+            `Using auto-fallback perfume id=${fallback.id} (First Active).`,
+          );
+        }
+      }
+
+      // Apply fallback if found
+      if (fallback) {
+        items = [fallback];
+        if (!ids.includes(fallback.card_id)) {
+          ids.push(fallback.card_id);
+        }
+      } else {
+        console.warn('No active perfumes found for fallback. Returning empty.');
       }
     }
 

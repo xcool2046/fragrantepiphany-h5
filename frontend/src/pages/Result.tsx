@@ -8,6 +8,7 @@ import GlobalLoading from '../components/GlobalLoading'
 
 interface LocationState {
   cardIds?: number[]
+  realCardIds?: number[]
   answers?: Record<string, string>
 }
 
@@ -43,6 +44,11 @@ const Result: React.FC = () => {
 
   // Retrieve the Deck Mapping to translate Visual ID -> Real Content ID
   const realCardIds = useMemo(() => {
+      // 1. If we recovered Real IDs from Order Metadata, use them directly.
+      if (state.realCardIds && state.realCardIds.length === 3) {
+          return state.realCardIds
+      }
+
       try {
           const savedMapping = localStorage.getItem('deck_mapping')
           if (savedMapping) {
@@ -57,7 +63,7 @@ const Result: React.FC = () => {
       }
       // Fallback: if no mapping found (old session?), assume ID is Real ID
       return cardIds
-  }, [cardIds])
+  }, [cardIds, state.realCardIds])
 
   const answers = useMemo(() => {
     const val = state.answers || {}
@@ -239,13 +245,20 @@ const Result: React.FC = () => {
         }
         if (res?.metadata && (!state.cardIds || state.cardIds.length === 0)) {
             try {
-                const meta = res.metadata as { cardIds?: string | number[]; answers?: string | Record<string, string> };
+                const meta = res.metadata as { cardIds?: string | number[]; realCardIds?: string | number[]; answers?: string | Record<string, string> };
                 
                 let recoveredIds: number[] = [];
                 if (Array.isArray(meta.cardIds)) {
                     recoveredIds = meta.cardIds;
                 } else if (typeof meta.cardIds === 'string') {
                     recoveredIds = meta.cardIds.split(',').map((s: string) => parseInt(s.trim(), 10)).filter((n: number) => !isNaN(n));
+                }
+
+                let recoveredRealIds: number[] = [];
+                if (Array.isArray(meta.realCardIds)) {
+                    recoveredRealIds = meta.realCardIds;
+                } else if (typeof meta.realCardIds === 'string') {
+                    recoveredRealIds = meta.realCardIds.split(',').map((s: string) => parseInt(s.trim(), 10)).filter((n: number) => !isNaN(n));
                 }
 
                 let recoveredAnswers: Record<string, string> = {};
@@ -264,6 +277,7 @@ const Result: React.FC = () => {
                         state: {
                             ...state,
                             cardIds: recoveredIds,
+                            realCardIds: recoveredRealIds.length === 3 ? recoveredRealIds : undefined,
                             answers: recoveredAnswers
                         },
                         replace: true
@@ -309,7 +323,11 @@ const Result: React.FC = () => {
     try {
       const res = await createCheckout({
         currency: 'usd',
-        metadata: { cardIds: cardIds.join(','), answers }
+        metadata: { 
+            cardIds: cardIds.join(','), 
+            realCardIds: realCardIds.join(','), // Save Real IDs
+            answers 
+        }
       })
       
       if (res?.sessionUrl) {

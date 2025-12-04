@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback, memo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useMotionValueEvent, MotionValue, animate } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useMotionValueEvent, MotionValue, animate, useAnimation } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 import { createPortal } from 'react-dom'
@@ -30,7 +30,6 @@ interface WheelCardProps {
 
 // --- Components ---
 
-// FlyingCard Component for Animation
 const FlyingCard = ({
     cardId,
     startRect,
@@ -73,36 +72,52 @@ const FlyingCard = ({
     // FIX: Disable scaling as requested. Keep card at natural 80x120 size.
     const scale = 1
 
+    const controls = useAnimation()
+
+    React.useEffect(() => {
+        // 1. Set Initial State Immediately
+        controls.set({
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            x: initialX,
+            y: initialY,
+            width: CARD_WIDTH,
+            height: CARD_HEIGHT,
+            rotate: initialRotate - 90, // Start as "Horizontal" (Vertical - 90)
+            scale: 1,
+            opacity: 1,
+            zIndex: 99999,
+        })
+
+        // 2. Trigger Animation in next frame to ensure browser paints the initial state
+        const timer = requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                controls.start({
+                    x: targetX,
+                    y: targetY,
+                    rotate: 0, // Rotate to Vertical (Upright)
+                    scale: scale,
+                    transition: { 
+                        duration: 0.8,
+                        ease: "easeOut", // Snappy easeOut
+                    }
+                }).then(() => {
+                    if (onComplete) onComplete()
+                })
+            })
+        })
+
+        return () => cancelAnimationFrame(timer)
+    }, [controls, initialX, initialY, initialRotate, targetX, targetY, scale, onComplete])
+
     return createPortal(
         <motion.div
-            initial={{ 
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                x: initialX,
-                y: initialY,
-                width: CARD_WIDTH,
-                height: CARD_HEIGHT,
-                rotate: initialRotate - 90, // Start as "Horizontal" (Vertical - 90)
-                scale: 1,
-                opacity: 1,
-                zIndex: 99999, 
-            }}
-            animate={{ 
-                x: targetX,
-                y: targetY,
-                rotate: 0, // Rotate to Vertical (Upright)
-                scale: scale,
-            }}
-            transition={{ 
-                duration: 0.8,
-                ease: "easeOut", // Snappy easeOut
-            }}
-            onAnimationComplete={onComplete}
+            animate={controls}
             className="pointer-events-none font-serif fixed z-[99999]"
             style={{ transformOrigin: 'center center' }}
         >
-            <div className="w-full h-full relative"> {/* Removed shadow-2xl to match SlotCard flat style */}
+            <div className="w-full h-full relative shadow-[-5px_0px_10px_rgba(0,0,0,0.2)] rounded-lg bg-[#14100F]">
                  <CardFace id={cardId} variant="slot" vertical={true} side="back" />
             </div>
         </motion.div>,
@@ -449,11 +464,10 @@ const Draw: React.FC = () => {
             })
 
             // Force complete after 1550ms (1.5s animation + 0.05s buffer)
-            // REMOVED: Using onAnimationComplete in FlyingCard instead for instant transition
-            // if (animationTimer.current) clearTimeout(animationTimer.current)
-            // animationTimer.current = setTimeout(() => {
-            //     handleAnimationComplete(cardId, targetIndex)
-            // }, 1550)
+            if (animationTimer.current) clearTimeout(animationTimer.current)
+            animationTimer.current = setTimeout(() => {
+                handleAnimationComplete(cardId, targetIndex)
+            }, 1550)
 
         } else {
             // Fallback if ref missing

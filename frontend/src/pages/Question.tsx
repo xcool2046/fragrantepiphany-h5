@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 import { submitQuestionnaire, fetchQuestions, Question } from '../api'
-
-import { MOCK_QUESTIONS } from '../constants/questions'
 import QuestionSkeleton from '../components/QuestionSkeleton'
 
 const QuestionPage: React.FC = () => {
@@ -15,26 +13,32 @@ const QuestionPage: React.FC = () => {
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  const loadQuestions = useCallback(async () => {
+    setError(null)
+    setLoading(true)
+    try {
+      const data = await fetchQuestions()
+      if (data && data.length > 0) {
+        setQuestions(data)
+      } else {
+        console.warn('No questions from API, questions list is empty')
+        setQuestions([])
+        setError(t('question.loadEmpty', '题库为空，请稍后重试'))
+      }
+    } catch (err) {
+      console.error('Failed to fetch questions', err)
+      setQuestions([])
+      setError(t('question.loadFailed', '题库加载失败，请稍后重试'))
+    } finally {
+      setLoading(false)
+    }
+  }, [t])
 
   useEffect(() => {
-    const loadQuestions = async () => {
-      try {
-        const data = await fetchQuestions()
-        if (data && data.length > 0) {
-          setQuestions(data)
-        } else {
-          console.warn('No questions from API, using mock data')
-          setQuestions(MOCK_QUESTIONS)
-        }
-      } catch (err) {
-        console.error('Failed to fetch questions, using mock data', err)
-        setQuestions(MOCK_QUESTIONS)
-      } finally {
-        setLoading(false)
-      }
-    }
     loadQuestions()
-  }, [])
+  }, [loadQuestions])
 
   const isZh = i18n.language.startsWith('zh')
   
@@ -49,6 +53,7 @@ const QuestionPage: React.FC = () => {
   }
 
   const handleContinue = async () => {
+    if (error || questions.length === 0) return
     const totalPages = Math.ceil(questions.length / QUESTIONS_PER_PAGE)
     if (page < totalPages - 1) {
       // Go to next page
@@ -75,6 +80,31 @@ const QuestionPage: React.FC = () => {
 
   if (loading) {
     return <QuestionSkeleton />
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen w-full bg-background text-text px-4 py-12 flex items-center justify-center">
+        <div className="max-w-md w-full glass-panel p-8 text-center space-y-4">
+          <h2 className="text-2xl font-serif text-text">{t('question.loadFailedTitle', '问卷加载失败')}</h2>
+          <p className="text-subtext">{error}</p>
+          <div className="flex justify-center gap-3">
+            <button
+              onClick={loadQuestions}
+              className="px-6 py-3 rounded-full bg-text text-white text-sm tracking-wide font-serif hover:opacity-90"
+            >
+              {t('common.retry', '重试')}
+            </button>
+            <button
+              onClick={() => navigate('/')}
+              className="px-6 py-3 rounded-full bg-white border text-text text-sm tracking-wide font-serif hover:border-text/50"
+            >
+              {t('common.back', '返回首页')}
+            </button>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
