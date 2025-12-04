@@ -6,7 +6,7 @@ import { getPerfumeChapters, PerfumeChapter } from '../api'
 import PerfumePage from '../components/PerfumePage'
 import GlobalLoading from '../components/GlobalLoading'
 
-import { matchSceneChoice } from '../utils/perfume-matcher'
+import { matchSceneChoice, findScentAnswer } from '../utils/perfume-matcher'
 
 interface LocationState {
   cardIds?: number[]
@@ -18,14 +18,35 @@ const PerfumeView: React.FC = () => {
   const navigate = useNavigate()
   const { t, i18n } = useTranslation()
 
-  const cardIds = useMemo(() => {
+  const cardIndices = useMemo(() => {
     const state = (location.state as LocationState) || {}
-    return state.cardIds || []
+    if (state.cardIds && state.cardIds.length > 0) return state.cardIds
+
+    // Fallback: 从 localStorage 恢复
+    try {
+      const saved = localStorage.getItem('last_card_ids')
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed
+      }
+    } catch {
+      // ignore
+    }
+    return []
   }, [location.state])
 
   const answers = useMemo(() => {
     const state = (location.state as LocationState) || {}
-    return state.answers || {}
+    const val = state.answers
+    if (val && Object.keys(val).length > 0) return val
+    
+    try {
+        const saved = localStorage.getItem('last_answers')
+        if (saved) return JSON.parse(saved)
+    } catch {
+        // ignore
+    }
+    return {}
   }, [location.state])
 
   const [chapters, setChapters] = useState<PerfumeChapter[]>([])
@@ -34,8 +55,9 @@ const PerfumeView: React.FC = () => {
 
   // Fetch perfume chapters
   useEffect(() => {
-    if (cardIds.length === 0) {
+    if (cardIndices.length === 0) {
       setError(t('perfume.noCards', 'No cards provided'))
+      setLoading(false)
       return
     }
 
@@ -43,7 +65,7 @@ const PerfumeView: React.FC = () => {
       try {
         setLoading(true)
         // Pass language + scent answer (prefer Q2, fallback Q4)
-        const scentAnswer = answers['2'] || answers['4']
+        const scentAnswer = findScentAnswer(answers);
         
         // Map Q4 answer to category (Self/Career/Love)
         const mapCategory = (val?: string) => {
@@ -53,9 +75,15 @@ const PerfumeView: React.FC = () => {
           if (first === 'C') return 'Love';
           return 'Self'; // Default to Self (A)
         };
-        const category = mapCategory(answers['4']);
+        const category = mapCategory(scentAnswer);
 
-        const res = await getPerfumeChapters(cardIds, i18n.language, scentAnswer, category)
+        const res = await getPerfumeChapters({
+          cardIndices,
+          language: i18n.language,
+          scentAnswer,
+          category,
+          q4Answer: answers?.['4'],
+        })
 
         setChapters(res.data.chapters)
         setError(null)
@@ -69,11 +97,11 @@ const PerfumeView: React.FC = () => {
     }
 
     fetchChapters()
-  }, [cardIds, i18n.language])
+  }, [cardIndices, i18n.language, answers])
 
   // Filter chapters based on scent answer (prefer Q2, fallback Q4)
   const chapter = useMemo(() => {
-    const scentAnswer = answers['2'] || answers['4']
+    const scentAnswer = findScentAnswer(answers);
     return matchSceneChoice(chapters, scentAnswer)
   }, [chapters, answers])
 
@@ -111,7 +139,7 @@ const PerfumeView: React.FC = () => {
             } 
           })}
           answers={answers}
-          presentCardId={cardIds[1]}
+          presentCardId={cardIndices[1]}
         />
       </div>
     </div>

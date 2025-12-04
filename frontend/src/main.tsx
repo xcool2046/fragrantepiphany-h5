@@ -7,6 +7,7 @@ import RippleEffect from './components/RippleEffect'
 import NoiseOverlay from './components/NoiseOverlay'
 import GlobalLoading from './components/GlobalLoading'
 import AppRoutes from './AppRoutes'
+import { CardDataProvider } from './contexts/CardDataContext'
 
 // Global scroll manager to avoid returning to a page at the previous offset (e.g., back from Perfume to Result)
 const ScrollManager: React.FC = () => {
@@ -26,10 +27,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Suspense fallback={<GlobalLoading />}>
       <BrowserRouter>
-        <ScrollManager />
-        <RippleEffect />
-        <NoiseOverlay />
-        <AppRoutes />
+        <CardDataProvider>
+          <ScrollManager />
+          <RippleEffect />
+          <NoiseOverlay />
+          <AppRoutes />
+        </CardDataProvider>
       </BrowserRouter>
     </Suspense>
   </React.StrictMode>,

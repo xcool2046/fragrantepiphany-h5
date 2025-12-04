@@ -40,7 +40,45 @@ const Result: React.FC = () => {
     if (searchParams.get('debug') === 'unlocked') return [1, 2, 3]
     return []
   }, [state.cardIds, searchParams])
-  const answers = useMemo(() => state.answers || {}, [state.answers])
+
+  // Retrieve the Deck Mapping to translate Visual ID -> Real Content ID
+  const realCardIds = useMemo(() => {
+      try {
+          const savedMapping = localStorage.getItem('deck_mapping')
+          if (savedMapping) {
+              const mapping = JSON.parse(savedMapping)
+              if (Array.isArray(mapping) && cardIds.length === 3) {
+                  // Map visual ID to Real ID
+                  return cardIds.map(visualId => mapping[visualId])
+              }
+          }
+      } catch (e) {
+          console.warn('Failed to load deck mapping', e)
+      }
+      // Fallback: if no mapping found (old session?), assume ID is Real ID
+      return cardIds
+  }, [cardIds])
+
+  const answers = useMemo(() => {
+    const val = state.answers || {}
+    // If we have answers, save them
+    if (Object.keys(val).length > 0) {
+        localStorage.setItem('last_answers', JSON.stringify(val))
+        return val
+    }
+    
+    // If no answers in state, try to recover
+    try {
+        const saved = localStorage.getItem('last_answers')
+        if (saved) {
+            return JSON.parse(saved)
+        }
+    } catch {
+        console.warn('Failed to recover answers from local storage')
+    }
+    
+    return {}
+  }, [state.answers])
 
   const [revealed, setRevealed] = useState<boolean[]>([false, false, false])
   const [textVisible, setTextVisible] = useState(false)
@@ -163,14 +201,14 @@ const Result: React.FC = () => {
       }
     }
     
-    console.log('Fetching reading for category:', category)
+    console.log('Fetching reading for category:', category, 'Real IDs:', realCardIds)
 
     const currentOrderId = searchParams.get('orderId') || undefined
     const debugMode = searchParams.get('debug') === 'unlocked'
     const effectiveOrderId = debugMode ? 'debug-unlocked' : currentOrderId
 
     getReading({
-      card_indices: normalizedCardIds,
+      card_indices: realCardIds, // Use the Real Content IDs for the API
       language: i18n.language,
       category,
       answers,
@@ -189,7 +227,7 @@ const Result: React.FC = () => {
         setReadingData(null)
         setMatchStatus('error')
       })
-  }, [normalizedCardIds, answers, i18n.language, searchParams])
+  }, [normalizedCardIds, realCardIds, answers, i18n.language, searchParams])
 
   useEffect(() => {
     const orderId = searchParams.get('orderId')
@@ -592,6 +630,10 @@ const Result: React.FC = () => {
                           setDirection(1)
                           setCurrentPageStep(1)
                         } else {
+                          // 确保跳转前保存 answers 到 localStorage
+                          if (Object.keys(answers).length > 0) {
+                            localStorage.setItem('last_answers', JSON.stringify(answers))
+                          }
                           navigate('/perfume', { state: { cardIds: normalizedCardIds, answers } })
                         }
                       }}

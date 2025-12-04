@@ -171,6 +171,7 @@ export class PayService {
             quantity: 1,
           },
         ],
+        payment_method_types: ['card'],
         success_url: successUrl,
         cancel_url: cancelUrl,
         metadata: stripeMetadata,

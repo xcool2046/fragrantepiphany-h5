@@ -24,7 +24,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['"Noto Sans SC"', '"Source Han Sans SC"', '"Source Han Sans CN"', '"Microsoft YaHei"', 'Inter', 'sans-serif'],
         serif: ['"Playfair Display"', 'serif'],
         lora: ['"Lora"', 'serif'],
         cinzel: ['"Cinzel"', 'serif'],

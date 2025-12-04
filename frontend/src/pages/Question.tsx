@@ -59,6 +59,9 @@ const QuestionPage: React.FC = () => {
 
     if (!isAllComplete) return
 
+    // 立即保存到 localStorage，防止后续页面刷新丢失
+    localStorage.setItem('last_answers', JSON.stringify(answers))
+
     try {
       // 提交答案
       await submitQuestionnaire(answers)

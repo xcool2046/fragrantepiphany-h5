@@ -1,9 +1,6 @@
-import { memo, useEffect, useState } from 'react'
+import { memo } from 'react'
 import clsx from 'clsx'
-
-// Lazy load all card images
-// eager: false (default) returns functions that return Promises
-const cardImages = import.meta.glob('../assets/cards/*.jpg', { eager: false, as: 'url' })
+import { useCardData } from '../contexts/CardDataContext'
 
 interface CardFaceProps {
     id: number;
@@ -13,33 +10,29 @@ interface CardFaceProps {
 }
 
 export const CardFace = memo(({ id, variant = 'wheel', side = 'back', vertical = false }: CardFaceProps) => {
-    const [imageSrc, setImageSrc] = useState<string | null>(null)
+    const { getCardImageUrl } = useCardData()
 
-    // Get real image path key
-    // ID is 0-77 (from array index), but files are 01.jpg - 78.jpg
-    const fileIndex = String(id + 1).padStart(2, '0')
-    const imageKey = `../assets/cards/${fileIndex}.jpg`
-
-    useEffect(() => {
-        // Only load image if we are showing the front
-        if (side === 'front') {
-            const loader = cardImages[imageKey]
-            if (loader) {
-                loader().then((url) => {
-                    setImageSrc(url)
-                }).catch((err) => {
-                    console.error(`Failed to load card image: ${imageKey}`, err)
-                })
+    // Resolve Real Content ID from Visual ID if showing Front
+    let realId = id
+    if (side === 'front') {
+        try {
+            const savedMapping = localStorage.getItem('deck_mapping')
+            if (savedMapping) {
+                const mapping = JSON.parse(savedMapping)
+                if (Array.isArray(mapping) && mapping[id] !== undefined) {
+                    realId = mapping[id]
+                }
             }
-        } else {
-            // If side changes back to back, we technically don't need to clear it, 
-            // but we won't render it. 
-            // Keeping it loaded is fine for cache.
+        } catch (e) {
+            console.warn('Failed to resolve card content mapping', e)
         }
-    }, [id, side, imageKey])
-    
-    // Use 'NO.' prefix as requested -> CHANGED to pure number
-    const numberLabel = `${fileIndex}`
+    }
+
+    // 从 API 获取图片 URL (Use Real ID for Content)
+    const imageSrc = side === 'front' ? getCardImageUrl(realId) : null
+
+    // 卡牌编号显示 (id 是 0-77，显示为 01-78) - (Use Visual ID for Shell)
+    const numberLabel = String(id + 1).padStart(2, '0')
     const isWheel = variant === 'wheel'
     const showBadge = side === 'back'
 

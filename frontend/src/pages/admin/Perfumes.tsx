@@ -16,6 +16,7 @@ type Perfume = {
   product_name_en?: string | null
   brand_name_en?: string | null
   tags?: string[] | null
+  tags_en?: string[] | null
   description?: string | null
   description_en?: string | null
   image_url?: string | null
@@ -41,6 +42,7 @@ export default function Perfumes() {
   const [form, setForm] = useState<Partial<Perfume>>({})
   // Tags state: array of strings
   const [tagsList, setTagsList] = useState<string[]>([])
+  const [tagsEnList, setTagsEnList] = useState<string[]>([])
   // Language toggle state
   const [textLang, setTextLang] = useState<'zh' | 'en'>('zh')
 
@@ -111,6 +113,7 @@ export default function Perfumes() {
     })
     // Initialize with 3 empty tags
     setTagsList(['', '', ''])
+    setTagsEnList(['', '', ''])
     setTextLang('zh')
     setModalOpen(true)
   }
@@ -125,6 +128,12 @@ export default function Perfumes() {
       currentTags.push('')
     }
     setTagsList(currentTags)
+
+    const currentTagsEn = item.tags_en ? [...item.tags_en] : []
+    while (currentTagsEn.length < 3) {
+      currentTagsEn.push('')
+    }
+    setTagsEnList(currentTagsEn)
     
     setTextLang('zh')
     setModalOpen(true)
@@ -145,7 +154,8 @@ export default function Perfumes() {
 
     // Process tags: filter out empty strings
     const processedTags = tagsList.map(t => t.trim()).filter(Boolean)
-    const payload = { ...form, tags: processedTags }
+    const processedTagsEn = tagsEnList.map(t => t.trim()).filter(Boolean)
+    const payload = { ...form, tags: processedTags, tags_en: processedTagsEn }
 
     try {
       if (editing) {
@@ -190,6 +200,12 @@ export default function Perfumes() {
     const newTags = [...tagsList]
     newTags[index] = value
     setTagsList(newTags)
+  }
+
+  const updateTagEn = (index: number, value: string) => {
+    const newTags = [...tagsEnList]
+    newTags[index] = value
+    setTagsEnList(newTags)
   }
 
   return (
@@ -344,29 +360,54 @@ export default function Perfumes() {
                   </div>
 
                   <div>
-                    <label className="text-xs text-[#6B5542] mb-1 block">标签 (拖拽排序)</label>
-                    <Reorder.Group axis="y" values={tagsList} onReorder={setTagsList} className="space-y-2">
-                      {tagsList.map((tag, index) => (
-                        <Reorder.Item key={tag} value={tag} className="flex items-center gap-2">
-                          <div className="cursor-grab text-gray-400 hover:text-[#D4A373] active:cursor-grabbing">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <line x1="8" y1="6" x2="21" y2="6"></line>
-                              <line x1="8" y1="12" x2="21" y2="12"></line>
-                              <line x1="8" y1="18" x2="21" y2="18"></line>
-                              <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                              <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                              <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                            </svg>
-                          </div>
-                          <input 
-                            value={tag} 
-                            onChange={e => updateTag(index, e.target.value)} 
-                            placeholder={`标签 ${index + 1}`} 
-                            className="flex-1 rounded-lg border p-2 text-sm" 
-                          />
-                        </Reorder.Item>
-                      ))}
-                    </Reorder.Group>
+                    <label className="text-xs text-[#6B5542] mb-1 block">标签 ({textLang === 'zh' ? 'ZH' : 'EN'}) (拖拽排序)</label>
+                    {textLang === 'zh' ? (
+                      <Reorder.Group axis="y" values={tagsList} onReorder={setTagsList} className="space-y-2">
+                        {tagsList.map((tag, index) => (
+                          <Reorder.Item key={tag} value={tag} className="flex items-center gap-2">
+                            <div className="cursor-grab text-gray-400 hover:text-[#D4A373] active:cursor-grabbing">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                              </svg>
+                            </div>
+                            <input 
+                              value={tag} 
+                              onChange={e => updateTag(index, e.target.value)} 
+                              placeholder={`标签 (ZH) ${index + 1}`} 
+                              className="flex-1 rounded-lg border p-2 text-sm" 
+                            />
+                          </Reorder.Item>
+                        ))}
+                      </Reorder.Group>
+                    ) : (
+                      <Reorder.Group axis="y" values={tagsEnList} onReorder={setTagsEnList} className="space-y-2">
+                        {tagsEnList.map((tag, index) => (
+                          <Reorder.Item key={tag} value={tag} className="flex items-center gap-2">
+                            <div className="cursor-grab text-gray-400 hover:text-[#D4A373] active:cursor-grabbing">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                              </svg>
+                            </div>
+                            <input 
+                              value={tag} 
+                              onChange={e => updateTagEn(index, e.target.value)} 
+                              placeholder={`Tag (EN) ${index + 1}`} 
+                              className="flex-1 rounded-lg border p-2 text-sm" 
+                            />
+                          </Reorder.Item>
+                        ))}
+                      </Reorder.Group>
+                    )}
                   </div>
                </div>
 

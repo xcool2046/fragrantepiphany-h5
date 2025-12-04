@@ -27,8 +27,30 @@ export class PerfumeService {
 
     // Filter by scent answer if provided (e.g. 'A')
     if (scentAnswer) {
-      const prefix = scentAnswer.toUpperCase();
-      items = items.filter((item) => item.scene_choice.startsWith(prefix));
+      const original = items;
+      const normalizedAnswer = scentAnswer.replace(/^[A-Z]\.\s*/, '').trim().toLowerCase();
+      const prefix = scentAnswer.trim().charAt(0).toUpperCase();
+
+      const filtered = items.filter((item) => {
+        const scene = item.scene_choice || '';
+        const normalizedScene = scene.replace(/^[A-Z]\.\s*/, '').trim().toLowerCase();
+
+        const matchPrefix = ['A', 'B', 'C', 'D'].includes(prefix)
+          ? scene.trim().toUpperCase().startsWith(prefix)
+          : false;
+
+        const hasAnswer = normalizedAnswer.length > 0;
+        const matchText = hasAnswer
+          ? normalizedScene.includes(normalizedAnswer) || normalizedAnswer.includes(normalizedScene)
+          : false;
+
+        return matchPrefix || matchText;
+      });
+
+      // If filtering removed everything, fall back to original set to avoid empty results caused by mismatched formats.
+      if (filtered.length > 0) {
+        items = filtered;
+      }
     }
 
     // Fallback: If no perfumes found (e.g. cards have no data), use a default one
@@ -84,8 +106,8 @@ export class PerfumeService {
       const cardName =
         (isEn ? card?.name_en : item.card_name) || item.card_name;
 
-      // Use tags from DB
-      const tags = item.tags ?? [];
+      // Use tags from DB based on language
+      const tags = (isEn ? item.tags_en : item.tags) ?? [];
 
       // Dynamic quote overrides static quote
       const dynamicQuote = quotes[idx];

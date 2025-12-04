@@ -40,6 +40,9 @@ export class Perfume {
   @Column({ type: 'jsonb', nullable: true })
   tags!: string[] | null;
 
+  @Column({ type: 'jsonb', nullable: true })
+  tags_en!: string[] | null;
+
   @Column({ type: 'text', nullable: true })
   description!: string | null;
 

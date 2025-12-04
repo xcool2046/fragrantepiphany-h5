@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { PerfumeChapter } from '../api'
 import { motion } from 'framer-motion'
 import { CardFace } from './CardFace'
+import { findScentAnswer } from '../utils/perfume-matcher'
 
 interface PerfumePageProps {
   chapter: PerfumeChapter
@@ -57,8 +58,8 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers,
   const description = i18n.language === 'en' ? (chapter.description_en || '') : (chapter.description || '')
 
 
-  // 根据问卷答案选择背景图 (使用 Q4 答案)
-  const scentAnswer = answers?.['4']
+  // 根据问卷答案选择背景图 (智能匹配选项内容，不依赖题号)
+  const scentAnswer = useMemo(() => findScentAnswer(answers || {}), [answers])
   const rightImage = (scentAnswer && BACKGROUND_IMAGES[scentAnswer]) || BACKGROUND_IMAGES.default
 
   return (

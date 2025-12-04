@@ -17,7 +17,7 @@
 
   /* Fonts */
   --font-serif: 'Playfair Display', 'Noto Serif SC', serif;
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Noto Sans SC', 'Source Han Sans SC', 'Source Han Sans CN', 'Microsoft YaHei', 'Inter', sans-serif;
   --font-script: 'Rouge Script', cursive;
 
   /* Glassmorphism depth */

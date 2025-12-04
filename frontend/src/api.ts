@@ -149,13 +149,29 @@ export type PerfumeChapter = {
   imageUrl: string
 }
 
-export const getPerfumeChapters = (cardIds: number[], language: string, scentAnswer?: string, category?: string) => {
-  const params = new URLSearchParams()
-  params.append('cardIds', cardIds.join(','))
-  params.append('language', language)
-  if (scentAnswer) params.append('scentAnswer', scentAnswer)
-  if (category) params.append('category', category)
-  return api.get<{ chapters: PerfumeChapter[] }>(`/api/perfume/chapters?${params.toString()}`)
+export const getPerfumeChapters = (params: {
+  cardIds?: number[]
+  cardIndices?: number[]
+  language: string
+  scentAnswer?: string
+  category?: string
+  q4Answer?: string
+}) => {
+  const query = new URLSearchParams()
+  const { cardIds, cardIndices, language, scentAnswer, category, q4Answer } = params
+
+  if (cardIndices && cardIndices.length > 0) {
+    query.append('card_indices', cardIndices.join(','))
+  } else if (cardIds && cardIds.length > 0) {
+    query.append('cardIds', cardIds.join(','))
+  }
+
+  query.append('language', language)
+  if (scentAnswer) query.append('scentAnswer', scentAnswer)
+  if (category) query.append('category', category)
+  if (q4Answer) query.append('q4Answer', q4Answer)
+
+  return api.get<{ chapters: PerfumeChapter[] }>(`/api/perfume/chapters?${query.toString()}`)
 }
 
 export interface ReadingSection {
@@ -189,6 +205,22 @@ export async function getReading(payload: {
 export async function fetchPayConfig() {
   const res = await api.get<{ priceDisplay: string; currency: string; priceAmount: number }>('/api/pay/config');
   return res.data;
+}
+
+// 卡牌数据类型
+export interface Card {
+  id: number
+  code: string
+  name_en: string | null
+  name_zh: string | null
+  image_url: string | null
+  enabled: boolean
+}
+
+// 获取所有卡牌列表
+export async function fetchCards() {
+  const res = await api.get<Card[]>('/api/content/cards')
+  return res.data
 }
 
 export default api

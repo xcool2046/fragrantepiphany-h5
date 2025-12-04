@@ -355,6 +355,22 @@ const Draw: React.FC = () => {
   const { t } = useTranslation()
   const [selectedCards, setSelectedCards] = useState<(number | null)[]>([null, null, null])
   const [submitting, setSubmitting] = useState(false)
+
+  // --- Shuffle Logic (Fisher-Yates) ---
+  // Map Visual Index (0-77) -> Real Card ID (0-77)
+  // This ensures the Wheel looks ordered (No.1, No.2...) but the result is random.
+  const [shuffledDeck] = useState(() => {
+      const deck = Array.from({ length: TOTAL_CARDS }, (_, i) => i)
+      let m = deck.length, t, i;
+      while (m) {
+        i = Math.floor(Math.random() * m--);
+        t = deck[m];
+        deck[m] = deck[i];
+        deck[i] = t;
+      }
+      console.log('Deck Shuffled:', deck.slice(0, 5), '...') // Debug log
+      return deck
+  })
   
   // Animation State
   const [flyingCard, setFlyingCard] = useState<{ id: number, startRect: DOMRect, targetRect: DOMRect, targetIndex: number, initialRotate: number } | null>(null)
@@ -455,10 +471,19 @@ const Draw: React.FC = () => {
   const handleContinue = useCallback(() => {
     if (filledCount !== 3 || submitting) return
     setSubmitting(true)
-    // Filter out nulls for the result page
-    const finalIds = selectedCards.filter((id): id is number => id !== null)
-    navigate('/result', { state: { cardIds: finalIds, answers: location.state?.answers } })
-  }, [filledCount, submitting, selectedCards, navigate, location.state])
+    
+    // Filter out nulls for the result page (These are VISUAL IDs: 0, 1, 2...)
+    const visualIds = selectedCards.filter((id): id is number => id !== null)
+    
+    // Save the Deck Mapping to localStorage so Result page can resolve Visual -> Real
+    localStorage.setItem('deck_mapping', JSON.stringify(shuffledDeck))
+
+    // Save Visual IDs to localStorage (for page reload recovery)
+    localStorage.setItem('last_card_ids', JSON.stringify(visualIds))
+    
+    // Navigate with VISUAL IDs. Result page will handle the mapping for content.
+    navigate('/result', { state: { cardIds: visualIds, answers: location.state?.answers } })
+  }, [filledCount, submitting, selectedCards, navigate, location.state, shuffledDeck])
 
   // Auto-navigate removed. User must click "Continue".
   // React.useEffect(() => {

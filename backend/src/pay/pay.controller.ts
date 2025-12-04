@@ -24,6 +24,11 @@ export class PayController {
           error: 'Payment is temporarily unavailable (missing Stripe config)',
         };
       }
+      // Handle Stripe API Authentication Error (401)
+      // Prevent it from being treated as User Unauthorized by frontend
+      if ((err as any)?.statusCode === 401 || (err as any)?.type === 'StripeAuthenticationError') {
+        throw new Error(`Stripe Configuration Error: ${message}`);
+      }
       throw err;
     }
   }
