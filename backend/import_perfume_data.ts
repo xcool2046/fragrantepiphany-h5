@@ -158,17 +158,48 @@ async function run() {
 
     console.log(`Using fixed indices: Card=${idxCard}, A=[${idxIdA},${idxDescA}], B=[${idxIdB},${idxDescB}], C=[${idxIdC},${idxDescC}], D=[${idxIdD},${idxDescD}]`);
 
+    // Helper to normalize Traditional Chinese to Simplified Chinese matching DB
+    const normalizeCardName = (name: string): string => {
+        let normalized = name;
+        // 1. Suits
+        normalized = normalized.replace(/權杖/g, '权杖');
+        normalized = normalized.replace(/聖杯/g, '圣杯');
+        normalized = normalized.replace(/寶劍/g, '宝剑');
+        normalized = normalized.replace(/星幣/g, '星币');
+
+        // 2. Major Arcana Mappings
+        const map: Record<string, string> = {
+            '魔術師': '魔术师',
+            '戀人': '恋人',
+            '戰車': '战车',
+            '隱者': '隐士', // Note: Word change
+            '命運之輪': '命运之轮',
+            '正義': '正义',
+            '節制': '节制',
+            '惡魔': '恶魔',
+            '太陽': '太阳',
+            '審判': '审判',
+        };
+
+        if (map[normalized]) {
+            return map[normalized];
+        }
+        return normalized;
+    };
+
     let count = 0;
     // Skip header row
     for (let i = 1; i < mappingData.length; i++) {
       const row = mappingData[i];
-      const cardNameZh = row[idxCard];
-      if (!cardNameZh) continue;
+      const cardNameZhRaw = row[idxCard];
+      if (!cardNameZhRaw) continue;
+
+      const cardNameZh = normalizeCardName(cardNameZhRaw);
 
       // Find Card
       const card = await cardRepo.findOne({ where: { name_zh: cardNameZh } });
       if (!card) {
-        console.warn(`Card not found: ${cardNameZh}`);
+        console.warn(`Card not found: ${cardNameZh} (Raw: ${cardNameZhRaw})`);
         continue;
       }
 
