@@ -53,6 +53,10 @@ echo "🌸 Compiling Perfume Import Script..."
 npx tsc import_perfume_data.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 
+echo "🔍 Compiling Prod Card Check Script..."
+npx tsc check_prod_cards.ts --outDir dist/scripts \
+  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
+
 # 2.2 Prepare Assets for Docker
 echo "📂 Copying assets for deployment..."
 mkdir -p assets
@@ -130,6 +134,7 @@ ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   echo '🔧 Fixing Tarot Data (ID Mismatch & Content)...' && \
   docker compose exec backend node dist/scripts/fix_tarot_data_v2.js && \
   echo '🌸 Importing Perfume Data...' && \
+  docker compose exec backend node dist/scripts/check_prod_cards.js && \
   docker compose exec backend node dist/scripts/import_perfume_data.js && \
   echo '💖 Importing Self/Love English Data...' && \
   docker compose exec backend node dist/scripts/import_self_love_en.js && \
