@@ -68,6 +68,8 @@ npx tsc check_magician_prod.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 npx tsc inspect_cards.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
+npx tsc scripts/ensure_cards_correct.ts --outDir dist/scripts \
+  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 
 # ...
 
@@ -153,6 +155,8 @@ ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   echo '🌸 Importing Perfume Data...' && \
   docker compose exec backend node dist/scripts/check_prod_cards.js && \
   docker compose exec backend node dist/scripts/inspect_cards.js && \
+  echo '🔧 Ensuring Cards Data (EN/ZH) is Correct...' && \
+  docker compose exec backend node dist/scripts/ensure_cards_correct.js && \
   docker compose exec backend node dist/scripts/import_perfume_data.js && \
   echo '💖 Importing Self/Love English Data...' && \
   docker compose exec backend node dist/scripts/import_self_love_en.js && \
