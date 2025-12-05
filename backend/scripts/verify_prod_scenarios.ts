@@ -38,15 +38,19 @@ async function verify() {
             console.log(`Found Perfume: ${s1.brand_name} - ${s1.product_name}`);
             console.log(`English: ${s1.brand_name_en} - ${s1.product_name_en}`);
             console.log(`Tags (EN): ${s1.tags_en}`);
+            console.log(`Sentence: ${s1.sentence ? s1.sentence.substring(0, 20) + '...' : 'N/A'}`);
             
             const matchBrand = s1.brand_name_en === "Le Labo" || s1.brand_name === "Le Labo";
             const matchName = s1.product_name_en === "Rose 31" || s1.product_name === "Rose 31";
+            const hasSentence = !!s1.sentence && s1.sentence.length > 0;
             
-            if (matchBrand && matchName) {
+            if (matchBrand && matchName && hasSentence) {
                 console.log('✅ Scenario 1 MATCHES!');
             } else {
                 console.error('❌ Scenario 1 MISMATCH!');
-                console.error('Expected: Le Labo - Rose 31');
+                if (!matchBrand) console.error(`Brand mismatch: ${s1.brand_name_en}`);
+                if (!matchName) console.error(`Name mismatch: ${s1.product_name_en}`);
+                if (!hasSentence) console.error('Missing Sentence');
             }
         } else {
             console.error('❌ Scenario 1 Perfume NOT FOUND in DB!');

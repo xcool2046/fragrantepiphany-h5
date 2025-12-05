@@ -369,7 +369,6 @@ export default function Cards() {
                       onChange={(e) => e.target.files?.[0] && uploadImage(e.target.files[0])}
                       className="text-sm disabled:opacity-50"
                     />
-                    {uploading && <span className="text-sm text-[#D4A373] animate-pulse">正在上传中...</span>}
                     <span className="text-xs text-[#6B5542]">支持常见图片格式 (JPG/PNG/GIF/HEIC等)，≤ 20MB</span>
                   </div>
                 <input

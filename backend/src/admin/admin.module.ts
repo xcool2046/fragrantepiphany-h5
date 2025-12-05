@@ -23,7 +23,12 @@ import * as fs from 'fs';
         },
         filename: (req, file, cb) => {
           const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-          cb(null, uniqueSuffix + '-' + file.originalname);
+          // Extract extension and limit filename length to prevent ENAMETOOLONG error
+          const ext = path.extname(file.originalname);
+          const baseName = path.basename(file.originalname, ext);
+          // Limit basename to 50 chars to avoid path length issues
+          const safeName = baseName.substring(0, 50);
+          cb(null, `${uniqueSuffix}-${safeName}${ext}`);
         },
       }),
     }),
