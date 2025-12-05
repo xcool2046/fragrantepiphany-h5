@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Section from '../../components/Section'
 import SearchBar from '../../components/admin/SearchBar'
 import api from '../../api'
+import { API_ENDPOINTS } from '../../config/api'
 import { SCENE_OPTIONS } from '../../config/perfume-constants'
 import { Reorder } from 'framer-motion'
 
@@ -51,7 +52,7 @@ export default function Perfumes() {
   // Fetch cards for lookup
   const fetchCards = useCallback(async () => {
     try {
-      const res = await api.get('/api/admin/cards?pageSize=1000')
+      const res = await api.get(API_ENDPOINTS.ADMIN.CARDS + '?pageSize=1000')
       setCards(res.data.items || [])
     } catch (e) {
       console.error('Failed to fetch cards', e)
@@ -61,7 +62,7 @@ export default function Perfumes() {
   const fetchData = useCallback(async (p = 1, kw = query, sc = sceneFilter) => {
     setLoading(true)
     try {
-      const res = await api.get('/api/admin/perfumes', {
+      const res = await api.get(API_ENDPOINTS.ADMIN.PERFUMES, {
         params: { page: p, pageSize, keyword: kw, scene: sc, cardId: cardIdFilter }
       })
       setItems(res.data.items || [])
@@ -156,9 +157,9 @@ export default function Perfumes() {
 
     try {
       if (editing) {
-        await api.patch(`/api/admin/perfumes/${editing.id}`, payload)
+        await api.patch(`${API_ENDPOINTS.ADMIN.PERFUMES}/${editing.id}`, payload)
       } else {
-        await api.post('/api/admin/perfumes', payload)
+        await api.post(API_ENDPOINTS.ADMIN.PERFUMES, payload)
       }
       setModalOpen(false)
       fetchData(page)
@@ -174,7 +175,7 @@ export default function Perfumes() {
   const remove = async (id: number) => {
     if (!window.confirm('确认删除吗？')) return
     try {
-      await api.delete(`/api/admin/perfumes/${id}`)
+      await api.delete(`${API_ENDPOINTS.ADMIN.PERFUMES}/${id}`)
       fetchData(page)
     } catch (e) {
       console.error(e)
@@ -185,7 +186,7 @@ export default function Perfumes() {
   const toggleStatus = async (item: Perfume) => {
     try {
       const newStatus = item.status === 'active' ? 'inactive' : 'active'
-      await api.patch(`/api/admin/perfumes/${item.id}`, { status: newStatus })
+      await api.patch(`${API_ENDPOINTS.ADMIN.PERFUMES}/${item.id}`, { status: newStatus })
       fetchData(page)
     } catch (e) {
       console.error(e)

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import Section from '../../components/Section'
 import api from '../../api'
+import { API_ENDPOINTS } from '../../config/api'
 import { Reorder } from 'framer-motion'
 
 type Question = {
@@ -63,7 +64,7 @@ export default function Questions() {
   const fetchData = useCallback(async () => {
     setLoading(true)
     try {
-      const res = await api.get('/api/admin/questions')
+      const res = await api.get(API_ENDPOINTS.ADMIN.QUESTIONS)
       setItems(res.data.items || [])
     } catch (e) {
       console.error(e)
@@ -120,9 +121,9 @@ export default function Questions() {
     }
     try {
       if (editing) {
-        await api.patch(`/api/admin/questions/${editing.id}`, payload)
+        await api.patch(`${API_ENDPOINTS.ADMIN.QUESTIONS}/${editing.id}`, payload)
       } else {
-        await api.post('/api/admin/questions', payload)
+        await api.post(API_ENDPOINTS.ADMIN.QUESTIONS, payload)
       }
       setModalOpen(false)
       fetchData()
@@ -133,7 +134,7 @@ export default function Questions() {
   }
 
   const toggleActive = async (q: Question) => {
-    await api.patch(`/api/admin/questions/${q.id}`, { active: !q.active })
+    await api.patch(`${API_ENDPOINTS.ADMIN.QUESTIONS}/${q.id}`, { active: !q.active })
     fetchData()
   }
 
@@ -161,8 +162,8 @@ export default function Questions() {
 
     try {
         await Promise.all([
-            api.patch(`/api/admin/questions/${q.id}`, { weight: newWeightQ }),
-            api.patch(`/api/admin/questions/${targetItem.id}`, { weight: newWeightTarget })
+            api.patch(`${API_ENDPOINTS.ADMIN.QUESTIONS}/${q.id}`, { weight: newWeightQ }),
+            api.patch(`${API_ENDPOINTS.ADMIN.QUESTIONS}/${targetItem.id}`, { weight: newWeightTarget })
         ])
         fetchData()
     } catch (e) {
@@ -173,7 +174,7 @@ export default function Questions() {
 
   const remove = async (q: Question) => {
     if (!window.confirm('确认删除该问题？')) return
-    await api.delete(`/api/admin/questions/${q.id}`)
+    await api.delete(`${API_ENDPOINTS.ADMIN.QUESTIONS}/${q.id}`)
     fetchData()
   }
 

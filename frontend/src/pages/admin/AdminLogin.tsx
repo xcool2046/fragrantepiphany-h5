@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Section from '../../components/Section'
 import api from '../../api'
+import { API_ENDPOINTS } from '../../config/api'
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('')
@@ -12,7 +13,7 @@ export default function AdminLogin() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      const res = await api.post('/api/auth/login', { username: username.trim(), password: password.trim() })
+      const res = await api.post(API_ENDPOINTS.AUTH.LOGIN, { username: username.trim(), password: password.trim() })
       localStorage.setItem('admin_token', res.data.access_token)
       navigate('/admin/interpretations')
     } catch (err: any) {

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { API_ENDPOINTS } from './config/api'
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || '',
@@ -69,17 +70,17 @@ export type DrawResult = {
 }
 
 export async function fetchDraw(category?: string, language?: string) {
-  const res = await api.get<DrawResult>('/api/interp/draw', { params: { category, language } })
+  const res = await api.get<DrawResult>(API_ENDPOINTS.INTERP.DRAW, { params: { category, language } })
   return res.data
 }
 
 export async function fetchInterpretation(params: { card_name: string; category: string; position: string; language: string }) {
-  const res = await api.get('/api/interp', { params })
+  const res = await api.get(API_ENDPOINTS.INTERP.GET, { params })
   return res.data
 }
 
 export async function submitQuestionnaire(body: Record<string, string>) {
-  const res = await api.post('/api/questionnaire', body)
+  const res = await api.post(API_ENDPOINTS.QUESTIONNAIRE.SUBMIT, body)
   return res.data
 }
 
@@ -94,17 +95,17 @@ export interface Question {
 }
 
 export async function fetchQuestions() {
-  const res = await api.get<Question[]>('/api/questionnaire/questions')
+  const res = await api.get<Question[]>(API_ENDPOINTS.QUESTIONNAIRE.QUESTIONS)
   return res.data
 }
 
 export async function createCheckout(body: { currency: 'cny' | 'usd'; metadata?: Record<string, unknown> }) {
-  const res = await api.post('/api/pay/create-session', body)
+  const res = await api.post(API_ENDPOINTS.PAY.CREATE_SESSION, body)
   return res.data as { orderId: string; sessionUrl: string | null }
 }
 
 export async function getOrder(id: string) {
-  const res = await api.get('/api/pay/order/' + id)
+  const res = await api.get(API_ENDPOINTS.PAY.ORDER + '/' + id)
   return res.data
 }
 
@@ -121,7 +122,7 @@ export type RuleMatchResult = {
 }
 
 export async function matchRule(payload: { card_indices: number[]; answers?: Record<string, string>; language?: string; category?: string }) {
-  const res = await api.post<RuleMatchResult>('/api/interp/rule-match', payload)
+  const res = await api.post<RuleMatchResult>(API_ENDPOINTS.INTERP.RULE_MATCH, payload)
   return res.data
 }
 
@@ -171,7 +172,7 @@ export const getPerfumeChapters = (params: {
   if (category) query.append('category', category)
   if (q4Answer) query.append('q4Answer', q4Answer)
 
-  return api.get<{ chapters: PerfumeChapter[] }>(`/api/perfume/chapters?${query.toString()}`)
+  return api.get<{ chapters: PerfumeChapter[] }>(`${API_ENDPOINTS.PERFUME.CHAPTERS}?${query.toString()}`)
 }
 
 export interface ReadingSection {
@@ -198,12 +199,12 @@ export async function getReading(payload: {
   category?: string;
   timestamp?: number;
 }) {
-  const res = await api.post<ReadingResult>('/api/interp/reading', payload);
+  const res = await api.post<ReadingResult>(API_ENDPOINTS.INTERP.READING, payload);
   return res.data;
 }
 
 export async function fetchPayConfig() {
-  const res = await api.get<{ priceDisplay: string; currency: string; priceAmount: number }>('/api/pay/config');
+  const res = await api.get<{ priceDisplay: string; currency: string; priceAmount: number }>(API_ENDPOINTS.PAY.CONFIG);
   return res.data;
 }
 
@@ -219,7 +220,7 @@ export interface Card {
 
 // 获取所有卡牌列表
 export async function fetchCards() {
-  const res = await api.get<Card[]>('/api/content/cards')
+  const res = await api.get<Card[]>(API_ENDPOINTS.CONTENT.CARDS)
   return res.data
 }
 

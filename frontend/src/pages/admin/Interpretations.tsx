@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Section from '../../components/Section'
 import SearchBar from '../../components/admin/SearchBar'
 import api from '../../api'
+import { API_ENDPOINTS } from '../../config/api'
 import { TAROT_CATEGORIES, TAROT_POSITIONS, DEFAULT_PAGE_SIZE } from '../../constants/tarot'
 
 type InterpretationItem = {
@@ -60,7 +61,7 @@ export default function Interpretations() {
       if (kw.trim()) params.set('keyword', kw.trim())
       if (position !== 'all') params.set('position', position)
       if (category !== 'all') params.set('category', category)
-      const res = await api.get(`/api/interp/list?${params.toString()}`)
+      const res = await api.get(`${API_ENDPOINTS.INTERP_ADMIN.LIST}?${params.toString()}`)
       setInterps(res.data?.items ?? [])
       setTotal(res.data?.total ?? 0)
       setPage(p)
@@ -103,10 +104,10 @@ export default function Interpretations() {
 
       const payload = { ...formData }
       if (editingItem) {
-        await api.post(`/api/interp/update/${editingItem.id}`, payload)
+        await api.post(`${API_ENDPOINTS.INTERP_ADMIN.UPDATE}/${editingItem.id}`, payload)
         alert('更新成功')
       } else {
-        await api.post('/api/interp', payload)
+        await api.post(API_ENDPOINTS.INTERP_ADMIN.CREATE, payload)
         alert('创建成功')
       }
 
@@ -135,7 +136,7 @@ export default function Interpretations() {
     if (!window.confirm('确认删除这条解读吗？')) return
     setIsDeleting(true)
     try {
-      await api.post(`/api/interp/delete/${editingItem.id}`, {})
+      await api.post(`${API_ENDPOINTS.INTERP_ADMIN.DELETE}/${editingItem.id}`, {})
       alert('已删除')
       setIsModalOpen(false)
       setEditingItem(null)

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Section from '../../components/Section'
 import SearchBar from '../../components/admin/SearchBar'
 import api from '../../api'
+import { API_ENDPOINTS } from '../../config/api'
 
 type Card = {
   id: number
@@ -52,7 +53,7 @@ export default function Cards() {
       params.set('page', String(p))
       params.set('pageSize', String(pageSize))
       if (kw.trim()) params.set('keyword', kw.trim())
-      const res = await api.get(`/api/admin/cards?${params.toString()}`)
+      const res = await api.get(`${API_ENDPOINTS.ADMIN.CARDS}?${params.toString()}`)
       setItems(res.data.items || [])
       setTotal(res.data.total || 0)
       setPage(res.data.page || p)
@@ -107,9 +108,9 @@ export default function Cards() {
     setSaving(true)
     try {
       if (editing) {
-        await api.patch(`/api/admin/cards/${editing.id}`, payload)
+        await api.patch(`${API_ENDPOINTS.ADMIN.CARDS}/${editing.id}`, payload)
       } else {
-        await api.post('/api/admin/cards', payload)
+        await api.post(API_ENDPOINTS.ADMIN.CARDS, payload)
       }
       setModalOpen(false)
       fetchData(page)
@@ -121,7 +122,7 @@ export default function Cards() {
   }
 
   const toggle = async (c: Card) => {
-    await api.patch(`/api/admin/cards/${c.id}`, { enabled: !c.enabled })
+    await api.patch(`${API_ENDPOINTS.ADMIN.CARDS}/${c.id}`, { enabled: !c.enabled })
     fetchData(page)
   }
 
@@ -129,7 +130,7 @@ export default function Cards() {
     const fd = new FormData()
     fd.append('file', inputFile)
     try {
-      const res = await api.post('/api/admin/cards/upload', fd, {
+      const res = await api.post(API_ENDPOINTS.ADMIN.CARDS_UPLOAD, fd, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       setForm((prev) => ({ ...prev, image_url: res.data.url }))
@@ -144,7 +145,7 @@ export default function Cards() {
     const fd = new FormData()
     fd.append('file', file)
     try {
-      await api.post('/api/admin/cards/import', fd, { headers: { 'Content-Type': 'multipart/form-data' } })
+      await api.post(API_ENDPOINTS.ADMIN.CARDS_IMPORT, fd, { headers: { 'Content-Type': 'multipart/form-data' } })
       alert('导入完成')
       setImportOpen(false)
       fetchData(page)
@@ -155,7 +156,7 @@ export default function Cards() {
 
   const handleExport = () => {
     api
-      .get('/api/admin/cards/export', { responseType: 'blob' })
+      .get(API_ENDPOINTS.ADMIN.CARDS_EXPORT, { responseType: 'blob' })
       .then((res) => {
         const url = window.URL.createObjectURL(new Blob([res.data]))
         const link = document.createElement('a')
@@ -169,7 +170,7 @@ export default function Cards() {
 
   const handleDelete = async (c: Card) => {
     if (!window.confirm('确认删除该卡牌？')) return
-    await api.delete(`/api/admin/cards/${c.id}`)
+    await api.delete(`${API_ENDPOINTS.ADMIN.CARDS}/${c.id}`)
     fetchData(page)
   }
 

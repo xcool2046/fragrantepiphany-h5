@@ -69,12 +69,13 @@ export class PerfumeController {
     const lang = language.toLowerCase().startsWith('zh') ? 'zh' : 'en';
 
     // Derive Category from Q4 or param
+    // Derive Category from Q4 or param
     let category = categoryParam;
     if (q4Answer) {
       const first = q4Answer.trim().charAt(0).toUpperCase();
-      if (first === 'A') category = 'Self';
-      else if (first === 'B') category = 'Career';
+      if (first === 'B') category = 'Career';
       else if (first === 'C') category = 'Love';
+      else category = 'Self'; // Default to Self for 'A' or others
     }
 
     const result = await this.perfumeService.getChapters(
