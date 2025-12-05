@@ -67,10 +67,13 @@ async function run() {
 
     // 3. Load Translations
     // In production (docker), assets are copied to ./assets relative to the working directory (/app)
-    // In local dev, we might run this from backend root.
-    // We'll try to resolve assets path.
+    // The deploy script copies excel_files into assets, so the path is assets/excel_files/...
     const assetsDir = path.join(process.cwd(), 'assets');
-    const transPath = path.join(assetsDir, 'perfume_translations_final.json');
+    // Check both locations just in case
+    let transPath = path.join(assetsDir, 'perfume_translations_final.json');
+    if (!fs.existsSync(transPath)) {
+        transPath = path.join(assetsDir, 'excel_files', 'perfume_translations_final.json');
+    }
     
     if (!fs.existsSync(transPath)) {
         throw new Error(`Translation file not found at: ${transPath}`);
@@ -81,7 +84,11 @@ async function run() {
     translations.forEach(t => transMap.set(t.zh.trim(), t.en));
 
     // 4. Load Excel
-    const excelPath = path.join(assetsDir, 'perfume_master.xlsx');
+    let excelPath = path.join(assetsDir, 'perfume_master.xlsx');
+    if (!fs.existsSync(excelPath)) {
+        excelPath = path.join(assetsDir, 'excel_files', 'perfume_master.xlsx');
+    }
+
     if (!fs.existsSync(excelPath)) {
         throw new Error(`Excel file not found at: ${excelPath}`);
     }
