@@ -87,12 +87,19 @@ async function run() {
         transPath = path.join(assetsDir, 'excel_files', 'perfume_translations_final.json');
     }
     
-    if (!fs.existsSync(transPath)) {
-        throw new Error(`Translation file not found at: ${transPath}`);
+    let translations: { id: number; description_en: string; quote_en?: string }[] = [];
+    try {
+        if (fs.existsSync(transPath)) {
+            const transContent = fs.readFileSync(transPath, 'utf-8');
+            translations = JSON.parse(transContent);
+            console.log(`Loaded ${translations.length} translations.`);
+        } else {
+            console.warn(`Translation file not found at: ${transPath}. Skipping English descriptions.`);
+        }
+    } catch (err) {
+        console.warn(`Failed to load translations from ${transPath}: ${err}. Skipping English descriptions.`);
     }
 
-    // The reconstructed file has format: { id: number, description_en: string, quote_en: string }[]
-    const translations: { id: number; description_en: string; quote_en?: string }[] = JSON.parse(fs.readFileSync(transPath, 'utf-8'));
     const transMap = new Map<number, { desc: string; quote: string }>();
     translations.forEach(t => {
         if (t.id) {
