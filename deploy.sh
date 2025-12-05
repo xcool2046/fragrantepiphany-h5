@@ -56,6 +56,14 @@ npx tsc import_perfume_data.ts --outDir dist/scripts \
 echo "🔍 Compiling Prod Card Check Script..."
 npx tsc check_prod_cards.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
+npx tsc check_magician_prod.ts --outDir dist/scripts \
+  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
+
+# ...
+
+  echo '🌸 Importing Perfume Data...' && \
+  docker compose exec backend node dist/scripts/check_magician_prod.js && \
+  docker compose exec backend node dist/scripts/import_perfume_data.js && \
 
 # 2.2 Prepare Assets for Docker
 echo "📂 Copying assets for deployment..."
