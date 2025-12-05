@@ -122,7 +122,7 @@ async function run() {
         masterMap.set(row['UNIQUE ID'], {
           brand: row['Brand'],
           name: row['Name'],
-          tags: [row['Tag1'], row['Tag2'], row['Tag3']].filter(t => t && t.trim() !== ''),
+          tags: [row['Tag1(中)'], row['Tag2(中)'], row['Tag3(中)']].filter(t => t && t.trim() !== ''),
         });
       }
     });
