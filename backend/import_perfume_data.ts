@@ -9,13 +9,17 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
+// Use environment variables for connection, falling back to defaults if needed (though env is preferred)
+// In production, DATABASE_URL is usually provided.
 const AppDataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'tarot',
-  password: 'tarot',
-  database: 'tarot',
+  url: process.env.DATABASE_URL,
+  // If DATABASE_URL is not set, fall back to individual params (useful for local dev without full url)
+  host: process.env.DB_HOST || 'localhost',
+  port: parseInt(process.env.DB_PORT || '5432', 10),
+  username: process.env.DB_USERNAME || 'tarot',
+  password: process.env.DB_PASSWORD || 'tarot',
+  database: process.env.DB_DATABASE || 'tarot',
   entities: [Perfume, Card],
   synchronize: false, // We will do manual schema updates
 });
@@ -62,13 +66,26 @@ async function run() {
     await perfumeRepo.clear();
 
     // 3. Load Translations
-    const transPath = path.join(__dirname, 'perfume_translations_final.json');
+    // In production (docker), assets are copied to ./assets relative to the working directory (/app)
+    // In local dev, we might run this from backend root.
+    // We'll try to resolve assets path.
+    const assetsDir = path.join(process.cwd(), 'assets');
+    const transPath = path.join(assetsDir, 'perfume_translations_final.json');
+    
+    if (!fs.existsSync(transPath)) {
+        throw new Error(`Translation file not found at: ${transPath}`);
+    }
+
     const translations: { zh: string; en: string }[] = JSON.parse(fs.readFileSync(transPath, 'utf-8'));
     const transMap = new Map<string, string>();
     translations.forEach(t => transMap.set(t.zh.trim(), t.en));
 
     // 4. Load Excel
-    const excelPath = '/home/projects/h5/master (1).xlsx';
+    const excelPath = path.join(assetsDir, 'perfume_master.xlsx');
+    if (!fs.existsSync(excelPath)) {
+        throw new Error(`Excel file not found at: ${excelPath}`);
+    }
+
     const workbook = XLSX.readFile(excelPath);
     
     // Load Perfume Master
@@ -88,17 +105,6 @@ async function run() {
 
     // Load Mapping
     const mappingSheet = workbook.Sheets['Perfume+卡 mapping'];
-    // Use header: 1 to get array of arrays to handle duplicate headers or complex structure
-    // Actually, sheet_to_json is fine if headers are unique. 
-    // The headers are likely: Card, Q1A, 文案, Q1B, 文案, ...
-    // Wait, duplicate '文案' headers might be an issue.
-    // Let's inspect headers first or use array of arrays.
-    // Inspecting previously: headers were Card, Q1A, Q1B, Q1C, Q1D. 
-    // But where is '文案'?
-    // Let's look at `inspect_excel.ts` output from previous session context.
-    // It said: "Headers: [ 'Card', 'Q1A', '文案', 'Q1B', '文案', 'Q1C', '文案', 'Q1D', '文案' ]"
-    // Yes, duplicate headers. XLSX handles this by appending _1, _2 usually.
-    // Let's verify by reading as array of arrays (header: 1) and processing manually.
     
     const mappingData = XLSX.utils.sheet_to_json<any[]>(mappingSheet, { header: 1 });
     const headers = mappingData[0];
@@ -186,6 +192,7 @@ async function run() {
     await AppDataSource.destroy();
   } catch (error) {
     console.error('Error:', error);
+    process.exit(1);
   }
 }
 

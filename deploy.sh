@@ -48,6 +48,11 @@ npx tsc scripts/import_self_love_en.ts --outDir dist/scripts \
 npx tsc scripts/check_card_mapping.ts --outDir dist \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 
+# Compile Perfume Import Script
+echo "🌸 Compiling Perfume Import Script..."
+npx tsc import_perfume_data.ts --outDir dist/scripts \
+  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
+
 # 2.2 Prepare Assets for Docker
 echo "📂 Copying assets for deployment..."
 mkdir -p assets
@@ -55,6 +60,9 @@ mkdir -p assets
 cp -r ../assets/excel_files assets/
 # Include legacy perfume mapping for Q4/Q2 logic
 cp -f ../legacy/data/perfume.xlsx assets/
+# Ensure perfume master and translations are in assets (they should be already moved, but good to double check or copy if they were in root)
+# We already moved them to backend/assets in the previous step, so they are already there. 
+# But let's make sure we don't overwrite them with empty folders if we run this locally multiple times.
 
 popd >/dev/null
 
@@ -121,7 +129,8 @@ ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   docker compose exec backend node dist/scripts/seed_tarot_direct.js && \
   echo '🔧 Fixing Tarot Data (ID Mismatch & Content)...' && \
   docker compose exec backend node dist/scripts/fix_tarot_data_v2.js && \
-
+  echo '🌸 Importing Perfume Data...' && \
+  docker compose exec backend node dist/scripts/import_perfume_data.js && \
   echo '💖 Importing Self/Love English Data...' && \
   docker compose exec backend node dist/scripts/import_self_love_en.js && \
   docker compose restart nginx"
