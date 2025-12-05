@@ -169,6 +169,12 @@ const normalizeCardName = (name: string): string => {
     normalized = normalized.replace(/寶劍/g, '宝剑');
     normalized = normalized.replace(/星幣/g, '星币');
 
+    // 1.1 Court Ranks
+    normalized = normalized.replace(/國王/g, '国王');
+    normalized = normalized.replace(/騎士/g, '骑士');
+    normalized = normalized.replace(/侍衛/g, '侍者'); // Map 侍衛 to 侍者 if present
+    normalized = normalized.replace(/侍者/g, '侍者'); // Ensure 侍者 stays 侍者
+
     // 2. Major Arcana Mappings
     const map: Record<string, string> = {
         '魔術師': '魔术师',
