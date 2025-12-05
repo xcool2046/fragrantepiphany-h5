@@ -58,11 +58,12 @@ npx tsc check_prod_cards.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 npx tsc check_magician_prod.ts --outDir dist/scripts \
   --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
+npx tsc inspect_cards.ts --outDir dist/scripts \
+  --target ES2019 --module commonjs --esModuleInterop --skipLibCheck --experimentalDecorators --emitDecoratorMetadata
 
 # ...
 
   echo '🌸 Importing Perfume Data...' && \
-  docker compose exec backend node dist/scripts/check_magician_prod.js && \
   docker compose exec backend node dist/scripts/import_perfume_data.js && \
 
 # 2.2 Prepare Assets for Docker
@@ -143,6 +144,7 @@ ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   docker compose exec backend node dist/scripts/fix_tarot_data_v2.js && \
   echo '🌸 Importing Perfume Data...' && \
   docker compose exec backend node dist/scripts/check_prod_cards.js && \
+  docker compose exec backend node dist/scripts/inspect_cards.js && \
   docker compose exec backend node dist/scripts/import_perfume_data.js && \
   echo '💖 Importing Self/Love English Data...' && \
   docker compose exec backend node dist/scripts/import_self_love_en.js && \
