@@ -61,6 +61,18 @@ async function run() {
       DROP COLUMN IF EXISTS notes_base_en;
     `);
 
+    // 1.1 Ensure required columns exist (TypeORM entity has them, so DB must have them)
+    console.log('Ensuring columns exist...');
+    await AppDataSource.query(`
+      ALTER TABLE perfumes ADD COLUMN IF NOT EXISTS tags_en jsonb;
+      ALTER TABLE perfumes ADD COLUMN IF NOT EXISTS quote text;
+      ALTER TABLE perfumes ADD COLUMN IF NOT EXISTS quote_en text;
+      ALTER TABLE perfumes ADD COLUMN IF NOT EXISTS scene_choice_en varchar(255);
+      ALTER TABLE perfumes ADD COLUMN IF NOT EXISTS product_name_en varchar(255);
+      ALTER TABLE perfumes ADD COLUMN IF NOT EXISTS brand_name_en varchar(255);
+      ALTER TABLE perfumes ADD COLUMN IF NOT EXISTS description_en text;
+    `);
+
     // 2. Clear table
     console.log('Clearing perfumes table...');
     await perfumeRepo.clear();
