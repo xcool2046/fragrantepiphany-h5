@@ -1,52 +1,59 @@
+# Handover Document
+
 ## 📊 当前进度快照 (Progress Snapshot)
-- **当前阶段**: 生产环境支付功能修复验证通过；主线任务暂停在“补全缺失香水数据”的中间步骤。
-- **已验证功能**:
-  1. **Stripe 支付 (生产环境)**: 配置已切换为 **Hosted Configuration** (自动托管)，后端移除所有手动支付方式指定，完全依赖 Stripe Dashboard 配置。已验证解决了 400 错误和权限不足问题。
-  2. **后端服务**: 成功重启，端口 3000 监听正常，日志无异常。
-  3. **抽牌流程**: 前端动画与后端接口 (`/api/interp/draw`) 联调正常。
+- **阶段**: 生产环境调试与修复 (Production Debugging & Fixes)。
+- **状态**: 代码修复已完成，但部署到生产环境失败 (Rsync Error)，导致无法验证修复效果。
+- **已完成代码 (待验证)**:
+    1. **香水数据导入**: `backend/import_perfume_data.ts` 增加了完整的繁简中文映射（权杖/圣杯/宝剑/星币及大阿卡纳），旨在解决 40 条数据导入失败的问题。
+    2. **后台搜索**: `backend/src/admin/admin.controller.ts` 实现了双向模糊搜索（同时匹配简体和繁体输入），解决用户搜不到卡牌的问题。
+    3. **UI 优化**: `frontend/src/pages/admin/Interpretations.tsx` 列表页增加了 ZH/EN 语言切换开关。
+    4. **上传日志**: `backend/src/main.ts` 增加了大文件上传的日志记录，用于排查上传失败原因。
 
 ## 💡 关键技术方案与技巧 (Key Solutions & Techniques)
-- **Stripe 支付集成 (Critical)**:
-  - **问题**: 手动指定 `payment_method_types: ['card', 'alipay']` 会因账号权限不足导致整个接口报错 400。
-  - **最终方案**: **移除 `payment_method_types` 参数**。利用 Stripe API 默认行为（使用 Dashboard 设置的 Automatic Payment Methods）。
-  - **注意**: 不要在 `checkout.sessions.create` 中传递 `automatic_payment_methods` 参数（这是 PaymentIntent 的参数），否则会报错 `parameter_unknown`。
-
-- **后端稳健重启**:
-  - **技巧**: 使用 `fuser -k 3000/tcp && ./backend/restart.sh`。
-  - **原因**: 单纯 kill 进程有时释放端口慢，导致重启时报 `EADDRINUSE`。
-
-- **数据源提取**:
-  - **方案**: 优先使用 `xlsx` 库直接读取 `backend/assets/perfume.xlsx` 源文件，而非依赖分析中间 JSON 文件。
+- **双向模糊搜索 (Robust Search)**:
+    - **问题**: 数据库中卡牌名称可能混杂繁体/简体，用户输入简体时搜不到繁体记录。
+    - **方案**: 在 `AdminController.listCards` 中，将用户输入的关键词同时转换为简体 (`kwSimp`) 和繁体 (`kwTrad`)，并使用 `OR` 条件查询 `name_zh`。
+    - **代码**: 见 `backend/src/admin/admin.controller.ts` 中的 `toSimp` / `toTrad` 映射函数。
+- **数据标准化 (Data Normalization)**:
+    - **问题**: Excel 源数据使用繁体中文（如“權杖”），数据库需匹配简体（如“权杖”）。
+    - **方案**: 在 `import_perfume_data.ts` 中使用 `normalizeCardName` 函数进行正则替换和映射表匹配。
+- **部署脚本 (Deployment)**:
+    - **方案**: 使用 `./deploy.sh` 自动化构建前端、后端，编译脚本，并通过 `rsync` 上传到服务器，最后通过 SSH 执行 Docker 重启和数据脚本。
+    - **注意**: 脚本中包含了编译 TS 脚本到 JS 的步骤 (`npx tsc ...`)，以便在生产环境的精简 Node 容器中运行。
 
 ## 🚧 遗留难点与待办 (Pending Issues)
-- **缺失的 6 款香水数据 (Missing Perfume Data)**
-  - **状态**: 脚本已就绪，待执行验证。
-  - **任务**: 需要找到 ID 为 153, 157, 161, 165, 169, 173 的香水数据 (Red Roses, Wonderwood 等)。
-  - **已尝试**: `check_missing_data.ts` 确认了缺失名单。
-  - **接力点**: 运行 `backend/extract_missing_perfumes_v2.ts`。
+- **部署失败 (Deployment Failure)**:
+    - **症状**: 运行 `./deploy.sh` 时，`rsync` 报错 `connection unexpectedly closed (code 255)`。
+    - **原因**: 可能是服务器网络波动、SSH 连接限制或密钥问题。
+    - **待办**: 需要重试部署，或联系用户检查服务器状态。
+- **远程路径确认 (Remote Path)**:
+    - **症状**: 尝试手动 SSH 执行脚本时报错 `cd: /www/wwwroot/h5/backend: No such file or directory`。
+    - **原因**: `deploy.sh` 中定义的远程目录是 `REMOTE_DIR=${REMOTE_DIR:-/root/fragrantepiphany-h5}`，而手动命令用了错误的路径。
+    - **待办**: 后续操作请使用 `/root/fragrantepiphany-h5` 作为基准目录。
+- **生产环境验证 (Verification)**:
+    - **状态**: 未开始（因部署阻塞）。
+    - **待办**: 部署成功后，需运行 `inspect_cards.js` 确认 DB 中卡牌名称的实际存储格式，并验证香水总数是否达到 312。
 
 ## 📂 核心文件结构 (Core Directory Structure)
-```text
-/home/projects/h5/
-├── backend/
-│   ├── src/
-│   │   ├── pay/
-│   │   │   └── pay.service.ts       # 支付核心服务 (已重构为托管模式)
-│   │   ├── perfume/                 # 香水模块
-│   │   └── entities/                # TypeORM 实体
-│   ├── assets/
-│   │   ├── perfume.xlsx             # 香水数据源文件
-│   │   └── excel_files/             # 其他 Excel 备份
-│   ├── extract_missing_perfumes_v2.ts # [工具] 待运行：提取缺失数据
-│   ├── check_prod_keys.ts           # [工具] 生产环境配置检查
-│   ├── restart.sh                   # 服务重启脚本
-│   └── backend.log                  # 运行日志
-├── frontend/
-│   └── src/pages/PerfumeView.tsx    # 前端展示页
-```
+- `backend/`
+    - `src/admin/admin.controller.ts` # 后台管理接口，含卡牌搜索逻辑 (已修改)
+    - `src/main.ts` # 应用入口，含 Body Parser 配置和上传日志 (已修改)
+    - `import_perfume_data.ts` # 香水数据导入脚本，含繁简映射逻辑 (已修改)
+    - `inspect_cards.ts` # [新增] 用于列出生产库所有卡牌名称的诊断脚本
+    - `check_magician_prod.ts` # [新增] 用于检查特定卡牌数据的诊断脚本
+- `frontend/`
+    - `src/pages/admin/Interpretations.tsx` # 解读管理页，含新增的语言切换逻辑 (已修改)
+- `deploy.sh` # 自动化部署脚本，负责构建、上传和远程命令执行
 
 ## ➡️ 下一步指令 (Next Action)
-1. **执行数据提取**: 运行 `npx ts-node backend/extract_missing_perfumes_v2.ts`，确认是否能从 Excel 中提取到 6 款缺失香水的完整信息（含 Brand, Name, Description, Tags）。
-2. **编写入库脚本**: 根据提取到的 JSON 结果，编写一个新的迁移脚本或 seed 脚本，将这 6 条数据插入到特定 ID (153, 157...)。
-3. **验证支付体验**: 既然支付代码已改，建议在处理完数据后，顺手点一下前端支付按钮，确保 Stripe 托管页面能正常弹出（显示 Card/Apple Pay）。
-4. **严禁操作**: **绝对不要** 修改 `pay.service.ts` 回退到手动指定支付方式的数组写法。
+1. **解决部署问题**: 优先尝试重新运行 `./deploy.sh`。如果 `rsync` 持续失败，建议让用户检查服务器 SSH 连接或手动上传 `dist` 目录。
+2. **验证远程路径**: 登录服务器确认部署目录是 `/root/fragrantepiphany-h5` 还是其他位置，确保后续 SSH 命令路径正确。
+3. **执行验证脚本**: 部署成功后，通过 SSH 运行：
+   ```bash
+   ssh -p 22 root@47.243.157.75 "cd /root/fragrantepiphany-h5/backend && node dist/scripts/inspect_cards.js"
+   ```
+   检查输出的卡牌名称是否为简体中文。
+4. **验证业务修复**:
+   - 检查香水数量是否恢复为 312 条。
+   - 在后台搜索“魔术师”（简体），确认能否搜到结果。
+   - 检查 Interpretations 列表页是否有 ZH/EN 切换按钮。

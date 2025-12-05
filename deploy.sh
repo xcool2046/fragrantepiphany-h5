@@ -22,6 +22,14 @@ done
 
 echo "🚀 Fast Deployment Started: $NOTE"
 
+# 0. Ensure Remote Directory Exists
+echo "🔍 Checking remote directory..."
+ssh -o ConnectTimeout=10 "${SERVER}" "mkdir -p ${REMOTE_DIR}/frontend/dist ${REMOTE_DIR}/backend" || {
+    echo "❌ Failed to create remote directories"
+    exit 1
+}
+
+
 # 1. Build Frontend Locally
 echo "🏗️  Building Frontend (VITE_API_BASE_URL=${VITE_API_BASE_URL:-})..."
 rm -rf frontend/dist
@@ -111,13 +119,13 @@ EOF
 
 # 4. Upload Files
 echo "📤 Uploading Frontend Assets..."
-rsync -av --delete frontend/dist/ "${SERVER}:${REMOTE_DIR}/frontend/dist/"
+rsync -av --delete -e "ssh -o ConnectTimeout=30 -o ServerAliveInterval=60" frontend/dist/ "${SERVER}:${REMOTE_DIR}/frontend/dist/"
 # Crucial: Upload the Dockerfile so the remote build uses the new configuration (dist -> /var/www/html)
-rsync -av frontend/Dockerfile "${SERVER}:${REMOTE_DIR}/frontend/Dockerfile"
+rsync -av -e "ssh -o ConnectTimeout=30" frontend/Dockerfile "${SERVER}:${REMOTE_DIR}/frontend/Dockerfile"
 
 echo "📤 Uploading Backend Artifacts..."
 # Note: Added backend/assets to the list to sync the Excel files
-rsync -av --delete \
+rsync -av --delete -e "ssh -o ConnectTimeout=30 -o ServerAliveInterval=60" \
   --exclude 'node_modules' \
   --exclude '.git' \
   --exclude '.env' \
@@ -127,10 +135,10 @@ rsync -av --delete \
 
 # Upload Config files to Root (to ensure docker compose uses latest)
 echo "📤 Uploading Configs..."
-rsync -av nginx.conf docker-compose*.yml "${SERVER}:${REMOTE_DIR}/"
+rsync -av -e "ssh -o ConnectTimeout=30" nginx.conf docker-compose*.yml "${SERVER}:${REMOTE_DIR}/"
 
 # Also upload the Dockerfile.deploy to the correct location on server
-rsync -av backend/Dockerfile.deploy "${SERVER}:${REMOTE_DIR}/backend/Dockerfile"
+rsync -av -e "ssh -o ConnectTimeout=30" backend/Dockerfile.deploy "${SERVER}:${REMOTE_DIR}/backend/Dockerfile"
 
 # 5. Remote Restart
 echo "🔄 Executing Remote Restart..."
