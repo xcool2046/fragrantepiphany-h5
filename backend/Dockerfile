@@ -13,5 +13,6 @@ RUN npm ci --omit=dev
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/ormconfig.ts ./ormconfig.ts
 COPY --from=build /app/ormconfig.cjs ./ormconfig.cjs
+COPY --from=build /app/assets ./assets
 EXPOSE 3000
 CMD ["node", "dist/src/main.js"]
