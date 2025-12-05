@@ -170,10 +170,10 @@ export default function Cards() {
     const previewUrl = URL.createObjectURL(inputFile)
     setForm((prev) => ({ ...prev, image_url: previewUrl }))
 
-    // Check size (although we compress, if it's > 50MB maybe warn, but compression helps)
-    // The limit on server is 50MB.
-    if (inputFile.size > 50 * 1024 * 1024) {
-      // If > 50MB, maybe compression takes too long or memory issue?
+    // Check size (although we compress, if it's > 20MB maybe warn, but compression helps)
+    // The limit on server is 20MB.
+    if (inputFile.size > 20 * 1024 * 1024) {
+      // If > 20MB, maybe compression takes too long or memory issue?
       // Let's try to compress anyway.
     }
 
@@ -204,8 +204,8 @@ export default function Cards() {
 
   const handleImport = async () => {
     if (!file) return
-    if (file.size > 50 * 1024 * 1024) {
-      alert('文件大小超过 50MB 限制，请拆分 CSV 或压缩文件')
+    if (file.size > 20 * 1024 * 1024) {
+      alert('文件大小超过 20MB 限制，请拆分 CSV 或压缩文件')
       return
     }
     const fd = new FormData()
@@ -370,7 +370,7 @@ export default function Cards() {
                       className="text-sm disabled:opacity-50"
                     />
                     {uploading && <span className="text-sm text-[#D4A373] animate-pulse">正在上传中...</span>}
-                    <span className="text-xs text-[#6B5542]">支持常见图片格式 (JPG/PNG/GIF/HEIC等)，≤ 50MB</span>
+                    <span className="text-xs text-[#6B5542]">支持常见图片格式 (JPG/PNG/GIF/HEIC等)，≤ 20MB</span>
                   </div>
                 <input
                   value={form.image_url}

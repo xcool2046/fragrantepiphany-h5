@@ -18,7 +18,7 @@ async function bootstrap() {
   );
   app.use(
     json({
-      limit: '50mb',
+      limit: '20mb',
       verify: (req: IncomingMessage & { rawBody?: Buffer }, _res, buf) => {
         req.rawBody = buf;
         // Log large uploads for debugging
@@ -28,7 +28,7 @@ async function bootstrap() {
       },
     }),
   );
-  app.use(urlencoded({ extended: true, limit: '50mb' }));
+  app.use(urlencoded({ extended: true, limit: '20mb' }));
   const allowedOrigins = process.env.CORS_ORIGINS?.split(',')
     .map((o) => o.trim())
     .filter(Boolean);
