@@ -8,8 +8,6 @@ import { Reorder } from 'framer-motion'
 type Perfume = {
   id: number
   card_id: number
-  sentence: string
-  sentence_en: string
   scene_choice: string
   scene_choice_en?: string | null
   brand_name: string
@@ -103,8 +101,6 @@ export default function Perfumes() {
     setEditing(null)
     setForm({
       card_id: 1,
-      sentence: '',
-      sentence_en: '',
       scene_choice: '',
       brand_name: '',
       product_name: '',
@@ -433,10 +429,6 @@ export default function Perfumes() {
                         <label className="text-xs text-[#6B5542]">描述文案 (ZH)</label>
                         <textarea value={form.description || ''} onChange={e => setForm({...form, description: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={5} />
                       </div>
-                      <div>
-                        <label className="text-xs text-[#6B5542]">Sentence (ZH)</label>
-                        <textarea value={form.sentence || ''} onChange={e => setForm({...form, sentence: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={3} />
-                      </div>
                     </>
                   ) : (
                     <>
@@ -455,10 +447,6 @@ export default function Perfumes() {
                       <div>
                         <label className="text-xs text-[#6B5542]">描述文案 (EN)</label>
                         <textarea value={form.description_en || ''} onChange={e => setForm({...form, description_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={5} />
-                      </div>
-                      <div>
-                        <label className="text-xs text-[#6B5542]">Sentence (EN)</label>
-                        <textarea value={form.sentence_en || ''} onChange={e => setForm({...form, sentence_en: e.target.value})} className="w-full rounded-lg border p-2 text-sm" rows={3} />
                       </div>
                     </>
                   )}

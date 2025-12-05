@@ -435,7 +435,7 @@ const Result: React.FC = () => {
                     />
                 </div>
 
-                <div className="relative w-24 h-36 md:w-32 md:h-48 perspective-1000">
+                <div className="relative w-24 h-40 md:w-32 md:h-[214px] perspective-1000">
                     <motion.div
                         className="w-full h-full relative preserve-3d"
                         initial={{ rotateY: 0 }}

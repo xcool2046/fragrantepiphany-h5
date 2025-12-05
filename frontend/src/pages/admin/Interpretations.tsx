@@ -161,7 +161,7 @@ export default function Interpretations() {
           <SearchBar
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="按 card_name / 内容 搜索"
+            placeholder="按 card_name 搜索"
             className="bg-white/80 border border-[#D4A373]/20 rounded-2xl px-2 py-1"
           />
         </div>
@@ -209,7 +209,17 @@ export default function Interpretations() {
                     : 'bg-blue-50 text-blue-700'
               const hasZh = !!(item.sentence_zh || item.interpretation_zh)
               const hasEn = !!(item.sentence_en || item.interpretation_en)
-              const displayText = item.sentence_zh || item.sentence_en || item.interpretation_zh || item.interpretation_en || '—'
+              // Only display sentence if position is Present. Otherwise, ignore it in the list view preview if you want, 
+              // or keep it but know it's not used. 
+              // Better: Just show the main interpretation text for Past/Future, and maybe sentence for Present.
+              // Logic: Present -> show sentence (or interpretation if missing). Past/Future -> show interpretation.
+              
+              let displayText = ''
+              if (item.position === 'Present') {
+                 displayText = item.sentence_zh || item.sentence_en || item.interpretation_zh || item.interpretation_en || '—'
+              } else {
+                 displayText = item.interpretation_zh || item.interpretation_en || '—'
+              }
               return (
                 <div key={item.id} className="rounded-2xl border border-[#D4A373]/25 bg-white/80 backdrop-blur shadow-sm p-4 flex flex-col gap-2 hover:shadow-lg transition">
                   <div className="flex items-center justify-between">
@@ -355,15 +365,17 @@ export default function Interpretations() {
               <div className="grid md:grid-cols-2 gap-4">
                 {textLang === 'en' ? (
                   <>
-                    <div>
-                      <label className="text-sm text-[#6B5542]">Sentence EN</label>
-                      <textarea
-                        value={formData.sentence_en}
-                        onChange={(e) => setFormData({ ...formData, sentence_en: e.target.value })}
-                        className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
-                        rows={2}
-                      />
-                    </div>
+                    {formData.position === 'Present' && (
+                      <div>
+                        <label className="text-sm text-[#6B5542]">Sentence EN (Perfume Page Quote)</label>
+                        <textarea
+                          value={formData.sentence_en}
+                          onChange={(e) => setFormData({ ...formData, sentence_en: e.target.value })}
+                          className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
+                          rows={2}
+                        />
+                      </div>
+                    )}
                     <div>
                       <label className="text-sm text-[#6B5542]">Interpretation EN</label>
                       <textarea
@@ -376,15 +388,17 @@ export default function Interpretations() {
                   </>
                 ) : (
                   <>
-                    <div>
-                      <label className="text-sm text-[#6B5542]">Sentence ZH</label>
-                      <textarea
-                        value={formData.sentence_zh}
-                        onChange={(e) => setFormData({ ...formData, sentence_zh: e.target.value })}
-                        className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
-                        rows={2}
-                      />
-                    </div>
+                    {formData.position === 'Present' && (
+                      <div>
+                        <label className="text-sm text-[#6B5542]">Sentence ZH (Perfume Page Quote)</label>
+                        <textarea
+                          value={formData.sentence_zh}
+                          onChange={(e) => setFormData({ ...formData, sentence_zh: e.target.value })}
+                          className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30"
+                          rows={2}
+                        />
+                      </div>
+                    )}
                     <div>
                       <label className="text-sm text-[#6B5542]">解读 ZH</label>
                       <textarea

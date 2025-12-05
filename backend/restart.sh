@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # 1. Stop existing backend
+cd "$(dirname "$0")"
+
 echo "🛑 Stopping existing backend..."
 pkill -f "nest start" || echo "No running backend found."
 

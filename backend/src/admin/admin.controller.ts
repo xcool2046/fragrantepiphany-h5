@@ -387,7 +387,7 @@ export class AdminController {
 
   @Post('cards/upload')
   @UseInterceptors(
-    FileInterceptor('file', { limits: { fileSize: 10 * 1024 * 1024 } }),
+    FileInterceptor('file'),
   )
   async uploadCardImage(@UploadedFile() file?: Express.Multer.File) {
     if (!file) throw new BadRequestException('No file');
@@ -404,9 +404,6 @@ export class AdminController {
     ];
     if (!allowed.includes(file.mimetype)) {
       throw new BadRequestException('Unsupported file type: ' + file.mimetype);
-    }
-    if (file.size > 10 * 1024 * 1024) {
-      throw new BadRequestException('File too large');
     }
     const uploadsDir = path.join(process.cwd(), 'uploads');
     if (!fs.existsSync(uploadsDir))

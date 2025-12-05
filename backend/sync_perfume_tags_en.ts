@@ -19,7 +19,7 @@ async function syncTagsEn() {
   console.log('Database connected.');
 
   const perfumeRepo = AppDataSource.getRepository(Perfume);
-  const excelPath = path.resolve('/home/projects/h5/master (1).xlsx');
+  const excelPath = path.resolve('/home/projects/h5/master (2).xlsx');
 
   try {
     const workbook = XLSX.readFile(excelPath);

@@ -111,10 +111,7 @@ export class InterpretationService {
     }
     if (filters.keyword) {
       const kw = `%${filters.keyword.trim()}%`;
-      qb.andWhere(
-        `(i.card_name ILIKE :kw OR i.sentence_en ILIKE :kw OR i.sentence_zh ILIKE :kw OR i.interpretation_en ILIKE :kw OR i.interpretation_zh ILIKE :kw)`,
-        { kw },
-      );
+      qb.andWhere('i.card_name ILIKE :kw', { kw });
     }
     const [items, total] = await qb
       .skip((page - 1) * take)

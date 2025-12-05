@@ -12,7 +12,6 @@ import { memoryStorage } from 'multer';
   imports: [
     MulterModule.register({
       storage: memoryStorage(),
-      limits: { fileSize: 10 * 1024 * 1024 },
     }),
     TypeOrmModule.forFeature([Question, Card, Perfume]),
   ],

@@ -120,7 +120,7 @@ const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers,
                 className="my-6 flex justify-center" 
                 variants={itemVariants}
               >
-                <div className="w-24 h-36 rounded-lg shadow-lg overflow-hidden border border-[#D4A373]/30">
+                <div className="w-24 h-40 rounded-lg shadow-lg overflow-hidden border border-[#D4A373]/30">
                   <CardFace id={presentCardId} side="front" variant="slot" vertical={true} />
                 </div>
               </motion.div>

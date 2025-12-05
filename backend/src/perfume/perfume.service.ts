@@ -140,9 +140,11 @@ export class PerfumeService {
       // Use tags from DB based on language
       const tags = (isEn ? item.tags_en : item.tags) ?? [];
 
-      // Dynamic quote overrides static quote
+      // Dynamic quote overrides static quote (from Tarot Interpretation - Present position)
       const dynamicQuote = quotes[idx];
-      // Static quote is deprecated but kept as fallback if needed, though likely null
+      
+      // Static quote is deprecated but kept as fallback if needed, though likely null or empty now
+      // We removed the ability to edit this in Admin, so it will eventually be unused
       const staticSentence = (isEn ? item.sentence_en : item.sentence) || '';
 
       // Priority: Dynamic Quote > Static Override (if exists) > Empty String

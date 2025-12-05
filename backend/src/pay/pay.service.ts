@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Order } from '../entities/order.entity';
@@ -6,11 +6,12 @@ import Stripe from 'stripe';
 const STRIPE_API_VERSION = '2024-06-20' as unknown as Stripe.LatestApiVersion;
 
 @Injectable()
-export class PayService {
+export class PayService implements OnModuleInit {
   private stripe: Stripe | null = null;
   private stripeReady = false;
   private priceCache = new Map<string, string>();
   private envPriceMap: Record<string, string> | null;
+
 
   constructor(@InjectRepository(Order) private orders: Repository<Order>) {
     const secret = process.env.STRIPE_SECRET_KEY;
@@ -26,6 +27,16 @@ export class PayService {
       this.stripeReady = true;
     }
     this.envPriceMap = this.loadEnvPriceMap();
+  }
+
+  async onModuleInit() {
+    if (!this.stripeReady || !this.stripe) return;
+    try {
+      await this.stripe.accounts.retrieve();
+      console.log('✅ Stripe connection verified');
+    } catch (error) {
+      console.error('Failed to connect to Stripe:', error);
+    }
   }
 
   getStripe() {
@@ -109,7 +120,7 @@ export class PayService {
     try {
       // 1. Create Order first to get the ID
       const order = this.orders.create({
-        amount: 0, // Will update after session creation
+        amount: 0, // Will update after session execution
         currency: input.currency,
         status: 'pending',
         metadata: input.metadata,
@@ -132,7 +143,6 @@ export class PayService {
             quantity: 1,
           },
         ],
-        payment_method_types: ['card'],
         success_url: successUrl,
         cancel_url: cancelUrl,
         metadata: stripeMetadata,

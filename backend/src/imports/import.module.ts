@@ -6,7 +6,7 @@ import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
-    MulterModule.register({ limits: { fileSize: 10 * 1024 * 1024 } }),
+    MulterModule.register({}),
     TypeOrmModule.forFeature([Interpretation]),
   ],
   controllers: [ImportController],

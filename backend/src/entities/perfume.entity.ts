@@ -49,9 +49,11 @@ export class Perfume {
   @Column({ type: 'text', nullable: true })
   description_en!: string | null;
 
+  // @deprecated Replaced by dynamic sentence from Tarot Interpretation (Position: Present)
   @Column({ name: 'quote', type: 'text', nullable: true })
   sentence!: string | null;
 
+  // @deprecated Replaced by dynamic sentence from Tarot Interpretation (Position: Present)
   @Column({ name: 'quote_en', type: 'text', nullable: true })
   sentence_en!: string | null;
 
