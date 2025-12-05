@@ -32,6 +32,7 @@ export default function Cards() {
   const [items, setItems] = useState<Card[]>([])
   const [loading, setLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+  const [uploading, setUploading] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const [importOpen, setImportOpen] = useState(false)
   const [editing, setEditing] = useState<Card | null>(null)
@@ -129,14 +130,18 @@ export default function Cards() {
   const uploadImage = async (inputFile: File) => {
     const fd = new FormData()
     fd.append('file', inputFile)
+    setUploading(true)
     try {
       const res = await api.post(API_ENDPOINTS.ADMIN.CARDS_UPLOAD, fd, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       setForm((prev) => ({ ...prev, image_url: res.data.url }))
+      alert('上传成功！')
     } catch (e: any) {
       console.error(e)
-      alert(e?.response?.data?.message || '上传失败，请检查文件大小(≤10MB)与格式')
+      alert(e?.response?.data?.message || '上传失败，请检查文件大小(≤50MB)与格式')
+    } finally {
+      setUploading(false)
     }
   }
 
@@ -295,15 +300,17 @@ export default function Cards() {
               </div>
               <div className="md:col-span-2 space-y-2">
                 <label className="text-sm text-[#6B5542]">图片 URL / 上传</label>
-                <div className="flex flex-wrap items-center gap-3">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => e.target.files?.[0] && uploadImage(e.target.files[0])}
-                    className="text-sm"
-                  />
-                  <span className="text-xs text-[#6B5542]">支持常见图片格式 (JPG/PNG/GIF/HEIC等)，≤ 10MB</span>
-                </div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      disabled={uploading}
+                      onChange={(e) => e.target.files?.[0] && uploadImage(e.target.files[0])}
+                      className="text-sm disabled:opacity-50"
+                    />
+                    {uploading && <span className="text-sm text-[#D4A373] animate-pulse">正在上传中...</span>}
+                    <span className="text-xs text-[#6B5542]">支持常见图片格式 (JPG/PNG/GIF/HEIC等)，≤ 50MB</span>
+                  </div>
                 <input
                   value={form.image_url}
                   onChange={(e) => setForm({ ...form, image_url: e.target.value })}
