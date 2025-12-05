@@ -52,3 +52,4 @@ __pycache__/
 
 # Docker-compose local override
 docker-compose.override.yml
+uploads/

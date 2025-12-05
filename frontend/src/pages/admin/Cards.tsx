@@ -127,19 +127,76 @@ export default function Cards() {
     fetchData(page)
   }
 
+  // Helper for client-side compression (max 1200px, 0.8 quality)
+  const compressImage = (file: File): Promise<Blob> => {
+    return new Promise((resolve, reject) => {
+      const img = new Image()
+      img.src = URL.createObjectURL(file)
+      img.onload = () => {
+        const canvas = document.createElement('canvas')
+        let width = img.width
+        let height = img.height
+        const maxDim = 1200
+        if (width > height && width > maxDim) {
+          height *= maxDim / width
+          width = maxDim
+        } else if (height > width && height > maxDim) {
+          width *= maxDim / height
+          height = maxDim
+        }
+        canvas.width = width
+        canvas.height = height
+        const ctx = canvas.getContext('2d')
+        if (!ctx) {
+          reject(new Error('Canvas context error'))
+          return
+        }
+        ctx.drawImage(img, 0, 0, width, height)
+        canvas.toBlob(
+          (blob) => {
+            if (blob) resolve(blob)
+            else reject(new Error('Compression failed'))
+          },
+          'image/jpeg',
+          0.8
+        )
+      }
+      img.onerror = reject
+    })
+  }
+
   const uploadImage = async (inputFile: File) => {
-    const fd = new FormData()
-    fd.append('file', inputFile)
+    // Instant Preview
+    const previewUrl = URL.createObjectURL(inputFile)
+    setForm((prev) => ({ ...prev, image_url: previewUrl }))
+
+    // Check size (although we compress, if it's > 50MB maybe warn, but compression helps)
+    // The limit on server is 50MB.
+    if (inputFile.size > 50 * 1024 * 1024) {
+      // If > 50MB, maybe compression takes too long or memory issue?
+      // Let's try to compress anyway.
+    }
+
     setUploading(true)
     try {
+      // Compress first
+      const compressedBlob = await compressImage(inputFile)
+      const compressedFile = new File([compressedBlob], inputFile.name, {
+        type: 'image/jpeg',
+      })
+
+      const fd = new FormData()
+      fd.append('file', compressedFile)
       const res = await api.post(API_ENDPOINTS.ADMIN.CARDS_UPLOAD, fd, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       setForm((prev) => ({ ...prev, image_url: res.data.url }))
-      alert('上传成功！')
+      // alert('上传成功！') // Don't alert, let it be smooth
     } catch (e: any) {
       console.error(e)
-      alert(e?.response?.data?.message || '上传失败，请检查文件大小(≤50MB)与格式')
+      alert(e?.response?.data?.message || '上传失败')
+      // Revert preview if failed
+      setForm((prev) => ({ ...prev, image_url: '' }))
     } finally {
       setUploading(false)
     }
@@ -147,6 +204,10 @@ export default function Cards() {
 
   const handleImport = async () => {
     if (!file) return
+    if (file.size > 50 * 1024 * 1024) {
+      alert('文件大小超过 50MB 限制，请拆分 CSV 或压缩文件')
+      return
+    }
     const fd = new FormData()
     fd.append('file', file)
     try {

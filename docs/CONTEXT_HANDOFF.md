@@ -1,12 +1,13 @@
 # Context Handoff: Fragrant Epiphany H5
 
 ## 📊 当前进度快照 (Progress Snapshot)
-- **项目阶段**: **Admin Panel 功能完备与文档对齐阶段**。核心业务（抽牌、解牌、香水推荐）已上线，后台管理（卡牌/香水/问卷）已实现，文档已全面审计更新。
+- **项目阶段**: **Admin Panel 功能完备与文档对齐阶段**。核心业务（抽牌、解牌、香水推荐）已上线，后台管理（卡牌/香水/问卷/解读）已实现，文档已全面审计更新。
 - **已验证功能**:
   1.  **Admin Login**: 修复 500 错误（补全 `JWT_SECRET`），通过 `curl` 本地验证成功。
   2.  **Tarot Data**: 78 张牌的中英文解读数据已通过 `fix_tarot_data_v2.ts` 脚本修复并核对（解决 Excel 列错位问题）。
   3.  **Perfume Journey**: 数据库 `perfumes` 表数据完整，前端双语显示正常（文档已更新）。
   4.  **Deployment**: `deploy.sh` 脚本（Local Build + Static Docker）已在生产环境验证可行。
+  5.  **Interp API**: `InterpretationController` 提供解读库的增删改查与导入导出接口。
 
 ## 💡 关键技术方案与技巧 (Key Solutions & Techniques)
 - **Admin 鉴权 (JWT)**:
@@ -22,10 +23,9 @@
   - **约定**: DB 实体字段统一为 `field` (中) / `field_en` (英)。前端根据 `i18n.language` 动态取值，不拆分表。
 
 ## 🚧 遗留难点与待办 (Pending Issues)
-- **Rules 表数据为空 (Pending)**:
-  - **状态**: `roadmap.md` 标记为 Pending。
-  - **问题**: `rules` 表结构已创建，但尚未导入“卡牌+选项 -> 推荐结果”的映射规则。
-  - **线索**: 检查 `backend/src/entities/rule.entity.ts` 和是否有对应的 Excel 源文件。
+- **Rules 表数据为空 (Clarification)**:
+  - **状态**: 目前 `matchRule` 使用合成规则兜底（Synthetic Rule），即直接拼接三张牌的解读。
+  - **后续**: 若需精细化规则（特定牌组触发特定文案），需导入 `rules` 表数据。
 - **Stripe 价格配置 (Configuration)**:
   - **状态**: 代码支持 `STRIPE_PRICE_IDS_JSON`，但需确认生产环境 `.env` 是否已更新为该 JSON 格式（原为分散变量）。
   - **线索**: `backend/src/pay/pay.service.ts` 优先读取 JSON 配置。

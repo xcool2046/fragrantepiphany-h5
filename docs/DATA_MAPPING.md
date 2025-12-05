@@ -2,7 +2,7 @@
 
 > [!IMPORTANT]
 > The Tarot card images in this project do **NOT** follow the standard Tarot ordering (Majors -> Wands -> Cups -> Swords -> Pentacles).
-> They follow a custom order based on the actual filenames in `frontend/src/assets/tarot-images`.
+> They follow a custom order based on the actual filenames in `frontend/src/assets/cards`.
 
 ## Global Image Order
 The system maps Card IDs (0-77) to Images based on the following sequence:

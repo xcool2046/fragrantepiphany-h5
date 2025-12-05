@@ -459,10 +459,17 @@ export class AdminController {
     const filename = `${Date.now()}-${Math.random().toString(16).slice(2)}.webp`;
     const filepath = path.join(uploadsDir, filename);
 
-    await sharp(file.buffer)
+    await sharp(file.path)
       .resize({ width: 800, withoutEnlargement: true })
       .webp({ quality: 80 })
       .toFile(filepath);
+
+    // Cleanup temp file
+    try {
+      fs.unlinkSync(file.path);
+    } catch (e) {
+      console.error('Failed to delete temp file:', file.path);
+    }
 
     const url = `/uploads/${filename}`;
     return { url };
@@ -474,13 +481,20 @@ export class AdminController {
     if (!file) throw new BadRequestException('No file');
     const rows: any[] = [];
     await new Promise<void>((resolve, reject) => {
-      const stream = parse({ headers: true })
+      const stream = fs.createReadStream(file.path)
+        .pipe(parse({ headers: true }))
         .on('error', reject)
         .on('data', (row) => rows.push(row))
         .on('end', () => resolve());
-      stream.write(file.buffer);
-      stream.end();
     });
+
+    // Cleanup temp file
+    try {
+      fs.unlinkSync(file.path);
+    } catch (e) {
+      console.error('Failed to delete temp file:', file.path);
+    }
+
     let created = 0;
     let updated = 0;
 

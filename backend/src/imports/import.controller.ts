@@ -14,6 +14,7 @@ import { Repository } from 'typeorm';
 import { Interpretation } from '../entities/interpretation.entity';
 import { parse } from '@fast-csv/parse';
 import { format } from '@fast-csv/format';
+import * as fs from 'fs';
 import type { Response } from 'express';
 import type { Express } from 'express';
 
@@ -30,12 +31,20 @@ export class ImportController {
     if (!file) return { error: 'No file' };
     const rows: any[] = [];
     await new Promise<void>((resolve, reject) => {
-      parse({ headers: true })
+      fs.createReadStream(file.path)
+        .pipe(parse({ headers: true }))
         .on('error', reject)
         .on('data', (row) => rows.push(row))
-        .on('end', () => resolve())
-        .write(file.buffer);
+        .on('end', () => resolve());
     });
+
+    // Cleanup temp file
+    try {
+      fs.unlinkSync(file.path);
+    } catch (e) {
+      console.error('Failed to delete temp file:', file.path);
+    }
+
     const entities = rows.map((r) => {
       const lang = (r.language || 'en').toLowerCase();
       const obj: any = {

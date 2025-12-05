@@ -52,10 +52,10 @@ const imageVariants = {
 }
 
 const PerfumePage: React.FC<PerfumePageProps> = ({ chapter, onComplete, answers, presentCardId }) => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const { sentence } = chapter;
   const tags = chapter.tags ?? []
-  const description = i18n.language === 'en' ? (chapter.description_en || '') : (chapter.description || '')
+  const description = chapter.description || ''
 
 
   // 根据问卷答案选择背景图 (智能匹配选项内容，不依赖题号)

@@ -92,11 +92,11 @@ async function run() {
     }
 
     // The reconstructed file has format: { id: number, description_en: string, quote_en: string }[]
-    const translations: { id: number; description_en: string }[] = JSON.parse(fs.readFileSync(transPath, 'utf-8'));
-    const transMap = new Map<number, string>();
+    const translations: { id: number; description_en: string; quote_en?: string }[] = JSON.parse(fs.readFileSync(transPath, 'utf-8'));
+    const transMap = new Map<number, { desc: string; quote: string }>();
     translations.forEach(t => {
-        if (t.id && t.description_en) {
-            transMap.set(t.id, t.description_en);
+        if (t.id) {
+            transMap.set(t.id, { desc: t.description_en || '', quote: t.quote_en || '' });
         }
     });
 
@@ -123,6 +123,7 @@ async function run() {
           brand: row['Brand'],
           name: row['Name'],
           tags: [row['Tag1(中)'], row['Tag2(中)'], row['Tag3(中)']].filter(t => t && t.trim() !== ''),
+          tags_en: [row['Tag1'], row['Tag2'], row['Tag3']].filter(t => t && t.trim() !== ''),
         });
       }
     });
@@ -243,7 +244,10 @@ const normalizeCardName = (name: string): string => {
         }
 
         // Lookup translation by ID
-        const descEn = transMap.get(uniqueId) || '';
+        const trans = transMap.get(uniqueId);
+        const descEn = trans?.desc || '';
+        const quoteEn = trans?.quote || '';
+        
         if (!descEn && descZh) {
             // console.warn(`Translation not found for ID: ${uniqueId}`);
         }
@@ -257,7 +261,24 @@ const normalizeCardName = (name: string): string => {
         perfume.product_name = master.name;
         perfume.tags = master.tags;
         perfume.description = descZh;
+        
+        // Populate English fields from Excel columns
+        // Verified Mapping:
+        // Name -> product_name_en
+        // Brand -> brand_name_en
+        // Tag1, Tag2, Tag3 -> tags_en
+        perfume.product_name_en = master.name; 
+        perfume.brand_name_en = master.brand; 
+        perfume.tags_en = master.tags_en;
+
+        // Description/Sentence EN still depends on translation file (currently missing/mismatched)
         perfume.description_en = descEn;
+        perfume.sentence_en = quoteEn;
+
+        if (uniqueId === 70) {
+            console.log(`[DEBUG] Saving Perfume ID 70: BrandEN=${perfume.brand_name_en}, ProductEN=${perfume.product_name_en}, TagsEN=${perfume.tags_en}`);
+        }
+
         perfume.sort_order = optionKey.charCodeAt(0) - 65 + 1; 
         perfume.status = 'active';
         

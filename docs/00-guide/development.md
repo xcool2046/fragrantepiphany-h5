@@ -42,12 +42,16 @@ JWT_SECRET=your-secret-key-here
 2) 后端：
 ```bash
 cd backend
+# 复制并配置 .env
+cp .env.example .env
 npm install
 npm run build
 npm run typeorm -- migration:run   # 应用 migrations
 npm run seed                       # 标准种子 (scripts/seed.ts)
 # 或使用更快的直接插入脚本 (生产环境用):
 # npx ts-node scripts/seed_tarot_direct.ts
+# 导入香水数据:
+# npm run seed:perfume
 npm run start:dev                  # http://localhost:3000
 ```
 3) 前端：

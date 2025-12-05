@@ -22,6 +22,7 @@
         - **Google Drive 支持**: `image_url` 可以填 Google Drive 分享链接（需开启“任何人可见”权限），系统会自动下载图片并存入服务器。
     - **导出**: 导出当前所有卡牌为 CSV。
 - 解读库管理：
+  - **路径**: `/admin/interpretations` (前端) / `api/interp/*` (API)
   - 按 `card_name + category(爱情/友情/亲情) + position(Past/Now/Future) + language` 的唯一组合增删改查。
   - 字段：sentence (原 summary)、interpretation、recommendation（列表）。
   - *注：action 和 future 字段已弃用。*
