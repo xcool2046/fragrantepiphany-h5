@@ -159,33 +159,54 @@ async function run() {
     console.log(`Using fixed indices: Card=${idxCard}, A=[${idxIdA},${idxDescA}], B=[${idxIdB},${idxDescB}], C=[${idxIdC},${idxDescC}], D=[${idxIdD},${idxDescD}]`);
 
     // Helper to normalize Traditional Chinese to Simplified Chinese matching DB
-    const normalizeCardName = (name: string): string => {
-        let normalized = name;
-        // 1. Suits
-        normalized = normalized.replace(/權杖/g, '权杖');
-        normalized = normalized.replace(/聖杯/g, '圣杯');
-        normalized = normalized.replace(/寶劍/g, '宝剑');
-        normalized = normalized.replace(/星幣/g, '星币');
+const normalizeCardName = (name: string): string => {
+    let normalized = name.trim();
+    
+    // 1. Suits (Handle both single char and full suit names if necessary, though usually it's "Ace of Wands" -> "权杖一" logic in some systems, 
+    // but here we map the Chinese text directly from Excel)
+    normalized = normalized.replace(/權杖/g, '权杖');
+    normalized = normalized.replace(/聖杯/g, '圣杯');
+    normalized = normalized.replace(/寶劍/g, '宝剑');
+    normalized = normalized.replace(/星幣/g, '星币');
 
-        // 2. Major Arcana Mappings
-        const map: Record<string, string> = {
-            '魔術師': '魔术师',
-            '戀人': '恋人',
-            '戰車': '战车',
-            '隱者': '隐士', // Note: Word change
-            '命運之輪': '命运之轮',
-            '正義': '正义',
-            '節制': '节制',
-            '惡魔': '恶魔',
-            '太陽': '太阳',
-            '審判': '审判',
-        };
-
-        if (map[normalized]) {
-            return map[normalized];
-        }
-        return normalized;
+    // 2. Major Arcana Mappings
+    const map: Record<string, string> = {
+        '魔術師': '魔术师',
+        '女祭司': '女祭司', // Same
+        '皇后': '皇后', // Same
+        '皇帝': '皇帝', // Same
+        '教皇': '教皇', // Same
+        '戀人': '恋人',
+        '戰車': '战车',
+        '力量': '力量', // Same
+        '隱者': '隐士', // Word change: 隱者 -> 隐士
+        '命運之輪': '命运之轮',
+        '正義': '正义',
+        '吊人': '倒吊人', // Word change: 吊人 -> 倒吊人 (Common variation)
+        '死神': '死神', // Same
+        '節制': '节制',
+        '惡魔': '恶魔',
+        '塔': '高塔', // Word change: 塔 -> 高塔 (Common variation)
+        '星星': '星星', // Same
+        '月亮': '月亮', // Same
+        '太陽': '太阳',
+        '審判': '审判',
+        '世界': '世界', // Same
+        '愚者': '愚者', // Same
     };
+
+    // Direct map check
+    if (map[normalized]) {
+        return map[normalized];
+    }
+    
+    // Also check for "The Hanged Man" -> "倒吊人" if Excel has English? No, Excel has Chinese.
+    // Handle "The Hanged Man" case specifically if it appears as "吊人" in Excel but "倒吊人" in DB.
+    if (normalized === '吊人') return '倒吊人';
+    if (normalized === '塔') return '高塔';
+
+    return normalized;
+};    
 
     let count = 0;
     // Skip header row

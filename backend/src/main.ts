@@ -21,6 +21,10 @@ async function bootstrap() {
       limit: '50mb',
       verify: (req: IncomingMessage & { rawBody?: Buffer }, _res, buf) => {
         req.rawBody = buf;
+        // Log large uploads for debugging
+        if (buf.length > 1024 * 1024) {
+             console.log(`[Upload] Receiving large body: ${(buf.length / 1024 / 1024).toFixed(2)} MB`);
+        }
       },
     }),
   );

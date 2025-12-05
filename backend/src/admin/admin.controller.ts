@@ -317,10 +317,55 @@ export class AdminController {
       .createQueryBuilder('card')
       .orderBy('card.code', 'ASC');
     if (keyword) {
-      const kw = `%${keyword.trim()}%`;
+      const kw = keyword.trim();
+      // Robust Search: Convert to both Simplified and Traditional to cover all bases
+      // Simple mapping for common Tarot terms
+      const toSimp = (s: string) => {
+        return s
+          .replace(/權杖/g, '权杖')
+          .replace(/聖杯/g, '圣杯')
+          .replace(/寶劍/g, '宝剑')
+          .replace(/星幣/g, '星币')
+          .replace(/魔術師/g, '魔术师')
+          .replace(/戀人/g, '恋人')
+          .replace(/戰車/g, '战车')
+          .replace(/隱者/g, '隐士')
+          .replace(/命運之輪/g, '命运之轮')
+          .replace(/正義/g, '正义')
+          .replace(/吊人/g, '倒吊人')
+          .replace(/節制/g, '节制')
+          .replace(/惡魔/g, '恶魔')
+          .replace(/塔/g, '高塔')
+          .replace(/太陽/g, '太阳')
+          .replace(/審判/g, '审判');
+      };
+      const toTrad = (s: string) => {
+        return s
+          .replace(/权杖/g, '權杖')
+          .replace(/圣杯/g, '聖杯')
+          .replace(/宝剑/g, '寶劍')
+          .replace(/星币/g, '星幣')
+          .replace(/魔术师/g, '魔術師')
+          .replace(/恋人/g, '戀人')
+          .replace(/战车/g, '戰車')
+          .replace(/隐士/g, '隱者')
+          .replace(/命运之轮/g, '命運之輪')
+          .replace(/正义/g, '正義')
+          .replace(/倒吊人/g, '吊人')
+          .replace(/节制/g, '節制')
+          .replace(/恶魔/g, '惡魔')
+          .replace(/高塔/g, '塔')
+          .replace(/太阳/g, '太陽')
+          .replace(/审判/g, '審判');
+      };
+
+      const kwSimp = `%${toSimp(kw)}%`;
+      const kwTrad = `%${toTrad(kw)}%`;
+      const kwRaw = `%${kw}%`;
+
       qb.andWhere(
-        '(card.code ILIKE :kw OR card.name_en ILIKE :kw OR card.name_zh ILIKE :kw)',
-        { kw },
+        '(card.code ILIKE :kwRaw OR card.name_en ILIKE :kwRaw OR card.name_zh ILIKE :kwSimp OR card.name_zh ILIKE :kwTrad)',
+        { kwRaw, kwSimp, kwTrad },
       );
     }
     if (onlyEnabled === 'true') {

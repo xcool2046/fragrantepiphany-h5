@@ -168,7 +168,7 @@ export default function Interpretations() {
         </div>
 
         <div className="flex items-center justify-between mb-4">
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <div className="relative">
               <select
                 value={positionFilter}
@@ -188,6 +188,21 @@ export default function Interpretations() {
                 <option value="all">全类别</option>
                 {TAROT_CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
               </select>
+            </div>
+            {/* Language Toggle */}
+            <div className="flex items-center gap-1 bg-[#F7F0E5] rounded-lg p-1 ml-2">
+                <button
+                  onClick={() => setTextLang('zh')}
+                  className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${textLang === 'zh' ? 'bg-white text-[#2B1F16] shadow-sm' : 'text-[#6B5542] hover:bg-white/50'}`}
+                >
+                  ZH
+                </button>
+                <button
+                  onClick={() => setTextLang('en')}
+                  className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${textLang === 'en' ? 'bg-white text-[#2B1F16] shadow-sm' : 'text-[#6B5542] hover:bg-white/50'}`}
+                >
+                  EN
+                </button>
             </div>
           </div>
           <span className="text-xs text-[#6B5542]">共 {total} 条</span>
@@ -210,17 +225,14 @@ export default function Interpretations() {
                     : 'bg-blue-50 text-blue-700'
               const hasZh = !!(item.sentence_zh || item.interpretation_zh)
               const hasEn = !!(item.sentence_en || item.interpretation_en)
-              // Only display sentence if position is Present. Otherwise, ignore it in the list view preview if you want, 
-              // or keep it but know it's not used. 
-              // Better: Just show the main interpretation text for Past/Future, and maybe sentence for Present.
-              // Logic: Present -> show sentence (or interpretation if missing). Past/Future -> show interpretation.
               
               let displayText = ''
-              if (item.position === 'Present') {
-                 displayText = item.sentence_zh || item.sentence_en || item.interpretation_zh || item.interpretation_en || '—'
+              if (textLang === 'zh') {
+                 displayText = item.sentence_zh || item.interpretation_zh || '—'
               } else {
-                 displayText = item.interpretation_zh || item.interpretation_en || '—'
+                 displayText = item.sentence_en || item.interpretation_en || '—'
               }
+
               return (
                 <div key={item.id} className="rounded-2xl border border-[#D4A373]/25 bg-white/80 backdrop-blur shadow-sm p-4 flex flex-col gap-2 hover:shadow-lg transition">
                   <div className="flex items-center justify-between">
