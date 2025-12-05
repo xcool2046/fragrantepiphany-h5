@@ -79,9 +79,14 @@ async function run() {
         throw new Error(`Translation file not found at: ${transPath}`);
     }
 
-    const translations: { zh: string; en: string }[] = JSON.parse(fs.readFileSync(transPath, 'utf-8'));
-    const transMap = new Map<string, string>();
-    translations.forEach(t => transMap.set(t.zh.trim(), t.en));
+    // The reconstructed file has format: { id: number, description_en: string, quote_en: string }[]
+    const translations: { id: number; description_en: string }[] = JSON.parse(fs.readFileSync(transPath, 'utf-8'));
+    const transMap = new Map<number, string>();
+    translations.forEach(t => {
+        if (t.id && t.description_en) {
+            transMap.set(t.id, t.description_en);
+        }
+    });
 
     // 4. Load Excel
     let excelPath = path.join(assetsDir, 'perfume_master.xlsx');
@@ -167,9 +172,10 @@ async function run() {
           return;
         }
 
-        const descEn = transMap.get(descZh?.trim()) || '';
+        // Lookup translation by ID
+        const descEn = transMap.get(uniqueId) || '';
         if (!descEn && descZh) {
-            // console.warn(`Translation not found for: ${descZh.substring(0, 20)}...`);
+            // console.warn(`Translation not found for ID: ${uniqueId}`);
         }
 
         const perfume = new Perfume();
