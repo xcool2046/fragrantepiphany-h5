@@ -1,0 +1,11 @@
+
+--- Sheet: Perfume+卡 mapping ---
+--- First 5 Rows ---
+Row 0: [ "卡牌/氣息", "UNIQUE ID", "Q2A", "UNIQUE ID..." ]
+Row 1: [ "愚者", "20", "10. Gucci - Mémoire d'une Odeur （气味记忆）", "27..." ]
+Row 2: [ "魔術師", "9", "9. Le Labo - Rose 31 (玫瑰31)", "40..." ]
+Row 3: [ "女祭司", "11", "1. Goutal Paris - Le Chèvrefeuille (忍冬)", "28..." ]
+Row 4: [ "皇后", "4", "4. Frédéric Malle - Une Rose (一輪玫瑰)", "31..." ]
+
+--- Specific Matches ---
+Row 78: ["星幣國王",9,"9. Le Labo - Rose 31（玫瑰31）","你以丰富的经验掌控物质世界，是稳健而成功的领导者。Le Labo的Rose 31与你国王般的权威相映——孜然的野性与深沉的木质，构筑起不可动摇的事业版图。这香气强大而复杂，正如真正的财富力量，在沉稳中展现王者风范。",22,"2. Tom Ford - Oud Wood（烏木沉香）","你以丰富的经验掌控物质世界，是稳健而成功的领袖。Tom Ford的Oud Wood与你国王般的权威相映——乌木的深沉与檀香的庄严，构筑起不可动摇的事业版图。这香气强大而复杂，正如真正的财富力量，在沉稳中展现王者风范。",52,"2. Maison Francis Kurkdjian - Oud Satin Mood (烏木絲絨情緒)","你以丰富的经验掌控物质世界，是稳健而成功的领袖。Maison Francis Kurkdjian的Oud Satin Mood与你国王般的权威相映——乌木的深邃被玫瑰柔化，天鹅绒般的质感展现刚柔并济的领导力。这香气强大而复杂，正如真正的财富力量，在沉稳中展现王者风范。",70,"10. Penhaligon's - Castile (卡斯提爾)","你以丰富的经验掌控物质世界，是稳健而成功的领袖。Penhaligon's的Castile与你国王般的权威相映——橙花与皂感的经典组合，展现历经时间考验的优雅力量。这香气不言自威，在古典格调中展现真正的领袖风范。"]

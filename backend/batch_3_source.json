@@ -1,0 +1,642 @@
+[
+  {
+    "id": 15,
+    "card_name": "聖杯五",
+    "choice": "A",
+    "brand": "Penhaligon's",
+    "product": "Bluebell",
+    "description_zh": "你为失去而悲伤，沉浸在遗憾与失落之中。Penhaligon's的Bluebell理解这份心痛——潮湿的泥土气息与阴郁的绿意，勾勒出雨中被遗忘的角落。这香气不急于安慰，却温柔地陪伴你承认：悲伤，也是爱过的证明。"
+  },
+  {
+    "id": 38,
+    "card_name": "聖杯五",
+    "choice": "B",
+    "brand": "Serge Lutens",
+    "product": "Chergui",
+    "description_zh": "你为失去而悲伤，沉浸在遗憾与失落的情感中。Serge Lutens的Chergui理解这份心痛——蜂蜜的甜暖与干草的醇厚，如同一个充满理解的拥抱。这香气不急于疗愈，却温柔地陪伴你走过这段必经的哀伤。"
+  },
+  {
+    "id": 47,
+    "card_name": "聖杯五",
+    "choice": "C",
+    "brand": "Serge Lutens",
+    "product": "Jeux de Peau",
+    "description_zh": "你为失去而悲伤，沉浸在遗憾与失落的情感中。Serge Lutens的Jeux de Peau理解这份心痛——烤面包的暖香与牛奶的醇厚，用最质朴的温暖抚慰心灵。这香气不急于疗愈，却温柔地陪伴你走过这段必经的哀伤。"
+  },
+  {
+    "id": 62,
+    "card_name": "聖杯五",
+    "choice": "D",
+    "brand": "Maison Martin Margiela",
+    "product": "Lazy Sunday Morning",
+    "description_zh": "你为失去而悲伤，沉浸在遗憾与失落的情感中。Maison Martin Margiela的Lazy Sunday Morning理解这份心痛——铃兰的清新与梨子的水润，在白麝香的包裹中带来温柔的慰藉。这香气不急于疗愈，却让修复的过程充满希望。"
+  },
+  {
+    "id": 17,
+    "card_name": "聖杯六",
+    "choice": "A",
+    "brand": "Jo Malone London",
+    "product": "Wild Bluebell",
+    "description_zh": "你回到纯真的情感记忆里，童年的美好与无私的赠予温暖着心房。Jo Malone的Wild Bluebell唤起这份温柔——水润的西瓜酮与蓝风铃的清甜，编织出天真无邪的梦境。这香气像儿时收到的珍贵礼物，提醒你：最真挚的情感，永远清澈如初。"
+  },
+  {
+    "id": 23,
+    "card_name": "聖杯六",
+    "choice": "B",
+    "brand": "Maison Martin Margiela",
+    "product": "By the Fireplace",
+    "description_zh": "你回到纯真的情感记忆里，童年的温暖与无私的赠予涌上心头。Maison Martin Margiela的By the Fireplace唤起这份怀念——烤栗子的甜香与炉火的暖意，重现那些被珍藏在心底的美好时光。这香气如同童年的壁炉边，永远保留着最初的温暖。"
+  },
+  {
+    "id": 43,
+    "card_name": "聖杯六",
+    "choice": "C",
+    "brand": "Sol de Janeiro",
+    "product": "Cheirosa '62",
+    "description_zh": "你回到纯真的情感记忆里，童年的美好与无私的赠予涌上心头。Sol de Janeiro的Cheirosa '62唤起这份怀念——开心果与杏仁的奶甜，盐焦糖的温暖，重现那些被珍藏在心底的美好时光。这香气如同童年的礼物，永远保留着最初的真诚。"
+  },
+  {
+    "id": 66,
+    "card_name": "聖杯六",
+    "choice": "D",
+    "brand": "Chloe",
+    "product": "Love Story",
+    "description_zh": "你回到纯真的情感记忆里，童年的美好与无私的赠予涌上心头。Chloe的Love Story唤起这份怀念——橙花的洁净与麝香的温柔，重现那些被珍藏在心底的美好时光。这香气如同年少时的承诺，永远保留着最初的真诚。"
+  },
+  {
+    "id": 19,
+    "card_name": "聖杯七",
+    "choice": "A",
+    "brand": "Aerin",
+    "product": "Lilac Path",
+    "description_zh": "你沉浸在情感的幻想中，面对众多可能性却难以抉择。Aerin的Lilac Path与这份朦胧的渴望同行——极度写实的丁香花香，美好得如同梦中场景。这香气不催促你醒来，却邀请你看清：真正的选择，需要勇气走出想象的迷雾。"
+  },
+  {
+    "id": 30,
+    "card_name": "聖杯七",
+    "choice": "B",
+    "brand": "Kilian",
+    "product": "Sacred Wood",
+    "description_zh": "你沉浸在情感的幻想中，面对众多可能性难以抉择。Kilian的Sacred Wood与这份朦胧的渴望同行——极致纯净的檀木香气，带来清醒的灵性感知。这香气不打破梦境，却帮助你在情感的迷雾中找到内心的真相。"
+  },
+  {
+    "id": 53,
+    "card_name": "聖杯七",
+    "choice": "C",
+    "brand": "Xerjoff",
+    "product": "Lira",
+    "description_zh": "你沉浸在情感的幻想中，面对众多可能性难以抉择。Xerjoff的Lira与这份朦胧的渴望同行——焦糖柠檬蛋糕的诱人香气，美好得如同梦中场景。这香气不催促你醒来，却邀请你看清内心真正的渴望。"
+  },
+  {
+    "id": 71,
+    "card_name": "聖杯七",
+    "choice": "D",
+    "brand": "Hermès",
+    "product": "Un Jardin Sur La Lagune",
+    "description_zh": "你沉浸在情感的幻想中，面对众多可能性难以抉择。Hermès的Un Jardin Sur La Lagune与这份朦胧的渴望同行——咸湿海风中的木兰与百合，勾勒出梦幻般的花园景致。这香气不催促你醒来，却邀请你在想象与真实间找到平衡。"
+  },
+  {
+    "id": 13,
+    "card_name": "聖杯八",
+    "choice": "A",
+    "brand": "Diptyque",
+    "product": "Ofrésia",
+    "description_zh": "你决定离开不再满足的情感状态，去寻找更深层的意义。Diptyque的Ofrésia赋予你转身的勇气——小苍兰的青绿根茎气息锐利而决绝，象征着切断与重生。这香气不说再见，却为你照亮前行的路：有些离开，是为了更完整的回归。"
+  },
+  {
+    "id": 37,
+    "card_name": "聖杯八",
+    "choice": "B",
+    "brand": "Tom Ford",
+    "product": "Ombré Leather",
+    "description_zh": "你决定离开不再满足的情感状态，去寻找更深层的意义。Tom Ford的Ombré Leather赋予你转身的勇气——皮革的独立与木质的深邃，象征着决绝的告别。这香气不说挽留，却为你的情感成长开辟新的可能。"
+  },
+  {
+    "id": 60,
+    "card_name": "聖杯八",
+    "choice": "C",
+    "brand": "Parfums de Marly",
+    "product": "Herod",
+    "description_zh": "你决定离开不再满足的情感状态，去寻找更深层的意义。Parfums de Marly的Herod赋予你转身的勇气——烟草的干燥与肉桂的暖意，在葡萄柚的清新中找到新的方向。这香气不说挽留，却为你的情感成长开辟新的可能。"
+  },
+  {
+    "id": 80,
+    "card_name": "聖杯八",
+    "choice": "D",
+    "brand": "Le Labo",
+    "product": "Baie 19",
+    "description_zh": "你决定离开不再满足的情感状态，去寻找更深层的意义。Le Labo的Baie 19赋予你转身的勇气——雨后矿物的清冷与湿土的气息，象征着清醒的告别。这香气不说挽留，却为你的情感成长开辟新的维度。"
+  },
+  {
+    "id": 4,
+    "card_name": "聖杯九",
+    "choice": "A",
+    "brand": "Frédéric Malle",
+    "product": "Une Rose",
+    "description_zh": "你享受着情感上的满足与自我陶醉，为自己的成就与魅力感到骄傲。Frédéric Malle的Une Rose与这份自我认可共鸣——它是一朵盛大而华丽的玫瑰，饱满、性感且不容忽视。这香气是对自我的犒赏，提醒你：你值得世上所有的美好，因为你本就是美好的创造者。"
+  },
+  {
+    "id": 39,
+    "card_name": "聖杯九",
+    "choice": "B",
+    "brand": "Jo Malone London",
+    "product": "Myrrh & Tonka",
+    "description_zh": "你享受着情感上的自我满足，为自己的魅力与成就感到欣喜。Jo Malone的Myrrh & Tonka与这份自我认可共鸣——薰衣草的安宁与香草的甜美，交织出充满喜悦的私密空间。这香气是对自我的犒赏，庆祝你成为自己最喜欢的样子。"
+  },
+  {
+    "id": 44,
+    "card_name": "聖杯九",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Spiritueuse Double Vanille",
+    "description_zh": "你享受着情感上的自我满足，为自己的魅力与成就感到欣喜。Guerlain的Spiritueuse Double Vanille与这份自我认可共鸣——香草的神圣与朗姆酒的醇烈，交织出充满喜悦的私密空间。这香气是对自我的犒赏，庆祝你成为自己最喜欢的样子。"
+  },
+  {
+    "id": 76,
+    "card_name": "聖杯九",
+    "choice": "D",
+    "brand": "Byredo",
+    "product": "Sundazed",
+    "description_zh": "你享受着情感上的自我满足，为自己的魅力与成就感到欣喜。Byredo的Sundazed与这份自我认可共鸣——柑橘的阳光气息与麝香的温暖质感，交织出充满喜悦的私密空间。这香气是对自我的犒赏，庆祝你成为自己最喜欢的样子。"
+  },
+  {
+    "id": 18,
+    "card_name": "聖杯十",
+    "choice": "A",
+    "brand": "Creed",
+    "product": "Love in White",
+    "description_zh": "你体验着情感的圆满与和谐，家庭与集体的爱让你感到完整。Creed的Love in White为这幸福时刻加冕——稻谷的丰饶衬着橙花与木兰的圣洁，宛如天伦之乐在阳光下闪耀。这香气包容万物，见证着你创造的爱的共同体。"
+  },
+  {
+    "id": 21,
+    "card_name": "聖杯十",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Santal 33",
+    "description_zh": "你体验着情感的圆满与和谐，家庭与集体的爱让你感到完整。Le Labo的Santal 33为这幸福时刻加冕——檀木的温润与皮革的包容，构筑出充满归属感的情感共同体。这香气见证着你创造的爱的家园。"
+  },
+  {
+    "id": 42,
+    "card_name": "聖杯十",
+    "choice": "C",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Grand Soir",
+    "description_zh": "你体验着情感的圆满与和谐，爱与温暖让你感到完整。Maison Francis Kurkdjian的Grand Soir为这幸福时刻加冕——琥珀的温暖与香草的绵长，构筑出充满归属感的情感共同体。这香气见证着你创造的爱的家园。"
+  },
+  {
+    "id": 26,
+    "card_name": "聖杯十",
+    "choice": "D",
+    "brand": "Jo Malone London",
+    "product": "Wood Sage & Sea Salt",
+    "description_zh": "你体验着情感的圆满与和谐，爱与温暖让你感到完整。Jo Malone的Wood Sage & Sea Salt为这幸福时刻加冕——海风的清新与鼠尾草的温暖，构筑出充满归属感的情感共同体。这香气见证着你创造的爱的家园。"
+  },
+  {
+    "id": 17,
+    "card_name": "聖杯侍者",
+    "choice": "A",
+    "brand": "Jo Malone London",
+    "product": "Wild Bluebell",
+    "description_zh": "你带着温柔的好奇心探索世界，随时准备接收情感的新讯息。Jo Malone的Wild Bluebell与你天真敏锐的特质相合——水润清甜的气息如同少年善感的眼神，捕捉着生活中每一个微小的感动。愿这抹干净的香气，守护你探索的初心。"
+  },
+  {
+    "id": 36,
+    "card_name": "聖杯侍者",
+    "choice": "B",
+    "brand": "Diptyque",
+    "product": "Philosykos",
+    "description_zh": "你带着温柔的好奇心探索情感世界，随时准备接收心灵的讯息。Diptyque的Philosykos与你天真敏锐的特质相合——无花果叶的青翠与果实的奶甜，捕捉着情感世界的微妙变化。这香气守护你探索的初心，让每次心动都成为成长的礼物。"
+  },
+  {
+    "id": 49,
+    "card_name": "聖杯侍者",
+    "choice": "C",
+    "brand": "Comptoir Sud Pacifique",
+    "product": "Vanille Abricot",
+    "description_zh": "你带着温柔的好奇心探索情感世界，随时准备接收心灵的讯息。Comptoir Sud Pacifique的Vanille Abricot与你天真敏锐的特质相合——香草与杏子的简单甜美，捕捉着情感世界的微妙变化。这香气守护你探索的初心，让每次心动都成为成长的礼物。"
+  },
+  {
+    "id": 75,
+    "card_name": "聖杯侍者",
+    "choice": "D",
+    "brand": "Acqua di Parma",
+    "product": "Fico di Amalfi",
+    "description_zh": "你带着温柔的好奇心探索情感世界，随时准备接收心灵的讯息。Acqua di Parma的Fico di Amalfi与你天真敏锐的特质相合——无花果叶的青翠与果实的清甜，捕捉着情感世界的微妙变化。这香气守护你探索的初心，让每次心动都成为成长的礼物。"
+  },
+  {
+    "id": 3,
+    "card_name": "聖杯騎士",
+    "choice": "A",
+    "brand": "Penhaligon's",
+    "product": "The Coveted Duchess Rose",
+    "description_zh": "你以浪漫的姿态走向世界，带着诗意与诚意追求心中的理想。Penhaligon's的The Coveted Duchess Rose与你骑士般的优雅同行——木质玫瑰在微苦柑橘中低语，诉说着美丽与哀愁并存的宿命。这香气不保证结局，却赋予你追求过程的尊严。"
+  },
+  {
+    "id": 33,
+    "card_name": "聖杯騎士",
+    "choice": "B",
+    "brand": "Loewe",
+    "product": "001 Woman",
+    "description_zh": "你以浪漫的姿态走向世界，带着诗意与诚意追求心中的理想。Loewe的001 Woman与你骑士般的优雅同行——茉莉的纯洁与香草的缠绵，诉说着不求回报的深情。这香气赋予你追求的勇气，让每次心动都成为美好的诗篇。"
+  },
+  {
+    "id": 58,
+    "card_name": "聖杯騎士",
+    "choice": "C",
+    "brand": "Nishane",
+    "product": "Ani",
+    "description_zh": "你以浪漫的姿态走向世界，带着诗意与诚意追求心中的理想。Nishane的Ani与你骑士般的优雅同行——生姜的活力与香草的醇厚，在香柠檬的明亮中诉说着不求回报的深情。这香气赋予你追求的勇气，让每次心动都成为美好的诗篇。"
+  },
+  {
+    "id": 73,
+    "card_name": "聖杯騎士",
+    "choice": "D",
+    "brand": "Tom Ford",
+    "product": "Sole di Positano",
+    "description_zh": "你以浪漫的姿态走向世界，带着诗意与诚意追求心中的理想。Tom Ford的Sole di Positano与你骑士般的优雅同行——柑橘的明亮与橙花的洁净，诉说着不求回报的深情。这香气赋予你追求的勇气，让每次心动都成为美好的诗篇。"
+  },
+  {
+    "id": 11,
+    "card_name": "聖杯皇后",
+    "choice": "A",
+    "brand": "Goutal Paris",
+    "product": "Le Chèvrefeuille",
+    "description_zh": "你以深刻的直觉滋养着周围的生命，温柔中蕴含着强大的共情力。Goutal Paris的Le Chèvrefeuille与你女王般的慈悲共振——清冷的金银花带着绿意的微苦，如同包容一切的怀抱。这香气不张扬，却以其空灵的本质，抚慰每一个需要安息的灵魂。"
+  },
+  {
+    "id": 28,
+    "card_name": "聖杯皇后",
+    "choice": "B",
+    "brand": "Diptyque",
+    "product": "Tam Dao",
+    "description_zh": "你以深刻的直觉滋养着周围的生命，温柔中蕴含着强大的共情力。Diptyque的Tam Dao与你女王般的慈悲共振——檀木的包容与雪松的守护，创造出充满安全感的情感空间。这香气不张扬，却以其深沉的温柔，抚慰每个需要安息的灵魂。"
+  },
+  {
+    "id": 56,
+    "card_name": "聖杯皇后",
+    "choice": "C",
+    "brand": "BDK Parfums",
+    "product": "Gris Charnel",
+    "description_zh": "你以深刻的直觉滋养着周围的生命，温柔中蕴含着强大的共情力。BDK的Gris Charnel与你女王般的慈悲共振——无花果的温柔与檀木的守护，创造出充满安全感的情感空间。这香气不张扬，却以其深沉的温柔，抚慰每个需要安息的灵魂。"
+  },
+  {
+    "id": 63,
+    "card_name": "聖杯皇后",
+    "choice": "D",
+    "brand": "Narciso Rodriguez",
+    "product": "For Her Eau de Toilette",
+    "description_zh": "你以深刻的直觉滋养着周围的生命，温柔中蕴含着强大的共情力。Narciso Rodriguez的For Her Eau de Toilette与你女王般的慈悲共振——麝香的包容与花香的柔软，创造出充满安全感的情感空间。这香气不张扬，却以其深沉的温柔，抚慰每个需要安息的灵魂。"
+  },
+  {
+    "id": 12,
+    "card_name": "聖杯國王",
+    "choice": "A",
+    "brand": "Hermès",
+    "product": "Le Jardin de Monsieur Li",
+    "description_zh": "你以成熟的智慧平衡理智与情感，是众人信赖的心灵导师。Hermès的Le Jardin de Monsieur Li与你国王般的从容相映——金橘与茉莉在湿润庭院中达成完美和谐，苔石的气息稳如磐石。这香气展现真正的力量：在理解中引领，在平静中深刻。"
+  },
+  {
+    "id": 35,
+    "card_name": "聖杯國王",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Thé Noir 29",
+    "description_zh": "你以成熟的智慧平衡理智与情感，是众人信赖的心灵导师。Le Labo的Thé Noir 29与你国王般的从容相映——红茶的醇厚与烟草的深度，在无花果的甜润中达成完美平衡。这香气展现真正的力量：在理解中引领，在平静中深刻。"
+  },
+  {
+    "id": 55,
+    "card_name": "聖杯國王",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Tonka Imperiale",
+    "description_zh": "你以成熟的智慧平衡理智与情感，是众人信赖的心灵导师。Guerlain的Tonka Imperiale与你国王般的从容相映——零陵香豆的醇厚与烟草的温暖，展现出历经沉淀的包容力。这香气展现真正的力量：在理解中引领，在平静中深刻。"
+  },
+  {
+    "id": 64,
+    "card_name": "聖杯國王",
+    "choice": "D",
+    "brand": "Creed",
+    "product": "Silver Mountain Water",
+    "description_zh": "你以成熟的智慧平衡理智与情感，是众人信赖的心灵导师。Creed的Silver Mountain Water与你国王般的从容相映——冰山融水般的清澈与绿茶的凛冽，展现出历经沉淀的明晰判断。这香气展现真正的力量：在理解中引领，在冷静中深刻。"
+  },
+  {
+    "id": 13,
+    "card_name": "寶劍一",
+    "choice": "A",
+    "brand": "Diptyque",
+    "product": "Ofrésia",
+    "description_zh": "你的思维如利刃般清晰，一个突破性的想法正划破迷雾。Diptyque的Ofrésia与这份心智的锐利共鸣——小苍兰的青绿根茎气息鲜明而直接，不带丝毫犹豫。这香气象征着思维的纯粹与精准，助你切断纷扰，抓住灵感的本质。"
+  },
+  {
+    "id": 34,
+    "card_name": "寶劍一",
+    "choice": "B",
+    "brand": "Aesop",
+    "product": "Tacit",
+    "description_zh": "你的思维正迸发出锐利的灵感，一个清晰的念头划破迷雾。Aesop的Tacit与这份心智的锋芒完美契合——罗勒的清新绿意与香根草的明晰质感，如同出鞘的利刃。这香气助你切断纷乱思绪，专注在最具价值的核心概念上。"
+  },
+  {
+    "id": 50,
+    "card_name": "寶劍一",
+    "choice": "C",
+    "brand": "Akro",
+    "product": "Awake",
+    "description_zh": "你的思维正迸发出锐利的灵感，一个清晰的念头划破迷雾。Akro的Awake与这份心智的锋芒完美契合——浓缩咖啡的纯粹香气带来即时的精神专注，如同出鞘的利刃。这香气助你切断纷乱思绪，专注在最具价值的核心概念上。"
+  },
+  {
+    "id": 64,
+    "card_name": "寶劍一",
+    "choice": "D",
+    "brand": "Creed",
+    "product": "Silver Mountain Water",
+    "description_zh": "你的思维正迸发出锐利的灵感，一个突破性的想法划破迷雾。Creed的Silver Mountain Water与这份心智的锋芒完美契合——冰山融水般的清澈与绿茶的凛冽，带来极致的专注与明晰。这香气助你切断纷乱思绪，专注在最具价值的核心概念上。"
+  },
+  {
+    "id": 20,
+    "card_name": "寶劍二",
+    "choice": "A",
+    "brand": "Gucci",
+    "product": "Mémoire d'une Odeur",
+    "description_zh": "你站在选择的十字路口，用暂时的停顿来保护内心的平静。Gucci的Mémoire d'une Odeur与这份悬而未决的状态契合——洋甘菊的质朴与矿物麝香的疏离，营造出朦胧的边界感。这香气不催促决定，却为你保留一片冷静思考的空间。"
+  },
+  {
+    "id": 28,
+    "card_name": "寶劍二",
+    "choice": "B",
+    "brand": "Diptyque",
+    "product": "Tam Dao",
+    "description_zh": "你站在选择的关口，用暂时的静默来守护内心的平衡。Diptyque的Tam Dao与这份悬而未决的状态共鸣——檀木的宁谧与雪松的沉静，营造出不受干扰的思考空间。这香气不催促答案，只为你的权衡过程提供平和的心境。"
+  },
+  {
+    "id": 56,
+    "card_name": "寶劍二",
+    "choice": "C",
+    "brand": "BDK Parfums",
+    "product": "Gris Charnel",
+    "description_zh": "你站在选择的关口，用暂时的静默来守护内心的平衡。BDK的Gris Charnel与这份悬而未决的状态共鸣——无花果的奶感与茶的清苦，在檀木基底上构筑出朦胧的思考空间。这香气不催促答案，只为你的权衡过程提供平和的心境。"
+  },
+  {
+    "id": 65,
+    "card_name": "寶劍二",
+    "choice": "D",
+    "brand": "Acca Kappa",
+    "product": "White Moss",
+    "description_zh": "你站在选择的关口，用暂时的静默来守护内心的平衡。Acca Kappa的White Moss与这份悬而未决的状态共鸣——白麝香的洁净与苔藓的湿润，营造出不受干扰的思考空间。这香气不催促答案，只为你的权衡过程提供平和的心境。"
+  },
+  {
+    "id": 15,
+    "card_name": "寶劍三",
+    "choice": "A",
+    "brand": "Penhaligon's",
+    "product": "Bluebell",
+    "description_zh": "你正经历心碎的痛楚，悲伤如利剑刺入心房。Penhaligon's的Bluebell理解这种深刻的失落——潮湿的泥土与阴郁的绿意，勾勒出雨中独行的孤影。这香气不急于治愈，却温柔地陪伴你承认：疼痛，是曾经真心付出的印记。"
+  },
+  {
+    "id": 38,
+    "card_name": "寶劍三",
+    "choice": "B",
+    "brand": "Serge Lutens",
+    "product": "Chergui",
+    "description_zh": "你正经历心碎的痛楚，悲伤如三把利剑刺入心房。Serge Lutens的Chergui理解这种深刻的失落——蜂蜜的温暖与干草的醇厚，轻柔包裹着受伤的心灵。这香气不急于治愈，却让每一次呼吸都带来些许慰藉。"
+  },
+  {
+    "id": 47,
+    "card_name": "寶劍三",
+    "choice": "C",
+    "brand": "Serge Lutens",
+    "product": "Jeux de Peau",
+    "description_zh": "你正经历心碎的痛楚，悲伤如利剑刺入心房。Serge Lutens的Jeux de Peau理解这种深刻的失落——烤面包的暖香与牛奶的醇厚，用最质朴的温暖抚慰受伤的心灵。这香气不急于治愈，却让每一次呼吸都带来些许慰藉。"
+  },
+  {
+    "id": 62,
+    "card_name": "寶劍三",
+    "choice": "D",
+    "brand": "Maison Martin Margiela",
+    "product": "Lazy Sunday Morning",
+    "description_zh": "你正经历心碎的痛楚，悲伤如利剑刺入心房。Maison Martin Margiela的Lazy Sunday Morning理解这种深刻的失落——铃兰的清新与梨子的水润，在白麝香的包裹中带来温柔的慰藉。这香气不急于治愈，却让每一次呼吸都带来些许安抚。"
+  },
+  {
+    "id": 12,
+    "card_name": "寶劍四",
+    "choice": "A",
+    "brand": "Hermès",
+    "product": "Le Jardin de Monsieur Li",
+    "description_zh": "你主动选择休息与隔离，让疲惫的心智得到必要的修复。Hermès的Le Jardin de Monsieur Li为你提供理想的沉思空间——金橘与茉莉在湿润庭院中低语，苔石的气息稳如磐石。这香气不打扰你的修复过程，只静静守护这段重获清明的时光。"
+  },
+  {
+    "id": 24,
+    "card_name": "寶劍四",
+    "choice": "B",
+    "brand": "Aesop",
+    "product": "Hwyl",
+    "description_zh": "你主动选择休憩与隔离，让过度思考的心智获得必要的修复。Aesop的Hwyl为你创造理想的修复空间——柏树的幽静与苔藓的湿润，构筑出远离喧嚣的庇护所。这香气守护你的沉思时刻，让精神重获清明。"
+  },
+  {
+    "id": 55,
+    "card_name": "寶劍四",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Tonka Imperiale",
+    "description_zh": "你主动选择休憩与隔离，让过度思考的心智获得必要的修复。Guerlain的Tonka Imperiale为你创造理想的修复空间——零陵香豆的醇厚与烟草的温暖，营造出最适合沉思的安宁氛围。这香气守护你的沉思时刻，让精神重获清明。"
+  },
+  {
+    "id": 69,
+    "card_name": "寶劍四",
+    "choice": "D",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Aqua Universalis",
+    "description_zh": "你主动选择休憩与隔离，让过度思考的心智获得必要的修复。Maison Francis Kurkdjian的Aqua Universalis为你创造理想的修复空间——柠檬与铃兰的绝对洁净，构筑出纯粹的思想净土。这香气守护你的沉思时刻，让精神重获清明。"
+  },
+  {
+    "id": 9,
+    "card_name": "寶劍五",
+    "choice": "A",
+    "brand": "Le Labo",
+    "product": "Rose 31",
+    "description_zh": "你陷入无意义的争斗，胜利的背后是空虚与失落。Le Labo的Rose 31映照出这场冲突的真相——孜然的野性与玫瑰的优雅在矛盾中纠缠，香气复杂而略带讽刺。这香气不评判对错，却提醒你：有些胜利，代价是自我的完整。"
+  },
+  {
+    "id": 40,
+    "card_name": "寶劍五",
+    "choice": "B",
+    "brand": "Hermès",
+    "product": "Terre d‘Hermès",
+    "description_zh": "你陷入无意义的争执，胜利的背后是空虚与疏离。Hermès的Terre d'Hermès映照这场冲突的本质——葡萄柚的锐利与矿物的冷峻，揭示着某些胜利的代价。这香气提醒你：真正的智慧在于看清什么值得争取。"
+  },
+  {
+    "id": 58,
+    "card_name": "寶劍五",
+    "choice": "C",
+    "brand": "Nishane",
+    "product": "Ani",
+    "description_zh": "你陷入无意义的争执，胜利的背后是空虚与疏离。Nishane的Ani映照这场冲突的本质——生姜的辛辣与香草的甜美形成有趣对抗，香柠檬的明亮穿梭其间。这香气提醒你：真正的智慧在于看清什么值得争取。"
+  },
+  {
+    "id": 78,
+    "card_name": "寶劍五",
+    "choice": "D",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Aqua Celestia",
+    "description_zh": "你陷入无意义的争执，胜利的背后是空虚与疏离。Maison Francis Kurkdjian的Aqua Celestia映照这场冲突的本质——薄荷的清凉与柠檬的明亮，揭示着某些胜利的代价。这香气提醒你：真正的智慧在于看清什么值得争取。"
+  },
+  {
+    "id": 14,
+    "card_name": "寶劍六",
+    "choice": "A",
+    "brand": "Frédéric Malle",
+    "product": "En Passant",
+    "description_zh": "你正平稳地渡过难关，带着伤痕走向更平静的彼岸。Frédéric Malle的En Passant与这趟疗愈之旅同行——紫丁香的水汽朦胧如薄雾，轻轻包裹着未愈的伤口。这香气不急于驱散悲伤，却为你的过渡增添一丝诗意的温柔。"
+  },
+  {
+    "id": 26,
+    "card_name": "寶劍六",
+    "choice": "B",
+    "brand": "Jo Malone London",
+    "product": "Wood Sage & Sea Salt",
+    "description_zh": "你正平稳渡过情感的难关，带着伤痕走向更平静的彼岸。Jo Malone的Wood Sage & Sea Salt与这趟疗愈之旅同行——海风的清新与鼠尾草的温暖，为过渡期带来舒缓的陪伴。这香气不急于改变，却让修复的过程变得柔和。"
+  },
+  {
+    "id": 44,
+    "card_name": "寶劍六",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Spiritueuse Double Vanille",
+    "description_zh": "你正平稳渡过情感的难关，带着伤痕走向更平静的彼岸。Guerlain的Spiritueuse Double Vanille与这趟疗愈之旅同行——香草的神圣与朗姆酒的醇烈，为过渡期带来舒缓的陪伴。这香气不急于改变，却让修复的过程充满温暖。"
+  },
+  {
+    "id": 26,
+    "card_name": "寶劍六",
+    "choice": "D",
+    "brand": "Jo Malone London",
+    "product": "Wood Sage & Sea Salt",
+    "description_zh": "你正平稳渡过情感的难关，带着伤痕走向更平静的彼岸。Jo Malone的Wood Sage & Sea Salt与这趟疗愈之旅同行——海风的清新与鼠尾草的温暖，为过渡期带来舒缓的陪伴。这香气不急于改变，却让修复的过程变得柔和自然。"
+  },
+  {
+    "id": 6,
+    "card_name": "寶劍七",
+    "choice": "A",
+    "brand": "Goutal Paris",
+    "product": "Rose Pompon",
+    "description_zh": "你以机智与策略应对挑战，用不按常理的方式解决问题。Goutal Paris的Rose Pompon与这份灵活的智慧呼应——黑加仑的俏皮与粉红胡椒的微辛，让玫瑰显得轻盈而聪慧。这香气不主张正面对抗，却以巧妙的方式打开新的可能。"
+  },
+  {
+    "id": 35,
+    "card_name": "寶劍七",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Thé Noir 29",
+    "description_zh": "你以机智与策略应对挑战，用非传统的方式打开局面。Le Labo的Thé Noir 29与这份灵活的智慧呼应——红茶的醇厚与烟草的复杂，在无花果的甜润中展现多面性。这香气证明：有时候迂回比直击更有效。"
+  },
+  {
+    "id": 41,
+    "card_name": "寶劍七",
+    "choice": "C",
+    "brand": "Kilian",
+    "product": "Intoxicated",
+    "description_zh": "你以机智与策略应对挑战，用非传统的方式打开局面。Kilian的Intoxicated与这份灵活的智慧呼应——咖啡的浓烈与小豆蔻的辛辣，展现出不按常理出牌的智慧。这香气证明：有时候迂回比直击更有效。"
+  },
+  {
+    "id": 74,
+    "card_name": "寶劍七",
+    "choice": "D",
+    "brand": "Diptyque",
+    "product": "Eau des Sens",
+    "description_zh": "你以机智与策略应对挑战，用非传统的方式打开局面。Diptyque的Eau des Sens与这份灵活的智慧呼应——苦橙的锐利与杜松子的青翠，在橙花的调和下展现多面性。这香气证明：有时候迂回比直击更有效。"
+  },
+  {
+    "id": 18,
+    "card_name": "寶劍八",
+    "choice": "A",
+    "brand": "Creed",
+    "product": "Love in White",
+    "description_zh": "你被自我设限的念头束缚，感到无助却未察觉牢笼本是虚幻。Creed的Love in White以其纯净的光辉映照此境——橙花与木兰的圣洁气息，如同穿透迷雾的月光。这香气不打破枷锁，却让你看清：钥匙，一直在你手中。"
+  },
+  {
+    "id": 37,
+    "card_name": "寶劍八",
+    "choice": "B",
+    "brand": "Tom Ford",
+    "product": "Ombré Leather",
+    "description_zh": "你被自我设限的念头束缚，却未意识到牢笼本是虚幻。Tom Ford的Ombré Leather以其不羁的本质回应困境——皮革的自由与木质的深度，打破无形的枷锁。这香气唤醒你：真正的解放始于意识的觉醒。"
+  },
+  {
+    "id": 53,
+    "card_name": "寶劍八",
+    "choice": "C",
+    "brand": "Xerjoff",
+    "product": "Lira",
+    "description_zh": "你被自我设限的念头束缚，却未意识到牢笼本是虚幻。Xerjoff的Lira以其甜美的本质回应困境——焦糖柠檬蛋糕的诱人香气，提醒你世界充满美好可能。这香气唤醒你：真正的解放始于走出自我设限。"
+  },
+  {
+    "id": 73,
+    "card_name": "寶劍八",
+    "choice": "D",
+    "brand": "Tom Ford",
+    "product": "Sole di Positano",
+    "description_zh": "你被自我设限的念头束缚，却未意识到牢笼本是虚幻。Tom Ford的Sole di Positano以其明亮的本质回应困境——柑橘的阳光气息与橙花的洁净，打破无形的枷锁。这香气唤醒你：真正的解放始于走出自我设限。"
+  },
+  {
+    "id": 7,
+    "card_name": "寶劍九",
+    "choice": "A",
+    "brand": "Aesop",
+    "product": "Rozu",
+    "description_zh": "你在深夜被焦虑与恐惧折磨，负面思绪如潮水般涌来。Aesop的Rozu理解这种精神上的煎熬——烟熏木质与皮革的沉重感，如同挥之不去的梦魇。这香气不轻易给予安慰，却陪伴你直面黑暗，直到黎明来临。"
+  },
+  {
+    "id": 23,
+    "card_name": "寶劍九",
+    "choice": "B",
+    "brand": "Maison Martin Margiela",
+    "product": "By the Fireplace",
+    "description_zh": "你在深夜被焦虑困扰，负面思绪如潮水般涌来。Maison Martin Margiela的By the Fireplace驱散这份恐惧——烤栗子的甜香与炉火的温暖，照亮内心的黑暗角落。这香气不做承诺，却用实在的温暖对抗虚无的恐惧。"
+  },
+  {
+    "id": 43,
+    "card_name": "寶劍九",
+    "choice": "C",
+    "brand": "Sol de Janeiro",
+    "product": "Cheirosa '62",
+    "description_zh": "你在深夜被焦虑困扰，负面思绪如潮水般涌来。Sol de Janeiro的Cheirosa '62驱散这份恐惧——开心果与杏仁的活泼甜香，盐焦糖的阳光气息，照亮内心的黑暗角落。这香气用纯粹的快乐对抗虚无的恐惧。"
+  },
+  {
+    "id": 61,
+    "card_name": "寶劍九",
+    "choice": "D",
+    "brand": "Byredo",
+    "product": "Blanche",
+    "description_zh": "你在深夜被焦虑与恐惧折磨，负面思绪如潮水般涌来。Byredo的Blanche以其绝对的纯净驱散这份恐惧——醛香与白麝香的洁白无瑕，照亮内心的黑暗角落。这香气不做承诺，却用纯粹的光明对抗虚无的恐惧。"
+  },
+  {
+    "id": 1,
+    "card_name": "寶劍十",
+    "choice": "A",
+    "brand": "Diptyque",
+    "product": "L'Ombre dans L'Eau",
+    "description_zh": "你经历着彻底的结束，旧有模式已被连根拔起。Diptyque的L'Ombre dans L'Eau与这毁灭性的终结共鸣——黑醋栗叶的强烈绿意压制一切，如同故事戛然而止。这香气不承诺重生，却暗示：唯有彻底终结，才可能孕育新的开始。"
+  },
+  {
+    "id": 21,
+    "card_name": "寶劍十",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Santal 33",
+    "description_zh": "你经历着彻底的终结，旧有模式已被连根拔起。Le Labo的Santal 33与这毁灭性的完结共鸣——檀木的沉静与皮革的韧性，在废墟中保持最后的尊严。这香气见证一个周期的完结，为新生预留空间。"
+  },
+  {
+    "id": 42,
+    "card_name": "寶劍十",
+    "choice": "C",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Grand Soir",
+    "description_zh": "你经历着彻底的终结，旧有模式已被连根拔起。Maison Francis Kurkdjian的Grand Soir与这毁灭性的完结共鸣——琥珀的辉煌与香草的丰盈，在终结处保持最后的尊严。这香气见证一个周期的完结，为新生预留空间。"
+  },
+  {
+    "id": 80,
+    "card_name": "寶劍十",
+    "choice": "D",
+    "brand": "Le Labo",
+    "product": "Baie 19",
+    "description_zh": "你经历着彻底的终结，旧有模式已被连根拔起。Le Labo的Baie 19与这毁灭性的完结共鸣——雨后矿物的清冷与湿土的气息，在废墟中保持最后的真实。这香气见证一个周期的完结，为新生预留纯净空间。"
+  }
+]

@@ -1,0 +1,2490 @@
+[
+  {
+    "id": 20,
+    "description_en": "You stand on the precipice of a new beginning, heart surging with untold longing and untamed freedom. Gucci’s Mémoire d'une Odeur echoes this spirit—Roman chamomile and mineral musk drift like fragments of memory, both intimate and strange. It records every brave departure, defining no destination but honoring the journey itself. At every crossroads, it whispers: the most breathtaking vistas are found in the unplanned turns."
+  },
+  {
+    "id": 27,
+    "description_en": "You stand at the threshold of a new journey, heart filled with curiosity and unbridled freedom. Byredo’s Gypsy Water mirrors this spirit—juniper berries’ crispness and amber’s warmth dance like a campfire under starlit skies. This scent sets no destination, only accompanying your spontaneous wandering. It reminds you that life’s true brilliance often hides in the unplanned turns."
+  },
+  {
+    "id": 49,
+    "description_en": "You stand at the start of a fresh journey, heart brimming with innocent fearlessness. Comptoir Sud Pacifique’s Vanille Abricot matches this free spirit—vanilla and apricot blend in sweet simplicity, like the pure joy of a child. This scent maps no end, only accompanying you through every surprise, reminding you that life’s wonder blooms in the accidental turns."
+  },
+  {
+    "id": 75,
+    "description_en": "You stand at the beginning of a new voyage, filled with curious anticipation. Acqua di Parma’s Fico di Amalfi mirrors this liberated spirit—green fig leaves and sweet fruit outline the radiant coast of Amalfi. This scent charts no path, only accompanying the joy of exploration, finding life’s surprises in every unexpected turn."
+  },
+  {
+    "id": 9,
+    "description_en": "You stand at the zenith of potential, consciousness clear as light, all elements bending to your will. Le Labo’s Rose 31 embodies this sovereignty—not an innocent bloom, but one laced with the warm spice of cumin, mirroring your raw, undeniable creative force. Frankincense and cedarwood rise to forge a silent, lucid aura, making your words strike with the precision of spells. It is a quiet power that commands attention without raising its voice."
+  },
+  {
+    "id": 40,
+    "description_en": "You feel the awakening of inner potential; all things are ready for your command. Hermès’ Terre d'Hermès resonates with this mastery—grapefruit’s vitality and vetiver’s stability build a force field between heaven and earth. This scent gives you the grounding to turn thoughts into reality, making every action strike with the precision of a spell."
+  },
+  {
+    "id": 58,
+    "description_en": "You feel the magic of turning thoughts into reality; the world bends to your will. Nishane’s Ani resonates with your creative spark—ginger’s heat and vanilla’s richness collide, pierced by the brightness of bergamot. Like an incantation, this scent helps you blend every element perfectly, allowing every vision to manifest flawlessly in the real world."
+  },
+  {
+    "id": 74,
+    "description_en": "You feel the magic of turning thoughts into reality; all creation awaits your command. Diptyque’s Eau des Sens resonates with your creative force—bitter orange's clarity and juniper's greenness find exquisite balance in cleansing orange blossom. Like an incantation, this scent helps you blend elements with precision, letting inspiration manifest perfectly in reality."
+  },
+  {
+    "id": 11,
+    "description_en": "You feel wisdom awakening within, a longing for deep dialogue in stillness. Goutal Paris’s Le Chèvrefeuille is made for this moment—cool honeysuckle with bitter green notes, like moonlight on a silent courtyard. It walls off the world’s noise, creating a sanctuary of solitude. In this scent, you hear your truest voice and find the answers that belong only to you."
+  },
+  {
+    "id": 28,
+    "description_en": "You hear the call of inner wisdom, longing to converse with intuition in silence. Diptyque’s Tam Dao creates this sacred space—pure sandalwood’s creamy, tranquil breath reflects meditative moments in ancient temples. This scent offers no answers, but illuminates the path leading deep into your subconscious."
+  },
+  {
+    "id": 56,
+    "description_en": "You hear the deep call of wisdom, seeking revelation in silence. BDK’s Gris Charnel echoes this profound intuition—fig’s milkiness and tea’s bitterness weave over a sandalwood base, creating a hazy, mysterious atmosphere. This scent offers no answers, yet lights the way for your spiritual exploration."
+  },
+  {
+    "id": 80,
+    "description_en": "You hear the deep call of wisdom, seeking revelation in silence. Le Labo’s Baie 19 echoes this profound intuition—the cool scent of rain on dry earth and mineral notes create an ethereal, mysterious void. This scent offers no answers, yet lights the path leading deep into your subconscious."
+  },
+  {
+    "id": 4,
+    "description_en": "You are in a phase of abundance and creation, your love for life blooming like a flower. Frédéric Malle’s Une Rose mirrors this state—its grand, full-bodied aroma is like standing in a midsummer garden, every petal speaking of life’s generosity. This scent awakens your sense of beauty, letting you grow in abundance, becoming the very source of love and creation."
+  },
+  {
+    "id": 31,
+    "description_en": "You are in a cycle of abundance and creation, love for life blooming freely. Maison Francis Kurkdjian’s À la Rose reflects your radiance—the luxurious scent of hundreds of roses, like walking through a private garden at summer dusk. This scent awakens your sense of beauty, reminding you that you are the source of love and nourishment."
+  },
+  {
+    "id": 53,
+    "description_en": "You are at the peak of abundance and creation, your love for life warm as sunlight. Xerjoff’s Lira reflects your radiance—the tempting aroma of caramel lemon cake, like a feast that never ends. This scent awakens your total acceptance of sensory beauty, reminding you that you are the source of love and abundance."
+  },
+  {
+    "id": 66,
+    "description_en": "You are in a cycle of abundance and creation, love for life blooming freely. Chloe’s Love Story reflects your radiance—orange blossom’s purity and musk’s tenderness weave an elegant, feminine aura. This scent awakens your sense of beauty, reminding you that you are the source of love and nourishment."
+  },
+  {
+    "id": 7,
+    "description_en": "You need order and structure, building your domain with steady power. Aesop’s Rozu answers this call—a weathered rose rooted in smoky wood, resilient and immovable. This scent provides a grounded confidence, maintaining clear boundaries amidst chaos, becoming the strength with which you calmly face every challenge."
+  },
+  {
+    "id": 22,
+    "description_en": "You need order and structure, building your domain with steady power. Tom Ford’s Oud Wood resonates with your authority—quiet oud and sandalwood stand like a throne polished by time. This scent lays an unshakeable foundation of confidence amidst chaos, revealing a mastery that is calm and unhurried."
+  },
+  {
+    "id": 55,
+    "description_en": "You need order and authority, building your kingdom with steady strength. Guerlain’s Tonka Imperiale resonates with your control—tonka bean’s richness and tobacco’s warmth stand like a throne polished by time. This scent lays an unshakeable cornerstone for you amidst the turmoil."
+  },
+  {
+    "id": 70,
+    "description_en": "You need order and structure, building your domain with steady power. Penhaligon's Castile resonates with your authority—the classic union of orange blossom and soap reveals an elegance tested by time. This scent lays an unshakeable foundation of confidence, showing calm mastery within order."
+  },
+  {
+    "id": 18,
+    "description_en": "You seek peace and spiritual guidance amidst the noise. Creed’s Love in White brings an atmosphere clear as morning light with its pure orange blossom and magnolia. This scent is not loud but holds its own dignity, helping you keep simplicity within complexity, find clarity in chaos, and return to your inner principles."
+  },
+  {
+    "id": 39,
+    "description_en": "You seek spiritual guidance and traditional wisdom, longing for faith amidst the noise. Jo Malone’s Myrrh & Tonka meets this search—lavender’s peace and myrrh’s mystery weave a solemn, ritualistic atmosphere. This scent is like an ancient book of wisdom, providing a sanctuary for your soul."
+  },
+  {
+    "id": 44,
+    "description_en": "You seek spiritual guidance and traditional wisdom, longing for faith amidst the noise. Guerlain’s Spiritueuse Double Vanille fits this search—vanilla’s sanctity and rum’s intensity weave a solemn, ritualistic atmosphere. This scent is a vessel of ancient wisdom, providing an eternal sanctuary for your soul."
+  },
+  {
+    "id": 61,
+    "description_en": "You seek spiritual guidance and traditional wisdom, longing for inner faith amidst the noise. Byredo’s Blanche fits this search—aldehyde’s cleanliness and white musk’s purity create a ritualistic, holy atmosphere. This scent is a channel to higher consciousness, providing an eternal sanctuary for your soul."
+  },
+  {
+    "id": 2,
+    "description_en": "You are experiencing a deep emotional connection, or seeking true resonance. Stella McCartney’s Stella interprets trust and the courage to choose with its pure, tender line of rose. This scent is like the sincerest vow, simple yet powerful, accompanying you as you feel the resonance of souls and witness the certainty of love."
+  },
+  {
+    "id": 33,
+    "description_en": "You are experiencing a deep soul connection, or seeking true resonance. Loewe’s 001 Woman interprets this intimacy—vanilla and jasmine wrap tenderly around clean musk, like the warmth of a morning embrace. This scent records the moment of spiritual resonance, becoming a wordless promise between you."
+  },
+  {
+    "id": 52,
+    "description_en": "You are experiencing resonance deep in the soul, two hearts blending in perfect harmony. Maison Francis Kurkdjian’s Oud Satin Mood interprets this ultimate intimacy—deep oud wrapped in abundant rose, a velvet texture like an inseparable embrace. This scent records the eternal moment when spirits align."
+  },
+  {
+    "id": 63,
+    "description_en": "You are experiencing a deep soul connection, or seeking true resonance. Narciso Rodriguez’s For Her Eau de Toilette interprets this intimacy—musk’s cleanliness and floral tenderness sketch warm memories of skin-to-skin contact. This scent records the moment of spiritual resonance, becoming a wordless promise between you."
+  },
+  {
+    "id": 3,
+    "description_en": "You ride forward harnessing opposing forces, will as your reins, goal as your direction. Penhaligon's The Coveted Duchess Rose mirrors you now—a rose full of tension, lingering between bitter citrus and deep wood, beautiful with a touch of sorrow. It warns: true victory asks a price. This scent gives you a steel core beneath elegance, keeping you cool in conflict and graceful in competition."
+  },
+  {
+    "id": 40,
+    "description_en": "You ride forward harnessing opposing forces, will as your reins. Hermès’ Terre d'Hermès resonates with your burst of action—mineral coldness and vetiver’s breadth build an unwavering path forward. This scent grants you the courage to break through barriers, making your goal as clear as the horizon."
+  },
+  {
+    "id": 50,
+    "description_en": "You are sprinting towards your goal with full force, will as your engine. Akro’s Awake resonates with your burst of action—the pure scent of espresso brings extreme focus, like an engine that never stops. This scent grants you the determination to break through all barriers, placing the goal within reach."
+  },
+  {
+    "id": 64,
+    "description_en": "You ride forward harnessing opposing forces, will as your reins. Creed’s Silver Mountain Water resonates with your burst of action—clarity like melting glacial water and green tea’s crispness build an unwavering path. This scent grants you the courage to break through barriers, making your goal as clear as the horizon."
+  },
+  {
+    "id": 1,
+    "description_en": "You realize true strength comes from inner courage and gentle control. Diptyque’s L'Ombre dans L'Eau perfectly interprets this wisdom—wrapping soft rose in vigorous green notes, showing the philosophy of conquering rigidity with softness. This scent tells you: tenderness is not weakness, but the mightiest power, letting you stay soft in firmness and merciful in strength."
+  },
+  {
+    "id": 36,
+    "description_en": "You learn to control the situation with gentleness, finding true power in inner calm. Diptyque’s Philosykos reflects this wisdom—green fig leaves and milky fruit speak the philosophy of softness overcoming strength. This scent reminds you: the most resilient power often hides beneath the softest exterior."
+  },
+  {
+    "id": 56,
+    "description_en": "You learn the wisdom of conquering rigidity with softness, finding true power in inner calm. BDK’s Gris Charnel echoes this deep courage—fig’s tenderness and sandalwood’s firmness find perfect balance in the gray zone. This scent reminds you: the most resilient power often hides beneath the calmest exterior."
+  },
+  {
+    "id": 63,
+    "description_en": "You learn to control the situation with gentleness, finding true power in inner calm. Narciso Rodriguez’s For Her Eau de Toilette reflects this wisdom—musk’s embrace and floral softness show the philosophy of softness overcoming strength. This scent reminds you: the most resilient power often hides beneath the gentlest exterior."
+  },
+  {
+    "id": 12,
+    "description_en": "You long to leave the noise, finding inner clarity in solitude. Hermès’ Le Jardin de Monsieur Li is this ideal realm—kumquat and jasmine linger among wet mossy stones, sketching a quiet courtyard. This scent creates space for contemplation, letting thoughts settle and the soul find nourishment in solitude, discovering answers that only appear in silence."
+  },
+  {
+    "id": 24,
+    "description_en": "You actively choose to retreat inwards, seeking the glimmer of truth in solitude. Aesop’s Hwyl resonates with your contemplation—cypress’s quietude and vetiver’s depth feel like a misty forest path. This scent points no direction, but offers the most peaceful companionship for your inner exploration."
+  },
+  {
+    "id": 55,
+    "description_en": "You actively choose to retreat inwards, seeking the glimmer of truth in solitude. Guerlain’s Tonka Imperiale resonates with your contemplation—tobacco’s richness and tonka bean’s warmth create a sacred space best suited for solitude. This scent points no direction, but offers the most peaceful companionship for your inner exploration."
+  },
+  {
+    "id": 65,
+    "description_en": "You actively choose to retreat inwards, seeking the glimmer of truth in solitude. Acca Kappa’s White Moss resonates with your contemplation—white musk’s cleanliness and moss’s dampness create a peaceful space best suited for solitude. This scent points no direction, but offers the quietest companionship for your inner exploration."
+  },
+  {
+    "id": 5,
+    "description_en": "You feel the wheel of life turning; a chapter ends, a new chance descends. Byredo’s Young Rose answers this moment of flux—Sichuan pepper wakes the senses, green stems break the soil with unpolished courage. This rose is imperfect but full of primal life, whispering: every end is a new beginning. May this trembling green rose accompany you as you embrace fate’s impermanence."
+  },
+  {
+    "id": 32,
+    "description_en": "When life’s turning point arrives, you feel the deep intent of the universe. Byredo’s Bal d'Afrique embraces this moment with golden warmth—bergamot’s brightness and amber’s richness are like a celebratory dance on African plains. This scent resists no change, scattering sunlight at every turn, reminding you: every end is a new beginning."
+  },
+  {
+    "id": 51,
+    "description_en": "When the gears of fate begin to turn, you feel the natural cycle of life shifting. Kilian’s Angels' Share fits this moment of change perfectly—cognac’s richness and hazelnut’s warm sweetness resemble a celebratory feast. This scent resists no impermanence, scattering golden hope at every turn, reminding you to accept life’s gifts."
+  },
+  {
+    "id": 78,
+    "description_en": "When the gears of fate begin to turn, you feel the natural cycle of life shifting. Maison Francis Kurkdjian’s Aqua Celestia fits this moment of change perfectly—lemon and mint’s fresh breath is transparent and bright, like hope pouring from the sky. This scent resists no impermanence, bringing new possibilities at every turn, reminding you to accept life’s gifts."
+  },
+  {
+    "id": 6,
+    "description_en": "You stand at a crossroads, longing for precise balance amidst complexity. Goutal Paris’s Rose Pompon responds with perfect elegance—blackcurrant’s lively acid and pink pepper’s spice support the rose’s sweetness, none overpowering the other. Like a scale, it remains steady, reminding you: true justice comes from noticing every nuance. May this sculpted rose help you make a decision you won’t regret."
+  },
+  {
+    "id": 35,
+    "description_en": "Standing at the center of the scale, you seek the fairest balance. Le Labo’s Thé Noir 29 responds with exquisite coordination—fig’s sweetness and tobacco’s dryness find perfect harmony in a black tea base. This scent takes no sides, like the most objective verdict, helping you find the middle path amidst complexity."
+  },
+  {
+    "id": 58,
+    "description_en": "You stand at the center of the scale seeking balance, needing clear judgment. Nishane’s Ani responds with exquisite coordination—ginger’s heat and vanilla’s sweetness reach perfect harmony under bergamot. This scent is like the fairest verdict, helping you find the way of balance amidst complexity."
+  },
+  {
+    "id": 69,
+    "description_en": "You stand at the center of the scale seeking balance, needing clear judgment. Maison Francis Kurkdjian’s Aqua Universalis responds with absolute purity—clean notes of lemon and lily of the valley, like the fairest verdict. This scent holds no bias, helping you find the middle path amidst complexity."
+  },
+  {
+    "id": 14,
+    "description_en": "You choose to pause, viewing the world from a new angle. Frédéric Malle’s En Passant fits this mindset perfectly—capturing the moment lilac meets rain and mist, time frozen. It does not urge you forward, but in the shift of perspective lets you see scenery usually ignored. May this poetic suspension help you find a clearer answer between letting go and gaining."
+  },
+  {
+    "id": 34,
+    "description_en": "When you choose to see the world from a new angle, Aesop’s Tacit brings clarity to this suspension—basil’s greenness and vetiver’s stability build a quiet space for thought. This scent urges no answers, but turns waiting into wisdom’s accumulation, seeing different possibilities in the stillness."
+  },
+  {
+    "id": 54,
+    "description_en": "When you choose to see the world from a new angle, Penhaligon's Changing Constance brings new insight to this suspension—cardamom’s saltiness and caramel’s sweetness find strange balance in cedar. This scent makes waiting a valuable sedimentation, discovering new possibilities from an unconventional perspective."
+  },
+  {
+    "id": 71,
+    "description_en": "When you choose to see the world from a new angle, Hermès’ Un Jardin Sur La Lagune brings new insight to this suspension—magnolia and lily in salty sea wind sketch a unique view of a lagoon garden. This scent makes waiting a valuable sedimentation, discovering ignored beauty from an unconventional perspective."
+  },
+  {
+    "id": 9,
+    "description_en": "You are undergoing a necessary ending, old shells peeling away. Le Labo’s Rose 31 understands this metamorphosis—cumin’s wild heat burns the rose’s elegance, warm wood rising from the ash. This scent tells the full cycle of destruction and rebirth: only by letting go can you meet your true self. May this fire-bathed rose accompany you through this sacred ritual."
+  },
+  {
+    "id": 38,
+    "description_en": "Facing a necessary ending, Serge Lutens’ Chergui accompanies this metamorphosis with a warm embrace—honey’s sweet and hay’s warmth complete life’s cycle in musk. This scent fears no demise, instead lighting the flame of rebirth in the ashes, telling you: let go to embrace the new."
+  },
+  {
+    "id": 57,
+    "description_en": "Facing a necessary ending, Initio’s Side Effect accompanies this metamorphosis with blazing energy—rum’s intensity and cinnamon’s warmth complete destruction and rebirth in vanilla’s comfort. This scent fears no demise, instead lighting the flame of new life in the ashes."
+  },
+  {
+    "id": 62,
+    "description_en": "Facing a necessary ending, Maison Martin Margiela’s Lazy Sunday Morning accompanies this metamorphosis with a gentle embrace—lily of the valley and pear’s freshness complete life’s cycle in white musk. This scent fears no demise, instead bringing a brand new beginning at the end."
+  },
+  {
+    "id": 10,
+    "description_en": "You seek inner balance, longing to reconcile life’s opposites. Hermès’ Eau de Rose Hermès responds with exquisite harmony—rhubarb’s fresh tartness and tea’s bitterness neutralize the rose’s sweetness, creating a transparent scent. This rose is flexible as water, reminding you: true strength lies in flow and compromise. May this elegant tea help you find your calm middle way."
+  },
+  {
+    "id": 26,
+    "description_en": "Seeking balance in conflict, Jo Malone’s Wood Sage & Sea Salt brings natural harmony—sea wind’s saltiness and sage’s warmth find a perfect meeting point at the shore. This scent is unhurried, teaching you to merge opposites with a soft posture, finding inner integrity in peace."
+  },
+  {
+    "id": 60,
+    "description_en": "Seeking the middle way in conflict, Parfums de Marly’s Herod brings gentle regulation—tobacco’s dryness and cinnamon’s warmth find perfect balance in grapefruit’s freshness. This scent is unhurried, teaching you to merge opposites with a calm posture."
+  },
+  {
+    "id": 26,
+    "description_en": "Seeking balance in conflict, Jo Malone’s Wood Sage & Sea Salt brings natural harmony—sea wind’s saltiness and sage’s warmth find a perfect meeting point at the shore. This scent is unhurried, teaching you to merge opposites with a soft posture, finding inner integrity in peace."
+  },
+  {
+    "id": 7,
+    "description_en": "You admit the desire in your heart, facing temptations that are dazzling yet dangerous. Aesop’s Rozu lifts the veil of desire—smoky wood cages a gloomy rose, leather notes hinting at inescapable entanglement. This scent is beautiful and heavy; it does not tell you to run, but invites you to gaze lucidly: true freedom begins with seeing the nature of bondage."
+  },
+  {
+    "id": 23,
+    "description_en": "When desire whispers in the dark, Maison Martin Margiela’s By the Fireplace honestly faces this temptation—roasted chestnut’s sweet and fire’s warmth weave a gentle trap that intoxicates. This scent does not judge indulgence, but keeps you awake in the warmth, seeing the line between bondage and freedom."
+  },
+  {
+    "id": 41,
+    "description_en": "When desire whispers in the dark, Kilian’s Intoxicated honestly faces this temptation—coffee’s richness and cardamom’s spice weave a maze that intoxicates. This scent does not judge indulgence, but keeps you cognitively awake in the enjoyment."
+  },
+  {
+    "id": 68,
+    "description_en": "When desire whispers in the dark, Kiehl’s Original Musk honestly faces this temptation—musk with animalic notes, raw and real, becoming warm and clean on the skin. This scent does not judge indulgence, but keeps you awake in the warmth, seeing the line between bondage and freedom."
+  },
+  {
+    "id": 13,
+    "description_en": "You endure sudden upheaval; old beliefs crumble. Diptyque’s Ofrésia responds to this drastic change with plant instinct—sharp green stem notes strike like lightning, white flowers blooming at the break. It offers no comfort for pain but brings primal vitality: destruction is to let light into corners never seen. May this flower with its traumatic beauty accompany you growing new possibilities from the ruins."
+  },
+  {
+    "id": 29,
+    "description_en": "When old structures collapse, L'Artisan’s Bois Farine brings unexpected solace in the ruins—a unique mix of almond powder and cedar, like a new continent found after disaster. This scent hides no pain, but proves with rustic warmth: destruction is often for a truer construction."
+  },
+  {
+    "id": 47,
+    "description_en": "When old structures collapse, Serge Lutens’ Jeux de Peau brings unexpected solace in the ruins—toasted bread’s warmth and milk’s richness soothe turmoil with the most rustic breath. This scent proves: destruction is often for a truer construction."
+  },
+  {
+    "id": 80,
+    "description_en": "When old structures collapse, Le Labo’s Baie 19 brings unexpected sobriety in the ruins—the scent of minerals after rain and wet soil, like the truest state after disaster. This scent hides no pain, but proves with primal reality: destruction is often to rebuild a much firmer foundation."
+  },
+  {
+    "id": 17,
+    "description_en": "You see hope in the night, inner inspiration twinkling like stars. Jo Malone’s Wild Bluebell carries this clear expectation—dewy notes lift the ethereal scent of bluebells, like a galaxy pouring down. This scent washes away fatigue, reminding you: the darkest moments often birth the purest inspiration. May this starry garden light every step of your way."
+  },
+  {
+    "id": 27,
+    "description_en": "Seeing hope in the dark, Byredo’s Gypsy Water carries this clear expectation—juniper’s crispness and amber’s warmth, like a starry sky outside a Gypsy tent. This scent washes away fatigue, injecting dawn’s confidence into every night, guiding you towards the light."
+  },
+  {
+    "id": 43,
+    "description_en": "Seeing hope in the dark, Sol de Janeiro’s Cheirosa '62 carries this bright expectation—pistachio and almond’s creamy sweetness and salt caramel’s warmth, like brilliant sunlight on a beach. This scent washes away gloom, injecting dawn’s confidence into every night."
+  },
+  {
+    "id": 64,
+    "description_en": "Seeing hope in the dark, Creed’s Silver Mountain Water carries this clear expectation—glacial water’s coolness and green tea’s cleanliness, like the brightest guide in the night sky. This scent washes away fatigue, injecting dawn’s confidence into every night, lighting your road ahead."
+  },
+  {
+    "id": 15,
+    "description_en": "You dive into the deep pool of the subconscious, living with intuition, fear, and dreams. Penhaligon's Bluebell leads this night voyage—wet earth wraps wild flowers, animalic notes floating in gloom. It promises no safety, but honestly shows the beauty in the fog: true courage is daring to find truth in shadows. May this flower of the dark night guard your journey through confusion."
+  },
+  {
+    "id": 24,
+    "description_en": "When diving into the deep pool of the subconscious, Aesop’s Hwyl accompanies this night voyage—cypress’s depth and moss’s dampness sketch the mysterious outline of a misty forest. This scent does not dispel fear, but teaches you to live with the unknown, finding your own truth in the haze."
+  },
+  {
+    "id": 59,
+    "description_en": "When diving into the deep pool of the subconscious, Memo Paris’ Irish Leather accompanies this night voyage—whiskey’s intensity and leather’s ruggedness dotted with mint’s cool. This scent does not dispel the fog, but teaches you to find your own truth in the haze."
+  },
+  {
+    "id": 71,
+    "description_en": "When diving into the deep pool of the subconscious, Hermès’ Un Jardin Sur La Lagune accompanies this night voyage—florals by a salt lake seem hazy and mysterious under moonlight. This scent does not dispel the fog, but teaches you to find your own truth in the haze."
+  },
+  {
+    "id": 16,
+    "description_en": "You are immersed in pure joy, vitality blooming hot as the sun. L'Artisan’s La Chasse aux Papillons echoes this carefree moment—orange blossom and jasmine swirl in sunlight, linden nectar filling the air. This scent is not profound, but full: why complicate happiness? May this ever-sunny garden remind you that living in every present moment is the greatest success."
+  },
+  {
+    "id": 32,
+    "description_en": "When joy fills the heart like sunlight, Byredo’s Bal d'Afrique amplifies this pure delight—bergamot’s vitality and amber’s warmth seem like golden morning light on African plains. This scent is neither complex nor deep, simply celebrating life’s existence, reminding you: happiness is the most natural state."
+  },
+  {
+    "id": 42,
+    "description_en": "When joy fills the heart like sunlight, Maison Francis Kurkdjian’s Grand Soir amplifies this pure delight—amber’s brilliance and vanilla’s length seem like a golden hour that never ends. This scent simply celebrates life’s existence, reminding you of the preciousness of living in the now."
+  },
+  {
+    "id": 76,
+    "description_en": "When joy fills the heart like sunlight, Byredo’s Sundazed amplifies this pure delight—citrus’s brightness and warm musk seem like cotton candy kissed by the sun. This scent is neither complex nor deep, simply celebrating life’s existence, reminding you: happiness is the most natural state."
+  },
+  {
+    "id": 20,
+    "description_en": "You hear the inner call, ready to welcome soul awakening and rebirth. Gucci’s Mémoire d'une Odeur responds with mineral transparency—chamomile sheds disguise, musk dissolves boundaries, fragments of the past reassembling now. It judges no right or wrong, offering only a clear view: resurrection begins with total acceptance of the past. May this mirror of scent reflect your truest self."
+  },
+  {
+    "id": 30,
+    "description_en": "When the soul meets its moment of awakening, Kilian’s Sacred Wood escorts this holy turn—extremely pure sandalwood scent, with a milky tranquility and sanctity. This scent judges no past, but offers a clear view, making every reflection a chance for rebirth."
+  },
+  {
+    "id": 51,
+    "description_en": "When the soul meets its moment of awakening, Kilian’s Angels' Share escorts this holy turn—cognac’s richness and oak’s sediment bring sudden enlightenment. This scent judges no past, but offers a clear view, making every reflection a chance for rebirth."
+  },
+  {
+    "id": 62,
+    "description_en": "When the soul meets its moment of awakening, Maison Martin Margiela’s Lazy Sunday Morning escorts this holy turn—clean soapiness and pear’s sweetness bring a renewed transparency. This scent judges no past, but offers a new perspective, making every reflection a chance for rebirth."
+  },
+  {
+    "id": 18,
+    "description_en": "You arrive at the completion of a cycle, achieving perfect harmony within and without. Creed’s Love in White crowns this finishing moment—rice’s richness supports the sanctity of orange blossom, magnolia weaving a wreath of victory. This scent embraces all, as if looking back from the peak: all journeys were necessary paths to this moment. May this light of pure white witness your creation’s wholeness and glory."
+  },
+  {
+    "id": 21,
+    "description_en": "When the cycle is fully achieved, Le Labo’s Santal 33 crowns this finishing moment—the classic union of sandalwood and leather, steady and inclusive, like looking back on all journeys from the peak. This scent witnesses the wholeness of your creation, giving the most solid affirmation at the point where end meets start."
+  },
+  {
+    "id": 42,
+    "description_en": "When the cycle is fully achieved, Maison Francis Kurkdjian’s Grand Soir crowns this finishing moment—amber’s splendor and vanilla’s abundance build a perfect finale. This scent witnesses the wholeness of your creation, giving the most dazzling affirmation at the point where end meets start."
+  },
+  {
+    "id": 79,
+    "description_en": "When the cycle is fully achieved, Creed’s Virgin Island Water crowns this finishing moment—lime and coconut’s tropical air, dotted with rum’s intoxication. This scent witnesses the wholeness of your creation, giving the most relaxed celebration at the point where end meets start."
+  },
+  {
+    "id": 5,
+    "description_en": "You stand at the start of action, inspiration sparking, new plans surging in your heart. Byredo’s Young Rose resonates with your creative energy—Sichuan pepper’s prickle and green stem notes break the soil with unpolished courage. It promises no result but gives you the pure drive to start, as if saying: action itself is the most precious answer."
+  },
+  {
+    "id": 34,
+    "description_en": "The spark of action ignites in your heart; new plans await practice. Aesop’s Tacit fits this newborn energy perfectly—basil’s fresh green and vetiver’s warm wood are like clear vision at dawn. This scent injects courage to start, finding a path to ground every idea."
+  },
+  {
+    "id": 50,
+    "description_en": "The spark of action bursts forth; new plans need implementation. Akro’s Awake fits this newborn drive perfectly—espresso’s pure scent brings instant focus and energy, like inspiration piercing silence. It promises no result, but injects firm courage into every moment of beginning."
+  },
+  {
+    "id": 78,
+    "description_en": "The spark of action bursts forth; new plans need implementation. Maison Francis Kurkdjian’s Aqua Celestia fits this newborn drive perfectly—lemon and mint’s fresh breath brings instant clarity and vitality, like light piercing the sky. This scent injects transparent energy into every moment of beginning, turning thoughts instantly to action."
+  },
+  {
+    "id": 12,
+    "description_en": "You calmly survey possibilities, drafting blueprints for the future. Hermès’ Le Jardin de Monsieur Li echoes this steady vision—kumquat’s sweetness and jasmine’s scent build a quiet courtyard among wet steps and moss. This scent does not rush decision, but offers space for clear thought, helping you make unhurried choices while mastering the whole."
+  },
+  {
+    "id": 40,
+    "description_en": "You assess the times from a high vantage, future blueprints unfolding before you. Hermès’ Terre d'Hermès echoes this foresight—grapefruit’s vitality and mineral stability build a broad sense of structure. This scent gives you confidence to control development, making every decision as steady as the earth."
+  },
+  {
+    "id": 55,
+    "description_en": "You calmly plan the future blueprint, carefully weighing possibilities. Guerlain’s Tonka Imperiale echoes this strategizing mind—tonka bean’s richness and tobacco’s warmth build a steady, grand structure. This scent gives you the confidence and foresight to control development."
+  },
+  {
+    "id": 64,
+    "description_en": "You calmly plan the future blueprint, assessing the times with broad vision. Creed’s Silver Mountain Water echoes this foresight—glacial water’s clarity and green tea’s chill build a cool, profound structure. This scent gives you clear logic to control development, making every decision transparent as crystal."
+  },
+  {
+    "id": 18,
+    "description_en": "Your vision has transcended the present; opportunities for cooperation and distant success unfold before you. Creed’s Love in White matches this open mind—rice’s abundance weaves with bright orange blossom and magnolia, like sunlight on setting sails. This scent brings certainty of the future; may it accompany you to welcome the coming rich harvest."
+  },
+  {
+    "id": 32,
+    "description_en": "Your vision has transcended the present; distant success dawns. Byredo’s Bal d'Afrique resonates with this open mind—bergamot’s brightness and amber’s warmth are like golden sunlight on setting sails. This scent carries optimism for the future, witnessing every step you take to expand boundaries."
+  },
+  {
+    "id": 51,
+    "description_en": "Your vision has transcended the present; distant success shows cues. Kilian’s Angels' Share resonates with this open expectation—cognac’s richness and hazelnut’s warm sweetness seem like a feast predicting success. This scent carries optimism for the future, witnessing every step you take to expand boundaries."
+  },
+  {
+    "id": 72,
+    "description_en": "Your vision has transcended the present; distant success shows cues. Louis Vuitton’s On the Beach resonates with this open expectation—bergamot’s freshness and rosemary’s vitality seem like distant messages sent by sea breeze. This scent carries optimism for the future, witnessing every step you take to expand boundaries."
+  },
+  {
+    "id": 20,
+    "card_name": "審判",
+    "choice": "A",
+    "brand": "Gucci",
+    "product": "Mémoire d'une Odeur",
+    "description_zh": "你听见内心的召唤，准备迎接灵魂的觉醒与重生。Gucci的Mémoire d'une Odeur以矿物的通透回应——洋甘菊褪去伪装，麝香消解界限，往昔的碎片在此刻重组。这香气不评判对错，只提供澄澈的视角：复活，始于对过去的全然接纳。愿这面气味的镜子，照见你最真实的模样。",
+    "description_en": "You hear the inner call, preparing for the soul’s awakening and rebirth. Gucci’s Mémoire d'une Odeur responds with mineral clarity—chamomile sheds its disguise, musk dissolves boundaries, and fragments of the past reassemble in this moment. It judges not, but offers a lucid view: resurrection begins with the total acceptance of what was. May this olfactory mirror reflect your truest self."
+  },
+  {
+    "id": 30,
+    "card_name": "審判",
+    "choice": "B",
+    "brand": "Kilian",
+    "product": "Sacred Wood",
+    "description_zh": "当灵魂迎来觉醒的时刻，Kilian的Sacred Wood为这神圣转折护航——极致纯净的檀木香气，带着奶香的宁静与神圣。这香气不评判过往，却提供澄澈的视角，让每一次反思都成为新生的契机。",
+    "description_en": "As the soul greets its awakening, Kilian’s Sacred Wood escorts this divine transition—purest sandalwood carrying the serenity and sanctity of milky vapors. It judges not the past, but offers a lucid view, clearing the dust from your spiritual mirror. Here, every reflection becomes a catalyst for rebirth, and every breath is a sacred vow to your emerging self."
+  },
+  {
+    "id": 51,
+    "card_name": "審判",
+    "choice": "C",
+    "brand": "Kilian",
+    "product": "Angels' Share",
+    "description_zh": "当灵魂迎来觉醒时刻，Kilian的Angels' Share为这神圣转折护航——干邑的醇香与橡木的沉淀，带来豁然开朗的顿悟。这香气不评判过往，却提供澄澈的视角，让每次反思都成为新生的契机。",
+    "description_en": "When the soul meets its awakening, Kilian’s Angels' Share crowns this divine turning point—essence of cognac and the deep sediment of oak bringing a sudden, radiant epiphany. It judges not the past, but offers a lucid view, transforming every moment of introspection into a catalyst for rebirth. In this golden warmth, you find the clarity to rise anew."
+  },
+  {
+    "id": 62,
+    "card_name": "審判",
+    "choice": "D",
+    "brand": "Maison Martin Margiela",
+    "product": "Lazy Sunday Morning",
+    "description_zh": "当灵魂迎来觉醒的时刻，Maison Martin Margiela的Lazy Sunday Morning为这神圣转折护航——洁净的皂感与梨子的清甜，带来焕然一新的通透感。这香气不评判过往，却提供全新的视角，让每次反思都成为新生的契机。",
+    "description_en": "When the soul meets its awakening, Maison Martin Margiela’s Lazy Sunday Morning guards this divine transition—clean soap and fresh pear bringing a transparent sense of renewal. It judges not the past, but offers a fresh perspective, turning every reflection into a catalyst for rebirth. In this pure, unhurried light, you find the clarity to begin again."
+  },
+  {
+    "id": 18,
+    "card_name": "世界",
+    "choice": "A",
+    "brand": "Creed",
+    "product": "Love in White",
+    "description_zh": "你抵达一个周期的圆满，内外达成完美的和谐。Creed的Love in White为这完成时刻加冕——稻谷的丰饶衬着橙花的圣洁，木兰香气编织成胜利的花环。这香气包容万物，仿佛站在巅峰回望：所有旅程都是通往此刻的必经之路。愿这片纯白之光，见证你创造的完整与辉煌。",
+    "description_en": "You arrive at the fullness of a cycle, inner and outer worlds in perfect harmony. Creed’s Love in White crowns this moment of completion—the richness of rice husks set against holy orange blossom, magnolia weaving a garland of victory. Embracing all things, it stands at the peak looking back: every journey was a necessary path to this now. May this white light witness your complete and brilliant creation."
+  },
+  {
+    "id": 21,
+    "card_name": "世界",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Santal 33",
+    "description_zh": "当周期圆满达成，Le Labo的Santal 33为这完成时刻加冕——檀木与皮革的经典组合，沉稳而包容，如同站在巅峰回望所有旅程。这香气见证你创造的完整，在循环的终点也是起点处，给予最踏实的肯定。",
+    "description_en": "When the cycle reaches perfection, Le Labo’s Santal 33 crowns this moment of completion—the classic union of sandalwood and leather, steady and all-encompassing, like standing at the summit surveying the journey. It witnesses the wholeness of your creation, offering the most solid affirmation at the point where the end becomes a new beginning."
+  },
+  {
+    "id": 42,
+    "card_name": "世界",
+    "choice": "C",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Grand Soir",
+    "description_zh": "当周期圆满达成，Maison Francis Kurkdjian的Grand Soir为这完成时刻加冕——琥珀的辉煌与香草的丰盈，构筑出完美的终章。这香气见证你创造的完整，在循环的终点也是起点处，给予最璀璨的肯定。",
+    "description_en": "When the cycle reaches perfection, Maison Francis Kurkdjian’s Grand Soir crowns this moment of completion—the splendor of amber and the fullness of vanilla constructing a perfect finale. It witnesses the wholeness of your creation, offering the most brilliant affirmation at the point where the end becomes a new beginning."
+  },
+  {
+    "id": 79,
+    "card_name": "世界",
+    "choice": "D",
+    "brand": "Creed",
+    "product": "Virgin Island Water",
+    "description_zh": "当周期圆满达成，Creed的Virgin Island Water为这完成时刻加冕——青柠与椰子的热带风情，朗姆酒的微醺点缀其间。这香气见证你创造的完整，在循环的终点也是起点处，给予最轻松的庆祝。",
+    "description_en": "When the cycle reaches perfection, Creed’s Virgin Island Water crowns this moment of completion—lime and coconut bringing tropical flair, with rum’s tipsy touch adorning the joy. It witnesses the wholeness of your creation, offering the most relaxed celebration at the point where the end becomes a new beginning."
+  },
+  {
+    "id": 5,
+    "card_name": "權杖一",
+    "choice": "A",
+    "brand": "Byredo",
+    "product": "Young Rose",
+    "description_zh": "你正站在行动的起点，灵感如火花迸发，全新的计划在心中涌动。Byredo的Young Rose与你此刻的创造能量共鸣——花椒的微刺与青绿根茎的气息，破土而出，带着未经雕琢的勇气。这香气不承诺结果，却赋予你开始的纯粹动力，仿佛在说：行动的本身，就是最珍贵的答案。",
+    "description_en": "You stand at the threshold of action, inspiration sparking like fire, new plans surging within. Byredo’s Young Rose resonates with your creative energy—the prick of Sichuan pepper and the scent of green stems breaking through earth, carrying unshaped courage. It promises no result but gifts the pure motive to start, whispering: the act of beginning is the most precious answer of all."
+  },
+  {
+    "id": 34,
+    "card_name": "權杖一",
+    "choice": "B",
+    "brand": "Aesop",
+    "product": "Tacit",
+    "description_zh": "行动的火花正在你心中点燃，全新的计划等待着付诸实践。Aesop的Tacit与这份初生的能量完美契合——罗勒的清新绿意与香根草的温润木质，如同破晓时分的清晰视野。这香气为你注入启动的勇气，让每个想法都能找到落地的路径。",
+    "description_en": "The spark of action ignites within, new plans awaiting practice. Aesop’s Tacit fits perfectly with this nascent energy—the fresh greenery of basil and the warm wood of vetiver, like clear vision at the break of dawn. It injects you with the courage to launch, ensuring every idea finds its path to reality."
+  },
+  {
+    "id": 50,
+    "card_name": "權杖一",
+    "choice": "C",
+    "brand": "Akro",
+    "product": "Awake",
+    "description_zh": "行动的火花正在迸发，全新的计划亟待实施。Akro的Awake与这份初生的行动力完美契合——浓缩咖啡的纯粹香气带来即时的专注与能量，如同灵感划破沉寂。这香气不承诺结果，却为每个开始的瞬间注入坚定勇气。",
+    "description_en": "The spark of action bursts forth, new plans urgent for implementation. Akro’s Awake fits perfectly with this nascent drive—the pure aroma of concentrated espresso brings instant focus and energy, like inspiration piercing the silence. It promises no result, but injects steadfast courage into every moment of beginning."
+  },
+  {
+    "id": 78,
+    "card_name": "權杖一",
+    "choice": "D",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Aqua Celestia",
+    "description_zh": "行动的火花正在迸发，全新的计划亟待实施。Maison Francis Kurkdjian的Aqua Celestia与这份初生的行动力完美契合——柠檬与薄荷的清新气息带来即时的清晰与活力，如同划破长空的灵感之光。这香气为每个开始的瞬间注入通透的能量，让想法即刻转化为行动。",
+    "description_en": "The spark of action bursts forth, new plans urgent for implementation. Maison Francis Kurkdjian’s Aqua Celestia fits perfectly with this nascent drive—the fresh breath of lime and mint brings instant clarity and vitality, like the light of inspiration piercing the sky. It injects transparent energy into every moment of beginning, transforming thoughts instantly into action."
+  },
+  {
+    "id": 12,
+    "card_name": "權杖二",
+    "choice": "A",
+    "brand": "Hermès",
+    "product": "Le Jardin de Monsieur Li",
+    "description_zh": "你从容审视眼前的可能性，规划着未来的蓝图。Hermès的Le Jardin de Monsieur Li呼应这份沉稳的远见——金橘的清甜与茉莉的幽香，在湿润石阶与苔藓间构筑出一方静谧庭院。这香气不催促决定，却为你提供清晰思考的空间，助你在掌控全局中，做出从容的抉择。",
+    "description_en": "You survey the possibilities with calm, drafting the blueprint of the future. Hermès’ Le Jardin de Monsieur Li echoes this steady foresight—the sweetness of kumquat and the faint scent of jasmine build a quiet courtyard among wet stones and moss. It does not rush your decision, but offers a space for clear thought, helping you make leisurely choices while mastering the whole."
+  },
+  {
+    "id": 40,
+    "card_name": "權杖二",
+    "choice": "B",
+    "brand": "Hermès",
+    "product": "Terre d‘Hermès",
+    "description_zh": "你站在全局的高度审时度势，未来的蓝图在眼前徐徐展开。Hermès的Terre d'Hermès与这份远见相互呼应——葡萄柚的活力与矿物的沉稳，构筑出宽广的格局感。这香气赋予你掌控发展的自信，让每个决策都稳如大地。",
+    "description_en": "You stand at the height of the whole, assessing the situation as the future's blueprint unfolds. Hermès’ Terre d'Hermès echoes this foresight—the vitality of grapefruit and the steadiness of minerals construct a broad sense of pattern. It grants you the confidence to control development, making every decision as stable as the earth."
+  },
+  {
+    "id": 55,
+    "card_name": "權杖二",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Tonka Imperiale",
+    "description_zh": "你从容规划着未来蓝图，审慎权衡着各种可能性。Guerlain的Tonka Imperiale与这份运筹帷幄的心境相呼应——零陵香豆的醇厚与烟草的温暖，构筑出沉稳大气的格局。这香气赋予你掌控发展的自信与远见。",
+    "description_en": "You plan the future blueprint with composure, weighing possibilities with prudence. Guerlain’s Tonka Imperiale echoes this mindset of strategizing—the richness of tonka bean and the warmth of tobacco construct a steady, grand pattern. It grants you the confidence and foresight to control development."
+  },
+  {
+    "id": 64,
+    "card_name": "權杖二",
+    "choice": "D",
+    "brand": "Creed",
+    "product": "Silver Mountain Water",
+    "description_zh": "你从容规划着未来蓝图，以开阔的视野审时度势。Creed的Silver Mountain Water与这份远见相互呼应——冰山融水般的清澈与绿茶的凛冽，构筑出冷静而深远的格局感。这香气赋予你掌控发展的明晰思路，让每个决策都如水晶般透彻。",
+    "description_en": "You plan the future blueprint with composure, assessing the situation with an open vision. Creed’s Silver Mountain Water echoes this foresight—the clarity of melted glacial water and the chill of green tea construct a calm and profound pattern. It grants you clear thinking to control development, making every decision as transparent as crystal."
+  },
+  {
+    "id": 18,
+    "card_name": "權杖三",
+    "choice": "A",
+    "brand": "Creed",
+    "product": "Love in White",
+    "description_zh": "你的视野已超越当下，合作的契机与远方的成功正在眼前展开。Creed的Love in White与这份开阔的心境相合——稻谷的丰饶感与橙花、木兰的明亮香气交织，如同阳光洒在启航的船帆上。这香气带来的是对未来的笃定，愿它陪伴你迎接即将到来的丰硕成果。",
+    "description_en": "Your vision has transcended the present; opportunities for cooperation and distant success unfold before you. Creed’s Love in White matches this open state of mind—the richness of rice husks interwoven with bright orange blossom and magnolia, like sunlight on setting sails. It brings certainty for the future, accompanying you to welcome the fruitful results soon to come."
+  },
+  {
+    "id": 32,
+    "card_name": "權杖三",
+    "choice": "B",
+    "brand": "Byredo",
+    "product": "Bal d'Afrique",
+    "description_zh": "你的视野已超越当下，远方的合作与成功初现曙光。Byredo的Bal d'Afrique与这份开阔的心境共鸣——香柠檬的明亮与琥珀的温暖，仿佛金色阳光洒在启航的船帆上。这香气承载着对未来的乐观，见证你拓展疆界的每个脚步。",
+    "description_en": "Your vision has transcended the present; distant cooperation and success dawn. Byredo’s Bal d'Afrique resonates with this open state of mind—the brightness of bergamot and the warmth of amber seem like golden sunlight on setting sails. It carries optimism for the future, witnessing every step you take to expand your boundaries."
+  },
+  {
+    "id": 51,
+    "card_name": "權杖三",
+    "choice": "C",
+    "brand": "Kilian",
+    "product": "Angels' Share",
+    "description_zh": "你的视野已超越当下，远方的合作与成功初现端倪。Kilian的Angels' Share与这份开阔的期待共鸣——干邑白兰地的醇香与榛果的暖甜，仿佛预祝成功的盛宴。这香气承载着对未来的乐观，见证你拓展疆界的每个脚步。",
+    "description_en": "Your vision has transcended the present; distant cooperation and success begin to show. Kilian’s Angels' Share resonates with this open expectation—the mellow scent of cognac and the warm sweetness of hazelnut seem like a feast pre-celebrating success. It carries optimism for the future, witnessing every step you take to expand your boundaries."
+  },
+  {
+    "id": 72,
+    "card_name": "權杖三",
+    "choice": "D",
+    "brand": "Louis Vuitton",
+    "product": "On the Beach",
+    "description_zh": "你的视野已超越当下，远方的合作与成功初现端倪。Louis Vuitton的On the Beach与这份开阔的期待共鸣——佛手柑的清新与迷迭香的活力，仿佛海风送来的远方讯息。这香气承载着对未来的乐观，见证你拓展疆界的每个脚步。",
+    "description_en": "Your vision has transcended the present; distant cooperation and success begin to show. Louis Vuitton’s On the Beach resonates with this open expectation—the freshness of bergamot and the vitality of rosemary seem like a message from afar carried by the sea breeze. It carries optimism for the future, witnessing every step you take to expand your boundaries."
+  },
+  {
+    "id": 16,
+    "card_name": "權杖四",
+    "choice": "A",
+    "brand": "L'Artisan Parfumeur",
+    "product": "La Chasse aux Papillons",
+    "description_zh": "你迎来了阶段的胜利，沉浸在稳定而和谐的庆祝之中。L'Artisan的La Chasse aux Papillons完美捕捉这份喜悦——橙花、茉莉与椴树花在阳光下轻盈舞动，香气如同欢声笑语，纯粹而美好。愿这片无忧的花园，成为你共享成功、感受归属的幸福见证。",
+    "description_en": "You have ushered in a victory of the stage, immersed in a stable and harmonious celebration. L'Artisan’s La Chasse aux Papillons perfectly captures this joy—orange blossom, jasmine, and linden flower dance lightly in the sun, the scent like laughter, pure and beautiful. May this carefree garden be a happy witness to your shared success and sense of belonging."
+  },
+  {
+    "id": 23,
+    "card_name": "權杖四",
+    "choice": "B",
+    "brand": "Maison Martin Margiela",
+    "product": "By the Fireplace",
+    "description_zh": "你建立起稳固的根基，正享受着努力换来的温馨回报。Maison Martin Margiela的By the Fireplace完美捕捉这份满足——烤栗子的甜香与炉火的暖意，营造出充满欢庆的家庭氛围。这香气是对稳定成就的最佳礼赞。",
+    "description_en": "You have built a solid foundation and are enjoying the warm rewards of your efforts. Maison Martin Margiela’s By the Fireplace perfectly captures this satisfaction—the sweet scent of roasted chestnuts and the warmth of the fire create a festive family atmosphere. This fragrance is the best tribute to stable achievement."
+  },
+  {
+    "id": 43,
+    "card_name": "權杖四",
+    "choice": "C",
+    "brand": "Sol de Janeiro",
+    "product": "Cheirosa '62",
+    "description_zh": "你建立起稳固的根基，正享受着努力换来的欢庆时刻。Sol de Janeiro的Cheirosa '62完美捕捉这份喜悦——开心果与杏仁的奶甜，盐焦糖的温暖，营造出充满欢笑的庆祝氛围。这香气是对稳定成就的最佳礼赞。",
+    "description_en": "You have built a solid foundation and are enjoying the festive moments earned by effort. Sol de Janeiro’s Cheirosa '62 perfectly captures this joy—the milky sweetness of pistachio and almond, with the warmth of salted caramel, creates a celebration full of laughter. This fragrance is the best tribute to stable achievement."
+  },
+  {
+    "id": 76,
+    "card_name": "權杖四",
+    "choice": "D",
+    "brand": "Byredo",
+    "product": "Sundazed",
+    "description_zh": "你建立起稳固的根基，正享受着努力换来的温馨回报。Byredo的Sundazed完美捕捉这份满足——柑橘的阳光气息与麝香的温暖质感，营造出充满欢庆的愉悦氛围。这香气是对稳定成就的最佳礼赞，如同永不休假的快乐。",
+    "description_en": "You have built a solid foundation and are enjoying the warm rewards of your efforts. Byredo’s Sundazed perfectly captures this satisfaction—the sunny scent of citrus and the warm texture of musk create a joyous atmosphere of celebration. This fragrance is the best tribute to stable achievement, like a happiness that never takes a holiday."
+  },
+  {
+    "id": 1,
+    "card_name": "權杖五",
+    "choice": "A",
+    "brand": "Diptyque",
+    "product": "L'Ombre dans L'Eau",
+    "description_zh": "你身处充满挑战的竞争之中，不同的观点与力量正在交锋。Diptyque的L'Ombre dans L'Eau以强烈的绿意呼应这场激荡——黑醋栗叶的锋利青翠与玫瑰的柔美形成张力，如同思想碰撞的火花。这香气不回避冲突，却赋予你在混乱中保持清醒的锐气。",
+    "description_en": "You are in the midst of challenging competition, where different views and forces clash. Diptyque’s L'Ombre dans L'Eau echoes this turbulence with intense greenery—the sharp verdancy of blackcurrant leaves creates tension with the softness of roses, like sparks from colliding thoughts. It does not avoid conflict, but grants you the sharpness to remain clear-headed in chaos."
+  },
+  {
+    "id": 37,
+    "card_name": "權杖五",
+    "choice": "B",
+    "brand": "Tom Ford",
+    "product": "Ombré Leather",
+    "description_zh": "你身处充满张力的竞争环境，不同的观点正在激烈交锋。Tom Ford的Ombré Leather与这份冲突的能量共振——皮革的野性与木质的深沉，展现出充满对抗的美感。这香气赋予你在混乱中保持风格的底气。",
+    "description_en": "You are in a competitive environment full of tension, where different views clash fiercely. Tom Ford’s Ombré Leather resonates with this conflicting energy—the wildness of leather and the depth of wood reveal an aesthetic full of confrontation. This fragrance gives you the underlying strength to maintain style amidst the chaos."
+  },
+  {
+    "id": 58,
+    "card_name": "權杖五",
+    "choice": "C",
+    "brand": "Nishane",
+    "product": "Ani",
+    "description_zh": "你身处充满张力的竞争环境，不同的力量正在激烈碰撞。Nishane的Ani与这份冲突的能量共振——生姜的辛辣与香草的醇厚形成有趣对抗，香柠檬的明亮穿梭其间。这香气赋予你在混乱中保持个性的底气。",
+    "description_en": "You are in a competitive environment full of tension, where different forces collide fiercely. Nishane’s Ani resonates with this conflicting energy—the spice of ginger and the richness of vanilla form an interesting confrontation, with bright bergamot weaving through. This fragrance gives you the underlying strength to maintain individuality amidst the chaos."
+  },
+  {
+    "id": 74,
+    "card_name": "權杖五",
+    "choice": "D",
+    "brand": "Diptyque",
+    "product": "Eau des Sens",
+    "description_zh": "你身处充满张力的竞争环境，不同的观点正在激烈碰撞。Diptyque的Eau des Sens与这份冲突的能量共振——苦橙的锐利与杜松子的青翠，在橙花的调和下形成精妙对抗。这香气赋予你在混乱中保持清醒知觉的底气。",
+    "description_en": "You are in a competitive environment full of tension, where different views collide fiercely. Diptyque’s Eau des Sens resonates with this conflicting energy—the sharpness of bitter orange and the verdancy of juniper berry form an exquisite confrontation under the harmony of orange blossom. This fragrance gives you the underlying strength to maintain clear perception amidst the chaos."
+  },
+  {
+    "id": 4,
+    "card_name": "權杖六",
+    "choice": "A",
+    "brand": "Frédéric Malle",
+    "product": "Une Rose",
+    "description_zh": "你正享受胜利的荣耀，自信地接受众人的认可与喝彩。Frédéric Malle的Une Rose与你此刻的光芒相得益彰——它是一朵盛大而华丽的玫瑰，饱满、性感且不容忽视，如同凯旋时的冠冕。愿这极致绽放的香气，成为你赢得认可后的最佳奖赏。",
+    "description_en": "You are enjoying the glory of victory, confidently accepting recognition and applause. Frédéric Malle’s Une Rose complements your radiance—a grand, magnificent rose, full, sexy, and impossible to ignore, like a crown of triumph. May this extreme bloom be the best reward after winning recognition."
+  },
+  {
+    "id": 21,
+    "card_name": "權杖六",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Santal 33",
+    "description_zh": "你赢得应有的认可，正自信地享受着胜利的荣耀。Le Labo的Santal 33与你此刻的光芒相得益彰——檀木的醇厚与皮革的潇洒，如同凯旋时的自然气场。这香气不做声张，却让人无法忽视你的成就。",
+    "description_en": "You have won well-deserved recognition and are confidently enjoying the glory of victory. Le Labo’s Santal 33 complements your radiance—the richness of sandalwood and the dash of leather feel like a natural aura of triumph. It makes no loud claims, yet makes your achievement impossible to ignore."
+  },
+  {
+    "id": 42,
+    "card_name": "權杖六",
+    "choice": "C",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Grand Soir",
+    "description_zh": "你赢得应有的认可，正自信地享受着胜利的荣耀。Maison Francis Kurkdjian的Grand Soir与你此刻的光芒相得益彰——琥珀的辉煌与香草的绵长，如同凯旋时的盛大庆典。这香气不做声张，却让人无法忽视你的成就。",
+    "description_en": "You have won well-deserved recognition and are confidently enjoying the glory of victory. Maison Francis Kurkdjian’s Grand Soir complements your radiance—the splendor of amber and the length of vanilla focus like a grand celebration of triumph. It makes no loud claims, yet makes your achievement impossible to ignore."
+  },
+  {
+    "id": 73,
+    "card_name": "權杖六",
+    "choice": "D",
+    "brand": "Tom Ford",
+    "product": "Sole di Positano",
+    "description_zh": "你赢得应有的认可，正自信地享受着胜利的荣耀。Tom Ford的Sole di Positano与你此刻的光芒相得益彰——柑橘的明亮与橙花的洁净，如同地中海阳光下的凯旋仪式。这香气不做声张，却自然吸引所有的赞赏与注目。",
+    "description_en": "You have won well-deserved recognition and are confidently enjoying the glory of victory. Tom Ford’s Sole di Positano complements your radiance—the brightness of citrus and the cleanliness of orange blossom feel like a triumphal ceremony under the Mediterranean sun. It makes no loud claims, yet naturally attracts all admiration and gaze."
+  },
+  {
+    "id": 7,
+    "card_name": "權杖七",
+    "choice": "A",
+    "brand": "Aesop",
+    "product": "Rozu",
+    "description_zh": "你坚定地捍卫自己的立场，为信念而坚守。Aesop的Rozu与你此刻的韧性同在——烟熏木质与皮革构筑出坚实的基底，托起一朵历经风霜的玫瑰。这香气深沉而顽强，赋予你抵御压力的内在力量，助你在坚守中展现不可动摇的勇气。",
+    "description_en": "You stand firm in your position, holding fast for your beliefs. Aesop’s Rozu is with you in this resilience—a solid base of smoky wood and leather supports a rose that has weathered the wind and frost. Deep and tenacious, this fragrance grants you the inner strength to withstand pressure, helping you show unshakable courage in your persistence."
+  },
+  {
+    "id": 35,
+    "card_name": "權杖七",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Thé Noir 29",
+    "description_zh": "你坚定地守护立场，为信念抵御着各方的挑战。Le Labo的Thé Noir 29与这份坚守的智慧相合——红茶的醇厚与烟草的坚韧，在复杂层次中展现持久力量。这香气赋予你在压力中保持从容的深度。",
+    "description_en": "You firmly guard your position, resisting challenges from all sides for your beliefs. Le Labo’s Thé Noir 29 matches this wisdom of persistence—the richness of black tea and the tenacity of tobacco reveal lasting strength in complex layers. This fragrance grants you the depth to remain composed under pressure."
+  },
+  {
+    "id": 59,
+    "card_name": "權杖七",
+    "choice": "C",
+    "brand": "Memo Paris",
+    "product": "Irish Leather",
+    "description_zh": "你坚定地守护立场，为信念抵御着各方挑战。Memo Paris的Irish Leather与这份坚守的勇气相合——威士忌的烈性与皮革的韧性，在薄荷的清凉中展现不屈风骨。这香气赋予你在压力中保持风度的力量。",
+    "description_en": "You firmly guard your position, resisting challenges from all sides for your beliefs. Memo Paris’s Irish Leather matches this courage of persistence—the intensity of whiskey and the toughness of leather show unyielding character within the cool of mint. This fragrance grants you the strength to maintain grace under pressure."
+  },
+  {
+    "id": 26,
+    "card_name": "權杖七",
+    "choice": "D",
+    "brand": "Jo Malone London",
+    "product": "Wood Sage & Sea Salt",
+    "description_zh": "你坚定地守护立场，为信念抵御着各方挑战。Jo Malone的Wood Sage & Sea Salt与这份坚守的智慧相合——海风的清新与鼠尾草的沉稳，展现出以柔克刚的防御力量。这香气赋予你在压力中保持从容的天然底气。",
+    "description_en": "You firmly guard your position, resisting challenges from all sides for your beliefs. Jo Malone’s Wood Sage & Sea Salt matches this wisdom of persistence—the freshness of sea breeze and the steadiness of sage reveal a defensive power of softness overcoming hardness. This fragrance grants you the natural underlying strength to remain composed under pressure."
+  },
+  {
+    "id": 13,
+    "card_name": "權杖八",
+    "choice": "A",
+    "brand": "Diptyque",
+    "product": "Ofrésia",
+    "description_zh": "行动迅速展开，消息与进展如箭般飞驰。Diptyque的Ofrésia以直接的锐利呼应这股动能——小苍兰的青绿根茎气息线性而鲜明，不带丝毫迟疑。这香气迅捷而专注，仿佛加速的心跳，助你精准、高效地直达目标。",
+    "description_en": "Action unfolds rapidly; news and progress fly like arrows. Diptyque’s Ofrésia responds to this momentum with direct sharpness—the green, stem-like scent of freesia is linear and distinct, without hesitation. Swift and focused, like a racing heartbeat, it helps you reach your goal accurately and efficiently."
+  },
+  {
+    "id": 34,
+    "card_name": "權杖八",
+    "choice": "B",
+    "brand": "Aesop",
+    "product": "Tacit",
+    "description_zh": "行动迅速展开，消息与进展如箭矢般飞驰。Aesop的Tacit以清晰的动能呼应这股节奏——柑橘的明快与香根草的导向性，带来直达目标的效率。这香气加速你的步伐，让计划以最流畅的方式实现。",
+    "description_en": "Action unfolds rapidly; news and progress fly like arrows. Aesop’s Tacit responds to this rhythm with clear momentum—the brightness of citrus and the directiveness of vetiver bring efficiency that cuts straight to the target. This fragrance accelerates your pace, allowing plans to be realized in the most fluid way."
+  },
+  {
+    "id": 54,
+    "card_name": "權杖八",
+    "choice": "C",
+    "brand": "Penhaligon's",
+    "product": "Changing Constance",
+    "description_zh": "行动迅速展开，计划以惊人的速度推进。Penhaligon's的Changing Constance以多变的动能呼应这股节奏——豆蔻的咸香与焦糖的甜蜜在雪松间流转，象征着敏捷的思维与行动。这香气加速你的步伐，让目标高效达成。",
+    "description_en": "Action unfolds rapidly; plans advance at astonishing speed. Penhaligon's Changing Constance responds to this rhythm with versatile momentum—the salty scent of cardamom and the sweetness of caramel flow among cedar, symbolizing agile thinking and action. This fragrance accelerates your pace, ensuring goals are reached efficiently."
+  },
+  {
+    "id": 78,
+    "card_name": "權杖八",
+    "choice": "D",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Aqua Celestia",
+    "description_zh": "行动迅速展开，计划以惊人的速度推进。Maison Francis Kurkdjian的Aqua Celestia以流畅的动能呼应这股节奏——薄荷的清凉与柠檬的明快，象征着思维与行动的无缝衔接。这香气加速你的步伐，让目标以最优雅的方式达成。",
+    "description_en": "Action unfolds rapidly; plans advance at astonishing speed. Maison Francis Kurkdjian’s Aqua Celestia responds to this rhythm with fluid momentum—the coolness of mint and the brightness of lemon symbolize the seamless connection of thought and action. This fragrance accelerates your pace, ensuring goals are reached in the most elegant way."
+  },
+  {
+    "id": 20,
+    "card_name": "權杖九",
+    "choice": "A",
+    "brand": "Gucci",
+    "product": "Mémoire d'une Odeur",
+    "description_zh": "你从过往的经验中积累智慧，带着伤痕却更加警惕与坚韧。Gucci的Mémoire d'une Odeur与这份复杂的成熟共鸣——洋甘菊的质朴与矿物麝香的疏离，交织出带着距离感的回忆。这香气不掩盖过去，却以清醒的姿态，为你筑起保护性的边界。",
+    "description_en": "You gather wisdom from past experiences, scarred but more alert and tough. Gucci’s Mémoire d'une Odeur resonates with this complex maturity—the simplicity of chamomile and the detachment of mineral musk weave a memory with distance. It does not hide the past but, with a sober posture, builds a protective boundary for you."
+  },
+  {
+    "id": 28,
+    "card_name": "權杖九",
+    "choice": "B",
+    "brand": "Diptyque",
+    "product": "Tam Dao",
+    "description_zh": "你从过往经验中积累智慧，带着伤痕却更加警惕坚韧。Diptyque的Tam Dao与这份成熟的防御共鸣——檀木的宁谧与雪松的坚定，构筑出保护性的沉思空间。这香气不掩盖伤痛，却将经历转化为内在的力量。",
+    "description_en": "You gather wisdom from past experiences, scarred but more alert and tough. Diptyque’s Tam Dao resonates with this mature defense—the serenity of sandalwood and the firmness of cedar construct a protective space for contemplation. It does not hide the pain but transforms experience into inner strength."
+  },
+  {
+    "id": 56,
+    "card_name": "權杖九",
+    "choice": "C",
+    "brand": "BDK Parfums",
+    "product": "Gris Charnel",
+    "description_zh": "你从过往经验中积累智慧，带着警惕继续前行。BDK的Gris Charnel与这份成熟的防御共鸣——无花果的奶感与茶的清苦，在檀木基底上构筑出灰色地带的智慧。这香气将经历转化为内在的韧性。",
+    "description_en": "You gather wisdom from past experiences, moving forward with vigilance. BDK Parfums’ Gris Charnel resonates with this mature defense—the milkiness of fig and the bitterness of tea construct a wisdom of the gray zone on a sandalwood base. This fragrance transforms experience into inner resilience."
+  },
+  {
+    "id": 65,
+    "card_name": "權杖九",
+    "choice": "D",
+    "brand": "Acca Kappa",
+    "product": "White Moss",
+    "description_zh": "你从过往经验中积累智慧，带着警惕继续前行。Acca Kappa的White Moss与这份成熟的防御共鸣——白麝香的洁净与苔藓的湿润，构筑出保护性的沉淀空间。这香气将经历转化为内在的韧性，为下一场战斗做好准备。",
+    "description_en": "You gather wisdom from past experiences, moving forward with vigilance. Acca Kappa’s White Moss resonates with this mature defense—the cleanliness of white musk and the moisture of moss construct a quiet space for settling. This fragrance transforms experience into inner resilience, preparing you for the next battle."
+  },
+  {
+    "id": 9,
+    "card_name": "權杖十",
+    "choice": "A",
+    "brand": "Le Labo",
+    "product": "Rose 31",
+    "description_zh": "你承担着繁重的责任，虽感疲惫却依然坚持。Le Labo的Rose 31理解这份沉重的背负——孜然的辛热与深沉的木质，紧紧缠绕着玫瑰，香气充满压力与张力。它不轻言安慰，却陪伴你经历这必经的磨砺，直至在尽头寻回内在的力量。",
+    "description_en": "You bear heavy responsibilities, exhausted yet persisting. Le Labo’s Rose 31 understands this heavy burden—the spicy heat of cumin and deep wood tightly entwine the rose, a scent full of pressure and tension. It offers no light comfort but accompanies you through this necessary tempering, until you find inner strength at the end."
+  },
+  {
+    "id": 29,
+    "card_name": "權杖十",
+    "choice": "B",
+    "brand": "L'Artisan Parfumeur",
+    "product": "Bois Farine",
+    "description_zh": "你承担着繁重的责任，虽感疲惫却依然坚持前行。L'Artisan的Bois Farine理解这份背负——杏仁粉的质朴与雪松的支撑感，如同最踏实的陪伴。这香气不减轻重量，却让负重前行的路上多一份温暖。",
+    "description_en": "You bear heavy responsibilities, exhausted yet persisting forward. L'Artisan’s Bois Farine understands this burden—the simplicity of almond flour and the supportive sense of cedar feel like the most solid companionship. It does not lighten the weight, but adds a warmth to the strenuous journey."
+  },
+  {
+    "id": 47,
+    "card_name": "權杖十",
+    "choice": "C",
+    "brand": "Serge Lutens",
+    "product": "Jeux de Peau",
+    "description_zh": "你承担着繁重的责任，虽感疲惫却依然坚持。Serge Lutens的Jeux de Peau理解这份背负——烤面包的暖香与牛奶的醇厚，提供最质朴的慰藉。这香气不减轻重量，却让负重前行的路上多一份温暖陪伴。",
+    "description_en": "You bear heavy responsibilities, exhausted yet persisting. Serge Lutens’ Jeux de Peau understands this burden—the warm scent of toasted bread and the richness of milk offer the simplest solace. It does not lighten the weight, but adds a warm companion to the strenuous journey."
+  },
+  {
+    "id": 62,
+    "card_name": "權杖十",
+    "choice": "D",
+    "brand": "Maison Martin Margiela",
+    "product": "Lazy Sunday Morning",
+    "description_zh": "你承担着繁重的责任，虽感疲惫却依然坚持。Maison Martin Margiela的Lazy Sunday Morning理解这份背负——铃兰的清新与梨子的水润，在白麝香的包裹中提供温柔的慰藉。这香气不减轻重量，却让负重前行的路上多一份舒缓。",
+    "description_en": "You bear heavy responsibilities, exhausted yet persisting. Maison Martin Margiela’s Lazy Sunday Morning understands this burden—the freshness of lily of the valley and the moistness of pear offer gentle solace wrapped in white musk. It does not lighten the weight, but adds a soothing touch to the strenuous journey."
+  },
+  {
+    "id": 5,
+    "card_name": "權杖侍者",
+    "choice": "A",
+    "brand": "Byredo",
+    "product": "Young Rose",
+    "description_zh": "你带着好奇与热情探索世界，跃跃欲试地迎接每个新发现。Byredo的Young Rose与你同频——花椒的刺激感与青绿玫瑰的鲜活，正是少年无畏的写照。这香气充满未驯服的生机，鼓励你勇敢尝试，在每一次探索中积累成长的印记。",
+    "description_en": "You explore the world with curiosity and passion, eager to welcome every new discovery. Byredo’s Young Rose is on your frequency—the stimulation of Sichuan pepper and the vividness of green rose are reflected in fearless youth. Full of untamed vitality, it encourages you to try bravely, accumulating marks of growth in every exploration."
+  },
+  {
+    "id": 26,
+    "card_name": "權杖侍者",
+    "choice": "B",
+    "brand": "Jo Malone London",
+    "product": "Wood Sage & Sea Salt",
+    "description_zh": "你带着好奇探索世界，随时准备将灵感转化为行动。Jo Malone的Wood Sage & Sea Salt与你跃跃欲试的心境相合——海风的清新与鼠尾草的天然趣味，正是少年探险家的完美写照。",
+    "description_en": "You explore the world with curiosity, ready to turn inspiration into action. Jo Malone’s Wood Sage & Sea Salt matches your eager state of mind—the freshness of sea breeze and the natural fun of sage are the perfect portrait of a young explorer."
+  },
+  {
+    "id": 43,
+    "card_name": "權杖侍者",
+    "choice": "C",
+    "brand": "Sol de Janeiro",
+    "product": "Cheirosa '62",
+    "description_zh": "你带着好奇探索世界，跃跃欲试地迎接每个新挑战。Sol de Janeiro的Cheirosa '62与你活泼的特质相合——开心果与杏仁的活泼甜香，盐焦糖的阳光气息，正是少年探险家的完美写照。",
+    "description_en": "You explore the world with curiosity, eager to welcome every new challenge. Sol de Janeiro’s Cheirosa '62 matches your lively nature—the lively sweetness of pistachio and almond, with the sunny scent of salted caramel, is the perfect portrait of a young explorer."
+  },
+  {
+    "id": 75,
+    "card_name": "權杖侍者",
+    "choice": "D",
+    "brand": "Acqua di Parma",
+    "product": "Fico di Amalfi",
+    "description_zh": "你带着好奇探索世界，跃跃欲试地迎接每个新挑战。Acqua di Parma的Fico di Amalfi与你活泼的特质相合——无花果叶的青翠与果实的清甜，正是少年探险家的完美写照。这香气鼓励你保持探索的热情，在尝试中积累经验。",
+    "description_en": "You explore the world with curiosity, eager to welcome every new challenge. Acqua di Parma’s Fico di Amalfi matches your lively nature—the verdancy of fig leaves and the sweetness of fruit are the perfect portrait of a young explorer. This fragrance encourages you to maintain enthusiasm for exploration, accumulating experience in every attempt."
+  },
+  {
+    "id": 1,
+    "card_name": "權杖騎士",
+    "choice": "A",
+    "brand": "Diptyque",
+    "product": "L'Ombre dans L'Eau",
+    "description_zh": "你以满腔热情投入行动，追求速度与刺激，无所畏惧。Diptyque的L'Ombre dans L'Eau与你迸发的能量契合——黑醋栗叶的澎湃绿意扑面而来，充满动感与冲击力。这香气自由而野性，正是你一往无前的灵魂写照，助你在追逐中尽显魅力。",
+    "description_en": "You throw yourself into action with full passion, pursuing speed and thrill without fear. Diptyque’s L'Ombre dans L'Eau fits your bursting energy—the surging greenery of blackcurrant leaves hits your face, full of motion and impact. Free and wild, this is the portrait of your unstoppable soul, helping you exude charm in the chase."
+  },
+  {
+    "id": 37,
+    "card_name": "權杖騎士",
+    "choice": "B",
+    "brand": "Tom Ford",
+    "product": "Ombré Leather",
+    "description_zh": "你以满腔热情投入行动，追求着速度与刺激的冒险。Tom Ford的Ombré Leather与你迸发的能量契合——皮革的不羁与木质的深度，展现着充满魅力的冒险精神。这香气是你追逐路上最性感的战歌。",
+    "description_en": "You throw yourself into action with full passion, pursuing the adventure of speed and thrill. Tom Ford’s Ombré Leather fits your bursting energy—the uninhibited nature of leather and the depth of wood reveal an adventurous spirit full of charm. This fragrance is the sexiest war song on your path of pursuit."
+  },
+  {
+    "id": 41,
+    "card_name": "權杖騎士",
+    "choice": "C",
+    "brand": "Kilian",
+    "product": "Intoxicated",
+    "description_zh": "你以满腔热情投入行动，追求着速度与刺激的冒险。Kilian的Intoxicated与你迸发的能量契合——咖啡的浓烈与小豆蔻的辛辣，展现着充满魅力的冒险精神。这香气是你追逐路上最令人沉醉的战歌。",
+    "description_en": "You throw yourself into action with full passion, pursuing the adventure of speed and thrill. Kilian’s Intoxicated fits your bursting energy—the intensity of coffee and the spice of cardamom reveal an adventurous spirit full of charm. This fragrance is the most intoxicating war song on your path of pursuit."
+  },
+  {
+    "id": 79,
+    "card_name": "權杖騎士",
+    "choice": "D",
+    "brand": "Creed",
+    "product": "Virgin Island Water",
+    "description_zh": "你以满腔热情投入行动，追求着速度与刺激的冒险。Creed的Virgin Island Water与你迸发的能量契合——青柠的爽朗与椰子的热带风情，展现着充满活力的冒险精神。这香气是你追逐路上最令人愉悦的战歌。",
+    "description_en": "You throw yourself into action with full passion, pursuing the adventure of speed and thrill. Creed’s Virgin Island Water fits your bursting energy—the crispness of lime and the tropical flair of coconut reveal an adventurous spirit full of vitality. This fragrance is the most delightful war song on your path of pursuit."
+  },
+  {
+    "id": 2,
+    "card_name": "權杖皇后",
+    "choice": "A",
+    "brand": "Stella McCartney",
+    "product": "Stella",
+    "description_zh": "你散发着阳光般的自信与温暖，以创造力激励着身边的人。Stella McCartney的Stella与你女王般的气场相映——它是一支纯粹而明亮的玫瑰，温暖、真诚且充满生命力。这香气如同你的人格魅力，自然吸引着美好的人与事，照亮你所处的每个空间。",
+    "description_en": "You radiate sunny confidence and warmth, inspiring those around you with creativity. Stella McCartney’s Stella reflects your queenly aura—a pure, bright rose, warm, sincere, and full of life. Like your charisma, it naturally attracts beautiful people and things, illuminating every space you occupy."
+  },
+  {
+    "id": 31,
+    "card_name": "權杖皇后",
+    "choice": "B",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "À la Rose",
+    "description_zh": "你散发着阳光般的自信与温暖，以创造力激励着周围的生命。Maison Francis Kurkdjian的À la Rose与你女王般的气场相映——盛大的玫瑰花园绽放着迷人的生命力，这香气正是你人格魅力的最佳诠释。",
+    "description_en": "You radiate sunny confidence and warmth, inspiring life around you with creativity. Maison Francis Kurkdjian’s À la Rose reflects your queenly aura—a grand rose garden blooming with charming vitality, this fragrance is the best interpretation of your charisma."
+  },
+  {
+    "id": 53,
+    "card_name": "權杖皇后",
+    "choice": "C",
+    "brand": "Xerjoff",
+    "product": "Lira",
+    "description_zh": "你散发着阳光般的自信与温暖，以创造力激励着周围。Xerjoff的Lira与你女王般的气场相映——焦糖柠檬蛋糕的诱人香气，甜美而强大。这香气正是你人格魅力的最佳诠释，照亮你所处的每个空间。",
+    "description_en": "You radiate sunny confidence and warmth, inspiring your surroundings with creativity. Xerjoff’s Lira reflects your queenly aura—the tempting scent of caramel lemon cake, sweet and powerful. This fragrance is the best interpretation of your charisma, illuminating every space you occupy."
+  },
+  {
+    "id": 66,
+    "card_name": "權杖皇后",
+    "choice": "D",
+    "brand": "Chloe",
+    "product": "Love Story",
+    "description_zh": "你散发着阳光般的自信与温暖，以创造力激励着周围。Chloe的Love Story与你女王般的气场相映——橙花的洁净与麝香的温柔，交织出优雅而坚定的魅力。这香气正是你人格魅力的最佳诠释，照亮你所处的每个空间。",
+    "description_en": "You radiate sunny confidence and warmth, inspiring your surroundings with creativity. Chloe’s Love Story reflects your queenly aura—the cleanliness of orange blossom and the tenderness of musk weave an elegant and firm charm. This fragrance is the best interpretation of your charisma, illuminating every space you occupy."
+  },
+  {
+    "id": 7,
+    "card_name": "權杖國王",
+    "choice": "A",
+    "brand": "Aesop",
+    "product": "Rozu",
+    "description_zh": "你以成熟的远见与坚定的意志引领方向，是众人信赖的领袖。Aesop的Rozu与你沉稳的权威共鸣——烟熏木质与皮革的坚实架构，支撑起一朵深邃的玫瑰。这香气强大而内敛，正如真正的影响力，不怒自威，在从容中掌控全局。",
+    "description_en": "You lead with mature foresight and firm will, a leader trusted by all. Aesop’s Rozu resonates with your steady authority—a solid structure of smoky wood and leather supporting a deep rose. Powerful yet restrained, like true influence, it commands respect without anger, controlling the whole with composure."
+  },
+  {
+    "id": 21,
+    "card_name": "權杖國王",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Santal 33",
+    "description_zh": "你以成熟的远见引领方向，在沉稳中展现不可动摇的权威。Le Labo的Santal 33与你国王般的掌控力共鸣——檀木的深邃与皮革的力度，构筑出经得起时间考验的影响力。这香气不言自威，展现着真正的领袖风范。",
+    "description_en": "You lead with mature foresight, showing unwavering authority in your steadiness. Le Labo’s Santal 33 resonates with your kingly control—the depth of sandalwood and the strength of leather build an influence that withstands the test of time. Commanding without words, it reveals true leadership."
+  },
+  {
+    "id": 52,
+    "card_name": "權杖國王",
+    "choice": "C",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Oud Satin Mood",
+    "description_zh": "你以成熟的远见引领方向，在沉稳中展现不可动摇的权威。Maison Francis Kurkdjian的Oud Satin Mood与你国王般的掌控力共鸣——乌木的深邃被玫瑰柔化，天鹅绒般的质感展现刚柔并济的领导力。这香气不言自威，展现着真正的领袖风范。",
+    "description_en": "You lead with mature foresight, showing unwavering authority in your steadiness. Maison Francis Kurkdjian’s Oud Satin Mood resonates with your kingly control—the depth of oud softened by rose, a velvet texture showing leadership of both strength and gentleness. Commanding without words, it reveals true leadership."
+  },
+  {
+    "id": 70,
+    "card_name": "權杖國王",
+    "choice": "D",
+    "brand": "Penhaligon's",
+    "product": "Castile",
+    "description_zh": "你以成熟的远见引领方向，在沉稳中展现不可动摇的权威。Penhaligon's的Castile与你国王般的掌控力共鸣——橙花与皂感的经典组合，展现历经时间考验的优雅力量。这香气不言自威，在古典格调中展现真正的领袖风范。",
+    "description_en": "You lead with mature foresight, showing unwavering authority in your steadiness. Penhaligon's Castile resonates with your kingly control—the classic combination of orange blossom and soapy notes reveals elegant power tested by time. Commanding without words, it reveals true leadership in a classical style."
+  },
+  {
+    "id": 14,
+    "card_name": "聖杯一",
+    "choice": "A",
+    "brand": "Frédéric Malle",
+    "product": "En Passant",
+    "description_zh": "你感受到情感的源泉正在内心涌动，直觉与无条件的爱从心底自然流淌。Frédéric Malle的En Passant与这份纯净的觉醒共鸣——紫丁香的朦胧水汽与黄瓜的清新，捕捉了心灵最柔软的瞬间。这香气不带负担，只轻声提醒：爱的本质，是愿意为美好而敞开。",
+    "description_en": "You feel the spring of emotion surging within, intuition and unconditional love flowing naturally. Frédéric Malle’s En Passant resonates with this pure awakening—the misty vapor of lilac and the freshness of cucumber capture the soul’s softest moment. Burden-free, it whispers: the essence of love is the willingness to open up to beauty."
+  },
+  {
+    "id": 28,
+    "card_name": "聖杯一",
+    "choice": "B",
+    "brand": "Diptyque",
+    "product": "Tam Dao",
+    "description_zh": "情感的源泉正在你心中涌动，无条件的爱与直觉自然流淌。Diptyque的Tam Dao与这份纯净的觉醒共鸣——檀木的奶香与雪松的宁谧，创造出神圣的情感空间。这香气不设边界，温柔拥抱每一份新生的感受，陪伴你体验心灵最初的悸动。",
+    "description_en": "The spring of emotion surges within you, unconditional love and intuition flowing naturally. Diptyque’s Tam Dao resonates with this pure awakening—the milky scent of sandalwood and the peace of cedar create a sacred emotional space. Setting no boundaries, it gently embraces every new feeling, accompanying you to experience the heart's first flutter."
+  },
+  {
+    "id": 49,
+    "card_name": "聖杯一",
+    "choice": "C",
+    "brand": "Comptoir Sud Pacifique",
+    "product": "Vanille Abricot",
+    "description_zh": "情感的源泉正在你心中涌动，纯真的爱意自然流淌。Comptoir Sud Pacifique的Vanille Abricot与这份纯净的觉醒共鸣——香草与杏子的甜美组合简单而温暖，如同初绽的花蕾。这香气不设边界，温柔拥抱每一份新生的感受，陪伴你体验心灵最初的悸动。",
+    "description_en": "The spring of emotion surges within you, innocent love flowing naturally. Comptoir Sud Pacifique’s Vanille Abricot resonates with this pure awakening—the sweet combination of vanilla and apricot is simple and warm, like a budding flower. Setting no boundaries, it gently embraces every new feeling, accompanying you to experience the heart's first flutter."
+  },
+  {
+    "id": 61,
+    "card_name": "聖杯一",
+    "choice": "D",
+    "brand": "Byredo",
+    "product": "Blanche",
+    "description_zh": "情感的源泉正在你心中自然流淌，纯净的爱意如初雪般清澈。Byredo的Blanche与这份觉醒完美契合——白麝香与醛香交织出绝对的洁净感，如同未经书写的美好篇章。这香气温柔拥抱每一份新生的感受，陪伴你体验心灵最初的悸动。",
+    "description_en": "The spring of emotion flows naturally within you, pure love as clear as first snow. Byredo’s Blanche fits this awakening perfectly—white musk and aldehydes weave absolute cleanliness, like an unwritten beautiful chapter. Gentle, it embraces every new feeling, accompanying you to experience the heart's first flutter."
+  },
+  {
+    "id": 2,
+    "card_name": "聖杯二",
+    "choice": "A",
+    "brand": "Stella McCartney",
+    "product": "Stella",
+    "description_zh": "你正经历一段真诚的情感连结，彼此的心灵在平等与尊重中相互映照。Stella McCartney的Stella诠释这份和谐的爱——它是一支纯粹而温暖的玫瑰，从一而终，如同灵魂之间的默契无需多言。愿这简单而深情的香气，成为你们之间无声的承诺。",
+    "description_en": "You are experiencing a sincere emotional connection, souls mirroring each other in equality and respect. Stella McCartney’s Stella interprets this harmonious love—a pure, warm rose, faithful from beginning to end, like the tacit understanding between souls that needs no words. May this simple, deep fragrance be the silent promise between you."
+  },
+  {
+    "id": 33,
+    "card_name": "聖杯二",
+    "choice": "B",
+    "brand": "Loewe",
+    "product": "001 Woman",
+    "description_zh": "你正经历深刻的灵魂共鸣，两颗心在平等尊重中相互映照。Loewe的001 Woman诠释这份亲密联结——香草的温暖与茉莉的清甜，在麝香的包裹中交织出肌肤相亲的温柔。这香气记录着心灵相通的瞬间，成为彼此之间无言的承诺。",
+    "description_en": "You are experiencing deep soul resonance, two hearts mirroring each other in equality and respect. Loewe’s 001 Woman interprets this intimate connection—the warmth of vanilla and the sweetness of jasmine weave the gentleness of skin-to-skin contact wrapped in musk. This fragrance records the moment of telepathy, becoming a wordless promise between you."
+  },
+  {
+    "id": 52,
+    "card_name": "聖杯二",
+    "choice": "C",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Oud Satin Mood",
+    "description_zh": "你正经历深刻的灵魂共鸣，两颗心在平等尊重中相互映照。Maison Francis Kurkdjian的Oud Satin Mood诠释这份亲密联结——乌木的深邃被玫瑰温柔包裹，天鹅绒般的质感如同永不分离的拥抱。这香气记录着心灵相通的永恒瞬间，成为彼此之间最深刻的承诺。",
+    "description_en": "You are experiencing deep soul resonance, two hearts mirroring each other in equality and respect. Maison Francis Kurkdjian’s Oud Satin Mood interprets this intimate connection—the depth of oud gently wrapped in rose, a velvet texture like an inseparable embrace. This fragrance records the eternal moment of telepathy, becoming the deepest promise between you."
+  },
+  {
+    "id": 63,
+    "card_name": "聖杯二",
+    "choice": "D",
+    "brand": "Narciso Rodriguez",
+    "product": "For Her Eau de Toilette",
+    "description_zh": "你正经历深刻的灵魂共鸣，两颗心在默契中相互映照。Narciso Rodriguez的For Her Eau de Toilette诠释这份亲密——麝香的洁净与花香的柔软，勾勒出肌肤相亲的温暖记忆。这香气记录着心灵相通的瞬间，成为彼此之间无言的承诺。",
+    "description_en": "You are experiencing deep soul resonance, two hearts mirroring each other in tacit understanding. Narciso Rodriguez’s For Her Eau de Toilette interprets this intimacy—the cleanliness of musk and the softness of florals outline the warm memory of skin-to-skin contact. This fragrance records the moment of telepathy, becoming a wordless promise between you."
+  },
+  {
+    "id": 16,
+    "card_name": "聖杯三",
+    "choice": "A",
+    "brand": "L'Artisan Parfumeur",
+    "product": "La Chasse aux Papillons",
+    "description_zh": "你沉浸在与他人的欢庆之中，友谊与情感的丰收让心灵满足。L'Artisan的La Chasse aux Papillons完美呼应这份喜悦——白花在阳光下轻盈飞舞，椴花蜜的甜香洋溢着纯粹的快乐。这香气属于共享的时光，见证着人与人之间最温暖的联结。",
+    "description_en": "You are immersed in celebration with others, the harvest of friendship and emotion satisfying the soul. L'Artisan’s La Chasse aux Papillons echoes this joy perfectly—white flowers dance in the sun, the sweet scent of linden nectar overflowing with pure happiness. This fragrance belongs to shared times, witnessing the warmest connections between people."
+  },
+  {
+    "id": 32,
+    "card_name": "聖杯三",
+    "choice": "B",
+    "brand": "Byredo",
+    "product": "Bal d'Afrique",
+    "description_zh": "你沉浸在与他人的欢庆中，情感的丰收让心灵充实喜悦。Byredo的Bal d'Afrique与这份共享的快乐共鸣——香柠檬的明亮与琥珀的温暖，仿佛节日里的金色阳光。这香气属于相聚的时刻，见证着人与人之间最真诚的情感交流。",
+    "description_en": "You are immersed in celebration with others, the harvest of emotion filling the soul with joy. Byredo’s Bal d'Afrique resonates with this shared happiness—the brightness of bergamot and the warmth of amber feel like golden festive sunlight. This fragrance belongs to moments of gathering, witnessing the most sincere emotional exchanges between people."
+  },
+  {
+    "id": 51,
+    "card_name": "聖杯三",
+    "choice": "C",
+    "brand": "Kilian",
+    "product": "Angels' Share",
+    "description_zh": "你沉浸在与他人的欢庆中，情感的丰收让心灵充实喜悦。Kilian的Angels' Share与这份共享的快乐共鸣——干邑白兰地的醇香与榛果的暖甜，仿佛节日里的盛宴。这香气属于相聚的时刻，见证着人与人之间最温暖的情感交流。",
+    "description_en": "You are immersed in celebration with others, the harvest of emotion filling the soul with joy. Kilian’s Angels' Share resonates with this shared happiness—the mellowness of cognac and the warm sweetness of hazelnut feel like a festive feast. This fragrance belongs to moments of gathering, witnessing the warmest emotional exchanges between people."
+  },
+  {
+    "id": 79,
+    "card_name": "聖杯三",
+    "choice": "D",
+    "brand": "Creed",
+    "product": "Virgin Island Water",
+    "description_zh": "你沉浸在与他人的欢庆中，情感的丰收让心灵充实喜悦。Creed的Virgin Island Water与这份共享的快乐共鸣——青柠的爽朗与椰子的热带风情，仿佛永不落幕的海岛派对。这香气属于相聚的时刻，见证着人与人之间最真诚的情感交流。",
+    "description_en": "You are immersed in celebration with others, the harvest of emotion filling the soul with joy. Creed’s Virgin Island Water resonates with this shared happiness—the crispness of lime and the tropical flair of coconut feel like an island party that never ends. This fragrance belongs to moments of gathering, witnessing the most sincere emotional exchanges between people."
+  },
+  {
+    "id": 20,
+    "card_name": "聖杯四",
+    "choice": "A",
+    "brand": "Gucci",
+    "product": "Mémoire d'une Odeur",
+    "description_zh": "你对外界的情感邀请感到倦怠，渴望向内寻找真正的满足。Gucci的Mémoire d'une Odeur与这份自省的心境契合——洋甘菊的质朴与矿物麝香的疏离，营造出抽离现实的氛围。这香气不评判你的退缩，却提供一片宁静，让你在独处中重新认识自己的需求。",
+    "description_en": "You feel weary of emotional invitations from the outside, longing to look inward for true satisfaction. Gucci’s Mémoire d'une Odeur fits this introspective mood—the simplicity of chamomile and the detachment of mineral musk create an atmosphere withdrawn from reality. It judges not your retreat, but offers quietness, letting you rediscover your needs in solitude."
+  },
+  {
+    "id": 24,
+    "card_name": "聖杯四",
+    "choice": "B",
+    "brand": "Aesop",
+    "product": "Hwyl",
+    "description_zh": "你对外界的情感邀请感到倦怠，渴望在独处中寻找真实的满足。Aesop的Hwyl与这份自省的心境契合——柏树的幽深与苔藓的湿润，营造出远离尘嚣的静谧空间。这香气不打扰你的沉思，只为疲惫的心灵提供栖息之所。",
+    "description_en": "You feel weary of emotional invitations from the outside, longing to find true satisfaction in solitude. Aesop’s Hwyl fits this introspective mood—the depth of cypress and the moisture of moss create a quiet space far from the noise. It does not disturb your contemplation, but offers a resting place for the weary soul."
+  },
+  {
+    "id": 56,
+    "card_name": "聖杯四",
+    "choice": "C",
+    "brand": "BDK Parfums",
+    "product": "Gris Charnel",
+    "description_zh": "你对外界的情感邀请感到倦怠，渴望在独处中寻找真实的满足。BDK的Gris Charnel与这份自省的心境契合——无花果的奶感与茶的清苦，在檀木基底上交织出朦胧的宁静。这香气不打扰你的沉思，只为疲惫的心灵提供栖息之所。",
+    "description_en": "You feel weary of emotional invitations from the outside, longing to find true satisfaction in solitude. BDK’s Gris Charnel fits this introspective mood—the milkiness of fig and the bitterness of tea weave a hazy tranquility on a sandalwood base. It does not disturb your contemplation, but offers a resting place for the weary soul."
+  },
+  {
+    "id": 65,
+    "card_name": "聖杯四",
+    "choice": "D",
+    "brand": "Acca Kappa",
+    "product": "White Moss",
+    "description_zh": "你对外界的情感邀请感到倦怠，渴望在独处中寻找真实的满足。Acca Kappa的White Moss与这份自省的心境契合——白麝香的洁净与苔藓的湿润，营造出远离喧嚣的静谧空间。这香气不打扰你的沉思，只为疲惫的心灵提供栖息之所。",
+    "description_en": "You feel weary of emotional invitations from the outside, longing to find true satisfaction in solitude. Acca Kappa’s White Moss fits this introspective mood—the cleanliness of white musk and the moisture of moss create a quiet space far from the clamor. It does not disturb your contemplation, but offers a resting place for the weary soul."
+  },
+  {
+    "id": 15,
+    "card_name": "聖杯五",
+    "choice": "A",
+    "brand": "Penhaligon's",
+    "product": "Bluebell",
+    "description_zh": "你为失去而悲伤，沉浸在遗憾与失落之中。Penhaligon's的Bluebell理解这份心痛——潮湿的泥土气息与阴郁的绿意，勾勒出雨中被遗忘的角落。这香气不急于安慰，却温柔地陪伴你承认：悲伤，也是爱过的证明。",
+    "description_en": "You grieve for what is lost, immersed in regret and emptiness. Penhaligon's Bluebell understands this heartache—the scent of damp earth and gloomy greenery outlines a forgotten corner in the rain. It does not rush to comfort, but gently accompanies you to acknowledge: sadness is the proof that you have loved."
+  },
+  {
+    "id": 38,
+    "card_name": "聖杯五",
+    "choice": "B",
+    "brand": "Serge Lutens",
+    "product": "Chergui",
+    "description_zh": "你为失去而悲伤，沉浸在遗憾与失落的情感中。Serge Lutens的Chergui理解这份心痛——蜂蜜的甜暖与干草的醇厚，如同一个充满理解的拥抱。这香气不急于疗愈，却温柔地陪伴你走过这段必经的哀伤。",
+    "description_en": "You grieve for what is lost, immersed in regret and sadness. Serge Lutens’ Chergui understands this heartache—the sweet warmth of honey and the richness of hay feel like an embrace full of understanding. It does not rush to heal, but gently accompanies you through this necessary sorrow."
+  },
+  {
+    "id": 47,
+    "card_name": "聖杯五",
+    "choice": "C",
+    "brand": "Serge Lutens",
+    "product": "Jeux de Peau",
+    "description_zh": "你为失去而悲伤，沉浸在遗憾与失落的情感中。Serge Lutens的Jeux de Peau理解这份心痛——烤面包的暖香与牛奶的醇厚，用最质朴的温暖抚慰心灵。这香气不急于疗愈，却温柔地陪伴你走过这段必经的哀伤。",
+    "description_en": "You grieve for what is lost, immersed in regret and sadness. Serge Lutens’ Jeux de Peau understands this heartache—the warm scent of toasted bread and the richness of milk comfort the soul with the simplest warmth. It does not rush to heal, but gently accompanies you through this necessary sorrow."
+  },
+  {
+    "id": 62,
+    "card_name": "聖杯五",
+    "choice": "D",
+    "brand": "Maison Martin Margiela",
+    "product": "Lazy Sunday Morning",
+    "description_zh": "你为失去而悲伤，沉浸在遗憾与失落的情感中。Maison Martin Margiela的Lazy Sunday Morning理解这份心痛——铃兰的清新与梨子的水润，在白麝香的包裹中带来温柔的慰藉。这香气不急于疗愈，却让修复的过程充满希望。",
+    "description_en": "You grieve for what is lost, immersed in regret and sadness. Maison Martin Margiela’s Lazy Sunday Morning understands this heartache—the freshness of lily of the valley and the moistness of pear bring gentle solace wrapped in white musk. It does not rush to heal, but fills the process of repair with hope."
+  },
+  {
+    "id": 17,
+    "card_name": "聖杯六",
+    "choice": "A",
+    "brand": "Jo Malone London",
+    "product": "Wild Bluebell",
+    "description_zh": "你回到纯真的情感记忆里，童年的美好与无私的赠予温暖着心房。Jo Malone的Wild Bluebell唤起这份温柔——水润的西瓜酮与蓝风铃的清甜，编织出天真无邪的梦境。这香气像儿时收到的珍贵礼物，提醒你：最真挚的情感，永远清澈如初。",
+    "description_en": "You return to innocent emotional memories, warmed by the beauty of childhood and selfless giving. Jo Malone’s Wild Bluebell evokes this tenderness—dewy watermelon ketone and the sweetness of bluebell weave an innocent dream. Like a precious gift from childhood, it reminds you: the sincerest emotions remain forever clear."
+  },
+  {
+    "id": 23,
+    "card_name": "聖杯六",
+    "choice": "B",
+    "brand": "Maison Martin Margiela",
+    "product": "By the Fireplace",
+    "description_zh": "你回到纯真的情感记忆里，童年的温暖与无私的赠予涌上心头。Maison Martin Margiela的By the Fireplace唤起这份怀念——烤栗子的甜香与炉火的暖意，重现那些被珍藏在心底的美好时光。这香气如同童年的壁炉边，永远保留着最初的温暖。",
+    "description_en": "You return to innocent emotional memories, childhood warmth and selfless giving welling up in your heart. Maison Martin Margiela’s By the Fireplace evokes this nostalgia—the sweet scent of roasted chestnuts and the warmth of the fire recreate beautiful times cherished in the heart. Like a childhood fireside, it forever keeps the original warmth."
+  },
+  {
+    "id": 43,
+    "card_name": "聖杯六",
+    "choice": "C",
+    "brand": "Sol de Janeiro",
+    "product": "Cheirosa '62",
+    "description_zh": "你回到纯真的情感记忆里，童年的美好与无私的赠予涌上心头。Sol de Janeiro的Cheirosa '62唤起这份怀念——开心果与杏仁的奶甜，盐焦糖的温暖，重现那些被珍藏在心底的美好时光。这香气如同童年的礼物，永远保留着最初的真诚。",
+    "description_en": "You return to innocent emotional memories, childhood beauty and selfless giving welling up in your heart. Sol de Janeiro’s Cheirosa '62 evokes this nostalgia—the milky sweetness of pistachio and almond, with the warmth of salted caramel, recreate beautiful times cherished in the heart. Like a childhood gift, it forever keeps the original sincerity."
+  },
+  {
+    "id": 66,
+    "card_name": "聖杯六",
+    "choice": "D",
+    "brand": "Chloe",
+    "product": "Love Story",
+    "description_zh": "你回到纯真的情感记忆里，童年的美好与无私的赠予涌上心头。Chloe的Love Story唤起这份怀念——橙花的洁净与麝香的温柔，重现那些被珍藏在心底的美好时光。这香气如同年少时的承诺，永远保留着最初的真诚。",
+    "description_en": "You return to innocent emotional memories, childhood beauty and selfless giving welling up in your heart. Chloe’s Love Story evokes this nostalgia—the cleanliness of orange blossom and the tenderness of musk recreate beautiful times cherished in the heart. Like a promise from youth, it forever keeps the original sincerity."
+  },
+  {
+    "id": 19,
+    "card_name": "聖杯七",
+    "choice": "A",
+    "brand": "Aerin",
+    "product": "Lilac Path",
+    "description_zh": "你沉浸在情感的幻想中，面对众多可能性却难以抉择。Aerin的Lilac Path与这份朦胧的渴望同行——极度写实的丁香花香，美好得如同梦中场景。这香气不催促你醒来，却邀请你看清：真正的选择，需要勇气走出想象的迷雾。",
+    "description_en": "You are immersed in emotional fantasies, facing many possibilities but unable to choose. Aerin’s Lilac Path walks with this hazy longing—an extremely realistic lilac scent, as beautiful as a dream scene. It does not rush you to wake, but invites you to see clearly: true choice requires the courage to walk out of the mist of imagination."
+  },
+  {
+    "id": 30,
+    "card_name": "聖杯七",
+    "choice": "B",
+    "brand": "Kilian",
+    "product": "Sacred Wood",
+    "description_zh": "你沉浸在情感的幻想中，面对众多可能性难以抉择。Kilian的Sacred Wood与这份朦胧的渴望同行——极致纯净的檀木香气，带来清醒的灵性感知。这香气不打破梦境，却帮助你在情感的迷雾中找到内心的真相。",
+    "description_en": "You are immersed in emotional fantasies, facing many possibilities difficult to choose from. Kilian’s Sacred Wood walks with this hazy longing—purest sandalwood bringing sober spiritual perception. It does not break the dream, but helps you find the inner truth within the mist of emotion."
+  },
+  {
+    "id": 53,
+    "card_name": "聖杯七",
+    "choice": "C",
+    "brand": "Xerjoff",
+    "product": "Lira",
+    "description_zh": "你沉浸在情感的幻想中，面对众多可能性难以抉择。Xerjoff的Lira与这份朦胧的渴望同行——焦糖柠檬蛋糕的诱人香气，美好得如同梦中场景。这香气不催促你醒来，却邀请你看清内心真正的渴望。",
+    "description_en": "You are immersed in emotional fantasies, facing many possibilities difficult to choose from. Xerjoff’s Lira walks with this hazy longing—the tempting scent of caramel lemon cake, as beautiful as a dream scene. It does not rush you to wake, but invites you to see clearly the true desire of your heart."
+  },
+  {
+    "id": 71,
+    "card_name": "聖杯七",
+    "choice": "D",
+    "brand": "Hermès",
+    "product": "Un Jardin Sur La Lagune",
+    "description_zh": "你沉浸在情感的幻想中，面对众多可能性难以抉择。Hermès的Un Jardin Sur La Lagune与这份朦胧的渴望同行——咸湿海风中的木兰与百合，勾勒出梦幻般的花园景致。这香气不催促你醒来，却邀请你在想象与真实间找到平衡。",
+    "description_en": "You are immersed in emotional fantasies, facing many possibilities difficult to choose from. Hermès’ Un Jardin Sur La Lagune walks with this hazy longing—magnolia and lily in salty sea breeze outline a dreamy garden view. It does not rush you to wake, but invites you to find balance between imagination and reality."
+  },
+  {
+    "id": 13,
+    "card_name": "聖杯八",
+    "choice": "A",
+    "brand": "Diptyque",
+    "product": "Ofrésia",
+    "description_zh": "你决定离开不再满足的情感状态，去寻找更深层的意义。Diptyque的Ofrésia赋予你转身的勇气——小苍兰的青绿根茎气息锐利而决绝，象征着切断与重生。这香气不说再见，却为你照亮前行的路：有些离开，是为了更完整的回归。",
+    "description_en": "You decide to leave an emotional state that no longer satisfies, seeking deeper meaning. Diptyque’s Ofrésia gives you the courage to turn away—the sharp, decisive green stem scent of freesia symbolizes severing and rebirth. It does not say goodbye, but lights the way forward for you: some departures are for a more complete return."
+  },
+  {
+    "id": 37,
+    "card_name": "聖杯八",
+    "choice": "B",
+    "brand": "Tom Ford",
+    "product": "Ombré Leather",
+    "description_zh": "你决定离开不再满足的情感状态，去寻找更深层的意义。Tom Ford的Ombré Leather赋予你转身的勇气——皮革的独立与木质的深邃，象征着决绝的告别。这香气不说挽留，却为你的情感成长开辟新的可能。",
+    "description_en": "You decide to leave an emotional state that no longer satisfies, seeking deeper meaning. Tom Ford’s Ombré Leather gives you the courage to turn away—the independence of leather and the depth of wood symbolize a resolute farewell. It does not ask you to stay, but opens new possibilities for your emotional growth."
+  },
+  {
+    "id": 60,
+    "card_name": "聖杯八",
+    "choice": "C",
+    "brand": "Parfums de Marly",
+    "product": "Herod",
+    "description_zh": "你决定离开不再满足的情感状态，去寻找更深层的意义。Parfums de Marly的Herod赋予你转身的勇气——烟草的干燥与肉桂的暖意，在葡萄柚的清新中找到新的方向。这香气不说挽留，却为你的情感成长开辟新的可能。",
+    "description_en": "You decide to leave an emotional state that no longer satisfies, seeking deeper meaning. Parfums de Marly’s Herod gives you the courage to turn away—the dryness of tobacco and the warmth of cinnamon find new direction in the freshness of grapefruit. It does not ask you to stay, but opens new possibilities for your emotional growth."
+  },
+  {
+    "id": 80,
+    "card_name": "聖杯八",
+    "choice": "D",
+    "brand": "Le Labo",
+    "product": "Baie 19",
+    "description_zh": "你决定离开不再满足的情感状态，去寻找更深层的意义。Le Labo的Baie 19赋予你转身的勇气——雨后矿物的清冷与湿土的气息，象征着清醒的告别。这香气不说挽留，却为你的情感成长开辟新的维度。",
+    "description_en": "You decide to leave an emotional state that no longer satisfies, seeking deeper meaning. Le Labo’s Baie 19 gives you the courage to turn away—the coldness of mineral after rain and the scent of wet earth symbolize a sober farewell. It does not ask you to stay, but opens new dimensions for your emotional growth."
+  },
+  {
+    "id": 4,
+    "card_name": "聖杯九",
+    "choice": "A",
+    "brand": "Frédéric Malle",
+    "product": "Une Rose",
+    "description_zh": "你享受着情感上的满足与自我陶醉，为自己的成就与魅力感到骄傲。Frédéric Malle的Une Rose与这份自我认可共鸣——它是一朵盛大而华丽的玫瑰，饱满、性感且不容忽视。这香气是对自我的犒赏，提醒你：你值得世上所有的美好，因为你本就是美好的创造者。",
+    "description_en": "You enjoy emotional satisfaction and self-intoxication, proud of your achievements and charm. Frédéric Malle’s Une Rose resonates with this self-recognition—a grand, magnificent rose, full, sexy, and impossible to ignore. This fragrance is a reward to yourself, reminding you: you deserve all the beauty in the world, for you are the creator of beauty."
+  },
+  {
+    "id": 39,
+    "card_name": "聖杯九",
+    "choice": "B",
+    "brand": "Jo Malone London",
+    "product": "Myrrh & Tonka",
+    "description_zh": "你享受着情感上的自我满足，为自己的魅力与成就感到欣喜。Jo Malone的Myrrh & Tonka与这份自我认可共鸣——薰衣草的安宁与香草的甜美，交织出充满喜悦的私密空间。这香气是对自我的犒赏，庆祝你成为自己最喜欢的样子。",
+    "description_en": "You enjoy emotional self-satisfaction, delighted by your charm and achievements. Jo Malone’s Myrrh & Tonka resonates with this self-recognition—the peace of lavender and the sweetness of vanilla weave a private space full of joy. This fragrance is a reward to yourself, celebrating you becoming your favorite version of yourself."
+  },
+  {
+    "id": 44,
+    "card_name": "聖杯九",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Spiritueuse Double Vanille",
+    "description_zh": "你享受着情感上的自我满足，为自己的魅力与成就感到欣喜。Guerlain的Spiritueuse Double Vanille与这份自我认可共鸣——香草的神圣与朗姆酒的醇烈，交织出充满喜悦的私密空间。这香气是对自我的犒赏，庆祝你成为自己最喜欢的样子。",
+    "description_en": "You enjoy emotional self-satisfaction, delighted by your charm and achievements. Guerlain’s Spiritueuse Double Vanille resonates with this self-recognition—the sanctity of vanilla and the mellowness of rum weave a private space full of joy. This fragrance is a reward to yourself, celebrating you becoming your favorite version of yourself."
+  },
+  {
+    "id": 76,
+    "card_name": "聖杯九",
+    "choice": "D",
+    "brand": "Byredo",
+    "product": "Sundazed",
+    "description_zh": "你享受着情感上的自我满足，为自己的魅力与成就感到欣喜。Byredo的Sundazed与这份自我认可共鸣——柑橘的阳光气息与麝香的温暖质感，交织出充满喜悦的私密空间。这香气是对自我的犒赏，庆祝你成为自己最喜欢的样子。",
+    "description_en": "You enjoy emotional self-satisfaction, delighted by your charm and achievements. Byredo’s Sundazed resonates with this self-recognition—the sunny scent of citrus and the warm texture of musk weave a private space full of joy. This fragrance is a reward to yourself, celebrating you becoming your favorite version of yourself."
+  },
+  {
+    "id": 18,
+    "card_name": "聖杯十",
+    "choice": "A",
+    "brand": "Creed",
+    "product": "Love in White",
+    "description_zh": "你体验着情感的圆满与和谐，家庭与集体的爱让你感到完整。Creed的Love in White为这幸福时刻加冕——稻谷的丰饶衬着橙花与木兰的圣洁，宛如天伦之乐在阳光下闪耀。这香气包容万物，见证着你创造的爱的共同体。",
+    "description_en": "You experience emotional fulfillment and harmony, feeling complete through family and collective love. Creed’s Love in White crowns this happy moment—the richness of rice husks set against the sanctity of orange blossom and magnolia, like family joy shining in the sun. Embracing all things, it witnesses the community of love you have created."
+  },
+  {
+    "id": 21,
+    "card_name": "聖杯十",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Santal 33",
+    "description_zh": "你体验着情感的圆满与和谐，家庭与集体的爱让你感到完整。Le Labo的Santal 33为这幸福时刻加冕——檀木的温润与皮革的包容，构筑出充满归属感的情感共同体。这香气见证着你创造的爱的家园。",
+    "description_en": "You experience emotional fulfillment and harmony, feeling complete through family and collective love. Le Labo’s Santal 33 crowns this happy moment—the warmth of sandalwood and the inclusivity of leather construct an emotional community full of belonging. This fragrance witnesses the home of love you have created."
+  },
+  {
+    "id": 42,
+    "card_name": "聖杯十",
+    "choice": "C",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Grand Soir",
+    "description_zh": "你体验着情感的圆满与和谐，爱与温暖让你感到完整。Maison Francis Kurkdjian的Grand Soir为这幸福时刻加冕——琥珀的温暖与香草的绵长，构筑出充满归属感的情感共同体。这香气见证着你创造的爱的家园。",
+    "description_en": "You experience emotional fulfillment and harmony, feeling complete through love and warmth. Maison Francis Kurkdjian’s Grand Soir crowns this happy moment—the warmth of amber and the length of vanilla construct an emotional community full of belonging. This fragrance witnesses the home of love you have created."
+  },
+  {
+    "id": 26,
+    "card_name": "聖杯十",
+    "choice": "D",
+    "brand": "Jo Malone London",
+    "product": "Wood Sage & Sea Salt",
+    "description_zh": "你体验着情感的圆满与和谐，爱与温暖让你感到完整。Jo Malone的Wood Sage & Sea Salt为这幸福时刻加冕——海风的清新与鼠尾草的温暖，构筑出充满归属感的情感共同体。这香气见证着你创造的爱的家园。",
+    "description_en": "You experience emotional fulfillment and harmony, feeling complete through love and warmth. Jo Malone’s Wood Sage & Sea Salt crowns this happy moment—the freshness of sea breeze and the warmth of sage construct an emotional community full of belonging. This fragrance witnesses the home of love you have created."
+  },
+  {
+    "id": 17,
+    "card_name": "聖杯侍者",
+    "choice": "A",
+    "brand": "Jo Malone London",
+    "product": "Wild Bluebell",
+    "description_zh": "你带着温柔的好奇心探索世界，随时准备接收情感的新讯息。Jo Malone的Wild Bluebell与你天真敏锐的特质相合——水润清甜的气息如同少年善感的眼神，捕捉着生活中每一个微小的感动。愿这抹干净的香气，守护你探索的初心。",
+    "description_en": "You explore the world with gentle curiosity, ready to receive new emotional messages. Jo Malone’s Wild Bluebell matches your innocent and sensitive nature—the moist, sweet scent captures every small touch in life like the sensitive eyes of a youth. May this clean fragrance guard your original intention of exploration."
+  },
+  {
+    "id": 36,
+    "card_name": "聖杯侍者",
+    "choice": "B",
+    "brand": "Diptyque",
+    "product": "Philosykos",
+    "description_zh": "你带着温柔的好奇心探索情感世界，随时准备接收心灵的讯息。Diptyque的Philosykos与你天真敏锐的特质相合——无花果叶的青翠与果实的奶甜，捕捉着情感世界的微妙变化。这香气守护你探索的初心，让每次心动都成为成长的礼物。",
+    "description_en": "You explore the emotional world with gentle curiosity, ready to receive messages from the heart. Diptyque’s Philosykos matches your innocent and sensitive nature—the greenness of fig leaves and the milky sweetness of fruit capture the subtle changes of the emotional world. This fragrance guards your original intention, making every heartbeat a gift of growth."
+  },
+  {
+    "id": 49,
+    "card_name": "聖杯侍者",
+    "choice": "C",
+    "brand": "Comptoir Sud Pacifique",
+    "product": "Vanille Abricot",
+    "description_zh": "你带着温柔的好奇心探索情感世界，随时准备接收心灵的讯息。Comptoir Sud Pacifique的Vanille Abricot与你天真敏锐的特质相合——香草与杏子的简单甜美，捕捉着情感世界的微妙变化。这香气守护你探索的初心，让每次心动都成为成长的礼物。",
+    "description_en": "You explore the emotional world with gentle curiosity, ready to receive messages from the heart. Comptoir Sud Pacifique’s Vanille Abricot matches your innocent and sensitive nature—the simple sweetness of vanilla and apricot captures the subtle changes of the emotional world. This fragrance guards your original intention, making every heartbeat a gift of growth."
+  },
+  {
+    "id": 75,
+    "card_name": "聖杯侍者",
+    "choice": "D",
+    "brand": "Acqua di Parma",
+    "product": "Fico di Amalfi",
+    "description_zh": "你带着温柔的好奇心探索情感世界，随时准备接收心灵的讯息。Acqua di Parma的Fico di Amalfi与你天真敏锐的特质相合——无花果叶的青翠与果实的清甜，捕捉着情感世界的微妙变化。这香气守护你探索的初心，让每次心动都成为成长的礼物。",
+    "description_en": "You explore the emotional world with gentle curiosity, ready to receive messages from the heart. Acqua di Parma’s Fico di Amalfi matches your innocent and sensitive nature—the greenness of fig leaves and the sweetness of fruit capture the subtle changes of the emotional world. This fragrance guards your original intention, making every heartbeat a gift of growth."
+  },
+  {
+    "id": 3,
+    "card_name": "聖杯騎士",
+    "choice": "A",
+    "brand": "Penhaligon's",
+    "product": "The Coveted Duchess Rose",
+    "description_zh": "你以浪漫的姿态走向世界，带着诗意与诚意追求心中的理想。Penhaligon's的The Coveted Duchess Rose与你骑士般的优雅同行——木质玫瑰在微苦柑橘中低语，诉说着美丽与哀愁并存的宿命。这香气不保证结局，却赋予你追求过程的尊严。",
+    "description_en": "You walk into the world with a romantic posture, pursuing your ideal with poetry and sincerity. Penhaligon's The Coveted Duchess Rose walks with your knightly elegance—woody rose whispering in bitter citrus, telling a destiny where beauty and sorrow coexist. It promises no ending, but grants you dignity in the process of pursuit."
+  },
+  {
+    "id": 33,
+    "card_name": "聖杯騎士",
+    "choice": "B",
+    "brand": "Loewe",
+    "product": "001 Woman",
+    "description_zh": "你以浪漫的姿态走向世界，带着诗意与诚意追求心中的理想。Loewe的001 Woman与你骑士般的优雅同行——茉莉的纯洁与香草的缠绵，诉说着不求回报的深情。这香气赋予你追求的勇气，让每次心动都成为美好的诗篇。",
+    "description_en": "You walk into the world with a romantic posture, pursuing your ideal with poetry and sincerity. Loewe’s 001 Woman walks with your knightly elegance—the purity of jasmine and the lingering of vanilla tell of deep affection asking for no return. This fragrance gives you the courage to pursue, making every heartbeat a beautiful poem."
+  },
+  {
+    "id": 58,
+    "card_name": "聖杯騎士",
+    "choice": "C",
+    "brand": "Nishane",
+    "product": "Ani",
+    "description_zh": "你以浪漫的姿态走向世界，带着诗意与诚意追求心中的理想。Nishane的Ani与你骑士般的优雅同行——生姜的活力与香草的醇厚，在香柠檬的明亮中诉说着不求回报的深情。这香气赋予你追求的勇气，让每次心动都成为美好的诗篇。",
+    "description_en": "You walk into the world with a romantic posture, pursuing your ideal with poetry and sincerity. Nishane’s Ani walks with your knightly elegance—the vitality of ginger and the richness of vanilla tell of deep affection asking for no return in the brightness of bergamot. This fragrance gives you the courage to pursue, making every heartbeat a beautiful poem."
+  },
+  {
+    "id": 73,
+    "card_name": "聖杯騎士",
+    "choice": "D",
+    "brand": "Tom Ford",
+    "product": "Sole di Positano",
+    "description_zh": "你以浪漫的姿态走向世界，带着诗意与诚意追求心中的理想。Tom Ford的Sole di Positano与你骑士般的优雅同行——柑橘的明亮与橙花的洁净，诉说着不求回报的深情。这香气赋予你追求的勇气，让每次心动都成为美好的诗篇。",
+    "description_en": "You walk into the world with a romantic posture, pursuing your ideal with poetry and sincerity. Tom Ford’s Sole di Positano walks with your knightly elegance—the brightness of citrus and the cleanliness of orange blossom tell of deep affection asking for no return. This fragrance gives you the courage to pursue, making every heartbeat a beautiful poem."
+  },
+  {
+    "id": 11,
+    "card_name": "聖杯皇后",
+    "choice": "A",
+    "brand": "Goutal Paris",
+    "product": "Le Chèvrefeuille",
+    "description_zh": "你以深刻的直觉滋养着周围的生命，温柔中蕴含着强大的共情力。Goutal Paris的Le Chèvrefeuille与你女王般的慈悲共振——清冷的金银花带着绿意的微苦，如同包容一切的怀抱。这香气不张扬，却以其空灵的本质，抚慰每一个需要安息的灵魂。",
+    "description_en": "You nourish surrounding life with profound intuition, holding powerful empathy within gentleness. Goutal Paris’ Le Chèvrefeuille resonates with your queenly compassion—the cool honeysuckle with bitter greenness feels like an embrace that accepts all. Modest yet ethereal, it soothes every soul in need of rest."
+  },
+  {
+    "id": 28,
+    "card_name": "聖杯皇后",
+    "choice": "B",
+    "brand": "Diptyque",
+    "product": "Tam Dao",
+    "description_zh": "你以深刻的直觉滋养着周围的生命，温柔中蕴含着强大的共情力。Diptyque的Tam Dao与你女王般的慈悲共振——檀木的包容与雪松的守护，创造出充满安全感的情感空间。这香气不张扬，却以其深沉的温柔，抚慰每个需要安息的灵魂。",
+    "description_en": "You nourish surrounding life with profound intuition, holding powerful empathy within gentleness. Diptyque’s Tam Dao resonates with your queenly compassion—the acceptance of sandalwood and the protection of cedar create a secure emotional space. Modest yet deeply gentle, it soothes every soul in need of rest."
+  },
+  {
+    "id": 56,
+    "card_name": "聖杯皇后",
+    "choice": "C",
+    "brand": "BDK Parfums",
+    "product": "Gris Charnel",
+    "description_zh": "你以深刻的直觉滋养着周围的生命，温柔中蕴含着强大的共情力。BDK的Gris Charnel与你女王般的慈悲共振——无花果的温柔与檀木的守护，创造出充满安全感的情感空间。这香气不张扬，却以其深沉的温柔，抚慰每个需要安息的灵魂。",
+    "description_en": "You nourish surrounding life with profound intuition, holding powerful empathy within gentleness. BDK’s Gris Charnel resonates with your queenly compassion—the tenderness of fig and the protection of sandalwood create a secure emotional space. Modest yet deeply gentle, it soothes every soul in need of rest."
+  },
+  {
+    "id": 63,
+    "card_name": "聖杯皇后",
+    "choice": "D",
+    "brand": "Narciso Rodriguez",
+    "product": "For Her Eau de Toilette",
+    "description_zh": "你以深刻的直觉滋养着周围的生命，温柔中蕴含着强大的共情力。Narciso Rodriguez的For Her Eau de Toilette与你女王般的慈悲共振——麝香的包容与花香的柔软，创造出充满安全感的情感空间。这香气不张扬，却以其深沉的温柔，抚慰每个需要安息的灵魂。",
+    "description_en": "You nourish surrounding life with profound intuition, holding powerful empathy within gentleness. Narciso Rodriguez’s For Her Eau de Toilette resonates with your queenly compassion—the acceptance of musk and the softness of florals create a secure emotional space. Modest yet deeply gentle, it soothes every soul in need of rest."
+  },
+  {
+    "id": 12,
+    "card_name": "聖杯國王",
+    "choice": "A",
+    "brand": "Hermès",
+    "product": "Le Jardin de Monsieur Li",
+    "description_zh": "你以成熟的智慧平衡理智与情感，是众人信赖的心灵导师。Hermès的Le Jardin de Monsieur Li与你国王般的从容相映——金橘与茉莉在湿润庭院中达成完美和谐，苔石的气息稳如磐石。这香气展现真正的力量：在理解中引领，在平静中深刻。",
+    "description_en": "You balance reason and emotion with mature wisdom, a spiritual mentor trusted by all. Hermès’ Le Jardin de Monsieur Li mirrors your kingly composure—kumquat and jasmine reach perfect harmony in a wet courtyard, the scent of mossy stone solid as a rock. It reveals true strength: leading with understanding, profound in calmness."
+  },
+  {
+    "id": 35,
+    "card_name": "聖杯國王",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Thé Noir 29",
+    "description_zh": "你以成熟的智慧平衡理智与情感，是众人信赖的心灵导师。Le Labo的Thé Noir 29与你国王般的从容相映——红茶的醇厚与烟草的深度，在无花果的甜润中达成完美平衡。这香气展现真正的力量：在理解中引领，在平静中深刻。",
+    "description_en": "You balance reason and emotion with mature wisdom, a spiritual mentor trusted by all. Le Labo’s Thé Noir 29 mirrors your kingly composure—the richness of black tea and the depth of tobacco reach perfect balance in the sweetness of fig. It reveals true strength: leading with understanding, profound in calmness."
+  },
+  {
+    "id": 55,
+    "card_name": "聖杯國王",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Tonka Imperiale",
+    "description_zh": "你以成熟的智慧平衡理智与情感，是众人信赖的心灵导师。Guerlain的Tonka Imperiale与你国王般的从容相映——零陵香豆的醇厚与烟草的温暖，展现出历经沉淀的包容力。这香气展现真正的力量：在理解中引领，在平静中深刻。",
+    "description_en": "You balance reason and emotion with mature wisdom, a spiritual mentor trusted by all. Guerlain’s Tonka Imperiale mirrors your kingly composure—the richness of tonka bean and the warmth of tobacco show an inclusivity born of experience. It reveals true strength: leading with understanding, profound in calmness."
+  },
+  {
+    "id": 64,
+    "card_name": "聖杯國王",
+    "choice": "D",
+    "brand": "Creed",
+    "product": "Silver Mountain Water",
+    "description_zh": "你以成熟的智慧平衡理智与情感，是众人信赖的心灵导师。Creed的Silver Mountain Water与你国王般的从容相映——冰山融水般的清澈与绿茶的凛冽，展现出历经沉淀的明晰判断。这香气展现真正的力量：在理解中引领，在冷静中深刻。",
+    "description_en": "You balance reason and emotion with mature wisdom, a spiritual mentor trusted by all. Creed’s Silver Mountain Water mirrors your kingly composure—the clarity of melted glacial water and the chill of green tea show clear judgment born of experience. It reveals true strength: leading with understanding, profound in coolness."
+  },
+  {
+    "id": 13,
+    "card_name": "寶劍一",
+    "choice": "A",
+    "brand": "Diptyque",
+    "product": "Ofrésia",
+    "description_zh": "你的思维如利刃般清晰，一个突破性的想法正划破迷雾。Diptyque的Ofrésia与这份心智的锐利共鸣——小苍兰的青绿根茎气息鲜明而直接，不带丝毫犹豫。这香气象征着思维的纯粹与精准，助你切断纷扰，抓住灵感的本质。",
+    "description_en": "Your mind is as clear as a blade; a breakthrough idea cuts through the mist. Diptyque’s Ofrésia resonates with this mental sharpness—the green stem scent of freesia is distinct and direct, hesitating not at all. Symbolizing purity and precision of thought, it helps you cut through distractions and grasp the essence of inspiration."
+  },
+  {
+    "id": 34,
+    "card_name": "寶劍一",
+    "choice": "B",
+    "brand": "Aesop",
+    "product": "Tacit",
+    "description_zh": "你的思维正迸发出锐利的灵感，一个清晰的念头划破迷雾。Aesop的Tacit与这份心智的锋芒完美契合——罗勒的清新绿意与香根草的明晰质感，如同出鞘的利刃。这香气助你切断纷乱思绪，专注在最具价值的核心概念上。",
+    "description_en": "Your mind bursts with sharp inspiration; a clear thought cuts through the mist. Aesop’s Tacit fits this mental edge perfectly—the fresh green of basil and the clarity of vetiver are like an unsheathed blade. It helps you cut through chaotic thoughts, focusing on the core concept of greatest value."
+  },
+  {
+    "id": 50,
+    "card_name": "寶劍一",
+    "choice": "C",
+    "brand": "Akro",
+    "product": "Awake",
+    "description_zh": "你的思维正迸发出锐利的灵感，一个清晰的念头划破迷雾。Akro的Awake与这份心智的锋芒完美契合——浓缩咖啡的纯粹香气带来即时的精神专注，如同出鞘的利刃。这香气助你切断纷乱思绪，专注在最具价值的核心概念上。",
+    "description_en": "Your mind bursts with sharp inspiration; a clear thought cuts through the mist. Akro’s Awake fits this mental edge perfectly—the pure aroma of concentrated espresso brings instant mental focus, like an unsheathed blade. It helps you cut through chaotic thoughts, focusing on the core concept of greatest value."
+  },
+  {
+    "id": 64,
+    "card_name": "寶劍一",
+    "choice": "D",
+    "brand": "Creed",
+    "product": "Silver Mountain Water",
+    "description_zh": "你的思维正迸发出锐利的灵感，一个突破性的想法划破迷雾。Creed的Silver Mountain Water与这份心智的锋芒完美契合——冰山融水般的清澈与绿茶的凛冽，带来极致的专注与明晰。这香气助你切断纷乱思绪，专注在最具价值的核心概念上。",
+    "description_en": "Your mind bursts with sharp inspiration; a breakthrough idea cuts through the mist. Creed’s Silver Mountain Water fits this mental edge perfectly—the clarity of melted glacial water and the chill of green tea bring extreme focus and clarity. It helps you cut through chaotic thoughts, focusing on the core concept of greatest value."
+  },
+  {
+    "id": 20,
+    "card_name": "寶劍二",
+    "choice": "A",
+    "brand": "Gucci",
+    "product": "Mémoire d'une Odeur",
+    "description_zh": "你站在选择的十字路口，用暂时的停顿来保护内心的平静。Gucci的Mémoire d'une Odeur与这份悬而未决的状态契合——洋甘菊的质朴与矿物麝香的疏离，营造出朦胧的边界感。这香气不催促决定，却为你保留一片冷静思考的空间。",
+    "description_en": "You stand at the crossroads of choice, protecting inner peace with a temporary pause. Gucci’s Mémoire d'une Odeur fits this suspended state—the simplicity of chamomile and the detachment of mineral musk create a hazy sense of boundary. It does not rush your decision, but reserves a space for calm thinking."
+  },
+  {
+    "id": 28,
+    "card_name": "寶劍二",
+    "choice": "B",
+    "brand": "Diptyque",
+    "product": "Tam Dao",
+    "description_zh": "你站在选择的关口，用暂时的静默来守护内心的平衡。Diptyque的Tam Dao与这份悬而未决的状态共鸣——檀木的宁谧与雪松的沉静，营造出不受干扰的思考空间。这香气不催促答案，只为你的权衡过程提供平和的心境。",
+    "description_en": "You stand at the gateway of choice, guarding inner balance with temporary silence. Diptyque’s Tam Dao permeates this suspended state—the serenity of sandalwood and the stillness of cedar create an undisturbed space for thought. It does not rush the answer, but provides a peaceful mind for your weighing process."
+  },
+  {
+    "id": 56,
+    "card_name": "寶劍二",
+    "choice": "C",
+    "brand": "BDK Parfums",
+    "product": "Gris Charnel",
+    "description_zh": "你站在选择的关口，用暂时的静默来守护内心的平衡。BDK的Gris Charnel与这份悬而未决的状态共鸣——无花果的奶感与茶的清苦，在檀木基底上构筑出朦胧的思考空间。这香气不催促答案，只为你的权衡过程提供平和的心境。",
+    "description_en": "You stand at the gateway of choice, guarding inner balance with temporary silence. BDK’s Gris Charnel permeates this suspended state—the milkiness of fig and the bitterness of tea construct a hazy space for thought on a sandalwood base. It does not rush the answer, but provides a peaceful mind for your weighing process."
+  },
+  {
+    "id": 65,
+    "card_name": "寶劍二",
+    "choice": "D",
+    "brand": "Acca Kappa",
+    "product": "White Moss",
+    "description_zh": "你站在选择的关口，用暂时的静默来守护内心的平衡。Acca Kappa的White Moss与这份悬而未决的状态共鸣——白麝香的洁净与苔藓的湿润，营造出不受干扰的思考空间。这香气不催促答案，只为你的权衡过程提供平和的心境。",
+    "description_en": "You stand at the gateway of choice, guarding inner balance with temporary silence. Acca Kappa’s White Moss permeates this suspended state—the cleanliness of white musk and the moisture of moss create an undisturbed space for thought. It does not rush the answer, but provides a peaceful mind for your weighing process."
+  },
+  {
+    "id": 15,
+    "card_name": "寶劍三",
+    "choice": "A",
+    "brand": "Penhaligon's",
+    "product": "Bluebell",
+    "description_zh": "你正经历心碎的痛楚，悲伤如利剑刺入心房。Penhaligon's的Bluebell理解这种深刻的失落——潮湿的泥土与阴郁的绿意，勾勒出雨中独行的孤影。这香气不急于治愈，却温柔地陪伴你承认：疼痛，是曾经真心付出的印记。",
+    "description_en": "You are experiencing the pain of heartbreak, sadness piercing the heart like a sword. Penhaligon's Bluebell understands this deep loss—damp earth and gloomy greenery outline a lonely figure walking in the rain. It does not rush to heal, but gently accompanies you to acknowledge: pain is the mark of a heart that has truly given."
+  },
+  {
+    "id": 38,
+    "card_name": "寶劍三",
+    "choice": "B",
+    "brand": "Serge Lutens",
+    "product": "Chergui",
+    "description_zh": "你正经历心碎的痛楚，悲伤如三把利剑刺入心房。Serge Lutens的Chergui理解这种深刻的失落——蜂蜜的温暖与干草的醇厚，轻柔包裹着受伤的心灵。这香气不急于治愈，却让每一次呼吸都带来些许慰藉。",
+    "description_en": "You are experiencing the pain of heartbreak, sadness piercing the heart like three swords. Serge Lutens’ Chergui understands this deep loss—the warmth of honey and richness of hay gently wrap the wounded soul. It does not rush to heal, but brings a little solace with every breath."
+  },
+  {
+    "id": 47,
+    "card_name": "寶劍三",
+    "choice": "C",
+    "brand": "Serge Lutens",
+    "product": "Jeux de Peau",
+    "description_zh": "你正经历心碎的痛楚，悲伤如利剑刺入心房。Serge Lutens的Jeux de Peau理解这种深刻的失落——烤面包的暖香与牛奶的醇厚，用最质朴的温暖抚慰受伤的心灵。这香气不急于治愈，却让每一次呼吸都带来些许慰藉。",
+    "description_en": "You are experiencing the pain of heartbreak, sadness piercing the heart like a sword. Serge Lutens’ Jeux de Peau understands this deep loss—the warm scent of toasted bread and the richness of milk soothe the wounded soul with simplest warmth. It does not rush to heal, but brings a little solace with every breath."
+  },
+  {
+    "id": 62,
+    "card_name": "寶劍三",
+    "choice": "D",
+    "brand": "Maison Martin Margiela",
+    "product": "Lazy Sunday Morning",
+    "description_zh": "你正经历心碎的痛楚，悲伤如利剑刺入心房。Maison Martin Margiela的Lazy Sunday Morning理解这种深刻的失落——铃兰的清新与梨子的水润，在白麝香的包裹中带来温柔的慰藉。这香气不急于治愈，却让每一次呼吸都带来些许安抚。",
+    "description_en": "You are experiencing the pain of heartbreak, sadness piercing the heart like a sword. Maison Martin Margiela’s Lazy Sunday Morning understands this deep loss—the freshness of lily of the valley and the moistness of pear bring gentle solace wrapped in white musk. It does not rush to heal, but brings a little soothing with every breath."
+  },
+  {
+    "id": 12,
+    "card_name": "寶劍四",
+    "choice": "A",
+    "brand": "Hermès",
+    "product": "Le Jardin de Monsieur Li",
+    "description_zh": "你主动选择休息与隔离，让疲惫的心智得到必要的修复。Hermès的Le Jardin de Monsieur Li为你提供理想的沉思空间——金橘与茉莉在湿润庭院中低语，苔石的气息稳如磐石。这香气不打扰你的修复过程，只静静守护这段重获清明的时光。",
+    "description_en": "You actively choose rest and isolation to allow your weary mind necessary repair. Hermès’ Le Jardin de Monsieur Li offers you an ideal space for contemplation—kumquat and jasmine whisper in a wet courtyard, the scent of mossy stone solid as a rock. It does not disturb your recovery, but quietly guards this time of regaining clarity."
+  },
+  {
+    "id": 24,
+    "card_name": "寶劍四",
+    "choice": "B",
+    "brand": "Aesop",
+    "product": "Hwyl",
+    "description_zh": "你主动选择休憩与隔离，让过度思考的心智获得必要的修复。Aesop的Hwyl为你创造理想的修复空间——柏树的幽静与苔藓的湿润，构筑出远离喧嚣的庇护所。这香气守护你的沉思时刻，让精神重获清明。",
+    "description_en": "You actively choose rest and isolation to allow your overthinking mind necessary repair. Aesop’s Hwyl creates an ideal space for recovery—the seclusion of cypress and the humidity of moss build a shelter far from the noise. It guards your moment of contemplation, letting the spirit regain clarity."
+  },
+  {
+    "id": 55,
+    "card_name": "寶劍四",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Tonka Imperiale",
+    "description_zh": "你主动选择休憩与隔离，让过度思考的心智获得必要的修复。Guerlain的Tonka Imperiale为你创造理想的修复空间——零陵香豆的醇厚与烟草的温暖，营造出最适合沉思的安宁氛围。这香气守护你的沉思时刻，让精神重获清明。",
+    "description_en": "You actively choose rest and isolation to allow your overthinking mind necessary repair. Guerlain’s Tonka Imperiale creates an ideal space for recovery—the richness of tonka bean and the warmth of tobacco create a peaceful atmosphere best for contemplation. It guards your moment of contemplation, letting the spirit regain clarity."
+  },
+  {
+    "id": 69,
+    "card_name": "寶劍四",
+    "choice": "D",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Aqua Universalis",
+    "description_zh": "你主动选择休憩与隔离，让过度思考的心智获得必要的修复。Maison Francis Kurkdjian的Aqua Universalis为你创造理想的修复空间——柠檬与铃兰的绝对洁净，构筑出纯粹的思想净土。这香气守护你的沉思时刻，让精神重获清明。",
+    "description_en": "You actively choose rest and isolation to allow your overthinking mind necessary repair. Maison Francis Kurkdjian’s Aqua Universalis creates an ideal space for recovery—the absolute cleanliness of lemon and lily of the valley construct a pure land for thought. It guards your moment of contemplation, letting the spirit regain clarity."
+  },
+  {
+    "id": 9,
+    "card_name": "寶劍五",
+    "choice": "A",
+    "brand": "Le Labo",
+    "product": "Rose 31",
+    "description_zh": "你陷入无意义的争斗，胜利的背后是空虚与失落。Le Labo的Rose 31映照出这场冲突的真相——孜然的野性与玫瑰的优雅在矛盾中纠缠，香气复杂而略带讽刺。这香气不评判对错，却提醒你：有些胜利，代价是自我的完整。",
+    "description_en": "You are trapped in meaningless fighting, where victory is backed by emptiness and loss. Le Labo’s Rose 31 reflects the truth of this conflict—the wildness of cumin and the elegance of rose entangle in contradiction, a scent complex and slightly ironic. It judges not right or wrong, but reminds you: some victories cost the integrity of the self."
+  },
+  {
+    "id": 40,
+    "card_name": "寶劍五",
+    "choice": "B",
+    "brand": "Hermès",
+    "product": "Terre d‘Hermès",
+    "description_zh": "你陷入无意义的争执，胜利的背后是空虚与疏离。Hermès的Terre d'Hermès映照这场冲突的本质——葡萄柚的锐利与矿物的冷峻，揭示着某些胜利的代价。这香气提醒你：真正的智慧在于看清什么值得争取。",
+    "description_en": "You are trapped in meaningless dispute, where victory is backed by emptiness and alienation. Hermès’ Terre d'Hermès reflects the essence of this conflict—the sharpness of grapefruit and the coldness of minerals reveal the cost of certain victories. It reminds you: true wisdom lies in seeing clearly what is worth fighting for."
+  },
+  {
+    "id": 58,
+    "card_name": "寶劍五",
+    "choice": "C",
+    "brand": "Nishane",
+    "product": "Ani",
+    "description_zh": "你陷入无意义的争执，胜利的背后是空虚与疏离。Nishane的Ani映照这场冲突的本质——生姜的辛辣与香草的甜美形成有趣对抗，香柠檬的明亮穿梭其间。这香气提醒你：真正的智慧在于看清什么值得争取。",
+    "description_en": "You are trapped in meaningless dispute, where victory is backed by emptiness and alienation. Nishane’s Ani reflects the essence of this conflict—the spice of ginger and the sweetness of vanilla form an interesting confrontation, with bright bergamot weaving through. It reminds you: true wisdom lies in seeing clearly what is worth fighting for."
+  },
+  {
+    "id": 78,
+    "card_name": "寶劍五",
+    "choice": "D",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Aqua Celestia",
+    "description_zh": "你陷入无意义的争执，胜利的背后是空虚与疏离。Maison Francis Kurkdjian的Aqua Celestia映照这场冲突的本质——薄荷的清凉与柠檬的明亮，揭示着某些胜利的代价。这香气提醒你：真正的智慧在于看清什么值得争取。",
+    "description_en": "You are trapped in meaningless dispute, where victory is backed by emptiness and alienation. Maison Francis Kurkdjian’s Aqua Celestia reflects the essence of this conflict—the coolness of mint and the brightness of lemon reveal the cost of certain victories. It reminds you: true wisdom lies in seeing clearly what is worth fighting for."
+  },
+  {
+    "id": 14,
+    "card_name": "寶劍六",
+    "choice": "A",
+    "brand": "Frédéric Malle",
+    "product": "En Passant",
+    "description_zh": "你正平稳地渡过难关，带着伤痕走向更平静的彼岸。Frédéric Malle的En Passant与这趟疗愈之旅同行——紫丁香的水汽朦胧如薄雾，轻轻包裹着未愈的伤口。这香气不急于驱散悲伤，却为你的过渡增添一丝诗意的温柔。",
+    "description_en": "You are smoothly navigating a difficulty, moving with scars towards a calmer shore. Frédéric Malle’s En Passant accompanies this healing journey—the watery mist of lilac gently wraps unhealed wounds. It does not rush to dispel sadness, but adds a touch of poetic tenderness to your transition."
+  },
+  {
+    "id": 26,
+    "card_name": "寶劍六",
+    "choice": "B",
+    "brand": "Jo Malone London",
+    "product": "Wood Sage & Sea Salt",
+    "description_zh": "你正平稳渡过情感的难关，带着伤痕走向更平静的彼岸。Jo Malone的Wood Sage & Sea Salt与这趟疗愈之旅同行——海风的清新与鼠尾草的温暖，为过渡期带来舒缓的陪伴。这香气不急于改变，却让修复的过程变得柔和。",
+    "description_en": "You are smoothly navigating an emotional difficulty, moving with scars towards a calmer shore. Jo Malone’s Wood Sage & Sea Salt accompanies this healing journey—the freshness of sea breeze and the warmth of sage bring soothing companionship to the transition. It does not rush change, but makes the repair process soft."
+  },
+  {
+    "id": 44,
+    "card_name": "寶劍六",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Spiritueuse Double Vanille",
+    "description_zh": "你正平稳渡过情感的难关，带着伤痕走向更平静的彼岸。Guerlain的Spiritueuse Double Vanille与这趟疗愈之旅同行——香草的神圣与朗姆酒的醇烈，为过渡期带来舒缓的陪伴。这香气不急于改变，却让修复的过程充满温暖。",
+    "description_en": "You are smoothly navigating an emotional difficulty, moving with scars towards a calmer shore. Guerlain’s Spiritueuse Double Vanille accompanies this healing journey—the sanctity of vanilla and the mellowness of rum bring soothing companionship to the transition. It does not rush change, but fills the repair process with warmth."
+  },
+  {
+    "id": 26,
+    "card_name": "寶劍六",
+    "choice": "D",
+    "brand": "Jo Malone London",
+    "product": "Wood Sage & Sea Salt",
+    "description_zh": "你正平稳渡过情感的难关，带着伤痕走向更平静的彼岸。Jo Malone的Wood Sage & Sea Salt与这趟疗愈之旅同行——海风的清新与鼠尾草的温暖，为过渡期带来舒缓的陪伴。这香气不急于改变，却让修复的过程变得柔和自然。",
+    "description_en": "You are smoothly navigating an emotional difficulty, moving with scars towards a calmer shore. Jo Malone’s Wood Sage & Sea Salt accompanies this healing journey—the freshness of sea breeze and the warmth of sage bring soothing companionship to the transition. It does not rush change, but makes the repair process soft and natural."
+  },
+  {
+    "id": 6,
+    "card_name": "寶劍七",
+    "choice": "A",
+    "brand": "Goutal Paris",
+    "product": "Rose Pompon",
+    "description_zh": "你以机智与策略应对挑战，用不按常理的方式解决问题。Goutal Paris的Rose Pompon与这份灵活的智慧呼应——黑加仑的俏皮与粉红胡椒的微辛，让玫瑰显得轻盈而聪慧。这香气不主张正面对抗，却以巧妙的方式打开新的可能。",
+    "description_en": "You face challenges with wit and strategy, solving problems in unconventional ways. Goutal Paris’ Rose Pompon echoes this flexible wisdom—the playfulness of blackcurrant and the slight spice of pink pepper make the rose appear light and clever. It advocates not direct confrontation, but opening new possibilities with ingenuity."
+  },
+  {
+    "id": 35,
+    "card_name": "寶劍七",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Thé Noir 29",
+    "description_zh": "你以机智与策略应对挑战，用非传统的方式打开局面。Le Labo的Thé Noir 29与这份灵活的智慧呼应——红茶的醇厚与烟草的复杂，在无花果的甜润中展现多面性。这香气证明：有时候迂回比直击更有效。",
+    "description_en": "You face challenges with wit and strategy, opening situations in non-traditional ways. Le Labo’s Thé Noir 29 echoes this flexible wisdom—the richness of black tea and the complexity of tobacco show multifacetedness in the sweetness of fig. It proves: sometimes the detour is more effective than the direct hit."
+  },
+  {
+    "id": 41,
+    "card_name": "寶劍七",
+    "choice": "C",
+    "brand": "Kilian",
+    "product": "Intoxicated",
+    "description_zh": "你以机智与策略应对挑战，用非传统的方式打开局面。Kilian的Intoxicated与这份灵活的智慧呼应——咖啡的浓烈与小豆蔻的辛辣，展现出不按常理出牌的智慧。这香气证明：有时候迂回比直击更有效。",
+    "description_en": "You face challenges with wit and strategy, opening situations in non-traditional ways. Kilian’s Intoxicated echoes this flexible wisdom—the intensity of coffee and the spice of cardamom reveal a wisdom that doesn't play by the rules. It proves: sometimes the detour is more effective than the direct hit."
+  },
+  {
+    "id": 74,
+    "card_name": "寶劍七",
+    "choice": "D",
+    "brand": "Diptyque",
+    "product": "Eau des Sens",
+    "description_zh": "你以机智与策略应对挑战，用非传统的方式打开局面。Diptyque的Eau des Sens与这份灵活的智慧呼应——苦橙的锐利与杜松子的青翠，在橙花的调和下展现多面性。这香气证明：有时候迂回比直击更有效。",
+    "description_en": "You face challenges with wit and strategy, opening situations in non-traditional ways. Diptyque’s Eau des Sens echoes this flexible wisdom—the sharpness of bitter orange and the greenness of juniper berry show multifacetedness under the harmony of orange blossom. It proves: sometimes the detour is more effective than the direct hit."
+  },
+  {
+    "id": 18,
+    "card_name": "寶劍八",
+    "choice": "A",
+    "brand": "Creed",
+    "product": "Love in White",
+    "description_zh": "你被自我设限的念头束缚，感到无助却未察觉牢笼本是虚幻。Creed的Love in White以其纯净的光辉映照此境——橙花与木兰的圣洁气息，如同穿透迷雾的月光。这香气不打破枷锁，却让你看清：钥匙，一直在你手中。",
+    "description_en": "You are bound by self-limiting thoughts, feeling helpless yet unaware the cage is an illusion. Creed’s Love in White reflects this state with pure radiance—holy orange blossom and magnolia are like moonlight penetrating the fog. It does not break the shackles, but lets you see clear: the key has always been in your hand."
+  },
+  {
+    "id": 37,
+    "card_name": "寶劍八",
+    "choice": "B",
+    "brand": "Tom Ford",
+    "product": "Ombré Leather",
+    "description_zh": "你被自我设限的念头束缚，却未意识到牢笼本是虚幻。Tom Ford的Ombré Leather以其不羁的本质回应困境——皮革的自由与木质的深度，打破无形的枷锁。这香气唤醒你：真正的解放始于意识的觉醒。",
+    "description_en": "You are bound by self-limiting thoughts, unaware the cage is an illusion. Tom Ford’s Ombré Leather responds to this plight with its uninhibited essence—the freedom of leather and the depth of wood break invisible shackles. It awakens you: true liberation begins with the awakening of consciousness."
+  },
+  {
+    "id": 53,
+    "card_name": "寶劍八",
+    "choice": "C",
+    "brand": "Xerjoff",
+    "product": "Lira",
+    "description_zh": "你被自我设限的念头束缚，却未意识到牢笼本是虚幻。Xerjoff的Lira以其甜美的本质回应困境——焦糖柠檬蛋糕的诱人香气，提醒你世界充满美好可能。这香气唤醒你：真正的解放始于走出自我设限。",
+    "description_en": "You are bound by self-limiting thoughts, unaware the cage is an illusion. Xerjoff’s Lira responds to this plight with its sweet essence—the tempting scent of caramel lemon cake reminds you the world is full of beautiful possibilities. It awakens you: true liberation begins with stepping out of self-limitation."
+  },
+  {
+    "id": 73,
+    "card_name": "寶劍八",
+    "choice": "D",
+    "brand": "Tom Ford",
+    "product": "Sole di Positano",
+    "description_zh": "你被自我设限的念头束缚，却未意识到牢笼本是虚幻。Tom Ford的Sole di Positano以其明亮的本质回应困境——柑橘的阳光气息与橙花的洁净，打破无形的枷锁。这香气唤醒你：真正的解放始于走出自我设限。",
+    "description_en": "You are bound by self-limiting thoughts, unaware the cage is an illusion. Tom Ford’s Sole di Positano responds to this plight with its bright essence—the sunny scent of citrus and the cleanliness of orange blossom break invisible shackles. It awakens you: true liberation begins with stepping out of self-limitation."
+  },
+  {
+    "id": 7,
+    "card_name": "寶劍九",
+    "choice": "A",
+    "brand": "Aesop",
+    "product": "Rozu",
+    "description_zh": "你在深夜被焦虑与恐惧折磨，负面思绪如潮水般涌来。Aesop的Rozu理解这种精神上的煎熬——烟熏木质与皮革的沉重感，如同挥之不去的梦魇。这香气不轻易给予安慰，却陪伴你直面黑暗，直到黎明来临。",
+    "description_en": "You are tormented by anxiety and fear in the dead of night, negative thoughts flooding in. Aesop’s Rozu understands this mental suffering—the heaviness of smoky wood and leather is like a lingering nightmare. It does not offer comfort easily, but accompanies you to face the darkness, until dawn comes."
+  },
+  {
+    "id": 23,
+    "card_name": "寶劍九",
+    "choice": "B",
+    "brand": "Maison Martin Margiela",
+    "product": "By the Fireplace",
+    "description_zh": "你在深夜被焦虑困扰，负面思绪如潮水般涌来。Maison Martin Margiela的By the Fireplace驱散这份恐惧——烤栗子的甜香与炉火的温暖，照亮内心的黑暗角落。这香气不做承诺，却用实在的温暖对抗虚无的恐惧。",
+    "description_en": "You are troubled by anxiety in the dead of night, negative thoughts flooding in. Maison Martin Margiela’s By the Fireplace dispels this fear—the sweet scent of roasted chestnuts and the warmth of the fire light up the dark corners of the heart. It makes no promises, but fights the void of fear with tangible warmth."
+  },
+  {
+    "id": 43,
+    "card_name": "寶劍九",
+    "choice": "C",
+    "brand": "Sol de Janeiro",
+    "product": "Cheirosa '62",
+    "description_zh": "你在深夜被焦虑困扰，负面思绪如潮水般涌来。Sol de Janeiro的Cheirosa '62驱散这份恐惧——开心果与杏仁的活泼甜香，盐焦糖的阳光气息，照亮内心的黑暗角落。这香气用纯粹的快乐对抗虚无的恐惧。",
+    "description_en": "You are troubled by anxiety in the dead of night, negative thoughts flooding in. Sol de Janeiro’s Cheirosa '62 dispels this fear—the lively sweetness of pistachio and almond, with the sunny scent of salted caramel, light up the dark corners of the heart. It fights the void of fear with pure happiness."
+  },
+  {
+    "id": 61,
+    "card_name": "寶劍九",
+    "choice": "D",
+    "brand": "Byredo",
+    "product": "Blanche",
+    "description_zh": "你在深夜被焦虑与恐惧折磨，负面思绪如潮水般涌来。Byredo的Blanche以其绝对的纯净驱散这份恐惧——醛香与白麝香的洁白无瑕，照亮内心的黑暗角落。这香气不做承诺，却用纯粹的光明对抗虚无的恐惧。",
+    "description_en": "You are tormented by anxiety and fear in the dead of night, negative thoughts flooding in. Byredo’s Blanche dispels this fear with absolute purity—flawless white aldehydes and musk light up the dark corners of the heart. It makes no promises, but fights the void of fear with pure light."
+  },
+  {
+    "id": 1,
+    "card_name": "寶劍十",
+    "choice": "A",
+    "brand": "Diptyque",
+    "product": "L'Ombre dans L'Eau",
+    "description_zh": "你经历着彻底的结束，旧有模式已被连根拔起。Diptyque的L'Ombre dans L'Eau与这毁灭性的终结共鸣——黑醋栗叶的强烈绿意压制一切，如同故事戛然而止。这香气不承诺重生，却暗示：唯有彻底终结，才可能孕育新的开始。",
+    "description_en": "You are experiencing a complete ending; old patterns have been uprooted. Diptyque’s L'Ombre dans L'Eau resonates with this destructive conclusion—the intense greenery of blackcurrant leaves suppresses everything, like a story coming to an abrupt halt. It promises no rebirth, but implies: only a complete end can birth a new beginning."
+  },
+  {
+    "id": 21,
+    "card_name": "寶劍十",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Santal 33",
+    "description_zh": "你经历着彻底的终结，旧有模式已被连根拔起。Le Labo的Santal 33与这毁灭性的完结共鸣——檀木的沉静与皮革的韧性，在废墟中保持最后的尊严。这香气见证一个周期的完结，为新生预留空间。",
+    "description_en": "You are experiencing a complete ending; old patterns have been uprooted. Le Labo’s Santal 33 resonates with this destructive finish—the stillness of sandalwood and the tenacity of leather maintain final dignity in the ruins. It witnesses the end of a cycle, reserving space for the new."
+  },
+  {
+    "id": 42,
+    "card_name": "寶劍十",
+    "choice": "C",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Grand Soir",
+    "description_zh": "你经历着彻底的终结，旧有模式已被连根拔起。Maison Francis Kurkdjian的Grand Soir与这毁灭性的完结共鸣——琥珀的辉煌与香草的丰盈，在终结处保持最后的尊严。这香气见证一个周期的完结，为新生预留空间。",
+    "description_en": "You are experiencing a complete ending; old patterns have been uprooted. Maison Francis Kurkdjian’s Grand Soir resonates with this destructive finish—the splendor of amber and the richness of vanilla maintain final dignity at the end. It witnesses the end of a cycle, reserving space for the new."
+  },
+  {
+    "id": 80,
+    "card_name": "寶劍十",
+    "choice": "D",
+    "brand": "Le Labo",
+    "product": "Baie 19",
+    "description_zh": "你经历着彻底的终结，旧有模式已被连根拔起。Le Labo的Baie 19与这毁灭性的完结共鸣——雨后矿物的清冷与湿土的气息，在废墟中保持最后的真实。这香气见证一个周期的完结，为新生预留纯净空间。",
+    "description_en": "You are experiencing a complete ending; old patterns have been uprooted. Le Labo’s Baie 19 resonates with this destructive finish—the coldness of mineral after rain and the scent of wet earth maintain final truth in the ruins. It witnesses the end of a cycle, reserving pure space for the new."
+  },
+  {
+    "id": 5,
+    "card_name": "寶劍侍者",
+    "choice": "A",
+    "brand": "Byredo",
+    "product": "Young Rose",
+    "description_zh": "你以敏锐的好奇心探索世界，热衷于捕捉与分享新的讯息。Byredo的Young Rose与你年轻的思维共振——花椒的微刺与青绿玫瑰的鲜活，正是求知欲的写照。这香气鼓励你保持开放的思维，在探索中积累智慧的碎片。",
+    "description_en": "You explore the world with keen curiosity, eager to capture and share new messages. Byredo’s Young Rose resonates with your youthful mind—the slight prick of Sichuan pepper and the vibrancy of green rose mirror your thirst for knowledge. This fragrance encourages you to keep an open mind, accumulating fragments of wisdom in your exploration."
+  },
+  {
+    "id": 34,
+    "card_name": "寶劍侍者",
+    "choice": "B",
+    "brand": "Aesop",
+    "product": "Tacit",
+    "description_zh": "你以敏锐的思维捕捉信息，对世界充满探究的热情。Aesop的Tacit与你年轻的智慧共振——柑橘的明亮与香根草的清晰，正是求知欲的完美写照。这香气鼓励你保持思维的开放与敏捷。",
+    "description_en": "You capture information with keen thought, passionate about exploring the world. Aesop’s Tacit resonates with your youthful wisdom—the brightness of citrus and the clarity of vetiver are perfect reflections of your thirst for knowledge. This fragrance encourages you to maintain an open and agile mind."
+  },
+  {
+    "id": 50,
+    "card_name": "寶劍侍者",
+    "choice": "C",
+    "brand": "Akro",
+    "product": "Awake",
+    "description_zh": "你以敏锐的思维捕捉信息，对世界充满探究的热情。Akro的Awake与你年轻的智慧共振——浓缩咖啡的纯粹香气带来即时的精神专注，正是求知欲的完美写照。这香气鼓励你保持思维的开放与敏捷。",
+    "description_en": "You capture information with keen thought, passionate about exploring the world. Akro’s Awake resonates with your youthful wisdom—the pure aroma of concentrated espresso brings instant mental focus, a perfect reflection of your thirst for knowledge. This fragrance encourages you to maintain an open and agile mind."
+  },
+  {
+    "id": 78,
+    "card_name": "寶劍侍者",
+    "choice": "D",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Aqua Celestia",
+    "description_zh": "你以敏锐的思维捕捉信息，对世界充满探究的热情。Maison Francis Kurkdjian的Aqua Celestia与你年轻的智慧共振——薄荷的清新与柠檬的明快，正是求知欲的完美写照。这香气鼓励你保持思维的开放与敏捷。",
+    "description_en": "You capture information with keen thought, passionate about exploring the world. Maison Francis Kurkdjian’s Aqua Celestia resonates with your youthful wisdom—the freshness of mint and the brightness of lemon are perfect reflections of your thirst for knowledge. This fragrance encourages you to maintain an open and agile mind."
+  },
+  {
+    "id": 13,
+    "card_name": "寶劍騎士",
+    "choice": "A",
+    "brand": "Diptyque",
+    "product": "Ofrésia",
+    "description_zh": "你的思维迅捷如风，为追求真理不惜挑战一切阻碍。Diptyque的Ofrésia与你骑士般的锐利同行——小苍兰的线性青绿气息毫无迂回，直指核心。这香气赋予你冲破迷雾的勇气，让理性之剑为真相开路。",
+    "description_en": "Your mind is swift as the wind, challenging all obstacles in pursuit of truth. Diptyque’s Ofrésia rides with your knightly sharpness—the linear green scent of freesia cuts straight to the core without detour. This fragrance gives you the courage to break through the fog, letting the sword of reason clear the path for truth."
+  },
+  {
+    "id": 40,
+    "card_name": "寶劍騎士",
+    "choice": "B",
+    "brand": "Hermès",
+    "product": "Terre d‘Hermès",
+    "description_zh": "你的思维迅捷如风，为追求真理勇往直前。Hermès的Terre d'Hermès与你骑士般的锐利同行——矿物的冷峻与香根草的坚定，冲破一切思想障碍。这香气赋予你追求真相的无畏勇气。",
+    "description_en": "Your mind is swift as the wind, charging forward in pursuit of truth. Hermès’ Terre d'Hermès rides with your knightly sharpness—the coolness of minerals and the steadfastness of vetiver break through all mental barriers. This fragrance grants you the fearless courage to pursue total honesty."
+  },
+  {
+    "id": 41,
+    "card_name": "寶劍騎士",
+    "choice": "C",
+    "brand": "Kilian",
+    "product": "Intoxicated",
+    "description_zh": "你的思维迅捷如风，为追求真理勇往直前。Kilian的Intoxicated与你骑士般的锐利同行——咖啡的浓烈与小豆蔻的辛辣，冲破一切思想障碍。这香气赋予你追求真相的无畏勇气。",
+    "description_en": "Your mind is swift as the wind, charging forward in pursuit of truth. Kilian’s Intoxicated rides with your knightly sharpness—the intensity of coffee and the spice of cardamom break through all mental barriers. This fragrance grants you the fearless courage to pursue total honesty."
+  },
+  {
+    "id": 64,
+    "card_name": "寶劍騎士",
+    "choice": "D",
+    "brand": "Creed",
+    "product": "Silver Mountain Water",
+    "description_zh": "你的思维迅捷如风，为追求真理勇往直前。Creed的Silver Mountain Water与你骑士般的锐利同行——冰山融水般的清澈穿透一切迷雾，绿茶的凛冽坚定前行方向。这香气赋予你追求真相的无畏勇气。",
+    "description_en": "Your mind is swift as the wind, charging forward in pursuit of truth. Creed’s Silver Mountain Water rides with your knightly sharpness—the clarity of melted glacial water penetrates all mist, while the chill of green tea directs your path. This fragrance grants you the fearless courage to pursue total honesty."
+  },
+  {
+    "id": 7,
+    "card_name": "寶劍皇后",
+    "choice": "A",
+    "brand": "Aesop",
+    "product": "Rozu",
+    "description_zh": "你以冷静的洞察力审视世界，历经风雨后拥有清晰的边界感。Aesop的Rozu与你女王般的睿智相映——烟熏木质与阴郁玫瑰构筑出不可侵犯的气场。这香气不诉诸情感，却以其深刻的复杂性，展现思想的力量。",
+    "description_en": "You survey the world with cool insight, possessing clear boundaries after weathering storms. Aesop’s Rozu mirrors your queenly wisdom—smoky woods and gloomy rose construct an inviolable aura. This fragrance appeals not to emotion but, with profound complexity, displays the sheer power of thought."
+  },
+  {
+    "id": 22,
+    "card_name": "寶劍皇后",
+    "choice": "B",
+    "brand": "Tom Ford",
+    "product": "Oud Wood",
+    "description_zh": "你以冷静的洞察力审视世界，历经风雨后拥有清晰的边界。Tom Ford的Oud Wood与你女王般的睿智相映——乌木的深邃与檀香的庄严，构筑出不可侵犯的思想领地。这香气展现历经沉淀的智慧力量。",
+    "description_en": "You survey the world with cool insight, possessing clear boundaries after weathering storms. Tom Ford’s Oud Wood mirrors your queenly wisdom—the depth of oud and the dignity of sandalwood construct an inviolable territory of thought. This fragrance displays the power of wisdom accumulated over time."
+  },
+  {
+    "id": 55,
+    "card_name": "寶劍皇后",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Tonka Imperiale",
+    "description_zh": "你以冷静的洞察力审视世界，历经风雨后拥有清晰的边界。Guerlain的Tonka Imperiale与你女王般的睿智相映——零陵香豆的醇厚与烟草的温暖，构筑出不可侵犯的思想领地。这香气展现历经沉淀的智慧力量。",
+    "description_en": "You survey the world with cool insight, possessing clear boundaries after weathering storms. Guerlain’s Tonka Imperiale mirrors your queenly wisdom—the richness of tonka bean and the warmth of tobacco construct an inviolable territory of thought. This fragrance displays the power of wisdom accumulated over time."
+  },
+  {
+    "id": 61,
+    "card_name": "寶劍皇后",
+    "choice": "D",
+    "brand": "Byredo",
+    "product": "Blanche",
+    "description_zh": "你以冷静的洞察力审视世界，历经风雨后拥有清晰的边界。Byredo的Blanche与你女王般的睿智相映——绝对的纯净与客观，构筑出不可侵犯的思想领地。这香气展现历经沉淀的智慧力量。",
+    "description_en": "You survey the world with cool insight, possessing clear boundaries after weathering storms. Byredo’s Blanche mirrors your queenly wisdom—absolute purity and objectivity construct an inviolable territory of thought. This fragrance displays the power of wisdom accumulated over time."
+  },
+  {
+    "id": 18,
+    "card_name": "寶劍國王",
+    "choice": "A",
+    "brand": "Creed",
+    "product": "Love in White",
+    "description_zh": "你以绝对的理性与公正掌控局面，是真理与原则的化身。Creed的Love in White与你国王般的权威契合——纯净的橙花与木兰香气，结构清晰如法典条文。这香气不偏不倚，象征着你以智慧与公平裁决纷争的王者风范。",
+    "description_en": "You control the situation with absolute reason and fairness, the embodiment of truth and principle. Creed’s Love in White fits your kingly authority—pure orange blossom and magnolia scent, structured clearly like legal statutes. Unbiased and just, it symbolizes the regal demeanor of adjudicating disputes with wisdom."
+  },
+  {
+    "id": 35,
+    "card_name": "寶劍國王",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Thé Noir 29",
+    "description_zh": "你以绝对的理性掌控局面，是真理与原则的化身。Le Labo的Thé Noir 29与你国王般的权威契合——红茶的理性与烟草的深度，结构严谨如法典条文。这香气象征着你以智慧裁决纷争的王者风范。",
+    "description_en": "You control the situation with absolute reason, the embodiment of truth and principle. Le Labo’s Thé Noir 29 fits your kingly authority—the rationality of black tea and the depth of tobacco are structured consistently like legal statutes. This fragrance symbolizes the regal demeanor of adjudicating disputes with wisdom."
+  },
+  {
+    "id": 44,
+    "card_name": "寶劍國王",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Spiritueuse Double Vanille",
+    "description_zh": "你以绝对的理性掌控局面，是真理与原则的化身。Guerlain的Spiritueuse Double Vanille与你国王般的权威契合——香草的神圣与朗姆酒的醇烈，结构严谨如法典条文。这香气象征着你以智慧裁决纷争的王者风范。",
+    "description_en": "You control the situation with absolute reason, the embodiment of truth and principle. Guerlain’s Spiritueuse Double Vanille fits your kingly authority—the sanctity of vanilla and the mellowness of rum are structured consistently like legal statutes. This fragrance symbolizes the regal demeanor of adjudicating disputes with wisdom."
+  },
+  {
+    "id": 69,
+    "card_name": "寶劍國王",
+    "choice": "D",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Aqua Universalis",
+    "description_zh": "你以绝对的理性掌控局面，是真理与原则的化身。Maison Francis Kurkdjian的Aqua Universalis与你国王般的权威契合——极致的洁净与平衡，结构严谨如法典条文。这香气象征着你以智慧裁决纷争的王者风范。",
+    "description_en": "You control the situation with absolute reason, the embodiment of truth and principle. Maison Francis Kurkdjian’s Aqua Universalis fits your kingly authority—extreme cleanliness and balance are structured consistently like legal statutes. This fragrance symbolizes the regal demeanor of adjudicating disputes with wisdom."
+  },
+  {
+    "id": 5,
+    "card_name": "星幣一",
+    "choice": "A",
+    "brand": "Byredo",
+    "product": "Young Rose",
+    "description_zh": "你正迎来全新的物质机遇，一个充满潜力的开端在眼前展开。Byredo的Young Rose与这份初生的能量共鸣——花椒的微刺与青绿根茎的气息，象征着破土而出的生命力。这香气不承诺结果，却赋予你开始的勇气，仿佛在说：每一份丰盛，都始于勇敢的播种。",
+    "description_en": "You are welcoming a brand new material opportunity, a beginning full of potential unfolding before you. Byredo’s Young Rose resonates with this nascent energy—the slight prick of Sichuan pepper and the scent of green stems symbolize vitality breaking through the soil. It promises no result, but grants you the courage to begin: every abundance starts with a brave sowing."
+  },
+  {
+    "id": 30,
+    "card_name": "星幣一",
+    "choice": "B",
+    "brand": "Kilian",
+    "product": "Sacred Wood",
+    "description_zh": "你正迎来全新的物质机遇，丰盛的种子在手中萌芽。Kilian的Sacred Wood与这份初生的能量共鸣——极致纯净的檀木香气，带着奶香的温润与神圣。这香气守护着每一个新开始的潜力，仿佛在说：最坚实的成就，都始于对美好的虔诚信念。",
+    "description_en": "You are welcoming a brand new material opportunity, the seed of abundance sprouting in your hand. Kilian’s Sacred Wood resonates with this nascent energy—purest sandalwood carrying milky warmth and sanctity. This fragrance guards the potential of every new beginning: the most solid achievements start with devout belief in beauty."
+  },
+  {
+    "id": 49,
+    "card_name": "星幣一",
+    "choice": "C",
+    "brand": "Comptoir Sud Pacifique",
+    "product": "Vanille Abricot",
+    "description_zh": "你正迎来全新的物质机遇，丰盛的种子在手中萌芽。Comptoir Sud Pacifique的Vanille Abricot与这份初生的能量共鸣——香草与杏子的甜美组合简单而温暖，如同破土而出的新芽。这香气守护着每一个新开始的潜力，提醒你：最坚实的成就，都始于对美好的纯粹信念。",
+    "description_en": "You are welcoming a brand new material opportunity, the seed of abundance sprouting in your hand. Comptoir Sud Pacifique’s Vanille Abricot resonates with this nascent energy—the simple sweetness of vanilla and apricot is warm like a new sprout. This fragrance guards the potential of every new beginning, reminding you: solid achievements start with pure belief."
+  },
+  {
+    "id": 75,
+    "card_name": "星幣一",
+    "choice": "D",
+    "brand": "Acqua di Parma",
+    "product": "Fico di Amalfi",
+    "description_zh": "你正迎来全新的物质机遇，丰盛的种子在手中萌芽。Acqua di Parma的Fico di Amalfi与这份初生的能量共鸣——无花果叶的青翠与果实的清甜，如同破土而出的新芽。这香气守护着每一个新开始的潜力，提醒你：最坚实的成就，都始于对美好的纯粹信念。",
+    "description_en": "You are welcoming a brand new material opportunity, the seed of abundance sprouting in your hand. Acqua di Parma’s Fico di Amalfi resonates with this nascent energy—the greenness of fig leaves and the sweetness of fruit act as new sprouts. This fragrance guards the potential of every new beginning, reminding you: solid achievements start with pure belief."
+  },
+  {
+    "id": 6,
+    "card_name": "星幣二",
+    "choice": "A",
+    "brand": "Goutal Paris",
+    "product": "Rose Pompon",
+    "description_zh": "你灵活地平衡着多项资源，在变动中从容应对各种挑战。Goutal Paris的Rose Pompon与这份游刃有余的心境相合——黑加仑的活泼与粉红胡椒的微辛，让玫瑰显得轻盈而灵动。这香气提醒你：真正的掌控，来自对生活节奏的自如调节。",
+    "description_en": "You flexibly balance multiple resources, handling various challenges with ease amidst change. Goutal Paris’ Rose Pompon fits this state of mastery—the liveliness of blackcurrant and the slight spice of pink pepper make the rose appear light and agile. This fragrance reminds you: true control comes from the effortless adjustment to life's rhythm."
+  },
+  {
+    "id": 32,
+    "card_name": "星幣二",
+    "choice": "B",
+    "brand": "Byredo",
+    "product": "Bal d'Afrique",
+    "description_zh": "你灵活周转着各项资源，在变动中保持着优雅的平衡。Byredo的Bal d'Afrique与这份从容的心境相合——香柠檬的明亮与琥珀的温暖，如同阳光下流转的金色沙粒。这香气提醒你：真正的掌控，来自对生活节奏的自信驾驭。",
+    "description_en": "You flexibly circulate various resources, maintaining elegant balance amidst change. Byredo’s Bal d'Afrique fits this calm state—the brightness of bergamot and the warmth of amber flow like golden sands in sunlight. This fragrance reminds you: true control comes from confident command of life's rhythm."
+  },
+  {
+    "id": 43,
+    "card_name": "星幣二",
+    "choice": "C",
+    "brand": "Sol de Janeiro",
+    "product": "Cheirosa '62",
+    "description_zh": "你灵活周转着各项资源，在变动中保持着愉悦的平衡。Sol de Janeiro的Cheirosa '62与这份从容的心境相合——开心果与杏仁的活泼甜香，盐焦糖的阳光气息，让资源管理变得轻松自如。这香气提醒你：真正的掌控，来自对生活节奏的愉悦驾驭。",
+    "description_en": "You flexibly circulate various resources, maintaining joyful balance amidst change. Sol de Janeiro’s Cheirosa '62 fits this calm state—the lively sweetness of pistachio and almond, with the sunny scent of salted caramel, makes resource management feel effortless. This fragrance reminds you: true control comes from joyful command of life's rhythm."
+  },
+  {
+    "id": 26,
+    "card_name": "星幣二",
+    "choice": "D",
+    "brand": "Jo Malone London",
+    "product": "Wood Sage & Sea Salt",
+    "description_zh": "你灵活周转着各项资源，在变动中保持着从容的平衡。Jo Malone的Wood Sage & Sea Salt与这份游刃有余的心境相合——海风的清新与鼠尾草的温暖，让资源管理变得轻松自如。这香气提醒你：真正的掌控，来自对生活节奏的愉悦驾驭。",
+    "description_en": "You flexibly circulate various resources, maintaining calm balance amidst change. Jo Malone’s Wood Sage & Sea Salt fits this state of mastery—the freshness of sea breeze and the warmth of sage make resource management feel effortless. This fragrance reminds you: true control comes from joyful command of life's rhythm."
+  },
+  {
+    "id": 7,
+    "card_name": "星幣三",
+    "choice": "A",
+    "brand": "Aesop",
+    "product": "Rozu",
+    "description_zh": "你通过团队合作与精湛技艺，稳步构建着坚实的事业基础。Aesop的Rozu与这份专注的匠心呼应——烟熏木质与皮革的坚实架构，托起一朵历经锤炼的玫瑰。这香气不追求速成，却见证着每一次精益求精的打磨。",
+    "description_en": "You steadily build a solid career foundation through teamwork and exquisite craftsmanship. Aesop’s Rozu echoes this focused dedication—the solid structure of smoky woods and leather supports a rose tempered by trials. It seeks not speed, but witnesses every refinement of excellence."
+  },
+  {
+    "id": 35,
+    "card_name": "星幣三",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Thé Noir 29",
+    "description_zh": "你通过扎实的合作与技艺，共同构建着持久的价值。Le Labo的Thé Noir 29与这份专注的匠心呼应——红茶的醇厚与烟草的深度，在无花果的甜润中达成完美协作。这香气见证着将理念转化为实体的每个过程。",
+    "description_en": "You build lasting value through solid cooperation and craftsmanship. Le Labo’s Thé Noir 29 echoes this focused dedication—the richness of black tea and the depth of tobacco achieve perfect collaboration in the sweetness of fig. This fragrance witnesses every process of turning concept into reality."
+  },
+  {
+    "id": 58,
+    "card_name": "星幣三",
+    "choice": "C",
+    "brand": "Nishane",
+    "product": "Ani",
+    "description_zh": "你通过扎实的合作与技艺，共同构建着持久的价值。Nishane的Ani与这份专注的匠心呼应——生姜的辛辣与香草的醇厚，在香柠檬的明亮中达成完美协作。这香气见证着将理念转化为实体的每个精雕细琢的过程。",
+    "description_en": "You build lasting value through solid cooperation and craftsmanship. Nishane’s Ani echoes this focused dedication—the spice of ginger and the richness of vanilla achieve perfect collaboration in the brightness of bergamot. This fragrance witnesses every process of turning concept into reality with meticulous care."
+  },
+  {
+    "id": 70,
+    "card_name": "星幣三",
+    "choice": "D",
+    "brand": "Penhaligon's",
+    "product": "Castile",
+    "description_zh": "你通过扎实的合作与技艺，共同构建着持久的价值。Penhaligon's的Castile与这份专注的匠心呼应——橙花与皂感的经典组合，展现历经时间考验的优雅格调。这香气见证着将理念转化为实体的每个精雕细琢的过程。",
+    "description_en": "You build lasting value through solid cooperation and craftsmanship. Penhaligon's Castile echoes this focused dedication—the classic combination of orange blossom and soapiness displays a style tested by time. This fragrance witnesses every process of turning concept into reality with meticulous care."
+  },
+  {
+    "id": 18,
+    "card_name": "星幣四",
+    "choice": "A",
+    "brand": "Creed",
+    "product": "Love in White",
+    "description_zh": "你谨慎地守护着已有成果，建立稳固的安全感与秩序。Creed的Love in White与这份守护的能量共鸣——纯净的橙花与木兰香气，如同精心维护的珍贵收藏。这香气不鼓励冒险，却为你的稳定生活增添神圣的光辉。",
+    "description_en": "You carefully guard existing achievements, establishing a solid sense of security and order. Creed’s Love in White resonates with this protective energy—pure orange blossom and magnolia are like a carefully maintained precious collection. It does not encourage risk, but adds a holy luster to your stable life."
+  },
+  {
+    "id": 21,
+    "card_name": "星幣四",
+    "choice": "B",
+    "brand": "Le Labo",
+    "product": "Santal 33",
+    "description_zh": "你谨慎守护着已有成果，建立起稳固的安全边界。Le Labo的Santal 33与这份守护的能量共鸣——檀木的沉稳与皮革的韧性，构筑出经得起时间考验的基业。这香气不鼓励冒险，却为你的积累提供最可靠的陪伴。",
+    "description_en": "You carefully guard existing achievements, establishing a solid security boundary. Le Labo’s Santal 33 resonates with this protective energy—the steadiness of sandalwood and the toughness of leather construct a foundation that withstands time. It does not encourage risk, but provides the most reliable companionship for your accumulation."
+  },
+  {
+    "id": 44,
+    "card_name": "星幣四",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Spiritueuse Double Vanille",
+    "description_zh": "你谨慎守护着已有成果，建立起稳固的安全边界。Guerlain的Spiritueuse Double Vanille与这份守护的能量共鸣——香草的神圣与朗姆酒的醇烈，构筑出经得起时间考验的珍藏。这香气不鼓励冒险，却为你的积累提供最可靠的保障。",
+    "description_en": "You carefully guard existing achievements, establishing a solid security boundary. Guerlain’s Spiritueuse Double Vanille resonates with this protective energy—the sanctity of vanilla and the mellowness of rum construct a treasure that withstands time. It does not encourage risk, but provides the most reliable guarantee for your accumulation."
+  },
+  {
+    "id": 61,
+    "card_name": "星幣四",
+    "choice": "D",
+    "brand": "Byredo",
+    "product": "Blanche",
+    "description_zh": "你谨慎守护着已有成果，建立起稳固的安全边界。Byredo的Blanche与这份守护的能量共鸣——醛香与白麝香的绝对洁净，构筑出经得起时间考验的珍藏空间。这香气不鼓励冒险，却为你的积累提供最可靠的保障。",
+    "description_en": "You carefully guard existing achievements, establishing a solid security boundary. Byredo’s Blanche resonates with this protective energy—the absolute cleanliness of aldehydes and white musk construct a treasured space that withstands time. It does not encourage risk, but provides the most reliable guarantee for your accumulation."
+  },
+  {
+    "id": 15,
+    "card_name": "星幣五",
+    "choice": "A",
+    "brand": "Penhaligon's",
+    "product": "Bluebell",
+    "description_zh": "你感受到物质上的匮乏与孤立，在困境中寻找希望的微光。Penhaligon's的Bluebell理解这份艰难——潮湿的泥土与阴郁的绿意，勾勒出寒冷中的独行。这香气不掩饰困顿，却陪伴你等待乌云散去的时刻。",
+    "description_en": "You feel material deprivation and isolation, seeking a glimmer of hope in adversity. Penhaligon's Bluebell understands this hardship—damp earth and gloomy greenery outline a solitary walk in the cold. It masks not the destitution, but accompanies you as you await the moment the clouds disperse."
+  },
+  {
+    "id": 23,
+    "card_name": "星幣五",
+    "choice": "B",
+    "brand": "Maison Martin Margiela",
+    "product": "By the Fireplace",
+    "description_zh": "你感受到物质上的困顿，在寒冷中寻找温暖的慰藉。Maison Martin Margiela的By the Fireplace理解这份艰难——烤栗子的甜香与炉火的温暖，照亮了困境中的希望。这香气不改变现实，却让等待变得可以忍受。",
+    "description_en": "You feel material hardship, seeking warm solace in the cold. Maison Martin Margiela’s By the Fireplace understands this struggle—the sweet scent of roasted chestnuts and the warmth of the fire light up hope in the predicament. It changes not reality, but makes the waiting bearable."
+  },
+  {
+    "id": 47,
+    "card_name": "星幣五",
+    "choice": "C",
+    "brand": "Serge Lutens",
+    "product": "Jeux de Peau",
+    "description_zh": "你感受到物质上的困顿，在寒冷中寻找温暖的慰藉。Serge Lutens的Jeux de Peau理解这份艰难——烤面包的暖香与牛奶的醇厚，照亮了困境中的希望。这香气不改变现实，却让等待变得可以忍受，在最朴素的需求中找到温暖。",
+    "description_en": "You feel material hardship, seeking warm solace in the cold. Serge Lutens’ Jeux de Peau understands this struggle—the warm scent of toasted bread and the richness of milk light up hope in the predicament. It changes not reality, but makes low points bearable, finding warmth in simplest needs."
+  },
+  {
+    "id": 62,
+    "card_name": "星幣五",
+    "choice": "D",
+    "brand": "Maison Martin Margiela",
+    "product": "Lazy Sunday Morning",
+    "description_zh": "你感受到物质上的困顿，在寒冷中寻找温暖的慰藉。Maison Martin Margiela的Lazy Sunday Morning理解这份艰难——铃兰的清新与梨子的水润，在白麝香的包裹中照亮困境中的希望。这香气不改变现实，却让等待变得可以忍受。",
+    "description_en": "You feel material hardship, seeking warm solace in the cold. Maison Martin Margiela’s Lazy Sunday Morning understands this struggle—the freshness of lily of the valley and the moisture of pear light up hope in the predicament wrapped in white musk. It changes not reality, but makes the waiting bearable."
+  },
+  {
+    "id": 2,
+    "card_name": "星幣六",
+    "choice": "A",
+    "brand": "Stella McCartney",
+    "product": "Stella",
+    "description_zh": "你慷慨地分享着财富与资源，在给予与接受间保持平衡。Stella McCartney的Stella与这份慷慨的精神相映——它是一支纯粹而温暖的玫瑰，平等地拥抱每个需要安慰的灵魂。这香气提醒你：真正的丰盛，在于健康的流动与分享。",
+    "description_en": "You generously share wealth and resources, maintaining balance between giving and receiving. Stella McCartney’s Stella reflects this generous spirit—a pure and warm rose, embracing every soul in need of comfort equally. This fragrance reminds you: true abundance lies in healthy flow and sharing."
+  },
+  {
+    "id": 26,
+    "card_name": "星幣六",
+    "choice": "B",
+    "brand": "Jo Malone London",
+    "product": "Wood Sage & Sea Salt",
+    "description_zh": "你慷慨地分享着资源，在给予与接受间保持优雅平衡。Jo Malone的Wood Sage & Sea Salt与这份慷慨的精神相映——海风的清新与鼠尾草的温暖，创造出平等包容的氛围。这香气提醒你：健康的流动，让财富更有意义。",
+    "description_en": "You generously share resources, maintaining elegant balance between giving and receiving. Jo Malone’s Wood Sage & Sea Salt reflects this generous spirit—the freshness of sea breeze and the warmth of sage create an atmosphere of equality and inclusion. This fragrance reminds you: healthy flow makes wealth meaningful."
+  },
+  {
+    "id": 51,
+    "card_name": "星幣六",
+    "choice": "C",
+    "brand": "Kilian",
+    "product": "Angels' Share",
+    "description_zh": "你慷慨地分享着资源，在给予与接受间保持优雅平衡。Kilian的Angels' Share与这份慷慨的精神相映——干邑白兰地的醇香与榛果的暖甜，创造出丰盛而愉悦的分享氛围。这香气提醒你：健康的流动，让财富更有意义。",
+    "description_en": "You generously share resources, maintaining elegant balance between giving and receiving. Kilian’s Angels' Share reflects this generous spirit—the mellowness of cognac and the warm sweetness of hazelnut create a rich and joyful atmosphere of sharing. This fragrance reminds you: healthy flow makes wealth meaningful."
+  },
+  {
+    "id": 63,
+    "card_name": "星幣六",
+    "choice": "D",
+    "brand": "Narciso Rodriguez",
+    "product": "For Her Eau de Toilette",
+    "description_zh": "你慷慨地分享着资源，在给予与接受间保持优雅平衡。Narciso Rodriguez的For Her Eau de Toilette与这份慷慨的精神相映——麝香的洁净与花香的柔软，创造出平等包容的分享氛围。这香气提醒你：健康的流动，让财富更有意义。",
+    "description_en": "You generously share resources, maintaining elegant balance between giving and receiving. Narciso Rodriguez’s For Her Eau de Toilette reflects this generous spirit—the cleanliness of musk and softness of florals create an atmosphere of equality and inclusion. This fragrance reminds you: healthy flow makes wealth meaningful."
+  },
+  {
+    "id": 12,
+    "card_name": "星幣七",
+    "choice": "A",
+    "brand": "Hermès",
+    "product": "Le Jardin de Monsieur Li",
+    "description_zh": "你耐心等待着长期投资的回报，在沉淀中规划更远的未来。Hermès的Le Jardin de Monsieur Li与这份等待的智慧契合——金橘与茉莉在庭院中静静生长，苔石记录着时间的痕迹。这香气不催促结果，却陪伴你在静默中积蓄力量。",
+    "description_en": "You patiently wait for the returns on long-term investment, planning a further future in the stillness. Hermès’ Le Jardin de Monsieur Li fits this wisdom of waiting—kumquat and jasmine growing quietly in the courtyard, mossy stones recording the traces of time. It rushes not the result, but accompanies you to accumulate strength in silence."
+  },
+  {
+    "id": 24,
+    "card_name": "星幣七",
+    "choice": "B",
+    "brand": "Aesop",
+    "product": "Hwyl",
+    "description_zh": "你耐心等待着长期投资的回报，在沉淀中规划更远的未来。Aesop的Hwyl与这份等待的智慧契合——柏树的幽静与苔藓的持久，记录着时光的积累。这香气不催促结果，却陪伴你在静默中积蓄力量。",
+    "description_en": "You patiently wait for the returns on long-term investment, planning a further future in the stillness. Aesop’s Hwyl fits this wisdom of waiting—the seclusion of cypress and the persistence of moss record the accumulation of time. It rushes not the result, but accompanies you to accumulate strength in silence."
+  },
+  {
+    "id": 55,
+    "card_name": "星幣七",
+    "choice": "C",
+    "brand": "Guerlain",
+    "product": "Tonka Imperiale",
+    "description_zh": "你耐心等待着长期投资的回报，在沉淀中规划更远的未来。Guerlain的Tonka Imperiale与这份等待的智慧契合——零陵香豆的醇厚与烟草的温暖，记录着时光的积累。这香气不催促结果，却陪伴你在静默中积蓄力量。",
+    "description_en": "You patiently wait for the returns on long-term investment, planning a further future in the stillness. Guerlain’s Tonka Imperiale fits this wisdom of waiting—the richness of tonka bean and the warmth of tobacco record the accumulation of time. It rushes not the result, but accompanies you to accumulate strength in silence."
+  },
+  {
+    "id": 65,
+    "card_name": "星幣七",
+    "choice": "D",
+    "brand": "Acca Kappa",
+    "product": "White Moss",
+    "description_zh": "你耐心等待着长期投资的回报，在沉淀中规划更远的未来。Acca Kappa的White Moss与这份等待的智慧契合——白麝香的洁净与苔藓的湿润，记录着时光的积累。这香气不催促结果，却陪伴你在静默中积蓄力量。",
+    "description_en": "You patiently wait for the returns on long-term investment, planning a further future in the stillness. Acca Kappa’s White Moss fits this wisdom of waiting—the cleanliness of white musk and the wetness of moss record the accumulation of time. It rushes not the result, but accompanies you to accumulate strength in silence."
+  },
+  {
+    "id": 13,
+    "card_name": "星幣八",
+    "choice": "A",
+    "brand": "Diptyque",
+    "product": "Ofrésia",
+    "description_zh": "你专注于技能的打磨，在重复劳作中追求极致的专业。Diptyque的Ofrésia与这份专注共鸣——小苍兰的青绿气息线性而纯粹，不带任何分心。这香气见证着你将平凡转化为卓越的每个瞬间。",
+    "description_en": "You focus on honing your skills, pursuing extreme professionalism in repetitive labor. Diptyque’s Ofrésia resonates with this focus—the green scent of freesia is linear and pure, without distraction. This fragrance witnesses every moment you transform the ordinary into the extraordinary."
+  },
+  {
+    "id": 28,
+    "card_name": "星幣八",
+    "choice": "B",
+    "brand": "Diptyque",
+    "product": "Tam Dao",
+    "description_zh": "你专注于技能的打磨，在重复中追求极致的专业。Diptyque的Tam Dao与这份专注共鸣——檀木的纯粹与雪松的坚实，展现着持之以恒的匠心精神。这香气见证着你将平凡转化为卓越的每个日夜。",
+    "description_en": "You focus on honing your skills, pursuing extreme professionalism in repetition. Diptyque’s Tam Dao resonates with this focus—the purity of sandalwood and the solidity of cedar demonstrate persistent craftsmanship. This fragrance witnesses every day and night you transform the ordinary into the extraordinary."
+  },
+  {
+    "id": 56,
+    "card_name": "星幣八",
+    "choice": "C",
+    "brand": "BDK Parfums",
+    "product": "Gris Charnel",
+    "description_zh": "你专注于技能的打磨，在重复中追求极致的专业。BDK的Gris Charnel与这份专注共鸣——无花果的奶感与茶的清苦，在檀木基底上展现着持之以恒的匠心精神。这香气见证着你将平凡转化为卓越的每个日夜。",
+    "description_en": "You focus on honing your skills, pursuing extreme professionalism in repetition. BDK’s Gris Charnel resonates with this focus—the milkiness of fig and the bitterness of tea demonstrate persistent craftsmanship on a sandalwood base. This fragrance witnesses every day and night you transform the ordinary into the extraordinary."
+  },
+  {
+    "id": 74,
+    "card_name": "星幣八",
+    "choice": "D",
+    "brand": "Diptyque",
+    "product": "Eau des Sens",
+    "description_zh": "你专注于技能的打磨，在重复中追求极致的专业。Diptyque的Eau des Sens与这份专注共鸣——苦橙的清澈与杜松子的绿意，在橙花的洁净中展现着持之以恒的匠心精神。这香气见证着你将平凡转化为卓越的每个日夜。",
+    "description_en": "You focus on honing your skills, pursuing extreme professionalism in repetition. Diptyque’s Eau des Sens resonates with this focus—the clarity of bitter orange and the greenery of juniper berry demonstrate persistent craftsmanship in the cleanliness of orange blossom. This fragrance witnesses every day and night you transform the ordinary into the extraordinary."
+  },
+  {
+    "id": 4,
+    "card_name": "星幣九",
+    "choice": "A",
+    "brand": "Frédéric Malle",
+    "product": "Une Rose",
+    "description_zh": "你享受着自律带来的丰盛成果，为自己的成就感到由衷满足。Frédéric Malle的Une Rose与这份自我奖赏的心境相合——它是一朵盛大而华丽的玫瑰，饱满、性感且不容忽视。这香气是对你努力的最好犒赏，提醒你：你值得拥有这一切美好。",
+    "description_en": "You enjoy the abundant fruits of self-discipline, feeling heartfelt satisfaction for your achievements. Frédéric Malle’s Une Rose fits this mood of self-reward—a grand and gorgeous rose, full, sexy, and undeniable. This fragrance is the best reward for your efforts, reminding you: you act worthy of all this beauty."
+  },
+  {
+    "id": 31,
+    "card_name": "星幣九",
+    "choice": "B",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "À la Rose",
+    "description_zh": "你享受着自律带来的丰盛成果，为自己的成就感到由衷自豪。Maison Francis Kurkdjian的À la Rose与这份自我奖赏的心境相合——盛大的玫瑰花园绽放着奢华的喜悦。这香气是对你努力的最好犒赏，提醒你值得拥有这一切美好。",
+    "description_en": "You enjoy the abundant fruits of self-discipline, feeling heartfelt pride for your achievements. Maison Francis Kurkdjian’s À la Rose fits this mood of self-reward—a grand rose garden blooming with luxurious joy. This fragrance is the best reward for your efforts, reminding you that you act worthy of all this beauty."
+  },
+  {
+    "id": 53,
+    "card_name": "星幣九",
+    "choice": "C",
+    "brand": "Xerjoff",
+    "product": "Lira",
+    "description_zh": "你享受着自律带来的丰盛成果，为自己的成就感到由衷自豪。Xerjoff的Lira与这份自我奖赏的心境相合——焦糖柠檬蛋糕的诱人香气，甜美而满足。这香气是对你努力的最好犒赏，提醒你值得拥有这一切美好。",
+    "description_en": "You enjoy the abundant fruits of self-discipline, feeling heartfelt pride for your achievements. Xerjoff’s Lira fits this mood of self-reward—the tempting aroma of caramel lemon cake, sweet and satisfying. This fragrance is the best reward for your efforts, reminding you that you act worthy of all this beauty."
+  },
+  {
+    "id": 76,
+    "card_name": "星幣九",
+    "choice": "D",
+    "brand": "Byredo",
+    "product": "Sundazed",
+    "description_zh": "你享受着自律带来的丰盛成果，为自己的成就感到由衷自豪。Byredo的Sundazed与这份自我奖赏的心境相合——柑橘的阳光气息与麝香的温暖质感，交织出充满喜悦的私密空间。这香气是对你努力的最好犒赏，提醒你值得拥有这一切美好。",
+    "description_en": "You enjoy the abundant fruits of self-discipline, feeling heartfelt pride for your achievements. Byredo’s Sundazed fits this mood of self-reward—the sunny scent of citrus and the warm texture of musk weave a private space full of joy. This fragrance is the best reward for your efforts, reminding you that you act worthy of all this beauty."
+  },
+  {
+    "id": 18,
+    "card_name": "星幣十",
+    "choice": "A",
+    "brand": "Creed",
+    "product": "Love in White",
+    "description_zh": "你建立起稳固的物质基础，享受着家族传承的丰盛与圆满。Creed的Love in White为这份世代积累的成就加冕——稻谷的丰饶衬着橙花与木兰的圣洁，宛如家族智慧的结晶。这香气包容万物，见证着你创造的 lasting legacy。",
+    "description_en": "You establish a solid material foundation, enjoying the abundance and completion of family legacy. Creed’s Love in White crowns this multigenerational achievement—the richness of rice husks set against the sanctity of orange blossom and magnolia, like the crystallization of family wisdom. Embracing all, it witnesses the lasting legacy you create."
+  },
+  {
+    "id": 40,
+    "card_name": "星幣十",
+    "choice": "B",
+    "brand": "Hermès",
+    "product": "Terre d‘Hermès",
+    "description_zh": "你建立起稳固的物质传承，享受着世代积累的丰盛与圆满。Hermès的Terre d'Hermès为这份成就加冕——葡萄柚的活力与香根草的宽广，构筑出值得传承的基业。这香气包容万物，见证着你创造的持久价值。",
+    "description_en": "You establish a solid material legacy, enjoying the abundance and completion of generations. Hermès’ Terre d'Hermès crowns this achievement—the vitality of grapefruit and the breadth of vetiver build a foundation worth inheriting. This fragrance embraces all, witnessing the lasting value you create."
+  },
+  {
+    "id": 42,
+    "card_name": "星幣十",
+    "choice": "C",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Grand Soir",
+    "description_zh": "你建立起稳固的物质传承，享受着世代积累的丰盛与圆满。Maison Francis Kurkdjian的Grand Soir为这份成就加冕——琥珀的辉煌与香草的丰盈，构筑出值得传承的基业。这香气包容万物，见证着你创造的持久价值。",
+    "description_en": "You establish a solid material legacy, enjoying the abundance and completion of generations. Maison Francis Kurkdjian’s Grand Soir crowns this achievement—the splendor of amber and the richness of vanilla build a foundation worth inheriting. This fragrance embraces all, witnessing the lasting value you create."
+  },
+  {
+    "id": 66,
+    "card_name": "星幣十",
+    "choice": "D",
+    "brand": "Chloe",
+    "product": "Love Story",
+    "description_zh": "你建立起稳固的物质传承，享受着家庭与情感的圆满。Chloe的Love Story为这份成就加冕——橙花的洁净与麝香的温柔，构筑出充满归属感的幸福共同体。这香气见证着你创造的持久价值与温暖传承。",
+    "description_en": "You establish a solid material legacy, enjoying the completion of family and emotion. Chloe’s Love Story crowns this achievement—the cleanliness of orange blossom and the gentleness of musk build a happy community full of belonging. This fragrance witnesses the lasting value and warm heritage you create."
+  },
+  {
+    "id": 20,
+    "card_name": "星幣侍者",
+    "choice": "A",
+    "brand": "Gucci",
+    "product": "Mémoire d'une Odeur",
+    "description_zh": "你以务实的态度学习积累，为未来打下坚实的基础。Gucci的Mémoire d'une Odeur与这份踏实的心境契合——洋甘菊的质朴与矿物麝香的清冷，记录着每个认真学习的过程。这香气不追求捷径，却陪伴你在成长路上稳步前行。",
+    "description_en": "You learn and accumulate with a pragmatic attitude, laying a solid foundation for the future. Gucci’s Mémoire d'une Odeur fits this grounded state—the simplicity of chamomile and the coolness of mineral musk record every process of serious learning. It seeks not shortcuts, but accompanies you steadily on the road of growth."
+  },
+  {
+    "id": 34,
+    "card_name": "星幣侍者",
+    "choice": "B",
+    "brand": "Aesop",
+    "product": "Tacit",
+    "description_zh": "你以务实的态度学习积累，为未来打下坚实基础。Aesop的Tacit与这份踏实的心境契合——柑橘的清新与香根草的明晰，记录着每个认真学习的时刻。这香气不追求捷径，却陪伴你在成长路上稳步前行。",
+    "description_en": "You learn and accumulate with a pragmatic attitude, laying a solid foundation for the future. Aesop’s Tacit fits this grounded state—the freshness of citrus and the clarity of vetiver record every moment of serious learning. It seeks not shortcuts, but accompanies you steadily on the road of growth."
+  },
+  {
+    "id": 49,
+    "card_name": "星幣侍者",
+    "choice": "C",
+    "brand": "Comptoir Sud Pacifique",
+    "product": "Vanille Abricot",
+    "description_zh": "你以务实的态度学习积累，为未来打下坚实基础。Comptoir Sud Pacifique的Vanille Abricot与这份踏实的心境契合——香草与杏子的简单甜美，记录着每个认真学习的时刻。这香气不追求捷径，却陪伴你在成长路上稳步前行。",
+    "description_en": "You learn and accumulate with a pragmatic attitude, laying a solid foundation for the future. Comptoir Sud Pacifique’s Vanille Abricot fits this grounded state—the simple sweetness of vanilla and apricot records every moment of serious learning. It seeks not shortcuts, but accompanies you steadily on the road of growth."
+  },
+  {
+    "id": 75,
+    "card_name": "星幣侍者",
+    "choice": "D",
+    "brand": "Acqua di Parma",
+    "product": "Fico di Amalfi",
+    "description_zh": "你以务实的态度学习积累，为未来打下坚实基础。Acqua di Parma的Fico di Amalfi与这份踏实的心境契合——无花果叶的青翠与果实的清甜，记录着每个认真学习的时刻。这香气不追求捷径，却陪伴你在成长路上稳步前行。",
+    "description_en": "You learn and accumulate with a pragmatic attitude, laying a solid foundation for the future. Acqua di Parma’s Fico di Amalfi fits this grounded state—the greenness of fig leaves and the sweetness of fruit record every moment of serious learning. It seeks not shortcuts, but accompanies you steadily on the road of growth."
+  },
+  {
+    "id": 12,
+    "card_name": "星幣騎士",
+    "choice": "A",
+    "brand": "Hermès",
+    "product": "Le Jardin de Monsieur Li",
+    "description_zh": "你以可靠的步伐稳步前进，用耐心与坚持实现每个目标。Hermès的Le Jardin de Monsieur Li与你骑士般的稳健同行——金橘与茉莉在庭院中悠然绽放，苔石的气息恒久如初。这香气不追求速度，却保证每个承诺的兑现。",
+    "description_en": "You move forward with reliable steps, achieving every goal with patience and persistence. Hermès’ Le Jardin de Monsieur Li walks with your knightly steadiness—kumquat and jasmine bloom leisurely in the courtyard, the breath of mossy stones enduring as ever. It pursues not speed, but guarantees the fulfillment of every promise."
+  },
+  {
+    "id": 38,
+    "card_name": "星幣騎士",
+    "choice": "B",
+    "brand": "Serge Lutens",
+    "product": "Chergui",
+    "description_zh": "你以可靠的步伐稳步前进，用耐心兑现每个承诺。Serge Lutens的Chergui与你骑士般的稳健同行——蜂蜜的温暖与干草的醇厚，展现着经得起时间考验的品格。这香气不追求速度，却保证每个目标都能扎实达成。",
+    "description_en": "You move forward with reliable steps, fulfilling every promise with patience. Serge Lutens’ Chergui walks with your knightly steadiness—the warmth of honey and the richness of hay display a character tested by time. It pursues not speed, but guarantees every goal is solidly achieved."
+  },
+  {
+    "id": 60,
+    "card_name": "星幣騎士",
+    "choice": "C",
+    "brand": "Parfums de Marly",
+    "product": "Herod",
+    "description_zh": "你以可靠的步伐稳步前进，用耐心兑现每个承诺。Parfums de Marly的Herod与你骑士般的稳健同行——烟草的干燥与肉桂的暖意，在葡萄柚的清新中展现着经得起时间考验的品格。这香气不追求速度，却保证每个目标都能扎实达成。",
+    "description_en": "You move forward with reliable steps, fulfilling every promise with patience. Parfums de Marly’s Herod walks with your knightly steadiness—the dryness of tobacco and the warmth of cinnamon display a character tested by time in the freshness of grapefruit. It pursues not speed, but guarantees every goal is solidly achieved."
+  },
+  {
+    "id": 26,
+    "card_name": "星幣騎士",
+    "choice": "D",
+    "brand": "Jo Malone London",
+    "product": "Wood Sage & Sea Salt",
+    "description_zh": "你以可靠的步伐稳步前进，用耐心兑现每个承诺。Jo Malone的Wood Sage & Sea Salt与你骑士般的稳健同行——海风的清新与鼠尾草的温暖，展现着经得起时间考验的品格。这香气不追求速度，却保证每个目标都能扎实达成。",
+    "description_en": "You move forward with reliable steps, fulfilling every promise with patience. Jo Malone’s Wood Sage & Sea Salt walks with your knightly steadiness—the freshness of sea breeze and the warmth of sage display a character tested by time. It pursues not speed, but guarantees every goal is solidly achieved."
+  },
+  {
+    "id": 11,
+    "card_name": "星幣皇后",
+    "choice": "A",
+    "brand": "Goutal Paris",
+    "product": "Le Chèvrefeuille",
+    "description_zh": "你以温暖的滋养守护着周围的一切，将务实与关怀完美结合。Goutal Paris的Le Chèvrefeuille与你皇后般的滋养特质共鸣——清冷的金银花带着绿意的微苦，如同大地母亲的怀抱。这香气不张扬，却以其深刻的包容力，滋养每个需要温暖的生命。",
+    "description_en": "You guard everything around you with warm nourishment, perfectly combining pragmatism with care. Goutal Paris’ Le Chèvrefeuille resonates with your queenly nurturing quality—cool honeysuckle with bitter greenness, like the embrace of Mother Earth. Unpretentious, it nourishes every life needing warmth with profound tolerance."
+  },
+  {
+    "id": 36,
+    "card_name": "星幣皇后",
+    "choice": "B",
+    "brand": "Diptyque",
+    "product": "Philosykos",
+    "description_zh": "你以温暖的滋养守护着周围的一切，将务实与关怀完美结合。Diptyque的Philosykos与你皇后般的滋养特质共鸣——无花果叶的青翠与果实的奶甜，如同大地母亲的慷慨怀抱。这香气不张扬，却以其自然的丰盈滋养每个生命。",
+    "description_en": "You guard everything around you with warm nourishment, perfectly combining pragmatism with care. Diptyque’s Philosykos resonates with your queenly nurturing quality—the greenness of fig leaves and the milky sweetness of fruit are like the generous embrace of Mother Earth. Unpretentious, it nourishes every life with natural abundance."
+  },
+  {
+    "id": 47,
+    "card_name": "星幣皇后",
+    "choice": "C",
+    "brand": "Serge Lutens",
+    "product": "Jeux de Peau",
+    "description_zh": "你以温暖的滋养守护着周围的一切，将务实与关怀完美结合。Serge Lutens的Jeux de Peau与你皇后般的滋养特质共鸣——烤面包的暖香与牛奶的醇厚，如同大地母亲最质朴的慷慨。这香气不张扬，却以其自然的温暖滋养每个生命。",
+    "description_en": "You guard everything around you with warm nourishment, perfectly combining pragmatism with care. Serge Lutens’ Jeux de Peau resonates with your queenly nurturing quality—the warm scent of toasted bread and the richness of milk are like the simplest generosity of Mother Earth. Unpretentious, it nourishes every life with natural warmth."
+  },
+  {
+    "id": 65,
+    "card_name": "星幣皇后",
+    "choice": "D",
+    "brand": "Acca Kappa",
+    "product": "White Moss",
+    "description_zh": "你以温暖的滋养守护着周围的一切，将务实与关怀完美结合。Acca Kappa的White Moss与你皇后般的滋养特质共鸣——白麝香的洁净与苔藓的湿润，如同大地母亲最质朴的慷慨。这香气不张扬，却以其自然的温暖滋养每个生命。",
+    "description_en": "You guard everything around you with warm nourishment, perfectly combining pragmatism with care. Acca Kappa’s White Moss resonates with your queenly nurturing quality—the cleanliness of white musk and the wetness of moss are like the simplest generosity of Mother Earth. Unpretentious, it nourishes every life with natural warmth."
+  },
+  {
+    "id": 9,
+    "card_name": "星幣國王",
+    "choice": "A",
+    "brand": "Le Labo",
+    "product": "Rose 31",
+    "description_zh": "你以丰富的经验掌控物质世界，是稳健而成功的领导者。Le Labo的Rose 31与你国王般的权威相映——孜然的野性与深沉的木质，构筑起不可动摇的事业版图。这香气强大而复杂，正如真正的财富力量，在沉稳中展现王者风范。",
+    "description_en": "You control the material world with rich experience, a steady and successful leader. Le Labo’s Rose 31 reflects your kingly authority—the wildness of cumin and deep woods construct an unshakable business map. Powerful and complex, just like true wealth, displaying regal demeanor in calmness."
+  },
+  {
+    "id": 22,
+    "card_name": "星幣國王",
+    "choice": "B",
+    "brand": "Tom Ford",
+    "product": "Oud Wood",
+    "description_zh": "你以丰富的经验掌控物质世界，是稳健而成功的领袖。Tom Ford的Oud Wood与你国王般的权威相映——乌木的深沉与檀香的庄严，构筑起不可动摇的事业版图。这香气强大而复杂，正如真正的财富力量，在沉稳中展现王者风范。",
+    "description_en": "You control the material world with rich experience, a steady and successful leader. Tom Ford’s Oud Wood reflects your kingly authority—the depth of oud and the dignity of sandalwood construct an unshakable business map. Powerful and complex, just like true wealth, displaying regal demeanor in calmness."
+  },
+  {
+    "id": 52,
+    "card_name": "星幣國王",
+    "choice": "C",
+    "brand": "Maison Francis Kurkdjian",
+    "product": "Oud Satin Mood",
+    "description_zh": "你以丰富的经验掌控物质世界，是稳健而成功的领袖。Maison Francis Kurkdjian的Oud Satin Mood与你国王般的权威相映——乌木的深邃被玫瑰柔化，天鹅绒般的质感展现刚柔并济的领导力。这香气强大而复杂，正如真正的财富力量，在沉稳中展现王者风范。",
+    "description_en": "You control the material world with rich experience, a steady and successful leader. Maison Francis Kurkdjian’s Oud Satin Mood reflects your kingly authority—the depth of oud softened by rose, velvet texture showing leadership of strength and gentleness. Powerful and complex, just like true wealth, displaying regal demeanor in calmness."
+  },
+  {
+    "id": 70,
+    "card_name": "星幣國王",
+    "choice": "D",
+    "brand": "Penhaligon's",
+    "product": "Castile",
+    "description_zh": "你以丰富的经验掌控物质世界，是稳健而成功的领袖。Penhaligon's的Castile与你国王般的权威相映——橙花与皂感的经典组合，展现历经时间考验的优雅力量。这香气不言自威，在古典格调中展现真正的领袖风范。",
+    "description_en": "You control the material world with rich experience, a steady and successful leader. Penhaligon's Castile reflects your kingly authority—the classic combination of orange blossom and soapiness displays elegant power tested by time. Commanding without words, showing true leadership style in classic tone."
+  }
+]

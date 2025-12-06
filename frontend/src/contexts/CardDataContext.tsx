@@ -44,10 +44,11 @@ export function CardDataProvider({ children }: { children: ReactNode }) {
   }, [])
 
   // 根据卡牌 ID 获取图片 URL
-  // ID 是 0-77 (数组索引)，对应 code 01-78
+  // ID 是 0-77 (数组索引)，对应 cards 数组中的位置
   const getCardImageUrl = (id: number): string | null => {
-    const code = String(id + 1).padStart(2, '0')
-    const card = cards.find((c) => c.code === code)
+    // Modify to use direct index access as cards are sorted by code
+    // This is safer than constructing code string (e.g. gaps in codes)
+    const card = cards[id]
     return card?.image_url || null
   }
 

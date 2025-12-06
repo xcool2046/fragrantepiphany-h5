@@ -117,6 +117,7 @@ async function seed() {
     for (const fileInfo of files) {
       const filePath = path.join(baseDir, fileInfo.name);
       console.log(`\nProcessing file: ${fileInfo.name}`);
+      console.log(`Full path: ${filePath}`);
       
       if (!fs.existsSync(filePath)) {
         console.warn(`File not found: ${filePath}, skipping...`);
@@ -179,10 +180,7 @@ async function seed() {
               continue;
           }
 
-          if (fileInfo.category === 'Career' && (cardName === 'The Fool' || cardName === 'The Magician' || cardName === 'The World')) {
-              console.log(`!!! DEBUG CAREER ${cardName.toUpperCase()} !!!`);
-              console.log('Row:', JSON.stringify(row));
-          }
+
 
           // Extract Data (Columns based on fix script observation)
           // Fix script: 

@@ -82,26 +82,24 @@ export class InterpretationController {
 
     const derivedCategory = mapQ4(answers['4']) || category;
 
-    // 1. Resolve Cards
-    const cardCodes = card_indices.map((idx) =>
-      String((idx % 78) + 1).padStart(2, '0'),
-    );
-    console.log(`[Reading] Indices: ${card_indices} -> Codes: ${cardCodes}`);
+    // 1. Resolve Cards (Dynamic)
+    // Fetch all enabled cards sorted by code
+    const allCards = await this.cardRepo.find({
+      where: { enabled: true },
+      order: { code: 'ASC' },
+    });
 
-    const cards = await this.cardRepo.find({ where: { code: In(cardCodes) } });
-
-    // Sort to match Past, Present, Future order explicitly
-    const sortedCards = cardCodes
-      .map((code) => cards.find((c) => c.code === code))
-      .filter(Boolean) as Card[];
+    const sortedCards = card_indices
+      .map((idx) => allCards[idx]) // Use index to pick card from sorted list
+      .filter(Boolean); // Filter out invalid indices (out of bounds)
 
     console.log(
-      `[Reading] Sorted Cards: ${sortedCards.map((c) => c.name_en).join(', ')}`,
+      `[Reading] Indices: ${card_indices} -> Codes: ${sortedCards.map((c) => c.code).join(', ')}`,
     );
 
     if (sortedCards.length !== 3) {
       console.warn(
-        `[Reading] Mismatch! Found ${sortedCards.length} cards for ${cardCodes}`,
+        `[Reading] Mismatch! Found ${sortedCards.length} cards for indices ${card_indices}`,
       );
       return { error: 'Cards not found' };
     }
@@ -252,18 +250,21 @@ export class InterpretationController {
       : [];
     if (cardIndices.length !== 3) return { rule: null };
 
-    // 1) 将卡片下标映射为两位 code（01~78）
-    const cardCodes = cardIndices.map((idx) =>
-      String((idx % 78) + 1).padStart(2, '0'),
-    );
-
-    // 2) 用卡牌默认解读拼接合成结果
-    const cards = await this.cardRepo.find({
-      where: { code: In(cardCodes) },
+    // 1) 动态获取对应卡牌 (取代之前的 modulo 78 逻辑)
+    const allCards = await this.cardRepo.find({
+      where: { enabled: true },
+      order: { code: 'ASC' },
     });
-    const sortedCards = cardCodes.map((code) =>
-      cards.find((c) => c.code === code),
-    );
+
+    const sortedCards = cardIndices
+      .map((idx) => allCards[idx])
+      .filter((c) => !!c);
+
+    // 如果找不到对应卡牌（比如索引越界），则直接返回 null
+    if (sortedCards.length < 3) return { rule: null };
+
+    const cardCodes = sortedCards.map((c) => c.code);
+
     const category = body.category || TAROT_CATEGORIES[0]; // Default to Self
     const interpretations = await Promise.all(
       sortedCards.map((card, i) =>
@@ -318,3 +319,4 @@ export class InterpretationController {
     return { rule: syntheticRule };
   }
 }
+

@@ -7,16 +7,18 @@ import { createPortal } from 'react-dom'
 
 import { CardFace } from '../components/CardFace'
 import drawBg from '../assets/draw_bg.jpg'
+import { fetchCards } from '../api'
 
 // --- Constants ---
-const TOTAL_CARDS = 78
 const INITIAL_INDEX = 38
+// REMOVED hardcoded TOTAL_CARDS
 
 // --- Types ---
 interface WheelProps {
   onCardSelect: (cardId: number, startRect: DOMRect, rotation: number) => void;
   selectedCards: (number | null)[];
   flyingCardId: number | null;
+  totalCards: number;
 }
 
 interface WheelCardProps {
@@ -183,7 +185,7 @@ const WheelCard = memo(({ absoluteIndex, scrollIndex, cardId, onClick, isHidden,
     )
 })
 
-const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId }) => {
+const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId, totalCards }) => {
   // --- Infinite Scroll State ---
   const scrollIndex = useMotionValue(INITIAL_INDEX)
   const isFlying = flyingCardId !== null // Derived state for blocking interaction
@@ -303,11 +305,11 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
 
   const handleCardClick = useCallback((clickedAbsoluteIndex: number, e: React.MouseEvent | React.TouchEvent, rotation: number) => {
     // Immediate selection - No "scroll to center" check
-    const cardId = ((clickedAbsoluteIndex % TOTAL_CARDS) + TOTAL_CARDS) % TOTAL_CARDS
+    const cardId = ((clickedAbsoluteIndex % totalCards) + totalCards) % totalCards
     
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
     onCardSelect(cardId, rect, rotation)
-  }, [scrollIndex, onCardSelect])
+  }, [scrollIndex, onCardSelect, totalCards])
 
   // Reduce visible range
   const visibleRange = 20 
@@ -344,7 +346,7 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
         <div className="absolute top-0 left-0 w-full h-full z-10">
              <AnimatePresence>
                 {indices.map((index) => {
-                   const cardId = ((index % TOTAL_CARDS) + TOTAL_CARDS) % TOTAL_CARDS
+                   const cardId = ((index % totalCards) + totalCards) % totalCards
                    const isHidden = selectedCards.includes(cardId) || cardId === flyingCardId
                    return (
                      <WheelCard
@@ -372,22 +374,33 @@ const Draw: React.FC = () => {
   const [selectedCards, setSelectedCards] = useState<(number | null)[]>([null, null, null])
   const [submitting, setSubmitting] = useState(false)
 
-  // --- Shuffle Logic (Fisher-Yates) ---
-  // Map Visual Index (0-77) -> Real Card ID (0-77)
-  // This ensures the Wheel looks ordered (No.1, No.2...) but the result is random.
-  const [shuffledDeck] = useState(() => {
-      const deck = Array.from({ length: TOTAL_CARDS }, (_, i) => i)
-      let m = deck.length, t, i;
-      while (m) {
-        i = Math.floor(Math.random() * m--);
-        t = deck[m];
-        deck[m] = deck[i];
-        deck[i] = t;
-      }
-      console.log('Deck Shuffled:', deck.slice(0, 5), '...') // Debug log
-      return deck
-  })
-  
+  // --- Dynamic Card State ---
+  const [totalCards, setTotalCards] = useState<number>(0)
+  const [shuffledDeck, setShuffledDeck] = useState<number[]>([])
+
+  // Fetch cards on mount
+  React.useEffect(() => {
+     fetchCards().then(cards => {
+         const count = cards.length
+         setTotalCards(count)
+         
+         // Shuffle Logic (Fisher-Yates)
+         const deck = Array.from({ length: count }, (_, i) => i)
+         let m = deck.length, t, i;
+         while (m) {
+           i = Math.floor(Math.random() * m--);
+           t = deck[m];
+           deck[m] = deck[i];
+           deck[i] = t;
+         }
+         console.log('Deck Shuffled:', deck.slice(0, 5), '...', count, 'cards total')
+         setShuffledDeck(deck)
+     }).catch(err => {
+         console.error('Failed to fetch cards:', err)
+         // Fallback? Ideally shouldn't fail if backend is up
+     })
+  }, [])
+
   // Animation State
   const [flyingCard, setFlyingCard] = useState<{ id: number, startRect: DOMRect, targetRect: DOMRect, targetIndex: number, initialRotate: number } | null>(null)
   const slotRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -491,6 +504,40 @@ const Draw: React.FC = () => {
     const visualIds = selectedCards.filter((id): id is number => id !== null)
     
     // Save the Deck Mapping to localStorage so Result page can resolve Visual -> Real
+    // shuffledDeck contains the REAL CARD IDs (or virtual IDs aligned with backend list indices)
+    // Wait, shuffledDeck is just 0..N-1 shuffled. 
+    // In our dynamic implementation, `shuffledDeck[visualId]` maps Visual ID to Real Index ID.
+    // If backend returns 80 cards, shuffledDeck has 0..79 in random order.
+    // Wheel renders 0..79 (Visual IDs).
+    // When Wheel Card X is clicked, we get X.
+    // Wait, `shuffledDeck` logic was:
+    // const [shuffledDeck] = useState(() => { const deck = ... return deck })
+    // It seems `shuffledDeck` was NOT used in previous code to MAP visual ID to result?
+    // Let's check previous Draw.tsx:
+    // `const [shuffledDeck] = useState(...)`
+    // `const handleContinue = ...`
+    // `localStorage.setItem('deck_mapping', JSON.stringify(shuffledDeck))`
+    // Yes, it was saving it.
+    // So the "Visual ID" selected from the wheel is actually an index into `shuffledDeck`?
+    // NO. In `Wheel`, `cardId = ((index % TOTAL_CARDS) + TOTAL_CARDS) % TOTAL_CARDS`.
+    // This `cardId` is 0..77.
+    // Is this the Visual Position? Or the "Value"?
+    // If I click card at pos 5, I get cardId 5?
+    // If deck is shuffled, does position 5 mean card 5?
+    // The previous code:
+    // `const cardId = ...` (based on index)
+    // `onCardSelect(cardId ...)`
+    // So `cardId` IS the number on the card face / index.
+    // Result page uses `cardIds[i]` as index into `deck_mapping`?
+    // Result.tsx: `if (state.realCardIds ...)` else `cardIds.map(visualId => mapping[visualId])`
+    // So visualId IS the index.
+    
+    // With dynamic deck:
+    // `visualIds` are 0..Count-1.
+    // `shuffledDeck` maps 0..Count-1 to "Real Index" (0..Count-1 but shuffled).
+    // So if Visual Card 0 is selected, it maps to `shuffledDeck[0]`.
+    // Valid.
+    
     localStorage.setItem('deck_mapping', JSON.stringify(shuffledDeck))
 
     // Save Visual IDs to localStorage (for page reload recovery)
@@ -500,15 +547,14 @@ const Draw: React.FC = () => {
     navigate('/result', { state: { cardIds: visualIds, answers: location.state?.answers } })
   }, [filledCount, submitting, selectedCards, navigate, location.state, shuffledDeck])
 
-  // Auto-navigate removed. User must click "Continue".
-  // React.useEffect(() => {
-  //     if (filledCount === 3 && !submitting && !flyingCard) {
-  //         const timer = setTimeout(() => {
-  //             handleContinue()
-  //         }, 800) // 0.8s delay to see the card settle
-  //         return () => clearTimeout(timer)
-  //     }
-  // }, [filledCount, submitting, flyingCard, handleContinue])
+  // If loading, show nothing or spinner
+  if (totalCards === 0) {
+      return (
+          <div className="min-h-screen w-full bg-[#14100F] flex items-center justify-center">
+              <span className="text-[#D4A373] font-serif uppercase tracking-widest">{t('common.loading', 'Loading...')}</span>
+          </div>
+      )
+  }
 
   return (
     <div 
@@ -516,7 +562,7 @@ const Draw: React.FC = () => {
     >
       
       {/* WHEEL BACKGROUND (Z-0) */}
-      <Wheel onCardSelect={handleCardSelect} selectedCards={selectedCards} flyingCardId={flyingCard?.id ?? null} />
+      <Wheel onCardSelect={handleCardSelect} selectedCards={selectedCards} flyingCardId={flyingCard?.id ?? null} totalCards={totalCards} />
 
       {/* LEFT PANEL: Info & Slots (Z-10, Floating) */}
       {/* pointer-events-none allows clicks to pass through the empty space to the Wheel */}

@@ -351,7 +351,11 @@ export default function Perfumes() {
                     <div className="flex-1">
                       <label className="text-xs text-[#6B5542]">卡牌名称</label>
                       <input 
-                        value={cards.find(c => c.id === form.card_id)?.name_en || '无效卡牌 ID'} 
+                        value={
+                          textLang === 'zh' 
+                            ? (cards.find(c => c.id === form.card_id)?.name_zh || '无效卡牌 ID')
+                            : (cards.find(c => c.id === form.card_id)?.name_en || 'Invalid Card ID')
+                        } 
                         readOnly
                         className={`w-full rounded-lg border p-2 text-sm ${!cards.find(c => c.id === form.card_id) ? 'bg-red-50 text-red-500' : 'bg-gray-100 text-gray-500'} cursor-not-allowed`} 
                       />

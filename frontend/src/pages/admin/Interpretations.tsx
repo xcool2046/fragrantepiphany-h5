@@ -51,14 +51,53 @@ export default function Interpretations() {
   })
   const [textLang, setTextLang] = useState<'en' | 'zh'>('zh')
 
+  const [cards, setCards] = useState<any[]>([])
+
+  const fetchCards = useCallback(async () => {
+    try {
+      const res = await api.get(API_ENDPOINTS.ADMIN.CARDS + '?pageSize=1000')
+      setCards(res.data.items || [])
+    } catch (e) {
+      console.error('Failed to fetch cards', e)
+    }
+  }, [])
+
   const fetchInterps = useCallback(async (p = 1, kw = query, position = positionFilter, category = categoryFilter) => {
     setLoading(true)
     try {
+      let searchKw = kw.trim()
+      
+      // If keyword contains Chinese, try to find matching English card name
+      if (searchKw && /[\u4e00-\u9fa5]/.test(searchKw)) {
+        // 1. Try exact match by name_zh
+        const exactMatch = cards.find(c => c.name_zh === searchKw)
+        if (exactMatch && exactMatch.name_en) {
+          searchKw = exactMatch.name_en
+        } else {
+          // 2. Try Suit mapping
+          if (searchKw.includes('圣杯')) searchKw = 'Cups'
+          else if (searchKw.includes('权杖')) searchKw = 'Wands'
+          else if (searchKw.includes('宝剑')) searchKw = 'Swords'
+          else if (searchKw.includes('星币') || searchKw.includes('钱币')) searchKw = 'Pentacles'
+          else {
+            // 3. Fallback: Try to find any card containing the Chinese characters
+            // This is a bit risky as it might return first match, e.g. "大" -> "The High Priestess" (女祭司)? No.
+            // Better to find strict containment.
+            const partialMatch = cards.find(c => c.name_zh && c.name_zh.includes(searchKw))
+            if (partialMatch && partialMatch.name_en) {
+               // Heuristic: If Major Arcana, usually unique.
+               // If Minor Arcana, extracting "Cups" etc is handled above.
+               // So this handles "愚者" -> "The Fool" even if not exact? (e.g. "愚")
+               searchKw = partialMatch.name_en
+            }
+          }
+        }
+      }
 
       const params = new URLSearchParams()
       params.set('page', String(p))
       params.set('limit', String(pageSize))
-      if (kw.trim()) params.set('keyword', kw.trim())
+      if (searchKw) params.set('keyword', searchKw)
       if (position !== 'all') params.set('position', position)
       if (category !== 'all') params.set('category', category)
       const res = await api.get(`${API_ENDPOINTS.INTERP_ADMIN.LIST}?${params.toString()}`)
@@ -71,10 +110,13 @@ export default function Interpretations() {
     } finally {
       setLoading(false)
     }
-  }, [positionFilter, categoryFilter, query])
+  }, [pageSize, positionFilter, categoryFilter, query, cards]) // Added cards to deps
+
+
 
   useEffect(() => {
     fetchInterps()
+    fetchCards()
   }, [])
 
   useEffect(() => {
@@ -224,7 +266,12 @@ export default function Interpretations() {
                 <div key={item.id} className="rounded-2xl border border-[#D4A373]/25 bg-white/80 backdrop-blur shadow-sm p-4 flex flex-col gap-2 hover:shadow-lg transition">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-[#2B1F16] font-semibold">
-                      <span className="text-sm text-[#D4A373]">{item.card_name}</span>
+                      <span className="text-sm text-[#D4A373]">
+                        {item.card_name} 
+                        <span className="text-xs text-[#6B5542]/70 ml-1">
+                          ({cards.find(c => c.name_en === item.card_name)?.name_zh || '-'})
+                        </span>
+                      </span>
                       <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-semibold ${badgeClass}`}>
                         {item.position}
                       </span>
@@ -329,14 +376,49 @@ export default function Interpretations() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm text-[#6B5542]">Card Name</label>
+                  <label className="text-sm text-[#6B5542]">Card Name {textLang === 'zh' ? '(可输入中文)' : ''}</label>
                   <input
-                    value={formData.card_name}
-                    onChange={(e) => setFormData({ ...formData, card_name: e.target.value })}
+                    value={
+                      textLang === 'zh' 
+                        ? (editingItem ? (cards.find(c => c.name_en === formData.card_name)?.name_zh || formData.card_name) 
+                                       : (formData.card_name && /[^\u0000-\u007F]/.test(formData.card_name) ? formData.card_name : (cards.find(c => c.name_en === formData.card_name)?.name_zh || formData.card_name)))
+                        : formData.card_name
+                    }
+                    onChange={(e) => {
+                      const val = e.target.value
+                      if (textLang === 'zh') {
+                        // Try to find matching card by Chinese name
+                        cards.find(c => c.name_zh === val || c.name_zh?.includes(val)) // Simple substring match for better UX? No, let's Stick to exact first, or maybe reverse lookup.
+                        // Actually better: Users type Chinese. We map it to English IF we find a match.
+                        // But wait, if they type "愚", we can't map it to "The Fool" yet. 
+                        // So we must store the raw input temporarily if it doesn't match?
+                        // But formData.card_name expects the English key.
+                        
+                        // Strategy: Find exact match for name_zh
+                        const exactMatch = cards.find(c => c.name_zh === val)
+                        if (exactMatch) {
+                          setFormData({ ...formData, card_name: exactMatch.name_en })
+                        } else {
+                           // If no exact match, we just assume they are typing... 
+                           // BUT checking against en names is hard.
+                           // Let's rely on the input being "display" only? No, regular input.
+                           // Let's set formData.card_name to the Chinese text TEMPORARILY if not matched?
+                           // Backend might fail validation if we send Chinese.
+                           // So we MUST ensure it matches before submit.
+                           setFormData({ ...formData, card_name: val })
+                        }
+                      } else {
+                        setFormData({ ...formData, card_name: val })
+                      }
+                    }}
                     className="w-full mt-1 rounded-xl border border-gray-200 px-3 py-2 focus:border-[#D4A373] focus:ring-[#D4A373]/30 disabled:bg-gray-100 disabled:text-gray-500"
                     required
                     disabled={!!editingItem}
+                    list="card-options"
                   />
+                  <datalist id="card-options">
+                    {cards.map(c => <option key={c.id} value={textLang === 'zh' ? c.name_zh : c.name_en}>{textLang === 'zh' ? `${c.name_zh} (${c.name_en})` : `${c.name_en} (${c.name_zh})`}</option>)}
+                  </datalist>
                 </div>
                 <div>
                   <label className="text-sm text-[#6B5542]">Position</label>
