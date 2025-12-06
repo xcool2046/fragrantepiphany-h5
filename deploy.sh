@@ -157,7 +157,7 @@ ssh -o ConnectTimeout=10 "${SERVER}" "cd ${REMOTE_DIR} && \
   docker compose exec backend node dist/scripts/inspect_cards.js && \
   echo '🔧 Ensuring Cards Data (EN/ZH) is Correct...' && \
   docker compose exec backend node dist/scripts/ensure_cards_correct.js && \
-  docker compose exec backend node dist/scripts/import_perfume_data.js && \
+  docker compose exec -e FORCE_RESET=true backend node dist/scripts/import_perfume_data.js && \
   echo '💖 Importing Self/Love English Data...' && \
   docker compose exec backend node dist/scripts/import_self_love_en.js && \
   docker compose restart nginx"
