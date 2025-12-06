@@ -39,15 +39,14 @@ const Onboarding: React.FC = () => {
       content: (
         <>
           <p className="mb-4 font-serif text-lg">{t('onboarding.slide2.p1')}</p>
-          <ul className="text-sm text-subtext space-y-3 mb-6 list-disc pl-5 text-left leading-relaxed">
-            <li>{t('onboarding.slide2.list1')}</li>
-            <li>{t('onboarding.slide2.list2')}</li>
-            <li>{t('onboarding.slide2.list3')}</li>
-            {/* Only render list4 if it exists (non-empty and not the key itself) */}
-            {t('onboarding.slide2.list4', { defaultValue: '' }) && (
+          <div className="w-full flex justify-center px-4">
+            <ul className="text-sm text-subtext space-y-3 mb-6 list-disc pl-5 text-left leading-relaxed max-w-xs md:max-w-md">
+              <li>{t('onboarding.slide2.list1')}</li>
+              <li>{t('onboarding.slide2.list2')}</li>
+              <li>{t('onboarding.slide2.list3')}</li>
               <li>{t('onboarding.slide2.list4')}</li>
-            )}
-          </ul>
+            </ul>
+          </div>
         </>
       )
     },
@@ -80,7 +79,7 @@ const Onboarding: React.FC = () => {
       {/* Background Texture */}
       <div className="absolute inset-0 z-0 opacity-30 bg-cover bg-center mix-blend-overlay" />
       
-      <div className="relative z-10 max-w-md w-full glass-panel p-8 pt-12 h-[70vh] flex flex-col justify-start text-center shadow-card overflow-hidden">
+      <div className="relative z-10 max-w-md md:max-w-2xl w-full glass-panel p-8 pt-12 h-[70vh] md:h-auto md:min-h-[60vh] flex flex-col justify-start text-center shadow-card overflow-hidden">
         <AnimatePresence mode='wait'>
           <motion.div
             key={step}

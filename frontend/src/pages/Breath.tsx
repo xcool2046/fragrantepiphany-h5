@@ -31,15 +31,20 @@ const Breath: React.FC = () => {
       <div className="relative z-10 flex flex-col items-center justify-center px-6 text-center w-full max-w-md">
         
         {/* Icon - Static to appear with background via Wipe */}
-        <div
+        <motion.div
           className="mb-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
         >
           <img 
             src={breathIcon} 
             alt="Sun and Moon" 
             className="w-80 h-80 md:w-[30rem] md:h-[30rem] object-contain drop-shadow-[0_0_15px_rgba(212,163,115,0.3)]"
+            loading="eager"
+            decoding="sync"
           />
-        </div>
+        </motion.div>
 
         {/* Text */}
         <div className="space-y-6 mb-16">
@@ -55,7 +60,7 @@ const Breath: React.FC = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 3.0 }}
+            transition={{ duration: 1, delay: 2.5 }}
             className="text-xl md:text-2xl tracking-wide font-medium text-[#E5C4A3]"
           >
             {t('breath.p2')}
@@ -64,7 +69,7 @@ const Breath: React.FC = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 5.5 }}
+            transition={{ duration: 1, delay: 4.5 }}
             className="text-lg md:text-xl tracking-wider text-[#E5C4A3] leading-relaxed mt-4"
           >
             {t('breath.p3')}
@@ -75,7 +80,7 @@ const Breath: React.FC = () => {
         <motion.button
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 8.0 }}
+          transition={{ duration: 1, delay: 5.5 }}
           onClick={handleContinue}
           className="px-10 py-3 rounded-full bg-[#5C4033]/80 border border-[#D4A373]/30 text-[#D4A373] uppercase tracking-[0.2em] text-sm hover:bg-[#5C4033] hover:text-[#F7F2ED] transition-colors duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
         >

@@ -49,17 +49,15 @@ async function run() {
     const metadata = AppDataSource.getMetadata(Perfume);
     console.log('TypeORM Columns:', metadata.columns.map(c => c.propertyName));
 
-    // 1. Drop columns if they exist
-    console.log('Dropping deprecated columns...');
-    await AppDataSource.query(`
-      ALTER TABLE perfumes 
-      DROP COLUMN IF EXISTS notes_top,
-      DROP COLUMN IF EXISTS notes_heart,
-      DROP COLUMN IF EXISTS notes_base,
-      DROP COLUMN IF EXISTS notes_top_en,
-      DROP COLUMN IF EXISTS notes_heart_en,
-      DROP COLUMN IF EXISTS notes_base_en;
-    `);
+    // Check if data exists
+    const existingCount = await perfumeRepo.count();
+    if (existingCount > 0 && process.env.FORCE_RESET !== 'true') {
+        console.log(`Perfumes table has ${existingCount} records. Skipping import (FORCE_RESET not set).`);
+        await AppDataSource.destroy();
+        return;
+    }
+
+    // 1. Drop columns if they exist (Only if resetting)
 
     // 1.1 Ensure required columns exist (TypeORM entity has them, so DB must have them)
     console.log('Ensuring columns exist...');

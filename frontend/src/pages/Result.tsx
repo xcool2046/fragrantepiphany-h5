@@ -213,15 +213,23 @@ const Result: React.FC = () => {
     const debugMode = searchParams.get('debug') === 'unlocked'
     const effectiveOrderId = debugMode ? 'debug-unlocked' : currentOrderId
 
-    getReading({
-      card_indices: realCardIds, // Use the Real Content IDs for the API
-      language: i18n.language,
-      category,
-      answers,
-      orderId: effectiveOrderId,
-      timestamp: Date.now(),
-    })
-      .then((res) => {
+
+
+    // Artificial delay to make it look like "calculating"
+    const minDelay = new Promise(resolve => setTimeout(resolve, 3000))
+    
+    Promise.all([
+      getReading({
+        card_indices: realCardIds, // Use the Real Content IDs for the API
+        language: i18n.language,
+        category,
+        answers,
+        orderId: effectiveOrderId,
+        timestamp: Date.now(),
+      }),
+      minDelay
+    ])
+      .then(([res]) => {
         setReadingData(res)
         if (res.is_unlocked) {
           setUnlockedByOrder(true)
@@ -372,7 +380,7 @@ const Result: React.FC = () => {
   };
 
   if (matchStatus === 'loading' || matchStatus === 'idle') {
-    return <GlobalLoading />
+    return <GlobalLoading text={t('common.interpreting')} />
   }
 
   if (normalizedCardIds.length !== 3) {
@@ -405,7 +413,7 @@ const Result: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#E8DCC5] text-[#2B1F16] relative">
-      <div className="relative z-10 max-w-md mx-auto">
+      <div className="relative z-10 max-w-md md:max-w-2xl mx-auto">
           {/* 1. Cards Section - Sticky Fixed */}
           <div className="sticky top-0 z-50 bg-[#E8DCC5] pt-8 pb-4 px-4">
             <div className="flex flex-row justify-center items-end gap-3 md:gap-6 perspective-1000">
@@ -502,7 +510,7 @@ const Result: React.FC = () => {
 
               {/* 2.1 Past Section - Always Visible */}
               <div className="mb-8">
-                  <div className="text-[#3E3025] font-serif text-sm leading-8 text-left px-2">
+                  <div className="text-[#3E3025] font-serif text-sm leading-8 text-left px-2 md:px-8 md:max-w-xl md:mx-auto">
                       <div className="flex justify-center mb-6">
                           <div className="w-16 h-[1px] bg-[#4A3B32]/20" />
                       </div>
@@ -614,14 +622,14 @@ const Result: React.FC = () => {
                           {currentPageStep === 0 ? (
                             <div>
                               <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.present.label', 'PRESENT')}</h3>
-                              <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap text-left px-2">
+                              <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap text-left px-2 md:px-8 md:max-w-xl md:mx-auto">
                                 {readingData?.present?.interpretation || t('result.timeframes.present.description', 'The present moment holds infinite possibilities. Open your heart to receive the blessings around you now.')}
                               </p>
                             </div>
                           ) : (
                             <div>
                               <h3 className="text-center text-base font-serif text-[#4A3B32] mb-4 tracking-[0.22em]">{t('result.timeframes.future.label', 'FUTURE')}</h3>
-                              <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap text-left px-2">
+                              <p className="mb-0 text-[#3E3025]/90 whitespace-pre-wrap text-left px-2 md:px-8 md:max-w-xl md:mx-auto">
                                 {readingData?.future?.interpretation || t('result.timeframes.future.description', 'Trust your intuition and take the next step with confidence. Your destiny awaits.')}
                               </p>
                             </div>

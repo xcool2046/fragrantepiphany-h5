@@ -15,7 +15,7 @@ const ZodiacWheel: React.FC = () => {
           opacity: { duration: 1.5, delay: 0.5, ease: "easeOut" },
           scale: { duration: 1.5, delay: 0.5, ease: "easeOut" },
         }}
-        className="w-[120vw] h-[120vw] md:w-[900px] md:h-[900px] mix-blend-multiply"
+        className="w-[120vw] h-[120vw] md:w-[55vw] md:h-[55vw] md:max-w-[800px] md:max-h-[800px] xl:w-[700px] xl:h-[700px] md:translate-y-[45%] md:scale-[1.1] mix-blend-multiply"
       >
         <img
           src={zodiacWheelImage}

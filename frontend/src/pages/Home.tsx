@@ -37,9 +37,9 @@ const Home: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.2 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[150vw] h-[65vh] md:w-[110vh] md:h-[65vh] mix-blend-multiply pointer-events-none"
+          className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[150vw] h-[65vh] md:w-[120vw] md:h-[82vh] xl:h-[80vh] mix-blend-multiply pointer-events-none"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_closest-side,transparent_25%,#F7F2ED_85%)] z-10" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_closest-side,transparent_25%,#F7F2ED_85%)] md:bg-[radial-gradient(circle_closest-side,transparent_40%,#F7F2ED_85%)] z-10" />
           <picture>
             <source srcSet={homeBgDecorationWebp} type="image/webp" />
             <img
@@ -54,10 +54,10 @@ const Home: React.FC = () => {
       </div>
 
       {/* --- Content Layer: Centered Layout --- */}
-      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 min-h-screen flex flex-col items-center justify-end text-center pb-[25vh]">
+      <div className="relative z-20 w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 min-h-screen flex flex-col items-center justify-end md:justify-center text-center pb-[25vh] md:pb-0">
 
         {/* Title Group with Fixed Height Container */}
-        <div className="mb-3 md:mb-4 flex flex-col items-center relative">
+        <div className="mb-3 md:mb-6 lg:mb-8 flex flex-col items-center relative">
           {/* Brand Name Above Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -86,7 +86,7 @@ const Home: React.FC = () => {
                     initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
                     animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                     transition={{ duration: 1, ease: "easeOut" }}
-                    className="relative w-[80vw] max-w-[400px] md:max-w-[500px] h-auto object-contain opacity-90"
+                    className="relative w-[80vw] max-w-[400px] md:max-w-[550px] lg:max-w-[650px] xl:max-w-[700px] h-auto object-contain opacity-90"
                   />
                 </div>
               ) : (
@@ -102,7 +102,7 @@ const Home: React.FC = () => {
                     }}
                     className="block"
                     style={{
-                      fontSize: 'clamp(2.5rem, 6.5vw, 4.8rem)',
+                      fontSize: 'clamp(2.5rem, 5vw, 5.5rem)',
                       fontWeight: 500,
                       letterSpacing: '-0.02em',
                       lineHeight: 1.1,
@@ -120,14 +120,14 @@ const Home: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="mt-2 text-sm md:text-base text-[#2B1F16]/60 font-serif italic tracking-[0.15em] relative z-10 mix-blend-multiply"
+            className="mt-2 md:mt-4 text-sm md:text-base text-[#2B1F16]/60 font-serif italic tracking-[0.15em] relative z-10 mix-blend-multiply"
           >
             {t('home.subtitle')}
           </motion.p>
         </div>
 
         {/* Interaction Group */}
-        <div className="flex flex-col items-center gap-3 mb-0">
+        <div className="flex flex-col items-center gap-3 md:gap-4 mb-0">
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -135,7 +135,7 @@ const Home: React.FC = () => {
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => navigate('/onboarding')}
-            className="group relative overflow-hidden px-14 py-5 md:px-20 md:py-6 rounded-full bg-[#2B1F16] text-[#F7F2ED] shadow-[0_20px_50px_-15px_rgba(43,31,22,0.4)] transition-shadow transition-colors duration-700 inner-glow-gold hover:shadow-[0_30px_80px_-15px_rgba(212,163,115,0.3)]"
+            className="group relative overflow-hidden px-14 py-5 md:px-24 md:py-7 rounded-full bg-[#2B1F16] text-[#F7F2ED] shadow-[0_20px_50px_-15px_rgba(43,31,22,0.4)] transition-shadow transition-colors duration-700 inner-glow-gold hover:shadow-[0_30px_80px_-15px_rgba(212,163,115,0.3)]"
           >
             {/* Shimmer effect - slower */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_ease-in-out_infinite]" />

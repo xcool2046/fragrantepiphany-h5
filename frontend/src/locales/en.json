@@ -18,7 +18,8 @@
     "begin": "Begin",
     "tapToContinue": "Tap to continue",
     "restart": "Restart",
-    "complete": "Complete"
+    "complete": "Complete",
+    "interpreting": "Interpreting..."
   },
   "home": {
     "title": "A Journey\nThrough Scent,\nSpirit and Stars",
@@ -33,11 +34,11 @@
   "onboarding": {
     "slide1": {
       "title": "Take a Moment for Yourself",
-      "p1": "On the surface, this is an epiphany carried by scent. More precisely, it’s a small space where tarot insight, your emotional state, and fragrance are gently woven together.",
+      "p1": "On the surface, this is an epiphany carried by scent. More precisely, it's a small space where tarot insight, your emotional state, and fragrance are gently woven together.",
       "p2": "You may have arrived here for the tarot, perhaps for the perfume, or simply because life lately has left you with a quiet feeling that:",
       "p3": "",
       "p4": "",
-      "quote": "something needs to shift,\nbut you’re not yet sure where to begin."
+      "quote": "something needs to shift,\nbut you're not yet sure where to begin."
     },
     "slide2": {
       "title": "What Happens Next",
@@ -46,7 +47,7 @@
       "list2": "Draw a spread that reflects your current state",
       "list3": "Receive one perfume recommendation that truly fits where you are right now",
       "list4": "And get a small personal ritual to take with you – a scent card with your name and a line written just for you",
-      "p2": "If you’ve ever asked yourself —\n“Where am I really, right now?”\n“What kind of person can I become from here?”\nthen keep going,\nand let this be a small turning point you’re gifting to yourself."
+      "p2": "If you've ever asked yourself —\n\"Where am I really, right now?\"\n\"What kind of person can I become from here?\"\nthen keep going,\nand let this be a small turning point you're gifting to yourself."
     },
     "startBtn": "Start Journey"
   },
@@ -98,7 +99,7 @@
     "locked": {
       "title": "THE REVELATION",
       "promo": {
-        "p1": "You’ve seen your past.<br/>Unlock your present & future chapter 🔮",
+        "p1": "You've seen your past.<br/>Unlock your present & future chapter 🔮",
         "p2_pre": "and one signature scent that fits exactly",
         "p2_highlight": "how you are right now",
         "p2_post": "🧴 —",
@@ -152,9 +153,9 @@
         },
         "tarotInsight": {
           "title": "\"Tarot Insight\"",
-          "content": "The silence of '4 of Swords' returns to woody coolness.\nThe abundance of '9 of Cups' hides in sandalwood milkiness.\nThe call of 'Ace of Wands' melts into skin warmth.\n—— A spiritual journey from seclusion to engagement."
+          "content": "The silence of '4 of Swords' returns to woody coolness.\nThe abundance of '9 of Cups' hides in sandalwood milkiness.\nThe call of 'Ace of Wands' melts into skin warmth.\n— A spiritual journey from seclusion to engagement."
         },
-        "atmosphere": "It is not the burning incense, that smoky piety; nor is it new woodenware, with the sharpness of the craftsman. It is more like an ancient temple touched by sunlight and breeze for hundreds of years.\nStepping into the temple: The top note is dry cypress and cedar with a hint of green. Not the vibrant trees in the forest, but wood that has been felled, planed, and weathered, losing its fire. It carries a hint of ascetic coldness, as if you push open a heavy wooden door, the interior is dim, dust dancing in the light columns, the air filled with a secluded tranquility. This is the embodiment of '4 of Swords' —— a chosen solitude with restorative meaning."
+        "atmosphere": "It is not the burning incense, that smoky piety; nor is it new woodenware, with the sharpness of the craftsman. It is more like an ancient temple touched by sunlight and breeze for hundreds of years.\nStepping into the temple: The top note is dry cypress and cedar with a hint of green. Not the vibrant trees in the forest, but wood that has been felled, planed, and weathered, losing its fire. It carries a hint of ascetic coldness, as if you push open a heavy wooden door, the interior is dim, dust dancing in the light columns, the air filled with a secluded tranquility. This is the embodiment of '4 of Swords' — a chosen solitude with restorative meaning."
       },
       "chapter2": {
         "title": "Chapter 2 · Home Fragrance",
@@ -200,7 +201,10 @@
     "complete": {
       "desc": "Thank you for journeying inward and uncovering your subconscious. We look forward to your next exploration.",
       "toHome": "Back Home",
-      "revisit": "Chapters"
+      "revisit": "Chapters",
+      "shareBtn": "Share Journey",
+      "shareUrl": "https://fragrantepiphany.com/",
+      "copied": "Link Copied"
     },
     "perfume": {
       "title": "Chapter 1 · Perfume",

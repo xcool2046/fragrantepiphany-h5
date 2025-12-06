@@ -367,7 +367,8 @@ const Wheel: React.FC<WheelProps> = ({ onCardSelect, selectedCards, flyingCardId
 const Draw: React.FC = () => {
   const navigate = useNavigate()
   const location = useLocation() as { state?: { answers?: Record<string, string> } }
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const isZh = i18n.language === 'zh'
   const [selectedCards, setSelectedCards] = useState<(number | null)[]>([null, null, null])
   const [submitting, setSubmitting] = useState(false)
 
@@ -601,7 +602,10 @@ const Draw: React.FC = () => {
             )}>
                 <div
                     onClick={handleContinue}
-                    className="w-[84px] text-left text-sm text-[#F7F2ED]/60 animate-bounce uppercase tracking-widest cursor-pointer whitespace-nowrap pl-1"
+                    className={clsx(
+                        "text-sm text-[#F7F2ED]/60 animate-bounce uppercase tracking-widest cursor-pointer whitespace-nowrap",
+                        isZh ? "w-full text-center" : "w-[84px] text-left pl-1"
+                    )}
                 >
                     {t('common.tapToContinue')}
                 </div>

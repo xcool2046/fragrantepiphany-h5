@@ -18,7 +18,8 @@
     "begin": "开始",
     "tapToContinue": "点击继续",
     "restart": "重新开始",
-    "complete": "完成"
+    "complete": "完成",
+    "interpreting": "解读中"
   },
   "home": {
     "title": "灵香一现",
@@ -195,7 +196,10 @@
     "complete": {
       "desc": "恭喜你完成了一趟去自己对话、发掘潜意识的旅程，期待你的再次探索。",
       "toHome": "回到首页",
-      "revisit": "返回章节"
+      "revisit": "章节回顾",
+      "shareBtn": "分享旅程",
+      "shareUrl": "https://fragrantepiphany.com/",
+      "copied": "链接已复制"
     },
     "perfume": {
       "title": "第一章 香水",

@@ -1,7 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-const GlobalLoading: React.FC = () => {
+interface GlobalLoadingProps {
+  text?: string
+}
+
+const GlobalLoading: React.FC<GlobalLoadingProps> = ({ text = "Loading" }) => {
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#F7F2ED] overflow-hidden">
       {/* Background Effects */}
@@ -43,7 +47,7 @@ const GlobalLoading: React.FC = () => {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="text-[#2B1F16]/60 text-[10px] tracking-[0.4em] font-serif uppercase"
         >
-          Loading
+          {text}
         </motion.span>
       </div>
     </div>

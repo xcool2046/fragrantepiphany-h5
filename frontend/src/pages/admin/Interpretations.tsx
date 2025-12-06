@@ -189,21 +189,8 @@ export default function Interpretations() {
                 {TAROT_CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
               </select>
             </div>
-            {/* Language Toggle */}
-            <div className="flex items-center gap-1 bg-[#F7F0E5] rounded-lg p-1 ml-2">
-                <button
-                  onClick={() => setTextLang('zh')}
-                  className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${textLang === 'zh' ? 'bg-white text-[#2B1F16] shadow-sm' : 'text-[#6B5542] hover:bg-white/50'}`}
-                >
-                  ZH
-                </button>
-                <button
-                  onClick={() => setTextLang('en')}
-                  className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${textLang === 'en' ? 'bg-white text-[#2B1F16] shadow-sm' : 'text-[#6B5542] hover:bg-white/50'}`}
-                >
-                  EN
-                </button>
-            </div>
+
+
           </div>
           <span className="text-xs text-[#6B5542]">共 {total} 条</span>
         </div>

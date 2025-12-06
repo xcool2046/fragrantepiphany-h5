@@ -69,15 +69,19 @@ async function verify() {
             console.log(`Found Perfume: ${s2.brand_name} - ${s2.product_name}`);
             console.log(`English: ${s2.brand_name_en} - ${s2.product_name_en}`);
             console.log(`Tags (EN): ${s2.tags_en}`);
+            console.log(`Sentence: ${s2.sentence ? s2.sentence.substring(0, 20) + '...' : 'N/A'}`);
 
             const matchBrand = s2.brand_name_en === "Comptoir Sud Pacifique" || s2.brand_name === "Comptoir Sud Pacifique";
             const matchName = s2.product_name_en === "Vanille Abricot" || s2.product_name === "Vanille Abricot";
+            const hasSentence = !!s2.sentence && s2.sentence.length > 0;
 
-            if (matchBrand && matchName) {
+            if (matchBrand && matchName && hasSentence) {
                 console.log('✅ Scenario 2 MATCHES!');
             } else {
                 console.error('❌ Scenario 2 MISMATCH!');
-                console.error('Expected: Comptoir Sud Pacifique - Vanille Abricot');
+                if (!matchBrand) console.error(`Brand mismatch: ${s2.brand_name_en}`);
+                if (!matchName) console.error(`Name mismatch: ${s2.product_name_en}`);
+                if (!hasSentence) console.error('Missing Sentence');
             }
         } else {
             console.error('❌ Scenario 2 Perfume NOT FOUND in DB!');
