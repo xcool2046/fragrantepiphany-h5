@@ -77,6 +77,15 @@ async function seed() {
 
     // 1. Build Card Map from DB
     console.log('Building Card Map...');
+
+    // Check if data exists - Prevent Overwrite
+    const existingCount = await AppDataSource.query('SELECT count(*) as cnt FROM tarot_interpretations');
+    if (parseInt(existingCount[0].cnt) > 0 && process.env.FORCE_RESET !== 'true') {
+        console.log(`Tarot Interpretation Data already exists (${existingCount[0].cnt} records). Skipping seed.`);
+        await AppDataSource.destroy();
+        return;
+    }
+
     const cards = await AppDataSource.query('SELECT name_en, name_zh FROM cards');
     const cardMap = new Map<string, string>();
     cards.forEach((c: any) => {
